@@ -1,0 +1,485 @@
+<!DOCTYPE html>
+<html lang="en" dir="auto">
+
+<head><meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="robots" content="index, follow">
+<title>My New Hugo Site</title>
+<meta name="keywords" content="">
+<meta name="description" content="
+《你不了解的JS》第一部分第三章探讨了函数和块作用域的概念。函数作用域允许变量在函数内部复用，并可通过隐藏内部实现遵循最小特权原则，避免命名冲突。函数声明与表达式的主要区别在于标识符绑定位置，建议为函数表达式命名以便调试。IIFE（立即执行函数表达式）是常见模式，可用于传递参数和解决变量覆盖问题。块作用域通过let和const实现变量本地化，let在循环中每次迭代重新绑定变量，const则创建不可变绑定。这些机制有助于优化变量生命周期和避免提升问题。
+一、函数作用域的核心特性
+
+定义与复用：函数内部声明的变量，可在整个函数范围内（包括嵌套作用域）使用和复用。
+隐藏内部实现：
+
+通过函数作用域封装变量和函数，遵循最小特权原则（仅暴露必要内容，隐藏细节），减少命名冲突。
+第三方库通常通过命名空间对象（将功能作为对象属性暴露）或模块管理器（避免全局作用域污染）防止冲突。
+
+
+
+
+二、函数声明与表达式的区别
+
+区分方法：
+
+若function是声明的第一个词，则为函数声明；否则为函数表达式。
+
+
+关键差异：
+
+函数声明的名称标识符绑定在所在作用域中；
+函数表达式的名称标识符绑定在自身函数内部（外部不可直接访问）。
+
+
+匿名函数表达式的缺点：
+
+栈追踪无有意义名称，调试困难；
+无法通过名称自引用（依赖arguments.callee，已过时）；
+降低代码可读性。
+最佳实践：始终为函数表达式命名（如const fn = function namedFn() {}）。
+
+
+
+三、立即执行函数表达式（IIFE）
+
+
+定义：函数表达式被声明后立即执行（如(function() { ... })()）。
+
+
+常见用途
+：
+
+传递参数，隔离作用域（避免污染外部）；
+确保undefined标识符的准确性（通过参数占位，如(function(undef) { ... })()）；
+倒置代码执行顺序（将主逻辑作为参数传递给 IIFE）。
+
+
+
+
+四、块作用域的特性与实现
+
+核心作用：将变量本地化，扩展最小授权原则，从函数级隐藏扩展到块级隐藏。
+块作用域的优势：变量声明靠近使用位置，减少作用域污染，优化变量生命周期，避免提升带来的意外行为。
+实现方式：
+
+with 语句：为对象创建临时块作用域（仅在with内部有效）；
+try/catch：catch分句创建块作用域，内部变量仅在catch中有效；
+let 关键字：
+
+将变量绑定到所在块作用域（如if、for块）；
+无提升特性（声明前访问会报错）；
+for循环中，let会将变量重新绑定到每个迭代（确保迭代值独立）。
+
+
+const 关键字：
+
+同let的块作用域特性，但值为常量（修改会报错）。
+
+
+
+
+原书中P34最上方 “点击事件因闭包导致变量问题” 的描述有误：实际是var声明的变量属于函数 / 全局作用域，生命周期长，导致循环中共享同一变量；而let通过块作用域解决此问题。
+">
+<meta name="author" content="">
+<link rel="canonical" href="https://example.org/posts/%E4%BD%A0%E4%B8%8D%E7%9F%A5%E9%81%93%E7%9A%84js/%E4%BD%9C%E7%94%A8%E5%9F%9F%E5%92%8C%E9%97%AD%E5%8C%85/3.%E5%87%BD%E6%95%B0%E4%BD%9C%E7%94%A8%E5%9F%9F%E5%92%8C%E5%9D%97%E4%BD%9C%E7%94%A8%E5%9F%9F/">
+<link crossorigin="anonymous" href="/assets/css/stylesheet.8fe10233a706bc87f2e08b3cf97b8bd4c0a80f10675a143675d59212121037c0.css" integrity="sha256-j&#43;ECM6cGvIfy4Is8&#43;XuL1MCoDxBnWhQ2ddWSEhIQN8A=" rel="preload stylesheet" as="style">
+<link rel="icon" href="https://example.org/favicon.ico">
+<link rel="icon" type="image/png" sizes="16x16" href="https://example.org/favicon-16x16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="https://example.org/favicon-32x32.png">
+<link rel="apple-touch-icon" href="https://example.org/apple-touch-icon.png">
+<link rel="mask-icon" href="https://example.org/safari-pinned-tab.svg">
+<meta name="theme-color" content="#2e2e33">
+<meta name="msapplication-TileColor" content="#2e2e33">
+<link rel="alternate" hreflang="en" href="https://example.org/posts/%E4%BD%A0%E4%B8%8D%E7%9F%A5%E9%81%93%E7%9A%84js/%E4%BD%9C%E7%94%A8%E5%9F%9F%E5%92%8C%E9%97%AD%E5%8C%85/3.%E5%87%BD%E6%95%B0%E4%BD%9C%E7%94%A8%E5%9F%9F%E5%92%8C%E5%9D%97%E4%BD%9C%E7%94%A8%E5%9F%9F/">
+<noscript>
+    <style>
+        #theme-toggle,
+        .top-link {
+            display: none;
+        }
+
+    </style>
+    <style>
+        @media (prefers-color-scheme: dark) {
+            :root {
+                --theme: rgb(29, 30, 32);
+                --entry: rgb(46, 46, 51);
+                --primary: rgb(218, 218, 219);
+                --secondary: rgb(155, 156, 157);
+                --tertiary: rgb(65, 66, 68);
+                --content: rgb(196, 196, 197);
+                --code-block-bg: rgb(46, 46, 51);
+                --code-bg: rgb(55, 56, 62);
+                --border: rgb(51, 51, 51);
+            }
+
+            .list {
+                background: var(--theme);
+            }
+
+            .list:not(.dark)::-webkit-scrollbar-track {
+                background: 0 0;
+            }
+
+            .list:not(.dark)::-webkit-scrollbar-thumb {
+                border-color: var(--theme);
+            }
+        }
+
+    </style>
+</noscript><meta property="og:url" content="https://example.org/posts/%E4%BD%A0%E4%B8%8D%E7%9F%A5%E9%81%93%E7%9A%84js/%E4%BD%9C%E7%94%A8%E5%9F%9F%E5%92%8C%E9%97%AD%E5%8C%85/3.%E5%87%BD%E6%95%B0%E4%BD%9C%E7%94%A8%E5%9F%9F%E5%92%8C%E5%9D%97%E4%BD%9C%E7%94%A8%E5%9F%9F/">
+  <meta property="og:site_name" content="My New Hugo Site">
+  <meta property="og:title" content="My New Hugo Site">
+  <meta property="og:description" content=" 《你不了解的JS》第一部分第三章探讨了函数和块作用域的概念。函数作用域允许变量在函数内部复用，并可通过隐藏内部实现遵循最小特权原则，避免命名冲突。函数声明与表达式的主要区别在于标识符绑定位置，建议为函数表达式命名以便调试。IIFE（立即执行函数表达式）是常见模式，可用于传递参数和解决变量覆盖问题。块作用域通过let和const实现变量本地化，let在循环中每次迭代重新绑定变量，const则创建不可变绑定。这些机制有助于优化变量生命周期和避免提升问题。
+一、函数作用域的核心特性 定义与复用：函数内部声明的变量，可在整个函数范围内（包括嵌套作用域）使用和复用。 隐藏内部实现： 通过函数作用域封装变量和函数，遵循最小特权原则（仅暴露必要内容，隐藏细节），减少命名冲突。 第三方库通常通过命名空间对象（将功能作为对象属性暴露）或模块管理器（避免全局作用域污染）防止冲突。 二、函数声明与表达式的区别 区分方法： 若function是声明的第一个词，则为函数声明；否则为函数表达式。 关键差异： 函数声明的名称标识符绑定在所在作用域中； 函数表达式的名称标识符绑定在自身函数内部（外部不可直接访问）。 匿名函数表达式的缺点： 栈追踪无有意义名称，调试困难； 无法通过名称自引用（依赖arguments.callee，已过时）； 降低代码可读性。 最佳实践：始终为函数表达式命名（如const fn = function namedFn() {}）。 三、立即执行函数表达式（IIFE） 定义：函数表达式被声明后立即执行（如(function() { ... })()）。
+常见用途
+：
+传递参数，隔离作用域（避免污染外部）； 确保undefined标识符的准确性（通过参数占位，如(function(undef) { ... })()）； 倒置代码执行顺序（将主逻辑作为参数传递给 IIFE）。 四、块作用域的特性与实现 核心作用：将变量本地化，扩展最小授权原则，从函数级隐藏扩展到块级隐藏。 块作用域的优势：变量声明靠近使用位置，减少作用域污染，优化变量生命周期，避免提升带来的意外行为。 实现方式： with 语句：为对象创建临时块作用域（仅在with内部有效）； try/catch：catch分句创建块作用域，内部变量仅在catch中有效； let 关键字： 将变量绑定到所在块作用域（如if、for块）； 无提升特性（声明前访问会报错）； for循环中，let会将变量重新绑定到每个迭代（确保迭代值独立）。 const 关键字： 同let的块作用域特性，但值为常量（修改会报错）。 原书中P34最上方 “点击事件因闭包导致变量问题” 的描述有误：实际是var声明的变量属于函数 / 全局作用域，生命周期长，导致循环中共享同一变量；而let通过块作用域解决此问题。 ">
+  <meta property="og:locale" content="en-us">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="posts">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="">
+<meta name="twitter:description" content="
+《你不了解的JS》第一部分第三章探讨了函数和块作用域的概念。函数作用域允许变量在函数内部复用，并可通过隐藏内部实现遵循最小特权原则，避免命名冲突。函数声明与表达式的主要区别在于标识符绑定位置，建议为函数表达式命名以便调试。IIFE（立即执行函数表达式）是常见模式，可用于传递参数和解决变量覆盖问题。块作用域通过let和const实现变量本地化，let在循环中每次迭代重新绑定变量，const则创建不可变绑定。这些机制有助于优化变量生命周期和避免提升问题。
+一、函数作用域的核心特性
+
+定义与复用：函数内部声明的变量，可在整个函数范围内（包括嵌套作用域）使用和复用。
+隐藏内部实现：
+
+通过函数作用域封装变量和函数，遵循最小特权原则（仅暴露必要内容，隐藏细节），减少命名冲突。
+第三方库通常通过命名空间对象（将功能作为对象属性暴露）或模块管理器（避免全局作用域污染）防止冲突。
+
+
+
+
+二、函数声明与表达式的区别
+
+区分方法：
+
+若function是声明的第一个词，则为函数声明；否则为函数表达式。
+
+
+关键差异：
+
+函数声明的名称标识符绑定在所在作用域中；
+函数表达式的名称标识符绑定在自身函数内部（外部不可直接访问）。
+
+
+匿名函数表达式的缺点：
+
+栈追踪无有意义名称，调试困难；
+无法通过名称自引用（依赖arguments.callee，已过时）；
+降低代码可读性。
+最佳实践：始终为函数表达式命名（如const fn = function namedFn() {}）。
+
+
+
+三、立即执行函数表达式（IIFE）
+
+
+定义：函数表达式被声明后立即执行（如(function() { ... })()）。
+
+
+常见用途
+：
+
+传递参数，隔离作用域（避免污染外部）；
+确保undefined标识符的准确性（通过参数占位，如(function(undef) { ... })()）；
+倒置代码执行顺序（将主逻辑作为参数传递给 IIFE）。
+
+
+
+
+四、块作用域的特性与实现
+
+核心作用：将变量本地化，扩展最小授权原则，从函数级隐藏扩展到块级隐藏。
+块作用域的优势：变量声明靠近使用位置，减少作用域污染，优化变量生命周期，避免提升带来的意外行为。
+实现方式：
+
+with 语句：为对象创建临时块作用域（仅在with内部有效）；
+try/catch：catch分句创建块作用域，内部变量仅在catch中有效；
+let 关键字：
+
+将变量绑定到所在块作用域（如if、for块）；
+无提升特性（声明前访问会报错）；
+for循环中，let会将变量重新绑定到每个迭代（确保迭代值独立）。
+
+
+const 关键字：
+
+同let的块作用域特性，但值为常量（修改会报错）。
+
+
+
+
+原书中P34最上方 “点击事件因闭包导致变量问题” 的描述有误：实际是var声明的变量属于函数 / 全局作用域，生命周期长，导致循环中共享同一变量；而let通过块作用域解决此问题。
+">
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position":  1 ,
+      "name": "Posts",
+      "item": "https://example.org/posts/"
+    }, 
+    {
+      "@type": "ListItem",
+      "position":  2 ,
+      "name": "",
+      "item": "https://example.org/posts/%E4%BD%A0%E4%B8%8D%E7%9F%A5%E9%81%93%E7%9A%84js/%E4%BD%9C%E7%94%A8%E5%9F%9F%E5%92%8C%E9%97%AD%E5%8C%85/3.%E5%87%BD%E6%95%B0%E4%BD%9C%E7%94%A8%E5%9F%9F%E5%92%8C%E5%9D%97%E4%BD%9C%E7%94%A8%E5%9F%9F/"
+    }
+  ]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "",
+  "name": "",
+  "description": " 《你不了解的JS》第一部分第三章探讨了函数和块作用域的概念。函数作用域允许变量在函数内部复用，并可通过隐藏内部实现遵循最小特权原则，避免命名冲突。函数声明与表达式的主要区别在于标识符绑定位置，建议为函数表达式命名以便调试。IIFE（立即执行函数表达式）是常见模式，可用于传递参数和解决变量覆盖问题。块作用域通过let和const实现变量本地化，let在循环中每次迭代重新绑定变量，const则创建不可变绑定。这些机制有助于优化变量生命周期和避免提升问题。\n一、函数作用域的核心特性 定义与复用：函数内部声明的变量，可在整个函数范围内（包括嵌套作用域）使用和复用。 隐藏内部实现： 通过函数作用域封装变量和函数，遵循最小特权原则（仅暴露必要内容，隐藏细节），减少命名冲突。 第三方库通常通过命名空间对象（将功能作为对象属性暴露）或模块管理器（避免全局作用域污染）防止冲突。 二、函数声明与表达式的区别 区分方法： 若function是声明的第一个词，则为函数声明；否则为函数表达式。 关键差异： 函数声明的名称标识符绑定在所在作用域中； 函数表达式的名称标识符绑定在自身函数内部（外部不可直接访问）。 匿名函数表达式的缺点： 栈追踪无有意义名称，调试困难； 无法通过名称自引用（依赖arguments.callee，已过时）； 降低代码可读性。 最佳实践：始终为函数表达式命名（如const fn = function namedFn() {}）。 三、立即执行函数表达式（IIFE） 定义：函数表达式被声明后立即执行（如(function() { ... })()）。\n常见用途\n：\n传递参数，隔离作用域（避免污染外部）； 确保undefined标识符的准确性（通过参数占位，如(function(undef) { ... })()）； 倒置代码执行顺序（将主逻辑作为参数传递给 IIFE）。 四、块作用域的特性与实现 核心作用：将变量本地化，扩展最小授权原则，从函数级隐藏扩展到块级隐藏。 块作用域的优势：变量声明靠近使用位置，减少作用域污染，优化变量生命周期，避免提升带来的意外行为。 实现方式： with 语句：为对象创建临时块作用域（仅在with内部有效）； try/catch：catch分句创建块作用域，内部变量仅在catch中有效； let 关键字： 将变量绑定到所在块作用域（如if、for块）； 无提升特性（声明前访问会报错）； for循环中，let会将变量重新绑定到每个迭代（确保迭代值独立）。 const 关键字： 同let的块作用域特性，但值为常量（修改会报错）。 原书中P34最上方 “点击事件因闭包导致变量问题” 的描述有误：实际是var声明的变量属于函数 / 全局作用域，生命周期长，导致循环中共享同一变量；而let通过块作用域解决此问题。 ",
+  "keywords": [
+    
+  ],
+  "articleBody": " 《你不了解的JS》第一部分第三章探讨了函数和块作用域的概念。函数作用域允许变量在函数内部复用，并可通过隐藏内部实现遵循最小特权原则，避免命名冲突。函数声明与表达式的主要区别在于标识符绑定位置，建议为函数表达式命名以便调试。IIFE（立即执行函数表达式）是常见模式，可用于传递参数和解决变量覆盖问题。块作用域通过let和const实现变量本地化，let在循环中每次迭代重新绑定变量，const则创建不可变绑定。这些机制有助于优化变量生命周期和避免提升问题。\n一、函数作用域的核心特性 定义与复用：函数内部声明的变量，可在整个函数范围内（包括嵌套作用域）使用和复用。 隐藏内部实现： 通过函数作用域封装变量和函数，遵循最小特权原则（仅暴露必要内容，隐藏细节），减少命名冲突。 第三方库通常通过命名空间对象（将功能作为对象属性暴露）或模块管理器（避免全局作用域污染）防止冲突。 二、函数声明与表达式的区别 区分方法： 若function是声明的第一个词，则为函数声明；否则为函数表达式。 关键差异： 函数声明的名称标识符绑定在所在作用域中； 函数表达式的名称标识符绑定在自身函数内部（外部不可直接访问）。 匿名函数表达式的缺点： 栈追踪无有意义名称，调试困难； 无法通过名称自引用（依赖arguments.callee，已过时）； 降低代码可读性。 最佳实践：始终为函数表达式命名（如const fn = function namedFn() {}）。 三、立即执行函数表达式（IIFE） 定义：函数表达式被声明后立即执行（如(function() { ... })()）。\n常见用途\n：\n传递参数，隔离作用域（避免污染外部）； 确保undefined标识符的准确性（通过参数占位，如(function(undef) { ... })()）； 倒置代码执行顺序（将主逻辑作为参数传递给 IIFE）。 四、块作用域的特性与实现 核心作用：将变量本地化，扩展最小授权原则，从函数级隐藏扩展到块级隐藏。 块作用域的优势：变量声明靠近使用位置，减少作用域污染，优化变量生命周期，避免提升带来的意外行为。 实现方式： with 语句：为对象创建临时块作用域（仅在with内部有效）； try/catch：catch分句创建块作用域，内部变量仅在catch中有效； let 关键字： 将变量绑定到所在块作用域（如if、for块）； 无提升特性（声明前访问会报错）； for循环中，let会将变量重新绑定到每个迭代（确保迭代值独立）。 const 关键字： 同let的块作用域特性，但值为常量（修改会报错）。 原书中P34最上方 “点击事件因闭包导致变量问题” 的描述有误：实际是var声明的变量属于函数 / 全局作用域，生命周期长，导致循环中共享同一变量；而let通过块作用域解决此问题。 ",
+  "wordCount" : "56",
+  "inLanguage": "en",
+  "datePublished": "0001-01-01T00:00:00Z",
+  "dateModified": "0001-01-01T00:00:00Z",
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://example.org/posts/%E4%BD%A0%E4%B8%8D%E7%9F%A5%E9%81%93%E7%9A%84js/%E4%BD%9C%E7%94%A8%E5%9F%9F%E5%92%8C%E9%97%AD%E5%8C%85/3.%E5%87%BD%E6%95%B0%E4%BD%9C%E7%94%A8%E5%9F%9F%E5%92%8C%E5%9D%97%E4%BD%9C%E7%94%A8%E5%9F%9F/"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "My New Hugo Site",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://example.org/favicon.ico"
+    }
+  }
+}
+</script>
+</head>
+
+<body class="" id="top">
+<script>
+    if (localStorage.getItem("pref-theme") === "dark") {
+        document.body.classList.add('dark');
+    } else if (localStorage.getItem("pref-theme") === "light") {
+        document.body.classList.remove('dark')
+    } else if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+        document.body.classList.add('dark');
+    }
+
+</script>
+
+<header class="header">
+    <nav class="nav">
+        <div class="logo">
+            <a href="https://example.org/" accesskey="h" title="My New Hugo Site (Alt + H)">My New Hugo Site</a>
+            <div class="logo-switches">
+                <button id="theme-toggle" accesskey="t" title="(Alt + T)" aria-label="Toggle theme">
+                    <svg id="moon" xmlns="http://www.w3.org/2000/svg" width="24" height="18" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                    </svg>
+                    <svg id="sun" xmlns="http://www.w3.org/2000/svg" width="24" height="18" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <circle cx="12" cy="12" r="5"></circle>
+                        <line x1="12" y1="1" x2="12" y2="3"></line>
+                        <line x1="12" y1="21" x2="12" y2="23"></line>
+                        <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                        <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                        <line x1="1" y1="12" x2="3" y2="12"></line>
+                        <line x1="21" y1="12" x2="23" y2="12"></line>
+                        <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                        <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+                    </svg>
+                </button>
+            </div>
+        </div>
+        <ul id="menu">
+        </ul>
+    </nav>
+</header>
+<main class="main">
+
+<article class="post-single">
+  <header class="post-header">
+    
+    <h1 class="post-title entry-hint-parent">
+      
+    </h1>
+    <div class="post-meta">
+
+</div>
+  </header> 
+  <div class="post-content"><blockquote>
+<p>《你不了解的JS》第一部分第三章探讨了函数和块作用域的概念。函数作用域允许变量在函数内部复用，并可通过隐藏内部实现遵循最小特权原则，避免命名冲突。函数声明与表达式的主要区别在于标识符绑定位置，建议为函数表达式命名以便调试。IIFE（立即执行函数表达式）是常见模式，可用于传递参数和解决变量覆盖问题。块作用域通过let和const实现变量本地化，let在循环中每次迭代重新绑定变量，const则创建不可变绑定。这些机制有助于优化变量生命周期和避免提升问题。</p></blockquote>
+<h3 id="一函数作用域的核心特性">一、函数作用域的核心特性<a hidden class="anchor" aria-hidden="true" href="#一函数作用域的核心特性">#</a></h3>
+<ol>
+<li><strong>定义与复用</strong>：函数内部声明的变量，可在整个函数范围内（包括嵌套作用域）使用和复用。</li>
+<li>隐藏内部实现：
+<ul>
+<li>通过函数作用域封装变量和函数，遵循<strong>最小特权原则</strong>（仅暴露必要内容，隐藏细节），减少命名冲突。</li>
+<li>第三方库通常通过<strong>命名空间对象</strong>（将功能作为对象属性暴露）或<strong>模块管理器</strong>（避免全局作用域污染）防止冲突。</li>
+</ul>
+</li>
+</ol>
+<hr>
+<h3 id="二函数声明与表达式的区别">二、函数声明与表达式的区别<a hidden class="anchor" aria-hidden="true" href="#二函数声明与表达式的区别">#</a></h3>
+<ol>
+<li>区分方法：
+<ul>
+<li>若<code>function</code>是声明的第一个词，则为<strong>函数声明</strong>；否则为<strong>函数表达式</strong>。</li>
+</ul>
+</li>
+<li>关键差异：
+<ul>
+<li>函数声明的名称标识符绑定在<strong>所在作用域</strong>中；</li>
+<li>函数表达式的名称标识符绑定在<strong>自身函数内部</strong>（外部不可直接访问）。</li>
+</ul>
+</li>
+<li>匿名函数表达式的缺点：
+<ul>
+<li>栈追踪无有意义名称，调试困难；</li>
+<li>无法通过名称自引用（依赖<code>arguments.callee</code>，已过时）；</li>
+<li>降低代码可读性。</li>
+<li><strong>最佳实践</strong>：始终为函数表达式命名（如<code>const fn = function namedFn() {}</code>）。</li>
+</ul>
+</li>
+</ol>
+<h3 id="三立即执行函数表达式iife">三、立即执行函数表达式（IIFE）<a hidden class="anchor" aria-hidden="true" href="#三立即执行函数表达式iife">#</a></h3>
+<ol>
+<li>
+<p><strong>定义</strong>：函数表达式被声明后立即执行（如<code>(function() { ... })()</code>）。</p>
+</li>
+<li>
+<p>常见用途</p>
+<p>：</p>
+<ul>
+<li>传递参数，隔离作用域（避免污染外部）；</li>
+<li>确保<code>undefined</code>标识符的准确性（通过参数占位，如<code>(function(undef) { ... })()</code>）；</li>
+<li>倒置代码执行顺序（将主逻辑作为参数传递给 IIFE）。</li>
+</ul>
+</li>
+</ol>
+<hr>
+<h3 id="四块作用域的特性与实现">四、块作用域的特性与实现<a hidden class="anchor" aria-hidden="true" href="#四块作用域的特性与实现">#</a></h3>
+<ol>
+<li><strong>核心作用</strong>：将变量本地化，扩展最小授权原则，从函数级隐藏扩展到块级隐藏。</li>
+<li>块作用域的优势：变量声明靠近使用位置，减少作用域污染，优化变量生命周期，避免提升带来的意外行为。</li>
+<li>实现方式：
+<ul>
+<li><strong>with 语句</strong>：为对象创建临时块作用域（仅在<code>with</code>内部有效）；</li>
+<li><strong>try/catch</strong>：<code>catch</code>分句创建块作用域，内部变量仅在<code>catch</code>中有效；</li>
+<li>let 关键字：
+<ul>
+<li>将变量绑定到所在块作用域（如<code>if</code>、<code>for</code>块）；</li>
+<li>无提升特性（声明前访问会报错）；</li>
+<li><code>for</code>循环中，<code>let</code>会将变量<strong>重新绑定到每个迭代</strong>（确保迭代值独立）。</li>
+</ul>
+</li>
+<li>const 关键字：
+<ul>
+<li>同<code>let</code>的块作用域特性，但值为常量（修改会报错）。</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>原书中P34最上方 “点击事件因闭包导致变量问题” 的描述有误：实际是<code>var</code>声明的变量属于函数 / 全局作用域，生命周期长，导致循环中共享同一变量；而<code>let</code>通过块作用域解决此问题。</li>
+</ol>
+
+
+  </div>
+
+  <footer class="post-footer">
+    <ul class="post-tags">
+    </ul>
+  </footer>
+</article>
+    </main>
+    
+<footer class="footer">
+        <span>&copy; 2025 <a href="https://example.org/">My New Hugo Site</a></span> · 
+
+    <span>
+        Powered by
+        <a href="https://gohugo.io/" rel="noopener noreferrer" target="_blank">Hugo</a> &
+        <a href="https://github.com/adityatelange/hugo-PaperMod/" rel="noopener" target="_blank">PaperMod</a>
+    </span>
+</footer>
+<a href="#top" aria-label="go to top" title="Go to Top (Alt + G)" class="top-link" id="top-link" accesskey="g">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 12 6" fill="currentColor">
+        <path d="M12 6H0l6-6z" />
+    </svg>
+</a>
+
+<script>
+    let menu = document.getElementById('menu')
+    if (menu) {
+        menu.scrollLeft = localStorage.getItem("menu-scroll-position");
+        menu.onscroll = function () {
+            localStorage.setItem("menu-scroll-position", menu.scrollLeft);
+        }
+    }
+
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener("click", function (e) {
+            e.preventDefault();
+            var id = this.getAttribute("href").substr(1);
+            if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView({
+                    behavior: "smooth"
+                });
+            } else {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView();
+            }
+            if (id === "top") {
+                history.replaceState(null, null, " ");
+            } else {
+                history.pushState(null, null, `#${id}`);
+            }
+        });
+    });
+
+</script>
+<script>
+    var mybutton = document.getElementById("top-link");
+    window.onscroll = function () {
+        if (document.body.scrollTop > 800 || document.documentElement.scrollTop > 800) {
+            mybutton.style.visibility = "visible";
+            mybutton.style.opacity = "1";
+        } else {
+            mybutton.style.visibility = "hidden";
+            mybutton.style.opacity = "0";
+        }
+    };
+
+</script>
+<script>
+    document.getElementById("theme-toggle").addEventListener("click", () => {
+        if (document.body.className.includes("dark")) {
+            document.body.classList.remove('dark');
+            localStorage.setItem("pref-theme", 'light');
+        } else {
+            document.body.classList.add('dark');
+            localStorage.setItem("pref-theme", 'dark');
+        }
+    })
+
+</script>
+</body>
+
+</html>

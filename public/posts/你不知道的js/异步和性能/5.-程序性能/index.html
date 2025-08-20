@@ -1,0 +1,558 @@
+<!DOCTYPE html>
+<html lang="en" dir="auto">
+
+<head><meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="robots" content="index, follow">
+<title>My New Hugo Site</title>
+<meta name="keywords" content="">
+<meta name="description" content="一、Web Worker 基础
+
+
+定义与作用：
+
+Web Worker 是浏览器提供的多线程机制，允许 JS 主程序创建独立线程运行代码块（任务并行），避免主线程阻塞（如 UI 卡顿）。
+每个 Worker 是独立的 JS 引擎实例，运行在单独线程，与主程序及其他 Worker 隔离。
+
+
+
+创建与类型：
+
+
+专用 Worker（Dedicated Worker）：通过 new Worker(&#39;script.js&#39;) 创建，与主程序是一对一关系，仅能与创建它的程序通信。
+
+
+示例：
+// 主程序中创建专用 Worker
+const w1 = new Worker(&#39;worker.js&#39;);
+
+
+
+
+二、Worker 通信机制
+
+
+消息传递：
+
+
+不共享作用域 / 资源，通过 message 事件双向通信，数据传递基于结构化克隆或所有权转移。
+
+
+主程序与 Worker 内部均通过postMessage(data)发送消息，通过onmessage监听消息：
+// 主程序
+w1.postMessage(&#39;hello&#39;); // 发送消息到 Worker
+w1.onmessage = (e) =&gt; console.log(&#39;收到 Worker 消息：&#39;, e.data);
+
+// worker.js 内部
+self.onmessage = (e) =&gt; {
+  console.log(&#39;收到主程序消息：&#39;, e.data);
+  self.postMessage(&#39;hi&#39;); // 发送消息到主程序
+};
+
+
+
+
+终止 Worker：
+
+主程序中调用 w1.terminate() 可立即终止 Worker（无清理机会）；
+Worker 内部可调用 self.close() 主动终止自身。
+
+
+
+三、Worker 运行环境
+
+限制与可用资源：
+
+不可访问 DOM、主程序全局变量，但可使用 navigator、location、JSON、setTimeout 等，支持网络请求（如 fetch）。
+可通过 importScripts(&#39;script1.js&#39;, &#39;script2.js&#39;) 同步加载额外脚本（阻塞 Worker 执行直到加载完成）。
+
+
+典型应用场景：
+
+密集型数学计算、大数据排序、数据预处理、高频网络通信等（避免阻塞主线程）。
+
+
+
+四、数据传递方式
+
+
+结构化克隆：">
+<meta name="author" content="">
+<link rel="canonical" href="https://example.org/posts/%E4%BD%A0%E4%B8%8D%E7%9F%A5%E9%81%93%E7%9A%84js/%E5%BC%82%E6%AD%A5%E5%92%8C%E6%80%A7%E8%83%BD/5.-%E7%A8%8B%E5%BA%8F%E6%80%A7%E8%83%BD/">
+<link crossorigin="anonymous" href="/assets/css/stylesheet.8fe10233a706bc87f2e08b3cf97b8bd4c0a80f10675a143675d59212121037c0.css" integrity="sha256-j&#43;ECM6cGvIfy4Is8&#43;XuL1MCoDxBnWhQ2ddWSEhIQN8A=" rel="preload stylesheet" as="style">
+<link rel="icon" href="https://example.org/favicon.ico">
+<link rel="icon" type="image/png" sizes="16x16" href="https://example.org/favicon-16x16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="https://example.org/favicon-32x32.png">
+<link rel="apple-touch-icon" href="https://example.org/apple-touch-icon.png">
+<link rel="mask-icon" href="https://example.org/safari-pinned-tab.svg">
+<meta name="theme-color" content="#2e2e33">
+<meta name="msapplication-TileColor" content="#2e2e33">
+<link rel="alternate" hreflang="en" href="https://example.org/posts/%E4%BD%A0%E4%B8%8D%E7%9F%A5%E9%81%93%E7%9A%84js/%E5%BC%82%E6%AD%A5%E5%92%8C%E6%80%A7%E8%83%BD/5.-%E7%A8%8B%E5%BA%8F%E6%80%A7%E8%83%BD/">
+<noscript>
+    <style>
+        #theme-toggle,
+        .top-link {
+            display: none;
+        }
+
+    </style>
+    <style>
+        @media (prefers-color-scheme: dark) {
+            :root {
+                --theme: rgb(29, 30, 32);
+                --entry: rgb(46, 46, 51);
+                --primary: rgb(218, 218, 219);
+                --secondary: rgb(155, 156, 157);
+                --tertiary: rgb(65, 66, 68);
+                --content: rgb(196, 196, 197);
+                --code-block-bg: rgb(46, 46, 51);
+                --code-bg: rgb(55, 56, 62);
+                --border: rgb(51, 51, 51);
+            }
+
+            .list {
+                background: var(--theme);
+            }
+
+            .list:not(.dark)::-webkit-scrollbar-track {
+                background: 0 0;
+            }
+
+            .list:not(.dark)::-webkit-scrollbar-thumb {
+                border-color: var(--theme);
+            }
+        }
+
+    </style>
+</noscript><meta property="og:url" content="https://example.org/posts/%E4%BD%A0%E4%B8%8D%E7%9F%A5%E9%81%93%E7%9A%84js/%E5%BC%82%E6%AD%A5%E5%92%8C%E6%80%A7%E8%83%BD/5.-%E7%A8%8B%E5%BA%8F%E6%80%A7%E8%83%BD/">
+  <meta property="og:site_name" content="My New Hugo Site">
+  <meta property="og:title" content="My New Hugo Site">
+  <meta property="og:description" content="一、Web Worker 基础 定义与作用：
+Web Worker 是浏览器提供的多线程机制，允许 JS 主程序创建独立线程运行代码块（任务并行），避免主线程阻塞（如 UI 卡顿）。 每个 Worker 是独立的 JS 引擎实例，运行在单独线程，与主程序及其他 Worker 隔离。 创建与类型：
+专用 Worker（Dedicated Worker）：通过 new Worker(&#39;script.js&#39;) 创建，与主程序是一对一关系，仅能与创建它的程序通信。
+示例：
+// 主程序中创建专用 Worker const w1 = new Worker(&#39;worker.js&#39;); 二、Worker 通信机制 消息传递：
+不共享作用域 / 资源，通过 message 事件双向通信，数据传递基于结构化克隆或所有权转移。
+主程序与 Worker 内部均通过postMessage(data)发送消息，通过onmessage监听消息：
+// 主程序 w1.postMessage(&#39;hello&#39;); // 发送消息到 Worker w1.onmessage = (e) =&gt; console.log(&#39;收到 Worker 消息：&#39;, e.data); // worker.js 内部 self.onmessage = (e) =&gt; { console.log(&#39;收到主程序消息：&#39;, e.data); self.postMessage(&#39;hi&#39;); // 发送消息到主程序 }; 终止 Worker：
+主程序中调用 w1.terminate() 可立即终止 Worker（无清理机会）； Worker 内部可调用 self.close() 主动终止自身。 三、Worker 运行环境 限制与可用资源： 不可访问 DOM、主程序全局变量，但可使用 navigator、location、JSON、setTimeout 等，支持网络请求（如 fetch）。 可通过 importScripts(&#39;script1.js&#39;, &#39;script2.js&#39;) 同步加载额外脚本（阻塞 Worker 执行直到加载完成）。 典型应用场景： 密集型数学计算、大数据排序、数据预处理、高频网络通信等（避免阻塞主线程）。 四、数据传递方式 结构化克隆：">
+  <meta property="og:locale" content="en-us">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="posts">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="">
+<meta name="twitter:description" content="一、Web Worker 基础
+
+
+定义与作用：
+
+Web Worker 是浏览器提供的多线程机制，允许 JS 主程序创建独立线程运行代码块（任务并行），避免主线程阻塞（如 UI 卡顿）。
+每个 Worker 是独立的 JS 引擎实例，运行在单独线程，与主程序及其他 Worker 隔离。
+
+
+
+创建与类型：
+
+
+专用 Worker（Dedicated Worker）：通过 new Worker(&#39;script.js&#39;) 创建，与主程序是一对一关系，仅能与创建它的程序通信。
+
+
+示例：
+// 主程序中创建专用 Worker
+const w1 = new Worker(&#39;worker.js&#39;);
+
+
+
+
+二、Worker 通信机制
+
+
+消息传递：
+
+
+不共享作用域 / 资源，通过 message 事件双向通信，数据传递基于结构化克隆或所有权转移。
+
+
+主程序与 Worker 内部均通过postMessage(data)发送消息，通过onmessage监听消息：
+// 主程序
+w1.postMessage(&#39;hello&#39;); // 发送消息到 Worker
+w1.onmessage = (e) =&gt; console.log(&#39;收到 Worker 消息：&#39;, e.data);
+
+// worker.js 内部
+self.onmessage = (e) =&gt; {
+  console.log(&#39;收到主程序消息：&#39;, e.data);
+  self.postMessage(&#39;hi&#39;); // 发送消息到主程序
+};
+
+
+
+
+终止 Worker：
+
+主程序中调用 w1.terminate() 可立即终止 Worker（无清理机会）；
+Worker 内部可调用 self.close() 主动终止自身。
+
+
+
+三、Worker 运行环境
+
+限制与可用资源：
+
+不可访问 DOM、主程序全局变量，但可使用 navigator、location、JSON、setTimeout 等，支持网络请求（如 fetch）。
+可通过 importScripts(&#39;script1.js&#39;, &#39;script2.js&#39;) 同步加载额外脚本（阻塞 Worker 执行直到加载完成）。
+
+
+典型应用场景：
+
+密集型数学计算、大数据排序、数据预处理、高频网络通信等（避免阻塞主线程）。
+
+
+
+四、数据传递方式
+
+
+结构化克隆：">
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position":  1 ,
+      "name": "Posts",
+      "item": "https://example.org/posts/"
+    }, 
+    {
+      "@type": "ListItem",
+      "position":  2 ,
+      "name": "",
+      "item": "https://example.org/posts/%E4%BD%A0%E4%B8%8D%E7%9F%A5%E9%81%93%E7%9A%84js/%E5%BC%82%E6%AD%A5%E5%92%8C%E6%80%A7%E8%83%BD/5.-%E7%A8%8B%E5%BA%8F%E6%80%A7%E8%83%BD/"
+    }
+  ]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "",
+  "name": "",
+  "description": "一、Web Worker 基础 定义与作用：\nWeb Worker 是浏览器提供的多线程机制，允许 JS 主程序创建独立线程运行代码块（任务并行），避免主线程阻塞（如 UI 卡顿）。 每个 Worker 是独立的 JS 引擎实例，运行在单独线程，与主程序及其他 Worker 隔离。 创建与类型：\n专用 Worker（Dedicated Worker）：通过 new Worker('script.js') 创建，与主程序是一对一关系，仅能与创建它的程序通信。\n示例：\n// 主程序中创建专用 Worker const w1 = new Worker(\u0026#39;worker.js\u0026#39;); 二、Worker 通信机制 消息传递：\n不共享作用域 / 资源，通过 message 事件双向通信，数据传递基于结构化克隆或所有权转移。\n主程序与 Worker 内部均通过postMessage(data)发送消息，通过onmessage监听消息：\n// 主程序 w1.postMessage(\u0026#39;hello\u0026#39;); // 发送消息到 Worker w1.onmessage = (e) =\u0026gt; console.log(\u0026#39;收到 Worker 消息：\u0026#39;, e.data); // worker.js 内部 self.onmessage = (e) =\u0026gt; { console.log(\u0026#39;收到主程序消息：\u0026#39;, e.data); self.postMessage(\u0026#39;hi\u0026#39;); // 发送消息到主程序 }; 终止 Worker：\n主程序中调用 w1.terminate() 可立即终止 Worker（无清理机会）； Worker 内部可调用 self.close() 主动终止自身。 三、Worker 运行环境 限制与可用资源： 不可访问 DOM、主程序全局变量，但可使用 navigator、location、JSON、setTimeout 等，支持网络请求（如 fetch）。 可通过 importScripts('script1.js', 'script2.js') 同步加载额外脚本（阻塞 Worker 执行直到加载完成）。 典型应用场景： 密集型数学计算、大数据排序、数据预处理、高频网络通信等（避免阻塞主线程）。 四、数据传递方式 结构化克隆：\n",
+  "keywords": [
+    
+  ],
+  "articleBody": "一、Web Worker 基础 定义与作用：\nWeb Worker 是浏览器提供的多线程机制，允许 JS 主程序创建独立线程运行代码块（任务并行），避免主线程阻塞（如 UI 卡顿）。 每个 Worker 是独立的 JS 引擎实例，运行在单独线程，与主程序及其他 Worker 隔离。 创建与类型：\n专用 Worker（Dedicated Worker）：通过 new Worker('script.js') 创建，与主程序是一对一关系，仅能与创建它的程序通信。\n示例：\n// 主程序中创建专用 Worker const w1 = new Worker('worker.js'); 二、Worker 通信机制 消息传递：\n不共享作用域 / 资源，通过 message 事件双向通信，数据传递基于结构化克隆或所有权转移。\n主程序与 Worker 内部均通过postMessage(data)发送消息，通过onmessage监听消息：\n// 主程序 w1.postMessage('hello'); // 发送消息到 Worker w1.onmessage = (e) =\u003e console.log('收到 Worker 消息：', e.data); // worker.js 内部 self.onmessage = (e) =\u003e { console.log('收到主程序消息：', e.data); self.postMessage('hi'); // 发送消息到主程序 }; 终止 Worker：\n主程序中调用 w1.terminate() 可立即终止 Worker（无清理机会）； Worker 内部可调用 self.close() 主动终止自身。 三、Worker 运行环境 限制与可用资源： 不可访问 DOM、主程序全局变量，但可使用 navigator、location、JSON、setTimeout 等，支持网络请求（如 fetch）。 可通过 importScripts('script1.js', 'script2.js') 同步加载额外脚本（阻塞 Worker 执行直到加载完成）。 典型应用场景： 密集型数学计算、大数据排序、数据预处理、高频网络通信等（避免阻塞主线程）。 四、数据传递方式 结构化克隆：\n传递对象时，JS 引擎自动克隆数据（支持大部分类型，如对象、数组、日期等），原始对象与克隆对象独立。 Transferable 对象（所有权转移）：\n适用于大数据集（如二进制缓冲区），通过转移所有权避免复制，提升性能。\n转移后，原对象不可用（变为空或不可访问），仅支持特定类型（如 ArrayBuffer）。\n示例：\n// 主程序中传递 ArrayBuffer 给 Worker const buffer = new ArrayBuffer(1024); w1.postMessage(buffer, [buffer]); // 第二个参数指定转移的对象 不支持的浏览器会降级为结构化克隆。\n五、共享 Worker（SharedWorker） 定义与创建：\n可被同一站点的多个页面 / 程序共享的 Worker，通过 new SharedWorker('script.js') 创建。 通信差异：\n需通过 port 对象通信，且需初始化连接（port.start()）。\nWorker 内部通过connect事件管理多连接，每个连接对应独立端口：\n// 主程序 const sw = new SharedWorker('shared-worker.js'); sw.port.start(); // 初始化连接 sw.port.postMessage('来自页面1的消息'); sw.port.onmessage = (e) =\u003e console.log(e.data); // shared-worker.js 内部 self.onconnect = (e) =\u003e { const port = e.ports[0]; // 获取当前连接的端口 port.start(); port.onmessage = (msg) =\u003e { port.postMessage(`收到：${msg.data}`); // 向对应端口回复 }; }; 生命周期：\n只要有活跃连接，共享 Worker 就不会终止；所有连接关闭后才终止。 六、SIMD（单指令多数据） 定义：一种数据并行技术，利用 CPU 向量指令同时处理多个数据（与 Web Worker 的任务并行不同）。 优势：对数据密集型应用（如科学计算、图像处理）提升显著性能，通过底层指令级并行加速运算。 七、asm.js 定义：JS 的一个高性能子集，通过避免难以优化的语法（如动态类型转换），让引擎可进行激进优化（接近原生代码速度）。 特点：代码风格受限（如变量类型固定），适用于对性能要求极高的场景（如游戏引擎、数值计算）。 补充说明 Worker 线程与主线程严格隔离，无法共享状态，通信是唯一交互方式。 共享 Worker 需注意跨页面通信的同步问题，通常用于共享缓存数据或协调多页面行为。 SIMD 和 asm.js 目前在现代浏览器中应用较少，部分功能已被 WebAssembly 替代，但理解其原理有助于优化高性能 JS 代码。 ",
+  "wordCount" : "211",
+  "inLanguage": "en",
+  "datePublished": "0001-01-01T00:00:00Z",
+  "dateModified": "0001-01-01T00:00:00Z",
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://example.org/posts/%E4%BD%A0%E4%B8%8D%E7%9F%A5%E9%81%93%E7%9A%84js/%E5%BC%82%E6%AD%A5%E5%92%8C%E6%80%A7%E8%83%BD/5.-%E7%A8%8B%E5%BA%8F%E6%80%A7%E8%83%BD/"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "My New Hugo Site",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://example.org/favicon.ico"
+    }
+  }
+}
+</script>
+</head>
+
+<body class="" id="top">
+<script>
+    if (localStorage.getItem("pref-theme") === "dark") {
+        document.body.classList.add('dark');
+    } else if (localStorage.getItem("pref-theme") === "light") {
+        document.body.classList.remove('dark')
+    } else if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+        document.body.classList.add('dark');
+    }
+
+</script>
+
+<header class="header">
+    <nav class="nav">
+        <div class="logo">
+            <a href="https://example.org/" accesskey="h" title="My New Hugo Site (Alt + H)">My New Hugo Site</a>
+            <div class="logo-switches">
+                <button id="theme-toggle" accesskey="t" title="(Alt + T)" aria-label="Toggle theme">
+                    <svg id="moon" xmlns="http://www.w3.org/2000/svg" width="24" height="18" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                    </svg>
+                    <svg id="sun" xmlns="http://www.w3.org/2000/svg" width="24" height="18" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <circle cx="12" cy="12" r="5"></circle>
+                        <line x1="12" y1="1" x2="12" y2="3"></line>
+                        <line x1="12" y1="21" x2="12" y2="23"></line>
+                        <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                        <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                        <line x1="1" y1="12" x2="3" y2="12"></line>
+                        <line x1="21" y1="12" x2="23" y2="12"></line>
+                        <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                        <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+                    </svg>
+                </button>
+            </div>
+        </div>
+        <ul id="menu">
+        </ul>
+    </nav>
+</header>
+<main class="main">
+
+<article class="post-single">
+  <header class="post-header">
+    
+    <h1 class="post-title entry-hint-parent">
+      
+    </h1>
+    <div class="post-meta">
+
+</div>
+  </header> 
+  <div class="post-content"><h3 id="一web-worker-基础">一、Web Worker 基础<a hidden class="anchor" aria-hidden="true" href="#一web-worker-基础">#</a></h3>
+<ol>
+<li>
+<p><strong>定义与作用</strong>：</p>
+<ul>
+<li>Web Worker 是浏览器提供的多线程机制，允许 JS 主程序创建独立线程运行代码块（任务并行），避免主线程阻塞（如 UI 卡顿）。</li>
+<li>每个 Worker 是独立的 JS 引擎实例，运行在单独线程，与主程序及其他 Worker 隔离。</li>
+</ul>
+</li>
+<li>
+<p><strong>创建与类型</strong>：</p>
+<ul>
+<li>
+<p><strong>专用 Worker（Dedicated Worker）</strong>：通过 <code>new Worker('script.js')</code> 创建，与主程序是一对一关系，仅能与创建它的程序通信。</p>
+</li>
+<li>
+<p>示例：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-js" data-lang="js"><span style="display:flex;"><span><span style="color:#75715e">// 主程序中创建专用 Worker
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">const</span> <span style="color:#a6e22e">w1</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> <span style="color:#a6e22e">Worker</span>(<span style="color:#e6db74">&#39;worker.js&#39;</span>);
+</span></span></code></pre></div></li>
+</ul>
+</li>
+</ol>
+<h3 id="二worker-通信机制">二、Worker 通信机制<a hidden class="anchor" aria-hidden="true" href="#二worker-通信机制">#</a></h3>
+<ol>
+<li>
+<p><strong>消息传递</strong>：</p>
+<ul>
+<li>
+<p>不共享作用域 / 资源，通过 <strong><code>message</code> 事件</strong>双向通信，数据传递基于结构化克隆或所有权转移。</p>
+</li>
+<li>
+<p>主程序与 Worker 内部均通过postMessage(data)发送消息，通过onmessage监听消息：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-js" data-lang="js"><span style="display:flex;"><span><span style="color:#75715e">// 主程序
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#a6e22e">w1</span>.<span style="color:#a6e22e">postMessage</span>(<span style="color:#e6db74">&#39;hello&#39;</span>); <span style="color:#75715e">// 发送消息到 Worker
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#a6e22e">w1</span>.<span style="color:#a6e22e">onmessage</span> <span style="color:#f92672">=</span> (<span style="color:#a6e22e">e</span>) =&gt; <span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#e6db74">&#39;收到 Worker 消息：&#39;</span>, <span style="color:#a6e22e">e</span>.<span style="color:#a6e22e">data</span>);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">// worker.js 内部
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#a6e22e">self</span>.<span style="color:#a6e22e">onmessage</span> <span style="color:#f92672">=</span> (<span style="color:#a6e22e">e</span>) =&gt; {
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#e6db74">&#39;收到主程序消息：&#39;</span>, <span style="color:#a6e22e">e</span>.<span style="color:#a6e22e">data</span>);
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">self</span>.<span style="color:#a6e22e">postMessage</span>(<span style="color:#e6db74">&#39;hi&#39;</span>); <span style="color:#75715e">// 发送消息到主程序
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>};
+</span></span></code></pre></div></li>
+</ul>
+</li>
+<li>
+<p><strong>终止 Worker</strong>：</p>
+<ul>
+<li>主程序中调用 <code>w1.terminate()</code> 可立即终止 Worker（无清理机会）；</li>
+<li>Worker 内部可调用 <code>self.close()</code> 主动终止自身。</li>
+</ul>
+</li>
+</ol>
+<h3 id="三worker-运行环境">三、Worker 运行环境<a hidden class="anchor" aria-hidden="true" href="#三worker-运行环境">#</a></h3>
+<ol>
+<li><strong>限制与可用资源</strong>：
+<ul>
+<li>不可访问 DOM、主程序全局变量，但可使用 <code>navigator</code>、<code>location</code>、<code>JSON</code>、<code>setTimeout</code> 等，支持网络请求（如 <code>fetch</code>）。</li>
+<li>可通过 <code>importScripts('script1.js', 'script2.js')</code> 同步加载额外脚本（阻塞 Worker 执行直到加载完成）。</li>
+</ul>
+</li>
+<li><strong>典型应用场景</strong>：
+<ul>
+<li>密集型数学计算、大数据排序、数据预处理、高频网络通信等（避免阻塞主线程）。</li>
+</ul>
+</li>
+</ol>
+<h3 id="四数据传递方式">四、数据传递方式<a hidden class="anchor" aria-hidden="true" href="#四数据传递方式">#</a></h3>
+<ol>
+<li>
+<p><strong>结构化克隆</strong>：</p>
+<ul>
+<li>传递对象时，JS 引擎自动克隆数据（支持大部分类型，如对象、数组、日期等），原始对象与克隆对象独立。</li>
+</ul>
+</li>
+<li>
+<p><strong>Transferable 对象（所有权转移）</strong>：</p>
+<ul>
+<li>
+<p>适用于大数据集（如二进制缓冲区），通过转移所有权避免复制，提升性能。</p>
+</li>
+<li>
+<p>转移后，原对象不可用（变为空或不可访问），仅支持特定类型（如 <code>ArrayBuffer</code>）。</p>
+</li>
+<li>
+<p>示例：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-js" data-lang="js"><span style="display:flex;"><span><span style="color:#75715e">// 主程序中传递 ArrayBuffer 给 Worker
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">const</span> <span style="color:#a6e22e">buffer</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> <span style="color:#a6e22e">ArrayBuffer</span>(<span style="color:#ae81ff">1024</span>);
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">w1</span>.<span style="color:#a6e22e">postMessage</span>(<span style="color:#a6e22e">buffer</span>, [<span style="color:#a6e22e">buffer</span>]); <span style="color:#75715e">// 第二个参数指定转移的对象
+</span></span></span></code></pre></div></li>
+<li>
+<p>不支持的浏览器会降级为结构化克隆。</p>
+</li>
+</ul>
+</li>
+</ol>
+<h3 id="五共享-workersharedworker">五、共享 Worker（SharedWorker）<a hidden class="anchor" aria-hidden="true" href="#五共享-workersharedworker">#</a></h3>
+<ol>
+<li>
+<p><strong>定义与创建</strong>：</p>
+<ul>
+<li>可被同一站点的多个页面 / 程序共享的 Worker，通过 <code>new SharedWorker('script.js')</code> 创建。</li>
+</ul>
+</li>
+<li>
+<p><strong>通信差异</strong>：</p>
+<ul>
+<li>
+<p>需通过 <strong><code>port</code> 对象</strong>通信，且需初始化连接（<code>port.start()</code>）。</p>
+</li>
+<li>
+<p>Worker 内部通过connect事件管理多连接，每个连接对应独立端口：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-js" data-lang="js"><span style="display:flex;"><span><span style="color:#75715e">// 主程序
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">const</span> <span style="color:#a6e22e">sw</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> <span style="color:#a6e22e">SharedWorker</span>(<span style="color:#e6db74">&#39;shared-worker.js&#39;</span>);
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">sw</span>.<span style="color:#a6e22e">port</span>.<span style="color:#a6e22e">start</span>(); <span style="color:#75715e">// 初始化连接
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#a6e22e">sw</span>.<span style="color:#a6e22e">port</span>.<span style="color:#a6e22e">postMessage</span>(<span style="color:#e6db74">&#39;来自页面1的消息&#39;</span>);
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">sw</span>.<span style="color:#a6e22e">port</span>.<span style="color:#a6e22e">onmessage</span> <span style="color:#f92672">=</span> (<span style="color:#a6e22e">e</span>) =&gt; <span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#a6e22e">e</span>.<span style="color:#a6e22e">data</span>);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">// shared-worker.js 内部
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#a6e22e">self</span>.<span style="color:#a6e22e">onconnect</span> <span style="color:#f92672">=</span> (<span style="color:#a6e22e">e</span>) =&gt; {
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">const</span> <span style="color:#a6e22e">port</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">e</span>.<span style="color:#a6e22e">ports</span>[<span style="color:#ae81ff">0</span>]; <span style="color:#75715e">// 获取当前连接的端口
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>  <span style="color:#a6e22e">port</span>.<span style="color:#a6e22e">start</span>();
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">port</span>.<span style="color:#a6e22e">onmessage</span> <span style="color:#f92672">=</span> (<span style="color:#a6e22e">msg</span>) =&gt; {
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">port</span>.<span style="color:#a6e22e">postMessage</span>(<span style="color:#e6db74">`收到：</span><span style="color:#e6db74">${</span><span style="color:#a6e22e">msg</span>.<span style="color:#a6e22e">data</span><span style="color:#e6db74">}</span><span style="color:#e6db74">`</span>); <span style="color:#75715e">// 向对应端口回复
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>  };
+</span></span><span style="display:flex;"><span>};
+</span></span></code></pre></div></li>
+</ul>
+</li>
+<li>
+<p><strong>生命周期</strong>：</p>
+<ul>
+<li>只要有活跃连接，共享 Worker 就不会终止；所有连接关闭后才终止。</li>
+</ul>
+</li>
+</ol>
+<h3 id="六simd单指令多数据">六、SIMD（单指令多数据）<a hidden class="anchor" aria-hidden="true" href="#六simd单指令多数据">#</a></h3>
+<ul>
+<li><strong>定义</strong>：一种数据并行技术，利用 CPU 向量指令同时处理多个数据（与 Web Worker 的任务并行不同）。</li>
+<li><strong>优势</strong>：对数据密集型应用（如科学计算、图像处理）提升显著性能，通过底层指令级并行加速运算。</li>
+</ul>
+<h3 id="七asmjs">七、asm.js<a hidden class="anchor" aria-hidden="true" href="#七asmjs">#</a></h3>
+<ul>
+<li><strong>定义</strong>：JS 的一个高性能子集，通过避免难以优化的语法（如动态类型转换），让引擎可进行激进优化（接近原生代码速度）。</li>
+<li><strong>特点</strong>：代码风格受限（如变量类型固定），适用于对性能要求极高的场景（如游戏引擎、数值计算）。</li>
+</ul>
+<h3 id="补充说明">补充说明<a hidden class="anchor" aria-hidden="true" href="#补充说明">#</a></h3>
+<ul>
+<li>Worker 线程与主线程严格隔离，无法共享状态，通信是唯一交互方式。</li>
+<li>共享 Worker 需注意跨页面通信的同步问题，通常用于共享缓存数据或协调多页面行为。</li>
+<li>SIMD 和 asm.js 目前在现代浏览器中应用较少，部分功能已被 WebAssembly 替代，但理解其原理有助于优化高性能 JS 代码。</li>
+</ul>
+
+
+  </div>
+
+  <footer class="post-footer">
+    <ul class="post-tags">
+    </ul>
+  </footer>
+</article>
+    </main>
+    
+<footer class="footer">
+        <span>&copy; 2025 <a href="https://example.org/">My New Hugo Site</a></span> · 
+
+    <span>
+        Powered by
+        <a href="https://gohugo.io/" rel="noopener noreferrer" target="_blank">Hugo</a> &
+        <a href="https://github.com/adityatelange/hugo-PaperMod/" rel="noopener" target="_blank">PaperMod</a>
+    </span>
+</footer>
+<a href="#top" aria-label="go to top" title="Go to Top (Alt + G)" class="top-link" id="top-link" accesskey="g">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 12 6" fill="currentColor">
+        <path d="M12 6H0l6-6z" />
+    </svg>
+</a>
+
+<script>
+    let menu = document.getElementById('menu')
+    if (menu) {
+        menu.scrollLeft = localStorage.getItem("menu-scroll-position");
+        menu.onscroll = function () {
+            localStorage.setItem("menu-scroll-position", menu.scrollLeft);
+        }
+    }
+
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener("click", function (e) {
+            e.preventDefault();
+            var id = this.getAttribute("href").substr(1);
+            if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView({
+                    behavior: "smooth"
+                });
+            } else {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView();
+            }
+            if (id === "top") {
+                history.replaceState(null, null, " ");
+            } else {
+                history.pushState(null, null, `#${id}`);
+            }
+        });
+    });
+
+</script>
+<script>
+    var mybutton = document.getElementById("top-link");
+    window.onscroll = function () {
+        if (document.body.scrollTop > 800 || document.documentElement.scrollTop > 800) {
+            mybutton.style.visibility = "visible";
+            mybutton.style.opacity = "1";
+        } else {
+            mybutton.style.visibility = "hidden";
+            mybutton.style.opacity = "0";
+        }
+    };
+
+</script>
+<script>
+    document.getElementById("theme-toggle").addEventListener("click", () => {
+        if (document.body.className.includes("dark")) {
+            document.body.classList.remove('dark');
+            localStorage.setItem("pref-theme", 'light');
+        } else {
+            document.body.classList.add('dark');
+            localStorage.setItem("pref-theme", 'dark');
+        }
+    })
+
+</script>
+</body>
+
+</html>

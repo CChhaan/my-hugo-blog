@@ -1,0 +1,570 @@
+<!DOCTYPE html>
+<html lang="en" dir="auto">
+
+<head>
+	<meta name="generator" content="Hugo 0.148.2"><meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="robots" content="index, follow">
+<title>My New Hugo Site</title>
+
+<meta name="description" content="">
+<meta name="author" content="">
+<link rel="canonical" href="https://example.org/">
+<link crossorigin="anonymous" href="/assets/css/stylesheet.8fe10233a706bc87f2e08b3cf97b8bd4c0a80f10675a143675d59212121037c0.css" integrity="sha256-j&#43;ECM6cGvIfy4Is8&#43;XuL1MCoDxBnWhQ2ddWSEhIQN8A=" rel="preload stylesheet" as="style">
+<link rel="icon" href="https://example.org/favicon.ico">
+<link rel="icon" type="image/png" sizes="16x16" href="https://example.org/favicon-16x16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="https://example.org/favicon-32x32.png">
+<link rel="apple-touch-icon" href="https://example.org/apple-touch-icon.png">
+<link rel="mask-icon" href="https://example.org/safari-pinned-tab.svg">
+<meta name="theme-color" content="#2e2e33">
+<meta name="msapplication-TileColor" content="#2e2e33">
+<link rel="alternate" type="application/rss+xml" href="https://example.org/index.xml">
+<link rel="alternate" hreflang="en" href="https://example.org/">
+<noscript>
+    <style>
+        #theme-toggle,
+        .top-link {
+            display: none;
+        }
+
+    </style>
+    <style>
+        @media (prefers-color-scheme: dark) {
+            :root {
+                --theme: rgb(29, 30, 32);
+                --entry: rgb(46, 46, 51);
+                --primary: rgb(218, 218, 219);
+                --secondary: rgb(155, 156, 157);
+                --tertiary: rgb(65, 66, 68);
+                --content: rgb(196, 196, 197);
+                --code-block-bg: rgb(46, 46, 51);
+                --code-bg: rgb(55, 56, 62);
+                --border: rgb(51, 51, 51);
+            }
+
+            .list {
+                background: var(--theme);
+            }
+
+            .list:not(.dark)::-webkit-scrollbar-track {
+                background: 0 0;
+            }
+
+            .list:not(.dark)::-webkit-scrollbar-thumb {
+                border-color: var(--theme);
+            }
+        }
+
+    </style>
+</noscript><meta property="og:url" content="https://example.org/">
+  <meta property="og:site_name" content="My New Hugo Site">
+  <meta property="og:title" content="My New Hugo Site">
+  <meta property="og:locale" content="en-us">
+  <meta property="og:type" content="website">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="My New Hugo Site">
+<meta name="twitter:description" content="">
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  "name": "My New Hugo Site",
+  "url": "https://example.org/",
+  "description": "",
+  "logo": "https://example.org/favicon.ico",
+  "sameAs": [
+      
+  ]
+}
+</script>
+</head>
+
+<body class="list" id="top">
+<script>
+    if (localStorage.getItem("pref-theme") === "dark") {
+        document.body.classList.add('dark');
+    } else if (localStorage.getItem("pref-theme") === "light") {
+        document.body.classList.remove('dark')
+    } else if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+        document.body.classList.add('dark');
+    }
+
+</script>
+
+<header class="header">
+    <nav class="nav">
+        <div class="logo">
+            <a href="https://example.org/" accesskey="h" title="My New Hugo Site (Alt + H)">My New Hugo Site</a>
+            <div class="logo-switches">
+                <button id="theme-toggle" accesskey="t" title="(Alt + T)" aria-label="Toggle theme">
+                    <svg id="moon" xmlns="http://www.w3.org/2000/svg" width="24" height="18" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                    </svg>
+                    <svg id="sun" xmlns="http://www.w3.org/2000/svg" width="24" height="18" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <circle cx="12" cy="12" r="5"></circle>
+                        <line x1="12" y1="1" x2="12" y2="3"></line>
+                        <line x1="12" y1="21" x2="12" y2="23"></line>
+                        <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                        <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                        <line x1="1" y1="12" x2="3" y2="12"></line>
+                        <line x1="21" y1="12" x2="23" y2="12"></line>
+                        <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                        <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+                    </svg>
+                </button>
+            </div>
+        </div>
+        <ul id="menu">
+        </ul>
+    </nav>
+</header>
+<main class="main"> 
+
+<article class="post-entry"> 
+  <header class="entry-header">
+    <h2 class="entry-hint-parent">
+    </h2>
+  </header>
+  <div class="entry-content">
+    <p> 摘要：JavaScript变量声明方式包括var、let和const。var存在变量提升和函数作用域特性，let提供块级作用域且禁止重复声明，const用于声明不可变常量。建议优先使用const，其次是let，避免使用var以提升代码质量。let和const解决了var带来的变量泄露等问题，使变量作用域更可控。对于对象类型的const变量，仅限制引用不可变，内部属性仍可修改。
+要定义变量，可以使用var操作符，后跟变量名
+ES实现变量初始化，因此可以同时定义变量并设置它的值
+使用var操作符定义的变量会成为包含它的函数的局部变量。
+在函数内定义变量时省略var操作符，可以创建一个全局变量
+如果需要定义多个变量，可以在一条语句中用逗号分隔每个变量
+使用var声明的变量会自动提升到函数作用域顶部，这叫做提升
+反复多次使用var声明同一个变量也没有问题
+let声明的范围是块作用域，而var声明的范围是函数作用域，块作用域是函数作用域的子集
+let也不允许同一个块作用域中出现冗余声明，这样会报错，嵌套使用相同的标识符不会报错，而这是因为同一个块中没有重复声明
+对声明冗余报错不会因混用let和var而受影响，这两个关键字声明的并不是不同类型的变量，他们只是指出变量在相关作用域如何存在
+let与var的另一个重要的区别，就是let声明的变量不会在作用域中被提升。在解析代码时，JS引擎也会注意出现在块后面的let声明，只不过在此之前不能以任何方式来引用未声明的变量。在let声明之前的任何瞬间被称为暂时性死区，在此阶段引用任何后面才声明的变量都会报错
+与var关键字不同，使用let在全局作用域中声明的变量不会成为window对象的属性，var声明的变量则会。不过let声明仍然是在全局作用域中发生的，相应变量会在页面的生命周期内存续
+在使用var声明变量时，由于生命会被提升，JS引擎会自动将多余的声明在作用域顶部合并成一个声明。因为let作用域是块，所以不可能检查前面是否已经使用let声明过同名变量，同时也就不可能在没有声明的情况下声明它，为此，对于let关键字，不能依赖条件声明模式
+在let出现之前，for循环定义的迭代变量会渗透到循环体外部，改成let后，迭代变量的作用域仅限于for循环快内部
+在使用let声明迭代变量时，JS引擎在后台会为每个迭代循环声明一个新的迭代变量
+const的行为与let基本相同，唯一一个重要的区别是用它声明变量时必须同时初始化变量，且尝试修改const声明的变量会导致运行时错误
+const声明的限制只适用于它指向的变量的引用，如果const变量引用的是一个对象，那么修改这个对象内部的属性并不违反const的限制
+不能用const生命迭代变量，因为迭代变量会自增，for-of和for-in可以
+有助于提升代码质量的最佳实践：不使用var，const优先，let次之
+</p>
+  </div>
+  <footer class="entry-footer"></footer>
+  <a class="entry-link" aria-label="post link to " href="https://example.org/posts/%E7%BA%A2%E5%AE%9D%E4%B9%A6%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/%E6%96%B0%E5%BB%BA%E6%96%87%E4%BB%B6%E5%A4%B9/3.3-%E5%8F%98%E9%87%8F/"></a>
+</article>
+
+<article class="post-entry"> 
+  <header class="entry-header">
+    <h2 class="entry-hint-parent">
+    </h2>
+  </header>
+  <div class="entry-content">
+    <p> 本文深入解析了JavaScript的执行上下文和作用域机制。执行上下文分为全局和函数上下文，每个函数调用会创建新上下文并压入栈中。作用域链决定了变量访问顺序，内部可访问外部变量但反之不行。文章对比了var、let和const的特性：var存在变量提升，let提供块级作用域，const声明不可更改的常量。详细解释了标识符搜索规则，从当前作用域开始逐级向外查找，直至全局上下文。还介绍了with和try/catch语句对作用域链的临时影响。通过剖析上下文创建、销毁过程和变量查找机制，揭示了JavaScript的核心作用域工作原理。
+变量或函数的上下文决定了它们可以访问哪些数据，以及它们的行为。每个上下文都有一个关联的变量对象，而这个上下文中定义的所有变量和函数都存在与这个对象上
+全局上下文是最外层的上下文。上下文在其所有代码都执行完毕后会被销毁，包括定义在它上面的所有变量和函数。全局上下文在应用程序退出前才会被销毁
+每个函数调用都有自己的上下文。当代码执行流进入函数时，函数的上下文被推到一个上下文栈上。在函数执行完之后，上下文栈会弹出该函数上下文，将控制权返还给之前的执行上下文。ES程序的执行流就是通过上下文栈控制的
+上下文中的代码在执行的时候，会创建变量对象的一个作用域链，这个作用域链决定了各级上下文中的代码在访问变量和函数时的顺序。代码正在执行的上下文的变量对象始终位于作用域链的最前端。如果上下文是函数，则其活动对象用作变量对象。活动对象最初之后一个定义变量：arguments。作用域中的下一个变量对象来自包含上下文，再下一个对象来自再下一个包含上下文。以此类推直至全局上下文；全局上下文的变量对象始终是作用域链的最后一个变量对象
+代码执行时的标识符解析是通过沿作用域链逐级搜索标识符名称完成的。搜索过程始终从作用域链的最前端开始，然后逐级往后，直到找到标识符，此外，局部作用域中定义的变量可用于在局部上下文中替换全局变量
+内部上下文可以通过作用域链访问外部上下文中的一切，但外部上下文无法访问内部上下文中的任何东西。上下文之间的连接是线性的、有序的。每个上下文都可以到上一级上下文中去搜索变量和函数，但任何上下文都不能到下一级上下文中去搜索
+函数参数被认为是当前上下文中的变量，因此也跟上下文中的其他变量遵循相同的访问规则
+虽然执行上下文主要有全局上下文和函数上下文两种（eval()调用内部存在第三种上下文），但有其他方式来增强作用域链。某些语句会导致在作用域链前端临时添加一个上下文，这个上下文在代码执行后会被删除。
+通常会在两种情况下出现这个现象，即代码执行到下面任意一种情况时：
+try/catch语句的catch块 with语句 这两种情况下，都会在作用域链前端添加一个变量对象。对with语句来说，会向作用域链前端添加指定对象；对catch语句而言，则会创建一个新的变量对象，这个变量对象会包含要抛出的错误对象的声明
+在使用var声明变量时，变量会被自动添加到最接近的上下文，在函数中，最接近的上下文就是函数的局部上下文。在with语句中，最接近的上下文也是函数上下文。如果变量未经声明就被初始化了，那么它就会自动被添加到全局上下文
+var声明会被拿到函数或全局作用域的顶部，位于作用域中所有代码之前，这个现象叫做提升，提升让同一作用域中的代码不必考虑变量是否已经声明就可以直接使用
+let的作用域是块级的，块级作用域由最近的一对包含花括号决定
+let与var的另一个不同之处是在同一作用域内不能声明两次，重复的var声明会被忽略，而重复的let声明会报错
+let的行为非常适合在循环中声明迭代变量，使用var声明的迭代变量会泄露到循环外部
+let在JS运行时也会被提升，但由于暂时性死区缘故，实际上不能在声明之前使用let变量
+const声明的变量必须同时初始化为某个值，一经声明，在其生命周期的任何时候都不能再重新赋予新值。除此之外与let声明是一样的
+const声明只应用到顶级原语或者对象，赋值为对象的const变量不能再被重新赋值为其他引用值，但对象的键则不受影响
+如果想让整个对象都不能修改，可以使用Object.freeze()，这样再给属性赋值时虽然不会报错，但会静默失败
+由于const声明按时变量的值是单一类型且不可修改，JS运行时编译器可以将其所有实例都替换成实际的值，而不会通过查询表进行变量查找
+当在特定上下文中为读取或写入而引用一个标识符时，必须通过搜索确定这个标识符表示什么，搜索开始于作用域链前端，以给定的名称搜索对应的标识符。如果在局部上下文中找到该标识符，则搜索停止，变量确定，如果没有找到变量名，则继续沿作用域链搜索。（作用域链中的对象也有一个原型链，因此搜索可能涉及每个对象的原型链）这个过程一直持续到搜索至全局上下文的变量对象。如果仍然没有找到标识符，则说明其未声明
+对这个搜索过程而言，引用局部变量会让搜索自动停止，而不继续搜索下一级变量对象。也就是说，如果局部上下文中有一个同名的标识符，那就不能在该上下文中引用父上下文中的同名标识符
+使用块级作用域声明并不会改变搜索流程，但可以给词法层级添加额外的层次
+</p>
+  </div>
+  <footer class="entry-footer"></footer>
+  <a class="entry-link" aria-label="post link to " href="https://example.org/posts/%E7%BA%A2%E5%AE%9D%E4%B9%A6%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/%E6%96%B0%E5%BB%BA%E6%96%87%E4%BB%B6%E5%A4%B9/4.2-%E6%89%A7%E8%A1%8C%E4%B8%8A%E4%B8%8B%E6%96%87%E4%B8%8E%E4%BD%9C%E7%94%A8%E5%9F%9F/"></a>
+</article>
+
+<article class="post-entry"> 
+  <header class="entry-header">
+    <h2 class="entry-hint-parent">
+    </h2>
+  </header>
+  <div class="entry-content">
+    <p> 摘要：本文介绍了JavaScript对象的属性特征和管理方法。对象属性分为数据属性和访问器属性，可通过Object.defineProperty()方法定义特性。数据属性包含[[Value]]等4个特性，访问器属性包含[[Get]]/[[Set]]函数。还讲解了Object.assign()合并对象、Object.is()比较对象、对象解构赋值等ES6新特性，以及简写属性名和可计算属性等语法糖。最后说明了如何在函数参数中使用对象解构。这些特性增强了对象操作的灵活性和代码简洁性。
+对象就是一组没有特定顺序的值，对象的每个属性或者方法都可由一个名称来标识，这个名称映射到一个值。可以把对象想象成一张散列表，其中的内容就是一组名值对，值可以是数据或者函数
+创建自定义对象的通常方式是创建Object的一个新实例，然后再给它添加属性和方法。早期开发者频繁使用这种方式创建新对象，几年后，对象字面量变成了更流行的方式
+ES使用了一些内部特性来描述属性的特征，这些特征是由为JS实现引擎的规范定义的，因此，开发者不能在JS中直接访问这些特性。为了将某个特性标识为内部特性，规范会用两个中括号把特性的名称括起来
+属性分两种：数据属性和访问器属性
+数据属性 数据属性包含一个保存数据值的位置，值会从这个位置读取，也会写入到这个位置。
+数据属性有4个特性描述它们的行为：
+[[Configurable]]：表示属性是否可以通过delete删除并重新定义，是否可以修改它的特性，以及是否可以把它改为访问器属性。默认情况下，所有直接定义在对象上的属性的这个特性都是true [[Enumerable]]：表示属性是否可以通过for-in循环返回，默认情况下，所有直接定义在对象上的属性的这个特性都是true [[Writable]]：表示属性的值是否可以被修改。默认情况下，所有直接定义在对象上的属性的这个特性都是true [[Value]]：包含属性实际的值，这个特性默认值为undefined 将属性添加到对象之后[[Configurable]]、[[Enumerable]]、[[Writable]]都会被设置为true，而[[Value]]特性会被设置为指定的值
+要修改属性的默认特性，就必须使用Object.defineProperty()方法，这个方法接收3个参数：要给其添加属性的对象、属性的名称和一个描述符对象。最后一个参数，即描述符对象上的属性可以包含：configurable、enumerable、writable和value，跟相关特性的名称一一对应。根据要修改的特性，可以设置其中一个或多个值
+在调用Object.defineProperty()时，如果描述符对象上的属性的值都不指定，则都默认为false
+访问器属性 访问器属性不包含数据值，相反，他们包含一个获取函数和一个设置函数，不过这两个函数不是必须的，在读取访问器属性时，会调用获取函数，这个函数的责任就是返回一个有效的值，在写入访问器属性时，会调用设置函数并传入新值，这个函数必须决定对数据做出什么修改。
+访问器属性有4个特性描述它们的行为：
+[[Configurable]]：表示属性是否可以通过delete删除并重新定义，是否可以修改它的特性，以及是否可以把它改为访问器属性。默认情况下，所有直接定义在对象上的属性的这个特性都是true [[Enumerable]]：表示属性是否可以通过for-in循环返回，默认情况下，所有直接定义在对象上的属性的这个特性都是true [[Get]]：获取函数，在读取属性时调用，默认值为undefined [[Set]]：设置函数，在写入属性时调用，默认值为undefined 访问器属性是不能直接定义的，必须使用Object.defineProperty()
+获取函数和设置函数不一定都要定义，只定义获取函数意味着属性是只读的，尝试修改属性会被忽略，严格模式下会报错，类似的，只有一个设置函数的属性是不能读取的，非严格模式下读取会返回undefined，严格模式下会报错
+Object.defineProperties()方法可以通过多个描述符一次性定义多个属性，它接受两个参数：要为之添加或修改属性的对象和另一个描述符对象，其属性与要添加或修改的属性一一对应
+使用Object.getOwnPropertyDescriptor()方法可以取得指定属性的属性描述符，这个方法接收两个参数：属性所在的对象和要取其描述符的属性名。返回值是一个对象
+ES8新增了Object.getOwnPropertyDescriptors()静态方法。这个方法实际上会在每个自有属性上调用Object.getOwnPropertyDescriptor()并在一个新对象中返回它们
+合并两个对象：把源对象所有的本地属性一起复制到目标对象上，这种操作也被称为混入，因为目标对象通过混入源对象的属性得到了增强
+ES6专门为合并对象提供了Object.assign()方法，这个方法接受一个目标对象和一个或多个源对象作为参数，然后将每个源对象中可枚举和自有属性复制到目标对象，以字符串和符号为键的属性会被复制，对每个符合条件的属性，这个方法会使用源对象上的[[Get]]取得属性的值，然后使用目标对象上的[[Set]]设置属性的值
+Object.assign()实际上对每个源对象执行的是浅复制，如果多个源对象都有相同的属性，则使用最后一个复制的值。此外，从源对象访问器属性取得的值，比如获取函数，会作为一个静态值赋给目标对象。换句话说，不能在两个对象间转移获取函数和设置函数
+如果赋值期间出错，则操作会中止并退出，同时抛出错误。Object.assign()没有回滚之前赋值的概念，因此它是一个尽力而为，可能只会完成部分复制的方法
+ES6规范新增了Object.is()方法，这个方法和===很像，但同时也考虑到了一些边界情形
+在给对象添加变量的时候，开发者经常会发现属性名和变量名是一样的，简写属性名只要使用变量名就会自动被解释为同名的属性键，如果没有找到同名变量就会报错
+在引入可计算属性之前，如果想使用变量的值作为属性，那么必须先声明对象，然后使用中括号语法来添加属性。换句话说，不能在对象字面量中直接动态命名属性
+有了可计算属性，就可以在对象字面量中完成动态属性赋值。中括号包围的对象属性键告诉运行时将其作为JS表达式而不是字符串来求值
+可计算属性表达式中抛出任何错误都会中断对象创建，不能回滚
+在给对象定义方法时，通常都要写一个方法名、冒号，然后再引用一个匿名函数表达式，新的简写方法的语法遵循同样的模式，但开发者要放弃给函数表达式命名，这样可以明显缩短方法声明。简写方法名对获取和设置函数也是适用的。简写方法名与可计算属性键相互兼容
+对象解构语法可以在一条语句中使用嵌套数据实现一个或多个赋值操作，简单地说，对象解构就是使用与对象匹配的结构来实现对象属性赋值
+使用解构可以在一个类似对象字面量的结构中，声明多个变量，同时执行多个赋值操作。如果想让变量直接使用属性的名称，那么可使用简写语法。
+解构赋值不一定与对象的属性匹配，赋值的时候可以忽略某些属性，而如果引用的属性不存在，则该变量的值就是undefined。也可以在解构赋值的同时定义默认值。
+解构在内部使用函数toObject()把源数据结构转换为对象，这意味着对象解构的上下文中，原始值会被当成对象，这也意味着，null和undefined不能被解构，否则会报错
+解构并不要求变量必须在解构表达式中声明，不过，如果是给事先声明的变量赋值，则赋值表达式必须包含在一对括号中
+解构对于引用嵌套的属性或目标没有限制，为此，可以通过解构来复制对象属性，解构赋值可以使用嵌套解构，以匹配嵌套的属性，在外层属性没有定义的情况下不能使用嵌套解构，无论源对象还是目标对象都一样
+涉及多个属性的解构赋值是一个输出无关的顺序化操作，如果一个解构表达式涉及多个赋值，开始的赋值成功而后面的赋值出错，则整个解构赋值只会完成一部分
+在函数参数列表中也可以进行解构赋值，对参数的解构赋值不会影响arguments对象，但可以在函数签名中声明在函数体内使用局部变量
+</p>
+  </div>
+  <footer class="entry-footer"></footer>
+  <a class="entry-link" aria-label="post link to " href="https://example.org/posts/%E7%BA%A2%E5%AE%9D%E4%B9%A6%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/%E6%96%B0%E5%BB%BA%E6%96%87%E4%BB%B6%E5%A4%B9/8.1-%E7%90%86%E8%A7%A3%E5%AF%B9%E8%B1%A1/"></a>
+</article>
+
+<article class="post-entry"> 
+  <header class="entry-header">
+    <h2 class="entry-hint-parent">
+    </h2>
+  </header>
+  <div class="entry-content">
+    <p> 摘要：本文探讨了JavaScript对象创建的几种模式。工厂模式虽能批量创建对象但无法标识类型，构造函数模式通过new操作符解决类型识别问题，但实例方法会被重复创建。原型模式通过在prototype上定义共享属性和方法优化了性能，并详细介绍了原型链、属性查找机制、原型修改及其对实例的影响，以及相关操作符和方法的使用。最后指出原型模式的局限性在于共享特性导致实例属性初始值相同。
+虽然使用Object构造函数或对象字面量可以方便地创建对象，但这些方式有明显不足：创建具有同样接口的多个对象需要重复编写很多代码
+工厂模式可以用不同的参数多次调用函数，每次都会返回一个新对象，这种模式虽然可以解决创建多个类似对象的问题，但没有解决对象表示问题，即新创建的对象是什么类型
+构造函数和工厂函数的区别：
+没有显式的创建对象 属性和方法字节赋值给了this 没有return 使用new操作符调用构造函数会执行如下操作：
+在内存中创建一个新对象 这个新对象内部的[[Prototype]]特性被赋值为构造函数的prototype属性 构造函数内部的this被赋值为这个新对象，即this指向新对象 执行构造函数内部的代码，给新对象添加属性 如果构造函数返回非空对象，则返回该对象，否则，返回刚创建的新对象 constructor本来是用于标识对象类型的，不过，一般认为instanceof操作符是确定对象类型更可靠的方式
+相比于工厂模式，定义自定义构造函数可以确保实例被标识为特定类型。
+构造函数不一定要写成函数声明的形式，赋值给变量的函数表达式也可以表示构造函数，在实例化时，如果不想传参数，那么构造函数后面的括号可加可不加。只要有new操作符，就可以调用相应的构造函数
+构造函数与普通函数唯一的区别就是调用方式不同，除此之外，构造函数也是函数，并没有把某个函数定义为构造函数的特殊语法。任何函数只要使用new操作符调用就是构造函数，而不是用new操作符调用的函数就是普通函数。
+构造函数的主要问题在于，其定义的方法会在每个实例上都创建一遍，因为都是做一样的事，所以没必要定义两个不同的Function实例，况且，this对象可以把函数与对象的绑定推迟到运行时
+每个函数都会创建一个prototype属性，这个属性是一个对象，包含应该由特定引用类型的实例共享的属性和方法。实例上，这个对象就是通过调用构造函数创建的对象的原型，使用原型对象的好处是，在它上面定义的属性和方法可以被对象实例共享。原来在构造函数中直接赋给对象实例的值，可以直接赋值给它们的原型
+无论何时，只要创建一个函数，就会按照特定的规则为这个函数创建一个prototype属性指向原型对象，默认情况下，所有原型对象自动获得一个名为constructor的属性，指回与之关联的构造函数。
+在自定义构造函数时，原型对象默认只会获得constructor属性，其他的所有方法都继承自Object，每次调用构造函数创建一个新实例，这个实例的内部[[Prototype]]指针就会被赋值为构造函数的原型对象。脚本中没有访问这个[[Prototype]]的标准方式，一些浏览器会在每个对象上暴露__proto__属性，通过这个属性可以访问对象的原型。
+实例与构造函数原型之间有直接的联系，但实例与构造函数之间没有
+虽然不是所有实现都对外暴露了[[Prototype]]，但可以使用isPrototypeOf()方法确定两个对象之间的关系，isPrototypeOf()会在传入参数的[[Prototype]]指向调用它的对象时返回true
+Object有一个方法叫Object.getPrototype()，返回参数的内部特性[[Prototype]]的值
+Object.setPrototypeOf()可以向实例的私有特性[[Prototype]]写入一个新值，这样就可以重写一个对象的原型继承关系，但是会影响代码性能
+Object.create()可以创建一个新对象，同时为其指定原型
+原型层级 在通过对象访问属性时，会按照这个属性的名称开始搜索，搜索开始于对象实例本身，如果在这个实例上发现了给定的名称，则返回该名称对应的值，如果没有找到这个属性，则搜索会沿着指针进入原型对象，然后在原型对象上找到属性后，再返回对应的值，这就是原型用于在多个对象实例间共享属性和方法的原理
+虽然可以通过实例读取原型对象上的值，但不能通过实例重写这些值，如果在实例上添加了一个原型对象中同名的属性，那就会在实例上创建这个属性，这个属性会遮住原型对象上的属性。
+使用delete操作符可以删除实例上的属性
+hasOwnProperty()方法用于确定某个属性是在实例上还是在原型对象上，这个方法是继承自Object的，会在属性存在于调用它的对象实例上时返回true
+原型和in操作符 有两种方式使用in操作符：单独使用和在for-in循环中使用
+在单独使用时，in操作符会在可以通过对象访问指定属性时返回true，无论该属性在实例上还是原型上。
+如果要确定某个属性是否在原型上，可以同时使用hasOwnProperty()和in操作符
+在for-in循环中使用in操作符时，可以通过对象访问且可以被枚举的属性都会返回，包括实例和原型属性
+要获得对象上所有可枚举的实例属性，可以使用Object.keys()方法，这个方法接收一个对象作为参数，返回包含该对象所有可枚举属性名称的字符串数组
+如果想列出所有实例属性，无论是否可以枚举，都可以使用Object.getOwnPropertyNames()
+Object.getOwnPropertySymbols()方法针对符号
+属性枚举顺序 for-in循环和Object.keys()的枚举顺序是不确定的
+Object.getOwnPropertyNames()、Object.getOwnPropertySymbols()和Object.assign()的枚举顺序是确定的，先以升序枚举数值键，然后以插入顺序枚举字符串和符号键，在对象字面量中定义的键以它们逗号分隔的顺序插入
+Object.values()和Object.entries()将对象内容转换为序列化的，可迭代的格式，它们接收一个对象，返回它们内容的数组。Object.values()返回对象值的数组，Object.entries()返回键值对的数组，非字符串属性会被转换为字符串输出，这两个方法执行对象的浅复制，符号属性会被忽略
+原型上搜索值是动态的，所以即使实例在修改原型之前已经存在，任何时候对原型对象的修改也会在实例上反映出来
+实例的[[Prototype]]指针是在调用构造函数时自动赋值的，这个指针即使把原型修改为不同的对象也不会变，重写整个原型会切断最初原型与构造函数的联系，但实例引用的仍然是最初的原型
+重写构造函数上的原型之后再创建的实例才会引用新的原型
+通过原生对象的原型可以取得所有默认方法的引用，也可以给原生类型的实例定义新的方法。可以像修改自定义对象原型一样修改原生对象原型，因此随时可以添加方法
+原型模式弱化了向构造函数传递初始化参数的能力，会导致所有实例默认都取得相同的属性值，原型的最主要问题是它的共享特性
+</p>
+  </div>
+  <footer class="entry-footer"></footer>
+  <a class="entry-link" aria-label="post link to " href="https://example.org/posts/%E7%BA%A2%E5%AE%9D%E4%B9%A6%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/%E6%96%B0%E5%BB%BA%E6%96%87%E4%BB%B6%E5%A4%B9/8.2-%E5%88%9B%E5%BB%BA%E5%AF%B9%E8%B1%A1/"></a>
+</article>
+
+<article class="post-entry"> 
+  <header class="entry-header">
+    <h2 class="entry-hint-parent">
+    </h2>
+  </header>
+  <div class="entry-content">
+    <p> 本文介绍了JS中的5种主要继承方式：原型链、盗用构造函数、组合继承、原型式继承和寄生式继承。原型链通过原型对象实现继承，但存在引用值共享和传参问题；盗用构造函数通过调用父类构造函数解决了传参问题，但方法无法重用；组合继承结合了两者优点；原型式继承基于对象浅复制，适合共享信息；寄生式继承通过增强对象实现继承。最后提到寄生式组合继承解决了组合继承的效率问题，是引用类型继承的最佳模式。各种方式各有适用场景，开发者需根据需求选择。
+原型链 原型链是ES的主要继承方式，其基本思想就是通过原型继承多个引用类型的属性和方法
+每个构造函数都有一个原型对象，原型有一个属性指回构造函数，而实例有一个内部指针指向原型。如果原型是另一个类型的实例，那就意味着这个原型本身有一个内部指针指向另一个原型，相应的另一个原型也有一个指针指向另一个构造函数，这样就在实例和原型之间构造了一条原型链
+原型链扩展了原型搜索机制，在读取实例上的属性时，首先会在实例上搜索这个属性，如果没找到，则会继承搜索实例的原型，在通过原型链实现继承之后，搜索就可以继承向上，搜索原型的原型，对属性和方法的搜索会一直持续到原型链的末端
+默认情况下，所有引用类型都继承自Object，这也是通过原型链来实现的，任何函数的默认原型都是一个Object的实例，这意味着这个实例有一个内部指针指向Object.prototype
+原型与实例的关系可以通过两种方式来确定
+第一种方式是使用instanceof操作符，如果一个实例的原型链中出现过相应的构造函数，则instanceof返回true。
+第二种方式是使用isPrototypeOf()方法，原型链中的每个原型都可以调用这个方法，只要原型链中包含这个原型，这个方法就返回true
+子类有时候需要覆盖父类的方法，或者增加父类没有的方法，为此，这些方法必须在原型复制之后再添加到原型上
+以对象字面量方式创建原型方法会破坏之前的原型链，因为这相当于重写了原型链
+原型链的主要问题出现在原型中包含的引用值会在所有实例间共享，在使用原型实现继承时，原型实际上变成了另一个类型的实例，这意味着原先的实例属性变成了原型属性
+原型链的第二个问题是，子类型在实例化时不能给父类型的构造函数传参
+盗用构造函数
+基本原理：在子类构造函数中调用父类的构造函数，可以使用apply()和call()方法以新创建的对象为上下文执行构造函数
+相比于使用原型链，盗用构造函数的一个优点就是可以在子类构造函数中向父类构造函数传参
+盗用构造函数的缺点，也是使用构造函数模式自定义类型的问题：必须在构造函数中定义方法，因此函数不能重用，此外，子类也不能访问父类原型上定义的方法，因此所有类型只能使用构造函数模式
+组合继承
+综合了原型链和盗用构造函数，将两者的优点集中了起来，基本的思路是使用原型链继承原型上的属性和方法，而通过盗用构造函数继承实例属性，这样既可以把方法定义在原型上以实现重用，又可以让每个实例都有自己的属性
+原型式继承
+function object(o){ function F(){} F.prototype = o return new F() } 这个object()函数会创建一个临时构造函数，将传入的对象赋值给这个构造函数的原型，然后返回这个临时类型的一个实例，本质是，object()是对传入的对象执行了一次浅复制
+适用于这种情况：你有一个对象，想在它的基础上再创建一个新对象。你需要吧这个对象先传给object()，然后再对返回的对象进行适当修改
+ES5通过Object.create()方法将原型式继承的概念规范化了，这个方法接受两个参数：作为新对象原型的对象，以及给新对象定义额外属性的对象（可选），第二个参数与Object.defineProperties()的第二个参数一样：每个新增属性都通过各自的描述符来描述。以这种方式添加的属性会遮蔽原型对象上的同名属性
+原型式继承非常适合不需要单独创建构造函数，但仍然需要在对象间共享信息的场合，但属性中包含的引用值始终会在相关对象间共享，跟使用原型模式是一样的
+寄生式继承
+寄生式继承背后的思路类似于寄生构造函数和工厂模式：创建一个实现继承的函数，以某种方式增强对象，然后返回这个对象
+寄生式继承同样适合主要关注对象，而不在乎类型和构造函数的场景，通过寄生式继承给对象添加函数会导致函数难以重用，与构造函数模式类似
+寄生式组合继承
+组合式继承存在效率问题，父类构造函数始终会被调用两次：一次实在创建子类原型时调用，另一次是在子类构造函数中调用。本质是，子类原型最终是要包含超类对象的所有实例属性，子类构造函数只要在执行时重写自己的原型就行了
+寄生式组合继承通过盗用构造函数继承属性，但使用混合式原型链继承方法。基本思路是不通过调用父类构造函数给子类原型赋值，而是取得父类原型的一个副本，说到底就是使用寄生式继承来继承父类原型，然后将返回的新对象赋值给子类原型。
+</p>
+  </div>
+  <footer class="entry-footer"></footer>
+  <a class="entry-link" aria-label="post link to " href="https://example.org/posts/%E7%BA%A2%E5%AE%9D%E4%B9%A6%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/%E6%96%B0%E5%BB%BA%E6%96%87%E4%BB%B6%E5%A4%B9/8.3-%E7%BB%A7%E6%89%BF/"></a>
+</article>
+
+<article class="post-entry"> 
+  <header class="entry-header">
+    <h2 class="entry-hint-parent">
+    </h2>
+  </header>
+  <div class="entry-content">
+    <p> 本文系统介绍了JavaScript类的定义与继承机制。类可通过声明或表达式定义，具有块级作用域且不支持提升。类包含构造函数、实例方法、静态方法等，默认严格模式执行。构造函数使用new操作符实例化，遵循特定对象创建流程。类支持实例成员、原型方法和静态方法，可通过extends实现单继承，使用super访问父类。文章详细解析了继承规则、抽象基类实现、内置类型扩展及混入模式等高级特性，阐明了类与传统构造函数的区别，为面向对象编程提供了全面指导。
+与函数类型相似，定义类也有两种主要方式：类声明和类表达式，这两种方式都使用class关键字加大括号
+与函数表达式类似，类表达式在它们被求值前也不能引用，不过与函数定义不同的是，虽然函数声明可以提升，但类定义不能，函数受函数作用域限制，而类受块作用域限制
+类可以包含构造函数方法、实例方法、获取函数、 设置函数和静态类方法，但这些都不是必须的，空的类定义照样有效，默认情况下，类定义中的代码都在严格模式下执行
+类表达式的名称是可选的，在把类表达式赋值给变量后，可以通过name属性取得类表达式的名称字符串，但不能在类表达式作用域外部访问这个标识符
+constructor关键字用于在类定义块内部创建类的构造函数，方法名constructor会告诉解释器在使用new操作符创建类的新实例时，应该调用这个函数。构造函数的定义不是必须的，不定义构造函数相当于将构造函数定义为空函数
+使用new操作符实例化操作等于使用new调用其构造函数，唯一可感知的不同之处是，JS解释器知道使用new和类意味着应该使用constructor函数进行实例化。
+使用new调用类的构造函数会执行如下操作：
+在内存中创建一个新对象 这个新对象内部的[[Prototype]]指针被赋值为构造函数的prototype属性 构造函数内部的this被赋值为这个新对象 执行构造函数内部的代码 如果构造函数返回非空对象，则返回该对象，否则，返回刚创建的新对象 类实例化时传入的参数会用作构造函数的参数，如果不需要参数，则类名后面的括号也是可选的
+默认情况下，类构造函数会在执行之后返回this对象，构造函数返回的对象会被用作实例化的对象，如果没有什么引用新创建的this对象，那么这个对象会被销毁。如果返回的不是this对象，而是其他对象，那么这个对象不会通过instanceof操作符检测出跟类有关联，因为这个对象的原型指针并没有被修改
+类构造函数与构造函数的主要区别是，调用类构造函数必须使用new操作符，而普通构造函数如果不使用new调用，那么就会以全局的this作为内部对象，调用类构造函数时如果忘了使用new则会抛出错误
+类构造函数没有什么特殊之处，实例化之后，他会成为普通的实例方法，因此，实例化之后可以在实例上引用它，但作为类构造函数，依然要使用new调用
+ES类就是一种特殊函数，类标识符有prototype属性，而这个原型也有一个constructor属性指向类自身
+与普通构造函数一样，可以使用instanceof操作符检查构造函数原型是否存在于实例的原型链中
+类本身具有与普通构造函数一样的行为，在类的上下文中，类本身在使用new调用时就会被当成构造函数，类中定义的constructor方法不会被当成构造函数，在对它使用instanceof操作符时会返回false，但是，如果在创建实例时直接将类构造函数当成普通构造函数来使用，那么instanceof操作符的返回值会反转
+类是JS一等公民，因此可以像其他对象或函数引用一样把类作为参数传递
+与立即调用函数表达式类似，类也可以立即实例化
+通过new调用类标识符时，都会执行类构造函数，在这个函数内部，可以为新创建的实例添加自有属性，至于添加什么样的属性，则没有限制。另外，在构造函数执行完毕后，仍然可以给实例继续添加新成员
+每个实例都对应一个唯一的成员对象，这意味着所有成员都不会在原型上共享
+为了在实例间共享方法，类定义语法把在类块中定义的方法作为原型方法。可以把方法定义在类构造函数中或者类块中，但不能在类块中给原型添加原始值或对象作为成员数据
+类方法等同于对象属性，因此可以使用字符串、符号或计算的值作为键，类定义也支持获取和设置访问器，语法与行为跟普通对象一样
+可以在类上定义静态方法，这些方法通常用于执行不特定于实例的操作，也不要求存在类的实例。与原型成员类似，静态成员每个类上只能有一个，静态类方法非常适合作为实例工厂
+静态类成员在类定义中使用static关键字作为前缀，在静态成员中，this引用类自身，其他所有约定跟原型成员一样
+虽然类定义并不显式支持在原型或类上添加成员数据，但在类定义外部，可以手动添加
+类定义语法支持在原型和类本身上定义生成器方法，因为支持生成器方法，所以可以通过添加一个默认的迭代器，把类实例变成可迭代对象
+ES6类支持单继承，使用extends关键字，就可以继承任何拥有[[Constructor]]和原型的对象，很大程度上，这意味着不仅可以继承一个类，也可以继承普通的构造函数。派生类都会通过原型链访问到类和原型上定义的方法，this的值会反映调用相应方法的实例或者类
+派生类的方法可以通过super关键字引用它们的原型，这个关键字只能在派生类中使用，而且仅限于类构造函数、实例方法和静态方法内部。在类构造函数中使用super可以调用父类构造函数
+在静态方法中可以通过super调用继承的类上定义的静态方法
+ES6给类构造函数和静态方法添加了内部特性[[HomeObject]]，这个特性是一个指针，指向定义该方法的对象，这个指针是自动赋值的，而且只能在JS引擎内部访问。super始终会定义为[[HomeObject]]的原型
+在使用super时要注意几个问题：
+super只能在派生类构造函数和静态方法中使用 不能单独引用super关键字，要么用它调用构造函数，要么用它引用静态方法 调用super会调用父类构造函数，并将返回的实例赋值给this super的行为如同调用构造函数，如果需要给父类构造函数传参，则需要手动传入 如果没有定义类构造函数，在实例化派生类时会调用super，而且会传入所有传给派生类的参数 在类构造函数中，不能在调用super之前引用this 如果在派生类中显示定义了构造函数，则要么必须在其中调用super，要么必须在其中返回一个对象 有时候可能需要定义这样一个类，它可供其他类继承，但本身不会被实例化。可以通过new.target实现，new.target保存通过new关键字调用的类或函数，通过在实例化时检测new.target是不是抽象基类，可以阻止对抽象基类的实例化
+通过在抽象基类构造函数中进行检查，可以要求派生类必须定义某个方法，因为原型方法在调用类构造函数之前就已经存在了，所以可以通过this关键字来检查相应的方法
+ES6类为继承内置引用类型提供了顺畅的机制，开发者可以方便的扩展内置类型
+有些内置类型的方法，会返回新实例，默认情况下，返回实例的类型与原始实例的类型是一致的，如果想覆盖这个默认行为，则可以覆盖Symbol.species访问器，这个访问器决定在创建返回的实例时使用的类
+把不同类的行为集中到一个类是一种常见的JS模式，extends关键字后面是一个JS表达式，任何可以解析为一个类或一个构造函数的表达式都是有效的，这个表达式会在求值类定义时被求值。混入模式可以通过在一个表达式中连缀多个混入元素来实现，这个表达式最终会解析为一个可以被继承的类。可以定义一组可嵌套的函数，每个函数分别接收一个超类作为参数，而将混入类定义为这个参数的子类，并返回这个类，这些组合函数连缀调用，最终组合成超类表达式
+</p>
+  </div>
+  <footer class="entry-footer"></footer>
+  <a class="entry-link" aria-label="post link to " href="https://example.org/posts/%E7%BA%A2%E5%AE%9D%E4%B9%A6%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/%E6%96%B0%E5%BB%BA%E6%96%87%E4%BB%B6%E5%A4%B9/8.4-%E7%B1%BB/"></a>
+</article>
+
+<article class="post-entry"> 
+  <header class="entry-header">
+    <h2 class="entry-hint-parent">
+    </h2>
+  </header>
+  <div class="entry-content">
+    <p>JS的主要用途是处理输入验证
+完整的JS实现包含以下部分: 核心(ECMAScript)、文档对象模型(DOM)、浏览器对象模型(BOM)
+ECMA-262描述这门语言的如下部分：
+语法 类型 语句 关键字 保留字 操作符 全局对象 ECMAScript是对实现这个规范描述的所有方面的一门语言的称呼
+文档对象模型(DOM)是一个应用编程接口(API)，用于在HTML中使用扩展的XML。
+DOM将整个页面抽象为一组分层节点。 DOM通过创建表示文档的树让开发者可以轻松地增加、删除、替换、修改节点 浏览器对象模型(BOM)，用于支持访问和操作浏览器的窗口。
+</p>
+  </div>
+  <footer class="entry-footer"></footer>
+  <a class="entry-link" aria-label="post link to " href="https://example.org/posts/%E7%BA%A2%E5%AE%9D%E4%B9%A6%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/%E7%AC%AC%E4%B8%80%E7%AB%A0/"></a>
+</article>
+
+<article class="post-entry"> 
+  <header class="entry-header">
+    <h2 class="entry-hint-parent">
+    </h2>
+  </header>
+  <div class="entry-content">
+    <p>一切都区分大小写
+标识符：变量、函数、属性或函数参数的名称，标识符由一或多个下列字符组成：
+第一个字符必须是一个字母、下划线或美元符号 剩下的其他字符可以是字母、下划线、美元符号或数字 标识符使用小驼峰
+关键字、未来保留字、true、false和null不能作为标识符
+采用C语言风格注释
+严格模式：在脚本或函数体开头加上&#34;use strict&#34;，目的是不破坏ES3语法
+语句以分号结束，省略分号意味着由解析器确定语句在哪里结尾
+多条语句可以合并到花括号代码块中
+</p>
+  </div>
+  <footer class="entry-footer"></footer>
+  <a class="entry-link" aria-label="post link to " href="https://example.org/posts/%E7%BA%A2%E5%AE%9D%E4%B9%A6%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/%E7%AC%AC%E4%B8%89%E7%AB%A0/3.1%E8%AF%AD%E6%B3%95/"></a>
+</article>
+
+<article class="post-entry"> 
+  <header class="entry-header">
+    <h2 class="entry-hint-parent">
+    </h2>
+  </header>
+  <div class="entry-content">
+    <p>变量可以保存任何类型的数据，每个变量只不过是一个用于保存任意值的命名占位符
+var(函数作用域和变量提升) 定义变量可以使用var操作符，后跟变量名，可以用它保存任何类型的值。可以同时定义变量并保存它的值
+var message = &#39;hi&#39; 之后，不仅可以改变保存的值，也可以改变值的类型
+使用var操作符定义的变量会成为包含它的函数的局部变量，该变量将在函数退出时被销毁。 不过在函数内定义变量时省略var操作符，可以创建一个全局变量
+如果需要定义多个变量，可以在一条语句中用逗号分隔每个变量
+var变量提升：var关键字声明的变量会自动提升到函数作用域顶部 反复多次使用var声明同一个变量也没有问题
+let(块作用域,暂时性死区,迭代变量) let声明的范围是块作用域，var声明的范围是函数作用域
+块作用域是函数作用域的子集，因此适用于var的作用域限制同样也适用于let
+let不允许同一个作用域中出现冗余声明 嵌套使用相同的标识符不会报错，因为同一个块中没有重复声明 对声明冗余报错不会因混用let和var而受影响。
+let声明的变量不会在作用域中被提升，在let生命之前的执行瞬间被称为“暂时性死区”。
+let的全局作用域中声明的变量不会成为window对象的属性，var声明的变量则会
+使用var声明变量时，由于变量会被提升，JS引擎会自动将多余的声明在作用域顶部合并成一个声明。let不会。
+在使用let声明迭代变量时，JS引擎在后台会为每个迭代循环声明一个新的迭代变量。
+const const的行为与let基本相同，用它声明变量时必须同时初始化变量，且尝试修改const声明的变量会导致运行时错误。
+const声明的限制只适用于它指向的变量的引用，如果const变量引用的是一个对象，那么修改这个对象内部的属性不违反const的限制
+不能用const来声明迭代变量，因为迭代变量会自增
+可以用const声明一个不会被修改的for循环变量，对for-of和for-in有意义
+最佳实践：不使用var,const优先,let次之
+</p>
+  </div>
+  <footer class="entry-footer"></footer>
+  <a class="entry-link" aria-label="post link to " href="https://example.org/posts/%E7%BA%A2%E5%AE%9D%E4%B9%A6%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/%E7%AC%AC%E4%B8%89%E7%AB%A0/3.2%E5%8F%98%E9%87%8F/"></a>
+</article>
+
+<article class="post-entry"> 
+  <header class="entry-header">
+    <h2 class="entry-hint-parent">
+    </h2>
+  </header>
+  <div class="entry-content">
+    <p>简单数据类型(原始类型)：undefined、null、Boolean、number、string、symbol 复杂数据类型：object
+typeof操作符会返回下列字符串之一：undefined、Boolean、string、number、object、function、symbol
+typeof message typeof(message) typeof 96 undefined(声明但没有初始化) undefined类型只有一个值：undefined，当使用var或let声明了变量但没有初始化，就相当于给变量赋予了undefined值
+无论是未初始化还是为声明的变量，typeof返回的都是字符串undefined 建议在声明变量的同时进行初始化
+undefined是一个假值
+null(空对象) null类型只有一个值：null，表示一个空对象指针，调用typeof null返回的是object
+变量要保存对象，而当时又没有对象可以保存时，建议用null进行初始化
+null是一个假值
+Boolean(布尔值) 布尔值类型有两个字面值：true和false，这两个布尔值不同于数值
+Boolean()函数可以将其它类型的值转换为布尔值 false、空字符串、0、NaN、null和undefined转换为布尔值为false
+if等流程控制语句会自动执行其他类型值到布尔值的转换
+Number类型(整数和浮点值) 整数 最基本的数值字面量是十进制整数
+八进制字面量通过前缀0o来表示，十六进制字面量通过0x来表示 使用八进制和十六进制格式创建的数值在所有数学操作中都被视为十进制数值 正零和负零在所有情况下都被认为是等同的
+浮点值 要定义浮点值，数值中必须包含小数点，而且小数点后面必须至少有一个数字。
+小数点后面没有数字或者跟着单独的0(如1.0)，那它会被转换为整数
+对于非常大或非常小的值，可以用科学计数法：一个数值（整数或浮点数）后跟一个小写或大写的e，再加上一个要乘的10的多少次幂。 ES会将小数点后至少包含6个零的浮点值转换成科学计数法。
+浮点值的精确度可达17位小数，但在算数运算中远不如整数精确
+值的范围 ES可以表示的最小数值：Number.MIN_VALUE，最大数值：Number.MAX_VALUE 任何无法表示的正数：Infinity(Number.NEGATIVE_INFINITY)，任何无法表示的小数：-Infinity(Number.POSITIVE_INFINITY)
+isFinite()函数：确定一个值是不是有限大
+NaN NaN(not a number)，表示本来要返回数值的操作失败了。
+console.log(0/0)	//NaN console.log(3/0)	//Infinity console.log(3/-0)	//-Infinity 任何涉及NaN的操作始终返回NaN，NaN不等于包括NaN在内的任何值。
+isNaN()函数：接收一个参数，可以是任意数据类型，任何不能转换为数值的值都会导致整个函数返回true
+数值转换 有三个函数可以把非数值转换为数值：Number()、parseInt()、parseFloat()。
+Number()函数转换规则：
+布尔值，true转换为1，false转换为0 数值，直接返回 null，返回0 undefined，返回NaN 字符串 如果字符串包含数值字符，包括数值字符前面带加减号的情况，则转换为一个十进制数值 如果字符串包含有效的浮点值格式，则会转换为相应的浮点值 如果字符串包含有效的十六进制格式，则会转换为该十六进制值对应的十进制数值 如果是空字符串，返回0 如果字符串包括除上述情况之外的其他字符，返回NaN 对象，调用valueOf()方法，并按照上述规则转换返回的值。如果转换结果是NaN，则调用toString()方法，在按照转换字符串的规则转换 parseInt()函数： 字符串最前面的空格会被忽略，从第一个非空格字符开始转换，如果第一个字符不是数值字符、加号和减号，parseInt()立即返回NaN，空字符串也会返回NaN。 如果第一个字符是数值字符、加号或减号，则继续一次检测每个字符，知道字符串末尾，或碰到非数值字符。
+小数点不是有效的整数字符
+parseInt()函数也可以识别不同的整数格式
+let num1 = parseInt(&#39;123blue&#39;)	//123 let num2 = parseInt(&#39;&#39;)	//NaN let num3 = parseInt(&#39;0xA&#39;)	//10 let num4 = parseInt(&#39;22.5&#39;)	//22 let num5 = parseInt(&#39;70&#39;)	//70 parseInt()也接收第二个参数，用于指定底数(进制数)。
+...</p>
+  </div>
+  <footer class="entry-footer"></footer>
+  <a class="entry-link" aria-label="post link to " href="https://example.org/posts/%E7%BA%A2%E5%AE%9D%E4%B9%A6%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/%E7%AC%AC%E4%B8%89%E7%AB%A0/3.3%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B/"></a>
+</article>
+<footer class="page-footer">
+  <nav class="pagination">
+    <a class="prev" href="https://example.org/page/6/">
+      «&nbsp;Prev&nbsp;
+    </a>
+    <a class="next" href="https://example.org/page/8/">Next&nbsp;&nbsp;»
+    </a>
+  </nav>
+</footer>
+    </main>
+    
+<footer class="footer">
+        <span>&copy; 2025 <a href="https://example.org/">My New Hugo Site</a></span> · 
+
+    <span>
+        Powered by
+        <a href="https://gohugo.io/" rel="noopener noreferrer" target="_blank">Hugo</a> &
+        <a href="https://github.com/adityatelange/hugo-PaperMod/" rel="noopener" target="_blank">PaperMod</a>
+    </span>
+</footer>
+<a href="#top" aria-label="go to top" title="Go to Top (Alt + G)" class="top-link" id="top-link" accesskey="g">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 12 6" fill="currentColor">
+        <path d="M12 6H0l6-6z" />
+    </svg>
+</a>
+
+<script>
+    let menu = document.getElementById('menu')
+    if (menu) {
+        menu.scrollLeft = localStorage.getItem("menu-scroll-position");
+        menu.onscroll = function () {
+            localStorage.setItem("menu-scroll-position", menu.scrollLeft);
+        }
+    }
+
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener("click", function (e) {
+            e.preventDefault();
+            var id = this.getAttribute("href").substr(1);
+            if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView({
+                    behavior: "smooth"
+                });
+            } else {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView();
+            }
+            if (id === "top") {
+                history.replaceState(null, null, " ");
+            } else {
+                history.pushState(null, null, `#${id}`);
+            }
+        });
+    });
+
+</script>
+<script>
+    var mybutton = document.getElementById("top-link");
+    window.onscroll = function () {
+        if (document.body.scrollTop > 800 || document.documentElement.scrollTop > 800) {
+            mybutton.style.visibility = "visible";
+            mybutton.style.opacity = "1";
+        } else {
+            mybutton.style.visibility = "hidden";
+            mybutton.style.opacity = "0";
+        }
+    };
+
+</script>
+<script>
+    document.getElementById("theme-toggle").addEventListener("click", () => {
+        if (document.body.className.includes("dark")) {
+            document.body.classList.remove('dark');
+            localStorage.setItem("pref-theme", 'light');
+        } else {
+            document.body.classList.add('dark');
+            localStorage.setItem("pref-theme", 'dark');
+        }
+    })
+
+</script>
+</body>
+
+</html>

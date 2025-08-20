@@ -1,0 +1,478 @@
+<!DOCTYPE html>
+<html lang="en" dir="auto">
+
+<head><meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="robots" content="index, follow">
+<title>My New Hugo Site</title>
+<meta name="keywords" content="">
+<meta name="description" content="
+JavaScript中this的绑定规则取决于函数的调用方式而非声明位置。核心规则包括：默认绑定（非严格模式绑定全局对象，严格模式为undefined）、隐式绑定（通过对象调用）、显式绑定（call/apply/bind）和new绑定（构造函数调用）。箭头函数例外，它继承外层作用域的this且不可更改。优先级顺序为：new绑定 &gt; 显式绑定 &gt; 隐式绑定 &gt; 默认绑定。特殊情况下，传入null/undefined会触发默认绑定，而硬绑定函数被new调用时会替换this。理解这些规则对掌握JavaScript的执行上下文至关重要。
+this是在运行时进行绑定的，并不是在编写时绑定，它的上下文取决于函数调用时的各种条件
+this的绑定和函数声明的位置没有任何关系，只取决于函数的调用方式
+当一个函数被调用时，会创建一个活动记录（也称为执行上下文），这个记录会包含函数在哪里被调用，函数的调用方式，传入的参数等信息，this就是这个记录的一个属性，会在函数执行的过程中用到
+
+调用位置就是函数在代码中被调用的位置，在当前正在执行的函数的前一个调用中
+
+默认绑定：函数直接使用不带任何修饰的函数引用进行调用（独立函数调用），只能使用默认绑定，无法应用其他规则，非严格模式下，默认绑定绑定到全局对象，在严格模式下绑定到undefined
+隐式绑定：当函数引用有上下文对象时，隐式绑定规则会把函数调用中的this绑定到这个上下文对象
+对象属性引用链中只有上一层或者说最后一层在调用位置中起作用
+显示绑定：所有函数都可以使用call()和apply()方法，它们的第一个参数是一个对象，接着在调用函数时将其绑定到this
+如果传入一个原始值来当做this的绑定对象，这个原始值会被转换成它的对象形式，这通常被称为装箱
+硬绑定：一种显式的强制绑定
+function foo(){
+    console.log(this.a)
+}
+var obj = {
+    a:2
+}
+var bar = function(){
+    foo.call(obj)
+}
+可以创建一个包裹函数，负责接收参数并返回值
+var bar = function(){
+    return foo.apply(obj,arguments)
+}
+另一种是创建一个可以重复使用的辅助函数
+function bind(fn,obj){
+    return function(){
+        return fn.apply(obj,arguments)
+    }
+}
+var bar = bind(foo,obj)
+bar(3)
+ES5提供了内置的方法Function.prototype.bind，返回一个硬编码的新函数，把指定的参数设置为this的上下文并调用原始函数
+JS许多内置函数或第三方库函数都提供了一个可选的参数，通常被称为上下文，其作用和bind一样，确保回调函数使用指定的this，实际上都是通过call或apply实现了显示绑定
+new绑定：在JS中，构造函数只是一些使用new操作符时被调用的函数，它们并不会属于某个类，也不会实例化一个类，只是被new操作符调用的普通函数而已
+所有函数都可以用new调用，这种函数调用被称为构造函数调用
+使用new来调用函数，或者说发生构造函数调用时，会自动执行下面的操作：
+
+创建一个全新的对象
+这个新对象会被执行[[Prototype]]连接
+这个新对象会绑定到函数调用的this
+如果函数没有返回其他对象，那么new表达式中的函数调用会自动返回这个新对象
+
+
+bind()方法会判断硬绑定函数是否被new调用，如果是的话就会使用新创建的this替换硬绑定的this。
+在new中使用硬绑定函数主要目的是预先设置函数的一些参数，这样在使用new进行初始化时就可以只传入其余的参数
+根据优先级判断this：
+
+函数是否在new中调用？如果是的话this绑定的是新创建的对象
+函数是否通过call，apply或者硬绑定调用？如果是的话，this绑定的是指定的对象
+函数是否在某个上下文对象中调用？如果是的话，this绑定的是那个上下文对象
+如果都不是的话，使用默认绑定，如果在严格模式下，就绑定到undefined，否则绑定到全局对象
+
+
+如果null或undefined作为this的绑定对象传入call、apply或者bind，这些值在调用时会被忽略，实际应用的是默认绑定规则
+apply可以用来展开数组，并当做参数传入一个函数；bind可以对参数进行柯里化，预先设置一些参数
+Object.create(null)可以创建一个空对象，并且不会创建Object.prototype这个委托，比{}更空
+忽略this绑定时传入空对象可以避免对全局对象产生影响
+有可能会创建一个函数的间接引用，在这种情况下，调用这个函数会应用默认绑定规则
+
+箭头函数不使用this的四种标准规则，而是根据外层作用域来决定this
+箭头函数的绑定无法被修改，箭头函数可以像bind一样确保函数的this绑定到指定的对象，用常见的词法作用域取代了传统的this机制">
+<meta name="author" content="">
+<link rel="canonical" href="https://example.org/posts/%E4%BD%A0%E4%B8%8D%E7%9F%A5%E9%81%93%E7%9A%84js/this%E5%92%8C%E5%AF%B9%E8%B1%A1%E5%8E%9F%E5%9E%8B/1.this/">
+<link crossorigin="anonymous" href="/assets/css/stylesheet.8fe10233a706bc87f2e08b3cf97b8bd4c0a80f10675a143675d59212121037c0.css" integrity="sha256-j&#43;ECM6cGvIfy4Is8&#43;XuL1MCoDxBnWhQ2ddWSEhIQN8A=" rel="preload stylesheet" as="style">
+<link rel="icon" href="https://example.org/favicon.ico">
+<link rel="icon" type="image/png" sizes="16x16" href="https://example.org/favicon-16x16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="https://example.org/favicon-32x32.png">
+<link rel="apple-touch-icon" href="https://example.org/apple-touch-icon.png">
+<link rel="mask-icon" href="https://example.org/safari-pinned-tab.svg">
+<meta name="theme-color" content="#2e2e33">
+<meta name="msapplication-TileColor" content="#2e2e33">
+<link rel="alternate" hreflang="en" href="https://example.org/posts/%E4%BD%A0%E4%B8%8D%E7%9F%A5%E9%81%93%E7%9A%84js/this%E5%92%8C%E5%AF%B9%E8%B1%A1%E5%8E%9F%E5%9E%8B/1.this/">
+<noscript>
+    <style>
+        #theme-toggle,
+        .top-link {
+            display: none;
+        }
+
+    </style>
+    <style>
+        @media (prefers-color-scheme: dark) {
+            :root {
+                --theme: rgb(29, 30, 32);
+                --entry: rgb(46, 46, 51);
+                --primary: rgb(218, 218, 219);
+                --secondary: rgb(155, 156, 157);
+                --tertiary: rgb(65, 66, 68);
+                --content: rgb(196, 196, 197);
+                --code-block-bg: rgb(46, 46, 51);
+                --code-bg: rgb(55, 56, 62);
+                --border: rgb(51, 51, 51);
+            }
+
+            .list {
+                background: var(--theme);
+            }
+
+            .list:not(.dark)::-webkit-scrollbar-track {
+                background: 0 0;
+            }
+
+            .list:not(.dark)::-webkit-scrollbar-thumb {
+                border-color: var(--theme);
+            }
+        }
+
+    </style>
+</noscript><meta property="og:url" content="https://example.org/posts/%E4%BD%A0%E4%B8%8D%E7%9F%A5%E9%81%93%E7%9A%84js/this%E5%92%8C%E5%AF%B9%E8%B1%A1%E5%8E%9F%E5%9E%8B/1.this/">
+  <meta property="og:site_name" content="My New Hugo Site">
+  <meta property="og:title" content="My New Hugo Site">
+  <meta property="og:description" content=" JavaScript中this的绑定规则取决于函数的调用方式而非声明位置。核心规则包括：默认绑定（非严格模式绑定全局对象，严格模式为undefined）、隐式绑定（通过对象调用）、显式绑定（call/apply/bind）和new绑定（构造函数调用）。箭头函数例外，它继承外层作用域的this且不可更改。优先级顺序为：new绑定 &gt; 显式绑定 &gt; 隐式绑定 &gt; 默认绑定。特殊情况下，传入null/undefined会触发默认绑定，而硬绑定函数被new调用时会替换this。理解这些规则对掌握JavaScript的执行上下文至关重要。
+this是在运行时进行绑定的，并不是在编写时绑定，它的上下文取决于函数调用时的各种条件
+this的绑定和函数声明的位置没有任何关系，只取决于函数的调用方式
+当一个函数被调用时，会创建一个活动记录（也称为执行上下文），这个记录会包含函数在哪里被调用，函数的调用方式，传入的参数等信息，this就是这个记录的一个属性，会在函数执行的过程中用到
+调用位置就是函数在代码中被调用的位置，在当前正在执行的函数的前一个调用中
+默认绑定：函数直接使用不带任何修饰的函数引用进行调用（独立函数调用），只能使用默认绑定，无法应用其他规则，非严格模式下，默认绑定绑定到全局对象，在严格模式下绑定到undefined
+隐式绑定：当函数引用有上下文对象时，隐式绑定规则会把函数调用中的this绑定到这个上下文对象
+对象属性引用链中只有上一层或者说最后一层在调用位置中起作用
+显示绑定：所有函数都可以使用call()和apply()方法，它们的第一个参数是一个对象，接着在调用函数时将其绑定到this
+如果传入一个原始值来当做this的绑定对象，这个原始值会被转换成它的对象形式，这通常被称为装箱
+硬绑定：一种显式的强制绑定
+function foo(){ console.log(this.a) } var obj = { a:2 } var bar = function(){ foo.call(obj) } 可以创建一个包裹函数，负责接收参数并返回值
+var bar = function(){ return foo.apply(obj,arguments) } 另一种是创建一个可以重复使用的辅助函数
+function bind(fn,obj){ return function(){ return fn.apply(obj,arguments) } } var bar = bind(foo,obj) bar(3) ES5提供了内置的方法Function.prototype.bind，返回一个硬编码的新函数，把指定的参数设置为this的上下文并调用原始函数
+JS许多内置函数或第三方库函数都提供了一个可选的参数，通常被称为上下文，其作用和bind一样，确保回调函数使用指定的this，实际上都是通过call或apply实现了显示绑定
+new绑定：在JS中，构造函数只是一些使用new操作符时被调用的函数，它们并不会属于某个类，也不会实例化一个类，只是被new操作符调用的普通函数而已
+所有函数都可以用new调用，这种函数调用被称为构造函数调用
+使用new来调用函数，或者说发生构造函数调用时，会自动执行下面的操作：
+创建一个全新的对象 这个新对象会被执行[[Prototype]]连接 这个新对象会绑定到函数调用的this 如果函数没有返回其他对象，那么new表达式中的函数调用会自动返回这个新对象 bind()方法会判断硬绑定函数是否被new调用，如果是的话就会使用新创建的this替换硬绑定的this。
+在new中使用硬绑定函数主要目的是预先设置函数的一些参数，这样在使用new进行初始化时就可以只传入其余的参数
+根据优先级判断this：
+函数是否在new中调用？如果是的话this绑定的是新创建的对象 函数是否通过call，apply或者硬绑定调用？如果是的话，this绑定的是指定的对象 函数是否在某个上下文对象中调用？如果是的话，this绑定的是那个上下文对象 如果都不是的话，使用默认绑定，如果在严格模式下，就绑定到undefined，否则绑定到全局对象 如果null或undefined作为this的绑定对象传入call、apply或者bind，这些值在调用时会被忽略，实际应用的是默认绑定规则
+apply可以用来展开数组，并当做参数传入一个函数；bind可以对参数进行柯里化，预先设置一些参数
+Object.create(null)可以创建一个空对象，并且不会创建Object.prototype这个委托，比{}更空
+忽略this绑定时传入空对象可以避免对全局对象产生影响
+有可能会创建一个函数的间接引用，在这种情况下，调用这个函数会应用默认绑定规则
+箭头函数不使用this的四种标准规则，而是根据外层作用域来决定this
+箭头函数的绑定无法被修改，箭头函数可以像bind一样确保函数的this绑定到指定的对象，用常见的词法作用域取代了传统的this机制">
+  <meta property="og:locale" content="en-us">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="posts">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="">
+<meta name="twitter:description" content="
+JavaScript中this的绑定规则取决于函数的调用方式而非声明位置。核心规则包括：默认绑定（非严格模式绑定全局对象，严格模式为undefined）、隐式绑定（通过对象调用）、显式绑定（call/apply/bind）和new绑定（构造函数调用）。箭头函数例外，它继承外层作用域的this且不可更改。优先级顺序为：new绑定 &gt; 显式绑定 &gt; 隐式绑定 &gt; 默认绑定。特殊情况下，传入null/undefined会触发默认绑定，而硬绑定函数被new调用时会替换this。理解这些规则对掌握JavaScript的执行上下文至关重要。
+this是在运行时进行绑定的，并不是在编写时绑定，它的上下文取决于函数调用时的各种条件
+this的绑定和函数声明的位置没有任何关系，只取决于函数的调用方式
+当一个函数被调用时，会创建一个活动记录（也称为执行上下文），这个记录会包含函数在哪里被调用，函数的调用方式，传入的参数等信息，this就是这个记录的一个属性，会在函数执行的过程中用到
+
+调用位置就是函数在代码中被调用的位置，在当前正在执行的函数的前一个调用中
+
+默认绑定：函数直接使用不带任何修饰的函数引用进行调用（独立函数调用），只能使用默认绑定，无法应用其他规则，非严格模式下，默认绑定绑定到全局对象，在严格模式下绑定到undefined
+隐式绑定：当函数引用有上下文对象时，隐式绑定规则会把函数调用中的this绑定到这个上下文对象
+对象属性引用链中只有上一层或者说最后一层在调用位置中起作用
+显示绑定：所有函数都可以使用call()和apply()方法，它们的第一个参数是一个对象，接着在调用函数时将其绑定到this
+如果传入一个原始值来当做this的绑定对象，这个原始值会被转换成它的对象形式，这通常被称为装箱
+硬绑定：一种显式的强制绑定
+function foo(){
+    console.log(this.a)
+}
+var obj = {
+    a:2
+}
+var bar = function(){
+    foo.call(obj)
+}
+可以创建一个包裹函数，负责接收参数并返回值
+var bar = function(){
+    return foo.apply(obj,arguments)
+}
+另一种是创建一个可以重复使用的辅助函数
+function bind(fn,obj){
+    return function(){
+        return fn.apply(obj,arguments)
+    }
+}
+var bar = bind(foo,obj)
+bar(3)
+ES5提供了内置的方法Function.prototype.bind，返回一个硬编码的新函数，把指定的参数设置为this的上下文并调用原始函数
+JS许多内置函数或第三方库函数都提供了一个可选的参数，通常被称为上下文，其作用和bind一样，确保回调函数使用指定的this，实际上都是通过call或apply实现了显示绑定
+new绑定：在JS中，构造函数只是一些使用new操作符时被调用的函数，它们并不会属于某个类，也不会实例化一个类，只是被new操作符调用的普通函数而已
+所有函数都可以用new调用，这种函数调用被称为构造函数调用
+使用new来调用函数，或者说发生构造函数调用时，会自动执行下面的操作：
+
+创建一个全新的对象
+这个新对象会被执行[[Prototype]]连接
+这个新对象会绑定到函数调用的this
+如果函数没有返回其他对象，那么new表达式中的函数调用会自动返回这个新对象
+
+
+bind()方法会判断硬绑定函数是否被new调用，如果是的话就会使用新创建的this替换硬绑定的this。
+在new中使用硬绑定函数主要目的是预先设置函数的一些参数，这样在使用new进行初始化时就可以只传入其余的参数
+根据优先级判断this：
+
+函数是否在new中调用？如果是的话this绑定的是新创建的对象
+函数是否通过call，apply或者硬绑定调用？如果是的话，this绑定的是指定的对象
+函数是否在某个上下文对象中调用？如果是的话，this绑定的是那个上下文对象
+如果都不是的话，使用默认绑定，如果在严格模式下，就绑定到undefined，否则绑定到全局对象
+
+
+如果null或undefined作为this的绑定对象传入call、apply或者bind，这些值在调用时会被忽略，实际应用的是默认绑定规则
+apply可以用来展开数组，并当做参数传入一个函数；bind可以对参数进行柯里化，预先设置一些参数
+Object.create(null)可以创建一个空对象，并且不会创建Object.prototype这个委托，比{}更空
+忽略this绑定时传入空对象可以避免对全局对象产生影响
+有可能会创建一个函数的间接引用，在这种情况下，调用这个函数会应用默认绑定规则
+
+箭头函数不使用this的四种标准规则，而是根据外层作用域来决定this
+箭头函数的绑定无法被修改，箭头函数可以像bind一样确保函数的this绑定到指定的对象，用常见的词法作用域取代了传统的this机制">
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position":  1 ,
+      "name": "Posts",
+      "item": "https://example.org/posts/"
+    }, 
+    {
+      "@type": "ListItem",
+      "position":  2 ,
+      "name": "",
+      "item": "https://example.org/posts/%E4%BD%A0%E4%B8%8D%E7%9F%A5%E9%81%93%E7%9A%84js/this%E5%92%8C%E5%AF%B9%E8%B1%A1%E5%8E%9F%E5%9E%8B/1.this/"
+    }
+  ]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "",
+  "name": "",
+  "description": " JavaScript中this的绑定规则取决于函数的调用方式而非声明位置。核心规则包括：默认绑定（非严格模式绑定全局对象，严格模式为undefined）、隐式绑定（通过对象调用）、显式绑定（call/apply/bind）和new绑定（构造函数调用）。箭头函数例外，它继承外层作用域的this且不可更改。优先级顺序为：new绑定 \u0026gt; 显式绑定 \u0026gt; 隐式绑定 \u0026gt; 默认绑定。特殊情况下，传入null/undefined会触发默认绑定，而硬绑定函数被new调用时会替换this。理解这些规则对掌握JavaScript的执行上下文至关重要。\nthis是在运行时进行绑定的，并不是在编写时绑定，它的上下文取决于函数调用时的各种条件\nthis的绑定和函数声明的位置没有任何关系，只取决于函数的调用方式\n当一个函数被调用时，会创建一个活动记录（也称为执行上下文），这个记录会包含函数在哪里被调用，函数的调用方式，传入的参数等信息，this就是这个记录的一个属性，会在函数执行的过程中用到\n调用位置就是函数在代码中被调用的位置，在当前正在执行的函数的前一个调用中\n默认绑定：函数直接使用不带任何修饰的函数引用进行调用（独立函数调用），只能使用默认绑定，无法应用其他规则，非严格模式下，默认绑定绑定到全局对象，在严格模式下绑定到undefined\n隐式绑定：当函数引用有上下文对象时，隐式绑定规则会把函数调用中的this绑定到这个上下文对象\n对象属性引用链中只有上一层或者说最后一层在调用位置中起作用\n显示绑定：所有函数都可以使用call()和apply()方法，它们的第一个参数是一个对象，接着在调用函数时将其绑定到this\n如果传入一个原始值来当做this的绑定对象，这个原始值会被转换成它的对象形式，这通常被称为装箱\n硬绑定：一种显式的强制绑定\nfunction foo(){ console.log(this.a) } var obj = { a:2 } var bar = function(){ foo.call(obj) } 可以创建一个包裹函数，负责接收参数并返回值\nvar bar = function(){ return foo.apply(obj,arguments) } 另一种是创建一个可以重复使用的辅助函数\nfunction bind(fn,obj){ return function(){ return fn.apply(obj,arguments) } } var bar = bind(foo,obj) bar(3) ES5提供了内置的方法Function.prototype.bind，返回一个硬编码的新函数，把指定的参数设置为this的上下文并调用原始函数\nJS许多内置函数或第三方库函数都提供了一个可选的参数，通常被称为上下文，其作用和bind一样，确保回调函数使用指定的this，实际上都是通过call或apply实现了显示绑定\nnew绑定：在JS中，构造函数只是一些使用new操作符时被调用的函数，它们并不会属于某个类，也不会实例化一个类，只是被new操作符调用的普通函数而已\n所有函数都可以用new调用，这种函数调用被称为构造函数调用\n使用new来调用函数，或者说发生构造函数调用时，会自动执行下面的操作：\n创建一个全新的对象 这个新对象会被执行[[Prototype]]连接 这个新对象会绑定到函数调用的this 如果函数没有返回其他对象，那么new表达式中的函数调用会自动返回这个新对象 bind()方法会判断硬绑定函数是否被new调用，如果是的话就会使用新创建的this替换硬绑定的this。\n在new中使用硬绑定函数主要目的是预先设置函数的一些参数，这样在使用new进行初始化时就可以只传入其余的参数\n根据优先级判断this：\n函数是否在new中调用？如果是的话this绑定的是新创建的对象 函数是否通过call，apply或者硬绑定调用？如果是的话，this绑定的是指定的对象 函数是否在某个上下文对象中调用？如果是的话，this绑定的是那个上下文对象 如果都不是的话，使用默认绑定，如果在严格模式下，就绑定到undefined，否则绑定到全局对象 如果null或undefined作为this的绑定对象传入call、apply或者bind，这些值在调用时会被忽略，实际应用的是默认绑定规则\napply可以用来展开数组，并当做参数传入一个函数；bind可以对参数进行柯里化，预先设置一些参数\nObject.create(null)可以创建一个空对象，并且不会创建Object.prototype这个委托，比{}更空\n忽略this绑定时传入空对象可以避免对全局对象产生影响\n有可能会创建一个函数的间接引用，在这种情况下，调用这个函数会应用默认绑定规则\n箭头函数不使用this的四种标准规则，而是根据外层作用域来决定this\n箭头函数的绑定无法被修改，箭头函数可以像bind一样确保函数的this绑定到指定的对象，用常见的词法作用域取代了传统的this机制\n",
+  "keywords": [
+    
+  ],
+  "articleBody": " JavaScript中this的绑定规则取决于函数的调用方式而非声明位置。核心规则包括：默认绑定（非严格模式绑定全局对象，严格模式为undefined）、隐式绑定（通过对象调用）、显式绑定（call/apply/bind）和new绑定（构造函数调用）。箭头函数例外，它继承外层作用域的this且不可更改。优先级顺序为：new绑定 \u003e 显式绑定 \u003e 隐式绑定 \u003e 默认绑定。特殊情况下，传入null/undefined会触发默认绑定，而硬绑定函数被new调用时会替换this。理解这些规则对掌握JavaScript的执行上下文至关重要。\nthis是在运行时进行绑定的，并不是在编写时绑定，它的上下文取决于函数调用时的各种条件\nthis的绑定和函数声明的位置没有任何关系，只取决于函数的调用方式\n当一个函数被调用时，会创建一个活动记录（也称为执行上下文），这个记录会包含函数在哪里被调用，函数的调用方式，传入的参数等信息，this就是这个记录的一个属性，会在函数执行的过程中用到\n调用位置就是函数在代码中被调用的位置，在当前正在执行的函数的前一个调用中\n默认绑定：函数直接使用不带任何修饰的函数引用进行调用（独立函数调用），只能使用默认绑定，无法应用其他规则，非严格模式下，默认绑定绑定到全局对象，在严格模式下绑定到undefined\n隐式绑定：当函数引用有上下文对象时，隐式绑定规则会把函数调用中的this绑定到这个上下文对象\n对象属性引用链中只有上一层或者说最后一层在调用位置中起作用\n显示绑定：所有函数都可以使用call()和apply()方法，它们的第一个参数是一个对象，接着在调用函数时将其绑定到this\n如果传入一个原始值来当做this的绑定对象，这个原始值会被转换成它的对象形式，这通常被称为装箱\n硬绑定：一种显式的强制绑定\nfunction foo(){ console.log(this.a) } var obj = { a:2 } var bar = function(){ foo.call(obj) } 可以创建一个包裹函数，负责接收参数并返回值\nvar bar = function(){ return foo.apply(obj,arguments) } 另一种是创建一个可以重复使用的辅助函数\nfunction bind(fn,obj){ return function(){ return fn.apply(obj,arguments) } } var bar = bind(foo,obj) bar(3) ES5提供了内置的方法Function.prototype.bind，返回一个硬编码的新函数，把指定的参数设置为this的上下文并调用原始函数\nJS许多内置函数或第三方库函数都提供了一个可选的参数，通常被称为上下文，其作用和bind一样，确保回调函数使用指定的this，实际上都是通过call或apply实现了显示绑定\nnew绑定：在JS中，构造函数只是一些使用new操作符时被调用的函数，它们并不会属于某个类，也不会实例化一个类，只是被new操作符调用的普通函数而已\n所有函数都可以用new调用，这种函数调用被称为构造函数调用\n使用new来调用函数，或者说发生构造函数调用时，会自动执行下面的操作：\n创建一个全新的对象 这个新对象会被执行[[Prototype]]连接 这个新对象会绑定到函数调用的this 如果函数没有返回其他对象，那么new表达式中的函数调用会自动返回这个新对象 bind()方法会判断硬绑定函数是否被new调用，如果是的话就会使用新创建的this替换硬绑定的this。\n在new中使用硬绑定函数主要目的是预先设置函数的一些参数，这样在使用new进行初始化时就可以只传入其余的参数\n根据优先级判断this：\n函数是否在new中调用？如果是的话this绑定的是新创建的对象 函数是否通过call，apply或者硬绑定调用？如果是的话，this绑定的是指定的对象 函数是否在某个上下文对象中调用？如果是的话，this绑定的是那个上下文对象 如果都不是的话，使用默认绑定，如果在严格模式下，就绑定到undefined，否则绑定到全局对象 如果null或undefined作为this的绑定对象传入call、apply或者bind，这些值在调用时会被忽略，实际应用的是默认绑定规则\napply可以用来展开数组，并当做参数传入一个函数；bind可以对参数进行柯里化，预先设置一些参数\nObject.create(null)可以创建一个空对象，并且不会创建Object.prototype这个委托，比{}更空\n忽略this绑定时传入空对象可以避免对全局对象产生影响\n有可能会创建一个函数的间接引用，在这种情况下，调用这个函数会应用默认绑定规则\n箭头函数不使用this的四种标准规则，而是根据外层作用域来决定this\n箭头函数的绑定无法被修改，箭头函数可以像bind一样确保函数的this绑定到指定的对象，用常见的词法作用域取代了传统的this机制\n",
+  "wordCount" : "78",
+  "inLanguage": "en",
+  "datePublished": "0001-01-01T00:00:00Z",
+  "dateModified": "0001-01-01T00:00:00Z",
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://example.org/posts/%E4%BD%A0%E4%B8%8D%E7%9F%A5%E9%81%93%E7%9A%84js/this%E5%92%8C%E5%AF%B9%E8%B1%A1%E5%8E%9F%E5%9E%8B/1.this/"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "My New Hugo Site",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://example.org/favicon.ico"
+    }
+  }
+}
+</script>
+</head>
+
+<body class="" id="top">
+<script>
+    if (localStorage.getItem("pref-theme") === "dark") {
+        document.body.classList.add('dark');
+    } else if (localStorage.getItem("pref-theme") === "light") {
+        document.body.classList.remove('dark')
+    } else if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+        document.body.classList.add('dark');
+    }
+
+</script>
+
+<header class="header">
+    <nav class="nav">
+        <div class="logo">
+            <a href="https://example.org/" accesskey="h" title="My New Hugo Site (Alt + H)">My New Hugo Site</a>
+            <div class="logo-switches">
+                <button id="theme-toggle" accesskey="t" title="(Alt + T)" aria-label="Toggle theme">
+                    <svg id="moon" xmlns="http://www.w3.org/2000/svg" width="24" height="18" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                    </svg>
+                    <svg id="sun" xmlns="http://www.w3.org/2000/svg" width="24" height="18" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <circle cx="12" cy="12" r="5"></circle>
+                        <line x1="12" y1="1" x2="12" y2="3"></line>
+                        <line x1="12" y1="21" x2="12" y2="23"></line>
+                        <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                        <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                        <line x1="1" y1="12" x2="3" y2="12"></line>
+                        <line x1="21" y1="12" x2="23" y2="12"></line>
+                        <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                        <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+                    </svg>
+                </button>
+            </div>
+        </div>
+        <ul id="menu">
+        </ul>
+    </nav>
+</header>
+<main class="main">
+
+<article class="post-single">
+  <header class="post-header">
+    
+    <h1 class="post-title entry-hint-parent">
+      
+    </h1>
+    <div class="post-meta">
+
+</div>
+  </header> 
+  <div class="post-content"><blockquote>
+<p>JavaScript中this的绑定规则取决于函数的调用方式而非声明位置。核心规则包括：默认绑定（非严格模式绑定全局对象，严格模式为undefined）、隐式绑定（通过对象调用）、显式绑定（call/apply/bind）和new绑定（构造函数调用）。箭头函数例外，它继承外层作用域的this且不可更改。优先级顺序为：new绑定 &gt; 显式绑定 &gt; 隐式绑定 &gt; 默认绑定。特殊情况下，传入null/undefined会触发默认绑定，而硬绑定函数被new调用时会替换this。理解这些规则对掌握JavaScript的执行上下文至关重要。</p></blockquote>
+<p>this是在运行时进行绑定的，并不是在编写时绑定，它的上下文取决于函数调用时的各种条件</p>
+<p>this的绑定和函数声明的位置没有任何关系，只取决于函数的调用方式</p>
+<p>当一个函数被调用时，会创建一个活动记录（也称为执行上下文），这个记录会包含函数在哪里被调用，函数的调用方式，传入的参数等信息，this就是这个记录的一个属性，会在函数执行的过程中用到</p>
+<hr>
+<p>调用位置就是函数在代码中被调用的位置，在当前正在执行的函数的前一个调用中</p>
+<hr>
+<p><strong>默认绑定</strong>：函数直接使用不带任何修饰的函数引用进行调用（独立函数调用），只能使用默认绑定，无法应用其他规则，非严格模式下，默认绑定绑定到全局对象，在严格模式下绑定到undefined</p>
+<p><strong>隐式绑定</strong>：当函数引用有上下文对象时，隐式绑定规则会把函数调用中的this绑定到这个上下文对象</p>
+<p>对象属性引用链中只有上一层或者说最后一层在调用位置中起作用</p>
+<p><strong>显示绑定</strong>：所有函数都可以使用call()和apply()方法，它们的第一个参数是一个对象，接着在调用函数时将其绑定到this</p>
+<p>如果传入一个原始值来当做this的绑定对象，这个原始值会被转换成它的对象形式，这通常被称为装箱</p>
+<p>硬绑定：一种显式的强制绑定</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-js" data-lang="js"><span style="display:flex;"><span><span style="color:#66d9ef">function</span> <span style="color:#a6e22e">foo</span>(){
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">a</span>)
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">var</span> <span style="color:#a6e22e">obj</span> <span style="color:#f92672">=</span> {
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">a</span><span style="color:#f92672">:</span><span style="color:#ae81ff">2</span>
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">var</span> <span style="color:#a6e22e">bar</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">function</span>(){
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">foo</span>.<span style="color:#a6e22e">call</span>(<span style="color:#a6e22e">obj</span>)
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>可以创建一个包裹函数，负责接收参数并返回值</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-js" data-lang="js"><span style="display:flex;"><span><span style="color:#66d9ef">var</span> <span style="color:#a6e22e">bar</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">function</span>(){
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> <span style="color:#a6e22e">foo</span>.<span style="color:#a6e22e">apply</span>(<span style="color:#a6e22e">obj</span>,<span style="color:#a6e22e">arguments</span>)
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>另一种是创建一个可以重复使用的辅助函数</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-js" data-lang="js"><span style="display:flex;"><span><span style="color:#66d9ef">function</span> <span style="color:#a6e22e">bind</span>(<span style="color:#a6e22e">fn</span>,<span style="color:#a6e22e">obj</span>){
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> <span style="color:#66d9ef">function</span>(){
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> <span style="color:#a6e22e">fn</span>.<span style="color:#a6e22e">apply</span>(<span style="color:#a6e22e">obj</span>,<span style="color:#a6e22e">arguments</span>)
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">var</span> <span style="color:#a6e22e">bar</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">bind</span>(<span style="color:#a6e22e">foo</span>,<span style="color:#a6e22e">obj</span>)
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">bar</span>(<span style="color:#ae81ff">3</span>)
+</span></span></code></pre></div><p>ES5提供了内置的方法Function.prototype.bind，返回一个硬编码的新函数，把指定的参数设置为this的上下文并调用原始函数</p>
+<p>JS许多内置函数或第三方库函数都提供了一个可选的参数，通常被称为上下文，其作用和bind一样，确保回调函数使用指定的this，实际上都是通过call或apply实现了显示绑定</p>
+<p><strong>new绑定</strong>：在JS中，构造函数只是一些使用new操作符时被调用的函数，它们并不会属于某个类，也不会实例化一个类，只是被new操作符调用的普通函数而已</p>
+<p>所有函数都可以用new调用，这种函数调用被称为构造函数调用</p>
+<p>使用new来调用函数，或者说发生构造函数调用时，会自动执行下面的操作：</p>
+<ul>
+<li>创建一个全新的对象</li>
+<li>这个新对象会被执行[[Prototype]]连接</li>
+<li>这个新对象会绑定到函数调用的this</li>
+<li>如果函数没有返回其他对象，那么new表达式中的函数调用会自动返回这个新对象</li>
+</ul>
+<hr>
+<p>bind()方法会判断硬绑定函数是否被new调用，如果是的话就会使用新创建的this替换硬绑定的this。</p>
+<p>在new中使用硬绑定函数主要目的是预先设置函数的一些参数，这样在使用new进行初始化时就可以只传入其余的参数</p>
+<p>根据优先级判断this：</p>
+<ul>
+<li>函数是否在new中调用？如果是的话this绑定的是新创建的对象</li>
+<li>函数是否通过call，apply或者硬绑定调用？如果是的话，this绑定的是指定的对象</li>
+<li>函数是否在某个上下文对象中调用？如果是的话，this绑定的是那个上下文对象</li>
+<li>如果都不是的话，使用默认绑定，如果在严格模式下，就绑定到undefined，否则绑定到全局对象</li>
+</ul>
+<hr>
+<p>如果null或undefined作为this的绑定对象传入call、apply或者bind，这些值在调用时会被忽略，实际应用的是默认绑定规则</p>
+<p>apply可以用来展开数组，并当做参数传入一个函数；bind可以对参数进行柯里化，预先设置一些参数</p>
+<p>Object.create(null)可以创建一个空对象，并且不会创建Object.prototype这个委托，比{}更空</p>
+<p>忽略this绑定时传入空对象可以避免对全局对象产生影响</p>
+<p>有可能会创建一个函数的间接引用，在这种情况下，调用这个函数会应用默认绑定规则</p>
+<hr>
+<p>箭头函数不使用this的四种标准规则，而是根据外层作用域来决定this</p>
+<p>箭头函数的绑定无法被修改，箭头函数可以像bind一样确保函数的this绑定到指定的对象，用常见的词法作用域取代了传统的this机制</p>
+
+
+  </div>
+
+  <footer class="post-footer">
+    <ul class="post-tags">
+    </ul>
+  </footer>
+</article>
+    </main>
+    
+<footer class="footer">
+        <span>&copy; 2025 <a href="https://example.org/">My New Hugo Site</a></span> · 
+
+    <span>
+        Powered by
+        <a href="https://gohugo.io/" rel="noopener noreferrer" target="_blank">Hugo</a> &
+        <a href="https://github.com/adityatelange/hugo-PaperMod/" rel="noopener" target="_blank">PaperMod</a>
+    </span>
+</footer>
+<a href="#top" aria-label="go to top" title="Go to Top (Alt + G)" class="top-link" id="top-link" accesskey="g">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 12 6" fill="currentColor">
+        <path d="M12 6H0l6-6z" />
+    </svg>
+</a>
+
+<script>
+    let menu = document.getElementById('menu')
+    if (menu) {
+        menu.scrollLeft = localStorage.getItem("menu-scroll-position");
+        menu.onscroll = function () {
+            localStorage.setItem("menu-scroll-position", menu.scrollLeft);
+        }
+    }
+
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener("click", function (e) {
+            e.preventDefault();
+            var id = this.getAttribute("href").substr(1);
+            if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView({
+                    behavior: "smooth"
+                });
+            } else {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView();
+            }
+            if (id === "top") {
+                history.replaceState(null, null, " ");
+            } else {
+                history.pushState(null, null, `#${id}`);
+            }
+        });
+    });
+
+</script>
+<script>
+    var mybutton = document.getElementById("top-link");
+    window.onscroll = function () {
+        if (document.body.scrollTop > 800 || document.documentElement.scrollTop > 800) {
+            mybutton.style.visibility = "visible";
+            mybutton.style.opacity = "1";
+        } else {
+            mybutton.style.visibility = "hidden";
+            mybutton.style.opacity = "0";
+        }
+    };
+
+</script>
+<script>
+    document.getElementById("theme-toggle").addEventListener("click", () => {
+        if (document.body.className.includes("dark")) {
+            document.body.classList.remove('dark');
+            localStorage.setItem("pref-theme", 'light');
+        } else {
+            document.body.classList.add('dark');
+            localStorage.setItem("pref-theme", 'dark');
+        }
+    })
+
+</script>
+</body>
+
+</html>

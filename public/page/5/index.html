@@ -1,0 +1,432 @@
+<!DOCTYPE html>
+<html lang="en" dir="auto">
+
+<head>
+	<meta name="generator" content="Hugo 0.148.2"><meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="robots" content="index, follow">
+<title>My New Hugo Site</title>
+
+<meta name="description" content="">
+<meta name="author" content="">
+<link rel="canonical" href="https://example.org/">
+<link crossorigin="anonymous" href="/assets/css/stylesheet.8fe10233a706bc87f2e08b3cf97b8bd4c0a80f10675a143675d59212121037c0.css" integrity="sha256-j&#43;ECM6cGvIfy4Is8&#43;XuL1MCoDxBnWhQ2ddWSEhIQN8A=" rel="preload stylesheet" as="style">
+<link rel="icon" href="https://example.org/favicon.ico">
+<link rel="icon" type="image/png" sizes="16x16" href="https://example.org/favicon-16x16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="https://example.org/favicon-32x32.png">
+<link rel="apple-touch-icon" href="https://example.org/apple-touch-icon.png">
+<link rel="mask-icon" href="https://example.org/safari-pinned-tab.svg">
+<meta name="theme-color" content="#2e2e33">
+<meta name="msapplication-TileColor" content="#2e2e33">
+<link rel="alternate" type="application/rss+xml" href="https://example.org/index.xml">
+<link rel="alternate" hreflang="en" href="https://example.org/">
+<noscript>
+    <style>
+        #theme-toggle,
+        .top-link {
+            display: none;
+        }
+
+    </style>
+    <style>
+        @media (prefers-color-scheme: dark) {
+            :root {
+                --theme: rgb(29, 30, 32);
+                --entry: rgb(46, 46, 51);
+                --primary: rgb(218, 218, 219);
+                --secondary: rgb(155, 156, 157);
+                --tertiary: rgb(65, 66, 68);
+                --content: rgb(196, 196, 197);
+                --code-block-bg: rgb(46, 46, 51);
+                --code-bg: rgb(55, 56, 62);
+                --border: rgb(51, 51, 51);
+            }
+
+            .list {
+                background: var(--theme);
+            }
+
+            .list:not(.dark)::-webkit-scrollbar-track {
+                background: 0 0;
+            }
+
+            .list:not(.dark)::-webkit-scrollbar-thumb {
+                border-color: var(--theme);
+            }
+        }
+
+    </style>
+</noscript><meta property="og:url" content="https://example.org/">
+  <meta property="og:site_name" content="My New Hugo Site">
+  <meta property="og:title" content="My New Hugo Site">
+  <meta property="og:locale" content="en-us">
+  <meta property="og:type" content="website">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="My New Hugo Site">
+<meta name="twitter:description" content="">
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  "name": "My New Hugo Site",
+  "url": "https://example.org/",
+  "description": "",
+  "logo": "https://example.org/favicon.ico",
+  "sameAs": [
+      
+  ]
+}
+</script>
+</head>
+
+<body class="list" id="top">
+<script>
+    if (localStorage.getItem("pref-theme") === "dark") {
+        document.body.classList.add('dark');
+    } else if (localStorage.getItem("pref-theme") === "light") {
+        document.body.classList.remove('dark')
+    } else if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+        document.body.classList.add('dark');
+    }
+
+</script>
+
+<header class="header">
+    <nav class="nav">
+        <div class="logo">
+            <a href="https://example.org/" accesskey="h" title="My New Hugo Site (Alt + H)">My New Hugo Site</a>
+            <div class="logo-switches">
+                <button id="theme-toggle" accesskey="t" title="(Alt + T)" aria-label="Toggle theme">
+                    <svg id="moon" xmlns="http://www.w3.org/2000/svg" width="24" height="18" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                    </svg>
+                    <svg id="sun" xmlns="http://www.w3.org/2000/svg" width="24" height="18" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <circle cx="12" cy="12" r="5"></circle>
+                        <line x1="12" y1="1" x2="12" y2="3"></line>
+                        <line x1="12" y1="21" x2="12" y2="23"></line>
+                        <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                        <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                        <line x1="1" y1="12" x2="3" y2="12"></line>
+                        <line x1="21" y1="12" x2="23" y2="12"></line>
+                        <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                        <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+                    </svg>
+                </button>
+            </div>
+        </div>
+        <ul id="menu">
+        </ul>
+    </nav>
+</header>
+<main class="main"> 
+
+<article class="post-entry"> 
+  <header class="entry-header">
+    <h2 class="entry-hint-parent">
+    </h2>
+  </header>
+  <div class="entry-content">
+    <p>React Native 中使用 flexbox 规则来指定某个组件的子元素的布局。Flexbox 可以在不同屏幕尺寸上提供一致的布局结构。
+一般来说，使用flexDirection、alignItems和 justifyContent三个样式属性就已经能满足大多数布局需求。
+React Native 中的 Flexbox 的工作原理和 web 上的 CSS 基本一致，当然也存在少许差异。首先是默认值不同：flexDirection的默认值为column（而不是row），alignContent默认值为 flex-start（而不是 stretch）, flexShrink 默认值为0 （而不是1）, 而flex只能指定一个数字值。
+Flex flex属性决定元素在主轴上如何填满可用区域。整个区域会根据每个元素设置的 flex 属性值被分割成多个部分。
+Flex Direction 在组件的style中指定flexDirection可以决定布局的主轴。默认值是**竖直轴(column)**方向。
+column（默认值）：将子元素从上到下对齐。如果启用换行，则下一行将从容器顶部的第一个项目右侧开始。
+row：将子元素从左到右对齐。如果启用换行，则下一行将在容器左侧的第一个项目下方开始。
+column-reverse：将子元素从底部向上对齐。如果启用换行，则下一行将从容器底部的第一个项目右侧开始。
+row-reverse：将子元素从右到左对齐。如果启用换行，则下一行将在容器右侧的第一个项目下方开始。
+Layout Direction 布局方向指定了层次结构中的子元素和文本应该被排列的方向。布局方向还会影响到start和end所指代的边缘。默认采用从左到右（LTR）的布局方向进行排列。在这种模式下，start表示左侧，而end表示右侧。
+LTR（默认值）: 文本和子元素从左到右进行排列。对于一个元素来说，在其起始位置应用的外边距和内边距将被应用在左侧。
+RTL: 文本和子元素从右到左进行排列。对于一个元素来说，在其起始位置应用的外边距和内边距将被应用在右侧。
+Justify Content 在组件的 style 中指定justifyContent可以决定其子元素沿着主轴的排列方式。可用的选项有：
+flex-start（默认值）将容器中的子元素沿主轴起始位置对齐。
+flex-end 将容器中的子元素沿主轴末尾位置对齐。
+center 将容器中的子元素在主轴上居中对齐。
+space-between 在容器的主轴上均匀分布子元素，将剩余空间平均分配给子元素之间。
+space-around 在容器的主轴上均匀分布子元素，将剩余空间围绕在每个子元素周围。与space-between相比，使用space-around会导致空间被分配到第一个子元素和最后一个子元素之前和之后。
+space-evenly 在对齐容器内沿着主轴均匀分布子项。每一对相邻项、主开始边缘和第一项以及主结束边缘和最后一项之间的间距都完全相同。
+Align Items 在组件的 style 中指定alignItems可以决定其子元素沿着次轴（与主轴垂直的轴）的排列方式。可用的选项有：
+stretch（默认值）：将容器的子元素拉伸以匹配容器次轴的高度。
+flex-start：将容器的子元素对齐到容器次轴的起始位置。
+flex-end：将容器的子元素对齐到容器次轴的末尾位置。
+center：将容器的子元素居中对齐于容器次轴上。
+baseline：沿着公共基线对齐容器的子元素。可以为各个子元素设置参考基线，作为其父级基线。
+要使stretch选项生效，子元素在次轴方向上不能有固定尺寸。
+...</p>
+  </div>
+  <footer class="entry-footer"></footer>
+  <a class="entry-link" aria-label="post link to " href="https://example.org/posts/%E6%96%87%E6%A1%A3%E9%98%85%E8%AF%BB/react/react-native/%E5%BC%80%E5%8F%91%E6%96%87%E6%A1%A3/%E7%95%8C%E9%9D%A2%E4%B8%8E%E4%BA%A4%E4%BA%92/%E4%BD%BF%E7%94%A8-flexbox-%E5%B8%83%E5%B1%80/"></a>
+</article>
+
+<article class="post-entry"> 
+  <header class="entry-header">
+    <h2 class="entry-hint-parent">
+    </h2>
+  </header>
+  <div class="entry-content">
+    <p>静态图片资源 React Native 提供了一个统一的方式来管理 iOS 和 Android 应用中的图片。要往 App 中添加一个静态图片，只需把图片文件放在代码文件夹中某处，然后像下面这样去引用它：
+&lt;Image source={require(&#39;./my-icon.png&#39;)} /&gt; 你还可以使用@2x，@3x这样的文件名后缀，来为不同的屏幕精度提供图片。比如下面这样的代码结构：
+├── button.js └── img ├── check.png ├── check@2x.png └── check@3x.png 并且button.js里有这样的代码：
+&lt;Image source={require(&#39;./img/check.png&#39;)} /&gt; Packager 会打包所有的图片并且依据屏幕精度提供对应的资源。
+这样会带来如下的一些好处:
+iOS 和 Android 一致的文件系统。 图片和 JS 代码处在相同的文件夹，这样组件就可以包含自己所用的图片而不用单独去设置。 不需要全局命名。你不用再担心图片名字的冲突问题了。 只有实际被用到（即被 require）的图片才会被打包到你的 app。 现在在开发期间，增加和修改图片不需要重新编译了，只要和修改 js 代码一样刷新你的模拟器就可以了。 与访问网络图片相比，Packager 可以得知图片大小了，不需要在代码里再声明一遍尺寸。 现在通过 npm 来分发组件或库可以包含图片了。 注意：为了使新的图片资源机制正常工作，require 中的图片名字必须是一个静态字符串（不能使用变量！因为 require 是在编译时期执行，而非运行时期执行！）。
+// 正确 &lt;Image source={require(&#39;./my-icon.png&#39;)} /&gt;; // 错误 const icon = this.props.active ? &#39;my-icon-active&#39; : &#39;my-icon-inactive&#39;; &lt;Image source={require(&#39;./&#39; &#43; icon &#43; &#39;.png&#39;)} /&gt;; // 正确 const icon = this.props.active ? require(&#39;./my-icon-active.png&#39;) : require(&#39;./my-icon-inactive.png&#39;); &lt;Image source={icon} /&gt;; 请注意：通过这种方式引用的图片资源包含图片的尺寸（宽度，高度）信息，如果需要动态缩放图片（例如，通过 flex），必须手动在 style 属性设置{ width: null, height: null }。
+...</p>
+  </div>
+  <footer class="entry-footer"></footer>
+  <a class="entry-link" aria-label="post link to " href="https://example.org/posts/%E6%96%87%E6%A1%A3%E9%98%85%E8%AF%BB/react/react-native/%E5%BC%80%E5%8F%91%E6%96%87%E6%A1%A3/%E7%95%8C%E9%9D%A2%E4%B8%8E%E4%BA%A4%E4%BA%92/%E5%9B%BE%E7%89%87/"></a>
+</article>
+
+<article class="post-entry"> 
+  <header class="entry-header">
+    <h2 class="entry-hint-parent">
+    </h2>
+  </header>
+  <div class="entry-content">
+    <p>在 React Native 中，使用 JavaScript 来写样式。所有的核心组件都接受名为style的属性。这些样式名基本上是遵循了 web 上的 CSS 的命名，只是按照 JS 的语法要求使用了驼峰命名法，
+style属性可以是一个普通的 JavaScript 对象，还可以传入一个数组——在数组中位置居后的样式对象比居前的优先级更高，这样可以间接实现样式的继承。
+实际开发中组件的样式会越来越复杂，建议使用StyleSheet.create来集中定义组件的样式。
+常见的做法是按顺序声明和使用style属性，以借鉴 CSS 中的“层叠”做法（即后声明的属性会覆盖先声明的同名属性）。
+</p>
+  </div>
+  <footer class="entry-footer"></footer>
+  <a class="entry-link" aria-label="post link to " href="https://example.org/posts/%E6%96%87%E6%A1%A3%E9%98%85%E8%AF%BB/react/react-native/%E5%BC%80%E5%8F%91%E6%96%87%E6%A1%A3/%E7%95%8C%E9%9D%A2%E4%B8%8E%E4%BA%A4%E4%BA%92/%E6%A0%B7%E5%BC%8F/"></a>
+</article>
+
+<article class="post-entry"> 
+  <header class="entry-header">
+    <h2 class="entry-hint-parent">
+    </h2>
+  </header>
+  <div class="entry-content">
+    <p>组件的高度和宽度决定了其在屏幕上显示的尺寸。
+指定宽高 最简单的给组件设定尺寸的方式就是在样式中指定固定的width和height。React Native 中的尺寸都是无单位的，表示的是与设备像素密度无关的逻辑像素点。
+这样给组件设置尺寸也是一种常见的模式，比如要求在不同尺寸的屏幕上都显示成一样的大小。
+弹性（Flex）宽高 在组件样式中使用flex可以使其在可利用的空间中动态地扩张或收缩。一般而言我们会使用flex:1来指定某个组件扩张以撑满所有剩余的空间。如果有多个并列的子组件使用了flex:1，则这些子组件会平分父容器中剩余的空间。如果这些并列的子组件的flex值不一样，则谁的值更大，谁占据剩余空间的比例就更大（即占据剩余空间的比等于并列组件间flex值的比）。
+组件能够撑满剩余空间的前提是其父容器的尺寸不为零。如果父容器既没有固定的width和height，也没有设定flex，则父容器的尺寸为零。其子组件如果使用了flex，也是无法显示的。
+百分比宽高 如果你想要按比例填充屏幕上某一部分，又不想使用 flex 布局，那么可以在组件的style中使用百分比。与弹性宽高相似，百分比宽高要求父容器有一个明确的尺寸。
+</p>
+  </div>
+  <footer class="entry-footer"></footer>
+  <a class="entry-link" aria-label="post link to " href="https://example.org/posts/%E6%96%87%E6%A1%A3%E9%98%85%E8%AF%BB/react/react-native/%E5%BC%80%E5%8F%91%E6%96%87%E6%A1%A3/%E7%95%8C%E9%9D%A2%E4%B8%8E%E4%BA%A4%E4%BA%92/%E9%AB%98%E5%BA%A6%E4%B8%8E%E5%AE%BD%E5%BA%A6/"></a>
+</article>
+
+<article class="post-entry"> 
+  <header class="entry-header">
+    <h2 class="entry-hint-parent">
+    </h2>
+  </header>
+  <div class="entry-content">
+    <p>1. 静态检查与静态类型检查 静态检查：在代码运行前（编译阶段）检测错误，无需执行代码。与之对应的是动态检查（运行时检测错误，如 JS 中的TypeError）。
+静态类型检查：基于值的类型规则检测错误（如给 number 类型变量赋值字符串），而静态检查还包括语法错误、变量未定义等非类型错误。
+2. TypeScript 与 JavaScript 的关系 TypeScript 是 JavaScript 的超集：所有合法 JS 语法在 TS 中均有效，TS 代码最终会被编译为纯 JS 代码运行。
+关键区别：TS 增加了静态类型系统，而 JS 是动态类型语言（类型检查仅在运行时发生）。
+重要特性：
+TS 不会改变 JS 的运行时行为（“不破坏 JS” 原则）：即使 TS 代码有类型错误，编译后的 JS 仍可正常运行（类型错误不影响执行）。 TS 类型系统仅在编译阶段生效，编译后会被完全擦除（“类型擦除”），生成的 JS 无任何类型信息。 注意：TS 会对 JS 代码进行类型检查（如let a = 1; a = &#39;str&#39;在 TS 中会报错），但不会拒绝 JS 语法（语法上完全兼容）。
+3. TypeScript 的核心优势（面试高频） 提前发现错误：静态类型检查在编码阶段捕获类型不匹配、未定义变量等问题，减少运行时错误。
+增强代码可读性：类型注解明确变量 / 函数的预期用途，降低团队协作成本。
+提升开发效率：IDE 支持（自动补全、类型提示、重构安全）大幅提升编码速度。
+更好的可维护性：类型约束使代码逻辑更严谨，重构时更可靠（如修改函数参数类型时，所有调用处会即时报错）。
+4. TypeScript 的类型推断与扩展 类型推断：TS 会自动推导变量 / 表达式的类型（无需显式声明）。 例：let x = 10 → TS 推断x为number；const y = { name: &#39;ts&#39; } → 推断y为{ name: string }。
+...</p>
+  </div>
+  <footer class="entry-footer"></footer>
+  <a class="entry-link" aria-label="post link to " href="https://example.org/posts/%E6%96%87%E6%A1%A3%E9%98%85%E8%AF%BB/ts/01--ts/"></a>
+</article>
+
+<article class="post-entry"> 
+  <header class="entry-header">
+    <h2 class="entry-hint-parent">
+    </h2>
+  </header>
+  <div class="entry-content">
+    <p>1. 基础类型与数组类型 JavaScript 基础类型：string、number 、 boolean（对应 JS 原始类型），TypeScript 中可直接作为类型注解使用。
+特点：使用typeof运算符对这些类型的值操作时，返回值与类型名一致（如typeof &#39;abc&#39; === &#39;string&#39;）。 数组类型：
+两种声明方式：T[]（如number[]表示数字数组）或Array&lt;T&gt;（泛型形式，如Array&lt;number&gt;），两者完全等价。 2. 特殊类型 any 核心特性：关闭类型检查，允许值被任意操作（访问任意属性、作为函数调用、赋值给任何类型等）。
+适用场景：
+处理动态内容（如来自 API 的未知数据）。 迁移 JS 项目时临时兼容无类型代码。 隐式any：未指定类型且 TS 无法推断时，编译器默认视为any（可通过noImplicitAny配置项禁用，强制显式声明类型，面试高频考点）。
+风险与替代：
+滥用any会失去 TS 类型检查的意义，建议优先使用unknown（更安全，需显式类型断言后使用）。 3. 变量与函数的类型注解 变量注解： let 变量名: 类型 = 值（如 let age: number = 20）。
+多数情况可省略：TS 会自动推断类型（如let name = &#39;ts&#39; → 推断为string）。 函数参数类型注解：在每个参数名称后添加，用于声明函数接受的参数类型，即使参数无类型注释，TypeScript 仍会检查参数数量是否正确。
+函数返回类型注解：出现在参数列表之后。（如function add(a: number, b: number): number { return a &#43; b }）。
+函数参数类型自动推断：当函数出现在 TypeScript 可确定调用方式的地方时，其参数会自动被赋予类型。
+...</p>
+  </div>
+  <footer class="entry-footer"></footer>
+  <a class="entry-link" aria-label="post link to " href="https://example.org/posts/%E6%96%87%E6%A1%A3%E9%98%85%E8%AF%BB/ts/02--%E6%97%A5%E5%B8%B8%E7%B1%BB%E5%9E%8B/"></a>
+</article>
+
+<article class="post-entry"> 
+  <header class="entry-header">
+    <h2 class="entry-hint-parent">
+    </h2>
+  </header>
+  <div class="entry-content">
+    <p>1. 类型缩小与控制流分析基础 TS 会跟踪代码执行路径（如if/else、switch、循环等），分析变量在不同分支中的具体类型。
+类型保护：特殊表达式（如typeof x === &#39;string&#39;），TS 可通过它判断变量类型，从而缩小类型范围。
+类型缩小：通过类型保护或赋值操作，将变量类型从 “宽泛”（如联合类型）收缩为 “具体”（如单一类型）的过程。
+2. 基于 typeof 运算符的类型缩小 TS 可识别typeof的 8 种返回值：&#34;string&#34;、&#34;number&#34;、&#34;bigint&#34;、&#34;boolean&#34;、&#34;symbol&#34;、&#34;undefined&#34;、&#34;object&#34;、&#34;function&#34;。
+typeof检查是一种类型保护，TypeScript 编码了typeof对不同值的操作逻辑，包括其在 JavaScript 中的一些特性。
+3. 基于真值检查的类型缩小 JavaScript 中，if等构造会将条件强制为布尔值，0、NaN、&#34;&#34;（空字符串）、0n（bigint版本零）、null、undefined强制为false，其他值强制为true。
+可通过Boolean函数或双布尔否定（!!）将值强制为布尔值，后者的优势是 TypeScript 会推断出缩小的字面布尔类型true，而前者推断为boolean类型。
+利用这种行为防范null或undefined很常见，带有!的布尔否定会从否定分支中过滤掉这些值。
+4. 基于相等性检查的类型缩小 TypeScript 使用switch语句和===、!==、==、!=等相等性检查来缩小类型。
+== null不仅检查值是否为null，还检查是否为undefined；== undefined同样检查值是null还是undefined。
+5. 基于 in 运算符的类型缩小 JavaScript 的in运算符用于确定对象或其原型链是否具有指定名称的属性。
+TypeScript 将in运算符视为缩小潜在类型的方式：对于&#34;value&#34; in x（“value&#34;为字符串字面，x为联合类型），“true” 分支会缩小x为具有可选或必需属性value的类型，“false” 分支缩小为具有可选或缺少属性value的类型。
+6. 基于 instanceof 的类型缩小 检查值的原型链是否包含构造函数的prototype，适用于new创建的对象
+instanceof是类型保护，TypeScript 会在instanceof保护的分支中缩小类型。
+7. 基于赋值的类型缩小 变量赋值后，TS 会根据赋值内容缩小其类型。 8. 用户定义的类型保护 定义方式：创建返回类型为类型谓词的函数，谓词形式为parameterName is Type，其中parameterName必须是当前函数签名中的参数名称。 9. 可区分的联合 联合类型中的每个成员都包含一个字面量类型的公共属性（如type字段），用于区分不同类型，TypeScript 将其视为可区分的联合，可通过检查该属性缩小联合的成员范围，switch语句中也适用这种检查。 10. never 类型与穷尽检查 缩小类型时，若联合的选项被全部消除，会得到never类型，表示不应该存在的状态。
+...</p>
+  </div>
+  <footer class="entry-footer"></footer>
+  <a class="entry-link" aria-label="post link to " href="https://example.org/posts/%E6%96%87%E6%A1%A3%E9%98%85%E8%AF%BB/ts/03--%E7%B1%BB%E5%9E%8B%E7%BC%A9%E5%B0%8F/"></a>
+</article>
+
+<article class="post-entry"> 
+  <header class="entry-header">
+    <h2 class="entry-hint-parent">
+    </h2>
+  </header>
+  <div class="entry-content">
+    <p>1. 函数类型表达式 基本语法：用箭头函数形式描述函数类型，如(a: string) =&gt; void（参数a为string类型，无返回值）。
+特点：参数名必须存在（仅用于标识，不影响类型匹配），未指定类型时隐式为any（可通过noImplicitAny禁用）。 示例：
+function greeter(fn: (a: string) =&gt; void) { fn(&#34;Hello, World&#34;); } function printToConsole(s: string) { console.log(s); } greeter(printToConsole); // 符合函数类型要求 类型别名命名：通过type给函数类型命名，提升可读性和复用性： type GreetFunction = (a: string) =&gt; void; function greeter(fn: GreetFunction) { /* ... */ } 类型兼容性（面试高频）：函数类型兼容遵循 “参数少的可赋值给参数多的”（逆变原则简化版）： type F1 = (a: string) =&gt; void; type F2 = (a: string, b: number) =&gt; void; const f1: F1 = (a) =&gt; {}; const f2: F2 = f1; // 合法：F1参数更少，可兼容F2 2. 带属性的函数与调用签名 函数类型表达式的局限：仅能描述函数的调用方式，无法声明函数自身的属性（如fn.prop）。
+调用签名：若需描述可调用且带属性的对象，可在对象类型中编写调用签名，参数列表与返回类型间用:分隔（而非=&gt;）：
+type DescribableFunction = { description: string; (someArg: number): boolean; // 调用签名 }; function doSomething(fn: DescribableFunction) { console.log(fn.description &#43; &#34; returned &#34; &#43; fn(6)); } function myFunc(someArg: number) { return someArg &gt; 3; } myFunc.description = &#34;default description&#34;; doSomething(myFunc); // 符合带属性的函数类型 3. 构造函数与构造签名 构造函数：可通过new运算符调用的函数，TypeScript 中用构造签名描述，即在调用签名前加new关键字： type SomeConstructor = { new (s: string): SomeObject; // 构造签名 }; function fn(ctor: SomeConstructor) { return new ctor(&#34;hello&#34;); // 符合构造函数调用方式 } 可同时调用与构造的函数：如Date，可组合调用签名和构造签名（可直接调用Date()返回字符串，也可new Date()返回实例）： interface CallOrConstruct { (n?: number): string; // 普通调用签名 new (s: string): Date; // 构造签名 } function fn(ctor: CallOrConstruct) { console.log(ctor(10)); // 普通调用 console.log(new ctor(&#34;10&#34;)); // 构造调用 } fn(Date); // Date符合该类型 4. 泛型函数 基本概念：通过类型参数（如&lt;T&gt;）关联输入与输出类型，实现 “类型动态适配” // 类型参数Type关联输入数组与返回值 function firstElement&lt;Type&gt;(arr: Type[]): Type | undefined { return arr[0]; } 类型推断：TS 会根据传入的实参自动推断类型参数，无需显式指定（复杂场景需手动指定）： function map&lt;Input, Output&gt;(arr: Input[], func: (arg: Input) =&gt; Output): Output[] { return arr.map(func); } const parsed = map([&#34;1&#34;, &#34;2&#34;, &#34;3&#34;], (n) =&gt; parseInt(n)); // 推断Input为string，Output为number 类型约束：通过extends限制类型参数的范围，仅允许符合约束的类型： // 限制Type必须有length属性 function longest&lt;Type extends { length: number }&gt;(a: Type, b: Type): Type { return a.length &gt;= b.length ? a : b; } 手动指定类型参数：当类型推断不明确时，可手动指定： function combine&lt;Type&gt;(arr1: Type[], arr2: Type[]): Type[] { return arr1.concat(arr2); } const arr = combine&lt;string | number&gt;([1, 2, 3], [&#34;hello&#34;]); // 手动指定Type为string | number 泛型函数设计原则（面试常问）：
+...</p>
+  </div>
+  <footer class="entry-footer"></footer>
+  <a class="entry-link" aria-label="post link to " href="https://example.org/posts/%E6%96%87%E6%A1%A3%E9%98%85%E8%AF%BB/ts/04--%E6%9B%B4%E5%A4%9A%E5%85%B3%E4%BA%8E%E5%87%BD%E6%95%B0/"></a>
+</article>
+
+<article class="post-entry"> 
+  <header class="entry-header">
+    <h2 class="entry-hint-parent">
+    </h2>
+  </header>
+  <div class="entry-content">
+    <p>一、对象类型的基本定义 对象类型是 TS 中描述数据结构的核心方式，主要有三种定义形式：
+匿名对象类型 直接在参数或变量声明中定义，无需命名：
+function greet(person: { name: string; age: number }) { return &#34;Hello &#34; &#43; person.name; } 接口（interface） 通过interface关键字命名对象类型，支持声明合并（多次定义同一接口会自动合并），可复用：
+interface Person { name: string; age: number; } function greet(person: Person) { /* ... */ } 类型别名（type alias） 通过type关键字为对象类型命名：
+type Person = { name: string; age: number; }; function greet(person: Person) { /* ... */ } 面试高频对比：
+场景 interface type 声明合并 支持 不支持（重复声明报错） 扩展方式 extends继承 交叉类型（&amp;）合并 适用类型 仅对象 / 类形状 任意类型（对象、联合、基础类型等） 二、对象属性的特性 对象类型的属性可通过修饰符指定特性：
+可选属性
+标记为?的属性可省略，类型为T | undefined（在strictNullChecks开启时需显式处理undefined）。
+示例：
+interface User { name: string; age?: number; // 可选属性 } const user: User = { name: &#34;Alice&#34; }; // 合法，age可省略 只读属性（readonly）
+...</p>
+  </div>
+  <footer class="entry-footer"></footer>
+  <a class="entry-link" aria-label="post link to " href="https://example.org/posts/%E6%96%87%E6%A1%A3%E9%98%85%E8%AF%BB/ts/05--%E5%AF%B9%E8%B1%A1%E7%B1%BB%E5%9E%8B/"></a>
+</article>
+
+<article class="post-entry"> 
+  <header class="entry-header">
+    <h2 class="entry-hint-parent">
+    </h2>
+  </header>
+  <div class="entry-content">
+    <p>一、类型变量 类型变量是泛型的 “灵魂”，用于在类型层面建立关联（而非值层面），解决 “同一份逻辑适配多种类型” 的问题。
+基本用法 // 定义泛型函数：类型变量&lt;Type&gt;关联输入与输出类型 function identity&lt;Type&gt;(arg: Type): Type { return arg; } // 两种调用方式 let output1 = identity&lt;string&gt;(&#34;myString&#34;); // 显式指定类型参数 let output2 = identity(42); // 类型推断（推荐）：编译器自动推断Type为number 核心价值：避免重复编写不同类型的同名函数（如identityString、identityNumber），同时保持类型安全（对比any：any会丢失类型关联，泛型则保留输入与输出的类型一致性）。 类型推断：编译器可通过传入的值自动推断类型参数，简化代码。复杂场景下若推断失败，需显式指定类型。 类型约束：函数体内必须正确使用泛型参数（视为 “任意类型” 处理）。 二、泛型函数的类型定义 泛型函数的类型与非泛型函数类似，需先声明类型参数，有多种表达方式：
+直接作为函数类型
+let myIdentity: &lt;Type&gt;(arg: Type) =&gt; Type = identity; 使用不同名称的类型变量（只要数量和使用方式一致）
+let myIdentity: &lt;Input&gt;(arg: Input) =&gt; Input = identity; // 合法：Input与Type作用相同 对象字面量的调用签名
+let myIdentity: { &lt;Type&gt;(arg: Type): Type } = identity; 泛型接口
+// 接口内声明泛型调用签名 interface GenericIdentityFn { &lt;Type&gt;(arg: Type): Type; } let myIdentity: GenericIdentityFn = identity; // 接口本身泛型化（更常用） interface GenericIdentityFn&lt;Type&gt; { (arg: Type): Type; } let myIdentity: GenericIdentityFn&lt;number&gt; = identity; // 绑定类型参数为number 三、泛型类 泛型类在类名后通过&lt;&gt;声明类型参数，确保类的所有实例属性使用相同类型。
+基本用法 class GenericNumber&lt;NumType&gt; { zeroValue: NumType; // 实例属性使用泛型类型 add: (x: NumType, y: NumType) =&gt; NumType; // 方法参数与返回值使用泛型类型 } // 实例化时指定类型参数为number let myGenericNumber = new GenericNumber&lt;number&gt;(); myGenericNumber.zeroValue = 0; myGenericNumber.add = (x, y) =&gt; x &#43; y; 注意点 静态成员限制：泛型类的类型参数仅作用于实例端，静态成员不能使用类的类型参数，静态成员属于类本身，而非实例，无法关联实例的类型变量。
+...</p>
+  </div>
+  <footer class="entry-footer"></footer>
+  <a class="entry-link" aria-label="post link to " href="https://example.org/posts/%E6%96%87%E6%A1%A3%E9%98%85%E8%AF%BB/ts/06--%E6%B3%9B%E5%9E%8B/"></a>
+</article>
+<footer class="page-footer">
+  <nav class="pagination">
+    <a class="prev" href="https://example.org/page/4/">
+      «&nbsp;Prev&nbsp;
+    </a>
+    <a class="next" href="https://example.org/page/6/">Next&nbsp;&nbsp;»
+    </a>
+  </nav>
+</footer>
+    </main>
+    
+<footer class="footer">
+        <span>&copy; 2025 <a href="https://example.org/">My New Hugo Site</a></span> · 
+
+    <span>
+        Powered by
+        <a href="https://gohugo.io/" rel="noopener noreferrer" target="_blank">Hugo</a> &
+        <a href="https://github.com/adityatelange/hugo-PaperMod/" rel="noopener" target="_blank">PaperMod</a>
+    </span>
+</footer>
+<a href="#top" aria-label="go to top" title="Go to Top (Alt + G)" class="top-link" id="top-link" accesskey="g">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 12 6" fill="currentColor">
+        <path d="M12 6H0l6-6z" />
+    </svg>
+</a>
+
+<script>
+    let menu = document.getElementById('menu')
+    if (menu) {
+        menu.scrollLeft = localStorage.getItem("menu-scroll-position");
+        menu.onscroll = function () {
+            localStorage.setItem("menu-scroll-position", menu.scrollLeft);
+        }
+    }
+
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener("click", function (e) {
+            e.preventDefault();
+            var id = this.getAttribute("href").substr(1);
+            if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView({
+                    behavior: "smooth"
+                });
+            } else {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView();
+            }
+            if (id === "top") {
+                history.replaceState(null, null, " ");
+            } else {
+                history.pushState(null, null, `#${id}`);
+            }
+        });
+    });
+
+</script>
+<script>
+    var mybutton = document.getElementById("top-link");
+    window.onscroll = function () {
+        if (document.body.scrollTop > 800 || document.documentElement.scrollTop > 800) {
+            mybutton.style.visibility = "visible";
+            mybutton.style.opacity = "1";
+        } else {
+            mybutton.style.visibility = "hidden";
+            mybutton.style.opacity = "0";
+        }
+    };
+
+</script>
+<script>
+    document.getElementById("theme-toggle").addEventListener("click", () => {
+        if (document.body.className.includes("dark")) {
+            document.body.classList.remove('dark');
+            localStorage.setItem("pref-theme", 'light');
+        } else {
+            document.body.classList.add('dark');
+            localStorage.setItem("pref-theme", 'dark');
+        }
+    })
+
+</script>
+</body>
+
+</html>

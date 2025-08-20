@@ -1,0 +1,467 @@
+<!DOCTYPE html>
+<html lang="en" dir="auto">
+
+<head><meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="robots" content="index, follow">
+<title>My New Hugo Site</title>
+<meta name="keywords" content="">
+<meta name="description" content="
+本文总结《你不了解的JS》第一部分第一章的核心概念，重点介绍了JavaScript的编译原理和作用域机制。笔记指出程序状态通过变量存储和访问实现，作用域是一套管理变量的规则体系。编译过程包括分词、语法分析和代码生成三个阶段。在变量赋值时，编译器处理声明，引擎执行查询（LHS/RHS）。作用域嵌套时，引擎会逐级向上查找变量。文章还区分了RHS和LHS查询的区别，以及在不同情况下可能出现的ReferenceError和TypeError异常。严格模式会改变LHS查询失败时的默认行为。
+一、核心概念
+
+程序状态与变量：存储和访问变量值的能力为程序赋予了状态。
+作用域定义：一套规则体系，用于管理变量的存储方式和查找逻辑，确保代码能按规则访问变量。
+
+
+二、编译原理
+
+传统编译三阶段：
+
+分词 / 词法分析：将源代码字符串分解为有意义的词法单元（如关键字、变量名、运算符等）。
+解析 / 语法分析：将词法单元流转换为抽象语法树（AST），AST 是体现程序语法结构的嵌套树状结构。
+代码生成：将 AST 转换为可执行代码。
+
+
+JavaScript 编译特点：多数情况下，编译在代码片段执行前的几微秒内完成（即时编译）。
+
+
+三、作用域的核心角色
+
+引擎：负责整个 JavaScript 程序的编译及执行全过程。
+编译器：负责语法分析、代码生成等编译相关工作。
+作用域：负责收集并维护所有声明的标识符（变量、函数名等），并制定规则确定当前执行的代码对这些标识符的访问权限。
+
+四、变量声明与赋值过程（以var a = 2为例）
+
+变量声明（编译器处理）：
+
+编译器询问当前作用域：是否已存在名为a的变量。
+若存在，忽略该声明；若不存在，要求作用域在当前集合中声明一个新变量a。
+
+
+变量赋值（引擎处理）：
+
+引擎询问当前作用域：是否存在名为a的变量。存在则直接使用，不存在则继续向上查找。
+找到a后，将 2 赋值给它；未找到则抛出异常。
+
+
+LHS 与 RHS 查询：
+
+RHS 查询：查找变量的值（如console.log(a)中对a的查询）。
+LHS 查询：查找变量的容器本身，用于赋值（如a = 2中对a的查询）。
+
+
+函数声明处理：编译器在代码生成阶段同步处理函数的声明和值定义。
+
+
+五、作用域嵌套
+
+嵌套场景：当块或函数嵌套在另一个块或函数中时，形成作用域嵌套。
+查找规则：
+
+引擎从当前执行作用域开始查找变量，找不到则向上一级嵌套作用域继续查找。
+直至找到变量或抵达全局作用域，查找过程终止。
+
+
+
+
+六、异常类型及触发场景
+
+ReferenceError（引用错误）：
+
+RHS 查询：在所有嵌套作用域中未找到目标变量时抛出。
+LHS 查询：严格模式下，在所有作用域中未找到目标变量时抛出（非严格模式下会自动在全局作用域创建该变量，let/const本身在非严格模式下也不会隐式创建全局变量）。
+
+
+TypeError（类型错误）：RHS 查询找到变量，但对其值进行不合理操作（如对非函数变量调用方法）时抛出。
+">
+<meta name="author" content="">
+<link rel="canonical" href="https://example.org/posts/%E4%BD%A0%E4%B8%8D%E7%9F%A5%E9%81%93%E7%9A%84js/%E4%BD%9C%E7%94%A8%E5%9F%9F%E5%92%8C%E9%97%AD%E5%8C%85/1.%E4%BD%9C%E7%94%A8%E5%9F%9F%E6%98%AF%E4%BB%80%E4%B9%88/">
+<link crossorigin="anonymous" href="/assets/css/stylesheet.8fe10233a706bc87f2e08b3cf97b8bd4c0a80f10675a143675d59212121037c0.css" integrity="sha256-j&#43;ECM6cGvIfy4Is8&#43;XuL1MCoDxBnWhQ2ddWSEhIQN8A=" rel="preload stylesheet" as="style">
+<link rel="icon" href="https://example.org/favicon.ico">
+<link rel="icon" type="image/png" sizes="16x16" href="https://example.org/favicon-16x16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="https://example.org/favicon-32x32.png">
+<link rel="apple-touch-icon" href="https://example.org/apple-touch-icon.png">
+<link rel="mask-icon" href="https://example.org/safari-pinned-tab.svg">
+<meta name="theme-color" content="#2e2e33">
+<meta name="msapplication-TileColor" content="#2e2e33">
+<link rel="alternate" hreflang="en" href="https://example.org/posts/%E4%BD%A0%E4%B8%8D%E7%9F%A5%E9%81%93%E7%9A%84js/%E4%BD%9C%E7%94%A8%E5%9F%9F%E5%92%8C%E9%97%AD%E5%8C%85/1.%E4%BD%9C%E7%94%A8%E5%9F%9F%E6%98%AF%E4%BB%80%E4%B9%88/">
+<noscript>
+    <style>
+        #theme-toggle,
+        .top-link {
+            display: none;
+        }
+
+    </style>
+    <style>
+        @media (prefers-color-scheme: dark) {
+            :root {
+                --theme: rgb(29, 30, 32);
+                --entry: rgb(46, 46, 51);
+                --primary: rgb(218, 218, 219);
+                --secondary: rgb(155, 156, 157);
+                --tertiary: rgb(65, 66, 68);
+                --content: rgb(196, 196, 197);
+                --code-block-bg: rgb(46, 46, 51);
+                --code-bg: rgb(55, 56, 62);
+                --border: rgb(51, 51, 51);
+            }
+
+            .list {
+                background: var(--theme);
+            }
+
+            .list:not(.dark)::-webkit-scrollbar-track {
+                background: 0 0;
+            }
+
+            .list:not(.dark)::-webkit-scrollbar-thumb {
+                border-color: var(--theme);
+            }
+        }
+
+    </style>
+</noscript><meta property="og:url" content="https://example.org/posts/%E4%BD%A0%E4%B8%8D%E7%9F%A5%E9%81%93%E7%9A%84js/%E4%BD%9C%E7%94%A8%E5%9F%9F%E5%92%8C%E9%97%AD%E5%8C%85/1.%E4%BD%9C%E7%94%A8%E5%9F%9F%E6%98%AF%E4%BB%80%E4%B9%88/">
+  <meta property="og:site_name" content="My New Hugo Site">
+  <meta property="og:title" content="My New Hugo Site">
+  <meta property="og:description" content=" 本文总结《你不了解的JS》第一部分第一章的核心概念，重点介绍了JavaScript的编译原理和作用域机制。笔记指出程序状态通过变量存储和访问实现，作用域是一套管理变量的规则体系。编译过程包括分词、语法分析和代码生成三个阶段。在变量赋值时，编译器处理声明，引擎执行查询（LHS/RHS）。作用域嵌套时，引擎会逐级向上查找变量。文章还区分了RHS和LHS查询的区别，以及在不同情况下可能出现的ReferenceError和TypeError异常。严格模式会改变LHS查询失败时的默认行为。
+一、核心概念 程序状态与变量：存储和访问变量值的能力为程序赋予了状态。 作用域定义：一套规则体系，用于管理变量的存储方式和查找逻辑，确保代码能按规则访问变量。 二、编译原理 传统编译三阶段： 分词 / 词法分析：将源代码字符串分解为有意义的词法单元（如关键字、变量名、运算符等）。 解析 / 语法分析：将词法单元流转换为抽象语法树（AST），AST 是体现程序语法结构的嵌套树状结构。 代码生成：将 AST 转换为可执行代码。 JavaScript 编译特点：多数情况下，编译在代码片段执行前的几微秒内完成（即时编译）。 三、作用域的核心角色 引擎：负责整个 JavaScript 程序的编译及执行全过程。 编译器：负责语法分析、代码生成等编译相关工作。 作用域：负责收集并维护所有声明的标识符（变量、函数名等），并制定规则确定当前执行的代码对这些标识符的访问权限。 四、变量声明与赋值过程（以var a = 2为例） 变量声明（编译器处理）： 编译器询问当前作用域：是否已存在名为a的变量。 若存在，忽略该声明；若不存在，要求作用域在当前集合中声明一个新变量a。 变量赋值（引擎处理）： 引擎询问当前作用域：是否存在名为a的变量。存在则直接使用，不存在则继续向上查找。 找到a后，将 2 赋值给它；未找到则抛出异常。 LHS 与 RHS 查询： RHS 查询：查找变量的值（如console.log(a)中对a的查询）。 LHS 查询：查找变量的容器本身，用于赋值（如a = 2中对a的查询）。 函数声明处理：编译器在代码生成阶段同步处理函数的声明和值定义。 五、作用域嵌套 嵌套场景：当块或函数嵌套在另一个块或函数中时，形成作用域嵌套。 查找规则： 引擎从当前执行作用域开始查找变量，找不到则向上一级嵌套作用域继续查找。 直至找到变量或抵达全局作用域，查找过程终止。 六、异常类型及触发场景 ReferenceError（引用错误）： RHS 查询：在所有嵌套作用域中未找到目标变量时抛出。 LHS 查询：严格模式下，在所有作用域中未找到目标变量时抛出（非严格模式下会自动在全局作用域创建该变量，let/const本身在非严格模式下也不会隐式创建全局变量）。 TypeError（类型错误）：RHS 查询找到变量，但对其值进行不合理操作（如对非函数变量调用方法）时抛出。 ">
+  <meta property="og:locale" content="en-us">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="posts">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="">
+<meta name="twitter:description" content="
+本文总结《你不了解的JS》第一部分第一章的核心概念，重点介绍了JavaScript的编译原理和作用域机制。笔记指出程序状态通过变量存储和访问实现，作用域是一套管理变量的规则体系。编译过程包括分词、语法分析和代码生成三个阶段。在变量赋值时，编译器处理声明，引擎执行查询（LHS/RHS）。作用域嵌套时，引擎会逐级向上查找变量。文章还区分了RHS和LHS查询的区别，以及在不同情况下可能出现的ReferenceError和TypeError异常。严格模式会改变LHS查询失败时的默认行为。
+一、核心概念
+
+程序状态与变量：存储和访问变量值的能力为程序赋予了状态。
+作用域定义：一套规则体系，用于管理变量的存储方式和查找逻辑，确保代码能按规则访问变量。
+
+
+二、编译原理
+
+传统编译三阶段：
+
+分词 / 词法分析：将源代码字符串分解为有意义的词法单元（如关键字、变量名、运算符等）。
+解析 / 语法分析：将词法单元流转换为抽象语法树（AST），AST 是体现程序语法结构的嵌套树状结构。
+代码生成：将 AST 转换为可执行代码。
+
+
+JavaScript 编译特点：多数情况下，编译在代码片段执行前的几微秒内完成（即时编译）。
+
+
+三、作用域的核心角色
+
+引擎：负责整个 JavaScript 程序的编译及执行全过程。
+编译器：负责语法分析、代码生成等编译相关工作。
+作用域：负责收集并维护所有声明的标识符（变量、函数名等），并制定规则确定当前执行的代码对这些标识符的访问权限。
+
+四、变量声明与赋值过程（以var a = 2为例）
+
+变量声明（编译器处理）：
+
+编译器询问当前作用域：是否已存在名为a的变量。
+若存在，忽略该声明；若不存在，要求作用域在当前集合中声明一个新变量a。
+
+
+变量赋值（引擎处理）：
+
+引擎询问当前作用域：是否存在名为a的变量。存在则直接使用，不存在则继续向上查找。
+找到a后，将 2 赋值给它；未找到则抛出异常。
+
+
+LHS 与 RHS 查询：
+
+RHS 查询：查找变量的值（如console.log(a)中对a的查询）。
+LHS 查询：查找变量的容器本身，用于赋值（如a = 2中对a的查询）。
+
+
+函数声明处理：编译器在代码生成阶段同步处理函数的声明和值定义。
+
+
+五、作用域嵌套
+
+嵌套场景：当块或函数嵌套在另一个块或函数中时，形成作用域嵌套。
+查找规则：
+
+引擎从当前执行作用域开始查找变量，找不到则向上一级嵌套作用域继续查找。
+直至找到变量或抵达全局作用域，查找过程终止。
+
+
+
+
+六、异常类型及触发场景
+
+ReferenceError（引用错误）：
+
+RHS 查询：在所有嵌套作用域中未找到目标变量时抛出。
+LHS 查询：严格模式下，在所有作用域中未找到目标变量时抛出（非严格模式下会自动在全局作用域创建该变量，let/const本身在非严格模式下也不会隐式创建全局变量）。
+
+
+TypeError（类型错误）：RHS 查询找到变量，但对其值进行不合理操作（如对非函数变量调用方法）时抛出。
+">
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position":  1 ,
+      "name": "Posts",
+      "item": "https://example.org/posts/"
+    }, 
+    {
+      "@type": "ListItem",
+      "position":  2 ,
+      "name": "",
+      "item": "https://example.org/posts/%E4%BD%A0%E4%B8%8D%E7%9F%A5%E9%81%93%E7%9A%84js/%E4%BD%9C%E7%94%A8%E5%9F%9F%E5%92%8C%E9%97%AD%E5%8C%85/1.%E4%BD%9C%E7%94%A8%E5%9F%9F%E6%98%AF%E4%BB%80%E4%B9%88/"
+    }
+  ]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "",
+  "name": "",
+  "description": " 本文总结《你不了解的JS》第一部分第一章的核心概念，重点介绍了JavaScript的编译原理和作用域机制。笔记指出程序状态通过变量存储和访问实现，作用域是一套管理变量的规则体系。编译过程包括分词、语法分析和代码生成三个阶段。在变量赋值时，编译器处理声明，引擎执行查询（LHS/RHS）。作用域嵌套时，引擎会逐级向上查找变量。文章还区分了RHS和LHS查询的区别，以及在不同情况下可能出现的ReferenceError和TypeError异常。严格模式会改变LHS查询失败时的默认行为。\n一、核心概念 程序状态与变量：存储和访问变量值的能力为程序赋予了状态。 作用域定义：一套规则体系，用于管理变量的存储方式和查找逻辑，确保代码能按规则访问变量。 二、编译原理 传统编译三阶段： 分词 / 词法分析：将源代码字符串分解为有意义的词法单元（如关键字、变量名、运算符等）。 解析 / 语法分析：将词法单元流转换为抽象语法树（AST），AST 是体现程序语法结构的嵌套树状结构。 代码生成：将 AST 转换为可执行代码。 JavaScript 编译特点：多数情况下，编译在代码片段执行前的几微秒内完成（即时编译）。 三、作用域的核心角色 引擎：负责整个 JavaScript 程序的编译及执行全过程。 编译器：负责语法分析、代码生成等编译相关工作。 作用域：负责收集并维护所有声明的标识符（变量、函数名等），并制定规则确定当前执行的代码对这些标识符的访问权限。 四、变量声明与赋值过程（以var a = 2为例） 变量声明（编译器处理）： 编译器询问当前作用域：是否已存在名为a的变量。 若存在，忽略该声明；若不存在，要求作用域在当前集合中声明一个新变量a。 变量赋值（引擎处理）： 引擎询问当前作用域：是否存在名为a的变量。存在则直接使用，不存在则继续向上查找。 找到a后，将 2 赋值给它；未找到则抛出异常。 LHS 与 RHS 查询： RHS 查询：查找变量的值（如console.log(a)中对a的查询）。 LHS 查询：查找变量的容器本身，用于赋值（如a = 2中对a的查询）。 函数声明处理：编译器在代码生成阶段同步处理函数的声明和值定义。 五、作用域嵌套 嵌套场景：当块或函数嵌套在另一个块或函数中时，形成作用域嵌套。 查找规则： 引擎从当前执行作用域开始查找变量，找不到则向上一级嵌套作用域继续查找。 直至找到变量或抵达全局作用域，查找过程终止。 六、异常类型及触发场景 ReferenceError（引用错误）： RHS 查询：在所有嵌套作用域中未找到目标变量时抛出。 LHS 查询：严格模式下，在所有作用域中未找到目标变量时抛出（非严格模式下会自动在全局作用域创建该变量，let/const本身在非严格模式下也不会隐式创建全局变量）。 TypeError（类型错误）：RHS 查询找到变量，但对其值进行不合理操作（如对非函数变量调用方法）时抛出。 ",
+  "keywords": [
+    
+  ],
+  "articleBody": " 本文总结《你不了解的JS》第一部分第一章的核心概念，重点介绍了JavaScript的编译原理和作用域机制。笔记指出程序状态通过变量存储和访问实现，作用域是一套管理变量的规则体系。编译过程包括分词、语法分析和代码生成三个阶段。在变量赋值时，编译器处理声明，引擎执行查询（LHS/RHS）。作用域嵌套时，引擎会逐级向上查找变量。文章还区分了RHS和LHS查询的区别，以及在不同情况下可能出现的ReferenceError和TypeError异常。严格模式会改变LHS查询失败时的默认行为。\n一、核心概念 程序状态与变量：存储和访问变量值的能力为程序赋予了状态。 作用域定义：一套规则体系，用于管理变量的存储方式和查找逻辑，确保代码能按规则访问变量。 二、编译原理 传统编译三阶段： 分词 / 词法分析：将源代码字符串分解为有意义的词法单元（如关键字、变量名、运算符等）。 解析 / 语法分析：将词法单元流转换为抽象语法树（AST），AST 是体现程序语法结构的嵌套树状结构。 代码生成：将 AST 转换为可执行代码。 JavaScript 编译特点：多数情况下，编译在代码片段执行前的几微秒内完成（即时编译）。 三、作用域的核心角色 引擎：负责整个 JavaScript 程序的编译及执行全过程。 编译器：负责语法分析、代码生成等编译相关工作。 作用域：负责收集并维护所有声明的标识符（变量、函数名等），并制定规则确定当前执行的代码对这些标识符的访问权限。 四、变量声明与赋值过程（以var a = 2为例） 变量声明（编译器处理）： 编译器询问当前作用域：是否已存在名为a的变量。 若存在，忽略该声明；若不存在，要求作用域在当前集合中声明一个新变量a。 变量赋值（引擎处理）： 引擎询问当前作用域：是否存在名为a的变量。存在则直接使用，不存在则继续向上查找。 找到a后，将 2 赋值给它；未找到则抛出异常。 LHS 与 RHS 查询： RHS 查询：查找变量的值（如console.log(a)中对a的查询）。 LHS 查询：查找变量的容器本身，用于赋值（如a = 2中对a的查询）。 函数声明处理：编译器在代码生成阶段同步处理函数的声明和值定义。 五、作用域嵌套 嵌套场景：当块或函数嵌套在另一个块或函数中时，形成作用域嵌套。 查找规则： 引擎从当前执行作用域开始查找变量，找不到则向上一级嵌套作用域继续查找。 直至找到变量或抵达全局作用域，查找过程终止。 六、异常类型及触发场景 ReferenceError（引用错误）： RHS 查询：在所有嵌套作用域中未找到目标变量时抛出。 LHS 查询：严格模式下，在所有作用域中未找到目标变量时抛出（非严格模式下会自动在全局作用域创建该变量，let/const本身在非严格模式下也不会隐式创建全局变量）。 TypeError（类型错误）：RHS 查询找到变量，但对其值进行不合理操作（如对非函数变量调用方法）时抛出。 ",
+  "wordCount" : "60",
+  "inLanguage": "en",
+  "datePublished": "0001-01-01T00:00:00Z",
+  "dateModified": "0001-01-01T00:00:00Z",
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://example.org/posts/%E4%BD%A0%E4%B8%8D%E7%9F%A5%E9%81%93%E7%9A%84js/%E4%BD%9C%E7%94%A8%E5%9F%9F%E5%92%8C%E9%97%AD%E5%8C%85/1.%E4%BD%9C%E7%94%A8%E5%9F%9F%E6%98%AF%E4%BB%80%E4%B9%88/"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "My New Hugo Site",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://example.org/favicon.ico"
+    }
+  }
+}
+</script>
+</head>
+
+<body class="" id="top">
+<script>
+    if (localStorage.getItem("pref-theme") === "dark") {
+        document.body.classList.add('dark');
+    } else if (localStorage.getItem("pref-theme") === "light") {
+        document.body.classList.remove('dark')
+    } else if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+        document.body.classList.add('dark');
+    }
+
+</script>
+
+<header class="header">
+    <nav class="nav">
+        <div class="logo">
+            <a href="https://example.org/" accesskey="h" title="My New Hugo Site (Alt + H)">My New Hugo Site</a>
+            <div class="logo-switches">
+                <button id="theme-toggle" accesskey="t" title="(Alt + T)" aria-label="Toggle theme">
+                    <svg id="moon" xmlns="http://www.w3.org/2000/svg" width="24" height="18" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                    </svg>
+                    <svg id="sun" xmlns="http://www.w3.org/2000/svg" width="24" height="18" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <circle cx="12" cy="12" r="5"></circle>
+                        <line x1="12" y1="1" x2="12" y2="3"></line>
+                        <line x1="12" y1="21" x2="12" y2="23"></line>
+                        <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                        <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                        <line x1="1" y1="12" x2="3" y2="12"></line>
+                        <line x1="21" y1="12" x2="23" y2="12"></line>
+                        <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                        <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+                    </svg>
+                </button>
+            </div>
+        </div>
+        <ul id="menu">
+        </ul>
+    </nav>
+</header>
+<main class="main">
+
+<article class="post-single">
+  <header class="post-header">
+    
+    <h1 class="post-title entry-hint-parent">
+      
+    </h1>
+    <div class="post-meta">
+
+</div>
+  </header> 
+  <div class="post-content"><blockquote>
+<p>本文总结《你不了解的JS》第一部分第一章的核心概念，重点介绍了JavaScript的编译原理和作用域机制。笔记指出程序状态通过变量存储和访问实现，作用域是一套管理变量的规则体系。编译过程包括分词、语法分析和代码生成三个阶段。在变量赋值时，编译器处理声明，引擎执行查询（LHS/RHS）。作用域嵌套时，引擎会逐级向上查找变量。文章还区分了RHS和LHS查询的区别，以及在不同情况下可能出现的ReferenceError和TypeError异常。严格模式会改变LHS查询失败时的默认行为。</p></blockquote>
+<h3 id="一核心概念">一、核心概念<a hidden class="anchor" aria-hidden="true" href="#一核心概念">#</a></h3>
+<ol>
+<li><strong>程序状态与变量</strong>：存储和访问变量值的能力为程序赋予了状态。</li>
+<li><strong>作用域定义</strong>：一套规则体系，用于管理变量的存储方式和查找逻辑，确保代码能按规则访问变量。</li>
+</ol>
+<hr>
+<h3 id="二编译原理">二、编译原理<a hidden class="anchor" aria-hidden="true" href="#二编译原理">#</a></h3>
+<ol>
+<li>传统编译三阶段：
+<ul>
+<li><strong>分词 / 词法分析</strong>：将源代码字符串分解为有意义的词法单元（如关键字、变量名、运算符等）。</li>
+<li><strong>解析 / 语法分析</strong>：将词法单元流转换为抽象语法树（AST），AST 是体现程序语法结构的嵌套树状结构。</li>
+<li><strong>代码生成</strong>：将 AST 转换为可执行代码。</li>
+</ul>
+</li>
+<li><strong>JavaScript 编译特点</strong>：多数情况下，编译在代码片段执行前的几微秒内完成（即时编译）。</li>
+</ol>
+<hr>
+<h3 id="三作用域的核心角色">三、作用域的核心角色<a hidden class="anchor" aria-hidden="true" href="#三作用域的核心角色">#</a></h3>
+<ul>
+<li><strong>引擎</strong>：负责整个 JavaScript 程序的编译及执行全过程。</li>
+<li><strong>编译器</strong>：负责语法分析、代码生成等编译相关工作。</li>
+<li><strong>作用域</strong>：负责收集并维护所有声明的标识符（变量、函数名等），并制定规则确定当前执行的代码对这些标识符的访问权限。</li>
+</ul>
+<h3 id="四变量声明与赋值过程以var-a--2为例">四、变量声明与赋值过程（以<code>var a = 2</code>为例）<a hidden class="anchor" aria-hidden="true" href="#四变量声明与赋值过程以var-a--2为例">#</a></h3>
+<ol>
+<li>变量声明（编译器处理）：
+<ul>
+<li>编译器询问当前作用域：是否已存在名为<code>a</code>的变量。</li>
+<li>若存在，忽略该声明；若不存在，要求作用域在当前集合中声明一个新变量<code>a</code>。</li>
+</ul>
+</li>
+<li>变量赋值（引擎处理）：
+<ul>
+<li>引擎询问当前作用域：是否存在名为<code>a</code>的变量。存在则直接使用，不存在则继续向上查找。</li>
+<li>找到<code>a</code>后，将 2 赋值给它；未找到则抛出异常。</li>
+</ul>
+</li>
+<li>LHS 与 RHS 查询：
+<ul>
+<li><strong>RHS 查询</strong>：查找变量的值（如<code>console.log(a)</code>中对<code>a</code>的查询）。</li>
+<li><strong>LHS 查询</strong>：查找变量的容器本身，用于赋值（如<code>a = 2</code>中对<code>a</code>的查询）。</li>
+</ul>
+</li>
+<li><strong>函数声明处理</strong>：编译器在代码生成阶段同步处理函数的声明和值定义。</li>
+</ol>
+<hr>
+<h3 id="五作用域嵌套">五、作用域嵌套<a hidden class="anchor" aria-hidden="true" href="#五作用域嵌套">#</a></h3>
+<ol>
+<li><strong>嵌套场景</strong>：当块或函数嵌套在另一个块或函数中时，形成作用域嵌套。</li>
+<li>查找规则：
+<ul>
+<li>引擎从当前执行作用域开始查找变量，找不到则向上一级嵌套作用域继续查找。</li>
+<li>直至找到变量或抵达全局作用域，查找过程终止。</li>
+</ul>
+</li>
+</ol>
+<hr>
+<h3 id="六异常类型及触发场景">六、异常类型及触发场景<a hidden class="anchor" aria-hidden="true" href="#六异常类型及触发场景">#</a></h3>
+<ol>
+<li>ReferenceError（引用错误）：
+<ul>
+<li>RHS 查询：在所有嵌套作用域中未找到目标变量时抛出。</li>
+<li>LHS 查询：严格模式下，在所有作用域中未找到目标变量时抛出（非严格模式下会自动在全局作用域创建该变量，<code>let</code>/<code>const</code>本身在非严格模式下也不会隐式创建全局变量）。</li>
+</ul>
+</li>
+<li><strong>TypeError（类型错误）</strong>：RHS 查询找到变量，但对其值进行不合理操作（如对非函数变量调用方法）时抛出。</li>
+</ol>
+
+
+  </div>
+
+  <footer class="post-footer">
+    <ul class="post-tags">
+    </ul>
+  </footer>
+</article>
+    </main>
+    
+<footer class="footer">
+        <span>&copy; 2025 <a href="https://example.org/">My New Hugo Site</a></span> · 
+
+    <span>
+        Powered by
+        <a href="https://gohugo.io/" rel="noopener noreferrer" target="_blank">Hugo</a> &
+        <a href="https://github.com/adityatelange/hugo-PaperMod/" rel="noopener" target="_blank">PaperMod</a>
+    </span>
+</footer>
+<a href="#top" aria-label="go to top" title="Go to Top (Alt + G)" class="top-link" id="top-link" accesskey="g">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 12 6" fill="currentColor">
+        <path d="M12 6H0l6-6z" />
+    </svg>
+</a>
+
+<script>
+    let menu = document.getElementById('menu')
+    if (menu) {
+        menu.scrollLeft = localStorage.getItem("menu-scroll-position");
+        menu.onscroll = function () {
+            localStorage.setItem("menu-scroll-position", menu.scrollLeft);
+        }
+    }
+
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener("click", function (e) {
+            e.preventDefault();
+            var id = this.getAttribute("href").substr(1);
+            if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView({
+                    behavior: "smooth"
+                });
+            } else {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView();
+            }
+            if (id === "top") {
+                history.replaceState(null, null, " ");
+            } else {
+                history.pushState(null, null, `#${id}`);
+            }
+        });
+    });
+
+</script>
+<script>
+    var mybutton = document.getElementById("top-link");
+    window.onscroll = function () {
+        if (document.body.scrollTop > 800 || document.documentElement.scrollTop > 800) {
+            mybutton.style.visibility = "visible";
+            mybutton.style.opacity = "1";
+        } else {
+            mybutton.style.visibility = "hidden";
+            mybutton.style.opacity = "0";
+        }
+    };
+
+</script>
+<script>
+    document.getElementById("theme-toggle").addEventListener("click", () => {
+        if (document.body.className.includes("dark")) {
+            document.body.classList.remove('dark');
+            localStorage.setItem("pref-theme", 'light');
+        } else {
+            document.body.classList.add('dark');
+            localStorage.setItem("pref-theme", 'dark');
+        }
+    })
+
+</script>
+</body>
+
+</html>

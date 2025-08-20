@@ -1,0 +1,588 @@
+<!DOCTYPE html>
+<html lang="en" dir="auto">
+
+<head><meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="robots" content="index, follow">
+<title>My New Hugo Site</title>
+<meta name="keywords" content="">
+<meta name="description" content="React Native 中使用 flexbox 规则来指定某个组件的子元素的布局。Flexbox 可以在不同屏幕尺寸上提供一致的布局结构。
+一般来说，使用flexDirection、alignItems和 justifyContent三个样式属性就已经能满足大多数布局需求。
+
+React Native 中的 Flexbox 的工作原理和 web 上的 CSS 基本一致，当然也存在少许差异。首先是默认值不同：flexDirection的默认值为column（而不是row），alignContent默认值为 flex-start（而不是 stretch）, flexShrink 默认值为0 （而不是1）, 而flex只能指定一个数字值。
+Flex
+flex属性决定元素在主轴上如何填满可用区域。整个区域会根据每个元素设置的 flex 属性值被分割成多个部分。
+Flex Direction
+在组件的style中指定flexDirection可以决定布局的主轴。默认值是**竖直轴(column)**方向。
+
+
+column（默认值）：将子元素从上到下对齐。如果启用换行，则下一行将从容器顶部的第一个项目右侧开始。
+
+
+row：将子元素从左到右对齐。如果启用换行，则下一行将在容器左侧的第一个项目下方开始。
+
+
+column-reverse：将子元素从底部向上对齐。如果启用换行，则下一行将从容器底部的第一个项目右侧开始。
+
+
+row-reverse：将子元素从右到左对齐。如果启用换行，则下一行将在容器右侧的第一个项目下方开始。
+
+
+Layout Direction
+布局方向指定了层次结构中的子元素和文本应该被排列的方向。布局方向还会影响到start和end所指代的边缘。默认采用从左到右（LTR）的布局方向进行排列。在这种模式下，start表示左侧，而end表示右侧。
+
+
+LTR（默认值）: 文本和子元素从左到右进行排列。对于一个元素来说，在其起始位置应用的外边距和内边距将被应用在左侧。
+
+
+RTL: 文本和子元素从右到左进行排列。对于一个元素来说，在其起始位置应用的外边距和内边距将被应用在右侧。
+
+
+Justify Content
+在组件的 style 中指定justifyContent可以决定其子元素沿着主轴的排列方式。可用的选项有：
+
+
+flex-start（默认值）将容器中的子元素沿主轴起始位置对齐。
+
+
+flex-end 将容器中的子元素沿主轴末尾位置对齐。
+
+
+center 将容器中的子元素在主轴上居中对齐。
+
+
+space-between 在容器的主轴上均匀分布子元素，将剩余空间平均分配给子元素之间。
+
+
+space-around 在容器的主轴上均匀分布子元素，将剩余空间围绕在每个子元素周围。与space-between相比，使用space-around会导致空间被分配到第一个子元素和最后一个子元素之前和之后。
+
+
+space-evenly 在对齐容器内沿着主轴均匀分布子项。每一对相邻项、主开始边缘和第一项以及主结束边缘和最后一项之间的间距都完全相同。
+
+
+
+Align Items
+在组件的 style 中指定alignItems可以决定其子元素沿着次轴（与主轴垂直的轴）的排列方式。可用的选项有：
+
+
+stretch（默认值）：将容器的子元素拉伸以匹配容器次轴的高度。
+
+
+flex-start：将容器的子元素对齐到容器次轴的起始位置。
+
+
+flex-end：将容器的子元素对齐到容器次轴的末尾位置。
+
+
+center：将容器的子元素居中对齐于容器次轴上。
+
+
+baseline：沿着公共基线对齐容器的子元素。可以为各个子元素设置参考基线，作为其父级基线。
+
+
+
+要使stretch选项生效，子元素在次轴方向上不能有固定尺寸。">
+<meta name="author" content="">
+<link rel="canonical" href="https://example.org/posts/%E6%96%87%E6%A1%A3%E9%98%85%E8%AF%BB/react/react-native/%E5%BC%80%E5%8F%91%E6%96%87%E6%A1%A3/%E7%95%8C%E9%9D%A2%E4%B8%8E%E4%BA%A4%E4%BA%92/%E4%BD%BF%E7%94%A8-flexbox-%E5%B8%83%E5%B1%80/">
+<link crossorigin="anonymous" href="/assets/css/stylesheet.8fe10233a706bc87f2e08b3cf97b8bd4c0a80f10675a143675d59212121037c0.css" integrity="sha256-j&#43;ECM6cGvIfy4Is8&#43;XuL1MCoDxBnWhQ2ddWSEhIQN8A=" rel="preload stylesheet" as="style">
+<link rel="icon" href="https://example.org/favicon.ico">
+<link rel="icon" type="image/png" sizes="16x16" href="https://example.org/favicon-16x16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="https://example.org/favicon-32x32.png">
+<link rel="apple-touch-icon" href="https://example.org/apple-touch-icon.png">
+<link rel="mask-icon" href="https://example.org/safari-pinned-tab.svg">
+<meta name="theme-color" content="#2e2e33">
+<meta name="msapplication-TileColor" content="#2e2e33">
+<link rel="alternate" hreflang="en" href="https://example.org/posts/%E6%96%87%E6%A1%A3%E9%98%85%E8%AF%BB/react/react-native/%E5%BC%80%E5%8F%91%E6%96%87%E6%A1%A3/%E7%95%8C%E9%9D%A2%E4%B8%8E%E4%BA%A4%E4%BA%92/%E4%BD%BF%E7%94%A8-flexbox-%E5%B8%83%E5%B1%80/">
+<noscript>
+    <style>
+        #theme-toggle,
+        .top-link {
+            display: none;
+        }
+
+    </style>
+    <style>
+        @media (prefers-color-scheme: dark) {
+            :root {
+                --theme: rgb(29, 30, 32);
+                --entry: rgb(46, 46, 51);
+                --primary: rgb(218, 218, 219);
+                --secondary: rgb(155, 156, 157);
+                --tertiary: rgb(65, 66, 68);
+                --content: rgb(196, 196, 197);
+                --code-block-bg: rgb(46, 46, 51);
+                --code-bg: rgb(55, 56, 62);
+                --border: rgb(51, 51, 51);
+            }
+
+            .list {
+                background: var(--theme);
+            }
+
+            .list:not(.dark)::-webkit-scrollbar-track {
+                background: 0 0;
+            }
+
+            .list:not(.dark)::-webkit-scrollbar-thumb {
+                border-color: var(--theme);
+            }
+        }
+
+    </style>
+</noscript><meta property="og:url" content="https://example.org/posts/%E6%96%87%E6%A1%A3%E9%98%85%E8%AF%BB/react/react-native/%E5%BC%80%E5%8F%91%E6%96%87%E6%A1%A3/%E7%95%8C%E9%9D%A2%E4%B8%8E%E4%BA%A4%E4%BA%92/%E4%BD%BF%E7%94%A8-flexbox-%E5%B8%83%E5%B1%80/">
+  <meta property="og:site_name" content="My New Hugo Site">
+  <meta property="og:title" content="My New Hugo Site">
+  <meta property="og:description" content="React Native 中使用 flexbox 规则来指定某个组件的子元素的布局。Flexbox 可以在不同屏幕尺寸上提供一致的布局结构。
+一般来说，使用flexDirection、alignItems和 justifyContent三个样式属性就已经能满足大多数布局需求。
+React Native 中的 Flexbox 的工作原理和 web 上的 CSS 基本一致，当然也存在少许差异。首先是默认值不同：flexDirection的默认值为column（而不是row），alignContent默认值为 flex-start（而不是 stretch）, flexShrink 默认值为0 （而不是1）, 而flex只能指定一个数字值。
+Flex flex属性决定元素在主轴上如何填满可用区域。整个区域会根据每个元素设置的 flex 属性值被分割成多个部分。
+Flex Direction 在组件的style中指定flexDirection可以决定布局的主轴。默认值是**竖直轴(column)**方向。
+column（默认值）：将子元素从上到下对齐。如果启用换行，则下一行将从容器顶部的第一个项目右侧开始。
+row：将子元素从左到右对齐。如果启用换行，则下一行将在容器左侧的第一个项目下方开始。
+column-reverse：将子元素从底部向上对齐。如果启用换行，则下一行将从容器底部的第一个项目右侧开始。
+row-reverse：将子元素从右到左对齐。如果启用换行，则下一行将在容器右侧的第一个项目下方开始。
+Layout Direction 布局方向指定了层次结构中的子元素和文本应该被排列的方向。布局方向还会影响到start和end所指代的边缘。默认采用从左到右（LTR）的布局方向进行排列。在这种模式下，start表示左侧，而end表示右侧。
+LTR（默认值）: 文本和子元素从左到右进行排列。对于一个元素来说，在其起始位置应用的外边距和内边距将被应用在左侧。
+RTL: 文本和子元素从右到左进行排列。对于一个元素来说，在其起始位置应用的外边距和内边距将被应用在右侧。
+Justify Content 在组件的 style 中指定justifyContent可以决定其子元素沿着主轴的排列方式。可用的选项有：
+flex-start（默认值）将容器中的子元素沿主轴起始位置对齐。
+flex-end 将容器中的子元素沿主轴末尾位置对齐。
+center 将容器中的子元素在主轴上居中对齐。
+space-between 在容器的主轴上均匀分布子元素，将剩余空间平均分配给子元素之间。
+space-around 在容器的主轴上均匀分布子元素，将剩余空间围绕在每个子元素周围。与space-between相比，使用space-around会导致空间被分配到第一个子元素和最后一个子元素之前和之后。
+space-evenly 在对齐容器内沿着主轴均匀分布子项。每一对相邻项、主开始边缘和第一项以及主结束边缘和最后一项之间的间距都完全相同。
+Align Items 在组件的 style 中指定alignItems可以决定其子元素沿着次轴（与主轴垂直的轴）的排列方式。可用的选项有：
+stretch（默认值）：将容器的子元素拉伸以匹配容器次轴的高度。
+flex-start：将容器的子元素对齐到容器次轴的起始位置。
+flex-end：将容器的子元素对齐到容器次轴的末尾位置。
+center：将容器的子元素居中对齐于容器次轴上。
+baseline：沿着公共基线对齐容器的子元素。可以为各个子元素设置参考基线，作为其父级基线。
+要使stretch选项生效，子元素在次轴方向上不能有固定尺寸。">
+  <meta property="og:locale" content="en-us">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="posts">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="">
+<meta name="twitter:description" content="React Native 中使用 flexbox 规则来指定某个组件的子元素的布局。Flexbox 可以在不同屏幕尺寸上提供一致的布局结构。
+一般来说，使用flexDirection、alignItems和 justifyContent三个样式属性就已经能满足大多数布局需求。
+
+React Native 中的 Flexbox 的工作原理和 web 上的 CSS 基本一致，当然也存在少许差异。首先是默认值不同：flexDirection的默认值为column（而不是row），alignContent默认值为 flex-start（而不是 stretch）, flexShrink 默认值为0 （而不是1）, 而flex只能指定一个数字值。
+Flex
+flex属性决定元素在主轴上如何填满可用区域。整个区域会根据每个元素设置的 flex 属性值被分割成多个部分。
+Flex Direction
+在组件的style中指定flexDirection可以决定布局的主轴。默认值是**竖直轴(column)**方向。
+
+
+column（默认值）：将子元素从上到下对齐。如果启用换行，则下一行将从容器顶部的第一个项目右侧开始。
+
+
+row：将子元素从左到右对齐。如果启用换行，则下一行将在容器左侧的第一个项目下方开始。
+
+
+column-reverse：将子元素从底部向上对齐。如果启用换行，则下一行将从容器底部的第一个项目右侧开始。
+
+
+row-reverse：将子元素从右到左对齐。如果启用换行，则下一行将在容器右侧的第一个项目下方开始。
+
+
+Layout Direction
+布局方向指定了层次结构中的子元素和文本应该被排列的方向。布局方向还会影响到start和end所指代的边缘。默认采用从左到右（LTR）的布局方向进行排列。在这种模式下，start表示左侧，而end表示右侧。
+
+
+LTR（默认值）: 文本和子元素从左到右进行排列。对于一个元素来说，在其起始位置应用的外边距和内边距将被应用在左侧。
+
+
+RTL: 文本和子元素从右到左进行排列。对于一个元素来说，在其起始位置应用的外边距和内边距将被应用在右侧。
+
+
+Justify Content
+在组件的 style 中指定justifyContent可以决定其子元素沿着主轴的排列方式。可用的选项有：
+
+
+flex-start（默认值）将容器中的子元素沿主轴起始位置对齐。
+
+
+flex-end 将容器中的子元素沿主轴末尾位置对齐。
+
+
+center 将容器中的子元素在主轴上居中对齐。
+
+
+space-between 在容器的主轴上均匀分布子元素，将剩余空间平均分配给子元素之间。
+
+
+space-around 在容器的主轴上均匀分布子元素，将剩余空间围绕在每个子元素周围。与space-between相比，使用space-around会导致空间被分配到第一个子元素和最后一个子元素之前和之后。
+
+
+space-evenly 在对齐容器内沿着主轴均匀分布子项。每一对相邻项、主开始边缘和第一项以及主结束边缘和最后一项之间的间距都完全相同。
+
+
+
+Align Items
+在组件的 style 中指定alignItems可以决定其子元素沿着次轴（与主轴垂直的轴）的排列方式。可用的选项有：
+
+
+stretch（默认值）：将容器的子元素拉伸以匹配容器次轴的高度。
+
+
+flex-start：将容器的子元素对齐到容器次轴的起始位置。
+
+
+flex-end：将容器的子元素对齐到容器次轴的末尾位置。
+
+
+center：将容器的子元素居中对齐于容器次轴上。
+
+
+baseline：沿着公共基线对齐容器的子元素。可以为各个子元素设置参考基线，作为其父级基线。
+
+
+
+要使stretch选项生效，子元素在次轴方向上不能有固定尺寸。">
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position":  1 ,
+      "name": "Posts",
+      "item": "https://example.org/posts/"
+    }, 
+    {
+      "@type": "ListItem",
+      "position":  2 ,
+      "name": "",
+      "item": "https://example.org/posts/%E6%96%87%E6%A1%A3%E9%98%85%E8%AF%BB/react/react-native/%E5%BC%80%E5%8F%91%E6%96%87%E6%A1%A3/%E7%95%8C%E9%9D%A2%E4%B8%8E%E4%BA%A4%E4%BA%92/%E4%BD%BF%E7%94%A8-flexbox-%E5%B8%83%E5%B1%80/"
+    }
+  ]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "",
+  "name": "",
+  "description": "React Native 中使用 flexbox 规则来指定某个组件的子元素的布局。Flexbox 可以在不同屏幕尺寸上提供一致的布局结构。\n一般来说，使用flexDirection、alignItems和 justifyContent三个样式属性就已经能满足大多数布局需求。\nReact Native 中的 Flexbox 的工作原理和 web 上的 CSS 基本一致，当然也存在少许差异。首先是默认值不同：flexDirection的默认值为column（而不是row），alignContent默认值为 flex-start（而不是 stretch）, flexShrink 默认值为0 （而不是1）, 而flex只能指定一个数字值。\nFlex flex属性决定元素在主轴上如何填满可用区域。整个区域会根据每个元素设置的 flex 属性值被分割成多个部分。\nFlex Direction 在组件的style中指定flexDirection可以决定布局的主轴。默认值是**竖直轴(column)**方向。\ncolumn（默认值）：将子元素从上到下对齐。如果启用换行，则下一行将从容器顶部的第一个项目右侧开始。\nrow：将子元素从左到右对齐。如果启用换行，则下一行将在容器左侧的第一个项目下方开始。\ncolumn-reverse：将子元素从底部向上对齐。如果启用换行，则下一行将从容器底部的第一个项目右侧开始。\nrow-reverse：将子元素从右到左对齐。如果启用换行，则下一行将在容器右侧的第一个项目下方开始。\nLayout Direction 布局方向指定了层次结构中的子元素和文本应该被排列的方向。布局方向还会影响到start和end所指代的边缘。默认采用从左到右（LTR）的布局方向进行排列。在这种模式下，start表示左侧，而end表示右侧。\nLTR（默认值）: 文本和子元素从左到右进行排列。对于一个元素来说，在其起始位置应用的外边距和内边距将被应用在左侧。\nRTL: 文本和子元素从右到左进行排列。对于一个元素来说，在其起始位置应用的外边距和内边距将被应用在右侧。\nJustify Content 在组件的 style 中指定justifyContent可以决定其子元素沿着主轴的排列方式。可用的选项有：\nflex-start（默认值）将容器中的子元素沿主轴起始位置对齐。\nflex-end 将容器中的子元素沿主轴末尾位置对齐。\ncenter 将容器中的子元素在主轴上居中对齐。\nspace-between 在容器的主轴上均匀分布子元素，将剩余空间平均分配给子元素之间。\nspace-around 在容器的主轴上均匀分布子元素，将剩余空间围绕在每个子元素周围。与space-between相比，使用space-around会导致空间被分配到第一个子元素和最后一个子元素之前和之后。\nspace-evenly 在对齐容器内沿着主轴均匀分布子项。每一对相邻项、主开始边缘和第一项以及主结束边缘和最后一项之间的间距都完全相同。\nAlign Items 在组件的 style 中指定alignItems可以决定其子元素沿着次轴（与主轴垂直的轴）的排列方式。可用的选项有：\nstretch（默认值）：将容器的子元素拉伸以匹配容器次轴的高度。\nflex-start：将容器的子元素对齐到容器次轴的起始位置。\nflex-end：将容器的子元素对齐到容器次轴的末尾位置。\ncenter：将容器的子元素居中对齐于容器次轴上。\nbaseline：沿着公共基线对齐容器的子元素。可以为各个子元素设置参考基线，作为其父级基线。\n要使stretch选项生效，子元素在次轴方向上不能有固定尺寸。\n",
+  "keywords": [
+    
+  ],
+  "articleBody": "React Native 中使用 flexbox 规则来指定某个组件的子元素的布局。Flexbox 可以在不同屏幕尺寸上提供一致的布局结构。\n一般来说，使用flexDirection、alignItems和 justifyContent三个样式属性就已经能满足大多数布局需求。\nReact Native 中的 Flexbox 的工作原理和 web 上的 CSS 基本一致，当然也存在少许差异。首先是默认值不同：flexDirection的默认值为column（而不是row），alignContent默认值为 flex-start（而不是 stretch）, flexShrink 默认值为0 （而不是1）, 而flex只能指定一个数字值。\nFlex flex属性决定元素在主轴上如何填满可用区域。整个区域会根据每个元素设置的 flex 属性值被分割成多个部分。\nFlex Direction 在组件的style中指定flexDirection可以决定布局的主轴。默认值是**竖直轴(column)**方向。\ncolumn（默认值）：将子元素从上到下对齐。如果启用换行，则下一行将从容器顶部的第一个项目右侧开始。\nrow：将子元素从左到右对齐。如果启用换行，则下一行将在容器左侧的第一个项目下方开始。\ncolumn-reverse：将子元素从底部向上对齐。如果启用换行，则下一行将从容器底部的第一个项目右侧开始。\nrow-reverse：将子元素从右到左对齐。如果启用换行，则下一行将在容器右侧的第一个项目下方开始。\nLayout Direction 布局方向指定了层次结构中的子元素和文本应该被排列的方向。布局方向还会影响到start和end所指代的边缘。默认采用从左到右（LTR）的布局方向进行排列。在这种模式下，start表示左侧，而end表示右侧。\nLTR（默认值）: 文本和子元素从左到右进行排列。对于一个元素来说，在其起始位置应用的外边距和内边距将被应用在左侧。\nRTL: 文本和子元素从右到左进行排列。对于一个元素来说，在其起始位置应用的外边距和内边距将被应用在右侧。\nJustify Content 在组件的 style 中指定justifyContent可以决定其子元素沿着主轴的排列方式。可用的选项有：\nflex-start（默认值）将容器中的子元素沿主轴起始位置对齐。\nflex-end 将容器中的子元素沿主轴末尾位置对齐。\ncenter 将容器中的子元素在主轴上居中对齐。\nspace-between 在容器的主轴上均匀分布子元素，将剩余空间平均分配给子元素之间。\nspace-around 在容器的主轴上均匀分布子元素，将剩余空间围绕在每个子元素周围。与space-between相比，使用space-around会导致空间被分配到第一个子元素和最后一个子元素之前和之后。\nspace-evenly 在对齐容器内沿着主轴均匀分布子项。每一对相邻项、主开始边缘和第一项以及主结束边缘和最后一项之间的间距都完全相同。\nAlign Items 在组件的 style 中指定alignItems可以决定其子元素沿着次轴（与主轴垂直的轴）的排列方式。可用的选项有：\nstretch（默认值）：将容器的子元素拉伸以匹配容器次轴的高度。\nflex-start：将容器的子元素对齐到容器次轴的起始位置。\nflex-end：将容器的子元素对齐到容器次轴的末尾位置。\ncenter：将容器的子元素居中对齐于容器次轴上。\nbaseline：沿着公共基线对齐容器的子元素。可以为各个子元素设置参考基线，作为其父级基线。\n要使stretch选项生效，子元素在次轴方向上不能有固定尺寸。\nAlign Self alignSelf（布局属性#alignself）与 alignItems 具有相同的选项和效果，但不是影响容器内的子元素，而是可以将此属性应用于单个子元素以更改其在父级中的对齐方式。 alignSelf 会覆盖由父级设置的任何使用 alignItems 的选项\nAlign Content alignContent定义了沿次轴分布行的方式。只有在使用 flexWrap 将项目换行到多个行时才会生效。\nflex-start（默认值）：将换行后的行与容器的次轴起始位置对齐。\nflex-end：将换行后的行与容器的次轴末尾位置对齐。\nstretch（在 Web 上使用 Yoga 时的默认值）：拉伸换行后的行以匹配容器的次轴高度。\ncenter：将换行后的行居中对齐于容器的次轴。\nspace-between：均匀地在容器的次轴上间隔排列换行后的各个线，使剩余空间平均分布在这些线之间。\nspace-around：均匀地在容器的次轴上间隔排列换行后各个线，使剩余空间平均分布在这些线周围。相较于使用 space-between，使用 space-around 会导致空白区域被分配到第一条线和最后一条线之前及之后两端。\nFlex Wrap flexWrap属性用于设置容器的换行方式，它控制了当子元素超出容器在主轴上的尺寸时要如何处理。默认情况下，子元素被强制放置在一行中（这可能会使元素被挤压）。如果允许换行，则项目将根据需要沿主轴分为多行。\n在换行时，可以使用alignContent来设置这些行在容器中的排列方式。\nFlex Basis, Grow, 以及 Shrink flexBasis是一种独立于轴线的方式，用于提供项目沿主轴的默认大小。如果父容器具有 flexDirection: row，则设置子项的 flexBasis 类似于设置该子项的 width；如果父容器具有 flexDirection: column，则设置子项的 flexBasis 类似于设置该子项的 height。项目的 flexBasis 是在执行任何 flexGrow 和 flexShrink 计算之前该项目的默认大小。\nflexGrow描述了在主轴上如何分配容器中剩余空间给其子项。布局完其子项后，容器将根据其子项指定的 flex grow 值来分配任何剩余空间。\nflexGrow 接受大于等于 0 的任意浮点数值，默认值为 0。容器将按照各个子项的 flex grow 值加权分配剩余空间给它们。\nflexShrink描述了当所有子项总尺寸超过主轴上容器尺寸时，在溢出情况下如何收缩各个子项。如果将溢出尺寸视为负剩余空间，则可以认为 flex shrink 和 flex grow 的工作方式非常相似。这两个属性也能很好地配合使用，允许子项根据需要进行伸缩。\nflexShrink 接受大于等于 0 的任意浮点数值，默认值为 0（在 Web 上，默认值为 1）。容器将按照各个子项的 flex shrink 值加权收缩它们。\nRow Gap, Column Gap 以及 Gap rowGap设置元素行之间的间隙（gutter）大小。\ncolumnGap设置元素列之间的间隙（gutter）大小。\ngap设置行和列之间的间隙（gutter）大小。它是 rowGap 和 columnGap 的简写形式。\n您可以使用 flexWrap 和 alignContent 以及 gap 来为项目添加一致的间距。\n宽度与高度 width属性指定元素内容区域的宽度。同样，height属性指定元素内容区域的高度。\nwidth和height都可以取以下值：\nauto（默认值）React Native 根据元素的内容计算其宽度/高度，无论是其他子元素、文本还是图像。\npixels以绝对像素定义宽度/高度。根据组件上设置的其他样式，这可能是节点最终尺寸也可能不是。\npercentage分别以父级宽度或高度的百分比定义宽度或高度。\n绝对与相对定位 position 类型定义了元素在其父元素中的定位方式。\nrelative（默认值） 默认情况下，一个元素是相对定位的。这意味着一个元素根据布局的正常流程进行定位，然后根据 top、right、bottom 和 left 的值进行偏移。该偏移不会影响任何兄弟或父级元素的位置。\nabsolute 绝对定位时，一个元素不参与正常布局流程。它独立于其兄弟元素进行布局。位置是基于 top, right, bottom, 和 ’left’ 值来确定的。\n",
+  "wordCount" : "196",
+  "inLanguage": "en",
+  "datePublished": "0001-01-01T00:00:00Z",
+  "dateModified": "0001-01-01T00:00:00Z",
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://example.org/posts/%E6%96%87%E6%A1%A3%E9%98%85%E8%AF%BB/react/react-native/%E5%BC%80%E5%8F%91%E6%96%87%E6%A1%A3/%E7%95%8C%E9%9D%A2%E4%B8%8E%E4%BA%A4%E4%BA%92/%E4%BD%BF%E7%94%A8-flexbox-%E5%B8%83%E5%B1%80/"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "My New Hugo Site",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://example.org/favicon.ico"
+    }
+  }
+}
+</script>
+</head>
+
+<body class="" id="top">
+<script>
+    if (localStorage.getItem("pref-theme") === "dark") {
+        document.body.classList.add('dark');
+    } else if (localStorage.getItem("pref-theme") === "light") {
+        document.body.classList.remove('dark')
+    } else if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+        document.body.classList.add('dark');
+    }
+
+</script>
+
+<header class="header">
+    <nav class="nav">
+        <div class="logo">
+            <a href="https://example.org/" accesskey="h" title="My New Hugo Site (Alt + H)">My New Hugo Site</a>
+            <div class="logo-switches">
+                <button id="theme-toggle" accesskey="t" title="(Alt + T)" aria-label="Toggle theme">
+                    <svg id="moon" xmlns="http://www.w3.org/2000/svg" width="24" height="18" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                    </svg>
+                    <svg id="sun" xmlns="http://www.w3.org/2000/svg" width="24" height="18" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <circle cx="12" cy="12" r="5"></circle>
+                        <line x1="12" y1="1" x2="12" y2="3"></line>
+                        <line x1="12" y1="21" x2="12" y2="23"></line>
+                        <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                        <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                        <line x1="1" y1="12" x2="3" y2="12"></line>
+                        <line x1="21" y1="12" x2="23" y2="12"></line>
+                        <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                        <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+                    </svg>
+                </button>
+            </div>
+        </div>
+        <ul id="menu">
+        </ul>
+    </nav>
+</header>
+<main class="main">
+
+<article class="post-single">
+  <header class="post-header">
+    
+    <h1 class="post-title entry-hint-parent">
+      
+    </h1>
+    <div class="post-meta">
+
+</div>
+  </header> 
+  <div class="post-content"><p>React Native 中使用 flexbox 规则来指定某个组件的子元素的布局。Flexbox 可以在不同屏幕尺寸上提供一致的布局结构。</p>
+<p>一般来说，使用<code>flexDirection</code>、<code>alignItems</code>和 <code>justifyContent</code>三个样式属性就已经能满足大多数布局需求。</p>
+<blockquote>
+<p>React Native 中的 Flexbox 的工作原理和 web 上的 CSS 基本一致，当然也存在少许差异。首先是默认值不同：<code>flexDirection</code>的默认值为<code>column</code>（而不是<code>row</code>），<code>alignContent</code>默认值为 <code>flex-start</code>（而不是 <code>stretch</code>）, <code>flexShrink</code> 默认值为<code>0</code> （而不是<code>1</code>）, 而<code>flex</code>只能指定一个数字值。</p></blockquote>
+<h3 id="flex">Flex<a hidden class="anchor" aria-hidden="true" href="#flex">#</a></h3>
+<p><code>flex</code>属性决定元素在主轴上如何<strong>填满</strong>可用区域。整个区域会根据每个元素设置的 flex 属性值被分割成多个部分。</p>
+<h3 id="flex-direction">Flex Direction<a hidden class="anchor" aria-hidden="true" href="#flex-direction">#</a></h3>
+<p>在组件的<code>style</code>中指定<code>flexDirection</code>可以决定布局的<strong>主轴</strong>。默认值是**竖直轴(<code>column</code>)**方向。</p>
+<ul>
+<li>
+<p><code>column</code>（<strong>默认值</strong>）：将子元素从上到下对齐。如果启用换行，则下一行将从容器顶部的第一个项目右侧开始。</p>
+</li>
+<li>
+<p><code>row</code>：将子元素从左到右对齐。如果启用换行，则下一行将在容器左侧的第一个项目下方开始。</p>
+</li>
+<li>
+<p><code>column-reverse</code>：将子元素从底部向上对齐。如果启用换行，则下一行将从容器底部的第一个项目右侧开始。</p>
+</li>
+<li>
+<p><code>row-reverse</code>：将子元素从右到左对齐。如果启用换行，则下一行将在容器右侧的第一个项目下方开始。</p>
+</li>
+</ul>
+<h2 id="layout-direction">Layout Direction<a hidden class="anchor" aria-hidden="true" href="#layout-direction">#</a></h2>
+<p>布局方向指定了层次结构中的子元素和文本应该被排列的方向。布局方向还会影响到<code>start</code>和<code>end</code>所指代的边缘。默认采用从左到右（LTR）的布局方向进行排列。在这种模式下，<code>start</code>表示左侧，而<code>end</code>表示右侧。</p>
+<ul>
+<li>
+<p><code>LTR（默认值）</code>: 文本和子元素从左到右进行排列。对于一个元素来说，在其起始位置应用的外边距和内边距将被应用在左侧。</p>
+</li>
+<li>
+<p><code>RTL</code>: 文本和子元素从右到左进行排列。对于一个元素来说，在其起始位置应用的外边距和内边距将被应用在右侧。</p>
+</li>
+</ul>
+<h2 id="justify-content">Justify Content<a hidden class="anchor" aria-hidden="true" href="#justify-content">#</a></h2>
+<p>在组件的 style 中指定<code>justifyContent</code>可以决定其子元素沿着<strong>主轴</strong>的<strong>排列方式</strong>。可用的选项有：</p>
+<ul>
+<li>
+<p><code>flex-start</code>（<strong>默认值</strong>）将容器中的子元素沿主轴起始位置对齐。</p>
+</li>
+<li>
+<p><code>flex-end</code> 将容器中的子元素沿主轴末尾位置对齐。</p>
+</li>
+<li>
+<p><code>center</code> 将容器中的子元素在主轴上居中对齐。</p>
+</li>
+<li>
+<p><code>space-between</code> 在容器的主轴上均匀分布子元素，将剩余空间平均分配给子元素之间。</p>
+</li>
+<li>
+<p><code>space-around</code> 在容器的主轴上均匀分布子元素，将剩余空间围绕在每个子元素周围。与<code>space-between</code>相比，使用<code>space-around</code>会导致空间被分配到第一个子元素和最后一个子元素之前和之后。</p>
+</li>
+<li>
+<p><code>space-evenly</code> 在对齐容器内沿着主轴均匀分布子项。每一对相邻项、主开始边缘和第一项以及主结束边缘和最后一项之间的间距都完全相同。</p>
+</li>
+<li></li>
+</ul>
+<h3 id="align-items">Align Items<a hidden class="anchor" aria-hidden="true" href="#align-items">#</a></h3>
+<p>在组件的 style 中指定<code>alignItems</code>可以决定其子元素沿着<strong>次轴</strong>（与主轴垂直的轴）的<strong>排列方式</strong>。可用的选项有：</p>
+<ul>
+<li>
+<p><code>stretch</code>（<strong>默认值</strong>）：将容器的子元素拉伸以匹配容器次轴的高度。</p>
+</li>
+<li>
+<p><code>flex-start</code>：将容器的子元素对齐到容器次轴的起始位置。</p>
+</li>
+<li>
+<p><code>flex-end</code>：将容器的子元素对齐到容器次轴的末尾位置。</p>
+</li>
+<li>
+<p><code>center</code>：将容器的子元素居中对齐于容器次轴上。</p>
+</li>
+<li>
+<p><code>baseline</code>：沿着公共基线对齐容器的子元素。可以为各个子元素设置参考基线，作为其父级基线。</p>
+</li>
+</ul>
+<blockquote>
+<p>要使<code>stretch</code>选项生效，子元素在次轴方向上不能有固定尺寸。</p></blockquote>
+<h2 id="align-self">Align Self<a hidden class="anchor" aria-hidden="true" href="#align-self">#</a></h2>
+<p><code>alignSelf</code>（布局属性#alignself）与 <code>alignItems</code> 具有相同的选项和效果，但不是影响容器内的子元素，而是可以将此属性应用于单个子元素以更改其在父级中的对齐方式。 <code>alignSelf</code> 会覆盖由父级设置的任何使用 <code>alignItems</code> 的选项</p>
+<h2 id="align-content">Align Content<a hidden class="anchor" aria-hidden="true" href="#align-content">#</a></h2>
+<p>alignContent定义了沿次轴分布行的方式。只有在使用 <code>flexWrap</code> 将项目换行到多个行时才会生效。</p>
+<ul>
+<li>
+<p><code>flex-start</code>（<strong>默认值</strong>）：将换行后的行与容器的次轴起始位置对齐。</p>
+</li>
+<li>
+<p><code>flex-end</code>：将换行后的行与容器的次轴末尾位置对齐。</p>
+</li>
+<li>
+<p><code>stretch</code>（<em>在 Web 上使用 Yoga 时的默认值</em>）：拉伸换行后的行以匹配容器的次轴高度。</p>
+</li>
+<li>
+<p><code>center</code>：将换行后的行居中对齐于容器的次轴。</p>
+</li>
+<li>
+<p><code>space-between</code>：均匀地在容器的次轴上间隔排列换行后的各个线，使剩余空间平均分布在这些线之间。</p>
+</li>
+<li>
+<p><code>space-around</code>：均匀地在容器的次轴上间隔排列换行后各个线，使剩余空间平均分布在这些线周围。相较于使用 <code>space-between</code>，使用 <code>space-around</code> 会导致空白区域被分配到第一条线和最后一条线之前及之后两端。</p>
+</li>
+<li></li>
+</ul>
+<h2 id="flex-wrap">Flex Wrap<a hidden class="anchor" aria-hidden="true" href="#flex-wrap">#</a></h2>
+<p><code>flexWrap</code>属性用于设置容器的换行方式，它控制了当子元素超出容器在主轴上的尺寸时要如何处理。默认情况下，子元素被强制放置在一行中（这可能会使元素被挤压）。如果允许换行，则项目将根据需要沿主轴分为多行。</p>
+<p>在换行时，可以使用<code>alignContent</code>来设置这些行在容器中的排列方式。</p>
+<h2 id="flex-basis-grow-以及-shrink">Flex Basis, Grow, 以及 Shrink<a hidden class="anchor" aria-hidden="true" href="#flex-basis-grow-以及-shrink">#</a></h2>
+<ul>
+<li>
+<p><code>flexBasis</code>是一种独立于轴线的方式，用于提供项目沿主轴的默认大小。如果父容器具有 <code>flexDirection: row</code>，则设置子项的 <code>flexBasis</code> 类似于设置该子项的 <code>width</code>；如果父容器具有 <code>flexDirection: column</code>，则设置子项的 <code>flexBasis</code> 类似于设置该子项的 <code>height</code>。项目的 <code>flexBasis</code> 是在执行任何 <code>flexGrow</code> 和 <code>flexShrink</code> 计算之前该项目的默认大小。</p>
+</li>
+<li>
+<p><code>flexGrow</code>描述了在主轴上如何分配容器中剩余空间给其子项。布局完其子项后，容器将根据其子项指定的 flex grow 值来分配任何剩余空间。</p>
+<p><code>flexGrow</code> 接受大于等于 0 的任意浮点数值，默认值为 0。容器将按照各个子项的 flex grow 值加权分配剩余空间给它们。</p>
+</li>
+<li>
+<p><code>flexShrink</code>描述了当所有子项总尺寸超过主轴上容器尺寸时，在溢出情况下如何收缩各个子项。如果将溢出尺寸视为负剩余空间，则可以认为 flex shrink 和 flex grow 的工作方式非常相似。这两个属性也能很好地配合使用，允许子项根据需要进行伸缩。</p>
+<p><code>flexShrink</code> 接受大于等于 0 的任意浮点数值，默认值为 0（在 Web 上，默认值为 1）。容器将按照各个子项的 flex shrink 值加权收缩它们。</p>
+</li>
+</ul>
+<h2 id="row-gap-column-gap-以及-gap">Row Gap, Column Gap 以及 Gap<a hidden class="anchor" aria-hidden="true" href="#row-gap-column-gap-以及-gap">#</a></h2>
+<ul>
+<li>
+<p><code>rowGap</code>设置元素行之间的间隙（gutter）大小。</p>
+</li>
+<li>
+<p><code>columnGap</code>设置元素列之间的间隙（gutter）大小。</p>
+</li>
+<li>
+<p><code>gap</code>设置行和列之间的间隙（gutter）大小。它是 <code>rowGap</code> 和 <code>columnGap</code> 的简写形式。</p>
+</li>
+</ul>
+<p>您可以使用 <code>flexWrap</code> 和 <code>alignContent</code> 以及 <code>gap</code> 来为项目添加一致的间距。</p>
+<h2 id="宽度与高度">宽度与高度<a hidden class="anchor" aria-hidden="true" href="#宽度与高度">#</a></h2>
+<p><code>width</code>属性指定元素内容区域的宽度。同样，<code>height</code>属性指定元素内容区域的高度。</p>
+<p><code>width</code>和<code>height</code>都可以取以下值：</p>
+<ul>
+<li>
+<p><code>auto</code>（<strong>默认值</strong>）React Native 根据元素的内容计算其宽度/高度，无论是其他子元素、文本还是图像。</p>
+</li>
+<li>
+<p><code>pixels</code>以绝对像素定义宽度/高度。根据组件上设置的其他样式，这可能是节点最终尺寸也可能不是。</p>
+</li>
+<li>
+<p><code>percentage</code>分别以父级宽度或高度的百分比定义宽度或高度。</p>
+</li>
+</ul>
+<h2 id="绝对与相对定位">绝对与相对定位<a hidden class="anchor" aria-hidden="true" href="#绝对与相对定位">#</a></h2>
+<p><code>position</code> 类型定义了元素在其父元素中的定位方式。</p>
+<ul>
+<li>
+<p><code>relative</code>（<strong>默认值</strong>） 默认情况下，一个元素是相对定位的。这意味着一个元素根据布局的正常流程进行定位，然后根据 <code>top</code>、<code>right</code>、<code>bottom</code> 和 <code>left</code> 的值进行偏移。该偏移不会影响任何兄弟或父级元素的位置。</p>
+</li>
+<li>
+<p><code>absolute</code> 绝对定位时，一个元素不参与正常布局流程。它独立于其兄弟元素进行布局。位置是基于 <code>top</code>, <code>right</code>, <code>bottom</code>, 和 &rsquo;left&rsquo; 值来确定的。</p>
+</li>
+</ul>
+
+
+  </div>
+
+  <footer class="post-footer">
+    <ul class="post-tags">
+    </ul>
+  </footer>
+</article>
+    </main>
+    
+<footer class="footer">
+        <span>&copy; 2025 <a href="https://example.org/">My New Hugo Site</a></span> · 
+
+    <span>
+        Powered by
+        <a href="https://gohugo.io/" rel="noopener noreferrer" target="_blank">Hugo</a> &
+        <a href="https://github.com/adityatelange/hugo-PaperMod/" rel="noopener" target="_blank">PaperMod</a>
+    </span>
+</footer>
+<a href="#top" aria-label="go to top" title="Go to Top (Alt + G)" class="top-link" id="top-link" accesskey="g">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 12 6" fill="currentColor">
+        <path d="M12 6H0l6-6z" />
+    </svg>
+</a>
+
+<script>
+    let menu = document.getElementById('menu')
+    if (menu) {
+        menu.scrollLeft = localStorage.getItem("menu-scroll-position");
+        menu.onscroll = function () {
+            localStorage.setItem("menu-scroll-position", menu.scrollLeft);
+        }
+    }
+
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener("click", function (e) {
+            e.preventDefault();
+            var id = this.getAttribute("href").substr(1);
+            if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView({
+                    behavior: "smooth"
+                });
+            } else {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView();
+            }
+            if (id === "top") {
+                history.replaceState(null, null, " ");
+            } else {
+                history.pushState(null, null, `#${id}`);
+            }
+        });
+    });
+
+</script>
+<script>
+    var mybutton = document.getElementById("top-link");
+    window.onscroll = function () {
+        if (document.body.scrollTop > 800 || document.documentElement.scrollTop > 800) {
+            mybutton.style.visibility = "visible";
+            mybutton.style.opacity = "1";
+        } else {
+            mybutton.style.visibility = "hidden";
+            mybutton.style.opacity = "0";
+        }
+    };
+
+</script>
+<script>
+    document.getElementById("theme-toggle").addEventListener("click", () => {
+        if (document.body.className.includes("dark")) {
+            document.body.classList.remove('dark');
+            localStorage.setItem("pref-theme", 'light');
+        } else {
+            document.body.classList.add('dark');
+            localStorage.setItem("pref-theme", 'dark');
+        }
+    })
+
+</script>
+</body>
+
+</html>

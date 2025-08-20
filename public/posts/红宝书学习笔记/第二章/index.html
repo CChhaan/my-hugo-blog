@@ -1,0 +1,360 @@
+<!DOCTYPE html>
+<html lang="en" dir="auto">
+
+<head><meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="robots" content="index, follow">
+<title>My New Hugo Site</title>
+<meta name="keywords" content="">
+<meta name="description" content="script元素：将JS插入HTML地主要方法
+嵌入行内JavaScript代码：
+
+直接把代码放在script元素中，包含在scrip内的代码会被从上到下解释。在script元素中的代码被计算完成之前，页面的其余内容不会加载，也不会显示。
+JavaScript代码中不能出现字符串&lt;/script&gt;，可以用转义字符\解决
+&lt;script&gt;
+	console.log(hi!)
+&lt;/script&gt;
+包含外部文件的JavaScript代码：
+
+使用src属性，这个属性的值是一个url，指向包含JavaScript代码的文件
+文件只需包含要放在&lt;script&gt;的起始及结束标签中间的js代码。
+在解释外部JS文件时，页面也会阻塞，阻塞时间包含下载文件的时
+&lt;script src=&#34;example.js&#34;&gt;&lt;/script&gt;
+
+使用了src属性的&lt;script&gt;元素不应该再在&lt;script&gt;和&lt;/script&gt;中再包含其他JS代码。如果两者都提供的话，浏览器只会下载并执行脚本文件，忽略行内代码
+&lt;script&gt;元素可以包含来自外部域的JS文件
+浏览器会按照&lt;script&gt;在页面中出现的顺序依次解释它们
+现代Web应用程序通常将所有JS引用放在&lt;body&gt;元素中的页面内容后面，这样，页面会在处理JS代码之前完全渲染页面
+defer属性：脚本会被延迟到整个页面都解析完毕后再运行，只对外部脚本文件有效
+async属性：不必等脚本下载和执行完后在加载页面，也不必等到异步脚本下载和执行后再加载其他脚本
+动态加载脚本：
+let script = document.createElement(&#39;script&#39;)
+//默认情况下，以这种方式创建的script元素是以异步方式加载的，相当于添加了async属性。
+script.src=&#39;gibberish.js&#39;
+script.async=false
+document.head.appendChild(script)
+让浏览器预加载器知道动态请求文件的存在，可以在文档头部显示声明它们：
+&lt;link rel=&#34;preload&#34; href=&#34;gibberish.js&#34;&gt;
+&lt;noscript&gt;元素可以包含任何可以出现在&lt;body&gt;中的HTML元素，&lt;script&gt;除外。
+&ldquo;浏览器不支持脚本&quot;或&quot;浏览器对脚本的支持被关闭&quot;任何一个条件被满足，包含在&lt;noscript&gt;中的内容就会被渲染，否则，浏览器不会渲染&lt;noscript&gt;中的内容">
+<meta name="author" content="">
+<link rel="canonical" href="https://example.org/posts/%E7%BA%A2%E5%AE%9D%E4%B9%A6%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/%E7%AC%AC%E4%BA%8C%E7%AB%A0/">
+<link crossorigin="anonymous" href="/assets/css/stylesheet.8fe10233a706bc87f2e08b3cf97b8bd4c0a80f10675a143675d59212121037c0.css" integrity="sha256-j&#43;ECM6cGvIfy4Is8&#43;XuL1MCoDxBnWhQ2ddWSEhIQN8A=" rel="preload stylesheet" as="style">
+<link rel="icon" href="https://example.org/favicon.ico">
+<link rel="icon" type="image/png" sizes="16x16" href="https://example.org/favicon-16x16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="https://example.org/favicon-32x32.png">
+<link rel="apple-touch-icon" href="https://example.org/apple-touch-icon.png">
+<link rel="mask-icon" href="https://example.org/safari-pinned-tab.svg">
+<meta name="theme-color" content="#2e2e33">
+<meta name="msapplication-TileColor" content="#2e2e33">
+<link rel="alternate" hreflang="en" href="https://example.org/posts/%E7%BA%A2%E5%AE%9D%E4%B9%A6%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/%E7%AC%AC%E4%BA%8C%E7%AB%A0/">
+<noscript>
+    <style>
+        #theme-toggle,
+        .top-link {
+            display: none;
+        }
+
+    </style>
+    <style>
+        @media (prefers-color-scheme: dark) {
+            :root {
+                --theme: rgb(29, 30, 32);
+                --entry: rgb(46, 46, 51);
+                --primary: rgb(218, 218, 219);
+                --secondary: rgb(155, 156, 157);
+                --tertiary: rgb(65, 66, 68);
+                --content: rgb(196, 196, 197);
+                --code-block-bg: rgb(46, 46, 51);
+                --code-bg: rgb(55, 56, 62);
+                --border: rgb(51, 51, 51);
+            }
+
+            .list {
+                background: var(--theme);
+            }
+
+            .list:not(.dark)::-webkit-scrollbar-track {
+                background: 0 0;
+            }
+
+            .list:not(.dark)::-webkit-scrollbar-thumb {
+                border-color: var(--theme);
+            }
+        }
+
+    </style>
+</noscript><meta property="og:url" content="https://example.org/posts/%E7%BA%A2%E5%AE%9D%E4%B9%A6%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/%E7%AC%AC%E4%BA%8C%E7%AB%A0/">
+  <meta property="og:site_name" content="My New Hugo Site">
+  <meta property="og:title" content="My New Hugo Site">
+  <meta property="og:description" content="script元素：将JS插入HTML地主要方法
+嵌入行内JavaScript代码：
+直接把代码放在script元素中，包含在scrip内的代码会被从上到下解释。在script元素中的代码被计算完成之前，页面的其余内容不会加载，也不会显示。 JavaScript代码中不能出现字符串&lt;/script&gt;，可以用转义字符\解决
+&lt;script&gt; console.log(hi!) &lt;/script&gt; 包含外部文件的JavaScript代码：
+使用src属性，这个属性的值是一个url，指向包含JavaScript代码的文件 文件只需包含要放在&lt;script&gt;的起始及结束标签中间的js代码。 在解释外部JS文件时，页面也会阻塞，阻塞时间包含下载文件的时
+&lt;script src=&#34;example.js&#34;&gt;&lt;/script&gt; 使用了src属性的&lt;script&gt;元素不应该再在&lt;script&gt;和&lt;/script&gt;中再包含其他JS代码。如果两者都提供的话，浏览器只会下载并执行脚本文件，忽略行内代码 &lt;script&gt;元素可以包含来自外部域的JS文件 浏览器会按照&lt;script&gt;在页面中出现的顺序依次解释它们
+现代Web应用程序通常将所有JS引用放在&lt;body&gt;元素中的页面内容后面，这样，页面会在处理JS代码之前完全渲染页面
+defer属性：脚本会被延迟到整个页面都解析完毕后再运行，只对外部脚本文件有效
+async属性：不必等脚本下载和执行完后在加载页面，也不必等到异步脚本下载和执行后再加载其他脚本
+动态加载脚本：
+let script = document.createElement(&#39;script&#39;) //默认情况下，以这种方式创建的script元素是以异步方式加载的，相当于添加了async属性。 script.src=&#39;gibberish.js&#39; script.async=false document.head.appendChild(script) 让浏览器预加载器知道动态请求文件的存在，可以在文档头部显示声明它们：
+&lt;link rel=&#34;preload&#34; href=&#34;gibberish.js&#34;&gt; &lt;noscript&gt;元素可以包含任何可以出现在&lt;body&gt;中的HTML元素，&lt;script&gt;除外。 “浏览器不支持脚本&#34;或&#34;浏览器对脚本的支持被关闭&#34;任何一个条件被满足，包含在&lt;noscript&gt;中的内容就会被渲染，否则，浏览器不会渲染&lt;noscript&gt;中的内容">
+  <meta property="og:locale" content="en-us">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="posts">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="">
+<meta name="twitter:description" content="script元素：将JS插入HTML地主要方法
+嵌入行内JavaScript代码：
+
+直接把代码放在script元素中，包含在scrip内的代码会被从上到下解释。在script元素中的代码被计算完成之前，页面的其余内容不会加载，也不会显示。
+JavaScript代码中不能出现字符串&lt;/script&gt;，可以用转义字符\解决
+&lt;script&gt;
+	console.log(hi!)
+&lt;/script&gt;
+包含外部文件的JavaScript代码：
+
+使用src属性，这个属性的值是一个url，指向包含JavaScript代码的文件
+文件只需包含要放在&lt;script&gt;的起始及结束标签中间的js代码。
+在解释外部JS文件时，页面也会阻塞，阻塞时间包含下载文件的时
+&lt;script src=&#34;example.js&#34;&gt;&lt;/script&gt;
+
+使用了src属性的&lt;script&gt;元素不应该再在&lt;script&gt;和&lt;/script&gt;中再包含其他JS代码。如果两者都提供的话，浏览器只会下载并执行脚本文件，忽略行内代码
+&lt;script&gt;元素可以包含来自外部域的JS文件
+浏览器会按照&lt;script&gt;在页面中出现的顺序依次解释它们
+现代Web应用程序通常将所有JS引用放在&lt;body&gt;元素中的页面内容后面，这样，页面会在处理JS代码之前完全渲染页面
+defer属性：脚本会被延迟到整个页面都解析完毕后再运行，只对外部脚本文件有效
+async属性：不必等脚本下载和执行完后在加载页面，也不必等到异步脚本下载和执行后再加载其他脚本
+动态加载脚本：
+let script = document.createElement(&#39;script&#39;)
+//默认情况下，以这种方式创建的script元素是以异步方式加载的，相当于添加了async属性。
+script.src=&#39;gibberish.js&#39;
+script.async=false
+document.head.appendChild(script)
+让浏览器预加载器知道动态请求文件的存在，可以在文档头部显示声明它们：
+&lt;link rel=&#34;preload&#34; href=&#34;gibberish.js&#34;&gt;
+&lt;noscript&gt;元素可以包含任何可以出现在&lt;body&gt;中的HTML元素，&lt;script&gt;除外。
+&ldquo;浏览器不支持脚本&quot;或&quot;浏览器对脚本的支持被关闭&quot;任何一个条件被满足，包含在&lt;noscript&gt;中的内容就会被渲染，否则，浏览器不会渲染&lt;noscript&gt;中的内容">
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position":  1 ,
+      "name": "Posts",
+      "item": "https://example.org/posts/"
+    }, 
+    {
+      "@type": "ListItem",
+      "position":  2 ,
+      "name": "",
+      "item": "https://example.org/posts/%E7%BA%A2%E5%AE%9D%E4%B9%A6%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/%E7%AC%AC%E4%BA%8C%E7%AB%A0/"
+    }
+  ]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "",
+  "name": "",
+  "description": "script元素：将JS插入HTML地主要方法\n嵌入行内JavaScript代码：\n直接把代码放在script元素中，包含在scrip内的代码会被从上到下解释。在script元素中的代码被计算完成之前，页面的其余内容不会加载，也不会显示。 JavaScript代码中不能出现字符串\u0026lt;/script\u0026gt;，可以用转义字符\\解决\n\u0026lt;script\u0026gt; console.log(hi!) \u0026lt;/script\u0026gt; 包含外部文件的JavaScript代码：\n使用src属性，这个属性的值是一个url，指向包含JavaScript代码的文件 文件只需包含要放在\u0026lt;script\u0026gt;的起始及结束标签中间的js代码。 在解释外部JS文件时，页面也会阻塞，阻塞时间包含下载文件的时\n\u0026lt;script src=\u0026#34;example.js\u0026#34;\u0026gt;\u0026lt;/script\u0026gt; 使用了src属性的\u0026lt;script\u0026gt;元素不应该再在\u0026lt;script\u0026gt;和\u0026lt;/script\u0026gt;中再包含其他JS代码。如果两者都提供的话，浏览器只会下载并执行脚本文件，忽略行内代码 \u0026lt;script\u0026gt;元素可以包含来自外部域的JS文件 浏览器会按照\u0026lt;script\u0026gt;在页面中出现的顺序依次解释它们\n现代Web应用程序通常将所有JS引用放在\u0026lt;body\u0026gt;元素中的页面内容后面，这样，页面会在处理JS代码之前完全渲染页面\ndefer属性：脚本会被延迟到整个页面都解析完毕后再运行，只对外部脚本文件有效\nasync属性：不必等脚本下载和执行完后在加载页面，也不必等到异步脚本下载和执行后再加载其他脚本\n动态加载脚本：\nlet script = document.createElement(\u0026#39;script\u0026#39;) //默认情况下，以这种方式创建的script元素是以异步方式加载的，相当于添加了async属性。 script.src=\u0026#39;gibberish.js\u0026#39; script.async=false document.head.appendChild(script) 让浏览器预加载器知道动态请求文件的存在，可以在文档头部显示声明它们：\n\u0026lt;link rel=\u0026#34;preload\u0026#34; href=\u0026#34;gibberish.js\u0026#34;\u0026gt; \u0026lt;noscript\u0026gt;元素可以包含任何可以出现在\u0026lt;body\u0026gt;中的HTML元素，\u0026lt;script\u0026gt;除外。 \u0026ldquo;浏览器不支持脚本\u0026quot;或\u0026quot;浏览器对脚本的支持被关闭\u0026quot;任何一个条件被满足，包含在\u0026lt;noscript\u0026gt;中的内容就会被渲染，否则，浏览器不会渲染\u0026lt;noscript\u0026gt;中的内容\n",
+  "keywords": [
+    
+  ],
+  "articleBody": "script元素：将JS插入HTML地主要方法\n嵌入行内JavaScript代码：\n直接把代码放在script元素中，包含在scrip内的代码会被从上到下解释。在script元素中的代码被计算完成之前，页面的其余内容不会加载，也不会显示。 JavaScript代码中不能出现字符串，可以用转义字符\\解决\n\u003cscript\u003e console.log(hi!) \u003c/script\u003e 包含外部文件的JavaScript代码：\n使用src属性，这个属性的值是一个url，指向包含JavaScript代码的文件 文件只需包含要放在中再包含其他JS代码。如果两者都提供的话，浏览器只会下载并执行脚本文件，忽略行内代码 ",
+  "wordCount" : "34",
+  "inLanguage": "en",
+  "datePublished": "0001-01-01T00:00:00Z",
+  "dateModified": "0001-01-01T00:00:00Z",
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://example.org/posts/%E7%BA%A2%E5%AE%9D%E4%B9%A6%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/%E7%AC%AC%E4%BA%8C%E7%AB%A0/"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "My New Hugo Site",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://example.org/favicon.ico"
+    }
+  }
+}
+</script>
+</head>
+
+<body class="" id="top">
+<script>
+    if (localStorage.getItem("pref-theme") === "dark") {
+        document.body.classList.add('dark');
+    } else if (localStorage.getItem("pref-theme") === "light") {
+        document.body.classList.remove('dark')
+    } else if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+        document.body.classList.add('dark');
+    }
+
+</script>
+
+<header class="header">
+    <nav class="nav">
+        <div class="logo">
+            <a href="https://example.org/" accesskey="h" title="My New Hugo Site (Alt + H)">My New Hugo Site</a>
+            <div class="logo-switches">
+                <button id="theme-toggle" accesskey="t" title="(Alt + T)" aria-label="Toggle theme">
+                    <svg id="moon" xmlns="http://www.w3.org/2000/svg" width="24" height="18" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                    </svg>
+                    <svg id="sun" xmlns="http://www.w3.org/2000/svg" width="24" height="18" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <circle cx="12" cy="12" r="5"></circle>
+                        <line x1="12" y1="1" x2="12" y2="3"></line>
+                        <line x1="12" y1="21" x2="12" y2="23"></line>
+                        <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                        <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                        <line x1="1" y1="12" x2="3" y2="12"></line>
+                        <line x1="21" y1="12" x2="23" y2="12"></line>
+                        <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                        <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+                    </svg>
+                </button>
+            </div>
+        </div>
+        <ul id="menu">
+        </ul>
+    </nav>
+</header>
+<main class="main">
+
+<article class="post-single">
+  <header class="post-header">
+    
+    <h1 class="post-title entry-hint-parent">
+      
+    </h1>
+    <div class="post-meta">
+
+</div>
+  </header> 
+  <div class="post-content"><p>script元素：将JS插入HTML地主要方法</p>
+<p>嵌入行内JavaScript代码：</p>
+<blockquote>
+<p>直接把代码放在script元素中，包含在scrip内的代码会被从上到下解释。在script元素中的代码被计算完成之前，页面的其余内容不会加载，也不会显示。
+JavaScript代码中不能出现字符串<code>&lt;/script&gt;</code>，可以用转义字符<code>\</code>解决</p></blockquote>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-html" data-lang="html"><span style="display:flex;"><span>&lt;<span style="color:#f92672">script</span>&gt;
+</span></span><span style="display:flex;"><span>	<span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#a6e22e">hi</span><span style="color:#f92672">!</span>)
+</span></span><span style="display:flex;"><span>&lt;/<span style="color:#f92672">script</span>&gt;
+</span></span></code></pre></div><p>包含外部文件的JavaScript代码：</p>
+<blockquote>
+<p>使用src属性，这个属性的值是一个url，指向包含JavaScript代码的文件
+文件只需包含要放在<code>&lt;script&gt;</code>的起始及结束标签中间的js代码。
+在解释外部JS文件时，页面也会阻塞，阻塞时间包含下载文件的时</p></blockquote>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-html" data-lang="html"><span style="display:flex;"><span>&lt;<span style="color:#f92672">script</span> <span style="color:#a6e22e">src</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;example.js&#34;</span>&gt;&lt;/<span style="color:#f92672">script</span>&gt;
+</span></span></code></pre></div><blockquote>
+<p>使用了src属性的<code>&lt;script&gt;</code>元素不应该再在<code>&lt;script&gt;</code>和<code>&lt;/script&gt;</code>中再包含其他JS代码。如果两者都提供的话，浏览器只会下载并执行脚本文件，忽略行内代码
+<code>&lt;script&gt;</code>元素可以包含来自外部域的JS文件
+浏览器会按照<code>&lt;script&gt;</code>在页面中出现的顺序依次解释它们</p></blockquote>
+<p>现代Web应用程序通常将所有JS引用放在<code>&lt;body&gt;</code>元素中的页面内容后面，这样，页面会在处理JS代码之前完全渲染页面</p>
+<p>defer属性：脚本会被延迟到整个页面都解析完毕后再运行，只对外部脚本文件有效</p>
+<p>async属性：不必等脚本下载和执行完后在加载页面，也不必等到异步脚本下载和执行后再加载其他脚本</p>
+<p>动态加载脚本：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-js" data-lang="js"><span style="display:flex;"><span><span style="color:#66d9ef">let</span> <span style="color:#a6e22e">script</span> <span style="color:#f92672">=</span> document.<span style="color:#a6e22e">createElement</span>(<span style="color:#e6db74">&#39;script&#39;</span>)
+</span></span><span style="display:flex;"><span><span style="color:#75715e">//默认情况下，以这种方式创建的script元素是以异步方式加载的，相当于添加了async属性。
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#a6e22e">script</span>.<span style="color:#a6e22e">src</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#39;gibberish.js&#39;</span>
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">script</span>.<span style="color:#66d9ef">async</span><span style="color:#f92672">=</span><span style="color:#66d9ef">false</span>
+</span></span><span style="display:flex;"><span>document.<span style="color:#a6e22e">head</span>.<span style="color:#a6e22e">appendChild</span>(<span style="color:#a6e22e">script</span>)
+</span></span></code></pre></div><p>让浏览器预加载器知道动态请求文件的存在，可以在文档头部显示声明它们：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-html" data-lang="html"><span style="display:flex;"><span>&lt;<span style="color:#f92672">link</span> <span style="color:#a6e22e">rel</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;preload&#34;</span> <span style="color:#a6e22e">href</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;gibberish.js&#34;</span>&gt;
+</span></span></code></pre></div><p><code>&lt;noscript&gt;</code>元素可以包含任何可以出现在<code>&lt;body&gt;</code>中的HTML元素，<code>&lt;script&gt;</code>除外。
+&ldquo;浏览器不支持脚本&quot;或&quot;浏览器对脚本的支持被关闭&quot;任何一个条件被满足，包含在<code>&lt;noscript&gt;</code>中的内容就会被渲染，否则，浏览器不会渲染<code>&lt;noscript&gt;</code>中的内容</p>
+
+
+  </div>
+
+  <footer class="post-footer">
+    <ul class="post-tags">
+    </ul>
+  </footer>
+</article>
+    </main>
+    
+<footer class="footer">
+        <span>&copy; 2025 <a href="https://example.org/">My New Hugo Site</a></span> · 
+
+    <span>
+        Powered by
+        <a href="https://gohugo.io/" rel="noopener noreferrer" target="_blank">Hugo</a> &
+        <a href="https://github.com/adityatelange/hugo-PaperMod/" rel="noopener" target="_blank">PaperMod</a>
+    </span>
+</footer>
+<a href="#top" aria-label="go to top" title="Go to Top (Alt + G)" class="top-link" id="top-link" accesskey="g">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 12 6" fill="currentColor">
+        <path d="M12 6H0l6-6z" />
+    </svg>
+</a>
+
+<script>
+    let menu = document.getElementById('menu')
+    if (menu) {
+        menu.scrollLeft = localStorage.getItem("menu-scroll-position");
+        menu.onscroll = function () {
+            localStorage.setItem("menu-scroll-position", menu.scrollLeft);
+        }
+    }
+
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener("click", function (e) {
+            e.preventDefault();
+            var id = this.getAttribute("href").substr(1);
+            if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView({
+                    behavior: "smooth"
+                });
+            } else {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView();
+            }
+            if (id === "top") {
+                history.replaceState(null, null, " ");
+            } else {
+                history.pushState(null, null, `#${id}`);
+            }
+        });
+    });
+
+</script>
+<script>
+    var mybutton = document.getElementById("top-link");
+    window.onscroll = function () {
+        if (document.body.scrollTop > 800 || document.documentElement.scrollTop > 800) {
+            mybutton.style.visibility = "visible";
+            mybutton.style.opacity = "1";
+        } else {
+            mybutton.style.visibility = "hidden";
+            mybutton.style.opacity = "0";
+        }
+    };
+
+</script>
+<script>
+    document.getElementById("theme-toggle").addEventListener("click", () => {
+        if (document.body.className.includes("dark")) {
+            document.body.classList.remove('dark');
+            localStorage.setItem("pref-theme", 'light');
+        } else {
+            document.body.classList.add('dark');
+            localStorage.setItem("pref-theme", 'dark');
+        }
+    })
+
+</script>
+</body>
+
+</html>

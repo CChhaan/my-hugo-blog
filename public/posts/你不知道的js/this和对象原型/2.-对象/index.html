@@ -1,0 +1,599 @@
+<!DOCTYPE html>
+<html lang="en" dir="auto">
+
+<head><meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="robots" content="index, follow">
+<title>My New Hugo Site</title>
+<meta name="keywords" content="">
+<meta name="description" content="
+本文摘要：JavaScript对象可以通过文字声明或构造形式定义，两种方式结果相同但写法不同。JS有6种基本类型和多种对象子类型，包括内置对象如Array、Date等。对象属性存储的是名称而非值本身，可通过点语法或块访问访问。属性描述符可控制属性的可写性、可配置性等特性。通过Object.preventExtensions()、Object.seal()和Object.freeze()可实现不同级别的对象不可变性。in、hasOwnProperty()等方法可用于检查属性存在性，forEach、every等辅助迭代器可用于数组遍历。for..of循环通过内置@@iterator实现迭代访问。
+对象可以通过两种形式定义：声明文字形式和构造形式
+构造形式和文字形式生成的对象是一样的，唯一的区别是，在文字声明中可以添加多个键值对，但是在构造形式中必须逐个添加属性
+
+在JS中一共有六种主要类型：string、number、boolean、null、undefined和object
+简单基本类型本身并不是对象，JS中有许多特殊的对象子类型，我们称之为复杂基本类型
+函数就是对象的一个子类型（可调用的对象），JS中的函数是一等公民，因为他本质上和普通的对象一样（只是可调用），所以可以像操作其他对象一样操作函数
+数组也是对象的一种类型，具备一些额外的行为，数组中内容的组织方式比一般的对象要稍微复杂一些
+JS还有一些对象子类型，被称为内置对象，String、Number、Boolean、Object、Function、Array、Date、RegExp、Error
+这些内置函数可以当做构造函数来使用，从而可以构造一个对应子类型的新对象
+有必要时，语言会自动把字面量转换成对应的内置对象，也就是说并不需要显式创建一个对象
+null和undefined没有对应的构造形式，它们只有文字形式，Date只有构造，没有文字形式
+对于Object、Array、Function和RegExp来说，无论使用文字形式还是构造形式，它们都是对象，不是字面量。在某些情况下，构造形式可以提供一些额外选项，建议只在需要那些额外选项时使用构造形式
+Error对象很少在代码中显式创建，一般是在抛出异常时被自动创建，也可以使用new Error()这种构造形式来创建
+
+对象的内容是由一些存储在特定命名位置的值组成的，我们称之为属性
+在引擎内部，这些值的存储方式是多种多样的，一般并不会存在对象容器内部，存储在对象容器内部的是这些属性的名称，它们就像指针一样，指向这些值真正的存储位置
+.语法通常被称为属性访问，[&quot;&quot;]语法通常被称为块访问，这两种语法的主要区别是.操作符要求属性名满足标识符的命名规范，[&quot;&quot;]语法可以接受任意UTF-8/Unicode字符串作为属性名。此外，由于[&quot;&quot;]语法使用字符串来访问属性，所以可以在程序中构造这个字符串
+在对象中，属性名永远都是字符串，如果使用string字面量以外的其他值作为属性名，那它首先会被转换为一个字符串
+可以在文字形式中使用[]包裹一个表达式来当做属性名（可计算属性名）
+函数永远不会属于一个对象，无论返回值是什么类型，每次访问对象的属性就是属性访问，属性访问返回的函数和其他函数没有任何区别
+数组也支持[]访问形式，数组有一套更加结构化的值存储机制，数组期望的是数值下标，也就是说值存储的位置是非负整数
+数组也是对象，虽然每个下标都是整数，但仍然可以给数组添加命名属性，数组的length值不会发生变化
+完全可以把数组当成一个普通的键值对象来使用，并且不添加任何数值索引，但最好只用对象来存储键值对，只用数组来存储下标值对
+如果试图向数组添加一个属性，但是属性名看起来像一个数字，那他会变成一个数值下标
+对于JSON安全的对象来说，进行深拷贝可以通过：
+var newObj = JSON.parse(JSON.stringify(someObj))
+ES6定义了Object.assign()方法实现浅拷贝，第一个参数是目标对象，之后可以跟一个或多个源对象。它会遍历一个或多个源对象的所有可枚举的自有键并把它们复制到目标对象，最后返回目标对象。
+因为Object.assign()使用=操作符来赋值，所以源对象属性的一些特性不会被复制到目标对象
+
+在创建普通属性时属性描述符会使用默认值，我们也可以使用Object.defineProperty()来添加一个新属性或者修改一个已有属性并对特性进行设置
+
+writable：决定是否可以修改属性的值
+configurable：只要属性是可配置的，就可以使用defineProperty()方法来修改属性描述符，将其改成false是单项操作，不能撤销
+
+​	除了无法修改，configurable:false还会禁止删除这个属性
+​	delete只用来删除对象的属性
+
+
+enumerable：这个描述符控制的是属性是否会出现在对象的属性枚举中。如果把enumerable设置成false，这个属性就不会出现在枚举中，虽然仍然可以正常访问它。
+
+
+get：对象默认的内置[[Get]]操作首先在对象中查找是否有名称相同的属性，如果找到就会返回这个属性的值。如果没有找到名称相同的属性，GET算法会执行原型链查找，如果无论如何都没有找到名称相同的属性，会返回undefined
+
+
+put：如果已经存在这个属性，put算法大致会检查下面这些内容：
+
+属性是否是访问操作符？如果是并且存在setter就调用setter
+属性的数据描述符中writable是否是false？如果是，在非严格模式下静默失败，在严格模式下抛出类型异常
+如果都不是，将该值设置为属性值
+
+如果对象中不存在这个属性，put操作会更加复杂
+
+
+getter是一个隐藏函数，会在获取属性值时调用。setter也是一个隐藏函数，会在设置属性值时调用。当给一个属性定义getter、setter或者两者都有时，这个属性会被定义为访问描述符（和数据描述符相对）。对于访问描述符来说，JS会忽略它们的value和writable特性，取而代之的是关心set和get特性
+
+
+​	不管是对象文字语法中的get a(){}，还是defineProperty()中的显示定义，二者都会在对象中创建一个不包含值的属性，对于这个属性的访问会自动调用一个隐藏函数，它的返回值会被当做属性访问的返回值
+​	setter会覆盖单个属性默认的put操作，通常来说getter和setter是成对出现的
+
+让属性或对象是不可变的：
+
+
+对象常量：结合writable:false和configurable:false就可以创建一个真正的常量属性（不可修改、重定义或者删除）
+
+
+禁止扩展：使用Object.preventExtensions()可以禁止一个对象添加新属性并且保留已有属性
+
+
+密封：Object.seal()会创建一个密封的对象，这个方法实际上会在一个现有对象上调用Object.preventExtensions()并把所有现有属性标记为configurable:false。所以密封之后不仅不能添加新属性，也不能重新配置或者删除任何现有属性（虽然可以修改属性的值）
+
+
+Object.freeze()会创建一个冻结对象。这个方法实际上会在一个现有对象上调用Object.seal()并把所有数据访问属性标记为writable:false，这样就无法修改它们的值
+这个方法是可以应用在对象上的级别最高的不可变性，它会禁止对于对象本身及其任意直接属性的修改
+
+
+以上所有的方法创建的都是浅不变形，也就是说，它们只会影响目标对象和它的直接属性。如果目标对象引用了其他对象，其他对象的内容不受影响，仍然是可变的。
+
+存在性：
+in操作符会检查属性是否在对象及其原型链中。hasOwnProperty()只会检查属性是否在对象中，不会检查原型链
+propertyIsEnumerable()方法会检查给定的属性名是否直接存在于对象中，而不是原型链上，并且满足enumerable:true
+Object.keys()会返回一个数组，包含所有可枚举属性，Object.getOwnPropertyNames()会返回一个数组，包含所有属性，无论它们是否可枚举
+in和hasOwnProperty()的区别在于是否查找原型链，然而，Object.keys()和Object.getOwnPropertyNames()都只会查找对象直接包含的属性
+
+for&hellip;in循环可以用来遍历对象的可枚举属性列表（包括原型链），遍历顺序是不确定的，在不同的JS引擎中可能不一样
+对于数值索引的数组来说，可以使用标准的for循环来遍历值
+ES5中增加了一些数组的辅助迭代器，每种辅助迭代器都可以接受一个回调函数并把它应用到数组的每个元素上，唯一的区别就是它对于回调函数返回值的处理方式不同：
+
+forEach()会遍历数组中的所有值并忽略回调函数的返回值
+every()会一直运行直到回调函数返回false
+some()会一直运行直到回调函数返回true
+
+every()和some()中特殊的返回值和普通for循环中的break语句类似，它们会提前终止遍历
+for..of循环首先会向被访问对象请求一个迭代器对象，然后通过调用迭代器对象的next()方法来遍历所有返回值
+数组有内置的@@iterator（返回迭代器对象的函数），因此for&hellip;of可以直接应用在数组上">
+<meta name="author" content="">
+<link rel="canonical" href="https://example.org/posts/%E4%BD%A0%E4%B8%8D%E7%9F%A5%E9%81%93%E7%9A%84js/this%E5%92%8C%E5%AF%B9%E8%B1%A1%E5%8E%9F%E5%9E%8B/2.-%E5%AF%B9%E8%B1%A1/">
+<link crossorigin="anonymous" href="/assets/css/stylesheet.8fe10233a706bc87f2e08b3cf97b8bd4c0a80f10675a143675d59212121037c0.css" integrity="sha256-j&#43;ECM6cGvIfy4Is8&#43;XuL1MCoDxBnWhQ2ddWSEhIQN8A=" rel="preload stylesheet" as="style">
+<link rel="icon" href="https://example.org/favicon.ico">
+<link rel="icon" type="image/png" sizes="16x16" href="https://example.org/favicon-16x16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="https://example.org/favicon-32x32.png">
+<link rel="apple-touch-icon" href="https://example.org/apple-touch-icon.png">
+<link rel="mask-icon" href="https://example.org/safari-pinned-tab.svg">
+<meta name="theme-color" content="#2e2e33">
+<meta name="msapplication-TileColor" content="#2e2e33">
+<link rel="alternate" hreflang="en" href="https://example.org/posts/%E4%BD%A0%E4%B8%8D%E7%9F%A5%E9%81%93%E7%9A%84js/this%E5%92%8C%E5%AF%B9%E8%B1%A1%E5%8E%9F%E5%9E%8B/2.-%E5%AF%B9%E8%B1%A1/">
+<noscript>
+    <style>
+        #theme-toggle,
+        .top-link {
+            display: none;
+        }
+
+    </style>
+    <style>
+        @media (prefers-color-scheme: dark) {
+            :root {
+                --theme: rgb(29, 30, 32);
+                --entry: rgb(46, 46, 51);
+                --primary: rgb(218, 218, 219);
+                --secondary: rgb(155, 156, 157);
+                --tertiary: rgb(65, 66, 68);
+                --content: rgb(196, 196, 197);
+                --code-block-bg: rgb(46, 46, 51);
+                --code-bg: rgb(55, 56, 62);
+                --border: rgb(51, 51, 51);
+            }
+
+            .list {
+                background: var(--theme);
+            }
+
+            .list:not(.dark)::-webkit-scrollbar-track {
+                background: 0 0;
+            }
+
+            .list:not(.dark)::-webkit-scrollbar-thumb {
+                border-color: var(--theme);
+            }
+        }
+
+    </style>
+</noscript><meta property="og:url" content="https://example.org/posts/%E4%BD%A0%E4%B8%8D%E7%9F%A5%E9%81%93%E7%9A%84js/this%E5%92%8C%E5%AF%B9%E8%B1%A1%E5%8E%9F%E5%9E%8B/2.-%E5%AF%B9%E8%B1%A1/">
+  <meta property="og:site_name" content="My New Hugo Site">
+  <meta property="og:title" content="My New Hugo Site">
+  <meta property="og:description" content=" 本文摘要：JavaScript对象可以通过文字声明或构造形式定义，两种方式结果相同但写法不同。JS有6种基本类型和多种对象子类型，包括内置对象如Array、Date等。对象属性存储的是名称而非值本身，可通过点语法或块访问访问。属性描述符可控制属性的可写性、可配置性等特性。通过Object.preventExtensions()、Object.seal()和Object.freeze()可实现不同级别的对象不可变性。in、hasOwnProperty()等方法可用于检查属性存在性，forEach、every等辅助迭代器可用于数组遍历。for..of循环通过内置@@iterator实现迭代访问。
+对象可以通过两种形式定义：声明文字形式和构造形式
+构造形式和文字形式生成的对象是一样的，唯一的区别是，在文字声明中可以添加多个键值对，但是在构造形式中必须逐个添加属性
+在JS中一共有六种主要类型：string、number、boolean、null、undefined和object
+简单基本类型本身并不是对象，JS中有许多特殊的对象子类型，我们称之为复杂基本类型
+函数就是对象的一个子类型（可调用的对象），JS中的函数是一等公民，因为他本质上和普通的对象一样（只是可调用），所以可以像操作其他对象一样操作函数
+数组也是对象的一种类型，具备一些额外的行为，数组中内容的组织方式比一般的对象要稍微复杂一些
+JS还有一些对象子类型，被称为内置对象，String、Number、Boolean、Object、Function、Array、Date、RegExp、Error
+这些内置函数可以当做构造函数来使用，从而可以构造一个对应子类型的新对象
+有必要时，语言会自动把字面量转换成对应的内置对象，也就是说并不需要显式创建一个对象
+null和undefined没有对应的构造形式，它们只有文字形式，Date只有构造，没有文字形式
+对于Object、Array、Function和RegExp来说，无论使用文字形式还是构造形式，它们都是对象，不是字面量。在某些情况下，构造形式可以提供一些额外选项，建议只在需要那些额外选项时使用构造形式
+Error对象很少在代码中显式创建，一般是在抛出异常时被自动创建，也可以使用new Error()这种构造形式来创建
+对象的内容是由一些存储在特定命名位置的值组成的，我们称之为属性
+在引擎内部，这些值的存储方式是多种多样的，一般并不会存在对象容器内部，存储在对象容器内部的是这些属性的名称，它们就像指针一样，指向这些值真正的存储位置
+.语法通常被称为属性访问，[&#34;&#34;]语法通常被称为块访问，这两种语法的主要区别是.操作符要求属性名满足标识符的命名规范，[&#34;&#34;]语法可以接受任意UTF-8/Unicode字符串作为属性名。此外，由于[&#34;&#34;]语法使用字符串来访问属性，所以可以在程序中构造这个字符串
+在对象中，属性名永远都是字符串，如果使用string字面量以外的其他值作为属性名，那它首先会被转换为一个字符串
+可以在文字形式中使用[]包裹一个表达式来当做属性名（可计算属性名）
+函数永远不会属于一个对象，无论返回值是什么类型，每次访问对象的属性就是属性访问，属性访问返回的函数和其他函数没有任何区别
+数组也支持[]访问形式，数组有一套更加结构化的值存储机制，数组期望的是数值下标，也就是说值存储的位置是非负整数
+数组也是对象，虽然每个下标都是整数，但仍然可以给数组添加命名属性，数组的length值不会发生变化
+完全可以把数组当成一个普通的键值对象来使用，并且不添加任何数值索引，但最好只用对象来存储键值对，只用数组来存储下标值对
+如果试图向数组添加一个属性，但是属性名看起来像一个数字，那他会变成一个数值下标
+对于JSON安全的对象来说，进行深拷贝可以通过：
+var newObj = JSON.parse(JSON.stringify(someObj)) ES6定义了Object.assign()方法实现浅拷贝，第一个参数是目标对象，之后可以跟一个或多个源对象。它会遍历一个或多个源对象的所有可枚举的自有键并把它们复制到目标对象，最后返回目标对象。
+因为Object.assign()使用=操作符来赋值，所以源对象属性的一些特性不会被复制到目标对象
+在创建普通属性时属性描述符会使用默认值，我们也可以使用Object.defineProperty()来添加一个新属性或者修改一个已有属性并对特性进行设置
+writable：决定是否可以修改属性的值 configurable：只要属性是可配置的，就可以使用defineProperty()方法来修改属性描述符，将其改成false是单项操作，不能撤销 ​	除了无法修改，configurable:false还会禁止删除这个属性
+​	delete只用来删除对象的属性
+enumerable：这个描述符控制的是属性是否会出现在对象的属性枚举中。如果把enumerable设置成false，这个属性就不会出现在枚举中，虽然仍然可以正常访问它。
+get：对象默认的内置[[Get]]操作首先在对象中查找是否有名称相同的属性，如果找到就会返回这个属性的值。如果没有找到名称相同的属性，GET算法会执行原型链查找，如果无论如何都没有找到名称相同的属性，会返回undefined
+put：如果已经存在这个属性，put算法大致会检查下面这些内容：
+属性是否是访问操作符？如果是并且存在setter就调用setter 属性的数据描述符中writable是否是false？如果是，在非严格模式下静默失败，在严格模式下抛出类型异常 如果都不是，将该值设置为属性值 如果对象中不存在这个属性，put操作会更加复杂
+getter是一个隐藏函数，会在获取属性值时调用。setter也是一个隐藏函数，会在设置属性值时调用。当给一个属性定义getter、setter或者两者都有时，这个属性会被定义为访问描述符（和数据描述符相对）。对于访问描述符来说，JS会忽略它们的value和writable特性，取而代之的是关心set和get特性
+​	不管是对象文字语法中的get a(){}，还是defineProperty()中的显示定义，二者都会在对象中创建一个不包含值的属性，对于这个属性的访问会自动调用一个隐藏函数，它的返回值会被当做属性访问的返回值
+​	setter会覆盖单个属性默认的put操作，通常来说getter和setter是成对出现的
+让属性或对象是不可变的：
+对象常量：结合writable:false和configurable:false就可以创建一个真正的常量属性（不可修改、重定义或者删除）
+禁止扩展：使用Object.preventExtensions()可以禁止一个对象添加新属性并且保留已有属性
+密封：Object.seal()会创建一个密封的对象，这个方法实际上会在一个现有对象上调用Object.preventExtensions()并把所有现有属性标记为configurable:false。所以密封之后不仅不能添加新属性，也不能重新配置或者删除任何现有属性（虽然可以修改属性的值）
+Object.freeze()会创建一个冻结对象。这个方法实际上会在一个现有对象上调用Object.seal()并把所有数据访问属性标记为writable:false，这样就无法修改它们的值
+这个方法是可以应用在对象上的级别最高的不可变性，它会禁止对于对象本身及其任意直接属性的修改
+以上所有的方法创建的都是浅不变形，也就是说，它们只会影响目标对象和它的直接属性。如果目标对象引用了其他对象，其他对象的内容不受影响，仍然是可变的。
+存在性：
+in操作符会检查属性是否在对象及其原型链中。hasOwnProperty()只会检查属性是否在对象中，不会检查原型链
+propertyIsEnumerable()方法会检查给定的属性名是否直接存在于对象中，而不是原型链上，并且满足enumerable:true
+Object.keys()会返回一个数组，包含所有可枚举属性，Object.getOwnPropertyNames()会返回一个数组，包含所有属性，无论它们是否可枚举
+in和hasOwnProperty()的区别在于是否查找原型链，然而，Object.keys()和Object.getOwnPropertyNames()都只会查找对象直接包含的属性
+for…in循环可以用来遍历对象的可枚举属性列表（包括原型链），遍历顺序是不确定的，在不同的JS引擎中可能不一样
+对于数值索引的数组来说，可以使用标准的for循环来遍历值
+ES5中增加了一些数组的辅助迭代器，每种辅助迭代器都可以接受一个回调函数并把它应用到数组的每个元素上，唯一的区别就是它对于回调函数返回值的处理方式不同：
+forEach()会遍历数组中的所有值并忽略回调函数的返回值 every()会一直运行直到回调函数返回false some()会一直运行直到回调函数返回true every()和some()中特殊的返回值和普通for循环中的break语句类似，它们会提前终止遍历
+for..of循环首先会向被访问对象请求一个迭代器对象，然后通过调用迭代器对象的next()方法来遍历所有返回值
+数组有内置的@@iterator（返回迭代器对象的函数），因此for…of可以直接应用在数组上">
+  <meta property="og:locale" content="en-us">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="posts">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="">
+<meta name="twitter:description" content="
+本文摘要：JavaScript对象可以通过文字声明或构造形式定义，两种方式结果相同但写法不同。JS有6种基本类型和多种对象子类型，包括内置对象如Array、Date等。对象属性存储的是名称而非值本身，可通过点语法或块访问访问。属性描述符可控制属性的可写性、可配置性等特性。通过Object.preventExtensions()、Object.seal()和Object.freeze()可实现不同级别的对象不可变性。in、hasOwnProperty()等方法可用于检查属性存在性，forEach、every等辅助迭代器可用于数组遍历。for..of循环通过内置@@iterator实现迭代访问。
+对象可以通过两种形式定义：声明文字形式和构造形式
+构造形式和文字形式生成的对象是一样的，唯一的区别是，在文字声明中可以添加多个键值对，但是在构造形式中必须逐个添加属性
+
+在JS中一共有六种主要类型：string、number、boolean、null、undefined和object
+简单基本类型本身并不是对象，JS中有许多特殊的对象子类型，我们称之为复杂基本类型
+函数就是对象的一个子类型（可调用的对象），JS中的函数是一等公民，因为他本质上和普通的对象一样（只是可调用），所以可以像操作其他对象一样操作函数
+数组也是对象的一种类型，具备一些额外的行为，数组中内容的组织方式比一般的对象要稍微复杂一些
+JS还有一些对象子类型，被称为内置对象，String、Number、Boolean、Object、Function、Array、Date、RegExp、Error
+这些内置函数可以当做构造函数来使用，从而可以构造一个对应子类型的新对象
+有必要时，语言会自动把字面量转换成对应的内置对象，也就是说并不需要显式创建一个对象
+null和undefined没有对应的构造形式，它们只有文字形式，Date只有构造，没有文字形式
+对于Object、Array、Function和RegExp来说，无论使用文字形式还是构造形式，它们都是对象，不是字面量。在某些情况下，构造形式可以提供一些额外选项，建议只在需要那些额外选项时使用构造形式
+Error对象很少在代码中显式创建，一般是在抛出异常时被自动创建，也可以使用new Error()这种构造形式来创建
+
+对象的内容是由一些存储在特定命名位置的值组成的，我们称之为属性
+在引擎内部，这些值的存储方式是多种多样的，一般并不会存在对象容器内部，存储在对象容器内部的是这些属性的名称，它们就像指针一样，指向这些值真正的存储位置
+.语法通常被称为属性访问，[&quot;&quot;]语法通常被称为块访问，这两种语法的主要区别是.操作符要求属性名满足标识符的命名规范，[&quot;&quot;]语法可以接受任意UTF-8/Unicode字符串作为属性名。此外，由于[&quot;&quot;]语法使用字符串来访问属性，所以可以在程序中构造这个字符串
+在对象中，属性名永远都是字符串，如果使用string字面量以外的其他值作为属性名，那它首先会被转换为一个字符串
+可以在文字形式中使用[]包裹一个表达式来当做属性名（可计算属性名）
+函数永远不会属于一个对象，无论返回值是什么类型，每次访问对象的属性就是属性访问，属性访问返回的函数和其他函数没有任何区别
+数组也支持[]访问形式，数组有一套更加结构化的值存储机制，数组期望的是数值下标，也就是说值存储的位置是非负整数
+数组也是对象，虽然每个下标都是整数，但仍然可以给数组添加命名属性，数组的length值不会发生变化
+完全可以把数组当成一个普通的键值对象来使用，并且不添加任何数值索引，但最好只用对象来存储键值对，只用数组来存储下标值对
+如果试图向数组添加一个属性，但是属性名看起来像一个数字，那他会变成一个数值下标
+对于JSON安全的对象来说，进行深拷贝可以通过：
+var newObj = JSON.parse(JSON.stringify(someObj))
+ES6定义了Object.assign()方法实现浅拷贝，第一个参数是目标对象，之后可以跟一个或多个源对象。它会遍历一个或多个源对象的所有可枚举的自有键并把它们复制到目标对象，最后返回目标对象。
+因为Object.assign()使用=操作符来赋值，所以源对象属性的一些特性不会被复制到目标对象
+
+在创建普通属性时属性描述符会使用默认值，我们也可以使用Object.defineProperty()来添加一个新属性或者修改一个已有属性并对特性进行设置
+
+writable：决定是否可以修改属性的值
+configurable：只要属性是可配置的，就可以使用defineProperty()方法来修改属性描述符，将其改成false是单项操作，不能撤销
+
+​	除了无法修改，configurable:false还会禁止删除这个属性
+​	delete只用来删除对象的属性
+
+
+enumerable：这个描述符控制的是属性是否会出现在对象的属性枚举中。如果把enumerable设置成false，这个属性就不会出现在枚举中，虽然仍然可以正常访问它。
+
+
+get：对象默认的内置[[Get]]操作首先在对象中查找是否有名称相同的属性，如果找到就会返回这个属性的值。如果没有找到名称相同的属性，GET算法会执行原型链查找，如果无论如何都没有找到名称相同的属性，会返回undefined
+
+
+put：如果已经存在这个属性，put算法大致会检查下面这些内容：
+
+属性是否是访问操作符？如果是并且存在setter就调用setter
+属性的数据描述符中writable是否是false？如果是，在非严格模式下静默失败，在严格模式下抛出类型异常
+如果都不是，将该值设置为属性值
+
+如果对象中不存在这个属性，put操作会更加复杂
+
+
+getter是一个隐藏函数，会在获取属性值时调用。setter也是一个隐藏函数，会在设置属性值时调用。当给一个属性定义getter、setter或者两者都有时，这个属性会被定义为访问描述符（和数据描述符相对）。对于访问描述符来说，JS会忽略它们的value和writable特性，取而代之的是关心set和get特性
+
+
+​	不管是对象文字语法中的get a(){}，还是defineProperty()中的显示定义，二者都会在对象中创建一个不包含值的属性，对于这个属性的访问会自动调用一个隐藏函数，它的返回值会被当做属性访问的返回值
+​	setter会覆盖单个属性默认的put操作，通常来说getter和setter是成对出现的
+
+让属性或对象是不可变的：
+
+
+对象常量：结合writable:false和configurable:false就可以创建一个真正的常量属性（不可修改、重定义或者删除）
+
+
+禁止扩展：使用Object.preventExtensions()可以禁止一个对象添加新属性并且保留已有属性
+
+
+密封：Object.seal()会创建一个密封的对象，这个方法实际上会在一个现有对象上调用Object.preventExtensions()并把所有现有属性标记为configurable:false。所以密封之后不仅不能添加新属性，也不能重新配置或者删除任何现有属性（虽然可以修改属性的值）
+
+
+Object.freeze()会创建一个冻结对象。这个方法实际上会在一个现有对象上调用Object.seal()并把所有数据访问属性标记为writable:false，这样就无法修改它们的值
+这个方法是可以应用在对象上的级别最高的不可变性，它会禁止对于对象本身及其任意直接属性的修改
+
+
+以上所有的方法创建的都是浅不变形，也就是说，它们只会影响目标对象和它的直接属性。如果目标对象引用了其他对象，其他对象的内容不受影响，仍然是可变的。
+
+存在性：
+in操作符会检查属性是否在对象及其原型链中。hasOwnProperty()只会检查属性是否在对象中，不会检查原型链
+propertyIsEnumerable()方法会检查给定的属性名是否直接存在于对象中，而不是原型链上，并且满足enumerable:true
+Object.keys()会返回一个数组，包含所有可枚举属性，Object.getOwnPropertyNames()会返回一个数组，包含所有属性，无论它们是否可枚举
+in和hasOwnProperty()的区别在于是否查找原型链，然而，Object.keys()和Object.getOwnPropertyNames()都只会查找对象直接包含的属性
+
+for&hellip;in循环可以用来遍历对象的可枚举属性列表（包括原型链），遍历顺序是不确定的，在不同的JS引擎中可能不一样
+对于数值索引的数组来说，可以使用标准的for循环来遍历值
+ES5中增加了一些数组的辅助迭代器，每种辅助迭代器都可以接受一个回调函数并把它应用到数组的每个元素上，唯一的区别就是它对于回调函数返回值的处理方式不同：
+
+forEach()会遍历数组中的所有值并忽略回调函数的返回值
+every()会一直运行直到回调函数返回false
+some()会一直运行直到回调函数返回true
+
+every()和some()中特殊的返回值和普通for循环中的break语句类似，它们会提前终止遍历
+for..of循环首先会向被访问对象请求一个迭代器对象，然后通过调用迭代器对象的next()方法来遍历所有返回值
+数组有内置的@@iterator（返回迭代器对象的函数），因此for&hellip;of可以直接应用在数组上">
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position":  1 ,
+      "name": "Posts",
+      "item": "https://example.org/posts/"
+    }, 
+    {
+      "@type": "ListItem",
+      "position":  2 ,
+      "name": "",
+      "item": "https://example.org/posts/%E4%BD%A0%E4%B8%8D%E7%9F%A5%E9%81%93%E7%9A%84js/this%E5%92%8C%E5%AF%B9%E8%B1%A1%E5%8E%9F%E5%9E%8B/2.-%E5%AF%B9%E8%B1%A1/"
+    }
+  ]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "",
+  "name": "",
+  "description": " 本文摘要：JavaScript对象可以通过文字声明或构造形式定义，两种方式结果相同但写法不同。JS有6种基本类型和多种对象子类型，包括内置对象如Array、Date等。对象属性存储的是名称而非值本身，可通过点语法或块访问访问。属性描述符可控制属性的可写性、可配置性等特性。通过Object.preventExtensions()、Object.seal()和Object.freeze()可实现不同级别的对象不可变性。in、hasOwnProperty()等方法可用于检查属性存在性，forEach、every等辅助迭代器可用于数组遍历。for..of循环通过内置@@iterator实现迭代访问。\n对象可以通过两种形式定义：声明文字形式和构造形式\n构造形式和文字形式生成的对象是一样的，唯一的区别是，在文字声明中可以添加多个键值对，但是在构造形式中必须逐个添加属性\n在JS中一共有六种主要类型：string、number、boolean、null、undefined和object\n简单基本类型本身并不是对象，JS中有许多特殊的对象子类型，我们称之为复杂基本类型\n函数就是对象的一个子类型（可调用的对象），JS中的函数是一等公民，因为他本质上和普通的对象一样（只是可调用），所以可以像操作其他对象一样操作函数\n数组也是对象的一种类型，具备一些额外的行为，数组中内容的组织方式比一般的对象要稍微复杂一些\nJS还有一些对象子类型，被称为内置对象，String、Number、Boolean、Object、Function、Array、Date、RegExp、Error\n这些内置函数可以当做构造函数来使用，从而可以构造一个对应子类型的新对象\n有必要时，语言会自动把字面量转换成对应的内置对象，也就是说并不需要显式创建一个对象\nnull和undefined没有对应的构造形式，它们只有文字形式，Date只有构造，没有文字形式\n对于Object、Array、Function和RegExp来说，无论使用文字形式还是构造形式，它们都是对象，不是字面量。在某些情况下，构造形式可以提供一些额外选项，建议只在需要那些额外选项时使用构造形式\nError对象很少在代码中显式创建，一般是在抛出异常时被自动创建，也可以使用new Error()这种构造形式来创建\n对象的内容是由一些存储在特定命名位置的值组成的，我们称之为属性\n在引擎内部，这些值的存储方式是多种多样的，一般并不会存在对象容器内部，存储在对象容器内部的是这些属性的名称，它们就像指针一样，指向这些值真正的存储位置\n.语法通常被称为属性访问，[\u0026quot;\u0026quot;]语法通常被称为块访问，这两种语法的主要区别是.操作符要求属性名满足标识符的命名规范，[\u0026quot;\u0026quot;]语法可以接受任意UTF-8/Unicode字符串作为属性名。此外，由于[\u0026quot;\u0026quot;]语法使用字符串来访问属性，所以可以在程序中构造这个字符串\n在对象中，属性名永远都是字符串，如果使用string字面量以外的其他值作为属性名，那它首先会被转换为一个字符串\n可以在文字形式中使用[]包裹一个表达式来当做属性名（可计算属性名）\n函数永远不会属于一个对象，无论返回值是什么类型，每次访问对象的属性就是属性访问，属性访问返回的函数和其他函数没有任何区别\n数组也支持[]访问形式，数组有一套更加结构化的值存储机制，数组期望的是数值下标，也就是说值存储的位置是非负整数\n数组也是对象，虽然每个下标都是整数，但仍然可以给数组添加命名属性，数组的length值不会发生变化\n完全可以把数组当成一个普通的键值对象来使用，并且不添加任何数值索引，但最好只用对象来存储键值对，只用数组来存储下标值对\n如果试图向数组添加一个属性，但是属性名看起来像一个数字，那他会变成一个数值下标\n对于JSON安全的对象来说，进行深拷贝可以通过：\nvar newObj = JSON.parse(JSON.stringify(someObj)) ES6定义了Object.assign()方法实现浅拷贝，第一个参数是目标对象，之后可以跟一个或多个源对象。它会遍历一个或多个源对象的所有可枚举的自有键并把它们复制到目标对象，最后返回目标对象。\n因为Object.assign()使用=操作符来赋值，所以源对象属性的一些特性不会被复制到目标对象\n在创建普通属性时属性描述符会使用默认值，我们也可以使用Object.defineProperty()来添加一个新属性或者修改一个已有属性并对特性进行设置\nwritable：决定是否可以修改属性的值 configurable：只要属性是可配置的，就可以使用defineProperty()方法来修改属性描述符，将其改成false是单项操作，不能撤销 ​\t除了无法修改，configurable:false还会禁止删除这个属性\n​\tdelete只用来删除对象的属性\nenumerable：这个描述符控制的是属性是否会出现在对象的属性枚举中。如果把enumerable设置成false，这个属性就不会出现在枚举中，虽然仍然可以正常访问它。\nget：对象默认的内置[[Get]]操作首先在对象中查找是否有名称相同的属性，如果找到就会返回这个属性的值。如果没有找到名称相同的属性，GET算法会执行原型链查找，如果无论如何都没有找到名称相同的属性，会返回undefined\nput：如果已经存在这个属性，put算法大致会检查下面这些内容：\n属性是否是访问操作符？如果是并且存在setter就调用setter 属性的数据描述符中writable是否是false？如果是，在非严格模式下静默失败，在严格模式下抛出类型异常 如果都不是，将该值设置为属性值 如果对象中不存在这个属性，put操作会更加复杂\ngetter是一个隐藏函数，会在获取属性值时调用。setter也是一个隐藏函数，会在设置属性值时调用。当给一个属性定义getter、setter或者两者都有时，这个属性会被定义为访问描述符（和数据描述符相对）。对于访问描述符来说，JS会忽略它们的value和writable特性，取而代之的是关心set和get特性\n​\t不管是对象文字语法中的get a(){}，还是defineProperty()中的显示定义，二者都会在对象中创建一个不包含值的属性，对于这个属性的访问会自动调用一个隐藏函数，它的返回值会被当做属性访问的返回值\n​\tsetter会覆盖单个属性默认的put操作，通常来说getter和setter是成对出现的\n让属性或对象是不可变的：\n对象常量：结合writable:false和configurable:false就可以创建一个真正的常量属性（不可修改、重定义或者删除）\n禁止扩展：使用Object.preventExtensions()可以禁止一个对象添加新属性并且保留已有属性\n密封：Object.seal()会创建一个密封的对象，这个方法实际上会在一个现有对象上调用Object.preventExtensions()并把所有现有属性标记为configurable:false。所以密封之后不仅不能添加新属性，也不能重新配置或者删除任何现有属性（虽然可以修改属性的值）\nObject.freeze()会创建一个冻结对象。这个方法实际上会在一个现有对象上调用Object.seal()并把所有数据访问属性标记为writable:false，这样就无法修改它们的值\n这个方法是可以应用在对象上的级别最高的不可变性，它会禁止对于对象本身及其任意直接属性的修改\n以上所有的方法创建的都是浅不变形，也就是说，它们只会影响目标对象和它的直接属性。如果目标对象引用了其他对象，其他对象的内容不受影响，仍然是可变的。\n存在性：\nin操作符会检查属性是否在对象及其原型链中。hasOwnProperty()只会检查属性是否在对象中，不会检查原型链\npropertyIsEnumerable()方法会检查给定的属性名是否直接存在于对象中，而不是原型链上，并且满足enumerable:true\nObject.keys()会返回一个数组，包含所有可枚举属性，Object.getOwnPropertyNames()会返回一个数组，包含所有属性，无论它们是否可枚举\nin和hasOwnProperty()的区别在于是否查找原型链，然而，Object.keys()和Object.getOwnPropertyNames()都只会查找对象直接包含的属性\nfor\u0026hellip;in循环可以用来遍历对象的可枚举属性列表（包括原型链），遍历顺序是不确定的，在不同的JS引擎中可能不一样\n对于数值索引的数组来说，可以使用标准的for循环来遍历值\nES5中增加了一些数组的辅助迭代器，每种辅助迭代器都可以接受一个回调函数并把它应用到数组的每个元素上，唯一的区别就是它对于回调函数返回值的处理方式不同：\nforEach()会遍历数组中的所有值并忽略回调函数的返回值 every()会一直运行直到回调函数返回false some()会一直运行直到回调函数返回true every()和some()中特殊的返回值和普通for循环中的break语句类似，它们会提前终止遍历\nfor..of循环首先会向被访问对象请求一个迭代器对象，然后通过调用迭代器对象的next()方法来遍历所有返回值\n数组有内置的@@iterator（返回迭代器对象的函数），因此for\u0026hellip;of可以直接应用在数组上\n",
+  "keywords": [
+    
+  ],
+  "articleBody": " 本文摘要：JavaScript对象可以通过文字声明或构造形式定义，两种方式结果相同但写法不同。JS有6种基本类型和多种对象子类型，包括内置对象如Array、Date等。对象属性存储的是名称而非值本身，可通过点语法或块访问访问。属性描述符可控制属性的可写性、可配置性等特性。通过Object.preventExtensions()、Object.seal()和Object.freeze()可实现不同级别的对象不可变性。in、hasOwnProperty()等方法可用于检查属性存在性，forEach、every等辅助迭代器可用于数组遍历。for..of循环通过内置@@iterator实现迭代访问。\n对象可以通过两种形式定义：声明文字形式和构造形式\n构造形式和文字形式生成的对象是一样的，唯一的区别是，在文字声明中可以添加多个键值对，但是在构造形式中必须逐个添加属性\n在JS中一共有六种主要类型：string、number、boolean、null、undefined和object\n简单基本类型本身并不是对象，JS中有许多特殊的对象子类型，我们称之为复杂基本类型\n函数就是对象的一个子类型（可调用的对象），JS中的函数是一等公民，因为他本质上和普通的对象一样（只是可调用），所以可以像操作其他对象一样操作函数\n数组也是对象的一种类型，具备一些额外的行为，数组中内容的组织方式比一般的对象要稍微复杂一些\nJS还有一些对象子类型，被称为内置对象，String、Number、Boolean、Object、Function、Array、Date、RegExp、Error\n这些内置函数可以当做构造函数来使用，从而可以构造一个对应子类型的新对象\n有必要时，语言会自动把字面量转换成对应的内置对象，也就是说并不需要显式创建一个对象\nnull和undefined没有对应的构造形式，它们只有文字形式，Date只有构造，没有文字形式\n对于Object、Array、Function和RegExp来说，无论使用文字形式还是构造形式，它们都是对象，不是字面量。在某些情况下，构造形式可以提供一些额外选项，建议只在需要那些额外选项时使用构造形式\nError对象很少在代码中显式创建，一般是在抛出异常时被自动创建，也可以使用new Error()这种构造形式来创建\n对象的内容是由一些存储在特定命名位置的值组成的，我们称之为属性\n在引擎内部，这些值的存储方式是多种多样的，一般并不会存在对象容器内部，存储在对象容器内部的是这些属性的名称，它们就像指针一样，指向这些值真正的存储位置\n.语法通常被称为属性访问，[\"\"]语法通常被称为块访问，这两种语法的主要区别是.操作符要求属性名满足标识符的命名规范，[\"\"]语法可以接受任意UTF-8/Unicode字符串作为属性名。此外，由于[\"\"]语法使用字符串来访问属性，所以可以在程序中构造这个字符串\n在对象中，属性名永远都是字符串，如果使用string字面量以外的其他值作为属性名，那它首先会被转换为一个字符串\n可以在文字形式中使用[]包裹一个表达式来当做属性名（可计算属性名）\n函数永远不会属于一个对象，无论返回值是什么类型，每次访问对象的属性就是属性访问，属性访问返回的函数和其他函数没有任何区别\n数组也支持[]访问形式，数组有一套更加结构化的值存储机制，数组期望的是数值下标，也就是说值存储的位置是非负整数\n数组也是对象，虽然每个下标都是整数，但仍然可以给数组添加命名属性，数组的length值不会发生变化\n完全可以把数组当成一个普通的键值对象来使用，并且不添加任何数值索引，但最好只用对象来存储键值对，只用数组来存储下标值对\n如果试图向数组添加一个属性，但是属性名看起来像一个数字，那他会变成一个数值下标\n对于JSON安全的对象来说，进行深拷贝可以通过：\nvar newObj = JSON.parse(JSON.stringify(someObj)) ES6定义了Object.assign()方法实现浅拷贝，第一个参数是目标对象，之后可以跟一个或多个源对象。它会遍历一个或多个源对象的所有可枚举的自有键并把它们复制到目标对象，最后返回目标对象。\n因为Object.assign()使用=操作符来赋值，所以源对象属性的一些特性不会被复制到目标对象\n在创建普通属性时属性描述符会使用默认值，我们也可以使用Object.defineProperty()来添加一个新属性或者修改一个已有属性并对特性进行设置\nwritable：决定是否可以修改属性的值 configurable：只要属性是可配置的，就可以使用defineProperty()方法来修改属性描述符，将其改成false是单项操作，不能撤销 ​\t除了无法修改，configurable:false还会禁止删除这个属性\n​\tdelete只用来删除对象的属性\nenumerable：这个描述符控制的是属性是否会出现在对象的属性枚举中。如果把enumerable设置成false，这个属性就不会出现在枚举中，虽然仍然可以正常访问它。\nget：对象默认的内置[[Get]]操作首先在对象中查找是否有名称相同的属性，如果找到就会返回这个属性的值。如果没有找到名称相同的属性，GET算法会执行原型链查找，如果无论如何都没有找到名称相同的属性，会返回undefined\nput：如果已经存在这个属性，put算法大致会检查下面这些内容：\n属性是否是访问操作符？如果是并且存在setter就调用setter 属性的数据描述符中writable是否是false？如果是，在非严格模式下静默失败，在严格模式下抛出类型异常 如果都不是，将该值设置为属性值 如果对象中不存在这个属性，put操作会更加复杂\ngetter是一个隐藏函数，会在获取属性值时调用。setter也是一个隐藏函数，会在设置属性值时调用。当给一个属性定义getter、setter或者两者都有时，这个属性会被定义为访问描述符（和数据描述符相对）。对于访问描述符来说，JS会忽略它们的value和writable特性，取而代之的是关心set和get特性\n​\t不管是对象文字语法中的get a(){}，还是defineProperty()中的显示定义，二者都会在对象中创建一个不包含值的属性，对于这个属性的访问会自动调用一个隐藏函数，它的返回值会被当做属性访问的返回值\n​\tsetter会覆盖单个属性默认的put操作，通常来说getter和setter是成对出现的\n让属性或对象是不可变的：\n对象常量：结合writable:false和configurable:false就可以创建一个真正的常量属性（不可修改、重定义或者删除）\n禁止扩展：使用Object.preventExtensions()可以禁止一个对象添加新属性并且保留已有属性\n密封：Object.seal()会创建一个密封的对象，这个方法实际上会在一个现有对象上调用Object.preventExtensions()并把所有现有属性标记为configurable:false。所以密封之后不仅不能添加新属性，也不能重新配置或者删除任何现有属性（虽然可以修改属性的值）\nObject.freeze()会创建一个冻结对象。这个方法实际上会在一个现有对象上调用Object.seal()并把所有数据访问属性标记为writable:false，这样就无法修改它们的值\n这个方法是可以应用在对象上的级别最高的不可变性，它会禁止对于对象本身及其任意直接属性的修改\n以上所有的方法创建的都是浅不变形，也就是说，它们只会影响目标对象和它的直接属性。如果目标对象引用了其他对象，其他对象的内容不受影响，仍然是可变的。\n存在性：\nin操作符会检查属性是否在对象及其原型链中。hasOwnProperty()只会检查属性是否在对象中，不会检查原型链\npropertyIsEnumerable()方法会检查给定的属性名是否直接存在于对象中，而不是原型链上，并且满足enumerable:true\nObject.keys()会返回一个数组，包含所有可枚举属性，Object.getOwnPropertyNames()会返回一个数组，包含所有属性，无论它们是否可枚举\nin和hasOwnProperty()的区别在于是否查找原型链，然而，Object.keys()和Object.getOwnPropertyNames()都只会查找对象直接包含的属性\nfor…in循环可以用来遍历对象的可枚举属性列表（包括原型链），遍历顺序是不确定的，在不同的JS引擎中可能不一样\n对于数值索引的数组来说，可以使用标准的for循环来遍历值\nES5中增加了一些数组的辅助迭代器，每种辅助迭代器都可以接受一个回调函数并把它应用到数组的每个元素上，唯一的区别就是它对于回调函数返回值的处理方式不同：\nforEach()会遍历数组中的所有值并忽略回调函数的返回值 every()会一直运行直到回调函数返回false some()会一直运行直到回调函数返回true every()和some()中特殊的返回值和普通for循环中的break语句类似，它们会提前终止遍历\nfor..of循环首先会向被访问对象请求一个迭代器对象，然后通过调用迭代器对象的next()方法来遍历所有返回值\n数组有内置的@@iterator（返回迭代器对象的函数），因此for…of可以直接应用在数组上\n调用迭代器的next方法会返回形式为{value:…,done:…}的值，value是当前的遍历值，done是一个布尔值，表示是否还有可以遍历的值\n可以给任何想遍历的对象定义@@iterator（不可枚举属性）\n",
+  "wordCount" : "74",
+  "inLanguage": "en",
+  "datePublished": "0001-01-01T00:00:00Z",
+  "dateModified": "0001-01-01T00:00:00Z",
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://example.org/posts/%E4%BD%A0%E4%B8%8D%E7%9F%A5%E9%81%93%E7%9A%84js/this%E5%92%8C%E5%AF%B9%E8%B1%A1%E5%8E%9F%E5%9E%8B/2.-%E5%AF%B9%E8%B1%A1/"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "My New Hugo Site",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://example.org/favicon.ico"
+    }
+  }
+}
+</script>
+</head>
+
+<body class="" id="top">
+<script>
+    if (localStorage.getItem("pref-theme") === "dark") {
+        document.body.classList.add('dark');
+    } else if (localStorage.getItem("pref-theme") === "light") {
+        document.body.classList.remove('dark')
+    } else if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+        document.body.classList.add('dark');
+    }
+
+</script>
+
+<header class="header">
+    <nav class="nav">
+        <div class="logo">
+            <a href="https://example.org/" accesskey="h" title="My New Hugo Site (Alt + H)">My New Hugo Site</a>
+            <div class="logo-switches">
+                <button id="theme-toggle" accesskey="t" title="(Alt + T)" aria-label="Toggle theme">
+                    <svg id="moon" xmlns="http://www.w3.org/2000/svg" width="24" height="18" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                    </svg>
+                    <svg id="sun" xmlns="http://www.w3.org/2000/svg" width="24" height="18" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <circle cx="12" cy="12" r="5"></circle>
+                        <line x1="12" y1="1" x2="12" y2="3"></line>
+                        <line x1="12" y1="21" x2="12" y2="23"></line>
+                        <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                        <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                        <line x1="1" y1="12" x2="3" y2="12"></line>
+                        <line x1="21" y1="12" x2="23" y2="12"></line>
+                        <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                        <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+                    </svg>
+                </button>
+            </div>
+        </div>
+        <ul id="menu">
+        </ul>
+    </nav>
+</header>
+<main class="main">
+
+<article class="post-single">
+  <header class="post-header">
+    
+    <h1 class="post-title entry-hint-parent">
+      
+    </h1>
+    <div class="post-meta">
+
+</div>
+  </header> 
+  <div class="post-content"><blockquote>
+<p>本文摘要：JavaScript对象可以通过文字声明或构造形式定义，两种方式结果相同但写法不同。JS有6种基本类型和多种对象子类型，包括内置对象如Array、Date等。对象属性存储的是名称而非值本身，可通过点语法或块访问访问。属性描述符可控制属性的可写性、可配置性等特性。通过Object.preventExtensions()、Object.seal()和Object.freeze()可实现不同级别的对象不可变性。in、hasOwnProperty()等方法可用于检查属性存在性，forEach、every等辅助迭代器可用于数组遍历。for..of循环通过内置@@iterator实现迭代访问。</p></blockquote>
+<p>对象可以通过两种形式定义：声明文字形式和构造形式</p>
+<p>构造形式和文字形式生成的对象是一样的，唯一的区别是，在文字声明中可以添加多个键值对，但是在构造形式中必须逐个添加属性</p>
+<hr>
+<p>在JS中一共有六种主要类型：string、number、boolean、null、undefined和object</p>
+<p>简单基本类型本身并不是对象，JS中有许多特殊的对象子类型，我们称之为复杂基本类型</p>
+<p>函数就是对象的一个子类型（可调用的对象），JS中的函数是一等公民，因为他本质上和普通的对象一样（只是可调用），所以可以像操作其他对象一样操作函数</p>
+<p>数组也是对象的一种类型，具备一些额外的行为，数组中内容的组织方式比一般的对象要稍微复杂一些</p>
+<p>JS还有一些对象子类型，被称为内置对象，String、Number、Boolean、Object、Function、Array、Date、RegExp、Error</p>
+<p>这些内置函数可以当做构造函数来使用，从而可以构造一个对应子类型的新对象</p>
+<p>有必要时，语言会自动把字面量转换成对应的内置对象，也就是说并不需要显式创建一个对象</p>
+<p>null和undefined没有对应的构造形式，它们只有文字形式，Date只有构造，没有文字形式</p>
+<p>对于Object、Array、Function和RegExp来说，无论使用文字形式还是构造形式，它们都是对象，不是字面量。在某些情况下，构造形式可以提供一些额外选项，建议只在需要那些额外选项时使用构造形式</p>
+<p>Error对象很少在代码中显式创建，一般是在抛出异常时被自动创建，也可以使用new Error()这种构造形式来创建</p>
+<hr>
+<p>对象的内容是由一些存储在特定命名位置的值组成的，我们称之为属性</p>
+<p>在引擎内部，这些值的存储方式是多种多样的，一般并不会存在对象容器内部，存储在对象容器内部的是这些属性的名称，它们就像指针一样，指向这些值真正的存储位置</p>
+<p>.语法通常被称为属性访问，[&quot;&quot;]语法通常被称为块访问，这两种语法的主要区别是.操作符要求属性名满足标识符的命名规范，[&quot;&quot;]语法可以接受任意UTF-8/Unicode字符串作为属性名。此外，由于[&quot;&quot;]语法使用字符串来访问属性，所以可以在程序中构造这个字符串</p>
+<p>在对象中，属性名永远都是字符串，如果使用string字面量以外的其他值作为属性名，那它首先会被转换为一个字符串</p>
+<p>可以在文字形式中使用[]包裹一个表达式来当做属性名（可计算属性名）</p>
+<p><strong>函数</strong>永远不会属于一个对象，无论返回值是什么类型，每次访问对象的属性就是属性访问，属性访问返回的函数和其他函数没有任何区别</p>
+<p><strong>数组</strong>也支持[]访问形式，数组有一套更加结构化的值存储机制，数组期望的是数值下标，也就是说值存储的位置是非负整数</p>
+<p>数组也是对象，虽然每个下标都是整数，但仍然可以给数组添加命名属性，数组的length值不会发生变化</p>
+<p>完全可以把数组当成一个普通的键值对象来使用，并且不添加任何数值索引，但最好只用对象来存储键值对，只用数组来存储下标值对</p>
+<p>如果试图向数组添加一个属性，但是属性名看起来像一个数字，那他会变成一个数值下标</p>
+<p>对于JSON安全的对象来说，进行深<strong>拷贝</strong>可以通过：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-js" data-lang="js"><span style="display:flex;"><span><span style="color:#66d9ef">var</span> <span style="color:#a6e22e">newObj</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">JSON</span>.<span style="color:#a6e22e">parse</span>(<span style="color:#a6e22e">JSON</span>.<span style="color:#a6e22e">stringify</span>(<span style="color:#a6e22e">someObj</span>))
+</span></span></code></pre></div><p>ES6定义了Object.assign()方法实现浅拷贝，第一个参数是目标对象，之后可以跟一个或多个源对象。它会遍历一个或多个源对象的所有可枚举的自有键并把它们复制到目标对象，最后返回目标对象。</p>
+<p>因为Object.assign()使用=操作符来赋值，所以源对象属性的一些特性不会被复制到目标对象</p>
+<hr>
+<p>在创建普通属性时<strong>属性描述符</strong>会使用默认值，我们也可以使用Object.defineProperty()来添加一个新属性或者修改一个已有属性并对特性进行设置</p>
+<ul>
+<li>writable：决定是否可以修改属性的值</li>
+<li>configurable：只要属性是可配置的，就可以使用defineProperty()方法来修改属性描述符，将其改成false是单项操作，不能撤销</li>
+</ul>
+<p>​	除了无法修改，configurable:false还会禁止删除这个属性</p>
+<p>​	delete只用来删除对象的属性</p>
+<ul>
+<li>
+<p>enumerable：这个描述符控制的是属性是否会出现在对象的属性枚举中。如果把enumerable设置成false，这个属性就不会出现在枚举中，虽然仍然可以正常访问它。</p>
+</li>
+<li>
+<p>get：对象默认的内置[[Get]]操作首先在对象中查找是否有名称相同的属性，如果找到就会返回这个属性的值。如果没有找到名称相同的属性，GET算法会执行原型链查找，如果无论如何都没有找到名称相同的属性，会返回undefined</p>
+</li>
+<li>
+<p>put：如果已经存在这个属性，put算法大致会检查下面这些内容：</p>
+<ul>
+<li>属性是否是访问操作符？如果是并且存在setter就调用setter</li>
+<li>属性的数据描述符中writable是否是false？如果是，在非严格模式下静默失败，在严格模式下抛出类型异常</li>
+<li>如果都不是，将该值设置为属性值</li>
+</ul>
+<p>如果对象中不存在这个属性，put操作会更加复杂</p>
+</li>
+<li>
+<p>getter是一个隐藏函数，会在获取属性值时调用。setter也是一个隐藏函数，会在设置属性值时调用。当给一个属性定义getter、setter或者两者都有时，这个属性会被定义为访问描述符（和数据描述符相对）。对于访问描述符来说，JS会忽略它们的value和writable特性，取而代之的是关心set和get特性</p>
+</li>
+</ul>
+<p>​	不管是对象文字语法中的get a(){}，还是defineProperty()中的显示定义，二者都会在对象中创建一个不包含值的属性，对于这个属性的访问会自动调用一个隐藏函数，它的返回值会被当做属性访问的返回值</p>
+<p>​	setter会覆盖单个属性默认的put操作，通常来说getter和setter是成对出现的</p>
+<hr>
+<p>让属性或对象是不可变的：</p>
+<ul>
+<li>
+<p>对象常量：结合writable:false和configurable:false就可以创建一个真正的常量属性（不可修改、重定义或者删除）</p>
+</li>
+<li>
+<p>禁止扩展：使用Object.preventExtensions()可以禁止一个对象添加新属性并且保留已有属性</p>
+</li>
+<li>
+<p>密封：Object.seal()会创建一个密封的对象，这个方法实际上会在一个现有对象上调用Object.preventExtensions()并把所有现有属性标记为configurable:false。所以密封之后不仅不能添加新属性，也不能重新配置或者删除任何现有属性（虽然可以修改属性的值）</p>
+</li>
+<li>
+<p>Object.freeze()会创建一个冻结对象。这个方法实际上会在一个现有对象上调用Object.seal()并把所有数据访问属性标记为writable:false，这样就无法修改它们的值</p>
+<p>这个方法是可以应用在对象上的级别最高的不可变性，它会禁止对于对象本身及其任意直接属性的修改</p>
+</li>
+</ul>
+<p>以上所有的方法创建的都是浅不变形，也就是说，它们只会影响目标对象和它的直接属性。如果目标对象引用了其他对象，其他对象的内容不受影响，仍然是可变的。</p>
+<hr>
+<p>存在性：</p>
+<p>in操作符会检查属性是否在对象及其原型链中。hasOwnProperty()只会检查属性是否在对象中，不会检查原型链</p>
+<p>propertyIsEnumerable()方法会检查给定的属性名是否直接存在于对象中，而不是原型链上，并且满足enumerable:true</p>
+<p>Object.keys()会返回一个数组，包含所有可枚举属性，Object.getOwnPropertyNames()会返回一个数组，包含所有属性，无论它们是否可枚举</p>
+<p>in和hasOwnProperty()的区别在于是否查找原型链，然而，Object.keys()和Object.getOwnPropertyNames()都只会查找对象直接包含的属性</p>
+<hr>
+<p>for&hellip;in循环可以用来遍历对象的可枚举属性列表（包括原型链），遍历顺序是不确定的，在不同的JS引擎中可能不一样</p>
+<p>对于数值索引的数组来说，可以使用标准的for循环来遍历值</p>
+<p>ES5中增加了一些数组的辅助迭代器，每种辅助迭代器都可以接受一个回调函数并把它应用到数组的每个元素上，唯一的区别就是它对于回调函数返回值的处理方式不同：</p>
+<ul>
+<li>forEach()会遍历数组中的所有值并忽略回调函数的返回值</li>
+<li>every()会一直运行直到回调函数返回false</li>
+<li>some()会一直运行直到回调函数返回true</li>
+</ul>
+<p>every()和some()中特殊的返回值和普通for循环中的break语句类似，它们会提前终止遍历</p>
+<p>for..of循环首先会向被访问对象请求一个迭代器对象，然后通过调用迭代器对象的next()方法来遍历所有返回值</p>
+<p>数组有内置的@@iterator（返回迭代器对象的函数），因此for&hellip;of可以直接应用在数组上</p>
+<p>调用迭代器的next方法会返回形式为{value:&hellip;,done:&hellip;}的值，value是当前的遍历值，done是一个布尔值，表示是否还有可以遍历的值</p>
+<p>可以给任何想遍历的对象定义@@iterator（不可枚举属性）</p>
+
+
+  </div>
+
+  <footer class="post-footer">
+    <ul class="post-tags">
+    </ul>
+  </footer>
+</article>
+    </main>
+    
+<footer class="footer">
+        <span>&copy; 2025 <a href="https://example.org/">My New Hugo Site</a></span> · 
+
+    <span>
+        Powered by
+        <a href="https://gohugo.io/" rel="noopener noreferrer" target="_blank">Hugo</a> &
+        <a href="https://github.com/adityatelange/hugo-PaperMod/" rel="noopener" target="_blank">PaperMod</a>
+    </span>
+</footer>
+<a href="#top" aria-label="go to top" title="Go to Top (Alt + G)" class="top-link" id="top-link" accesskey="g">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 12 6" fill="currentColor">
+        <path d="M12 6H0l6-6z" />
+    </svg>
+</a>
+
+<script>
+    let menu = document.getElementById('menu')
+    if (menu) {
+        menu.scrollLeft = localStorage.getItem("menu-scroll-position");
+        menu.onscroll = function () {
+            localStorage.setItem("menu-scroll-position", menu.scrollLeft);
+        }
+    }
+
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener("click", function (e) {
+            e.preventDefault();
+            var id = this.getAttribute("href").substr(1);
+            if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView({
+                    behavior: "smooth"
+                });
+            } else {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView();
+            }
+            if (id === "top") {
+                history.replaceState(null, null, " ");
+            } else {
+                history.pushState(null, null, `#${id}`);
+            }
+        });
+    });
+
+</script>
+<script>
+    var mybutton = document.getElementById("top-link");
+    window.onscroll = function () {
+        if (document.body.scrollTop > 800 || document.documentElement.scrollTop > 800) {
+            mybutton.style.visibility = "visible";
+            mybutton.style.opacity = "1";
+        } else {
+            mybutton.style.visibility = "hidden";
+            mybutton.style.opacity = "0";
+        }
+    };
+
+</script>
+<script>
+    document.getElementById("theme-toggle").addEventListener("click", () => {
+        if (document.body.className.includes("dark")) {
+            document.body.classList.remove('dark');
+            localStorage.setItem("pref-theme", 'light');
+        } else {
+            document.body.classList.add('dark');
+            localStorage.setItem("pref-theme", 'dark');
+        }
+    })
+
+</script>
+</body>
+
+</html>

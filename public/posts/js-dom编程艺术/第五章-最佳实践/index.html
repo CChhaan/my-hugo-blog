@@ -1,0 +1,502 @@
+<!DOCTYPE html>
+<html lang="en" dir="auto">
+
+<head><meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="robots" content="index, follow">
+<title>My New Hugo Site</title>
+<meta name="keywords" content="">
+<meta name="description" content="一、平稳退化
+
+定义：确保网站在浏览器不支持 JavaScript 或 JS 被禁用时，核心功能仍可正常使用（如链接可点击、内容可访问）。
+关键原则：
+
+为 JS 功能提供 “退路”，例如将链接的 href 属性设置为真实 URL，而非仅依赖 onclick 事件。
+避免过度依赖 JS 实现基础功能（如导航、跳转）。
+
+
+
+1. 弹出窗口与平稳退化
+
+
+window.open() 方法：用于创建新窗口，语法为window.open(url, name, features)，参数分别为目标 URL、窗口名称、窗口属性（如尺寸、功能）。
+
+
+示例函数：
+function popUp(winUrl) {
+  window.open(winUrl, &#39;popup&#39;, &#39;width=320,height=480&#39;);
+}
+
+
+
+
+调用方式的问题：
+
+伪协议（javascript:）：如 &lt;a href=&quot;javascript:popUp(&#39;url&#39;)&quot;&gt;，在禁用 JS 时失效，不推荐。
+空链接（#）：如 &lt;a href=&quot;#&quot; onclick=&quot;popUp(&#39;url&#39;);return false&quot;&gt;，禁用 JS 时点击会跳转至页面顶部，体验差。
+
+
+
+正确做法：
+
+
+让href指向真实 URL，onclick中通过return false阻止默认跳转，确保 JS 禁用时仍能正常访问：
+&lt;a href=&#34;http://www.baidu.com&#34; onclick=&#34;popUp(&#39;http://www.baidu.com&#39;);return false;&#34;&gt;baidu&lt;/a&gt;
+
+
+
+
+二、分离 JavaScript
+
+
+核心思想：将 JS 代码从 HTML 中剥离，通过外部脚本文件管理，避免 HTML 与 JS 耦合。
+
+
+实现步骤：
+
+
+HTML 保留基础功能：链接使用真实 href，通过 class或id标识需要特殊处理的元素：">
+<meta name="author" content="">
+<link rel="canonical" href="https://example.org/posts/js-dom%E7%BC%96%E7%A8%8B%E8%89%BA%E6%9C%AF/%E7%AC%AC%E4%BA%94%E7%AB%A0-%E6%9C%80%E4%BD%B3%E5%AE%9E%E8%B7%B5/">
+<link crossorigin="anonymous" href="/assets/css/stylesheet.8fe10233a706bc87f2e08b3cf97b8bd4c0a80f10675a143675d59212121037c0.css" integrity="sha256-j&#43;ECM6cGvIfy4Is8&#43;XuL1MCoDxBnWhQ2ddWSEhIQN8A=" rel="preload stylesheet" as="style">
+<link rel="icon" href="https://example.org/favicon.ico">
+<link rel="icon" type="image/png" sizes="16x16" href="https://example.org/favicon-16x16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="https://example.org/favicon-32x32.png">
+<link rel="apple-touch-icon" href="https://example.org/apple-touch-icon.png">
+<link rel="mask-icon" href="https://example.org/safari-pinned-tab.svg">
+<meta name="theme-color" content="#2e2e33">
+<meta name="msapplication-TileColor" content="#2e2e33">
+<link rel="alternate" hreflang="en" href="https://example.org/posts/js-dom%E7%BC%96%E7%A8%8B%E8%89%BA%E6%9C%AF/%E7%AC%AC%E4%BA%94%E7%AB%A0-%E6%9C%80%E4%BD%B3%E5%AE%9E%E8%B7%B5/">
+<noscript>
+    <style>
+        #theme-toggle,
+        .top-link {
+            display: none;
+        }
+
+    </style>
+    <style>
+        @media (prefers-color-scheme: dark) {
+            :root {
+                --theme: rgb(29, 30, 32);
+                --entry: rgb(46, 46, 51);
+                --primary: rgb(218, 218, 219);
+                --secondary: rgb(155, 156, 157);
+                --tertiary: rgb(65, 66, 68);
+                --content: rgb(196, 196, 197);
+                --code-block-bg: rgb(46, 46, 51);
+                --code-bg: rgb(55, 56, 62);
+                --border: rgb(51, 51, 51);
+            }
+
+            .list {
+                background: var(--theme);
+            }
+
+            .list:not(.dark)::-webkit-scrollbar-track {
+                background: 0 0;
+            }
+
+            .list:not(.dark)::-webkit-scrollbar-thumb {
+                border-color: var(--theme);
+            }
+        }
+
+    </style>
+</noscript><meta property="og:url" content="https://example.org/posts/js-dom%E7%BC%96%E7%A8%8B%E8%89%BA%E6%9C%AF/%E7%AC%AC%E4%BA%94%E7%AB%A0-%E6%9C%80%E4%BD%B3%E5%AE%9E%E8%B7%B5/">
+  <meta property="og:site_name" content="My New Hugo Site">
+  <meta property="og:title" content="My New Hugo Site">
+  <meta property="og:description" content="一、平稳退化 定义：确保网站在浏览器不支持 JavaScript 或 JS 被禁用时，核心功能仍可正常使用（如链接可点击、内容可访问）。 关键原则： 为 JS 功能提供 “退路”，例如将链接的 href 属性设置为真实 URL，而非仅依赖 onclick 事件。 避免过度依赖 JS 实现基础功能（如导航、跳转）。 1. 弹出窗口与平稳退化 window.open() 方法：用于创建新窗口，语法为window.open(url, name, features)，参数分别为目标 URL、窗口名称、窗口属性（如尺寸、功能）。
+示例函数：
+function popUp(winUrl) { window.open(winUrl, &#39;popup&#39;, &#39;width=320,height=480&#39;); } 调用方式的问题：
+伪协议（javascript:）：如 &lt;a href=&#34;javascript:popUp(&#39;url&#39;)&#34;&gt;，在禁用 JS 时失效，不推荐。 空链接（#）：如 &lt;a href=&#34;#&#34; onclick=&#34;popUp(&#39;url&#39;);return false&#34;&gt;，禁用 JS 时点击会跳转至页面顶部，体验差。 正确做法：
+让href指向真实 URL，onclick中通过return false阻止默认跳转，确保 JS 禁用时仍能正常访问：
+&lt;a href=&#34;http://www.baidu.com&#34; onclick=&#34;popUp(&#39;http://www.baidu.com&#39;);return false;&#34;&gt;baidu&lt;/a&gt; 二、分离 JavaScript 核心思想：将 JS 代码从 HTML 中剥离，通过外部脚本文件管理，避免 HTML 与 JS 耦合。
+实现步骤：
+HTML 保留基础功能：链接使用真实 href，通过 class或id标识需要特殊处理的元素：">
+  <meta property="og:locale" content="en-us">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="posts">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="">
+<meta name="twitter:description" content="一、平稳退化
+
+定义：确保网站在浏览器不支持 JavaScript 或 JS 被禁用时，核心功能仍可正常使用（如链接可点击、内容可访问）。
+关键原则：
+
+为 JS 功能提供 “退路”，例如将链接的 href 属性设置为真实 URL，而非仅依赖 onclick 事件。
+避免过度依赖 JS 实现基础功能（如导航、跳转）。
+
+
+
+1. 弹出窗口与平稳退化
+
+
+window.open() 方法：用于创建新窗口，语法为window.open(url, name, features)，参数分别为目标 URL、窗口名称、窗口属性（如尺寸、功能）。
+
+
+示例函数：
+function popUp(winUrl) {
+  window.open(winUrl, &#39;popup&#39;, &#39;width=320,height=480&#39;);
+}
+
+
+
+
+调用方式的问题：
+
+伪协议（javascript:）：如 &lt;a href=&quot;javascript:popUp(&#39;url&#39;)&quot;&gt;，在禁用 JS 时失效，不推荐。
+空链接（#）：如 &lt;a href=&quot;#&quot; onclick=&quot;popUp(&#39;url&#39;);return false&quot;&gt;，禁用 JS 时点击会跳转至页面顶部，体验差。
+
+
+
+正确做法：
+
+
+让href指向真实 URL，onclick中通过return false阻止默认跳转，确保 JS 禁用时仍能正常访问：
+&lt;a href=&#34;http://www.baidu.com&#34; onclick=&#34;popUp(&#39;http://www.baidu.com&#39;);return false;&#34;&gt;baidu&lt;/a&gt;
+
+
+
+
+二、分离 JavaScript
+
+
+核心思想：将 JS 代码从 HTML 中剥离，通过外部脚本文件管理，避免 HTML 与 JS 耦合。
+
+
+实现步骤：
+
+
+HTML 保留基础功能：链接使用真实 href，通过 class或id标识需要特殊处理的元素：">
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position":  1 ,
+      "name": "Posts",
+      "item": "https://example.org/posts/"
+    }, 
+    {
+      "@type": "ListItem",
+      "position":  2 ,
+      "name": "",
+      "item": "https://example.org/posts/js-dom%E7%BC%96%E7%A8%8B%E8%89%BA%E6%9C%AF/%E7%AC%AC%E4%BA%94%E7%AB%A0-%E6%9C%80%E4%BD%B3%E5%AE%9E%E8%B7%B5/"
+    }
+  ]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "",
+  "name": "",
+  "description": "一、平稳退化 定义：确保网站在浏览器不支持 JavaScript 或 JS 被禁用时，核心功能仍可正常使用（如链接可点击、内容可访问）。 关键原则： 为 JS 功能提供 “退路”，例如将链接的 href 属性设置为真实 URL，而非仅依赖 onclick 事件。 避免过度依赖 JS 实现基础功能（如导航、跳转）。 1. 弹出窗口与平稳退化 window.open() 方法：用于创建新窗口，语法为window.open(url, name, features)，参数分别为目标 URL、窗口名称、窗口属性（如尺寸、功能）。\n示例函数：\nfunction popUp(winUrl) { window.open(winUrl, \u0026#39;popup\u0026#39;, \u0026#39;width=320,height=480\u0026#39;); } 调用方式的问题：\n伪协议（javascript:）：如 \u0026lt;a href=\u0026quot;javascript:popUp('url')\u0026quot;\u0026gt;，在禁用 JS 时失效，不推荐。 空链接（#）：如 \u0026lt;a href=\u0026quot;#\u0026quot; onclick=\u0026quot;popUp('url');return false\u0026quot;\u0026gt;，禁用 JS 时点击会跳转至页面顶部，体验差。 正确做法：\n让href指向真实 URL，onclick中通过return false阻止默认跳转，确保 JS 禁用时仍能正常访问：\n\u0026lt;a href=\u0026#34;http://www.baidu.com\u0026#34; onclick=\u0026#34;popUp(\u0026#39;http://www.baidu.com\u0026#39;);return false;\u0026#34;\u0026gt;baidu\u0026lt;/a\u0026gt; 二、分离 JavaScript 核心思想：将 JS 代码从 HTML 中剥离，通过外部脚本文件管理，避免 HTML 与 JS 耦合。\n实现步骤：\nHTML 保留基础功能：链接使用真实 href，通过 class或id标识需要特殊处理的元素：\n",
+  "keywords": [
+    
+  ],
+  "articleBody": "一、平稳退化 定义：确保网站在浏览器不支持 JavaScript 或 JS 被禁用时，核心功能仍可正常使用（如链接可点击、内容可访问）。 关键原则： 为 JS 功能提供 “退路”，例如将链接的 href 属性设置为真实 URL，而非仅依赖 onclick 事件。 避免过度依赖 JS 实现基础功能（如导航、跳转）。 1. 弹出窗口与平稳退化 window.open() 方法：用于创建新窗口，语法为window.open(url, name, features)，参数分别为目标 URL、窗口名称、窗口属性（如尺寸、功能）。\n示例函数：\nfunction popUp(winUrl) { window.open(winUrl, 'popup', 'width=320,height=480'); } 调用方式的问题：\n伪协议（javascript:）：如 ，在禁用 JS 时失效，不推荐。 空链接（#）：如 ，禁用 JS 时点击会跳转至页面顶部，体验差。 正确做法：\n让href指向真实 URL，onclick中通过return false阻止默认跳转，确保 JS 禁用时仍能正常访问：\n\u003ca href=\"http://www.baidu.com\" onclick=\"popUp('http://www.baidu.com');return false;\"\u003ebaidu\u003c/a\u003e 二、分离 JavaScript 核心思想：将 JS 代码从 HTML 中剥离，通过外部脚本文件管理，避免 HTML 与 JS 耦合。\n实现步骤：\nHTML 保留基础功能：链接使用真实 href，通过 class或id标识需要特殊处理的元素：\n\u003ca href=\"http://www.baidu.com\" class=\"popup\"\u003ebaidu\u003c/a\u003e 外部 JS 绑定事件：在外部脚本中通过 DOM 方法找到目标元素，动态绑定事件：\n// 等待页面加载完成后执行 window.onload = function() { // 获取所有带 popup 类的链接 const links = document.getElementsByTagName('a'); for (let i = 0; i \u003c links.length; i++) { if (links[i].className === 'popup') { // 绑定点击事件 links[i].onclick = function() { popUp(this.href); // 传递 href 属性值 return false; // 阻止默认跳转 }; } } }; 优势：符合 “渐进增强” 原则，HTML 保持基础功能，JS 作为增强层添加额外交互，同时便于维护。\n三、向后兼容 问题：不同浏览器对 JS 支持程度不同，部分功能可能失效。\n解决方案：\n对象检测：\n通过if语句检测浏览器是否支持特定方法 / 对象，避免执行不支持的代码：\nfunction popUp(winUrl) { // 检测 window.open 是否存在 if (window.open) { window.open(winUrl, 'popup', 'width=320,height=480'); } } 复杂检测可结合逻辑运算符（如||检测多个对象），不支持时提前退出：\nfunction doSomething() { if (!document.getElementById || !window.open) { return false; // 不支持必要功能时退出 } // 执行操作... } 避免浏览器嗅探：\n浏览器嗅探通过检测 userAgent 判断浏览器类型，但存在缺陷（如浏览器可伪造标识、版本更新导致逻辑失效），不推荐。 四、性能优化 1. 减少 DOM 访问与优化标记 缓存 DOM 查询结果：避免频繁查询 DOM（如循环中多次调用getElementsByTagName），将结果存入变量复用：\nconst links = document.getElementsByTagName('a'); // 缓存结果 for (let i = 0; i \u003c links.length; i++) { // 使用缓存的 links 数组 } 精简 HTML 标记：过多冗余元素会增加 DOM 树规模，降低查询效率。\n2. 合并与放置脚本 合并文件：将多个 .js 文件合并为一个，减少 HTTP 请求次数。 放置位置：将 ",
+  "wordCount" : "234",
+  "inLanguage": "en",
+  "datePublished": "0001-01-01T00:00:00Z",
+  "dateModified": "0001-01-01T00:00:00Z",
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://example.org/posts/js-dom%E7%BC%96%E7%A8%8B%E8%89%BA%E6%9C%AF/%E7%AC%AC%E4%BA%94%E7%AB%A0-%E6%9C%80%E4%BD%B3%E5%AE%9E%E8%B7%B5/"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "My New Hugo Site",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://example.org/favicon.ico"
+    }
+  }
+}
+</script>
+</head>
+
+<body class="" id="top">
+<script>
+    if (localStorage.getItem("pref-theme") === "dark") {
+        document.body.classList.add('dark');
+    } else if (localStorage.getItem("pref-theme") === "light") {
+        document.body.classList.remove('dark')
+    } else if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+        document.body.classList.add('dark');
+    }
+
+</script>
+
+<header class="header">
+    <nav class="nav">
+        <div class="logo">
+            <a href="https://example.org/" accesskey="h" title="My New Hugo Site (Alt + H)">My New Hugo Site</a>
+            <div class="logo-switches">
+                <button id="theme-toggle" accesskey="t" title="(Alt + T)" aria-label="Toggle theme">
+                    <svg id="moon" xmlns="http://www.w3.org/2000/svg" width="24" height="18" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                    </svg>
+                    <svg id="sun" xmlns="http://www.w3.org/2000/svg" width="24" height="18" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <circle cx="12" cy="12" r="5"></circle>
+                        <line x1="12" y1="1" x2="12" y2="3"></line>
+                        <line x1="12" y1="21" x2="12" y2="23"></line>
+                        <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                        <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                        <line x1="1" y1="12" x2="3" y2="12"></line>
+                        <line x1="21" y1="12" x2="23" y2="12"></line>
+                        <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                        <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+                    </svg>
+                </button>
+            </div>
+        </div>
+        <ul id="menu">
+        </ul>
+    </nav>
+</header>
+<main class="main">
+
+<article class="post-single">
+  <header class="post-header">
+    
+    <h1 class="post-title entry-hint-parent">
+      
+    </h1>
+    <div class="post-meta">
+
+</div>
+  </header> 
+  <div class="post-content"><h3 id="一平稳退化">一、平稳退化<a hidden class="anchor" aria-hidden="true" href="#一平稳退化">#</a></h3>
+<ul>
+<li><strong>定义</strong>：确保网站在浏览器不支持 JavaScript 或 JS 被禁用时，核心功能仍可正常使用（如链接可点击、内容可访问）。</li>
+<li>关键原则：
+<ul>
+<li>为 JS 功能提供 “退路”，例如将链接的 <code>href</code> 属性设置为真实 URL，而非仅依赖 <code>onclick</code> 事件。</li>
+<li>避免过度依赖 JS 实现基础功能（如导航、跳转）。</li>
+</ul>
+</li>
+</ul>
+<h4 id="1-弹出窗口与平稳退化">1. 弹出窗口与平稳退化<a hidden class="anchor" aria-hidden="true" href="#1-弹出窗口与平稳退化">#</a></h4>
+<ul>
+<li>
+<p><code>window.open()</code> 方法：用于创建新窗口，语法为<code>window.open(url, name, features)</code>，参数分别为目标 URL、窗口名称、窗口属性（如尺寸、功能）。</p>
+<ul>
+<li>
+<p>示例函数：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-js" data-lang="js"><span style="display:flex;"><span><span style="color:#66d9ef">function</span> <span style="color:#a6e22e">popUp</span>(<span style="color:#a6e22e">winUrl</span>) {
+</span></span><span style="display:flex;"><span>  window.<span style="color:#a6e22e">open</span>(<span style="color:#a6e22e">winUrl</span>, <span style="color:#e6db74">&#39;popup&#39;</span>, <span style="color:#e6db74">&#39;width=320,height=480&#39;</span>);
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div></li>
+</ul>
+</li>
+<li>
+<p>调用方式的问题：</p>
+<ul>
+<li><strong>伪协议（<code>javascript:</code>）</strong>：如 <code>&lt;a href=&quot;javascript:popUp('url')&quot;&gt;</code>，在禁用 JS 时失效，不推荐。</li>
+<li><strong>空链接（<code>#</code>）</strong>：如 <code>&lt;a href=&quot;#&quot; onclick=&quot;popUp('url');return false&quot;&gt;</code>，禁用 JS 时点击会跳转至页面顶部，体验差。</li>
+</ul>
+</li>
+<li>
+<p>正确做法：</p>
+<ul>
+<li>
+<p>让href指向真实 URL，onclick中通过return false阻止默认跳转，确保 JS 禁用时仍能正常访问：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-html" data-lang="html"><span style="display:flex;"><span>&lt;<span style="color:#f92672">a</span> <span style="color:#a6e22e">href</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;http://www.baidu.com&#34;</span> <span style="color:#a6e22e">onclick</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;popUp(&#39;http://www.baidu.com&#39;);return false;&#34;</span>&gt;baidu&lt;/<span style="color:#f92672">a</span>&gt;
+</span></span></code></pre></div></li>
+</ul>
+</li>
+</ul>
+<h3 id="二分离-javascript">二、分离 JavaScript<a hidden class="anchor" aria-hidden="true" href="#二分离-javascript">#</a></h3>
+<ul>
+<li>
+<p><strong>核心思想</strong>：将 JS 代码从 HTML 中剥离，通过外部脚本文件管理，避免 HTML 与 JS 耦合。</p>
+</li>
+<li>
+<p>实现步骤：</p>
+<ol>
+<li>
+<p>HTML 保留基础功能：链接使用真实 href，通过 class或id标识需要特殊处理的元素：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-html" data-lang="html"><span style="display:flex;"><span>&lt;<span style="color:#f92672">a</span> <span style="color:#a6e22e">href</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;http://www.baidu.com&#34;</span> <span style="color:#a6e22e">class</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;popup&#34;</span>&gt;baidu&lt;/<span style="color:#f92672">a</span>&gt;
+</span></span></code></pre></div></li>
+<li>
+<p>外部 JS 绑定事件：在外部脚本中通过 DOM 方法找到目标元素，动态绑定事件：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-js" data-lang="js"><span style="display:flex;"><span><span style="color:#75715e">// 等待页面加载完成后执行
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>window.<span style="color:#a6e22e">onload</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">function</span>() {
+</span></span><span style="display:flex;"><span>  <span style="color:#75715e">// 获取所有带 popup 类的链接
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>  <span style="color:#66d9ef">const</span> <span style="color:#a6e22e">links</span> <span style="color:#f92672">=</span> document.<span style="color:#a6e22e">getElementsByTagName</span>(<span style="color:#e6db74">&#39;a&#39;</span>);
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">let</span> <span style="color:#a6e22e">i</span> <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>; <span style="color:#a6e22e">i</span> <span style="color:#f92672">&lt;</span> <span style="color:#a6e22e">links</span>.<span style="color:#a6e22e">length</span>; <span style="color:#a6e22e">i</span><span style="color:#f92672">++</span>) {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">if</span> (<span style="color:#a6e22e">links</span>[<span style="color:#a6e22e">i</span>].<span style="color:#a6e22e">className</span> <span style="color:#f92672">===</span> <span style="color:#e6db74">&#39;popup&#39;</span>) {
+</span></span><span style="display:flex;"><span>      <span style="color:#75715e">// 绑定点击事件
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>      <span style="color:#a6e22e">links</span>[<span style="color:#a6e22e">i</span>].<span style="color:#a6e22e">onclick</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">function</span>() {
+</span></span><span style="display:flex;"><span>        <span style="color:#a6e22e">popUp</span>(<span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">href</span>); <span style="color:#75715e">// 传递 href 属性值
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>        <span style="color:#66d9ef">return</span> <span style="color:#66d9ef">false</span>; <span style="color:#75715e">// 阻止默认跳转
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>      };
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>  }
+</span></span><span style="display:flex;"><span>};
+</span></span></code></pre></div></li>
+</ol>
+</li>
+<li>
+<p><strong>优势</strong>：符合 “渐进增强” 原则，HTML 保持基础功能，JS 作为增强层添加额外交互，同时便于维护。</p>
+</li>
+</ul>
+<h3 id="三向后兼容">三、向后兼容<a hidden class="anchor" aria-hidden="true" href="#三向后兼容">#</a></h3>
+<ul>
+<li>
+<p><strong>问题</strong>：不同浏览器对 JS 支持程度不同，部分功能可能失效。</p>
+</li>
+<li>
+<p><strong>解决方案</strong>：</p>
+<ol>
+<li>
+<p><strong>对象检测</strong>：</p>
+<ul>
+<li>
+<p>通过if语句检测浏览器是否支持特定方法 / 对象，避免执行不支持的代码：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-js" data-lang="js"><span style="display:flex;"><span><span style="color:#66d9ef">function</span> <span style="color:#a6e22e">popUp</span>(<span style="color:#a6e22e">winUrl</span>) {
+</span></span><span style="display:flex;"><span>  <span style="color:#75715e">// 检测 window.open 是否存在
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>  <span style="color:#66d9ef">if</span> (window.<span style="color:#a6e22e">open</span>) {
+</span></span><span style="display:flex;"><span>    window.<span style="color:#a6e22e">open</span>(<span style="color:#a6e22e">winUrl</span>, <span style="color:#e6db74">&#39;popup&#39;</span>, <span style="color:#e6db74">&#39;width=320,height=480&#39;</span>);
+</span></span><span style="display:flex;"><span>  }
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div></li>
+<li>
+<p>复杂检测可结合逻辑运算符（如||检测多个对象），不支持时提前退出：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-js" data-lang="js"><span style="display:flex;"><span><span style="color:#66d9ef">function</span> <span style="color:#a6e22e">doSomething</span>() {
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">if</span> (<span style="color:#f92672">!</span>document.<span style="color:#a6e22e">getElementById</span> <span style="color:#f92672">||</span> <span style="color:#f92672">!</span>window.<span style="color:#a6e22e">open</span>) {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> <span style="color:#66d9ef">false</span>; <span style="color:#75715e">// 不支持必要功能时退出
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>  }
+</span></span><span style="display:flex;"><span>  <span style="color:#75715e">// 执行操作...
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>}
+</span></span></code></pre></div></li>
+</ul>
+</li>
+<li>
+<p><strong>避免浏览器嗅探</strong>：</p>
+<ul>
+<li>浏览器嗅探通过检测 <code>userAgent</code> 判断浏览器类型，但存在缺陷（如浏览器可伪造标识、版本更新导致逻辑失效），不推荐。</li>
+</ul>
+</li>
+</ol>
+</li>
+</ul>
+<h3 id="四性能优化">四、性能优化<a hidden class="anchor" aria-hidden="true" href="#四性能优化">#</a></h3>
+<h4 id="1-减少-dom-访问与优化标记">1. 减少 DOM 访问与优化标记<a hidden class="anchor" aria-hidden="true" href="#1-减少-dom-访问与优化标记">#</a></h4>
+<ul>
+<li>
+<p>缓存 DOM 查询结果：避免频繁查询 DOM（如循环中多次调用getElementsByTagName），将结果存入变量复用：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-js" data-lang="js"><span style="display:flex;"><span><span style="color:#66d9ef">const</span> <span style="color:#a6e22e">links</span> <span style="color:#f92672">=</span> document.<span style="color:#a6e22e">getElementsByTagName</span>(<span style="color:#e6db74">&#39;a&#39;</span>); <span style="color:#75715e">// 缓存结果
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">let</span> <span style="color:#a6e22e">i</span> <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>; <span style="color:#a6e22e">i</span> <span style="color:#f92672">&lt;</span> <span style="color:#a6e22e">links</span>.<span style="color:#a6e22e">length</span>; <span style="color:#a6e22e">i</span><span style="color:#f92672">++</span>) {
+</span></span><span style="display:flex;"><span>  <span style="color:#75715e">// 使用缓存的 links 数组
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>}
+</span></span></code></pre></div></li>
+<li>
+<p><strong>精简 HTML 标记</strong>：过多冗余元素会增加 DOM 树规模，降低查询效率。</p>
+</li>
+</ul>
+<h4 id="2-合并与放置脚本">2. 合并与放置脚本<a hidden class="anchor" aria-hidden="true" href="#2-合并与放置脚本">#</a></h4>
+<ul>
+<li><strong>合并文件</strong>：将多个 <code>.js</code> 文件合并为一个，减少 HTTP 请求次数。</li>
+<li><strong>放置位置</strong>：将 <code>&lt;script&gt;</code> 标签放在 <code>&lt;/body&gt;</code> 之前（文档末尾），避免阻塞页面渲染和其他资源加载（浏览器加载脚本时会暂停其他下载）。</li>
+</ul>
+<h4 id="3-压缩脚本">3. 压缩脚本<a hidden class="anchor" aria-hidden="true" href="#3-压缩脚本">#</a></h4>
+<ul>
+<li><strong>定义</strong>：删除脚本中的空格、注释、换行等无关字符，减小文件体积（通常文件名加 <code>.min.js</code> 区分，如 <code>script.min.js</code>）。</li>
+<li><strong>工具</strong>：使用压缩工具（如 UglifyJS、Terser）自动处理，保留未压缩的工作副本用于开发。</li>
+</ul>
+
+
+  </div>
+
+  <footer class="post-footer">
+    <ul class="post-tags">
+    </ul>
+  </footer>
+</article>
+    </main>
+    
+<footer class="footer">
+        <span>&copy; 2025 <a href="https://example.org/">My New Hugo Site</a></span> · 
+
+    <span>
+        Powered by
+        <a href="https://gohugo.io/" rel="noopener noreferrer" target="_blank">Hugo</a> &
+        <a href="https://github.com/adityatelange/hugo-PaperMod/" rel="noopener" target="_blank">PaperMod</a>
+    </span>
+</footer>
+<a href="#top" aria-label="go to top" title="Go to Top (Alt + G)" class="top-link" id="top-link" accesskey="g">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 12 6" fill="currentColor">
+        <path d="M12 6H0l6-6z" />
+    </svg>
+</a>
+
+<script>
+    let menu = document.getElementById('menu')
+    if (menu) {
+        menu.scrollLeft = localStorage.getItem("menu-scroll-position");
+        menu.onscroll = function () {
+            localStorage.setItem("menu-scroll-position", menu.scrollLeft);
+        }
+    }
+
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener("click", function (e) {
+            e.preventDefault();
+            var id = this.getAttribute("href").substr(1);
+            if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView({
+                    behavior: "smooth"
+                });
+            } else {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView();
+            }
+            if (id === "top") {
+                history.replaceState(null, null, " ");
+            } else {
+                history.pushState(null, null, `#${id}`);
+            }
+        });
+    });
+
+</script>
+<script>
+    var mybutton = document.getElementById("top-link");
+    window.onscroll = function () {
+        if (document.body.scrollTop > 800 || document.documentElement.scrollTop > 800) {
+            mybutton.style.visibility = "visible";
+            mybutton.style.opacity = "1";
+        } else {
+            mybutton.style.visibility = "hidden";
+            mybutton.style.opacity = "0";
+        }
+    };
+
+</script>
+<script>
+    document.getElementById("theme-toggle").addEventListener("click", () => {
+        if (document.body.className.includes("dark")) {
+            document.body.classList.remove('dark');
+            localStorage.setItem("pref-theme", 'light');
+        } else {
+            document.body.classList.add('dark');
+            localStorage.setItem("pref-theme", 'dark');
+        }
+    })
+
+</script>
+</body>
+
+</html>

@@ -1,0 +1,771 @@
+<!DOCTYPE html>
+<html lang="en" dir="auto">
+
+<head><meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="robots" content="index, follow">
+<title>My New Hugo Site</title>
+<meta name="keywords" content="">
+<meta name="description" content="一、数组
+
+特性：
+
+可容纳任何类型的值，声明后可直接添加值，无需预先设定大小。
+使用delete运算符删除单元后，位置变为空白单元，数组length属性不变。
+
+
+稀疏数组：
+
+指含有空白 / 空缺单元的数组，空白单元值为undefined，但与显式赋值为undefined的单元有区别（如[,,]与[undefined, undefined]行为不同）。
+
+
+索引与属性：
+
+主要通过数字索引访问，但本质是对象，可包含字符串键值和属性（不计算在length内，length只计算数字索引的最大整数 &#43; 1）。
+若字符串键值可强制转换为十进制数字，则会被当作数字索引处理。
+
+
+类数组转换：
+
+类数组特征：有length和数字索引，但无数组方法（如arguments、DOM 集合NodeList）
+可转换为真正的数组，常用方法：
+
+Array.prototype.slice.call(类数组)
+ES6 的Array.from(类数组)
+扩展运算符（需类数组为可迭代对象）
+
+
+
+
+
+
+二、字符串
+
+与数组的区别：
+
+是类数组（有length、indexOf()、concat()等），但并非字符数组。
+字符串不可变：成员函数不修改原始值，而是返回新字符串；数组可变：成员函数直接操作原始值。
+
+
+数组方法的借用：
+
+可借用数组的非变更方法（如Array.prototype.indexOf.call(str, &#39;a&#39;)）处理字符串。
+不可借用数组的变更方法（因字符串不可变），需先通过split(&#39;&#39;)转为数组，处理后再用join(&#39;&#39;)转回字符串。
+
+
+
+
+三、数字
+
+类型与格式：
+
+JS 只有一种数值类型number（双精度浮点数），包含整数（如42.0）和带小数的十进制数。
+字面量表示：
+
+十进制：可省略小数点前的 0（.42）或后多余的 0（42.）。
+特殊格式：指数形式（1e3）、二进制（0b1010）、八进制（0o12）、十六进制（0xa）。
+
+
+
+
+显示规则：
+
+大部分数字默认以十进制显示，省略小数部分末尾的 0；特别大 / 小的数字默认用指数形式（同toExponential()）。
+
+
+Number 对象方法：
+
+toFixed(n)：指定小数部分显示位数，不足用 0 补齐（返回字符串）。
+toPrecision(n)：指定有效数位的显示位数。
+注意：数字字面量调用方法时，需避免.被误判为数字一部分（如42..toFixed(2)或42 .toFixed(2)）。
+
+
+精度与范围：
+
+
+精度问题：0.1 &#43; 0.2 !== 0.3（浮点数二进制存储导致精度丢失），可通过Math.abs(n1 - n2) &lt; Number.EPSILON（机器精度）判断近似相等。
+
+
+范围：
+
+最大浮点数：Number.MAX_VALUE；最小浮点数（接近 0 的正数）：Number.MIN_VALUE。
+安全整数范围：Number.MIN_SAFE_INTEGER（-2^53 &#43; 1）到Number.MAX_SAFE_INTEGER（2^53 - 1），超出需用字符串处理。
+BigInt解决大整数：用n后缀声明，支持超出安全范围的整数运算
+
+const big = 9007199254740993n;
+big &#43; 1n; // 9007199254740994n（精确计算）
+
+
+
+检测方法：
+
+Number.isInteger(num)：检测是否为整数（ES6&#43;）。
+Number.isSafeInteger(num)：检测是否为安全整数（ES6&#43;）。
+
+
+
+
+四、特殊数值
+
+null 与 undefined：
+
+均为唯一值，名称即类型也即值。
+区别：
+
+null：表示 “空值”（曾赋值，当前无值），不是标识符，不能作为变量赋值。
+undefined：表示 “未赋值”，是内置标识符（不建议手动赋值，严格模式下可能报错）。
+
+
+void运算符：表达式void XXX返回undefined，不改变表达式副作用（惯例用void 0获取undefined）。
+
+
+NaN（Not a Number）：
+
+属于number类型，代表数学运算失败的警戒值。
+特性：与自身不相等（NaN !== NaN）。
+检测：isNaN()不可靠（误判非数字类型），Number.isNaN()更准确（仅检测NaN）。
+
+
+无穷数（Infinity）：
+
+产生：正数除以 0 得Infinity，负数除以 0 得-Infinity；运算溢出时也会返回。
+特性：
+
+Infinity / Infinity结果为NaN。
+有穷正数 /Infinity为 0，有穷负数 /Infinity为-0。
+溢出为无穷数后，无法再得到有穷数。
+
+
+
+
+负零（-0）：
+
+产生：某些数学运算（如-1 / Infinity）的结果，加减法不会得到-0。
+特性：
+
+字符串化返回&quot;0&quot;，但从字符串转回数字时保留符号。
+-0 === 0为true，ES6 的Object.is(-0, 0)为false（可准确区分）。
+
+
+
+
+
+
+五、值和引用
+
+引用本质：
+
+JS 中引用指向值，而非变量；多个引用可指向同一值，但引用间无相互指向关系。
+
+
+赋值 / 传递规则：
+
+由值的类型决定，与语法无关：
+
+基本类型（null、undefined、string、number、boolean、symbol）：通过值复制（赋值 / 传递的是值的副本）。
+复合值（对象、函数、数组等）：通过引用复制（赋值 / 传递的是指向值的引用）。
+
+
+
+
+操作特性：
+
+引用无法修改另一个引用的指向（如a = b后修改a不影响b）。
+复合值的复制：需创建复本（如a.slice()返回数组浅复本），避免引用共享。
+基本类型的修改：若需在函数内修改基本类型，需封装到复合值中（通过引用传递）。
+基本类型不可变：其值无法被修改（如字符串的方法均返回新值）。
+
+
+">
+<meta name="author" content="">
+<link rel="canonical" href="https://example.org/posts/%E4%BD%A0%E4%B8%8D%E7%9F%A5%E9%81%93%E7%9A%84js/%E7%B1%BB%E5%9E%8B%E5%92%8C%E8%AF%AD%E6%B3%95/2.-%E5%80%BC/">
+<link crossorigin="anonymous" href="/assets/css/stylesheet.8fe10233a706bc87f2e08b3cf97b8bd4c0a80f10675a143675d59212121037c0.css" integrity="sha256-j&#43;ECM6cGvIfy4Is8&#43;XuL1MCoDxBnWhQ2ddWSEhIQN8A=" rel="preload stylesheet" as="style">
+<link rel="icon" href="https://example.org/favicon.ico">
+<link rel="icon" type="image/png" sizes="16x16" href="https://example.org/favicon-16x16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="https://example.org/favicon-32x32.png">
+<link rel="apple-touch-icon" href="https://example.org/apple-touch-icon.png">
+<link rel="mask-icon" href="https://example.org/safari-pinned-tab.svg">
+<meta name="theme-color" content="#2e2e33">
+<meta name="msapplication-TileColor" content="#2e2e33">
+<link rel="alternate" hreflang="en" href="https://example.org/posts/%E4%BD%A0%E4%B8%8D%E7%9F%A5%E9%81%93%E7%9A%84js/%E7%B1%BB%E5%9E%8B%E5%92%8C%E8%AF%AD%E6%B3%95/2.-%E5%80%BC/">
+<noscript>
+    <style>
+        #theme-toggle,
+        .top-link {
+            display: none;
+        }
+
+    </style>
+    <style>
+        @media (prefers-color-scheme: dark) {
+            :root {
+                --theme: rgb(29, 30, 32);
+                --entry: rgb(46, 46, 51);
+                --primary: rgb(218, 218, 219);
+                --secondary: rgb(155, 156, 157);
+                --tertiary: rgb(65, 66, 68);
+                --content: rgb(196, 196, 197);
+                --code-block-bg: rgb(46, 46, 51);
+                --code-bg: rgb(55, 56, 62);
+                --border: rgb(51, 51, 51);
+            }
+
+            .list {
+                background: var(--theme);
+            }
+
+            .list:not(.dark)::-webkit-scrollbar-track {
+                background: 0 0;
+            }
+
+            .list:not(.dark)::-webkit-scrollbar-thumb {
+                border-color: var(--theme);
+            }
+        }
+
+    </style>
+</noscript><meta property="og:url" content="https://example.org/posts/%E4%BD%A0%E4%B8%8D%E7%9F%A5%E9%81%93%E7%9A%84js/%E7%B1%BB%E5%9E%8B%E5%92%8C%E8%AF%AD%E6%B3%95/2.-%E5%80%BC/">
+  <meta property="og:site_name" content="My New Hugo Site">
+  <meta property="og:title" content="My New Hugo Site">
+  <meta property="og:description" content="一、数组 特性： 可容纳任何类型的值，声明后可直接添加值，无需预先设定大小。 使用delete运算符删除单元后，位置变为空白单元，数组length属性不变。 稀疏数组： 指含有空白 / 空缺单元的数组，空白单元值为undefined，但与显式赋值为undefined的单元有区别（如[,,]与[undefined, undefined]行为不同）。 索引与属性： 主要通过数字索引访问，但本质是对象，可包含字符串键值和属性（不计算在length内，length只计算数字索引的最大整数 &#43; 1）。 若字符串键值可强制转换为十进制数字，则会被当作数字索引处理。 类数组转换： 类数组特征：有length和数字索引，但无数组方法（如arguments、DOM 集合NodeList） 可转换为真正的数组，常用方法： Array.prototype.slice.call(类数组) ES6 的Array.from(类数组) 扩展运算符（需类数组为可迭代对象） 二、字符串 与数组的区别： 是类数组（有length、indexOf()、concat()等），但并非字符数组。 字符串不可变：成员函数不修改原始值，而是返回新字符串；数组可变：成员函数直接操作原始值。 数组方法的借用： 可借用数组的非变更方法（如Array.prototype.indexOf.call(str, &#39;a&#39;)）处理字符串。 不可借用数组的变更方法（因字符串不可变），需先通过split(&#39;&#39;)转为数组，处理后再用join(&#39;&#39;)转回字符串。 三、数字 类型与格式： JS 只有一种数值类型number（双精度浮点数），包含整数（如42.0）和带小数的十进制数。 字面量表示： 十进制：可省略小数点前的 0（.42）或后多余的 0（42.）。 特殊格式：指数形式（1e3）、二进制（0b1010）、八进制（0o12）、十六进制（0xa）。 显示规则： 大部分数字默认以十进制显示，省略小数部分末尾的 0；特别大 / 小的数字默认用指数形式（同toExponential()）。 Number 对象方法： toFixed(n)：指定小数部分显示位数，不足用 0 补齐（返回字符串）。 toPrecision(n)：指定有效数位的显示位数。 注意：数字字面量调用方法时，需避免.被误判为数字一部分（如42..toFixed(2)或42 .toFixed(2)）。 精度与范围： 精度问题：0.1 &#43; 0.2 !== 0.3（浮点数二进制存储导致精度丢失），可通过Math.abs(n1 - n2) &lt; Number.EPSILON（机器精度）判断近似相等。
+范围：
+最大浮点数：Number.MAX_VALUE；最小浮点数（接近 0 的正数）：Number.MIN_VALUE。 安全整数范围：Number.MIN_SAFE_INTEGER（-2^53 &#43; 1）到Number.MAX_SAFE_INTEGER（2^53 - 1），超出需用字符串处理。 BigInt解决大整数：用n后缀声明，支持超出安全范围的整数运算 const big = 9007199254740993n; big &#43; 1n; // 9007199254740994n（精确计算） 检测方法： Number.isInteger(num)：检测是否为整数（ES6&#43;）。 Number.isSafeInteger(num)：检测是否为安全整数（ES6&#43;）。 四、特殊数值 null 与 undefined： 均为唯一值，名称即类型也即值。 区别： null：表示 “空值”（曾赋值，当前无值），不是标识符，不能作为变量赋值。 undefined：表示 “未赋值”，是内置标识符（不建议手动赋值，严格模式下可能报错）。 void运算符：表达式void XXX返回undefined，不改变表达式副作用（惯例用void 0获取undefined）。 NaN（Not a Number）： 属于number类型，代表数学运算失败的警戒值。 特性：与自身不相等（NaN !== NaN）。 检测：isNaN()不可靠（误判非数字类型），Number.isNaN()更准确（仅检测NaN）。 无穷数（Infinity）： 产生：正数除以 0 得Infinity，负数除以 0 得-Infinity；运算溢出时也会返回。 特性： Infinity / Infinity结果为NaN。 有穷正数 /Infinity为 0，有穷负数 /Infinity为-0。 溢出为无穷数后，无法再得到有穷数。 负零（-0）： 产生：某些数学运算（如-1 / Infinity）的结果，加减法不会得到-0。 特性： 字符串化返回&#34;0&#34;，但从字符串转回数字时保留符号。 -0 === 0为true，ES6 的Object.is(-0, 0)为false（可准确区分）。 五、值和引用 引用本质： JS 中引用指向值，而非变量；多个引用可指向同一值，但引用间无相互指向关系。 赋值 / 传递规则： 由值的类型决定，与语法无关： 基本类型（null、undefined、string、number、boolean、symbol）：通过值复制（赋值 / 传递的是值的副本）。 复合值（对象、函数、数组等）：通过引用复制（赋值 / 传递的是指向值的引用）。 操作特性： 引用无法修改另一个引用的指向（如a = b后修改a不影响b）。 复合值的复制：需创建复本（如a.slice()返回数组浅复本），避免引用共享。 基本类型的修改：若需在函数内修改基本类型，需封装到复合值中（通过引用传递）。 基本类型不可变：其值无法被修改（如字符串的方法均返回新值）。 ">
+  <meta property="og:locale" content="en-us">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="posts">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="">
+<meta name="twitter:description" content="一、数组
+
+特性：
+
+可容纳任何类型的值，声明后可直接添加值，无需预先设定大小。
+使用delete运算符删除单元后，位置变为空白单元，数组length属性不变。
+
+
+稀疏数组：
+
+指含有空白 / 空缺单元的数组，空白单元值为undefined，但与显式赋值为undefined的单元有区别（如[,,]与[undefined, undefined]行为不同）。
+
+
+索引与属性：
+
+主要通过数字索引访问，但本质是对象，可包含字符串键值和属性（不计算在length内，length只计算数字索引的最大整数 &#43; 1）。
+若字符串键值可强制转换为十进制数字，则会被当作数字索引处理。
+
+
+类数组转换：
+
+类数组特征：有length和数字索引，但无数组方法（如arguments、DOM 集合NodeList）
+可转换为真正的数组，常用方法：
+
+Array.prototype.slice.call(类数组)
+ES6 的Array.from(类数组)
+扩展运算符（需类数组为可迭代对象）
+
+
+
+
+
+
+二、字符串
+
+与数组的区别：
+
+是类数组（有length、indexOf()、concat()等），但并非字符数组。
+字符串不可变：成员函数不修改原始值，而是返回新字符串；数组可变：成员函数直接操作原始值。
+
+
+数组方法的借用：
+
+可借用数组的非变更方法（如Array.prototype.indexOf.call(str, &#39;a&#39;)）处理字符串。
+不可借用数组的变更方法（因字符串不可变），需先通过split(&#39;&#39;)转为数组，处理后再用join(&#39;&#39;)转回字符串。
+
+
+
+
+三、数字
+
+类型与格式：
+
+JS 只有一种数值类型number（双精度浮点数），包含整数（如42.0）和带小数的十进制数。
+字面量表示：
+
+十进制：可省略小数点前的 0（.42）或后多余的 0（42.）。
+特殊格式：指数形式（1e3）、二进制（0b1010）、八进制（0o12）、十六进制（0xa）。
+
+
+
+
+显示规则：
+
+大部分数字默认以十进制显示，省略小数部分末尾的 0；特别大 / 小的数字默认用指数形式（同toExponential()）。
+
+
+Number 对象方法：
+
+toFixed(n)：指定小数部分显示位数，不足用 0 补齐（返回字符串）。
+toPrecision(n)：指定有效数位的显示位数。
+注意：数字字面量调用方法时，需避免.被误判为数字一部分（如42..toFixed(2)或42 .toFixed(2)）。
+
+
+精度与范围：
+
+
+精度问题：0.1 &#43; 0.2 !== 0.3（浮点数二进制存储导致精度丢失），可通过Math.abs(n1 - n2) &lt; Number.EPSILON（机器精度）判断近似相等。
+
+
+范围：
+
+最大浮点数：Number.MAX_VALUE；最小浮点数（接近 0 的正数）：Number.MIN_VALUE。
+安全整数范围：Number.MIN_SAFE_INTEGER（-2^53 &#43; 1）到Number.MAX_SAFE_INTEGER（2^53 - 1），超出需用字符串处理。
+BigInt解决大整数：用n后缀声明，支持超出安全范围的整数运算
+
+const big = 9007199254740993n;
+big &#43; 1n; // 9007199254740994n（精确计算）
+
+
+
+检测方法：
+
+Number.isInteger(num)：检测是否为整数（ES6&#43;）。
+Number.isSafeInteger(num)：检测是否为安全整数（ES6&#43;）。
+
+
+
+
+四、特殊数值
+
+null 与 undefined：
+
+均为唯一值，名称即类型也即值。
+区别：
+
+null：表示 “空值”（曾赋值，当前无值），不是标识符，不能作为变量赋值。
+undefined：表示 “未赋值”，是内置标识符（不建议手动赋值，严格模式下可能报错）。
+
+
+void运算符：表达式void XXX返回undefined，不改变表达式副作用（惯例用void 0获取undefined）。
+
+
+NaN（Not a Number）：
+
+属于number类型，代表数学运算失败的警戒值。
+特性：与自身不相等（NaN !== NaN）。
+检测：isNaN()不可靠（误判非数字类型），Number.isNaN()更准确（仅检测NaN）。
+
+
+无穷数（Infinity）：
+
+产生：正数除以 0 得Infinity，负数除以 0 得-Infinity；运算溢出时也会返回。
+特性：
+
+Infinity / Infinity结果为NaN。
+有穷正数 /Infinity为 0，有穷负数 /Infinity为-0。
+溢出为无穷数后，无法再得到有穷数。
+
+
+
+
+负零（-0）：
+
+产生：某些数学运算（如-1 / Infinity）的结果，加减法不会得到-0。
+特性：
+
+字符串化返回&quot;0&quot;，但从字符串转回数字时保留符号。
+-0 === 0为true，ES6 的Object.is(-0, 0)为false（可准确区分）。
+
+
+
+
+
+
+五、值和引用
+
+引用本质：
+
+JS 中引用指向值，而非变量；多个引用可指向同一值，但引用间无相互指向关系。
+
+
+赋值 / 传递规则：
+
+由值的类型决定，与语法无关：
+
+基本类型（null、undefined、string、number、boolean、symbol）：通过值复制（赋值 / 传递的是值的副本）。
+复合值（对象、函数、数组等）：通过引用复制（赋值 / 传递的是指向值的引用）。
+
+
+
+
+操作特性：
+
+引用无法修改另一个引用的指向（如a = b后修改a不影响b）。
+复合值的复制：需创建复本（如a.slice()返回数组浅复本），避免引用共享。
+基本类型的修改：若需在函数内修改基本类型，需封装到复合值中（通过引用传递）。
+基本类型不可变：其值无法被修改（如字符串的方法均返回新值）。
+
+
+">
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position":  1 ,
+      "name": "Posts",
+      "item": "https://example.org/posts/"
+    }, 
+    {
+      "@type": "ListItem",
+      "position":  2 ,
+      "name": "",
+      "item": "https://example.org/posts/%E4%BD%A0%E4%B8%8D%E7%9F%A5%E9%81%93%E7%9A%84js/%E7%B1%BB%E5%9E%8B%E5%92%8C%E8%AF%AD%E6%B3%95/2.-%E5%80%BC/"
+    }
+  ]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "",
+  "name": "",
+  "description": "一、数组 特性： 可容纳任何类型的值，声明后可直接添加值，无需预先设定大小。 使用delete运算符删除单元后，位置变为空白单元，数组length属性不变。 稀疏数组： 指含有空白 / 空缺单元的数组，空白单元值为undefined，但与显式赋值为undefined的单元有区别（如[,,]与[undefined, undefined]行为不同）。 索引与属性： 主要通过数字索引访问，但本质是对象，可包含字符串键值和属性（不计算在length内，length只计算数字索引的最大整数 + 1）。 若字符串键值可强制转换为十进制数字，则会被当作数字索引处理。 类数组转换： 类数组特征：有length和数字索引，但无数组方法（如arguments、DOM 集合NodeList） 可转换为真正的数组，常用方法： Array.prototype.slice.call(类数组) ES6 的Array.from(类数组) 扩展运算符（需类数组为可迭代对象） 二、字符串 与数组的区别： 是类数组（有length、indexOf()、concat()等），但并非字符数组。 字符串不可变：成员函数不修改原始值，而是返回新字符串；数组可变：成员函数直接操作原始值。 数组方法的借用： 可借用数组的非变更方法（如Array.prototype.indexOf.call(str, 'a')）处理字符串。 不可借用数组的变更方法（因字符串不可变），需先通过split('')转为数组，处理后再用join('')转回字符串。 三、数字 类型与格式： JS 只有一种数值类型number（双精度浮点数），包含整数（如42.0）和带小数的十进制数。 字面量表示： 十进制：可省略小数点前的 0（.42）或后多余的 0（42.）。 特殊格式：指数形式（1e3）、二进制（0b1010）、八进制（0o12）、十六进制（0xa）。 显示规则： 大部分数字默认以十进制显示，省略小数部分末尾的 0；特别大 / 小的数字默认用指数形式（同toExponential()）。 Number 对象方法： toFixed(n)：指定小数部分显示位数，不足用 0 补齐（返回字符串）。 toPrecision(n)：指定有效数位的显示位数。 注意：数字字面量调用方法时，需避免.被误判为数字一部分（如42..toFixed(2)或42 .toFixed(2)）。 精度与范围： 精度问题：0.1 + 0.2 !== 0.3（浮点数二进制存储导致精度丢失），可通过Math.abs(n1 - n2) \u0026lt; Number.EPSILON（机器精度）判断近似相等。\n范围：\n最大浮点数：Number.MAX_VALUE；最小浮点数（接近 0 的正数）：Number.MIN_VALUE。 安全整数范围：Number.MIN_SAFE_INTEGER（-2^53 + 1）到Number.MAX_SAFE_INTEGER（2^53 - 1），超出需用字符串处理。 BigInt解决大整数：用n后缀声明，支持超出安全范围的整数运算 const big = 9007199254740993n; big + 1n; // 9007199254740994n（精确计算） 检测方法： Number.isInteger(num)：检测是否为整数（ES6+）。 Number.isSafeInteger(num)：检测是否为安全整数（ES6+）。 四、特殊数值 null 与 undefined： 均为唯一值，名称即类型也即值。 区别： null：表示 “空值”（曾赋值，当前无值），不是标识符，不能作为变量赋值。 undefined：表示 “未赋值”，是内置标识符（不建议手动赋值，严格模式下可能报错）。 void运算符：表达式void XXX返回undefined，不改变表达式副作用（惯例用void 0获取undefined）。 NaN（Not a Number）： 属于number类型，代表数学运算失败的警戒值。 特性：与自身不相等（NaN !== NaN）。 检测：isNaN()不可靠（误判非数字类型），Number.isNaN()更准确（仅检测NaN）。 无穷数（Infinity）： 产生：正数除以 0 得Infinity，负数除以 0 得-Infinity；运算溢出时也会返回。 特性： Infinity / Infinity结果为NaN。 有穷正数 /Infinity为 0，有穷负数 /Infinity为-0。 溢出为无穷数后，无法再得到有穷数。 负零（-0）： 产生：某些数学运算（如-1 / Infinity）的结果，加减法不会得到-0。 特性： 字符串化返回\u0026quot;0\u0026quot;，但从字符串转回数字时保留符号。 -0 === 0为true，ES6 的Object.is(-0, 0)为false（可准确区分）。 五、值和引用 引用本质： JS 中引用指向值，而非变量；多个引用可指向同一值，但引用间无相互指向关系。 赋值 / 传递规则： 由值的类型决定，与语法无关： 基本类型（null、undefined、string、number、boolean、symbol）：通过值复制（赋值 / 传递的是值的副本）。 复合值（对象、函数、数组等）：通过引用复制（赋值 / 传递的是指向值的引用）。 操作特性： 引用无法修改另一个引用的指向（如a = b后修改a不影响b）。 复合值的复制：需创建复本（如a.slice()返回数组浅复本），避免引用共享。 基本类型的修改：若需在函数内修改基本类型，需封装到复合值中（通过引用传递）。 基本类型不可变：其值无法被修改（如字符串的方法均返回新值）。 ",
+  "keywords": [
+    
+  ],
+  "articleBody": "一、数组 特性： 可容纳任何类型的值，声明后可直接添加值，无需预先设定大小。 使用delete运算符删除单元后，位置变为空白单元，数组length属性不变。 稀疏数组： 指含有空白 / 空缺单元的数组，空白单元值为undefined，但与显式赋值为undefined的单元有区别（如[,,]与[undefined, undefined]行为不同）。 索引与属性： 主要通过数字索引访问，但本质是对象，可包含字符串键值和属性（不计算在length内，length只计算数字索引的最大整数 + 1）。 若字符串键值可强制转换为十进制数字，则会被当作数字索引处理。 类数组转换： 类数组特征：有length和数字索引，但无数组方法（如arguments、DOM 集合NodeList） 可转换为真正的数组，常用方法： Array.prototype.slice.call(类数组) ES6 的Array.from(类数组) 扩展运算符（需类数组为可迭代对象） 二、字符串 与数组的区别： 是类数组（有length、indexOf()、concat()等），但并非字符数组。 字符串不可变：成员函数不修改原始值，而是返回新字符串；数组可变：成员函数直接操作原始值。 数组方法的借用： 可借用数组的非变更方法（如Array.prototype.indexOf.call(str, 'a')）处理字符串。 不可借用数组的变更方法（因字符串不可变），需先通过split('')转为数组，处理后再用join('')转回字符串。 三、数字 类型与格式： JS 只有一种数值类型number（双精度浮点数），包含整数（如42.0）和带小数的十进制数。 字面量表示： 十进制：可省略小数点前的 0（.42）或后多余的 0（42.）。 特殊格式：指数形式（1e3）、二进制（0b1010）、八进制（0o12）、十六进制（0xa）。 显示规则： 大部分数字默认以十进制显示，省略小数部分末尾的 0；特别大 / 小的数字默认用指数形式（同toExponential()）。 Number 对象方法： toFixed(n)：指定小数部分显示位数，不足用 0 补齐（返回字符串）。 toPrecision(n)：指定有效数位的显示位数。 注意：数字字面量调用方法时，需避免.被误判为数字一部分（如42..toFixed(2)或42 .toFixed(2)）。 精度与范围： 精度问题：0.1 + 0.2 !== 0.3（浮点数二进制存储导致精度丢失），可通过Math.abs(n1 - n2) \u003c Number.EPSILON（机器精度）判断近似相等。\n范围：\n最大浮点数：Number.MAX_VALUE；最小浮点数（接近 0 的正数）：Number.MIN_VALUE。 安全整数范围：Number.MIN_SAFE_INTEGER（-2^53 + 1）到Number.MAX_SAFE_INTEGER（2^53 - 1），超出需用字符串处理。 BigInt解决大整数：用n后缀声明，支持超出安全范围的整数运算 const big = 9007199254740993n; big + 1n; // 9007199254740994n（精确计算） 检测方法： Number.isInteger(num)：检测是否为整数（ES6+）。 Number.isSafeInteger(num)：检测是否为安全整数（ES6+）。 四、特殊数值 null 与 undefined： 均为唯一值，名称即类型也即值。 区别： null：表示 “空值”（曾赋值，当前无值），不是标识符，不能作为变量赋值。 undefined：表示 “未赋值”，是内置标识符（不建议手动赋值，严格模式下可能报错）。 void运算符：表达式void XXX返回undefined，不改变表达式副作用（惯例用void 0获取undefined）。 NaN（Not a Number）： 属于number类型，代表数学运算失败的警戒值。 特性：与自身不相等（NaN !== NaN）。 检测：isNaN()不可靠（误判非数字类型），Number.isNaN()更准确（仅检测NaN）。 无穷数（Infinity）： 产生：正数除以 0 得Infinity，负数除以 0 得-Infinity；运算溢出时也会返回。 特性： Infinity / Infinity结果为NaN。 有穷正数 /Infinity为 0，有穷负数 /Infinity为-0。 溢出为无穷数后，无法再得到有穷数。 负零（-0）： 产生：某些数学运算（如-1 / Infinity）的结果，加减法不会得到-0。 特性： 字符串化返回\"0\"，但从字符串转回数字时保留符号。 -0 === 0为true，ES6 的Object.is(-0, 0)为false（可准确区分）。 五、值和引用 引用本质： JS 中引用指向值，而非变量；多个引用可指向同一值，但引用间无相互指向关系。 赋值 / 传递规则： 由值的类型决定，与语法无关： 基本类型（null、undefined、string、number、boolean、symbol）：通过值复制（赋值 / 传递的是值的副本）。 复合值（对象、函数、数组等）：通过引用复制（赋值 / 传递的是指向值的引用）。 操作特性： 引用无法修改另一个引用的指向（如a = b后修改a不影响b）。 复合值的复制：需创建复本（如a.slice()返回数组浅复本），避免引用共享。 基本类型的修改：若需在函数内修改基本类型，需封装到复合值中（通过引用传递）。 基本类型不可变：其值无法被修改（如字符串的方法均返回新值）。 ",
+  "wordCount" : "152",
+  "inLanguage": "en",
+  "datePublished": "0001-01-01T00:00:00Z",
+  "dateModified": "0001-01-01T00:00:00Z",
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://example.org/posts/%E4%BD%A0%E4%B8%8D%E7%9F%A5%E9%81%93%E7%9A%84js/%E7%B1%BB%E5%9E%8B%E5%92%8C%E8%AF%AD%E6%B3%95/2.-%E5%80%BC/"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "My New Hugo Site",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://example.org/favicon.ico"
+    }
+  }
+}
+</script>
+</head>
+
+<body class="" id="top">
+<script>
+    if (localStorage.getItem("pref-theme") === "dark") {
+        document.body.classList.add('dark');
+    } else if (localStorage.getItem("pref-theme") === "light") {
+        document.body.classList.remove('dark')
+    } else if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+        document.body.classList.add('dark');
+    }
+
+</script>
+
+<header class="header">
+    <nav class="nav">
+        <div class="logo">
+            <a href="https://example.org/" accesskey="h" title="My New Hugo Site (Alt + H)">My New Hugo Site</a>
+            <div class="logo-switches">
+                <button id="theme-toggle" accesskey="t" title="(Alt + T)" aria-label="Toggle theme">
+                    <svg id="moon" xmlns="http://www.w3.org/2000/svg" width="24" height="18" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                    </svg>
+                    <svg id="sun" xmlns="http://www.w3.org/2000/svg" width="24" height="18" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <circle cx="12" cy="12" r="5"></circle>
+                        <line x1="12" y1="1" x2="12" y2="3"></line>
+                        <line x1="12" y1="21" x2="12" y2="23"></line>
+                        <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                        <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                        <line x1="1" y1="12" x2="3" y2="12"></line>
+                        <line x1="21" y1="12" x2="23" y2="12"></line>
+                        <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                        <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+                    </svg>
+                </button>
+            </div>
+        </div>
+        <ul id="menu">
+        </ul>
+    </nav>
+</header>
+<main class="main">
+
+<article class="post-single">
+  <header class="post-header">
+    
+    <h1 class="post-title entry-hint-parent">
+      
+    </h1>
+    <div class="post-meta">
+
+</div>
+  </header> 
+  <div class="post-content"><h3 id="一数组">一、数组<a hidden class="anchor" aria-hidden="true" href="#一数组">#</a></h3>
+<ol>
+<li><strong>特性</strong>：
+<ul>
+<li>可容纳任何类型的值，声明后可直接添加值，无需预先设定大小。</li>
+<li>使用<code>delete</code>运算符删除单元后，位置变为空白单元，数组<code>length</code>属性不变。</li>
+</ul>
+</li>
+<li><strong>稀疏数组</strong>：
+<ul>
+<li>指含有空白 / 空缺单元的数组，空白单元值为<code>undefined</code>，但与显式赋值为<code>undefined</code>的单元有区别（如<code>[,,]</code>与<code>[undefined, undefined]</code>行为不同）。</li>
+</ul>
+</li>
+<li><strong>索引与属性</strong>：
+<ul>
+<li>主要通过数字索引访问，但本质是对象，可包含字符串键值和属性（不计算在<code>length</code>内，<code>length</code>只计算数字索引的最大整数 + 1）。</li>
+<li>若字符串键值可强制转换为十进制数字，则会被当作数字索引处理。</li>
+</ul>
+</li>
+<li><strong>类数组转换</strong>：
+<ul>
+<li><strong>类数组特征</strong>：有<code>length</code>和数字索引，但无数组方法（如<code>arguments</code>、DOM 集合<code>NodeList</code>）</li>
+<li>可转换为真正的数组，常用方法：
+<ul>
+<li><code>Array.prototype.slice.call(类数组)</code></li>
+<li>ES6 的<code>Array.from(类数组)</code></li>
+<li>扩展运算符（需类数组为可迭代对象）</li>
+</ul>
+</li>
+</ul>
+</li>
+</ol>
+<hr>
+<h3 id="二字符串">二、字符串<a hidden class="anchor" aria-hidden="true" href="#二字符串">#</a></h3>
+<ol>
+<li><strong>与数组的区别</strong>：
+<ul>
+<li>是类数组（有<code>length</code>、<code>indexOf()</code>、<code>concat()</code>等），但并非字符数组。</li>
+<li>字符串不可变：成员函数不修改原始值，而是返回新字符串；数组可变：成员函数直接操作原始值。</li>
+</ul>
+</li>
+<li><strong>数组方法的借用</strong>：
+<ul>
+<li>可借用数组的非变更方法（如<code>Array.prototype.indexOf.call(str, 'a')</code>）处理字符串。</li>
+<li>不可借用数组的变更方法（因字符串不可变），需先通过<code>split('')</code>转为数组，处理后再用<code>join('')</code>转回字符串。</li>
+</ul>
+</li>
+</ol>
+<hr>
+<h3 id="三数字">三、数字<a hidden class="anchor" aria-hidden="true" href="#三数字">#</a></h3>
+<ol>
+<li><strong>类型与格式</strong>：
+<ul>
+<li>JS 只有一种数值类型<code>number</code>（双精度浮点数），包含整数（如<code>42.0</code>）和带小数的十进制数。</li>
+<li>字面量表示：
+<ul>
+<li>十进制：可省略小数点前的 0（<code>.42</code>）或后多余的 0（<code>42.</code>）。</li>
+<li>特殊格式：指数形式（<code>1e3</code>）、二进制（<code>0b1010</code>）、八进制（<code>0o12</code>）、十六进制（<code>0xa</code>）。</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><strong>显示规则</strong>：
+<ul>
+<li>大部分数字默认以十进制显示，省略小数部分末尾的 0；特别大 / 小的数字默认用指数形式（同<code>toExponential()</code>）。</li>
+</ul>
+</li>
+<li><strong>Number 对象方法</strong>：
+<ul>
+<li><code>toFixed(n)</code>：指定小数部分显示位数，不足用 0 补齐（返回字符串）。</li>
+<li><code>toPrecision(n)</code>：指定有效数位的显示位数。</li>
+<li>注意：数字字面量调用方法时，需避免<code>.</code>被误判为数字一部分（如<code>42..toFixed(2)</code>或<code>42 .toFixed(2)</code>）。</li>
+</ul>
+</li>
+<li><strong>精度与范围</strong>：
+<ul>
+<li>
+<p>精度问题：<code>0.1 + 0.2 !== 0.3</code>（浮点数二进制存储导致精度丢失），可通过<code>Math.abs(n1 - n2) &lt; Number.EPSILON</code>（机器精度）判断近似相等。</p>
+</li>
+<li>
+<p>范围：</p>
+<ul>
+<li>最大浮点数：<code>Number.MAX_VALUE</code>；最小浮点数（接近 0 的正数）：<code>Number.MIN_VALUE</code>。</li>
+<li>安全整数范围：<code>Number.MIN_SAFE_INTEGER</code>（-2^53 + 1）到<code>Number.MAX_SAFE_INTEGER</code>（2^53 - 1），超出需用字符串处理。</li>
+<li><strong><code>BigInt</code>解决大整数</strong>：用<code>n</code>后缀声明，支持超出安全范围的整数运算</li>
+</ul>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-javascript" data-lang="javascript"><span style="display:flex;"><span><span style="color:#66d9ef">const</span> <span style="color:#a6e22e">big</span> <span style="color:#f92672">=</span> <span style="color:#ae81ff">9007199254740993</span><span style="color:#a6e22e">n</span>;
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">big</span> <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span><span style="color:#a6e22e">n</span>; <span style="color:#75715e">// 9007199254740994n（精确计算）
+</span></span></span></code></pre></div></li>
+</ul>
+</li>
+<li><strong>检测方法</strong>：
+<ul>
+<li><code>Number.isInteger(num)</code>：检测是否为整数（ES6+）。</li>
+<li><code>Number.isSafeInteger(num)</code>：检测是否为安全整数（ES6+）。</li>
+</ul>
+</li>
+</ol>
+<hr>
+<h3 id="四特殊数值">四、特殊数值<a hidden class="anchor" aria-hidden="true" href="#四特殊数值">#</a></h3>
+<ol>
+<li><strong>null 与 undefined</strong>：
+<ul>
+<li>均为唯一值，名称即类型也即值。</li>
+<li>区别：
+<ul>
+<li><code>null</code>：表示 “空值”（曾赋值，当前无值），不是标识符，不能作为变量赋值。</li>
+<li><code>undefined</code>：表示 “未赋值”，是内置标识符（不建议手动赋值，严格模式下可能报错）。</li>
+</ul>
+</li>
+<li><code>void</code>运算符：表达式<code>void XXX</code>返回<code>undefined</code>，不改变表达式副作用（惯例用<code>void 0</code>获取<code>undefined</code>）。</li>
+</ul>
+</li>
+<li><strong>NaN（Not a Number）</strong>：
+<ul>
+<li>属于<code>number</code>类型，代表数学运算失败的警戒值。</li>
+<li>特性：与自身不相等（<code>NaN !== NaN</code>）。</li>
+<li>检测：<code>isNaN()</code>不可靠（误判非数字类型），<code>Number.isNaN()</code>更准确（仅检测<code>NaN</code>）。</li>
+</ul>
+</li>
+<li><strong>无穷数（Infinity）</strong>：
+<ul>
+<li>产生：正数除以 0 得<code>Infinity</code>，负数除以 0 得<code>-Infinity</code>；运算溢出时也会返回。</li>
+<li>特性：
+<ul>
+<li><code>Infinity / Infinity</code>结果为<code>NaN</code>。</li>
+<li>有穷正数 /<code>Infinity</code>为 0，有穷负数 /<code>Infinity</code>为<code>-0</code>。</li>
+<li>溢出为无穷数后，无法再得到有穷数。</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><strong>负零（-0）</strong>：
+<ul>
+<li>产生：某些数学运算（如<code>-1 / Infinity</code>）的结果，加减法不会得到<code>-0</code>。</li>
+<li>特性：
+<ul>
+<li>字符串化返回<code>&quot;0&quot;</code>，但从字符串转回数字时保留符号。</li>
+<li><code>-0 === 0</code>为<code>true</code>，ES6 的<code>Object.is(-0, 0)</code>为<code>false</code>（可准确区分）。</li>
+</ul>
+</li>
+</ul>
+</li>
+</ol>
+<hr>
+<h3 id="五值和引用">五、值和引用<a hidden class="anchor" aria-hidden="true" href="#五值和引用">#</a></h3>
+<ol>
+<li><strong>引用本质</strong>：
+<ul>
+<li>JS 中引用指向值，而非变量；多个引用可指向同一值，但引用间无相互指向关系。</li>
+</ul>
+</li>
+<li><strong>赋值 / 传递规则</strong>：
+<ul>
+<li>由值的类型决定，与语法无关：
+<ul>
+<li>基本类型（<code>null</code>、<code>undefined</code>、<code>string</code>、<code>number</code>、<code>boolean</code>、<code>symbol</code>）：通过<strong>值复制</strong>（赋值 / 传递的是值的副本）。</li>
+<li>复合值（对象、函数、数组等）：通过<strong>引用复制</strong>（赋值 / 传递的是指向值的引用）。</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><strong>操作特性</strong>：
+<ul>
+<li>引用无法修改另一个引用的指向（如<code>a = b</code>后修改<code>a</code>不影响<code>b</code>）。</li>
+<li>复合值的复制：需创建复本（如<code>a.slice()</code>返回数组浅复本），避免引用共享。</li>
+<li>基本类型的修改：若需在函数内修改基本类型，需封装到复合值中（通过引用传递）。</li>
+<li>基本类型不可变：其值无法被修改（如字符串的方法均返回新值）。</li>
+</ul>
+</li>
+</ol>
+
+
+  </div>
+
+  <footer class="post-footer">
+    <ul class="post-tags">
+    </ul>
+  </footer>
+</article>
+    </main>
+    
+<footer class="footer">
+        <span>&copy; 2025 <a href="https://example.org/">My New Hugo Site</a></span> · 
+
+    <span>
+        Powered by
+        <a href="https://gohugo.io/" rel="noopener noreferrer" target="_blank">Hugo</a> &
+        <a href="https://github.com/adityatelange/hugo-PaperMod/" rel="noopener" target="_blank">PaperMod</a>
+    </span>
+</footer>
+<a href="#top" aria-label="go to top" title="Go to Top (Alt + G)" class="top-link" id="top-link" accesskey="g">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 12 6" fill="currentColor">
+        <path d="M12 6H0l6-6z" />
+    </svg>
+</a>
+
+<script>
+    let menu = document.getElementById('menu')
+    if (menu) {
+        menu.scrollLeft = localStorage.getItem("menu-scroll-position");
+        menu.onscroll = function () {
+            localStorage.setItem("menu-scroll-position", menu.scrollLeft);
+        }
+    }
+
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener("click", function (e) {
+            e.preventDefault();
+            var id = this.getAttribute("href").substr(1);
+            if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView({
+                    behavior: "smooth"
+                });
+            } else {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView();
+            }
+            if (id === "top") {
+                history.replaceState(null, null, " ");
+            } else {
+                history.pushState(null, null, `#${id}`);
+            }
+        });
+    });
+
+</script>
+<script>
+    var mybutton = document.getElementById("top-link");
+    window.onscroll = function () {
+        if (document.body.scrollTop > 800 || document.documentElement.scrollTop > 800) {
+            mybutton.style.visibility = "visible";
+            mybutton.style.opacity = "1";
+        } else {
+            mybutton.style.visibility = "hidden";
+            mybutton.style.opacity = "0";
+        }
+    };
+
+</script>
+<script>
+    document.getElementById("theme-toggle").addEventListener("click", () => {
+        if (document.body.className.includes("dark")) {
+            document.body.classList.remove('dark');
+            localStorage.setItem("pref-theme", 'light');
+        } else {
+            document.body.classList.add('dark');
+            localStorage.setItem("pref-theme", 'dark');
+        }
+    })
+
+</script>
+</body>
+
+</html>

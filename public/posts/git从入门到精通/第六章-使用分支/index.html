@@ -1,0 +1,577 @@
+<!DOCTYPE html>
+<html lang="en" dir="auto">
+
+<head><meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="robots" content="index, follow">
+<title>My New Hugo Site</title>
+<meta name="keywords" content="">
+<meta name="description" content="分支的基本操作
+
+查看分支
+
+
+执行git branch命令，不带任何参数时，会输出当前项目中的所有分支，前面带有星号的分支表示当前所在分支（即 HEAD 指向的分支）。
+扩展命令（面试高频）：
+
+git branch -r：查看远程分支（如origin/main）。
+git branch -a：查看本地 &#43; 远程所有分支（远程分支以remotes/前缀显示）。
+git branch -v：显示各分支最后一次提交信息（哈希 &#43; 说明）。
+
+
+
+
+创建分支
+
+
+在git branch命令后加上想要创建的分支名称，即可基于当前分支为基准创建新分支（仅创建，不切换），例如git branch cat。
+
+
+修改分支名称
+
+
+使用-m参数可以修改分支名称，即使是 master 分支也能修改，且不会影响文件或目录（当前分支可省略旧名，直接git branch -m &lt;新名&gt;），如git branch -m cat tiger。
+
+
+删除分支
+
+
+
+使用-d参数可以删除不需要的分支，如git branch -d dog。
+
+
+若要删除的分支未被完全合并，-d参数无法删除，此时可使用-D参数强制删除，如git branch -D dog。
+
+
+当前所在的分支不能删除，需先切换到其他分支再进行删除操作。
+
+
+
+切换分支
+
+
+
+使用git checkout命令切换分支，如git checkout dog，切换的分支必须已存在，否则会出错（Git 2.23 &#43; 推荐用git switch &lt;分支名&gt;，更直观）。
+
+
+若要切换的分支不存在，可在git checkout后加上-b参数，若分支不存在则创建并切换过去，若已存在则直接切换，如git checkout -b new_branch。
+
+
+注意：切换分支前，需 commit 或 stash 工作区的修改（否则未提交的修改会被带到新分支）。
+
+
+对分支的理解
+
+
+可以将分支想象成一张贴纸，贴在某个 commit 上。当进行新的 commit 后，新的 commit 会指向其前一个 commit，当前分支（HEAD 所指分支）会贴到新的 commit 上，HEAD 也会随之前进。">
+<meta name="author" content="">
+<link rel="canonical" href="https://example.org/posts/git%E4%BB%8E%E5%85%A5%E9%97%A8%E5%88%B0%E7%B2%BE%E9%80%9A/%E7%AC%AC%E5%85%AD%E7%AB%A0-%E4%BD%BF%E7%94%A8%E5%88%86%E6%94%AF/">
+<link crossorigin="anonymous" href="/assets/css/stylesheet.8fe10233a706bc87f2e08b3cf97b8bd4c0a80f10675a143675d59212121037c0.css" integrity="sha256-j&#43;ECM6cGvIfy4Is8&#43;XuL1MCoDxBnWhQ2ddWSEhIQN8A=" rel="preload stylesheet" as="style">
+<link rel="icon" href="https://example.org/favicon.ico">
+<link rel="icon" type="image/png" sizes="16x16" href="https://example.org/favicon-16x16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="https://example.org/favicon-32x32.png">
+<link rel="apple-touch-icon" href="https://example.org/apple-touch-icon.png">
+<link rel="mask-icon" href="https://example.org/safari-pinned-tab.svg">
+<meta name="theme-color" content="#2e2e33">
+<meta name="msapplication-TileColor" content="#2e2e33">
+<link rel="alternate" hreflang="en" href="https://example.org/posts/git%E4%BB%8E%E5%85%A5%E9%97%A8%E5%88%B0%E7%B2%BE%E9%80%9A/%E7%AC%AC%E5%85%AD%E7%AB%A0-%E4%BD%BF%E7%94%A8%E5%88%86%E6%94%AF/">
+<noscript>
+    <style>
+        #theme-toggle,
+        .top-link {
+            display: none;
+        }
+
+    </style>
+    <style>
+        @media (prefers-color-scheme: dark) {
+            :root {
+                --theme: rgb(29, 30, 32);
+                --entry: rgb(46, 46, 51);
+                --primary: rgb(218, 218, 219);
+                --secondary: rgb(155, 156, 157);
+                --tertiary: rgb(65, 66, 68);
+                --content: rgb(196, 196, 197);
+                --code-block-bg: rgb(46, 46, 51);
+                --code-bg: rgb(55, 56, 62);
+                --border: rgb(51, 51, 51);
+            }
+
+            .list {
+                background: var(--theme);
+            }
+
+            .list:not(.dark)::-webkit-scrollbar-track {
+                background: 0 0;
+            }
+
+            .list:not(.dark)::-webkit-scrollbar-thumb {
+                border-color: var(--theme);
+            }
+        }
+
+    </style>
+</noscript><meta property="og:url" content="https://example.org/posts/git%E4%BB%8E%E5%85%A5%E9%97%A8%E5%88%B0%E7%B2%BE%E9%80%9A/%E7%AC%AC%E5%85%AD%E7%AB%A0-%E4%BD%BF%E7%94%A8%E5%88%86%E6%94%AF/">
+  <meta property="og:site_name" content="My New Hugo Site">
+  <meta property="og:title" content="My New Hugo Site">
+  <meta property="og:description" content="分支的基本操作 查看分支 执行git branch命令，不带任何参数时，会输出当前项目中的所有分支，前面带有星号的分支表示当前所在分支（即 HEAD 指向的分支）。 扩展命令（面试高频）： git branch -r：查看远程分支（如origin/main）。 git branch -a：查看本地 &#43; 远程所有分支（远程分支以remotes/前缀显示）。 git branch -v：显示各分支最后一次提交信息（哈希 &#43; 说明）。 创建分支 在git branch命令后加上想要创建的分支名称，即可基于当前分支为基准创建新分支（仅创建，不切换），例如git branch cat。 修改分支名称 使用-m参数可以修改分支名称，即使是 master 分支也能修改，且不会影响文件或目录（当前分支可省略旧名，直接git branch -m &lt;新名&gt;），如git branch -m cat tiger。 删除分支 使用-d参数可以删除不需要的分支，如git branch -d dog。
+若要删除的分支未被完全合并，-d参数无法删除，此时可使用-D参数强制删除，如git branch -D dog。
+当前所在的分支不能删除，需先切换到其他分支再进行删除操作。
+切换分支 使用git checkout命令切换分支，如git checkout dog，切换的分支必须已存在，否则会出错（Git 2.23 &#43; 推荐用git switch &lt;分支名&gt;，更直观）。
+若要切换的分支不存在，可在git checkout后加上-b参数，若分支不存在则创建并切换过去，若已存在则直接切换，如git checkout -b new_branch。
+注意：切换分支前，需 commit 或 stash 工作区的修改（否则未提交的修改会被带到新分支）。
+对分支的理解 可以将分支想象成一张贴纸，贴在某个 commit 上。当进行新的 commit 后，新的 commit 会指向其前一个 commit，当前分支（HEAD 所指分支）会贴到新的 commit 上，HEAD 也会随之前进。">
+  <meta property="og:locale" content="en-us">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="posts">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="">
+<meta name="twitter:description" content="分支的基本操作
+
+查看分支
+
+
+执行git branch命令，不带任何参数时，会输出当前项目中的所有分支，前面带有星号的分支表示当前所在分支（即 HEAD 指向的分支）。
+扩展命令（面试高频）：
+
+git branch -r：查看远程分支（如origin/main）。
+git branch -a：查看本地 &#43; 远程所有分支（远程分支以remotes/前缀显示）。
+git branch -v：显示各分支最后一次提交信息（哈希 &#43; 说明）。
+
+
+
+
+创建分支
+
+
+在git branch命令后加上想要创建的分支名称，即可基于当前分支为基准创建新分支（仅创建，不切换），例如git branch cat。
+
+
+修改分支名称
+
+
+使用-m参数可以修改分支名称，即使是 master 分支也能修改，且不会影响文件或目录（当前分支可省略旧名，直接git branch -m &lt;新名&gt;），如git branch -m cat tiger。
+
+
+删除分支
+
+
+
+使用-d参数可以删除不需要的分支，如git branch -d dog。
+
+
+若要删除的分支未被完全合并，-d参数无法删除，此时可使用-D参数强制删除，如git branch -D dog。
+
+
+当前所在的分支不能删除，需先切换到其他分支再进行删除操作。
+
+
+
+切换分支
+
+
+
+使用git checkout命令切换分支，如git checkout dog，切换的分支必须已存在，否则会出错（Git 2.23 &#43; 推荐用git switch &lt;分支名&gt;，更直观）。
+
+
+若要切换的分支不存在，可在git checkout后加上-b参数，若分支不存在则创建并切换过去，若已存在则直接切换，如git checkout -b new_branch。
+
+
+注意：切换分支前，需 commit 或 stash 工作区的修改（否则未提交的修改会被带到新分支）。
+
+
+对分支的理解
+
+
+可以将分支想象成一张贴纸，贴在某个 commit 上。当进行新的 commit 后，新的 commit 会指向其前一个 commit，当前分支（HEAD 所指分支）会贴到新的 commit 上，HEAD 也会随之前进。">
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position":  1 ,
+      "name": "Posts",
+      "item": "https://example.org/posts/"
+    }, 
+    {
+      "@type": "ListItem",
+      "position":  2 ,
+      "name": "",
+      "item": "https://example.org/posts/git%E4%BB%8E%E5%85%A5%E9%97%A8%E5%88%B0%E7%B2%BE%E9%80%9A/%E7%AC%AC%E5%85%AD%E7%AB%A0-%E4%BD%BF%E7%94%A8%E5%88%86%E6%94%AF/"
+    }
+  ]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "",
+  "name": "",
+  "description": "分支的基本操作 查看分支 执行git branch命令，不带任何参数时，会输出当前项目中的所有分支，前面带有星号的分支表示当前所在分支（即 HEAD 指向的分支）。 扩展命令（面试高频）： git branch -r：查看远程分支（如origin/main）。 git branch -a：查看本地 + 远程所有分支（远程分支以remotes/前缀显示）。 git branch -v：显示各分支最后一次提交信息（哈希 + 说明）。 创建分支 在git branch命令后加上想要创建的分支名称，即可基于当前分支为基准创建新分支（仅创建，不切换），例如git branch cat。 修改分支名称 使用-m参数可以修改分支名称，即使是 master 分支也能修改，且不会影响文件或目录（当前分支可省略旧名，直接git branch -m \u0026lt;新名\u0026gt;），如git branch -m cat tiger。 删除分支 使用-d参数可以删除不需要的分支，如git branch -d dog。\n若要删除的分支未被完全合并，-d参数无法删除，此时可使用-D参数强制删除，如git branch -D dog。\n当前所在的分支不能删除，需先切换到其他分支再进行删除操作。\n切换分支 使用git checkout命令切换分支，如git checkout dog，切换的分支必须已存在，否则会出错（Git 2.23 + 推荐用git switch \u0026lt;分支名\u0026gt;，更直观）。\n若要切换的分支不存在，可在git checkout后加上-b参数，若分支不存在则创建并切换过去，若已存在则直接切换，如git checkout -b new_branch。\n注意：切换分支前，需 commit 或 stash 工作区的修改（否则未提交的修改会被带到新分支）。\n对分支的理解 可以将分支想象成一张贴纸，贴在某个 commit 上。当进行新的 commit 后，新的 commit 会指向其前一个 commit，当前分支（HEAD 所指分支）会贴到新的 commit 上，HEAD 也会随之前进。\n",
+  "keywords": [
+    
+  ],
+  "articleBody": "分支的基本操作 查看分支 执行git branch命令，不带任何参数时，会输出当前项目中的所有分支，前面带有星号的分支表示当前所在分支（即 HEAD 指向的分支）。 扩展命令（面试高频）： git branch -r：查看远程分支（如origin/main）。 git branch -a：查看本地 + 远程所有分支（远程分支以remotes/前缀显示）。 git branch -v：显示各分支最后一次提交信息（哈希 + 说明）。 创建分支 在git branch命令后加上想要创建的分支名称，即可基于当前分支为基准创建新分支（仅创建，不切换），例如git branch cat。 修改分支名称 使用-m参数可以修改分支名称，即使是 master 分支也能修改，且不会影响文件或目录（当前分支可省略旧名，直接git branch -m \u003c新名\u003e），如git branch -m cat tiger。 删除分支 使用-d参数可以删除不需要的分支，如git branch -d dog。\n若要删除的分支未被完全合并，-d参数无法删除，此时可使用-D参数强制删除，如git branch -D dog。\n当前所在的分支不能删除，需先切换到其他分支再进行删除操作。\n切换分支 使用git checkout命令切换分支，如git checkout dog，切换的分支必须已存在，否则会出错（Git 2.23 + 推荐用git switch \u003c分支名\u003e，更直观）。\n若要切换的分支不存在，可在git checkout后加上-b参数，若分支不存在则创建并切换过去，若已存在则直接切换，如git checkout -b new_branch。\n注意：切换分支前，需 commit 或 stash 工作区的修改（否则未提交的修改会被带到新分支）。\n对分支的理解 可以将分支想象成一张贴纸，贴在某个 commit 上。当进行新的 commit 后，新的 commit 会指向其前一个 commit，当前分支（HEAD 所指分支）会贴到新的 commit 上，HEAD 也会随之前进。\nGit 中的分支并非通过复制目录或文件夹形成，它只是一个指向 commit 的指标。\n切换分支的原理 切换分支时，Git 会用该分支指向的 commit 内容更新暂存区及工作目录，切换前的改动会保留在工作目录中不受影响。\n同时，HEAD 会指向切换后的分支，即.git/HEAD文件会相应改动。\n注意：若工作区有未提交的修改，且与目标分支的文件冲突，Git 会禁止切换分支（需先 commit 或 stash 修改）。\n分支合并 基本合并操作 若要将 cat 分支合并到 master 分支，需先切换到 master 分支：git checkout master，再执行git merge cat。\n当 cat 和 dog 分支都来自 master 分支时，master 合并这两个分支会采用快转模式，直接获取分支成果，不产生新 commit；而 cat 与 dog 分支合并时，Git 会生成一个额外的 commit，该 commit 会指向两个分支，标记合并来源。\n非快转模式合并 合并时加上–no-ff参数，可避免使用快转模式，强制生成一个额外的合并 commit，如git merge cat –no-ff。 恢复误删的未合并分支 若不小心删除了未合并的分支，可通过git checkout -b \u003c新分支名\u003e b174a5a命令恢复，其中b174a5a是被删除分支指向的 commit 的 SHA-1 值。\n若未记住 SHA-1 值，可使用reflog命令查找（默认保留 30 天）。\n合并的实质是分支指向的 commit，分支本身无法合并。\n另一种合并方式：rebase 基本使用 执行git rebase main，表示以 main 分支为新的参考基准重新定义当前分支。将当前分支（如feature）的提交 “嫁接” 到目标分支（如main）的最新提交上\nrebase 会改动历史记录，不应随意对已推出去的内容使用 rebase。使feature的提交历史看起来是基于main的最新状态开发的，历史更线性。\n与一般合并的区别 rebase 合并不会产生专门的合并 commit，原本的 commit 仍存在于 Git 空间中，但因无分支指向，可能会被逐渐边缘化直至被回收。\n谁 rebase 谁会影响历史记录的先后顺序。\n取消 rebase 一般合并可通过git reset HEAD^ –hard删除合并 commit，使分支退回合并前状态。\n取消 rebase 可使用 reflog 找到 rebase 前的最后一个动作硬切回去，或利用ORIG_HEAD（记录危险操作前 HEAD 的位置），执行git reset ORIG_HEAD –hard。\nrebase 的优缺点 优点：不会产生额外的合并 commit，历史记录顺序可按需求确定。\n缺点：不如一般合并直观，易出错且冲突时可能中断，对已推送内容使用可能给他人带来困扰。通常用于整理未推送的乱序 commit，完成后再推送。\n合并冲突解决 一般合并冲突 Git 可检查简单冲突，并非改到同一文件就会冲突，但改到同一行则会出现冲突。\n冲突段落会被标记，上方是 HEAD（当前分支）内容，中间是分割线，下方是其他分支内容。需确定采纳的内容并移除标记，修改后将文件加入暂存区，再执行 commit 完成合并。\nrebase 合并冲突 冲突时 rebase 会中断，修正冲突文件内容后加入暂存区，执行git rebase –continue继续完成 rebase。\n若为非文本文件冲突，可选择保留自己分支的内容：git checkout –ours 文件名，或保留别人分支的内容：git checkout –theirs 文件名，之后将文件加入暂存区准备 commit。\n放弃解决：git rebase --abort。\n分支的存储位置 分支存储在.git/refs/heads目录中，文件内容为对应 commit 的 SHA-1 值。\nGit 在HEAD文件中记录当前所在分支，可用@代替 HEAD。\n.git目录中的ORIG_HEAD文件会记录危险操作（如合并、rebase 等）前 HEAD 的位置，便于恢复。\n从特定 commit 创建分支 先使用git checkout 657fcea回到该 commit 状态，再执行git checkout -b bird创建并切换到新分支，也可直接用git branch bird 657fcea创建分支。\n使用git checkout -b bird 657fcea可一步完成创建并切换到基于特定 commit 的分支。\n",
+  "wordCount" : "258",
+  "inLanguage": "en",
+  "datePublished": "0001-01-01T00:00:00Z",
+  "dateModified": "0001-01-01T00:00:00Z",
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://example.org/posts/git%E4%BB%8E%E5%85%A5%E9%97%A8%E5%88%B0%E7%B2%BE%E9%80%9A/%E7%AC%AC%E5%85%AD%E7%AB%A0-%E4%BD%BF%E7%94%A8%E5%88%86%E6%94%AF/"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "My New Hugo Site",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://example.org/favicon.ico"
+    }
+  }
+}
+</script>
+</head>
+
+<body class="" id="top">
+<script>
+    if (localStorage.getItem("pref-theme") === "dark") {
+        document.body.classList.add('dark');
+    } else if (localStorage.getItem("pref-theme") === "light") {
+        document.body.classList.remove('dark')
+    } else if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+        document.body.classList.add('dark');
+    }
+
+</script>
+
+<header class="header">
+    <nav class="nav">
+        <div class="logo">
+            <a href="https://example.org/" accesskey="h" title="My New Hugo Site (Alt + H)">My New Hugo Site</a>
+            <div class="logo-switches">
+                <button id="theme-toggle" accesskey="t" title="(Alt + T)" aria-label="Toggle theme">
+                    <svg id="moon" xmlns="http://www.w3.org/2000/svg" width="24" height="18" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                    </svg>
+                    <svg id="sun" xmlns="http://www.w3.org/2000/svg" width="24" height="18" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <circle cx="12" cy="12" r="5"></circle>
+                        <line x1="12" y1="1" x2="12" y2="3"></line>
+                        <line x1="12" y1="21" x2="12" y2="23"></line>
+                        <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                        <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                        <line x1="1" y1="12" x2="3" y2="12"></line>
+                        <line x1="21" y1="12" x2="23" y2="12"></line>
+                        <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                        <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+                    </svg>
+                </button>
+            </div>
+        </div>
+        <ul id="menu">
+        </ul>
+    </nav>
+</header>
+<main class="main">
+
+<article class="post-single">
+  <header class="post-header">
+    
+    <h1 class="post-title entry-hint-parent">
+      
+    </h1>
+    <div class="post-meta">
+
+</div>
+  </header> 
+  <div class="post-content"><h2 id="分支的基本操作">分支的基本操作<a hidden class="anchor" aria-hidden="true" href="#分支的基本操作">#</a></h2>
+<ol>
+<li><strong>查看分支</strong></li>
+</ol>
+<ul>
+<li>执行git branch命令，不带任何参数时，会输出当前项目中的所有分支，前面带有星号的分支表示当前所在分支（即 HEAD 指向的分支）。</li>
+<li>扩展命令（面试高频）：
+<ul>
+<li><code>git branch -r</code>：查看远程分支（如<code>origin/main</code>）。</li>
+<li><code>git branch -a</code>：查看本地 + 远程所有分支（远程分支以<code>remotes/</code>前缀显示）。</li>
+<li><code>git branch -v</code>：显示各分支最后一次提交信息（哈希 + 说明）。</li>
+</ul>
+</li>
+</ul>
+<ol start="2">
+<li><strong>创建分支</strong></li>
+</ol>
+<ul>
+<li>在git branch命令后加上想要创建的分支名称，即可基于当前分支为基准创建新分支（仅创建，不切换），例如git branch cat。</li>
+</ul>
+<ol start="3">
+<li><strong>修改分支名称</strong></li>
+</ol>
+<ul>
+<li>使用-m参数可以修改分支名称，即使是 master 分支也能修改，且不会影响文件或目录（当前分支可省略旧名，直接<code>git branch -m &lt;新名&gt;</code>），如git branch -m cat tiger。</li>
+</ul>
+<ol start="4">
+<li><strong>删除分支</strong></li>
+</ol>
+<ul>
+<li>
+<p>使用-d参数可以删除不需要的分支，如git branch -d dog。</p>
+</li>
+<li>
+<p>若要删除的分支未被完全合并，-d参数无法删除，此时可使用-D参数强制删除，如git branch -D dog。</p>
+</li>
+<li>
+<p>当前所在的分支不能删除，需先切换到其他分支再进行删除操作。</p>
+</li>
+</ul>
+<ol start="5">
+<li><strong>切换分支</strong></li>
+</ol>
+<ul>
+<li>
+<p>使用git checkout命令切换分支，如git checkout dog，切换的分支必须已存在，否则会出错（Git 2.23 + 推荐用<code>git switch &lt;分支名&gt;</code>，更直观）。</p>
+</li>
+<li>
+<p>若要切换的分支不存在，可在git checkout后加上-b参数，若分支不存在则创建并切换过去，若已存在则直接切换，如git checkout -b new_branch。</p>
+</li>
+<li>
+<p>注意：切换分支前，需 commit 或 stash 工作区的修改（否则未提交的修改会被带到新分支）。</p>
+</li>
+</ul>
+<h2 id="对分支的理解">对分支的理解<a hidden class="anchor" aria-hidden="true" href="#对分支的理解">#</a></h2>
+<ul>
+<li>
+<p>可以将分支想象成一张贴纸，贴在某个 commit 上。当进行新的 commit 后，新的 commit 会指向其前一个 commit，当前分支（HEAD 所指分支）会贴到新的 commit 上，HEAD 也会随之前进。</p>
+</li>
+<li>
+<p>Git 中的分支并非通过复制目录或文件夹形成，它只是一个指向 commit 的指标。</p>
+</li>
+</ul>
+<h2 id="切换分支的原理">切换分支的原理<a hidden class="anchor" aria-hidden="true" href="#切换分支的原理">#</a></h2>
+<ul>
+<li>
+<p>切换分支时，Git 会用该分支指向的 commit 内容更新暂存区及工作目录，切换前的改动会保留在工作目录中不受影响。</p>
+</li>
+<li>
+<p>同时，HEAD 会指向切换后的分支，即.git/HEAD文件会相应改动。</p>
+</li>
+<li>
+<p><strong>注意</strong>：若工作区有未提交的修改，且与目标分支的文件冲突，Git 会<strong>禁止切换分支</strong>（需先 commit 或 stash 修改）。</p>
+</li>
+</ul>
+<h2 id="分支合并">分支合并<a hidden class="anchor" aria-hidden="true" href="#分支合并">#</a></h2>
+<ol>
+<li><strong>基本合并操作</strong></li>
+</ol>
+<ul>
+<li>
+<p>若要将 cat 分支合并到 master 分支，需先切换到 master 分支：git checkout master，再执行git merge cat。</p>
+</li>
+<li>
+<p>当 cat 和 dog 分支都来自 master 分支时，master 合并这两个分支会采用快转模式，直接获取分支成果，<strong>不产生新 commit</strong>；而 cat 与 dog 分支合并时，Git 会生成一个额外的 commit，该 commit 会指向两个分支，标记合并来源。</p>
+</li>
+</ul>
+<ol start="2">
+<li><strong>非快转模式合并</strong></li>
+</ol>
+<ul>
+<li>合并时加上&ndash;no-ff参数，可避免使用快转模式，强制生成一个额外的合并 commit，如git merge cat &ndash;no-ff。</li>
+</ul>
+<ol start="3">
+<li><strong>恢复误删的未合并分支</strong></li>
+</ol>
+<ul>
+<li>
+<p>若不小心删除了未合并的分支，可通过git checkout -b &lt;新分支名&gt; b174a5a命令恢复，其中b174a5a是被删除分支指向的 commit 的 SHA-1 值。</p>
+</li>
+<li>
+<p>若未记住 SHA-1 值，可使用reflog命令查找（默认保留 30 天）。</p>
+</li>
+<li>
+<p>合并的实质是分支指向的 commit，分支本身无法合并。</p>
+</li>
+</ul>
+<h2 id="另一种合并方式rebase">另一种合并方式：rebase<a hidden class="anchor" aria-hidden="true" href="#另一种合并方式rebase">#</a></h2>
+<ol>
+<li><strong>基本使用</strong></li>
+</ol>
+<ul>
+<li>
+<p>执行git rebase main，表示以 main 分支为新的参考基准重新定义当前分支。将当前分支（如<code>feature</code>）的提交 “嫁接” 到目标分支（如<code>main</code>）的最新提交上</p>
+</li>
+<li>
+<p>rebase 会改动历史记录，不应随意对已推出去的内容使用 rebase。使<code>feature</code>的提交历史看起来是基于<code>main</code>的最新状态开发的，历史更线性。</p>
+</li>
+</ul>
+<ol start="2">
+<li><strong>与一般合并的区别</strong></li>
+</ol>
+<ul>
+<li>
+<p>rebase 合并不会产生专门的合并 commit，原本的 commit 仍存在于 Git 空间中，但因无分支指向，可能会被逐渐边缘化直至被回收。</p>
+</li>
+<li>
+<p>谁 rebase 谁会影响历史记录的先后顺序。</p>
+</li>
+</ul>
+<ol start="3">
+<li><strong>取消 rebase</strong></li>
+</ol>
+<ul>
+<li>
+<p>一般合并可通过git reset HEAD^ &ndash;hard删除合并 commit，使分支退回合并前状态。</p>
+</li>
+<li>
+<p>取消 rebase 可使用 reflog 找到 rebase 前的最后一个动作硬切回去，或利用ORIG_HEAD（记录危险操作前 HEAD 的位置），执行git reset ORIG_HEAD &ndash;hard。</p>
+</li>
+</ul>
+<ol start="4">
+<li><strong>rebase 的优缺点</strong></li>
+</ol>
+<ul>
+<li>
+<p>优点：不会产生额外的合并 commit，历史记录顺序可按需求确定。</p>
+</li>
+<li>
+<p>缺点：不如一般合并直观，易出错且冲突时可能中断，对已推送内容使用可能给他人带来困扰。通常用于整理未推送的乱序 commit，完成后再推送。</p>
+</li>
+</ul>
+<h2 id="合并冲突解决">合并冲突解决<a hidden class="anchor" aria-hidden="true" href="#合并冲突解决">#</a></h2>
+<ol>
+<li><strong>一般合并冲突</strong></li>
+</ol>
+<ul>
+<li>
+<p>Git 可检查简单冲突，并非改到同一文件就会冲突，但改到同一行则会出现冲突。</p>
+</li>
+<li>
+<p>冲突段落会被标记，上方是 HEAD（当前分支）内容，中间是分割线，下方是其他分支内容。需确定采纳的内容并移除标记，修改后将文件加入暂存区，再执行 commit 完成合并。</p>
+</li>
+</ul>
+<ol start="2">
+<li><strong>rebase 合并冲突</strong></li>
+</ol>
+<ul>
+<li>
+<p>冲突时 rebase 会中断，修正冲突文件内容后加入暂存区，执行git rebase &ndash;continue继续完成 rebase。</p>
+</li>
+<li>
+<p>若为非文本文件冲突，可选择保留自己分支的内容：git checkout &ndash;ours 文件名，或保留别人分支的内容：git checkout &ndash;theirs 文件名，之后将文件加入暂存区准备 commit。</p>
+</li>
+<li>
+<p>放弃解决：<code>git rebase --abort</code>。</p>
+</li>
+</ul>
+<h2 id="分支的存储位置">分支的存储位置<a hidden class="anchor" aria-hidden="true" href="#分支的存储位置">#</a></h2>
+<ul>
+<li>
+<p>分支存储在.git/refs/heads目录中，文件内容为对应 commit 的 SHA-1 值。</p>
+</li>
+<li>
+<p>Git 在HEAD文件中记录当前所在分支，可用@代替 HEAD。</p>
+</li>
+<li>
+<p>.git目录中的ORIG_HEAD文件会记录危险操作（如合并、rebase 等）前 HEAD 的位置，便于恢复。</p>
+</li>
+</ul>
+<h2 id="从特定-commit-创建分支">从特定 commit 创建分支<a hidden class="anchor" aria-hidden="true" href="#从特定-commit-创建分支">#</a></h2>
+<ul>
+<li>
+<p>先使用git checkout 657fcea回到该 commit 状态，再执行git checkout -b bird创建并切换到新分支，也可直接用git branch bird 657fcea创建分支。</p>
+</li>
+<li>
+<p>使用git checkout -b bird 657fcea可一步完成创建并切换到基于特定 commit 的分支。</p>
+</li>
+</ul>
+
+
+  </div>
+
+  <footer class="post-footer">
+    <ul class="post-tags">
+    </ul>
+  </footer>
+</article>
+    </main>
+    
+<footer class="footer">
+        <span>&copy; 2025 <a href="https://example.org/">My New Hugo Site</a></span> · 
+
+    <span>
+        Powered by
+        <a href="https://gohugo.io/" rel="noopener noreferrer" target="_blank">Hugo</a> &
+        <a href="https://github.com/adityatelange/hugo-PaperMod/" rel="noopener" target="_blank">PaperMod</a>
+    </span>
+</footer>
+<a href="#top" aria-label="go to top" title="Go to Top (Alt + G)" class="top-link" id="top-link" accesskey="g">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 12 6" fill="currentColor">
+        <path d="M12 6H0l6-6z" />
+    </svg>
+</a>
+
+<script>
+    let menu = document.getElementById('menu')
+    if (menu) {
+        menu.scrollLeft = localStorage.getItem("menu-scroll-position");
+        menu.onscroll = function () {
+            localStorage.setItem("menu-scroll-position", menu.scrollLeft);
+        }
+    }
+
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener("click", function (e) {
+            e.preventDefault();
+            var id = this.getAttribute("href").substr(1);
+            if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView({
+                    behavior: "smooth"
+                });
+            } else {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView();
+            }
+            if (id === "top") {
+                history.replaceState(null, null, " ");
+            } else {
+                history.pushState(null, null, `#${id}`);
+            }
+        });
+    });
+
+</script>
+<script>
+    var mybutton = document.getElementById("top-link");
+    window.onscroll = function () {
+        if (document.body.scrollTop > 800 || document.documentElement.scrollTop > 800) {
+            mybutton.style.visibility = "visible";
+            mybutton.style.opacity = "1";
+        } else {
+            mybutton.style.visibility = "hidden";
+            mybutton.style.opacity = "0";
+        }
+    };
+
+</script>
+<script>
+    document.getElementById("theme-toggle").addEventListener("click", () => {
+        if (document.body.className.includes("dark")) {
+            document.body.classList.remove('dark');
+            localStorage.setItem("pref-theme", 'light');
+        } else {
+            document.body.classList.add('dark');
+            localStorage.setItem("pref-theme", 'dark');
+        }
+    })
+
+</script>
+</body>
+
+</html>

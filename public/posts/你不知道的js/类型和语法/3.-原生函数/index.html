@@ -1,0 +1,529 @@
+<!DOCTYPE html>
+<html lang="en" dir="auto">
+
+<head><meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="robots" content="index, follow">
+<title>My New Hugo Site</title>
+<meta name="keywords" content="">
+<meta name="description" content="一、内部属性 [[Class]]
+
+基本概念：
+内建函数（原生函数）可作为构造函数，用于创建封装基本类型值的封装对象。
+属性特征：
+
+所有typeof返回值为object的对象都包含内部属性[[Class]]，该属性无法直接访问。
+通常通过Object.prototype.toString()方法查看[[Class]]的值。
+
+
+对应关系：
+
+多数情况下，对象的[[Class]]属性值与创建该对象的内建原生构造函数相对应。
+特殊情况：虽然不存在Null()和undefined()原生构造函数，但null和undefined的[[Class]]属性值分别为&#39;Null&#39;和&#39;Undefined&#39;。
+
+
+
+二、封装对象包装
+
+自动包装机制：
+基本类型值（如string、number等）本身没有属性和方法，JS 会自动为其包装一个封装对象，以便访问属性和方法，操作完成后立即销毁，避免性能损耗。
+手动封装与拆封：
+
+手动封装：使用Object()函数（不带new关键字）可将基本类型值封装为对象。
+拆封：通过valueOf()方法可获取封装对象中的基本类型值；在需要基本类型值的场景中，会发生隐式拆封。
+
+
+使用建议：除非必要，应避免使用构造函数创建封装对象。
+
+
+三、原生函数作为构造函数
+
+
+Array()：
+
+不带new关键字时会被自动补全（等效于new Array()）。
+仅带一个数字参数时，该参数表示数组预设长度（创建稀疏数组），而非数组元素。
+替代方案：ES6 的Array.of()（无歧义，始终将参数作为元素）
+稀疏数组：包含至少一个空单元的数组，可通过以下方式创建：
+
+设置length属性值超过实际单元数；
+使用delete删除数组单元。
+
+
+可通过Array.apply(null, {length: 3})创建包含undefined单元（非空单元）的数组。
+
+
+
+不建议使用的构造函数：
+除非特殊需求，尽量避免使用Object()、Function()、RegExp()作为构造函数。
+
+
+Date()：
+
+
+
+必须使用new Date()创建日期对象：带参数时指定日期时间，不带参数时使用当前日期时间。
+时间戳获取：getTime()方法或Date.now()（ES5&#43;）可获取 Unix 时间戳。
+特殊情况：不带new关键字调用Date()时，返回当前日期的字符串值（格式无统一规范）。
+
+
+Error()：
+
+
+带或不带new关键字均可使用。
+作用：创建错误对象以获取当前运行栈上下文（含函数调用栈、错误行号等，便于调试），通常与throw配合使用。
+特性：错误对象至少包含message属性；除Error外，还有针对特定错误类型的原生构造函数（如TypeError、RangeError），这些构造函数在程序异常时自动调用。
+
+
+Symbol（符号）：
+
+
+特性：特殊的基本类型值，具有唯一性，用作对象属性名时不易重名。
+访问性：可作为属性名，但在代码或控制台中难以直接查看和访问其值。
+预定义符号：ES6 中以Symbol静态属性形式存在（如Symbol.iterator）。
+使用规则：Symbol()不能带new关键字（否则报错）；符号是基本类型，非对象，不可枚举（不被for...in遍历），主要用于私有或特殊属性。
+
+
+四、原生原型
+
+原型特征：
+原生构造函数（如Array、Function、RegExp等）都有自己的prototype对象，这些对象包含对应子类型的特有行为特征。
+实用场景：
+
+Function.prototype是空函数，RegExp.prototype是空正则表达式，Array.prototype是空数组，适合作为未赋值变量的默认值。
+优势：prototype对象已预先创建且仅创建一次，性能更优。
+注意：若默认值后续会被修改，则不建议使用原生原型作为默认值。
+
+
+">
+<meta name="author" content="">
+<link rel="canonical" href="https://example.org/posts/%E4%BD%A0%E4%B8%8D%E7%9F%A5%E9%81%93%E7%9A%84js/%E7%B1%BB%E5%9E%8B%E5%92%8C%E8%AF%AD%E6%B3%95/3.-%E5%8E%9F%E7%94%9F%E5%87%BD%E6%95%B0/">
+<link crossorigin="anonymous" href="/assets/css/stylesheet.8fe10233a706bc87f2e08b3cf97b8bd4c0a80f10675a143675d59212121037c0.css" integrity="sha256-j&#43;ECM6cGvIfy4Is8&#43;XuL1MCoDxBnWhQ2ddWSEhIQN8A=" rel="preload stylesheet" as="style">
+<link rel="icon" href="https://example.org/favicon.ico">
+<link rel="icon" type="image/png" sizes="16x16" href="https://example.org/favicon-16x16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="https://example.org/favicon-32x32.png">
+<link rel="apple-touch-icon" href="https://example.org/apple-touch-icon.png">
+<link rel="mask-icon" href="https://example.org/safari-pinned-tab.svg">
+<meta name="theme-color" content="#2e2e33">
+<meta name="msapplication-TileColor" content="#2e2e33">
+<link rel="alternate" hreflang="en" href="https://example.org/posts/%E4%BD%A0%E4%B8%8D%E7%9F%A5%E9%81%93%E7%9A%84js/%E7%B1%BB%E5%9E%8B%E5%92%8C%E8%AF%AD%E6%B3%95/3.-%E5%8E%9F%E7%94%9F%E5%87%BD%E6%95%B0/">
+<noscript>
+    <style>
+        #theme-toggle,
+        .top-link {
+            display: none;
+        }
+
+    </style>
+    <style>
+        @media (prefers-color-scheme: dark) {
+            :root {
+                --theme: rgb(29, 30, 32);
+                --entry: rgb(46, 46, 51);
+                --primary: rgb(218, 218, 219);
+                --secondary: rgb(155, 156, 157);
+                --tertiary: rgb(65, 66, 68);
+                --content: rgb(196, 196, 197);
+                --code-block-bg: rgb(46, 46, 51);
+                --code-bg: rgb(55, 56, 62);
+                --border: rgb(51, 51, 51);
+            }
+
+            .list {
+                background: var(--theme);
+            }
+
+            .list:not(.dark)::-webkit-scrollbar-track {
+                background: 0 0;
+            }
+
+            .list:not(.dark)::-webkit-scrollbar-thumb {
+                border-color: var(--theme);
+            }
+        }
+
+    </style>
+</noscript><meta property="og:url" content="https://example.org/posts/%E4%BD%A0%E4%B8%8D%E7%9F%A5%E9%81%93%E7%9A%84js/%E7%B1%BB%E5%9E%8B%E5%92%8C%E8%AF%AD%E6%B3%95/3.-%E5%8E%9F%E7%94%9F%E5%87%BD%E6%95%B0/">
+  <meta property="og:site_name" content="My New Hugo Site">
+  <meta property="og:title" content="My New Hugo Site">
+  <meta property="og:description" content="一、内部属性 [[Class]] 基本概念： 内建函数（原生函数）可作为构造函数，用于创建封装基本类型值的封装对象。 属性特征： 所有typeof返回值为object的对象都包含内部属性[[Class]]，该属性无法直接访问。 通常通过Object.prototype.toString()方法查看[[Class]]的值。 对应关系： 多数情况下，对象的[[Class]]属性值与创建该对象的内建原生构造函数相对应。 特殊情况：虽然不存在Null()和undefined()原生构造函数，但null和undefined的[[Class]]属性值分别为&#39;Null&#39;和&#39;Undefined&#39;。 二、封装对象包装 自动包装机制： 基本类型值（如string、number等）本身没有属性和方法，JS 会自动为其包装一个封装对象，以便访问属性和方法，操作完成后立即销毁，避免性能损耗。 手动封装与拆封： 手动封装：使用Object()函数（不带new关键字）可将基本类型值封装为对象。 拆封：通过valueOf()方法可获取封装对象中的基本类型值；在需要基本类型值的场景中，会发生隐式拆封。 使用建议：除非必要，应避免使用构造函数创建封装对象。 三、原生函数作为构造函数 Array()：
+不带new关键字时会被自动补全（等效于new Array()）。 仅带一个数字参数时，该参数表示数组预设长度（创建稀疏数组），而非数组元素。 替代方案：ES6 的Array.of()（无歧义，始终将参数作为元素） 稀疏数组：包含至少一个空单元的数组，可通过以下方式创建： 设置length属性值超过实际单元数； 使用delete删除数组单元。 可通过Array.apply(null, {length: 3})创建包含undefined单元（非空单元）的数组。 不建议使用的构造函数： 除非特殊需求，尽量避免使用Object()、Function()、RegExp()作为构造函数。
+Date()：
+必须使用new Date()创建日期对象：带参数时指定日期时间，不带参数时使用当前日期时间。 时间戳获取：getTime()方法或Date.now()（ES5&#43;）可获取 Unix 时间戳。 特殊情况：不带new关键字调用Date()时，返回当前日期的字符串值（格式无统一规范）。 Error()： 带或不带new关键字均可使用。 作用：创建错误对象以获取当前运行栈上下文（含函数调用栈、错误行号等，便于调试），通常与throw配合使用。 特性：错误对象至少包含message属性；除Error外，还有针对特定错误类型的原生构造函数（如TypeError、RangeError），这些构造函数在程序异常时自动调用。 Symbol（符号）： 特性：特殊的基本类型值，具有唯一性，用作对象属性名时不易重名。 访问性：可作为属性名，但在代码或控制台中难以直接查看和访问其值。 预定义符号：ES6 中以Symbol静态属性形式存在（如Symbol.iterator）。 使用规则：Symbol()不能带new关键字（否则报错）；符号是基本类型，非对象，不可枚举（不被for...in遍历），主要用于私有或特殊属性。 四、原生原型 原型特征： 原生构造函数（如Array、Function、RegExp等）都有自己的prototype对象，这些对象包含对应子类型的特有行为特征。 实用场景： Function.prototype是空函数，RegExp.prototype是空正则表达式，Array.prototype是空数组，适合作为未赋值变量的默认值。 优势：prototype对象已预先创建且仅创建一次，性能更优。 注意：若默认值后续会被修改，则不建议使用原生原型作为默认值。 ">
+  <meta property="og:locale" content="en-us">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="posts">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="">
+<meta name="twitter:description" content="一、内部属性 [[Class]]
+
+基本概念：
+内建函数（原生函数）可作为构造函数，用于创建封装基本类型值的封装对象。
+属性特征：
+
+所有typeof返回值为object的对象都包含内部属性[[Class]]，该属性无法直接访问。
+通常通过Object.prototype.toString()方法查看[[Class]]的值。
+
+
+对应关系：
+
+多数情况下，对象的[[Class]]属性值与创建该对象的内建原生构造函数相对应。
+特殊情况：虽然不存在Null()和undefined()原生构造函数，但null和undefined的[[Class]]属性值分别为&#39;Null&#39;和&#39;Undefined&#39;。
+
+
+
+二、封装对象包装
+
+自动包装机制：
+基本类型值（如string、number等）本身没有属性和方法，JS 会自动为其包装一个封装对象，以便访问属性和方法，操作完成后立即销毁，避免性能损耗。
+手动封装与拆封：
+
+手动封装：使用Object()函数（不带new关键字）可将基本类型值封装为对象。
+拆封：通过valueOf()方法可获取封装对象中的基本类型值；在需要基本类型值的场景中，会发生隐式拆封。
+
+
+使用建议：除非必要，应避免使用构造函数创建封装对象。
+
+
+三、原生函数作为构造函数
+
+
+Array()：
+
+不带new关键字时会被自动补全（等效于new Array()）。
+仅带一个数字参数时，该参数表示数组预设长度（创建稀疏数组），而非数组元素。
+替代方案：ES6 的Array.of()（无歧义，始终将参数作为元素）
+稀疏数组：包含至少一个空单元的数组，可通过以下方式创建：
+
+设置length属性值超过实际单元数；
+使用delete删除数组单元。
+
+
+可通过Array.apply(null, {length: 3})创建包含undefined单元（非空单元）的数组。
+
+
+
+不建议使用的构造函数：
+除非特殊需求，尽量避免使用Object()、Function()、RegExp()作为构造函数。
+
+
+Date()：
+
+
+
+必须使用new Date()创建日期对象：带参数时指定日期时间，不带参数时使用当前日期时间。
+时间戳获取：getTime()方法或Date.now()（ES5&#43;）可获取 Unix 时间戳。
+特殊情况：不带new关键字调用Date()时，返回当前日期的字符串值（格式无统一规范）。
+
+
+Error()：
+
+
+带或不带new关键字均可使用。
+作用：创建错误对象以获取当前运行栈上下文（含函数调用栈、错误行号等，便于调试），通常与throw配合使用。
+特性：错误对象至少包含message属性；除Error外，还有针对特定错误类型的原生构造函数（如TypeError、RangeError），这些构造函数在程序异常时自动调用。
+
+
+Symbol（符号）：
+
+
+特性：特殊的基本类型值，具有唯一性，用作对象属性名时不易重名。
+访问性：可作为属性名，但在代码或控制台中难以直接查看和访问其值。
+预定义符号：ES6 中以Symbol静态属性形式存在（如Symbol.iterator）。
+使用规则：Symbol()不能带new关键字（否则报错）；符号是基本类型，非对象，不可枚举（不被for...in遍历），主要用于私有或特殊属性。
+
+
+四、原生原型
+
+原型特征：
+原生构造函数（如Array、Function、RegExp等）都有自己的prototype对象，这些对象包含对应子类型的特有行为特征。
+实用场景：
+
+Function.prototype是空函数，RegExp.prototype是空正则表达式，Array.prototype是空数组，适合作为未赋值变量的默认值。
+优势：prototype对象已预先创建且仅创建一次，性能更优。
+注意：若默认值后续会被修改，则不建议使用原生原型作为默认值。
+
+
+">
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position":  1 ,
+      "name": "Posts",
+      "item": "https://example.org/posts/"
+    }, 
+    {
+      "@type": "ListItem",
+      "position":  2 ,
+      "name": "",
+      "item": "https://example.org/posts/%E4%BD%A0%E4%B8%8D%E7%9F%A5%E9%81%93%E7%9A%84js/%E7%B1%BB%E5%9E%8B%E5%92%8C%E8%AF%AD%E6%B3%95/3.-%E5%8E%9F%E7%94%9F%E5%87%BD%E6%95%B0/"
+    }
+  ]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "",
+  "name": "",
+  "description": "一、内部属性 [[Class]] 基本概念： 内建函数（原生函数）可作为构造函数，用于创建封装基本类型值的封装对象。 属性特征： 所有typeof返回值为object的对象都包含内部属性[[Class]]，该属性无法直接访问。 通常通过Object.prototype.toString()方法查看[[Class]]的值。 对应关系： 多数情况下，对象的[[Class]]属性值与创建该对象的内建原生构造函数相对应。 特殊情况：虽然不存在Null()和undefined()原生构造函数，但null和undefined的[[Class]]属性值分别为'Null'和'Undefined'。 二、封装对象包装 自动包装机制： 基本类型值（如string、number等）本身没有属性和方法，JS 会自动为其包装一个封装对象，以便访问属性和方法，操作完成后立即销毁，避免性能损耗。 手动封装与拆封： 手动封装：使用Object()函数（不带new关键字）可将基本类型值封装为对象。 拆封：通过valueOf()方法可获取封装对象中的基本类型值；在需要基本类型值的场景中，会发生隐式拆封。 使用建议：除非必要，应避免使用构造函数创建封装对象。 三、原生函数作为构造函数 Array()：\n不带new关键字时会被自动补全（等效于new Array()）。 仅带一个数字参数时，该参数表示数组预设长度（创建稀疏数组），而非数组元素。 替代方案：ES6 的Array.of()（无歧义，始终将参数作为元素） 稀疏数组：包含至少一个空单元的数组，可通过以下方式创建： 设置length属性值超过实际单元数； 使用delete删除数组单元。 可通过Array.apply(null, {length: 3})创建包含undefined单元（非空单元）的数组。 不建议使用的构造函数： 除非特殊需求，尽量避免使用Object()、Function()、RegExp()作为构造函数。\nDate()：\n必须使用new Date()创建日期对象：带参数时指定日期时间，不带参数时使用当前日期时间。 时间戳获取：getTime()方法或Date.now()（ES5+）可获取 Unix 时间戳。 特殊情况：不带new关键字调用Date()时，返回当前日期的字符串值（格式无统一规范）。 Error()： 带或不带new关键字均可使用。 作用：创建错误对象以获取当前运行栈上下文（含函数调用栈、错误行号等，便于调试），通常与throw配合使用。 特性：错误对象至少包含message属性；除Error外，还有针对特定错误类型的原生构造函数（如TypeError、RangeError），这些构造函数在程序异常时自动调用。 Symbol（符号）： 特性：特殊的基本类型值，具有唯一性，用作对象属性名时不易重名。 访问性：可作为属性名，但在代码或控制台中难以直接查看和访问其值。 预定义符号：ES6 中以Symbol静态属性形式存在（如Symbol.iterator）。 使用规则：Symbol()不能带new关键字（否则报错）；符号是基本类型，非对象，不可枚举（不被for...in遍历），主要用于私有或特殊属性。 四、原生原型 原型特征： 原生构造函数（如Array、Function、RegExp等）都有自己的prototype对象，这些对象包含对应子类型的特有行为特征。 实用场景： Function.prototype是空函数，RegExp.prototype是空正则表达式，Array.prototype是空数组，适合作为未赋值变量的默认值。 优势：prototype对象已预先创建且仅创建一次，性能更优。 注意：若默认值后续会被修改，则不建议使用原生原型作为默认值。 ",
+  "keywords": [
+    
+  ],
+  "articleBody": "一、内部属性 [[Class]] 基本概念： 内建函数（原生函数）可作为构造函数，用于创建封装基本类型值的封装对象。 属性特征： 所有typeof返回值为object的对象都包含内部属性[[Class]]，该属性无法直接访问。 通常通过Object.prototype.toString()方法查看[[Class]]的值。 对应关系： 多数情况下，对象的[[Class]]属性值与创建该对象的内建原生构造函数相对应。 特殊情况：虽然不存在Null()和undefined()原生构造函数，但null和undefined的[[Class]]属性值分别为'Null'和'Undefined'。 二、封装对象包装 自动包装机制： 基本类型值（如string、number等）本身没有属性和方法，JS 会自动为其包装一个封装对象，以便访问属性和方法，操作完成后立即销毁，避免性能损耗。 手动封装与拆封： 手动封装：使用Object()函数（不带new关键字）可将基本类型值封装为对象。 拆封：通过valueOf()方法可获取封装对象中的基本类型值；在需要基本类型值的场景中，会发生隐式拆封。 使用建议：除非必要，应避免使用构造函数创建封装对象。 三、原生函数作为构造函数 Array()：\n不带new关键字时会被自动补全（等效于new Array()）。 仅带一个数字参数时，该参数表示数组预设长度（创建稀疏数组），而非数组元素。 替代方案：ES6 的Array.of()（无歧义，始终将参数作为元素） 稀疏数组：包含至少一个空单元的数组，可通过以下方式创建： 设置length属性值超过实际单元数； 使用delete删除数组单元。 可通过Array.apply(null, {length: 3})创建包含undefined单元（非空单元）的数组。 不建议使用的构造函数： 除非特殊需求，尽量避免使用Object()、Function()、RegExp()作为构造函数。\nDate()：\n必须使用new Date()创建日期对象：带参数时指定日期时间，不带参数时使用当前日期时间。 时间戳获取：getTime()方法或Date.now()（ES5+）可获取 Unix 时间戳。 特殊情况：不带new关键字调用Date()时，返回当前日期的字符串值（格式无统一规范）。 Error()： 带或不带new关键字均可使用。 作用：创建错误对象以获取当前运行栈上下文（含函数调用栈、错误行号等，便于调试），通常与throw配合使用。 特性：错误对象至少包含message属性；除Error外，还有针对特定错误类型的原生构造函数（如TypeError、RangeError），这些构造函数在程序异常时自动调用。 Symbol（符号）： 特性：特殊的基本类型值，具有唯一性，用作对象属性名时不易重名。 访问性：可作为属性名，但在代码或控制台中难以直接查看和访问其值。 预定义符号：ES6 中以Symbol静态属性形式存在（如Symbol.iterator）。 使用规则：Symbol()不能带new关键字（否则报错）；符号是基本类型，非对象，不可枚举（不被for...in遍历），主要用于私有或特殊属性。 四、原生原型 原型特征： 原生构造函数（如Array、Function、RegExp等）都有自己的prototype对象，这些对象包含对应子类型的特有行为特征。 实用场景： Function.prototype是空函数，RegExp.prototype是空正则表达式，Array.prototype是空数组，适合作为未赋值变量的默认值。 优势：prototype对象已预先创建且仅创建一次，性能更优。 注意：若默认值后续会被修改，则不建议使用原生原型作为默认值。 ",
+  "wordCount" : "57",
+  "inLanguage": "en",
+  "datePublished": "0001-01-01T00:00:00Z",
+  "dateModified": "0001-01-01T00:00:00Z",
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://example.org/posts/%E4%BD%A0%E4%B8%8D%E7%9F%A5%E9%81%93%E7%9A%84js/%E7%B1%BB%E5%9E%8B%E5%92%8C%E8%AF%AD%E6%B3%95/3.-%E5%8E%9F%E7%94%9F%E5%87%BD%E6%95%B0/"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "My New Hugo Site",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://example.org/favicon.ico"
+    }
+  }
+}
+</script>
+</head>
+
+<body class="" id="top">
+<script>
+    if (localStorage.getItem("pref-theme") === "dark") {
+        document.body.classList.add('dark');
+    } else if (localStorage.getItem("pref-theme") === "light") {
+        document.body.classList.remove('dark')
+    } else if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+        document.body.classList.add('dark');
+    }
+
+</script>
+
+<header class="header">
+    <nav class="nav">
+        <div class="logo">
+            <a href="https://example.org/" accesskey="h" title="My New Hugo Site (Alt + H)">My New Hugo Site</a>
+            <div class="logo-switches">
+                <button id="theme-toggle" accesskey="t" title="(Alt + T)" aria-label="Toggle theme">
+                    <svg id="moon" xmlns="http://www.w3.org/2000/svg" width="24" height="18" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                    </svg>
+                    <svg id="sun" xmlns="http://www.w3.org/2000/svg" width="24" height="18" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <circle cx="12" cy="12" r="5"></circle>
+                        <line x1="12" y1="1" x2="12" y2="3"></line>
+                        <line x1="12" y1="21" x2="12" y2="23"></line>
+                        <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                        <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                        <line x1="1" y1="12" x2="3" y2="12"></line>
+                        <line x1="21" y1="12" x2="23" y2="12"></line>
+                        <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                        <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+                    </svg>
+                </button>
+            </div>
+        </div>
+        <ul id="menu">
+        </ul>
+    </nav>
+</header>
+<main class="main">
+
+<article class="post-single">
+  <header class="post-header">
+    
+    <h1 class="post-title entry-hint-parent">
+      
+    </h1>
+    <div class="post-meta">
+
+</div>
+  </header> 
+  <div class="post-content"><h3 id="一内部属性-class">一、内部属性 [[Class]]<a hidden class="anchor" aria-hidden="true" href="#一内部属性-class">#</a></h3>
+<ol>
+<li><strong>基本概念</strong>：
+内建函数（原生函数）可作为构造函数，用于创建封装基本类型值的封装对象。</li>
+<li>属性特征：
+<ul>
+<li>所有<code>typeof</code>返回值为<code>object</code>的对象都包含内部属性<code>[[Class]]</code>，该属性无法直接访问。</li>
+<li>通常通过<code>Object.prototype.toString()</code>方法查看<code>[[Class]]</code>的值。</li>
+</ul>
+</li>
+<li>对应关系：
+<ul>
+<li>多数情况下，对象的<code>[[Class]]</code>属性值与创建该对象的内建原生构造函数相对应。</li>
+<li>特殊情况：虽然不存在<code>Null()</code>和<code>undefined()</code>原生构造函数，但<code>null</code>和<code>undefined</code>的<code>[[Class]]</code>属性值分别为<code>'Null'</code>和<code>'Undefined'</code>。</li>
+</ul>
+</li>
+</ol>
+<h3 id="二封装对象包装">二、封装对象包装<a hidden class="anchor" aria-hidden="true" href="#二封装对象包装">#</a></h3>
+<ol>
+<li><strong>自动包装机制</strong>：
+基本类型值（如<code>string</code>、<code>number</code>等）本身没有属性和方法，JS 会自动为其包装一个封装对象，以便访问属性和方法，操作完成后立即销毁，避免性能损耗。</li>
+<li>手动封装与拆封：
+<ul>
+<li>手动封装：使用<code>Object()</code>函数（不带<code>new</code>关键字）可将基本类型值封装为对象。</li>
+<li>拆封：通过<code>valueOf()</code>方法可获取封装对象中的基本类型值；在需要基本类型值的场景中，会发生隐式拆封。</li>
+</ul>
+</li>
+<li><strong>使用建议</strong>：除非必要，应避免使用构造函数创建封装对象。</li>
+</ol>
+<hr>
+<h3 id="三原生函数作为构造函数">三、原生函数作为构造函数<a hidden class="anchor" aria-hidden="true" href="#三原生函数作为构造函数">#</a></h3>
+<ol>
+<li>
+<p><strong>Array()</strong>：</p>
+<ul>
+<li>不带<code>new</code>关键字时会被自动补全（等效于<code>new Array()</code>）。</li>
+<li>仅带一个数字参数时，该参数表示数组预设长度（创建稀疏数组），而非数组元素。</li>
+<li><strong>替代方案</strong>：ES6 的<code>Array.of()</code>（无歧义，始终将参数作为元素）</li>
+<li>稀疏数组：包含至少一个空单元的数组，可通过以下方式创建：
+<ul>
+<li>设置<code>length</code>属性值超过实际单元数；</li>
+<li>使用<code>delete</code>删除数组单元。</li>
+</ul>
+</li>
+<li>可通过<code>Array.apply(null, {length: 3})</code>创建包含<code>undefined</code>单元（非空单元）的数组。</li>
+</ul>
+</li>
+<li>
+<p><strong>不建议使用的构造函数</strong>：
+除非特殊需求，尽量避免使用<code>Object()</code>、<code>Function()</code>、<code>RegExp()</code>作为构造函数。</p>
+</li>
+<li>
+<p><strong>Date()</strong>：</p>
+</li>
+</ol>
+<ul>
+<li>必须使用<code>new Date()</code>创建日期对象：带参数时指定日期时间，不带参数时使用当前日期时间。</li>
+<li>时间戳获取：<code>getTime()</code>方法或<code>Date.now()</code>（ES5+）可获取 Unix 时间戳。</li>
+<li>特殊情况：不带<code>new</code>关键字调用<code>Date()</code>时，返回当前日期的字符串值（格式无统一规范）。</li>
+</ul>
+<ol start="4">
+<li><strong>Error()</strong>：</li>
+</ol>
+<ul>
+<li>带或不带<code>new</code>关键字均可使用。</li>
+<li>作用：创建错误对象以获取当前运行栈上下文（含函数调用栈、错误行号等，便于调试），通常与<code>throw</code>配合使用。</li>
+<li>特性：错误对象至少包含<code>message</code>属性；除<code>Error</code>外，还有针对特定错误类型的原生构造函数（如<code>TypeError</code>、<code>RangeError</code>），这些构造函数在程序异常时自动调用。</li>
+</ul>
+<ol start="5">
+<li><strong>Symbol（符号）</strong>：</li>
+</ol>
+<ul>
+<li>特性：特殊的基本类型值，具有唯一性，用作对象属性名时不易重名。</li>
+<li>访问性：可作为属性名，但在代码或控制台中难以直接查看和访问其值。</li>
+<li>预定义符号：ES6 中以<code>Symbol</code>静态属性形式存在（如<code>Symbol.iterator</code>）。</li>
+<li>使用规则：<code>Symbol()</code>不能带<code>new</code>关键字（否则报错）；符号是基本类型，非对象，不可枚举（不被<code>for...in</code>遍历），主要用于私有或特殊属性。</li>
+</ul>
+<hr>
+<h3 id="四原生原型">四、原生原型<a hidden class="anchor" aria-hidden="true" href="#四原生原型">#</a></h3>
+<ol>
+<li><strong>原型特征</strong>：
+原生构造函数（如<code>Array</code>、<code>Function</code>、<code>RegExp</code>等）都有自己的<code>prototype</code>对象，这些对象包含对应子类型的特有行为特征。</li>
+<li>实用场景：
+<ul>
+<li><code>Function.prototype</code>是空函数，<code>RegExp.prototype</code>是空正则表达式，<code>Array.prototype</code>是空数组，适合作为未赋值变量的默认值。</li>
+<li>优势：<code>prototype</code>对象已预先创建且仅创建一次，性能更优。</li>
+<li>注意：若默认值后续会被修改，则不建议使用原生原型作为默认值。</li>
+</ul>
+</li>
+</ol>
+
+
+  </div>
+
+  <footer class="post-footer">
+    <ul class="post-tags">
+    </ul>
+  </footer>
+</article>
+    </main>
+    
+<footer class="footer">
+        <span>&copy; 2025 <a href="https://example.org/">My New Hugo Site</a></span> · 
+
+    <span>
+        Powered by
+        <a href="https://gohugo.io/" rel="noopener noreferrer" target="_blank">Hugo</a> &
+        <a href="https://github.com/adityatelange/hugo-PaperMod/" rel="noopener" target="_blank">PaperMod</a>
+    </span>
+</footer>
+<a href="#top" aria-label="go to top" title="Go to Top (Alt + G)" class="top-link" id="top-link" accesskey="g">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 12 6" fill="currentColor">
+        <path d="M12 6H0l6-6z" />
+    </svg>
+</a>
+
+<script>
+    let menu = document.getElementById('menu')
+    if (menu) {
+        menu.scrollLeft = localStorage.getItem("menu-scroll-position");
+        menu.onscroll = function () {
+            localStorage.setItem("menu-scroll-position", menu.scrollLeft);
+        }
+    }
+
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener("click", function (e) {
+            e.preventDefault();
+            var id = this.getAttribute("href").substr(1);
+            if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView({
+                    behavior: "smooth"
+                });
+            } else {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView();
+            }
+            if (id === "top") {
+                history.replaceState(null, null, " ");
+            } else {
+                history.pushState(null, null, `#${id}`);
+            }
+        });
+    });
+
+</script>
+<script>
+    var mybutton = document.getElementById("top-link");
+    window.onscroll = function () {
+        if (document.body.scrollTop > 800 || document.documentElement.scrollTop > 800) {
+            mybutton.style.visibility = "visible";
+            mybutton.style.opacity = "1";
+        } else {
+            mybutton.style.visibility = "hidden";
+            mybutton.style.opacity = "0";
+        }
+    };
+
+</script>
+<script>
+    document.getElementById("theme-toggle").addEventListener("click", () => {
+        if (document.body.className.includes("dark")) {
+            document.body.classList.remove('dark');
+            localStorage.setItem("pref-theme", 'light');
+        } else {
+            document.body.classList.add('dark');
+            localStorage.setItem("pref-theme", 'dark');
+        }
+    })
+
+</script>
+</body>
+
+</html>

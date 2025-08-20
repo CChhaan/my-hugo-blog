@@ -1,0 +1,596 @@
+<!DOCTYPE html>
+<html lang="en" dir="auto">
+
+<head><meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="robots" content="index, follow">
+<title>My New Hugo Site</title>
+<meta name="keywords" content="">
+<meta name="description" content="一、DOM 的核心概念
+DOM（Document Object Model，文档对象模型）是一套用于抽象和概念化文档内容的接口，它将网页文档转换为可通过 JavaScript 操作的对象树结构。
+1. D：文档（Document）
+
+当网页加载到浏览器时，浏览器会自动将 HTML/XML 文档解析为一个 文档对象，即 DOM 的基础。
+
+2. O：对象（Object）
+
+对象是包含数据和方法的集合：
+
+属性：对象关联的变量（如 element.id）；
+方法：对象可调用的函数（如 element.appendChild()）。
+
+
+JS 中的对象类型：
+
+用户定义对象：开发者创建的自定义对象；
+内建对象：JS 自带的对象（如 Array、Date）；
+宿主对象：浏览器环境提供的对象（如 window、document）。
+
+
+关键宿主对象：
+
+window：对应浏览器窗口，属于 BOM（浏览器对象模型）；
+document：对应网页内容，是操作 DOM 的核心对象。
+
+
+
+3. M：模型（Model）
+
+DOM 将文档表示为一棵节点树（类似家谱树），用 “父子”“兄弟” 等关系描述元素间的层次结构：
+
+根元素是 &lt;html&gt;，所有其他元素都是其后代；
+节点树清晰展示了元素的嵌套关系，便于通过 JS 遍历和操作。
+
+
+
+二、节点（Node）
+DOM 文档由多种节点组成，核心类型包括：
+1. 元素节点（Element Node）
+
+文档的基本构成单位，对应 HTML 标签（如 &lt;div&gt;、&lt;p&gt;）。
+特点：可包含其他元素节点或文本节点，是节点树的 “骨架”。
+根元素：&lt;html&gt; 是唯一不被其他元素包含的元素节点。
+
+2. 文本节点（Text Node）
+
+包含文本内容（如文字、空格），总是被元素节点包含（如 &lt;p&gt;Hello&lt;/p&gt; 中，“Hello” 是文本节点）。
+注意：并非所有元素节点都包含文本节点（如空标签 &lt;img&gt;）。
+
+3. 属性节点（Attribute Node）
+
+描述元素的附加信息（如 class、id、src），仅存在于元素的起始标签中。
+特点：依赖元素节点存在，无法独立于元素存在（如 &lt;a href=&quot;url&quot;&gt; 中，href 是属性节点）。
+
+三、CSS 与 DOM 的关联
+
+CSS 通过节点树结构应用样式，子元素会继承父元素的样式（继承性）。
+为精准定位元素，常用 class 和 id 属性：
+
+class 属性：
+
+可在多个元素上重复使用，用于为一组元素定义相同样式（如 .active { color: red; }）。
+一个元素可包含多个类名（用空格分隔，如 class=&quot;btn primary&quot;）。
+
+
+id 属性：
+
+每个 id 在文档中唯一，用于标识单个元素（如 id=&quot;logo&quot;）。
+可作为样式或 DOM 操作的 “挂钩”（如 #logo { width: 100px; }）。
+
+
+
+
+
+四、获取元素节点的 DOM 方法
+1. getElementById()
+
+
+作用：根据元素的 id 属性值获取唯一元素节点。">
+<meta name="author" content="">
+<link rel="canonical" href="https://example.org/posts/js-dom%E7%BC%96%E7%A8%8B%E8%89%BA%E6%9C%AF/%E7%AC%AC%E4%B8%89%E7%AB%A0-dom/">
+<link crossorigin="anonymous" href="/assets/css/stylesheet.8fe10233a706bc87f2e08b3cf97b8bd4c0a80f10675a143675d59212121037c0.css" integrity="sha256-j&#43;ECM6cGvIfy4Is8&#43;XuL1MCoDxBnWhQ2ddWSEhIQN8A=" rel="preload stylesheet" as="style">
+<link rel="icon" href="https://example.org/favicon.ico">
+<link rel="icon" type="image/png" sizes="16x16" href="https://example.org/favicon-16x16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="https://example.org/favicon-32x32.png">
+<link rel="apple-touch-icon" href="https://example.org/apple-touch-icon.png">
+<link rel="mask-icon" href="https://example.org/safari-pinned-tab.svg">
+<meta name="theme-color" content="#2e2e33">
+<meta name="msapplication-TileColor" content="#2e2e33">
+<link rel="alternate" hreflang="en" href="https://example.org/posts/js-dom%E7%BC%96%E7%A8%8B%E8%89%BA%E6%9C%AF/%E7%AC%AC%E4%B8%89%E7%AB%A0-dom/">
+<noscript>
+    <style>
+        #theme-toggle,
+        .top-link {
+            display: none;
+        }
+
+    </style>
+    <style>
+        @media (prefers-color-scheme: dark) {
+            :root {
+                --theme: rgb(29, 30, 32);
+                --entry: rgb(46, 46, 51);
+                --primary: rgb(218, 218, 219);
+                --secondary: rgb(155, 156, 157);
+                --tertiary: rgb(65, 66, 68);
+                --content: rgb(196, 196, 197);
+                --code-block-bg: rgb(46, 46, 51);
+                --code-bg: rgb(55, 56, 62);
+                --border: rgb(51, 51, 51);
+            }
+
+            .list {
+                background: var(--theme);
+            }
+
+            .list:not(.dark)::-webkit-scrollbar-track {
+                background: 0 0;
+            }
+
+            .list:not(.dark)::-webkit-scrollbar-thumb {
+                border-color: var(--theme);
+            }
+        }
+
+    </style>
+</noscript><meta property="og:url" content="https://example.org/posts/js-dom%E7%BC%96%E7%A8%8B%E8%89%BA%E6%9C%AF/%E7%AC%AC%E4%B8%89%E7%AB%A0-dom/">
+  <meta property="og:site_name" content="My New Hugo Site">
+  <meta property="og:title" content="My New Hugo Site">
+  <meta property="og:description" content="一、DOM 的核心概念 DOM（Document Object Model，文档对象模型）是一套用于抽象和概念化文档内容的接口，它将网页文档转换为可通过 JavaScript 操作的对象树结构。
+1. D：文档（Document） 当网页加载到浏览器时，浏览器会自动将 HTML/XML 文档解析为一个 文档对象，即 DOM 的基础。 2. O：对象（Object） 对象是包含数据和方法的集合： 属性：对象关联的变量（如 element.id）； 方法：对象可调用的函数（如 element.appendChild()）。 JS 中的对象类型： 用户定义对象：开发者创建的自定义对象； 内建对象：JS 自带的对象（如 Array、Date）； 宿主对象：浏览器环境提供的对象（如 window、document）。 关键宿主对象： window：对应浏览器窗口，属于 BOM（浏览器对象模型）； document：对应网页内容，是操作 DOM 的核心对象。 3. M：模型（Model） DOM 将文档表示为一棵节点树（类似家谱树），用 “父子”“兄弟” 等关系描述元素间的层次结构： 根元素是 &lt;html&gt;，所有其他元素都是其后代； 节点树清晰展示了元素的嵌套关系，便于通过 JS 遍历和操作。 二、节点（Node） DOM 文档由多种节点组成，核心类型包括：
+1. 元素节点（Element Node） 文档的基本构成单位，对应 HTML 标签（如 &lt;div&gt;、&lt;p&gt;）。 特点：可包含其他元素节点或文本节点，是节点树的 “骨架”。 根元素：&lt;html&gt; 是唯一不被其他元素包含的元素节点。 2. 文本节点（Text Node） 包含文本内容（如文字、空格），总是被元素节点包含（如 &lt;p&gt;Hello&lt;/p&gt; 中，“Hello” 是文本节点）。 注意：并非所有元素节点都包含文本节点（如空标签 &lt;img&gt;）。 3. 属性节点（Attribute Node） 描述元素的附加信息（如 class、id、src），仅存在于元素的起始标签中。 特点：依赖元素节点存在，无法独立于元素存在（如 &lt;a href=&#34;url&#34;&gt; 中，href 是属性节点）。 三、CSS 与 DOM 的关联 CSS 通过节点树结构应用样式，子元素会继承父元素的样式（继承性）。 为精准定位元素，常用 class 和 id 属性： class 属性： 可在多个元素上重复使用，用于为一组元素定义相同样式（如 .active { color: red; }）。 一个元素可包含多个类名（用空格分隔，如 class=&#34;btn primary&#34;）。 id 属性： 每个 id 在文档中唯一，用于标识单个元素（如 id=&#34;logo&#34;）。 可作为样式或 DOM 操作的 “挂钩”（如 #logo { width: 100px; }）。 四、获取元素节点的 DOM 方法 1. getElementById() 作用：根据元素的 id 属性值获取唯一元素节点。">
+  <meta property="og:locale" content="en-us">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="posts">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="">
+<meta name="twitter:description" content="一、DOM 的核心概念
+DOM（Document Object Model，文档对象模型）是一套用于抽象和概念化文档内容的接口，它将网页文档转换为可通过 JavaScript 操作的对象树结构。
+1. D：文档（Document）
+
+当网页加载到浏览器时，浏览器会自动将 HTML/XML 文档解析为一个 文档对象，即 DOM 的基础。
+
+2. O：对象（Object）
+
+对象是包含数据和方法的集合：
+
+属性：对象关联的变量（如 element.id）；
+方法：对象可调用的函数（如 element.appendChild()）。
+
+
+JS 中的对象类型：
+
+用户定义对象：开发者创建的自定义对象；
+内建对象：JS 自带的对象（如 Array、Date）；
+宿主对象：浏览器环境提供的对象（如 window、document）。
+
+
+关键宿主对象：
+
+window：对应浏览器窗口，属于 BOM（浏览器对象模型）；
+document：对应网页内容，是操作 DOM 的核心对象。
+
+
+
+3. M：模型（Model）
+
+DOM 将文档表示为一棵节点树（类似家谱树），用 “父子”“兄弟” 等关系描述元素间的层次结构：
+
+根元素是 &lt;html&gt;，所有其他元素都是其后代；
+节点树清晰展示了元素的嵌套关系，便于通过 JS 遍历和操作。
+
+
+
+二、节点（Node）
+DOM 文档由多种节点组成，核心类型包括：
+1. 元素节点（Element Node）
+
+文档的基本构成单位，对应 HTML 标签（如 &lt;div&gt;、&lt;p&gt;）。
+特点：可包含其他元素节点或文本节点，是节点树的 “骨架”。
+根元素：&lt;html&gt; 是唯一不被其他元素包含的元素节点。
+
+2. 文本节点（Text Node）
+
+包含文本内容（如文字、空格），总是被元素节点包含（如 &lt;p&gt;Hello&lt;/p&gt; 中，“Hello” 是文本节点）。
+注意：并非所有元素节点都包含文本节点（如空标签 &lt;img&gt;）。
+
+3. 属性节点（Attribute Node）
+
+描述元素的附加信息（如 class、id、src），仅存在于元素的起始标签中。
+特点：依赖元素节点存在，无法独立于元素存在（如 &lt;a href=&quot;url&quot;&gt; 中，href 是属性节点）。
+
+三、CSS 与 DOM 的关联
+
+CSS 通过节点树结构应用样式，子元素会继承父元素的样式（继承性）。
+为精准定位元素，常用 class 和 id 属性：
+
+class 属性：
+
+可在多个元素上重复使用，用于为一组元素定义相同样式（如 .active { color: red; }）。
+一个元素可包含多个类名（用空格分隔，如 class=&quot;btn primary&quot;）。
+
+
+id 属性：
+
+每个 id 在文档中唯一，用于标识单个元素（如 id=&quot;logo&quot;）。
+可作为样式或 DOM 操作的 “挂钩”（如 #logo { width: 100px; }）。
+
+
+
+
+
+四、获取元素节点的 DOM 方法
+1. getElementById()
+
+
+作用：根据元素的 id 属性值获取唯一元素节点。">
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position":  1 ,
+      "name": "Posts",
+      "item": "https://example.org/posts/"
+    }, 
+    {
+      "@type": "ListItem",
+      "position":  2 ,
+      "name": "",
+      "item": "https://example.org/posts/js-dom%E7%BC%96%E7%A8%8B%E8%89%BA%E6%9C%AF/%E7%AC%AC%E4%B8%89%E7%AB%A0-dom/"
+    }
+  ]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "",
+  "name": "",
+  "description": "一、DOM 的核心概念 DOM（Document Object Model，文档对象模型）是一套用于抽象和概念化文档内容的接口，它将网页文档转换为可通过 JavaScript 操作的对象树结构。\n1. D：文档（Document） 当网页加载到浏览器时，浏览器会自动将 HTML/XML 文档解析为一个 文档对象，即 DOM 的基础。 2. O：对象（Object） 对象是包含数据和方法的集合： 属性：对象关联的变量（如 element.id）； 方法：对象可调用的函数（如 element.appendChild()）。 JS 中的对象类型： 用户定义对象：开发者创建的自定义对象； 内建对象：JS 自带的对象（如 Array、Date）； 宿主对象：浏览器环境提供的对象（如 window、document）。 关键宿主对象： window：对应浏览器窗口，属于 BOM（浏览器对象模型）； document：对应网页内容，是操作 DOM 的核心对象。 3. M：模型（Model） DOM 将文档表示为一棵节点树（类似家谱树），用 “父子”“兄弟” 等关系描述元素间的层次结构： 根元素是 \u0026lt;html\u0026gt;，所有其他元素都是其后代； 节点树清晰展示了元素的嵌套关系，便于通过 JS 遍历和操作。 二、节点（Node） DOM 文档由多种节点组成，核心类型包括：\n1. 元素节点（Element Node） 文档的基本构成单位，对应 HTML 标签（如 \u0026lt;div\u0026gt;、\u0026lt;p\u0026gt;）。 特点：可包含其他元素节点或文本节点，是节点树的 “骨架”。 根元素：\u0026lt;html\u0026gt; 是唯一不被其他元素包含的元素节点。 2. 文本节点（Text Node） 包含文本内容（如文字、空格），总是被元素节点包含（如 \u0026lt;p\u0026gt;Hello\u0026lt;/p\u0026gt; 中，“Hello” 是文本节点）。 注意：并非所有元素节点都包含文本节点（如空标签 \u0026lt;img\u0026gt;）。 3. 属性节点（Attribute Node） 描述元素的附加信息（如 class、id、src），仅存在于元素的起始标签中。 特点：依赖元素节点存在，无法独立于元素存在（如 \u0026lt;a href=\u0026quot;url\u0026quot;\u0026gt; 中，href 是属性节点）。 三、CSS 与 DOM 的关联 CSS 通过节点树结构应用样式，子元素会继承父元素的样式（继承性）。 为精准定位元素，常用 class 和 id 属性： class 属性： 可在多个元素上重复使用，用于为一组元素定义相同样式（如 .active { color: red; }）。 一个元素可包含多个类名（用空格分隔，如 class=\u0026quot;btn primary\u0026quot;）。 id 属性： 每个 id 在文档中唯一，用于标识单个元素（如 id=\u0026quot;logo\u0026quot;）。 可作为样式或 DOM 操作的 “挂钩”（如 #logo { width: 100px; }）。 四、获取元素节点的 DOM 方法 1. getElementById() 作用：根据元素的 id 属性值获取唯一元素节点。\n",
+  "keywords": [
+    
+  ],
+  "articleBody": "一、DOM 的核心概念 DOM（Document Object Model，文档对象模型）是一套用于抽象和概念化文档内容的接口，它将网页文档转换为可通过 JavaScript 操作的对象树结构。\n1. D：文档（Document） 当网页加载到浏览器时，浏览器会自动将 HTML/XML 文档解析为一个 文档对象，即 DOM 的基础。 2. O：对象（Object） 对象是包含数据和方法的集合： 属性：对象关联的变量（如 element.id）； 方法：对象可调用的函数（如 element.appendChild()）。 JS 中的对象类型： 用户定义对象：开发者创建的自定义对象； 内建对象：JS 自带的对象（如 Array、Date）； 宿主对象：浏览器环境提供的对象（如 window、document）。 关键宿主对象： window：对应浏览器窗口，属于 BOM（浏览器对象模型）； document：对应网页内容，是操作 DOM 的核心对象。 3. M：模型（Model） DOM 将文档表示为一棵节点树（类似家谱树），用 “父子”“兄弟” 等关系描述元素间的层次结构： 根元素是 ，所有其他元素都是其后代； 节点树清晰展示了元素的嵌套关系，便于通过 JS 遍历和操作。 二、节点（Node） DOM 文档由多种节点组成，核心类型包括：\n1. 元素节点（Element Node） 文档的基本构成单位，对应 HTML 标签（如 、）。 特点：可包含其他元素节点或文本节点，是节点树的 “骨架”。 根元素： 是唯一不被其他元素包含的元素节点。 2. 文本节点（Text Node） 包含文本内容（如文字、空格），总是被元素节点包含（如 Hello\n中，“Hello” 是文本节点）。 注意：并非所有元素节点都包含文本节点（如空标签 ）。 3. 属性节点（Attribute Node） 描述元素的附加信息（如 class、id、src），仅存在于元素的起始标签中。 特点：依赖元素节点存在，无法独立于元素存在（如 中，href 是属性节点）。 三、CSS 与 DOM 的关联 CSS 通过节点树结构应用样式，子元素会继承父元素的样式（继承性）。 为精准定位元素，常用 class 和 id 属性： class 属性： 可在多个元素上重复使用，用于为一组元素定义相同样式（如 .active { color: red; }）。 一个元素可包含多个类名（用空格分隔，如 class=\"btn primary\"）。 id 属性： 每个 id 在文档中唯一，用于标识单个元素（如 id=\"logo\"）。 可作为样式或 DOM 操作的 “挂钩”（如 #logo { width: 100px; }）。 四、获取元素节点的 DOM 方法 1. getElementById() 作用：根据元素的 id 属性值获取唯一元素节点。\n语法：\ndocument.getElementById(\"idValue\") 参数：id 值（必须用引号包裹）； 返回值：匹配的元素节点对象（若不存在则返回 null）。 示例：\nconst header = document.getElementById(\"main-header\"); // 获取 id 为 \"main-header\" 的元素 2. getElementsByTagName() 作用：根据标签名获取所有匹配的元素节点，返回 HTMLCollection（类数组对象）。\n语法：\nelement.getElementsByTagName(\"tagName\") 参数：标签名（如 \"div\"、\"p\"），或通配符 \"*\"（匹配所有元素）； 返回值：包含所有匹配元素的集合（即使只有一个元素，也返回集合）。 示例：\nconst paragraphs = document.getElementsByTagName(\"p\"); // 获取所有 元素 const allElements = document.getElementsByTagName(\"*\"); // 获取所有元素 3. getElementsByClassName() 作用：根据 class 属性值获取所有匹配的元素节点，返回 HTMLCollection。\n语法：\nelement.getElementsByClassName(\"className\") 参数：类名（多个类名用空格分隔，如 \"btn active\"）； 特点：忽略类名顺序，只要元素包含所有指定类名即匹配。 示例：\nconst activeItems = document.getElementsByClassName(\"active\"); // 获取所有 class 含 \"active\" 的元素 const specialBtns = document.getElementsByClassName(\"btn special\"); // 匹配同时含 \"btn\" 和 \"special\" 的元素 五、获取和设置属性 1. getAttribute() 作用：获取元素节点的指定属性值。\n语法：\nelement.getAttribute(\"attributeName\") 参数：属性名（如 \"href\"、\"class\"）； 注意：只能通过元素节点调用（不属于 document 对象）。 示例：\nconst link = document.getElementById(\"nav-link\"); const url = link.getAttribute(\"href\"); // 获取 link 的 href 属性值 2. setAttribute() 作用：修改或添加元素节点的属性值。\n语法：\nelement.setAttribute(\"attributeName\", \"newValue\") 参数：属性名和新值； 特点：修改后会实时反映在页面中，但 不会改变原始 HTML 源代码（DOM 动态刷新的特性）。 示例：\nconst img = document.getElementById(\"logo\"); img.setAttribute(\"src\", \"new-logo.png\"); // 修改 img 的 src 属性 img.setAttribute(\"alt\", \"New Logo\"); // 添加或修改 alt 属性 补充说明 DOM 操作是 “动态” 的：通过 JS 修改的内容会实时更新页面，但不会改变服务器返回的原始 HTML 代码（查看源代码时仍为初始状态）。 类数组对象（如 HTMLCollection）是动态的：当文档结构变化时，集合会自动更新（如删除一个元素后，集合长度会减少）。 现代 DOM API 扩展：除上述方法外，还有 querySelector() 和 querySelectorAll() 等更灵活的方法（支持 CSS 选择器），例如 document.querySelector(\"#main .item\")。 ",
+  "wordCount" : "282",
+  "inLanguage": "en",
+  "datePublished": "0001-01-01T00:00:00Z",
+  "dateModified": "0001-01-01T00:00:00Z",
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://example.org/posts/js-dom%E7%BC%96%E7%A8%8B%E8%89%BA%E6%9C%AF/%E7%AC%AC%E4%B8%89%E7%AB%A0-dom/"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "My New Hugo Site",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://example.org/favicon.ico"
+    }
+  }
+}
+</script>
+</head>
+
+<body class="" id="top">
+<script>
+    if (localStorage.getItem("pref-theme") === "dark") {
+        document.body.classList.add('dark');
+    } else if (localStorage.getItem("pref-theme") === "light") {
+        document.body.classList.remove('dark')
+    } else if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+        document.body.classList.add('dark');
+    }
+
+</script>
+
+<header class="header">
+    <nav class="nav">
+        <div class="logo">
+            <a href="https://example.org/" accesskey="h" title="My New Hugo Site (Alt + H)">My New Hugo Site</a>
+            <div class="logo-switches">
+                <button id="theme-toggle" accesskey="t" title="(Alt + T)" aria-label="Toggle theme">
+                    <svg id="moon" xmlns="http://www.w3.org/2000/svg" width="24" height="18" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                    </svg>
+                    <svg id="sun" xmlns="http://www.w3.org/2000/svg" width="24" height="18" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <circle cx="12" cy="12" r="5"></circle>
+                        <line x1="12" y1="1" x2="12" y2="3"></line>
+                        <line x1="12" y1="21" x2="12" y2="23"></line>
+                        <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                        <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                        <line x1="1" y1="12" x2="3" y2="12"></line>
+                        <line x1="21" y1="12" x2="23" y2="12"></line>
+                        <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                        <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+                    </svg>
+                </button>
+            </div>
+        </div>
+        <ul id="menu">
+        </ul>
+    </nav>
+</header>
+<main class="main">
+
+<article class="post-single">
+  <header class="post-header">
+    
+    <h1 class="post-title entry-hint-parent">
+      
+    </h1>
+    <div class="post-meta">
+
+</div>
+  </header> 
+  <div class="post-content"><h3 id="一dom-的核心概念">一、DOM 的核心概念<a hidden class="anchor" aria-hidden="true" href="#一dom-的核心概念">#</a></h3>
+<p>DOM（Document Object Model，文档对象模型）是一套用于抽象和概念化文档内容的接口，它将网页文档转换为可通过 JavaScript 操作的对象树结构。</p>
+<h4 id="1-d文档document">1. D：文档（Document）<a hidden class="anchor" aria-hidden="true" href="#1-d文档document">#</a></h4>
+<ul>
+<li>当网页加载到浏览器时，浏览器会自动将 HTML/XML 文档解析为一个 <strong>文档对象</strong>，即 DOM 的基础。</li>
+</ul>
+<h4 id="2-o对象object">2. O：对象（Object）<a hidden class="anchor" aria-hidden="true" href="#2-o对象object">#</a></h4>
+<ul>
+<li>对象是包含数据和方法的集合：
+<ul>
+<li><strong>属性</strong>：对象关联的变量（如 <code>element.id</code>）；</li>
+<li><strong>方法</strong>：对象可调用的函数（如 <code>element.appendChild()</code>）。</li>
+</ul>
+</li>
+<li>JS 中的对象类型：
+<ul>
+<li><strong>用户定义对象</strong>：开发者创建的自定义对象；</li>
+<li><strong>内建对象</strong>：JS 自带的对象（如 <code>Array</code>、<code>Date</code>）；</li>
+<li><strong>宿主对象</strong>：浏览器环境提供的对象（如 <code>window</code>、<code>document</code>）。</li>
+</ul>
+</li>
+<li>关键宿主对象：
+<ul>
+<li><code>window</code>：对应浏览器窗口，属于 BOM（浏览器对象模型）；</li>
+<li><code>document</code>：对应网页内容，是操作 DOM 的核心对象。</li>
+</ul>
+</li>
+</ul>
+<h4 id="3-m模型model">3. M：模型（Model）<a hidden class="anchor" aria-hidden="true" href="#3-m模型model">#</a></h4>
+<ul>
+<li>DOM 将文档表示为一棵节点树（类似家谱树），用 “父子”“兄弟” 等关系描述元素间的层次结构：
+<ul>
+<li>根元素是 <code>&lt;html&gt;</code>，所有其他元素都是其后代；</li>
+<li>节点树清晰展示了元素的嵌套关系，便于通过 JS 遍历和操作。</li>
+</ul>
+</li>
+</ul>
+<h3 id="二节点node">二、节点（Node）<a hidden class="anchor" aria-hidden="true" href="#二节点node">#</a></h3>
+<p>DOM 文档由多种节点组成，核心类型包括：</p>
+<h4 id="1-元素节点element-node">1. 元素节点（Element Node）<a hidden class="anchor" aria-hidden="true" href="#1-元素节点element-node">#</a></h4>
+<ul>
+<li>文档的基本构成单位，对应 HTML 标签（如 <code>&lt;div&gt;</code>、<code>&lt;p&gt;</code>）。</li>
+<li>特点：可包含其他元素节点或文本节点，是节点树的 “骨架”。</li>
+<li>根元素：<code>&lt;html&gt;</code> 是唯一不被其他元素包含的元素节点。</li>
+</ul>
+<h4 id="2-文本节点text-node">2. 文本节点（Text Node）<a hidden class="anchor" aria-hidden="true" href="#2-文本节点text-node">#</a></h4>
+<ul>
+<li>包含文本内容（如文字、空格），<strong>总是被元素节点包含</strong>（如 <code>&lt;p&gt;Hello&lt;/p&gt;</code> 中，“Hello” 是文本节点）。</li>
+<li>注意：并非所有元素节点都包含文本节点（如空标签 <code>&lt;img&gt;</code>）。</li>
+</ul>
+<h4 id="3-属性节点attribute-node">3. 属性节点（Attribute Node）<a hidden class="anchor" aria-hidden="true" href="#3-属性节点attribute-node">#</a></h4>
+<ul>
+<li>描述元素的附加信息（如 <code>class</code>、<code>id</code>、<code>src</code>），<strong>仅存在于元素的起始标签中</strong>。</li>
+<li>特点：依赖元素节点存在，无法独立于元素存在（如 <code>&lt;a href=&quot;url&quot;&gt;</code> 中，<code>href</code> 是属性节点）。</li>
+</ul>
+<h3 id="三css-与-dom-的关联">三、CSS 与 DOM 的关联<a hidden class="anchor" aria-hidden="true" href="#三css-与-dom-的关联">#</a></h3>
+<ul>
+<li>CSS 通过节点树结构应用样式，子元素会继承父元素的样式（继承性）。</li>
+<li>为精准定位元素，常用 <code>class</code> 和 <code>id</code> 属性：
+<ul>
+<li><strong>class 属性</strong>：
+<ul>
+<li>可在多个元素上重复使用，用于为一组元素定义相同样式（如 <code>.active { color: red; }</code>）。</li>
+<li>一个元素可包含多个类名（用空格分隔，如 <code>class=&quot;btn primary&quot;</code>）。</li>
+</ul>
+</li>
+<li><strong>id 属性</strong>：
+<ul>
+<li>每个 <code>id</code> 在文档中唯一，用于标识单个元素（如 <code>id=&quot;logo&quot;</code>）。</li>
+<li>可作为样式或 DOM 操作的 “挂钩”（如 <code>#logo { width: 100px; }</code>）。</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="四获取元素节点的-dom-方法">四、获取元素节点的 DOM 方法<a hidden class="anchor" aria-hidden="true" href="#四获取元素节点的-dom-方法">#</a></h3>
+<h4 id="1-getelementbyid">1. <code>getElementById()</code><a hidden class="anchor" aria-hidden="true" href="#1-getelementbyid">#</a></h4>
+<ul>
+<li>
+<p><strong>作用</strong>：根据元素的 <code>id</code> 属性值获取唯一元素节点。</p>
+</li>
+<li>
+<p>语法：</p>
+<pre tabindex="0"><code>document.getElementById(&#34;idValue&#34;)
+</code></pre><ul>
+<li>参数：<code>id</code> 值（必须用引号包裹）；</li>
+<li>返回值：匹配的元素节点对象（若不存在则返回 <code>null</code>）。</li>
+</ul>
+</li>
+<li>
+<p>示例：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-js" data-lang="js"><span style="display:flex;"><span><span style="color:#66d9ef">const</span> <span style="color:#a6e22e">header</span> <span style="color:#f92672">=</span> document.<span style="color:#a6e22e">getElementById</span>(<span style="color:#e6db74">&#34;main-header&#34;</span>); <span style="color:#75715e">// 获取 id 为 &#34;main-header&#34; 的元素
+</span></span></span></code></pre></div></li>
+</ul>
+<h4 id="2-getelementsbytagname">2. <code>getElementsByTagName()</code><a hidden class="anchor" aria-hidden="true" href="#2-getelementsbytagname">#</a></h4>
+<ul>
+<li>
+<p><strong>作用</strong>：根据标签名获取所有匹配的元素节点，返回 <strong>HTMLCollection（类数组对象）</strong>。</p>
+</li>
+<li>
+<p>语法：</p>
+<pre tabindex="0"><code>element.getElementsByTagName(&#34;tagName&#34;)
+</code></pre><ul>
+<li>参数：标签名（如 <code>&quot;div&quot;</code>、<code>&quot;p&quot;</code>），或通配符 <code>&quot;*&quot;</code>（匹配所有元素）；</li>
+<li>返回值：包含所有匹配元素的集合（即使只有一个元素，也返回集合）。</li>
+</ul>
+</li>
+<li>
+<p>示例：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-js" data-lang="js"><span style="display:flex;"><span><span style="color:#66d9ef">const</span> <span style="color:#a6e22e">paragraphs</span> <span style="color:#f92672">=</span> document.<span style="color:#a6e22e">getElementsByTagName</span>(<span style="color:#e6db74">&#34;p&#34;</span>); <span style="color:#75715e">// 获取所有 &lt;p&gt; 元素
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">const</span> <span style="color:#a6e22e">allElements</span> <span style="color:#f92672">=</span> document.<span style="color:#a6e22e">getElementsByTagName</span>(<span style="color:#e6db74">&#34;*&#34;</span>); <span style="color:#75715e">// 获取所有元素
+</span></span></span></code></pre></div></li>
+</ul>
+<h4 id="3-getelementsbyclassname">3. <code>getElementsByClassName()</code><a hidden class="anchor" aria-hidden="true" href="#3-getelementsbyclassname">#</a></h4>
+<ul>
+<li>
+<p><strong>作用</strong>：根据 <code>class</code> 属性值获取所有匹配的元素节点，返回 <strong>HTMLCollection</strong>。</p>
+</li>
+<li>
+<p>语法：</p>
+<pre tabindex="0"><code>element.getElementsByClassName(&#34;className&#34;)
+</code></pre><ul>
+<li>参数：类名（多个类名用空格分隔，如 <code>&quot;btn active&quot;</code>）；</li>
+<li>特点：忽略类名顺序，只要元素包含所有指定类名即匹配。</li>
+</ul>
+</li>
+<li>
+<p>示例：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-js" data-lang="js"><span style="display:flex;"><span><span style="color:#66d9ef">const</span> <span style="color:#a6e22e">activeItems</span> <span style="color:#f92672">=</span> document.<span style="color:#a6e22e">getElementsByClassName</span>(<span style="color:#e6db74">&#34;active&#34;</span>); <span style="color:#75715e">// 获取所有 class 含 &#34;active&#34; 的元素
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">const</span> <span style="color:#a6e22e">specialBtns</span> <span style="color:#f92672">=</span> document.<span style="color:#a6e22e">getElementsByClassName</span>(<span style="color:#e6db74">&#34;btn special&#34;</span>); <span style="color:#75715e">// 匹配同时含 &#34;btn&#34; 和 &#34;special&#34; 的元素
+</span></span></span></code></pre></div></li>
+</ul>
+<h3 id="五获取和设置属性">五、获取和设置属性<a hidden class="anchor" aria-hidden="true" href="#五获取和设置属性">#</a></h3>
+<h4 id="1-getattribute">1. <code>getAttribute()</code><a hidden class="anchor" aria-hidden="true" href="#1-getattribute">#</a></h4>
+<ul>
+<li>
+<p><strong>作用</strong>：获取元素节点的指定属性值。</p>
+</li>
+<li>
+<p>语法：</p>
+<pre tabindex="0"><code>element.getAttribute(&#34;attributeName&#34;)
+</code></pre><ul>
+<li>参数：属性名（如 <code>&quot;href&quot;</code>、<code>&quot;class&quot;</code>）；</li>
+<li>注意：<strong>只能通过元素节点调用</strong>（不属于 <code>document</code> 对象）。</li>
+</ul>
+</li>
+<li>
+<p>示例：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-js" data-lang="js"><span style="display:flex;"><span><span style="color:#66d9ef">const</span> <span style="color:#a6e22e">link</span> <span style="color:#f92672">=</span> document.<span style="color:#a6e22e">getElementById</span>(<span style="color:#e6db74">&#34;nav-link&#34;</span>);
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">const</span> <span style="color:#a6e22e">url</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">link</span>.<span style="color:#a6e22e">getAttribute</span>(<span style="color:#e6db74">&#34;href&#34;</span>); <span style="color:#75715e">// 获取 link 的 href 属性值
+</span></span></span></code></pre></div></li>
+</ul>
+<h4 id="2-setattribute">2. <code>setAttribute()</code><a hidden class="anchor" aria-hidden="true" href="#2-setattribute">#</a></h4>
+<ul>
+<li>
+<p><strong>作用</strong>：修改或添加元素节点的属性值。</p>
+</li>
+<li>
+<p>语法：</p>
+<pre tabindex="0"><code>element.setAttribute(&#34;attributeName&#34;, &#34;newValue&#34;)
+</code></pre><ul>
+<li>参数：属性名和新值；</li>
+<li>特点：修改后会实时反映在页面中，但 <strong>不会改变原始 HTML 源代码</strong>（DOM 动态刷新的特性）。</li>
+</ul>
+</li>
+<li>
+<p>示例：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-js" data-lang="js"><span style="display:flex;"><span><span style="color:#66d9ef">const</span> <span style="color:#a6e22e">img</span> <span style="color:#f92672">=</span> document.<span style="color:#a6e22e">getElementById</span>(<span style="color:#e6db74">&#34;logo&#34;</span>);
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">img</span>.<span style="color:#a6e22e">setAttribute</span>(<span style="color:#e6db74">&#34;src&#34;</span>, <span style="color:#e6db74">&#34;new-logo.png&#34;</span>); <span style="color:#75715e">// 修改 img 的 src 属性
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#a6e22e">img</span>.<span style="color:#a6e22e">setAttribute</span>(<span style="color:#e6db74">&#34;alt&#34;</span>, <span style="color:#e6db74">&#34;New Logo&#34;</span>); <span style="color:#75715e">// 添加或修改 alt 属性
+</span></span></span></code></pre></div></li>
+</ul>
+<h3 id="补充说明">补充说明<a hidden class="anchor" aria-hidden="true" href="#补充说明">#</a></h3>
+<ul>
+<li>DOM 操作是 “动态” 的：通过 JS 修改的内容会实时更新页面，但不会改变服务器返回的原始 HTML 代码（查看源代码时仍为初始状态）。</li>
+<li>类数组对象（如 <code>HTMLCollection</code>）是动态的：当文档结构变化时，集合会自动更新（如删除一个元素后，集合长度会减少）。</li>
+<li>现代 DOM API 扩展：除上述方法外，还有 <code>querySelector()</code> 和 <code>querySelectorAll()</code> 等更灵活的方法（支持 CSS 选择器），例如 <code>document.querySelector(&quot;#main .item&quot;)</code>。</li>
+</ul>
+
+
+  </div>
+
+  <footer class="post-footer">
+    <ul class="post-tags">
+    </ul>
+  </footer>
+</article>
+    </main>
+    
+<footer class="footer">
+        <span>&copy; 2025 <a href="https://example.org/">My New Hugo Site</a></span> · 
+
+    <span>
+        Powered by
+        <a href="https://gohugo.io/" rel="noopener noreferrer" target="_blank">Hugo</a> &
+        <a href="https://github.com/adityatelange/hugo-PaperMod/" rel="noopener" target="_blank">PaperMod</a>
+    </span>
+</footer>
+<a href="#top" aria-label="go to top" title="Go to Top (Alt + G)" class="top-link" id="top-link" accesskey="g">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 12 6" fill="currentColor">
+        <path d="M12 6H0l6-6z" />
+    </svg>
+</a>
+
+<script>
+    let menu = document.getElementById('menu')
+    if (menu) {
+        menu.scrollLeft = localStorage.getItem("menu-scroll-position");
+        menu.onscroll = function () {
+            localStorage.setItem("menu-scroll-position", menu.scrollLeft);
+        }
+    }
+
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener("click", function (e) {
+            e.preventDefault();
+            var id = this.getAttribute("href").substr(1);
+            if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView({
+                    behavior: "smooth"
+                });
+            } else {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView();
+            }
+            if (id === "top") {
+                history.replaceState(null, null, " ");
+            } else {
+                history.pushState(null, null, `#${id}`);
+            }
+        });
+    });
+
+</script>
+<script>
+    var mybutton = document.getElementById("top-link");
+    window.onscroll = function () {
+        if (document.body.scrollTop > 800 || document.documentElement.scrollTop > 800) {
+            mybutton.style.visibility = "visible";
+            mybutton.style.opacity = "1";
+        } else {
+            mybutton.style.visibility = "hidden";
+            mybutton.style.opacity = "0";
+        }
+    };
+
+</script>
+<script>
+    document.getElementById("theme-toggle").addEventListener("click", () => {
+        if (document.body.className.includes("dark")) {
+            document.body.classList.remove('dark');
+            localStorage.setItem("pref-theme", 'light');
+        } else {
+            document.body.classList.add('dark');
+            localStorage.setItem("pref-theme", 'dark');
+        }
+    })
+
+</script>
+</body>
+
+</html>

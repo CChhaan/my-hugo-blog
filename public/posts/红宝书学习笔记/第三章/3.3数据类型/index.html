@@ -1,0 +1,584 @@
+<!DOCTYPE html>
+<html lang="en" dir="auto">
+
+<head><meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="robots" content="index, follow">
+<title>My New Hugo Site</title>
+<meta name="keywords" content="">
+<meta name="description" content="简单数据类型(原始类型)：undefined、null、Boolean、number、string、symbol
+复杂数据类型：object
+typeof操作符会返回下列字符串之一：undefined、Boolean、string、number、object、function、symbol
+typeof message
+typeof(message)
+typeof 96
+undefined(声明但没有初始化)
+undefined类型只有一个值：undefined，当使用var或let声明了变量但没有初始化，就相当于给变量赋予了undefined值
+无论是未初始化还是为声明的变量，typeof返回的都是字符串undefined
+建议在声明变量的同时进行初始化
+undefined是一个假值
+null(空对象)
+null类型只有一个值：null，表示一个空对象指针，调用typeof null返回的是object
+变量要保存对象，而当时又没有对象可以保存时，建议用null进行初始化
+null是一个假值
+Boolean(布尔值)
+布尔值类型有两个字面值：true和false，这两个布尔值不同于数值
+Boolean()函数可以将其它类型的值转换为布尔值
+false、空字符串、0、NaN、null和undefined转换为布尔值为false
+if等流程控制语句会自动执行其他类型值到布尔值的转换
+Number类型(整数和浮点值)
+整数
+最基本的数值字面量是十进制整数
+八进制字面量通过前缀0o来表示，十六进制字面量通过0x来表示
+使用八进制和十六进制格式创建的数值在所有数学操作中都被视为十进制数值
+正零和负零在所有情况下都被认为是等同的
+浮点值
+要定义浮点值，数值中必须包含小数点，而且小数点后面必须至少有一个数字。
+小数点后面没有数字或者跟着单独的0(如1.0)，那它会被转换为整数
+对于非常大或非常小的值，可以用科学计数法：一个数值（整数或浮点数）后跟一个小写或大写的e，再加上一个要乘的10的多少次幂。
+ES会将小数点后至少包含6个零的浮点值转换成科学计数法。
+浮点值的精确度可达17位小数，但在算数运算中远不如整数精确
+值的范围
+ES可以表示的最小数值：Number.MIN_VALUE，最大数值：Number.MAX_VALUE
+任何无法表示的正数：Infinity(Number.NEGATIVE_INFINITY)，任何无法表示的小数：-Infinity(Number.POSITIVE_INFINITY)
+isFinite()函数：确定一个值是不是有限大
+NaN
+NaN(not a number)，表示本来要返回数值的操作失败了。
+console.log(0/0)	//NaN
+console.log(3/0)	//Infinity
+console.log(3/-0)	//-Infinity
+任何涉及NaN的操作始终返回NaN，NaN不等于包括NaN在内的任何值。
+isNaN()函数：接收一个参数，可以是任意数据类型，任何不能转换为数值的值都会导致整个函数返回true
+数值转换
+有三个函数可以把非数值转换为数值：Number()、parseInt()、parseFloat()。
+Number()函数转换规则：
+
+布尔值，true转换为1，false转换为0
+数值，直接返回
+null，返回0
+undefined，返回NaN
+字符串
+
+如果字符串包含数值字符，包括数值字符前面带加减号的情况，则转换为一个十进制数值
+如果字符串包含有效的浮点值格式，则会转换为相应的浮点值
+如果字符串包含有效的十六进制格式，则会转换为该十六进制值对应的十进制数值
+如果是空字符串，返回0
+如果字符串包括除上述情况之外的其他字符，返回NaN
+
+
+对象，调用valueOf()方法，并按照上述规则转换返回的值。如果转换结果是NaN，则调用toString()方法，在按照转换字符串的规则转换
+
+parseInt()函数：
+字符串最前面的空格会被忽略，从第一个非空格字符开始转换，如果第一个字符不是数值字符、加号和减号，parseInt()立即返回NaN，空字符串也会返回NaN。
+如果第一个字符是数值字符、加号或减号，则继续一次检测每个字符，知道字符串末尾，或碰到非数值字符。
+小数点不是有效的整数字符
+parseInt()函数也可以识别不同的整数格式
+let num1 = parseInt(&#39;123blue&#39;)	//123
+let num2 = parseInt(&#39;&#39;)	//NaN
+let num3 = parseInt(&#39;0xA&#39;)	//10
+let num4 = parseInt(&#39;22.5&#39;)	//22
+let num5 = parseInt(&#39;70&#39;)	//70
+parseInt()也接收第二个参数，用于指定底数(进制数)。">
+<meta name="author" content="">
+<link rel="canonical" href="https://example.org/posts/%E7%BA%A2%E5%AE%9D%E4%B9%A6%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/%E7%AC%AC%E4%B8%89%E7%AB%A0/3.3%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B/">
+<link crossorigin="anonymous" href="/assets/css/stylesheet.8fe10233a706bc87f2e08b3cf97b8bd4c0a80f10675a143675d59212121037c0.css" integrity="sha256-j&#43;ECM6cGvIfy4Is8&#43;XuL1MCoDxBnWhQ2ddWSEhIQN8A=" rel="preload stylesheet" as="style">
+<link rel="icon" href="https://example.org/favicon.ico">
+<link rel="icon" type="image/png" sizes="16x16" href="https://example.org/favicon-16x16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="https://example.org/favicon-32x32.png">
+<link rel="apple-touch-icon" href="https://example.org/apple-touch-icon.png">
+<link rel="mask-icon" href="https://example.org/safari-pinned-tab.svg">
+<meta name="theme-color" content="#2e2e33">
+<meta name="msapplication-TileColor" content="#2e2e33">
+<link rel="alternate" hreflang="en" href="https://example.org/posts/%E7%BA%A2%E5%AE%9D%E4%B9%A6%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/%E7%AC%AC%E4%B8%89%E7%AB%A0/3.3%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B/">
+<noscript>
+    <style>
+        #theme-toggle,
+        .top-link {
+            display: none;
+        }
+
+    </style>
+    <style>
+        @media (prefers-color-scheme: dark) {
+            :root {
+                --theme: rgb(29, 30, 32);
+                --entry: rgb(46, 46, 51);
+                --primary: rgb(218, 218, 219);
+                --secondary: rgb(155, 156, 157);
+                --tertiary: rgb(65, 66, 68);
+                --content: rgb(196, 196, 197);
+                --code-block-bg: rgb(46, 46, 51);
+                --code-bg: rgb(55, 56, 62);
+                --border: rgb(51, 51, 51);
+            }
+
+            .list {
+                background: var(--theme);
+            }
+
+            .list:not(.dark)::-webkit-scrollbar-track {
+                background: 0 0;
+            }
+
+            .list:not(.dark)::-webkit-scrollbar-thumb {
+                border-color: var(--theme);
+            }
+        }
+
+    </style>
+</noscript><meta property="og:url" content="https://example.org/posts/%E7%BA%A2%E5%AE%9D%E4%B9%A6%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/%E7%AC%AC%E4%B8%89%E7%AB%A0/3.3%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B/">
+  <meta property="og:site_name" content="My New Hugo Site">
+  <meta property="og:title" content="My New Hugo Site">
+  <meta property="og:description" content="简单数据类型(原始类型)：undefined、null、Boolean、number、string、symbol 复杂数据类型：object
+typeof操作符会返回下列字符串之一：undefined、Boolean、string、number、object、function、symbol
+typeof message typeof(message) typeof 96 undefined(声明但没有初始化) undefined类型只有一个值：undefined，当使用var或let声明了变量但没有初始化，就相当于给变量赋予了undefined值
+无论是未初始化还是为声明的变量，typeof返回的都是字符串undefined 建议在声明变量的同时进行初始化
+undefined是一个假值
+null(空对象) null类型只有一个值：null，表示一个空对象指针，调用typeof null返回的是object
+变量要保存对象，而当时又没有对象可以保存时，建议用null进行初始化
+null是一个假值
+Boolean(布尔值) 布尔值类型有两个字面值：true和false，这两个布尔值不同于数值
+Boolean()函数可以将其它类型的值转换为布尔值 false、空字符串、0、NaN、null和undefined转换为布尔值为false
+if等流程控制语句会自动执行其他类型值到布尔值的转换
+Number类型(整数和浮点值) 整数 最基本的数值字面量是十进制整数
+八进制字面量通过前缀0o来表示，十六进制字面量通过0x来表示 使用八进制和十六进制格式创建的数值在所有数学操作中都被视为十进制数值 正零和负零在所有情况下都被认为是等同的
+浮点值 要定义浮点值，数值中必须包含小数点，而且小数点后面必须至少有一个数字。
+小数点后面没有数字或者跟着单独的0(如1.0)，那它会被转换为整数
+对于非常大或非常小的值，可以用科学计数法：一个数值（整数或浮点数）后跟一个小写或大写的e，再加上一个要乘的10的多少次幂。 ES会将小数点后至少包含6个零的浮点值转换成科学计数法。
+浮点值的精确度可达17位小数，但在算数运算中远不如整数精确
+值的范围 ES可以表示的最小数值：Number.MIN_VALUE，最大数值：Number.MAX_VALUE 任何无法表示的正数：Infinity(Number.NEGATIVE_INFINITY)，任何无法表示的小数：-Infinity(Number.POSITIVE_INFINITY)
+isFinite()函数：确定一个值是不是有限大
+NaN NaN(not a number)，表示本来要返回数值的操作失败了。
+console.log(0/0)	//NaN console.log(3/0)	//Infinity console.log(3/-0)	//-Infinity 任何涉及NaN的操作始终返回NaN，NaN不等于包括NaN在内的任何值。
+isNaN()函数：接收一个参数，可以是任意数据类型，任何不能转换为数值的值都会导致整个函数返回true
+数值转换 有三个函数可以把非数值转换为数值：Number()、parseInt()、parseFloat()。
+Number()函数转换规则：
+布尔值，true转换为1，false转换为0 数值，直接返回 null，返回0 undefined，返回NaN 字符串 如果字符串包含数值字符，包括数值字符前面带加减号的情况，则转换为一个十进制数值 如果字符串包含有效的浮点值格式，则会转换为相应的浮点值 如果字符串包含有效的十六进制格式，则会转换为该十六进制值对应的十进制数值 如果是空字符串，返回0 如果字符串包括除上述情况之外的其他字符，返回NaN 对象，调用valueOf()方法，并按照上述规则转换返回的值。如果转换结果是NaN，则调用toString()方法，在按照转换字符串的规则转换 parseInt()函数： 字符串最前面的空格会被忽略，从第一个非空格字符开始转换，如果第一个字符不是数值字符、加号和减号，parseInt()立即返回NaN，空字符串也会返回NaN。 如果第一个字符是数值字符、加号或减号，则继续一次检测每个字符，知道字符串末尾，或碰到非数值字符。
+小数点不是有效的整数字符
+parseInt()函数也可以识别不同的整数格式
+let num1 = parseInt(&#39;123blue&#39;)	//123 let num2 = parseInt(&#39;&#39;)	//NaN let num3 = parseInt(&#39;0xA&#39;)	//10 let num4 = parseInt(&#39;22.5&#39;)	//22 let num5 = parseInt(&#39;70&#39;)	//70 parseInt()也接收第二个参数，用于指定底数(进制数)。">
+  <meta property="og:locale" content="en-us">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="posts">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="">
+<meta name="twitter:description" content="简单数据类型(原始类型)：undefined、null、Boolean、number、string、symbol
+复杂数据类型：object
+typeof操作符会返回下列字符串之一：undefined、Boolean、string、number、object、function、symbol
+typeof message
+typeof(message)
+typeof 96
+undefined(声明但没有初始化)
+undefined类型只有一个值：undefined，当使用var或let声明了变量但没有初始化，就相当于给变量赋予了undefined值
+无论是未初始化还是为声明的变量，typeof返回的都是字符串undefined
+建议在声明变量的同时进行初始化
+undefined是一个假值
+null(空对象)
+null类型只有一个值：null，表示一个空对象指针，调用typeof null返回的是object
+变量要保存对象，而当时又没有对象可以保存时，建议用null进行初始化
+null是一个假值
+Boolean(布尔值)
+布尔值类型有两个字面值：true和false，这两个布尔值不同于数值
+Boolean()函数可以将其它类型的值转换为布尔值
+false、空字符串、0、NaN、null和undefined转换为布尔值为false
+if等流程控制语句会自动执行其他类型值到布尔值的转换
+Number类型(整数和浮点值)
+整数
+最基本的数值字面量是十进制整数
+八进制字面量通过前缀0o来表示，十六进制字面量通过0x来表示
+使用八进制和十六进制格式创建的数值在所有数学操作中都被视为十进制数值
+正零和负零在所有情况下都被认为是等同的
+浮点值
+要定义浮点值，数值中必须包含小数点，而且小数点后面必须至少有一个数字。
+小数点后面没有数字或者跟着单独的0(如1.0)，那它会被转换为整数
+对于非常大或非常小的值，可以用科学计数法：一个数值（整数或浮点数）后跟一个小写或大写的e，再加上一个要乘的10的多少次幂。
+ES会将小数点后至少包含6个零的浮点值转换成科学计数法。
+浮点值的精确度可达17位小数，但在算数运算中远不如整数精确
+值的范围
+ES可以表示的最小数值：Number.MIN_VALUE，最大数值：Number.MAX_VALUE
+任何无法表示的正数：Infinity(Number.NEGATIVE_INFINITY)，任何无法表示的小数：-Infinity(Number.POSITIVE_INFINITY)
+isFinite()函数：确定一个值是不是有限大
+NaN
+NaN(not a number)，表示本来要返回数值的操作失败了。
+console.log(0/0)	//NaN
+console.log(3/0)	//Infinity
+console.log(3/-0)	//-Infinity
+任何涉及NaN的操作始终返回NaN，NaN不等于包括NaN在内的任何值。
+isNaN()函数：接收一个参数，可以是任意数据类型，任何不能转换为数值的值都会导致整个函数返回true
+数值转换
+有三个函数可以把非数值转换为数值：Number()、parseInt()、parseFloat()。
+Number()函数转换规则：
+
+布尔值，true转换为1，false转换为0
+数值，直接返回
+null，返回0
+undefined，返回NaN
+字符串
+
+如果字符串包含数值字符，包括数值字符前面带加减号的情况，则转换为一个十进制数值
+如果字符串包含有效的浮点值格式，则会转换为相应的浮点值
+如果字符串包含有效的十六进制格式，则会转换为该十六进制值对应的十进制数值
+如果是空字符串，返回0
+如果字符串包括除上述情况之外的其他字符，返回NaN
+
+
+对象，调用valueOf()方法，并按照上述规则转换返回的值。如果转换结果是NaN，则调用toString()方法，在按照转换字符串的规则转换
+
+parseInt()函数：
+字符串最前面的空格会被忽略，从第一个非空格字符开始转换，如果第一个字符不是数值字符、加号和减号，parseInt()立即返回NaN，空字符串也会返回NaN。
+如果第一个字符是数值字符、加号或减号，则继续一次检测每个字符，知道字符串末尾，或碰到非数值字符。
+小数点不是有效的整数字符
+parseInt()函数也可以识别不同的整数格式
+let num1 = parseInt(&#39;123blue&#39;)	//123
+let num2 = parseInt(&#39;&#39;)	//NaN
+let num3 = parseInt(&#39;0xA&#39;)	//10
+let num4 = parseInt(&#39;22.5&#39;)	//22
+let num5 = parseInt(&#39;70&#39;)	//70
+parseInt()也接收第二个参数，用于指定底数(进制数)。">
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position":  1 ,
+      "name": "Posts",
+      "item": "https://example.org/posts/"
+    }, 
+    {
+      "@type": "ListItem",
+      "position":  2 ,
+      "name": "",
+      "item": "https://example.org/posts/%E7%BA%A2%E5%AE%9D%E4%B9%A6%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/%E7%AC%AC%E4%B8%89%E7%AB%A0/3.3%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B/"
+    }
+  ]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "",
+  "name": "",
+  "description": "简单数据类型(原始类型)：undefined、null、Boolean、number、string、symbol 复杂数据类型：object\ntypeof操作符会返回下列字符串之一：undefined、Boolean、string、number、object、function、symbol\ntypeof message typeof(message) typeof 96 undefined(声明但没有初始化) undefined类型只有一个值：undefined，当使用var或let声明了变量但没有初始化，就相当于给变量赋予了undefined值\n无论是未初始化还是为声明的变量，typeof返回的都是字符串undefined 建议在声明变量的同时进行初始化\nundefined是一个假值\nnull(空对象) null类型只有一个值：null，表示一个空对象指针，调用typeof null返回的是object\n变量要保存对象，而当时又没有对象可以保存时，建议用null进行初始化\nnull是一个假值\nBoolean(布尔值) 布尔值类型有两个字面值：true和false，这两个布尔值不同于数值\nBoolean()函数可以将其它类型的值转换为布尔值 false、空字符串、0、NaN、null和undefined转换为布尔值为false\nif等流程控制语句会自动执行其他类型值到布尔值的转换\nNumber类型(整数和浮点值) 整数 最基本的数值字面量是十进制整数\n八进制字面量通过前缀0o来表示，十六进制字面量通过0x来表示 使用八进制和十六进制格式创建的数值在所有数学操作中都被视为十进制数值 正零和负零在所有情况下都被认为是等同的\n浮点值 要定义浮点值，数值中必须包含小数点，而且小数点后面必须至少有一个数字。\n小数点后面没有数字或者跟着单独的0(如1.0)，那它会被转换为整数\n对于非常大或非常小的值，可以用科学计数法：一个数值（整数或浮点数）后跟一个小写或大写的e，再加上一个要乘的10的多少次幂。 ES会将小数点后至少包含6个零的浮点值转换成科学计数法。\n浮点值的精确度可达17位小数，但在算数运算中远不如整数精确\n值的范围 ES可以表示的最小数值：Number.MIN_VALUE，最大数值：Number.MAX_VALUE 任何无法表示的正数：Infinity(Number.NEGATIVE_INFINITY)，任何无法表示的小数：-Infinity(Number.POSITIVE_INFINITY)\nisFinite()函数：确定一个值是不是有限大\nNaN NaN(not a number)，表示本来要返回数值的操作失败了。\nconsole.log(0/0)\t//NaN console.log(3/0)\t//Infinity console.log(3/-0)\t//-Infinity 任何涉及NaN的操作始终返回NaN，NaN不等于包括NaN在内的任何值。\nisNaN()函数：接收一个参数，可以是任意数据类型，任何不能转换为数值的值都会导致整个函数返回true\n数值转换 有三个函数可以把非数值转换为数值：Number()、parseInt()、parseFloat()。\nNumber()函数转换规则：\n布尔值，true转换为1，false转换为0 数值，直接返回 null，返回0 undefined，返回NaN 字符串 如果字符串包含数值字符，包括数值字符前面带加减号的情况，则转换为一个十进制数值 如果字符串包含有效的浮点值格式，则会转换为相应的浮点值 如果字符串包含有效的十六进制格式，则会转换为该十六进制值对应的十进制数值 如果是空字符串，返回0 如果字符串包括除上述情况之外的其他字符，返回NaN 对象，调用valueOf()方法，并按照上述规则转换返回的值。如果转换结果是NaN，则调用toString()方法，在按照转换字符串的规则转换 parseInt()函数： 字符串最前面的空格会被忽略，从第一个非空格字符开始转换，如果第一个字符不是数值字符、加号和减号，parseInt()立即返回NaN，空字符串也会返回NaN。 如果第一个字符是数值字符、加号或减号，则继续一次检测每个字符，知道字符串末尾，或碰到非数值字符。\n小数点不是有效的整数字符\nparseInt()函数也可以识别不同的整数格式\nlet num1 = parseInt(\u0026#39;123blue\u0026#39;)\t//123 let num2 = parseInt(\u0026#39;\u0026#39;)\t//NaN let num3 = parseInt(\u0026#39;0xA\u0026#39;)\t//10 let num4 = parseInt(\u0026#39;22.5\u0026#39;)\t//22 let num5 = parseInt(\u0026#39;70\u0026#39;)\t//70 parseInt()也接收第二个参数，用于指定底数(进制数)。\n",
+  "keywords": [
+    
+  ],
+  "articleBody": "简单数据类型(原始类型)：undefined、null、Boolean、number、string、symbol 复杂数据类型：object\ntypeof操作符会返回下列字符串之一：undefined、Boolean、string、number、object、function、symbol\ntypeof message typeof(message) typeof 96 undefined(声明但没有初始化) undefined类型只有一个值：undefined，当使用var或let声明了变量但没有初始化，就相当于给变量赋予了undefined值\n无论是未初始化还是为声明的变量，typeof返回的都是字符串undefined 建议在声明变量的同时进行初始化\nundefined是一个假值\nnull(空对象) null类型只有一个值：null，表示一个空对象指针，调用typeof null返回的是object\n变量要保存对象，而当时又没有对象可以保存时，建议用null进行初始化\nnull是一个假值\nBoolean(布尔值) 布尔值类型有两个字面值：true和false，这两个布尔值不同于数值\nBoolean()函数可以将其它类型的值转换为布尔值 false、空字符串、0、NaN、null和undefined转换为布尔值为false\nif等流程控制语句会自动执行其他类型值到布尔值的转换\nNumber类型(整数和浮点值) 整数 最基本的数值字面量是十进制整数\n八进制字面量通过前缀0o来表示，十六进制字面量通过0x来表示 使用八进制和十六进制格式创建的数值在所有数学操作中都被视为十进制数值 正零和负零在所有情况下都被认为是等同的\n浮点值 要定义浮点值，数值中必须包含小数点，而且小数点后面必须至少有一个数字。\n小数点后面没有数字或者跟着单独的0(如1.0)，那它会被转换为整数\n对于非常大或非常小的值，可以用科学计数法：一个数值（整数或浮点数）后跟一个小写或大写的e，再加上一个要乘的10的多少次幂。 ES会将小数点后至少包含6个零的浮点值转换成科学计数法。\n浮点值的精确度可达17位小数，但在算数运算中远不如整数精确\n值的范围 ES可以表示的最小数值：Number.MIN_VALUE，最大数值：Number.MAX_VALUE 任何无法表示的正数：Infinity(Number.NEGATIVE_INFINITY)，任何无法表示的小数：-Infinity(Number.POSITIVE_INFINITY)\nisFinite()函数：确定一个值是不是有限大\nNaN NaN(not a number)，表示本来要返回数值的操作失败了。\nconsole.log(0/0)\t//NaN console.log(3/0)\t//Infinity console.log(3/-0)\t//-Infinity 任何涉及NaN的操作始终返回NaN，NaN不等于包括NaN在内的任何值。\nisNaN()函数：接收一个参数，可以是任意数据类型，任何不能转换为数值的值都会导致整个函数返回true\n数值转换 有三个函数可以把非数值转换为数值：Number()、parseInt()、parseFloat()。\nNumber()函数转换规则：\n布尔值，true转换为1，false转换为0 数值，直接返回 null，返回0 undefined，返回NaN 字符串 如果字符串包含数值字符，包括数值字符前面带加减号的情况，则转换为一个十进制数值 如果字符串包含有效的浮点值格式，则会转换为相应的浮点值 如果字符串包含有效的十六进制格式，则会转换为该十六进制值对应的十进制数值 如果是空字符串，返回0 如果字符串包括除上述情况之外的其他字符，返回NaN 对象，调用valueOf()方法，并按照上述规则转换返回的值。如果转换结果是NaN，则调用toString()方法，在按照转换字符串的规则转换 parseInt()函数： 字符串最前面的空格会被忽略，从第一个非空格字符开始转换，如果第一个字符不是数值字符、加号和减号，parseInt()立即返回NaN，空字符串也会返回NaN。 如果第一个字符是数值字符、加号或减号，则继续一次检测每个字符，知道字符串末尾，或碰到非数值字符。\n小数点不是有效的整数字符\nparseInt()函数也可以识别不同的整数格式\nlet num1 = parseInt('123blue')\t//123 let num2 = parseInt('')\t//NaN let num3 = parseInt('0xA')\t//10 let num4 = parseInt('22.5')\t//22 let num5 = parseInt('70')\t//70 parseInt()也接收第二个参数，用于指定底数(进制数)。\nlet num1 = parseInt('0xAF')\t//175 let num2 = parseInt('0xAF',16)\t//175 let num3 = parseInt('AF',16)\t//175 let num4 = parseInt('AF')\t//NaN parseFloat()函数： 工作方式和parseInt()类似，都是从位置0开始检测每个字符，同样，它也是解析到字符串末尾或者解析到一个无效的浮点数值字符为止。 第一次出现的小数点是有效的，第二次出现的小数点就无效了，此时字符串的剩余字符都会被忽略\n它始终忽略字符串开头的0，十六进制数值始终会返回0 parseFloat只解析十进制值，因此不能指定底数 如果字符串表示整数，则parseFloat返回整数\nString类型 String()数据类型表示零或多个16位Unicode字符序列，字符串可以使用双引号、单引号或反引号标示。\n以某种引号作为字符串开头，必须仍然以某种引号作为字符串结尾\n字符串是不可变的，一旦创建，它们的值就不能变了，要修改某个变量中字符串值，必须先销毁原始字符串，然后将包含新值的另一个字符串保存到该变量(所有处理都是在后台发生的)\n字符字面量 用于表示非打印字符，或有其他用途的字符（和C的转义字符相同） 这些字面量可以出现在字符串中的任意位置，且可以作为单个字符被解释。\n字符串.length属性：可以获取字符串的长度，如果字符串中包含双字节字符，那么length属性返回的值可能不是准确的字符数\n转换为字符串 变量.toString()方法： 返回当前值的字符串等价物，可用于数字、布尔值、对象和字符串，undefined和null没有这个方法\n在对数值调用这个方法时，可以接收一个底数参数（进制数）\nString()函数：\n如果值有toString()方法，则调用该方法并返回结果 如果值是null，返回\"null\" 如果值是undefined，返回\"undefined\" 用加号操作符给一个值加上一个空字符串\" “也可以将其转换为字符串\n模板字面量 用反引号标示的字面量保留换行字符\n模板字面量支持字符串插值，可以在一个连续定义中插入一个或多个值 模板字面量不是字符串，而是一种特殊的JS句法表达式，求值后得到的是字符串。 模板字面量在定义时立即求值并转换为字符串实例，任何插入的变量也会从它们最接近的作用域中取值。\n字符串插值通过在${}中使用一个JS表达式实现\nlet value=5 let value2=\"value is \" + value\t// value is 5 let value3=`value2 is ${value2}` //value2 is value is 5 所有插入的值都会使用toString()强制转型为字符串，任何JS表达式都可以用于插值。 嵌套的模板字符串无需转义 插值表达式中可以调用函数和方法\n模板也可以插入自己之前的值（递归）\n模板字面量标签函数可以自定义插值行为。标签函数会接收被插值记号分割后的模板和对每个表达式求值的结果。 标签函数是一个普通函数，通过前缀到模板字面量来应用自定义行为。 标签函数收到的参数依次是原始字符串数组和每个表达式求值的结果 对于有n个插值的模板字面量，传给标签函数的表达式参数的个数始终是n，而传给标签函数的第一个参数所包含的字符串个数始终是n+1。\nlet a = 6 let b = 9 function simpleTag(strings, ...expressions) { console.log(strings) for(const expression of expressions){ console.log(expression) } return 'foobar' } let taggedResult = simpleTag`${a}+${b}=${a+b}` // [\" \",\"+\",\"=\",\" \"] // 6 // 9 // 15 console.log(taggedResult)\t//foobar 可以用用数组遍历的方法拼接字符串\n使用默认的String.raw标签函数可以直接获取原始的模板字面量内容（如换行符和Unicode字符），而不是被转换后的字符表示\nconsole.log(String.raw`\\u00A9`)\t//\\u00a9 console.log(`\\u00A9`)\t//© 也可以通过标签函数的都一个参数，即字符串数组的.raw属性取得每个字符串的原始内容\nObject类型 对象是一组数据和功能的集合。对象通过new操作符后跟对象类型的名称来创建，开发者可以通过创建Object类型的实例来创建自己的对象，然后再给对象添加属性和方法\nlet o = new Object() Object是派生其他对象的基类，每个Object实例都有如下属性和方法：\nconstructor：创建当前对象的函数 hasOwnProperty(propertyName)：判断当前对象实例上是否存在给定的属性。要检查的属性名必须是字符串或符号 isPrototypeOf(object)：用于判断当前对象是否为另一个对象的原型 propertyIsEnumerable(propertyName)：用于判断给定的属性是否可以使用for-in语句枚举，属性名必须是字符串 toLocaleString()：返回对象的字符串表示，该字符串反映对象所在的本地化执行环境 toString()：返回对象的字符串表示 valueOf()：返回对象对应的字符串、数值或布尔值表示。通常与toString()的返回值相同 Symbol类型 （到后面看完对象再看这个）\n",
+  "wordCount" : "237",
+  "inLanguage": "en",
+  "datePublished": "0001-01-01T00:00:00Z",
+  "dateModified": "0001-01-01T00:00:00Z",
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://example.org/posts/%E7%BA%A2%E5%AE%9D%E4%B9%A6%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/%E7%AC%AC%E4%B8%89%E7%AB%A0/3.3%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B/"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "My New Hugo Site",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://example.org/favicon.ico"
+    }
+  }
+}
+</script>
+</head>
+
+<body class="" id="top">
+<script>
+    if (localStorage.getItem("pref-theme") === "dark") {
+        document.body.classList.add('dark');
+    } else if (localStorage.getItem("pref-theme") === "light") {
+        document.body.classList.remove('dark')
+    } else if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+        document.body.classList.add('dark');
+    }
+
+</script>
+
+<header class="header">
+    <nav class="nav">
+        <div class="logo">
+            <a href="https://example.org/" accesskey="h" title="My New Hugo Site (Alt + H)">My New Hugo Site</a>
+            <div class="logo-switches">
+                <button id="theme-toggle" accesskey="t" title="(Alt + T)" aria-label="Toggle theme">
+                    <svg id="moon" xmlns="http://www.w3.org/2000/svg" width="24" height="18" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                    </svg>
+                    <svg id="sun" xmlns="http://www.w3.org/2000/svg" width="24" height="18" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <circle cx="12" cy="12" r="5"></circle>
+                        <line x1="12" y1="1" x2="12" y2="3"></line>
+                        <line x1="12" y1="21" x2="12" y2="23"></line>
+                        <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                        <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                        <line x1="1" y1="12" x2="3" y2="12"></line>
+                        <line x1="21" y1="12" x2="23" y2="12"></line>
+                        <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                        <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+                    </svg>
+                </button>
+            </div>
+        </div>
+        <ul id="menu">
+        </ul>
+    </nav>
+</header>
+<main class="main">
+
+<article class="post-single">
+  <header class="post-header">
+    
+    <h1 class="post-title entry-hint-parent">
+      
+    </h1>
+    <div class="post-meta">
+
+</div>
+  </header> 
+  <div class="post-content"><p>简单数据类型(原始类型)：undefined、null、Boolean、number、string、symbol
+复杂数据类型：object</p>
+<p>typeof操作符会返回下列字符串之一：undefined、Boolean、string、number、object、function、symbol</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-js" data-lang="js"><span style="display:flex;"><span><span style="color:#66d9ef">typeof</span> <span style="color:#a6e22e">message</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">typeof</span>(<span style="color:#a6e22e">message</span>)
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">typeof</span> <span style="color:#ae81ff">96</span>
+</span></span></code></pre></div><h1 id="undefined声明但没有初始化">undefined(声明但没有初始化)<a hidden class="anchor" aria-hidden="true" href="#undefined声明但没有初始化">#</a></h1>
+<p>undefined类型只有一个值：undefined，当使用var或let声明了变量但没有初始化，就相当于给变量赋予了undefined值</p>
+<p>无论是未初始化还是为声明的变量，typeof返回的都是字符串undefined
+建议在声明变量的同时进行初始化</p>
+<p>undefined是一个假值</p>
+<h1 id="null空对象">null(空对象)<a hidden class="anchor" aria-hidden="true" href="#null空对象">#</a></h1>
+<p>null类型只有一个值：null，表示一个空对象指针，调用typeof null返回的是object</p>
+<p>变量要保存对象，而当时又没有对象可以保存时，建议用null进行初始化</p>
+<p>null是一个假值</p>
+<h1 id="boolean布尔值">Boolean(布尔值)<a hidden class="anchor" aria-hidden="true" href="#boolean布尔值">#</a></h1>
+<p>布尔值类型有两个字面值：true和false，这两个布尔值不同于数值</p>
+<p>Boolean()函数可以将其它类型的值转换为布尔值
+false、空字符串、0、NaN、null和undefined转换为布尔值为false</p>
+<p>if等流程控制语句会自动执行其他类型值到布尔值的转换</p>
+<h1 id="number类型整数和浮点值">Number类型(整数和浮点值)<a hidden class="anchor" aria-hidden="true" href="#number类型整数和浮点值">#</a></h1>
+<h2 id="整数">整数<a hidden class="anchor" aria-hidden="true" href="#整数">#</a></h2>
+<p>最基本的数值字面量是十进制整数</p>
+<p>八进制字面量通过前缀0o来表示，十六进制字面量通过0x来表示
+使用八进制和十六进制格式创建的数值在所有数学操作中都被视为十进制数值
+正零和负零在所有情况下都被认为是等同的</p>
+<h2 id="浮点值">浮点值<a hidden class="anchor" aria-hidden="true" href="#浮点值">#</a></h2>
+<p>要定义浮点值，数值中必须包含小数点，而且小数点后面必须至少有一个数字。</p>
+<p>小数点后面没有数字或者跟着单独的0(如1.0)，那它会被转换为整数</p>
+<p>对于非常大或非常小的值，可以用科学计数法：一个数值（整数或浮点数）后跟一个小写或大写的e，再加上一个要乘的10的多少次幂。
+ES会将小数点后至少包含6个零的浮点值转换成科学计数法。</p>
+<p>浮点值的精确度可达17位小数，但在算数运算中远不如整数精确</p>
+<h2 id="值的范围">值的范围<a hidden class="anchor" aria-hidden="true" href="#值的范围">#</a></h2>
+<p>ES可以表示的最小数值：Number.MIN_VALUE，最大数值：Number.MAX_VALUE
+任何无法表示的正数：Infinity(Number.NEGATIVE_INFINITY)，任何无法表示的小数：-Infinity(Number.POSITIVE_INFINITY)</p>
+<p>isFinite()函数：确定一个值是不是有限大</p>
+<h2 id="nan">NaN<a hidden class="anchor" aria-hidden="true" href="#nan">#</a></h2>
+<p>NaN(not a number)，表示本来要返回数值的操作失败了。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-js" data-lang="js"><span style="display:flex;"><span><span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#ae81ff">0</span><span style="color:#f92672">/</span><span style="color:#ae81ff">0</span>)	<span style="color:#75715e">//NaN
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#ae81ff">3</span><span style="color:#f92672">/</span><span style="color:#ae81ff">0</span>)	<span style="color:#75715e">//Infinity
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#ae81ff">3</span><span style="color:#f92672">/-</span><span style="color:#ae81ff">0</span>)	<span style="color:#75715e">//-Infinity
+</span></span></span></code></pre></div><p>任何涉及NaN的操作始终返回NaN，NaN不等于包括NaN在内的任何值。</p>
+<p>isNaN()函数：接收一个参数，可以是任意数据类型，任何不能转换为数值的值都会导致整个函数返回true</p>
+<h2 id="数值转换">数值转换<a hidden class="anchor" aria-hidden="true" href="#数值转换">#</a></h2>
+<p>有三个函数可以把非数值转换为数值：Number()、parseInt()、parseFloat()。</p>
+<p>Number()函数转换规则：</p>
+<ul>
+<li>布尔值，true转换为1，false转换为0</li>
+<li>数值，直接返回</li>
+<li>null，返回0</li>
+<li>undefined，返回NaN</li>
+<li>字符串
+<ul>
+<li>如果字符串包含数值字符，包括数值字符前面带加减号的情况，则转换为一个十进制数值</li>
+<li>如果字符串包含有效的浮点值格式，则会转换为相应的浮点值</li>
+<li>如果字符串包含有效的十六进制格式，则会转换为该十六进制值对应的十进制数值</li>
+<li>如果是空字符串，返回0</li>
+<li>如果字符串包括除上述情况之外的其他字符，返回NaN</li>
+</ul>
+</li>
+<li>对象，调用valueOf()方法，并按照上述规则转换返回的值。如果转换结果是NaN，则调用toString()方法，在按照转换字符串的规则转换</li>
+</ul>
+<p>parseInt()函数：
+字符串最前面的空格会被忽略，从第一个非空格字符开始转换，如果第一个字符不是数值字符、加号和减号，parseInt()立即返回NaN，空字符串也会返回NaN。
+如果第一个字符是数值字符、加号或减号，则继续一次检测每个字符，知道字符串末尾，或碰到非数值字符。</p>
+<p>小数点不是有效的整数字符</p>
+<p>parseInt()函数也可以识别不同的整数格式</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-js" data-lang="js"><span style="display:flex;"><span><span style="color:#66d9ef">let</span> <span style="color:#a6e22e">num1</span> <span style="color:#f92672">=</span> parseInt(<span style="color:#e6db74">&#39;123blue&#39;</span>)	<span style="color:#75715e">//123
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">let</span> <span style="color:#a6e22e">num2</span> <span style="color:#f92672">=</span> parseInt(<span style="color:#e6db74">&#39;&#39;</span>)	<span style="color:#75715e">//NaN
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">let</span> <span style="color:#a6e22e">num3</span> <span style="color:#f92672">=</span> parseInt(<span style="color:#e6db74">&#39;0xA&#39;</span>)	<span style="color:#75715e">//10
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">let</span> <span style="color:#a6e22e">num4</span> <span style="color:#f92672">=</span> parseInt(<span style="color:#e6db74">&#39;22.5&#39;</span>)	<span style="color:#75715e">//22
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">let</span> <span style="color:#a6e22e">num5</span> <span style="color:#f92672">=</span> parseInt(<span style="color:#e6db74">&#39;70&#39;</span>)	<span style="color:#75715e">//70
+</span></span></span></code></pre></div><p>parseInt()也接收第二个参数，用于指定底数(进制数)。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-js" data-lang="js"><span style="display:flex;"><span><span style="color:#66d9ef">let</span> <span style="color:#a6e22e">num1</span> <span style="color:#f92672">=</span> parseInt(<span style="color:#e6db74">&#39;0xAF&#39;</span>)	<span style="color:#75715e">//175
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">let</span> <span style="color:#a6e22e">num2</span> <span style="color:#f92672">=</span> parseInt(<span style="color:#e6db74">&#39;0xAF&#39;</span>,<span style="color:#ae81ff">16</span>)	<span style="color:#75715e">//175
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">let</span> <span style="color:#a6e22e">num3</span> <span style="color:#f92672">=</span> parseInt(<span style="color:#e6db74">&#39;AF&#39;</span>,<span style="color:#ae81ff">16</span>)	<span style="color:#75715e">//175
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">let</span> <span style="color:#a6e22e">num4</span> <span style="color:#f92672">=</span> parseInt(<span style="color:#e6db74">&#39;AF&#39;</span>)	<span style="color:#75715e">//NaN
+</span></span></span></code></pre></div><p>parseFloat()函数：
+工作方式和parseInt()类似，都是从位置0开始检测每个字符，同样，它也是解析到字符串末尾或者解析到一个无效的浮点数值字符为止。
+第一次出现的小数点是有效的，第二次出现的小数点就无效了，此时字符串的剩余字符都会被忽略</p>
+<p>它始终忽略字符串开头的0，十六进制数值始终会返回0
+parseFloat只解析十进制值，因此不能指定底数
+如果字符串表示整数，则parseFloat返回整数</p>
+<h1 id="string类型">String类型<a hidden class="anchor" aria-hidden="true" href="#string类型">#</a></h1>
+<p>String()数据类型表示零或多个16位Unicode字符序列，字符串可以使用双引号、单引号或反引号标示。</p>
+<p>以某种引号作为字符串开头，必须仍然以某种引号作为字符串结尾</p>
+<p>字符串是不可变的，一旦创建，它们的值就不能变了，要修改某个变量中字符串值，必须先销毁原始字符串，然后将包含新值的另一个字符串保存到该变量(所有处理都是在后台发生的)</p>
+<h2 id="字符字面量">字符字面量<a hidden class="anchor" aria-hidden="true" href="#字符字面量">#</a></h2>
+<p>用于表示非打印字符，或有其他用途的字符（和C的转义字符相同）
+这些字面量可以出现在字符串中的任意位置，且可以作为单个字符被解释。</p>
+<p>字符串.length属性：可以获取字符串的长度，如果字符串中包含双字节字符，那么length属性返回的值可能不是准确的字符数</p>
+<h2 id="转换为字符串">转换为字符串<a hidden class="anchor" aria-hidden="true" href="#转换为字符串">#</a></h2>
+<p>变量.toString()方法：
+返回当前值的字符串等价物，可用于数字、布尔值、对象和字符串，undefined和null没有这个方法</p>
+<p>在对数值调用这个方法时，可以接收一个底数参数（进制数）</p>
+<p>String()函数：</p>
+<ul>
+<li>如果值有toString()方法，则调用该方法并返回结果</li>
+<li>如果值是null，返回&quot;null&quot;</li>
+<li>如果值是undefined，返回&quot;undefined&quot;</li>
+</ul>
+<p>用加号操作符给一个值加上一个空字符串&quot; &ldquo;也可以将其转换为字符串</p>
+<h2 id="模板字面量">模板字面量<a hidden class="anchor" aria-hidden="true" href="#模板字面量">#</a></h2>
+<p>用反引号标示的字面量保留换行字符</p>
+<p>模板字面量支持字符串插值，可以在一个连续定义中插入一个或多个值
+模板字面量不是字符串，而是一种特殊的JS句法表达式，求值后得到的是字符串。
+模板字面量在定义时立即求值并转换为字符串实例，任何插入的变量也会从它们最接近的作用域中取值。</p>
+<p>字符串插值通过在${}中使用一个JS表达式实现</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-js" data-lang="js"><span style="display:flex;"><span><span style="color:#66d9ef">let</span> <span style="color:#a6e22e">value</span><span style="color:#f92672">=</span><span style="color:#ae81ff">5</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">let</span> <span style="color:#a6e22e">value2</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;value is &#34;</span> <span style="color:#f92672">+</span> <span style="color:#a6e22e">value</span>	<span style="color:#75715e">// value is 5
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">let</span> <span style="color:#a6e22e">value3</span><span style="color:#f92672">=</span><span style="color:#e6db74">`value2 is </span><span style="color:#e6db74">${</span><span style="color:#a6e22e">value2</span><span style="color:#e6db74">}</span><span style="color:#e6db74">`</span> <span style="color:#75715e">//value2 is value is 5
+</span></span></span></code></pre></div><p>所有插入的值都会使用toString()强制转型为字符串，任何JS表达式都可以用于插值。
+嵌套的模板字符串无需转义
+插值表达式中可以调用函数和方法</p>
+<p>模板也可以插入自己之前的值（递归）</p>
+<p>模板字面量标签函数可以自定义插值行为。标签函数会接收被插值记号分割后的模板和对每个表达式求值的结果。
+标签函数是一个普通函数，通过前缀到模板字面量来应用自定义行为。
+标签函数收到的参数依次是原始字符串数组和每个表达式求值的结果
+对于有n个插值的模板字面量，传给标签函数的表达式参数的个数始终是n，而传给标签函数的第一个参数所包含的字符串个数始终是n+1。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-js" data-lang="js"><span style="display:flex;"><span><span style="color:#66d9ef">let</span> <span style="color:#a6e22e">a</span> <span style="color:#f92672">=</span> <span style="color:#ae81ff">6</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">let</span> <span style="color:#a6e22e">b</span> <span style="color:#f92672">=</span> <span style="color:#ae81ff">9</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">function</span> <span style="color:#a6e22e">simpleTag</span>(<span style="color:#a6e22e">strings</span>, ...<span style="color:#a6e22e">expressions</span>) {
+</span></span><span style="display:flex;"><span>	<span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#a6e22e">strings</span>)
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">for</span>(<span style="color:#66d9ef">const</span> <span style="color:#a6e22e">expression</span> <span style="color:#66d9ef">of</span> <span style="color:#a6e22e">expressions</span>){
+</span></span><span style="display:flex;"><span>		<span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#a6e22e">expression</span>)
+</span></span><span style="display:flex;"><span>	}
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">return</span> <span style="color:#e6db74">&#39;foobar&#39;</span>
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">let</span> <span style="color:#a6e22e">taggedResult</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">simpleTag</span><span style="color:#e6db74">`</span><span style="color:#e6db74">${</span><span style="color:#a6e22e">a</span><span style="color:#e6db74">}</span><span style="color:#e6db74">+</span><span style="color:#e6db74">${</span><span style="color:#a6e22e">b</span><span style="color:#e6db74">}</span><span style="color:#e6db74">=</span><span style="color:#e6db74">${</span><span style="color:#a6e22e">a</span><span style="color:#f92672">+</span><span style="color:#a6e22e">b</span><span style="color:#e6db74">}</span><span style="color:#e6db74">`</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">// [&#34; &#34;,&#34;+&#34;,&#34;=&#34;,&#34; &#34;]
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">// 6
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">// 9
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">// 15
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#a6e22e">taggedResult</span>)	<span style="color:#75715e">//foobar
+</span></span></span></code></pre></div><p>可以用用数组遍历的方法拼接字符串</p>
+<p>使用默认的String.raw标签函数可以直接获取原始的模板字面量内容（如换行符和Unicode字符），而不是被转换后的字符表示</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-js" data-lang="js"><span style="display:flex;"><span><span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(String.<span style="color:#a6e22e">raw</span><span style="color:#e6db74">`\u00A9`</span>)	<span style="color:#75715e">//\u00a9
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#e6db74">`\u00A9`</span>)	<span style="color:#75715e">//©
+</span></span></span></code></pre></div><p>也可以通过标签函数的都一个参数，即字符串数组的.raw属性取得每个字符串的原始内容</p>
+<h1 id="object类型">Object类型<a hidden class="anchor" aria-hidden="true" href="#object类型">#</a></h1>
+<p>对象是一组数据和功能的集合。对象通过new操作符后跟对象类型的名称来创建，开发者可以通过创建Object类型的实例来创建自己的对象，然后再给对象添加属性和方法</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-js" data-lang="js"><span style="display:flex;"><span><span style="color:#66d9ef">let</span> <span style="color:#a6e22e">o</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> Object()
+</span></span></code></pre></div><p>Object是派生其他对象的基类，每个Object实例都有如下属性和方法：</p>
+<ul>
+<li>constructor：创建当前对象的函数</li>
+<li>hasOwnProperty(propertyName)：判断当前对象实例上是否存在给定的属性。要检查的属性名必须是字符串或符号</li>
+<li>isPrototypeOf(object)：用于判断当前对象是否为另一个对象的原型</li>
+<li>propertyIsEnumerable(propertyName)：用于判断给定的属性是否可以使用for-in语句枚举，属性名必须是字符串</li>
+<li>toLocaleString()：返回对象的字符串表示，该字符串反映对象所在的本地化执行环境</li>
+<li>toString()：返回对象的字符串表示</li>
+<li>valueOf()：返回对象对应的字符串、数值或布尔值表示。通常与toString()的返回值相同</li>
+</ul>
+<h1 id="symbol类型">Symbol类型<a hidden class="anchor" aria-hidden="true" href="#symbol类型">#</a></h1>
+<p>（到后面看完对象再看这个）</p>
+
+
+  </div>
+
+  <footer class="post-footer">
+    <ul class="post-tags">
+    </ul>
+  </footer>
+</article>
+    </main>
+    
+<footer class="footer">
+        <span>&copy; 2025 <a href="https://example.org/">My New Hugo Site</a></span> · 
+
+    <span>
+        Powered by
+        <a href="https://gohugo.io/" rel="noopener noreferrer" target="_blank">Hugo</a> &
+        <a href="https://github.com/adityatelange/hugo-PaperMod/" rel="noopener" target="_blank">PaperMod</a>
+    </span>
+</footer>
+<a href="#top" aria-label="go to top" title="Go to Top (Alt + G)" class="top-link" id="top-link" accesskey="g">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 12 6" fill="currentColor">
+        <path d="M12 6H0l6-6z" />
+    </svg>
+</a>
+
+<script>
+    let menu = document.getElementById('menu')
+    if (menu) {
+        menu.scrollLeft = localStorage.getItem("menu-scroll-position");
+        menu.onscroll = function () {
+            localStorage.setItem("menu-scroll-position", menu.scrollLeft);
+        }
+    }
+
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener("click", function (e) {
+            e.preventDefault();
+            var id = this.getAttribute("href").substr(1);
+            if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView({
+                    behavior: "smooth"
+                });
+            } else {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView();
+            }
+            if (id === "top") {
+                history.replaceState(null, null, " ");
+            } else {
+                history.pushState(null, null, `#${id}`);
+            }
+        });
+    });
+
+</script>
+<script>
+    var mybutton = document.getElementById("top-link");
+    window.onscroll = function () {
+        if (document.body.scrollTop > 800 || document.documentElement.scrollTop > 800) {
+            mybutton.style.visibility = "visible";
+            mybutton.style.opacity = "1";
+        } else {
+            mybutton.style.visibility = "hidden";
+            mybutton.style.opacity = "0";
+        }
+    };
+
+</script>
+<script>
+    document.getElementById("theme-toggle").addEventListener("click", () => {
+        if (document.body.className.includes("dark")) {
+            document.body.classList.remove('dark');
+            localStorage.setItem("pref-theme", 'light');
+        } else {
+            document.body.classList.add('dark');
+            localStorage.setItem("pref-theme", 'dark');
+        }
+    })
+
+</script>
+</body>
+
+</html>

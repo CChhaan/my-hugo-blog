@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html lang="en" dir="auto">
+
+<head><meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="robots" content="index, follow">
+<title>My New Hugo Site</title>
+<meta name="keywords" content="">
+<meta name="description" content="声明响应式状态
+在组合式 API 中，推荐使用 ref() 函数来声明响应式状态，ref() 接收参数，并将其包裹在一个带有 .value 属性的 ref 对象中返回，要在组件模板中访问 ref，请从组件的 setup() 函数中声明并返回它们，在模板中使用 ref 时。
+我们不需要附加 .value。为了方便起见，当在模板中使用时，ref 会自动解包，也可以直接在事件监听器中改变一个 ref，对于更复杂的逻辑，我们可以在同一作用域内声明更改 ref 的函数，并将它们作为方法与状态一起公开，然后，暴露的方法可以被用作事件监听器
+在 setup() 函数中手动暴露大量的状态和方法非常繁琐。幸运的是，我们可以通过使用单文件组件 (SFC) 来避免这种情况。我们可以使用 &lt;script setup&gt; 来大幅度地简化代码
+&lt;script setup&gt; 中的顶层的导入、声明的变量和函数可在同一组件的模板中直接使用。你可以理解为模板是在同一作用域内声明的一个 JavaScript 函数——它自然可以访问与它一起声明的所有内容。
+当你在模板中使用了一个 ref，然后改变了这个 ref 的值时，Vue 会自动检测到这个变化，并且相应地更新 DOM。这是通过一个基于依赖追踪的响应式系统实现的。当一个组件首次渲染时，Vue 会追踪在渲染过程中使用的每一个 ref。然后，当一个 ref 被修改时，它会触发追踪它的组件的一次重新渲染。
+在标准的 JavaScript 中，检测普通变量的访问或修改是行不通的。然而，我们可以通过 getter 和 setter 方法来拦截对象属性的 get 和 set 操作。该 .value 属性给予了 Vue 一个机会来检测 ref 何时被访问或修改。在其内部，Vue 在它的 getter 中执行追踪，在它的 setter 中执行触发。
+另一个 ref 的好处是，与普通变量不同，你可以将 ref 传递给函数，同时保留对最新值和响应式连接的访问。当将复杂的逻辑重构为可重用的代码时，这将非常有用。">
+<meta name="author" content="">
+<link rel="canonical" href="https://example.org/posts/%E6%96%87%E6%A1%A3%E9%98%85%E8%AF%BB/vue3/%E5%93%8D%E5%BA%94%E5%BC%8F%E5%9F%BA%E7%A1%80/">
+<link crossorigin="anonymous" href="/assets/css/stylesheet.8fe10233a706bc87f2e08b3cf97b8bd4c0a80f10675a143675d59212121037c0.css" integrity="sha256-j&#43;ECM6cGvIfy4Is8&#43;XuL1MCoDxBnWhQ2ddWSEhIQN8A=" rel="preload stylesheet" as="style">
+<link rel="icon" href="https://example.org/favicon.ico">
+<link rel="icon" type="image/png" sizes="16x16" href="https://example.org/favicon-16x16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="https://example.org/favicon-32x32.png">
+<link rel="apple-touch-icon" href="https://example.org/apple-touch-icon.png">
+<link rel="mask-icon" href="https://example.org/safari-pinned-tab.svg">
+<meta name="theme-color" content="#2e2e33">
+<meta name="msapplication-TileColor" content="#2e2e33">
+<link rel="alternate" hreflang="en" href="https://example.org/posts/%E6%96%87%E6%A1%A3%E9%98%85%E8%AF%BB/vue3/%E5%93%8D%E5%BA%94%E5%BC%8F%E5%9F%BA%E7%A1%80/">
+<noscript>
+    <style>
+        #theme-toggle,
+        .top-link {
+            display: none;
+        }
+
+    </style>
+    <style>
+        @media (prefers-color-scheme: dark) {
+            :root {
+                --theme: rgb(29, 30, 32);
+                --entry: rgb(46, 46, 51);
+                --primary: rgb(218, 218, 219);
+                --secondary: rgb(155, 156, 157);
+                --tertiary: rgb(65, 66, 68);
+                --content: rgb(196, 196, 197);
+                --code-block-bg: rgb(46, 46, 51);
+                --code-bg: rgb(55, 56, 62);
+                --border: rgb(51, 51, 51);
+            }
+
+            .list {
+                background: var(--theme);
+            }
+
+            .list:not(.dark)::-webkit-scrollbar-track {
+                background: 0 0;
+            }
+
+            .list:not(.dark)::-webkit-scrollbar-thumb {
+                border-color: var(--theme);
+            }
+        }
+
+    </style>
+</noscript><meta property="og:url" content="https://example.org/posts/%E6%96%87%E6%A1%A3%E9%98%85%E8%AF%BB/vue3/%E5%93%8D%E5%BA%94%E5%BC%8F%E5%9F%BA%E7%A1%80/">
+  <meta property="og:site_name" content="My New Hugo Site">
+  <meta property="og:title" content="My New Hugo Site">
+  <meta property="og:description" content="声明响应式状态 在组合式 API 中，推荐使用 ref() 函数来声明响应式状态，ref() 接收参数，并将其包裹在一个带有 .value 属性的 ref 对象中返回，要在组件模板中访问 ref，请从组件的 setup() 函数中声明并返回它们，在模板中使用 ref 时。
+我们不需要附加 .value。为了方便起见，当在模板中使用时，ref 会自动解包，也可以直接在事件监听器中改变一个 ref，对于更复杂的逻辑，我们可以在同一作用域内声明更改 ref 的函数，并将它们作为方法与状态一起公开，然后，暴露的方法可以被用作事件监听器
+在 setup() 函数中手动暴露大量的状态和方法非常繁琐。幸运的是，我们可以通过使用单文件组件 (SFC) 来避免这种情况。我们可以使用 &lt;script setup&gt; 来大幅度地简化代码
+&lt;script setup&gt; 中的顶层的导入、声明的变量和函数可在同一组件的模板中直接使用。你可以理解为模板是在同一作用域内声明的一个 JavaScript 函数——它自然可以访问与它一起声明的所有内容。
+当你在模板中使用了一个 ref，然后改变了这个 ref 的值时，Vue 会自动检测到这个变化，并且相应地更新 DOM。这是通过一个基于依赖追踪的响应式系统实现的。当一个组件首次渲染时，Vue 会追踪在渲染过程中使用的每一个 ref。然后，当一个 ref 被修改时，它会触发追踪它的组件的一次重新渲染。
+在标准的 JavaScript 中，检测普通变量的访问或修改是行不通的。然而，我们可以通过 getter 和 setter 方法来拦截对象属性的 get 和 set 操作。该 .value 属性给予了 Vue 一个机会来检测 ref 何时被访问或修改。在其内部，Vue 在它的 getter 中执行追踪，在它的 setter 中执行触发。
+另一个 ref 的好处是，与普通变量不同，你可以将 ref 传递给函数，同时保留对最新值和响应式连接的访问。当将复杂的逻辑重构为可重用的代码时，这将非常有用。">
+  <meta property="og:locale" content="en-us">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="posts">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="">
+<meta name="twitter:description" content="声明响应式状态
+在组合式 API 中，推荐使用 ref() 函数来声明响应式状态，ref() 接收参数，并将其包裹在一个带有 .value 属性的 ref 对象中返回，要在组件模板中访问 ref，请从组件的 setup() 函数中声明并返回它们，在模板中使用 ref 时。
+我们不需要附加 .value。为了方便起见，当在模板中使用时，ref 会自动解包，也可以直接在事件监听器中改变一个 ref，对于更复杂的逻辑，我们可以在同一作用域内声明更改 ref 的函数，并将它们作为方法与状态一起公开，然后，暴露的方法可以被用作事件监听器
+在 setup() 函数中手动暴露大量的状态和方法非常繁琐。幸运的是，我们可以通过使用单文件组件 (SFC) 来避免这种情况。我们可以使用 &lt;script setup&gt; 来大幅度地简化代码
+&lt;script setup&gt; 中的顶层的导入、声明的变量和函数可在同一组件的模板中直接使用。你可以理解为模板是在同一作用域内声明的一个 JavaScript 函数——它自然可以访问与它一起声明的所有内容。
+当你在模板中使用了一个 ref，然后改变了这个 ref 的值时，Vue 会自动检测到这个变化，并且相应地更新 DOM。这是通过一个基于依赖追踪的响应式系统实现的。当一个组件首次渲染时，Vue 会追踪在渲染过程中使用的每一个 ref。然后，当一个 ref 被修改时，它会触发追踪它的组件的一次重新渲染。
+在标准的 JavaScript 中，检测普通变量的访问或修改是行不通的。然而，我们可以通过 getter 和 setter 方法来拦截对象属性的 get 和 set 操作。该 .value 属性给予了 Vue 一个机会来检测 ref 何时被访问或修改。在其内部，Vue 在它的 getter 中执行追踪，在它的 setter 中执行触发。
+另一个 ref 的好处是，与普通变量不同，你可以将 ref 传递给函数，同时保留对最新值和响应式连接的访问。当将复杂的逻辑重构为可重用的代码时，这将非常有用。">
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position":  1 ,
+      "name": "Posts",
+      "item": "https://example.org/posts/"
+    }, 
+    {
+      "@type": "ListItem",
+      "position":  2 ,
+      "name": "",
+      "item": "https://example.org/posts/%E6%96%87%E6%A1%A3%E9%98%85%E8%AF%BB/vue3/%E5%93%8D%E5%BA%94%E5%BC%8F%E5%9F%BA%E7%A1%80/"
+    }
+  ]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "",
+  "name": "",
+  "description": "声明响应式状态 在组合式 API 中，推荐使用 ref() 函数来声明响应式状态，ref() 接收参数，并将其包裹在一个带有 .value 属性的 ref 对象中返回，要在组件模板中访问 ref，请从组件的 setup() 函数中声明并返回它们，在模板中使用 ref 时。\n我们不需要附加 .value。为了方便起见，当在模板中使用时，ref 会自动解包，也可以直接在事件监听器中改变一个 ref，对于更复杂的逻辑，我们可以在同一作用域内声明更改 ref 的函数，并将它们作为方法与状态一起公开，然后，暴露的方法可以被用作事件监听器\n在 setup() 函数中手动暴露大量的状态和方法非常繁琐。幸运的是，我们可以通过使用单文件组件 (SFC) 来避免这种情况。我们可以使用 \u0026lt;script setup\u0026gt; 来大幅度地简化代码\n\u0026lt;script setup\u0026gt; 中的顶层的导入、声明的变量和函数可在同一组件的模板中直接使用。你可以理解为模板是在同一作用域内声明的一个 JavaScript 函数——它自然可以访问与它一起声明的所有内容。\n当你在模板中使用了一个 ref，然后改变了这个 ref 的值时，Vue 会自动检测到这个变化，并且相应地更新 DOM。这是通过一个基于依赖追踪的响应式系统实现的。当一个组件首次渲染时，Vue 会追踪在渲染过程中使用的每一个 ref。然后，当一个 ref 被修改时，它会触发追踪它的组件的一次重新渲染。\n在标准的 JavaScript 中，检测普通变量的访问或修改是行不通的。然而，我们可以通过 getter 和 setter 方法来拦截对象属性的 get 和 set 操作。该 .value 属性给予了 Vue 一个机会来检测 ref 何时被访问或修改。在其内部，Vue 在它的 getter 中执行追踪，在它的 setter 中执行触发。\n另一个 ref 的好处是，与普通变量不同，你可以将 ref 传递给函数，同时保留对最新值和响应式连接的访问。当将复杂的逻辑重构为可重用的代码时，这将非常有用。\n",
+  "keywords": [
+    
+  ],
+  "articleBody": "声明响应式状态 在组合式 API 中，推荐使用 ref() 函数来声明响应式状态，ref() 接收参数，并将其包裹在一个带有 .value 属性的 ref 对象中返回，要在组件模板中访问 ref，请从组件的 setup() 函数中声明并返回它们，在模板中使用 ref 时。\n我们不需要附加 .value。为了方便起见，当在模板中使用时，ref 会自动解包，也可以直接在事件监听器中改变一个 ref，对于更复杂的逻辑，我们可以在同一作用域内声明更改 ref 的函数，并将它们作为方法与状态一起公开，然后，暴露的方法可以被用作事件监听器\n在 setup() 函数中手动暴露大量的状态和方法非常繁琐。幸运的是，我们可以通过使用单文件组件 (SFC) 来避免这种情况。我们可以使用 ",
+  "wordCount" : "171",
+  "inLanguage": "en",
+  "datePublished": "0001-01-01T00:00:00Z",
+  "dateModified": "0001-01-01T00:00:00Z",
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://example.org/posts/%E6%96%87%E6%A1%A3%E9%98%85%E8%AF%BB/vue3/%E5%93%8D%E5%BA%94%E5%BC%8F%E5%9F%BA%E7%A1%80/"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "My New Hugo Site",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://example.org/favicon.ico"
+    }
+  }
+}
+</script>
+</head>
+
+<body class="" id="top">
+<script>
+    if (localStorage.getItem("pref-theme") === "dark") {
+        document.body.classList.add('dark');
+    } else if (localStorage.getItem("pref-theme") === "light") {
+        document.body.classList.remove('dark')
+    } else if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+        document.body.classList.add('dark');
+    }
+
+</script>
+
+<header class="header">
+    <nav class="nav">
+        <div class="logo">
+            <a href="https://example.org/" accesskey="h" title="My New Hugo Site (Alt + H)">My New Hugo Site</a>
+            <div class="logo-switches">
+                <button id="theme-toggle" accesskey="t" title="(Alt + T)" aria-label="Toggle theme">
+                    <svg id="moon" xmlns="http://www.w3.org/2000/svg" width="24" height="18" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                    </svg>
+                    <svg id="sun" xmlns="http://www.w3.org/2000/svg" width="24" height="18" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <circle cx="12" cy="12" r="5"></circle>
+                        <line x1="12" y1="1" x2="12" y2="3"></line>
+                        <line x1="12" y1="21" x2="12" y2="23"></line>
+                        <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                        <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                        <line x1="1" y1="12" x2="3" y2="12"></line>
+                        <line x1="21" y1="12" x2="23" y2="12"></line>
+                        <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                        <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+                    </svg>
+                </button>
+            </div>
+        </div>
+        <ul id="menu">
+        </ul>
+    </nav>
+</header>
+<main class="main">
+
+<article class="post-single">
+  <header class="post-header">
+    
+    <h1 class="post-title entry-hint-parent">
+      
+    </h1>
+    <div class="post-meta">
+
+</div>
+  </header> 
+  <div class="post-content"><h2 id="声明响应式状态">声明响应式状态<a hidden class="anchor" aria-hidden="true" href="#声明响应式状态">#</a></h2>
+<p>在组合式 API 中，推荐使用 <a href="https://cn.vuejs.org/api/reactivity-core.html#ref"><code>ref()</code></a> 函数来声明响应式状态，<code>ref()</code> 接收参数，并将其包裹在一个带有 <code>.value</code> 属性的 ref 对象中返回，要在组件模板中访问 ref，请从组件的 <code>setup()</code> 函数中声明并返回它们，在模板中使用 ref 时。</p>
+<p>我们<strong>不</strong>需要附加 <code>.value</code>。为了方便起见，当在模板中使用时，ref 会自动解包，也可以直接在事件监听器中改变一个 ref，对于更复杂的逻辑，我们可以在同一作用域内声明更改 ref 的函数，并将它们作为方法与状态一起公开，然后，暴露的方法可以被用作事件监听器</p>
+<p>在 <code>setup()</code> 函数中手动暴露大量的状态和方法非常繁琐。幸运的是，我们可以通过使用<a href="https://cn.vuejs.org/guide/scaling-up/sfc.html">单文件组件 (SFC)</a> 来避免这种情况。我们可以使用 <code>&lt;script setup&gt;</code> 来大幅度地简化代码</p>
+<p>&lt;script setup&gt; 中的顶层的导入、声明的变量和函数可在同一组件的模板中直接使用。你可以理解为模板是在同一作用域内声明的一个 JavaScript 函数——它自然可以访问与它一起声明的所有内容。</p>
+<p>当你在模板中使用了一个 ref，然后改变了这个 ref 的值时，Vue 会自动检测到这个变化，并且相应地更新 DOM。这是通过一个基于依赖追踪的响应式系统实现的。当一个组件首次渲染时，Vue 会<strong>追踪</strong>在渲染过程中使用的每一个 ref。然后，当一个 ref 被修改时，它会<strong>触发</strong>追踪它的组件的一次重新渲染。</p>
+<p>在标准的 JavaScript 中，检测普通变量的访问或修改是行不通的。然而，我们可以通过 getter 和 setter 方法来拦截对象属性的 get 和 set 操作。该 <code>.value</code> 属性给予了 Vue 一个机会来检测 ref 何时被访问或修改。在其内部，Vue 在它的 getter 中执行追踪，在它的 setter 中执行触发。</p>
+<p>另一个 ref 的好处是，与普通变量不同，你可以将 ref 传递给函数，同时保留对最新值和响应式连接的访问。当将复杂的逻辑重构为可重用的代码时，这将非常有用。</p>
+<p>Ref 可以持有任何类型的值，包括深层嵌套的对象、数组或者 JavaScript 内置的数据结构，比如 <code>Map</code>。</p>
+<p>Ref 会使它的值具有深层响应性。这意味着即使改变嵌套对象或数组时，变化也会被检测到，非原始值将通过 <a href="https://cn.vuejs.org/guide/essentials/reactivity-fundamentals.html#reactive"><code>reactive()</code></a> 转换为响应式代理，也可以通过 <a href="https://cn.vuejs.org/api/reactivity-advanced.html#shallowref">shallow ref</a> 来放弃深层响应性。对于浅层 ref，只有 <code>.value</code> 的访问会被追踪。浅层 ref 可以用于避免对大型数据的响应性开销来优化性能、或者有外部库管理其内部状态的情况。</p>
+<p>当你修改了响应式状态时，DOM 会被自动更新。但是需要注意的是，DOM 更新不是同步的。Vue 会在“next tick”更新周期中缓冲所有状态的修改，以确保不管你进行了多少次状态修改，每个组件都只会被更新一次。</p>
+<p>要等待 DOM 更新完成后再执行额外的代码，可以使用 <a href="https://cn.vuejs.org/api/general.html#nexttick">nextTick()</a> 全局 API</p>
+<h2 id="reactive"><code>reactive()</code><a hidden class="anchor" aria-hidden="true" href="#reactive">#</a></h2>
+<p>另一种声明响应式状态的方式，即使用 <code>reactive()</code> API。与将内部值包装在特殊对象中的 ref 不同，<code>reactive()</code> 将使对象本身具有响应性</p>
+<p>响应式对象是 <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Proxy">JavaScript 代理</a>，其行为就和普通对象一样。不同的是，Vue 能够拦截对响应式对象所有属性的访问和修改，以便进行依赖追踪和触发更新。</p>
+<p><code>reactive()</code> 将深层地转换对象：当访问嵌套对象时，它们也会被 <code>reactive()</code> 包装。当 ref 的值是一个对象时，<code>ref()</code> 也会在内部调用它。与浅层 ref 类似，这里也有一个 <a href="https://cn.vuejs.org/api/reactivity-advanced.html#shallowreactive"><code>shallowReactive()</code></a> API 可以选择退出深层响应性。</p>
+<p><code>reactive()</code> 返回的是一个原始对象的 <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Proxy">Proxy</a>，它和原始对象是不相等的，只有代理对象是响应式的，更改原始对象不会触发更新。因此，使用 Vue 的响应式系统的最佳实践是<strong>仅使用你声明对象的代理版本</strong>。</p>
+<p>为保证访问代理的一致性，对同一个原始对象调用 <code>reactive()</code> 会总是返回同样的代理对象，而对一个已存在的代理对象调用 <code>reactive()</code> 会返回其本身，这个规则对嵌套对象也适用。依靠深层响应性，响应式对象内的嵌套对象依然是代理：</p>
+<p><code>reactive()</code> API 有一些局限性：</p>
+<ol>
+<li><strong>有限的值类型</strong>：它只能用于对象类型 (对象、数组和如 <code>Map</code>、<code>Set</code> 这样的<a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects#keyed_collections">集合类型</a>)。它不能持有如 <code>string</code>、<code>number</code> 或 <code>boolean</code> 这样的<a href="https://developer.mozilla.org/en-US/docs/Glossary/Primitive">原始类型</a>。</li>
+<li><strong>不能替换整个对象</strong>：由于 Vue 的响应式跟踪是通过属性访问实现的，因此我们必须始终保持对响应式对象的相同引用。这意味着我们不能轻易地“替换”响应式对象，因为这样的话与第一个引用的响应性连接将丢失</li>
+<li><strong>对解构操作不友好</strong>：当我们将响应式对象的原始类型属性解构为本地变量时，或者将该属性传递给函数时，我们将丢失响应性连接</li>
+</ol>
+<h2 id="额外的-ref-解包细节">额外的 ref 解包细节<a hidden class="anchor" aria-hidden="true" href="#额外的-ref-解包细节">#</a></h2>
+<p>一个 ref 会在作为响应式对象的属性被访问或修改时自动解包。换句话说，它的行为就像一个普通的属性</p>
+<p>如果将一个新的 ref 赋值给一个关联了已有 ref 的属性，那么它会替换掉旧的 ref</p>
+<p>只有当嵌套在一个深层响应式对象内时，才会发生 ref 解包。当其作为<a href="https://cn.vuejs.org/api/reactivity-advanced.html#shallowreactive">浅层响应式对象</a>的属性被访问时不会解包。</p>
+<p>与 reactive 对象不同的是，当 ref 作为响应式数组或原生集合类型 (如 <code>Map</code>) 中的元素被访问时，它<strong>不会</strong>被解包</p>
+
+
+  </div>
+
+  <footer class="post-footer">
+    <ul class="post-tags">
+    </ul>
+  </footer>
+</article>
+    </main>
+    
+<footer class="footer">
+        <span>&copy; 2025 <a href="https://example.org/">My New Hugo Site</a></span> · 
+
+    <span>
+        Powered by
+        <a href="https://gohugo.io/" rel="noopener noreferrer" target="_blank">Hugo</a> &
+        <a href="https://github.com/adityatelange/hugo-PaperMod/" rel="noopener" target="_blank">PaperMod</a>
+    </span>
+</footer>
+<a href="#top" aria-label="go to top" title="Go to Top (Alt + G)" class="top-link" id="top-link" accesskey="g">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 12 6" fill="currentColor">
+        <path d="M12 6H0l6-6z" />
+    </svg>
+</a>
+
+<script>
+    let menu = document.getElementById('menu')
+    if (menu) {
+        menu.scrollLeft = localStorage.getItem("menu-scroll-position");
+        menu.onscroll = function () {
+            localStorage.setItem("menu-scroll-position", menu.scrollLeft);
+        }
+    }
+
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener("click", function (e) {
+            e.preventDefault();
+            var id = this.getAttribute("href").substr(1);
+            if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView({
+                    behavior: "smooth"
+                });
+            } else {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView();
+            }
+            if (id === "top") {
+                history.replaceState(null, null, " ");
+            } else {
+                history.pushState(null, null, `#${id}`);
+            }
+        });
+    });
+
+</script>
+<script>
+    var mybutton = document.getElementById("top-link");
+    window.onscroll = function () {
+        if (document.body.scrollTop > 800 || document.documentElement.scrollTop > 800) {
+            mybutton.style.visibility = "visible";
+            mybutton.style.opacity = "1";
+        } else {
+            mybutton.style.visibility = "hidden";
+            mybutton.style.opacity = "0";
+        }
+    };
+
+</script>
+<script>
+    document.getElementById("theme-toggle").addEventListener("click", () => {
+        if (document.body.className.includes("dark")) {
+            document.body.classList.remove('dark');
+            localStorage.setItem("pref-theme", 'light');
+        } else {
+            document.body.classList.add('dark');
+            localStorage.setItem("pref-theme", 'dark');
+        }
+    })
+
+</script>
+</body>
+
+</html>

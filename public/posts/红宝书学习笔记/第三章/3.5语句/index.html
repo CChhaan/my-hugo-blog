@@ -1,0 +1,478 @@
+<!DOCTYPE html>
+<html lang="en" dir="auto">
+
+<head><meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="robots" content="index, follow">
+<title>My New Hugo Site</title>
+<meta name="keywords" content="">
+<meta name="description" content="if语句
+if(condition) statement1 else statement2
+这里的条件condition可以是任何表达式，并且求值结果不一定是布尔值，ES会自动调用Boolean()函数将这个表达式的值转换为布尔值。如果条件求值为true，则执行语句statement1；如果条件求值为false，则执行语句statement2。
+这里的语句可能是一行代码，也可能是一个代码块，最佳实践是使用代码块，即使只有一行代码也是如此。
+if(condition1) statement1 else if(condition2) statement2 else statement3
+do-while语句
+do {
+	statement
+} while(expression)
+do-while是一种后测试循环语句，即循环体中的代码执行后才会对退出条件进行求值。换句话说，循环体内的代码至少执行一次
+while语句
+while(expression)statement
+while语句是一种先测试循环语句，即先检测退出条件，在执行循环体内的代码。因此，while循环体内的代码有可能不会执行
+for语句
+for(initialization;expression;post-loop-expression)statement
+也是先测试循环语句，只不过增加了进入循环之前的初始化代码和循环执行后要执行的表达式
+无法通过while循环实现的逻辑，同样也无法使用for循环实现。
+初始化、条件表达式、循环后表达式都不是必须的。
+for-in语句
+for(property in expression) statement
+是一种严格的迭代语句，用于枚举对象中的非符号键属性
+ES中对象的属性是无序的，因此for-in语句不能保证返回对象属性的顺序
+如果for-in循环要迭代的变量是null或undefined，则不执行循环体
+for-of语句
+for(property of expression)statement
+是一种严格的迭代语句，用于遍历可迭代对象的元素
+for-of循环会按照可迭代对象的next()方法产生值的顺序迭代元素。
+如果尝试迭代的变量不支持迭代，则for-of语句会抛出错误
+标签语句
+label:statement
+用于给语句加标签
+可以在后面通过break或continue语句引用。标签语句的典型应用场景是嵌套循环
+break和continue语句
+break用于立即退出循环，强制执行循环后的下一条语句，continue语句也用于立即退出循环，但会再次从循环顶部开始执行
+break和continue都可以与标签语句一起使用，返回代码中特定的位置。
+with语句
+with的用途是将代码作用于设置为特定的对象
+with(expression)statement
+使用with语句的主要场景是针对一个对象反复操作，这时候将代码作用域设置为该对象能提供便利
+let qs = location.search.subString(1)
+let hostname = location.hostname
+let url = location.href
+with(location){
+    let qs = search.subString(1)
+    let hostname = hostname
+    let url = href
+}
+with语句内部，每个变量首先会被认为是一个局部变量，如果没有找到该局部变量，则会搜索location对象，看它是否有一个同名属性。如果有，则该变量会被求值为location对象的属性
+严格模式不允许使用with语句，否则会抛出错误
+with语句影响性能且难以调试
+switch语句
+switch(expression){
+	case value1:
+		statement
+		break;
+	case value2:
+		statement
+		break;
+	default:
+		statement
+}
+这里的每个case相当于如果表达式等于后面的值，则执行下面的语句。break关键字会导致代码执行跳出switch语句。如果没有break，则代码会继续匹配下一个条件。default关键字用于在任何条件都没有满足时默认执行的语句
+为避免不必要的条件判断，最好给每个条件后面都加上break语句。如果确实需要连续匹配几个条件，那么推荐写个注释表明是故意忽略了break
+switch语句可以用于所有数据类型，因此可以使用字符串甚至对象。
+条件的值不需要是常量，也可以是变量或表达式
+switch语句在比较每个条件的值时使用全等操作符，因此不会强制转换数据类型">
+<meta name="author" content="">
+<link rel="canonical" href="https://example.org/posts/%E7%BA%A2%E5%AE%9D%E4%B9%A6%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/%E7%AC%AC%E4%B8%89%E7%AB%A0/3.5%E8%AF%AD%E5%8F%A5/">
+<link crossorigin="anonymous" href="/assets/css/stylesheet.8fe10233a706bc87f2e08b3cf97b8bd4c0a80f10675a143675d59212121037c0.css" integrity="sha256-j&#43;ECM6cGvIfy4Is8&#43;XuL1MCoDxBnWhQ2ddWSEhIQN8A=" rel="preload stylesheet" as="style">
+<link rel="icon" href="https://example.org/favicon.ico">
+<link rel="icon" type="image/png" sizes="16x16" href="https://example.org/favicon-16x16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="https://example.org/favicon-32x32.png">
+<link rel="apple-touch-icon" href="https://example.org/apple-touch-icon.png">
+<link rel="mask-icon" href="https://example.org/safari-pinned-tab.svg">
+<meta name="theme-color" content="#2e2e33">
+<meta name="msapplication-TileColor" content="#2e2e33">
+<link rel="alternate" hreflang="en" href="https://example.org/posts/%E7%BA%A2%E5%AE%9D%E4%B9%A6%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/%E7%AC%AC%E4%B8%89%E7%AB%A0/3.5%E8%AF%AD%E5%8F%A5/">
+<noscript>
+    <style>
+        #theme-toggle,
+        .top-link {
+            display: none;
+        }
+
+    </style>
+    <style>
+        @media (prefers-color-scheme: dark) {
+            :root {
+                --theme: rgb(29, 30, 32);
+                --entry: rgb(46, 46, 51);
+                --primary: rgb(218, 218, 219);
+                --secondary: rgb(155, 156, 157);
+                --tertiary: rgb(65, 66, 68);
+                --content: rgb(196, 196, 197);
+                --code-block-bg: rgb(46, 46, 51);
+                --code-bg: rgb(55, 56, 62);
+                --border: rgb(51, 51, 51);
+            }
+
+            .list {
+                background: var(--theme);
+            }
+
+            .list:not(.dark)::-webkit-scrollbar-track {
+                background: 0 0;
+            }
+
+            .list:not(.dark)::-webkit-scrollbar-thumb {
+                border-color: var(--theme);
+            }
+        }
+
+    </style>
+</noscript><meta property="og:url" content="https://example.org/posts/%E7%BA%A2%E5%AE%9D%E4%B9%A6%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/%E7%AC%AC%E4%B8%89%E7%AB%A0/3.5%E8%AF%AD%E5%8F%A5/">
+  <meta property="og:site_name" content="My New Hugo Site">
+  <meta property="og:title" content="My New Hugo Site">
+  <meta property="og:description" content="if语句 if(condition) statement1 else statement2 这里的条件condition可以是任何表达式，并且求值结果不一定是布尔值，ES会自动调用Boolean()函数将这个表达式的值转换为布尔值。如果条件求值为true，则执行语句statement1；如果条件求值为false，则执行语句statement2。 这里的语句可能是一行代码，也可能是一个代码块，最佳实践是使用代码块，即使只有一行代码也是如此。
+if(condition1) statement1 else if(condition2) statement2 else statement3 do-while语句 do { statement } while(expression) do-while是一种后测试循环语句，即循环体中的代码执行后才会对退出条件进行求值。换句话说，循环体内的代码至少执行一次
+while语句 while(expression)statement while语句是一种先测试循环语句，即先检测退出条件，在执行循环体内的代码。因此，while循环体内的代码有可能不会执行
+for语句 for(initialization;expression;post-loop-expression)statement 也是先测试循环语句，只不过增加了进入循环之前的初始化代码和循环执行后要执行的表达式
+无法通过while循环实现的逻辑，同样也无法使用for循环实现。
+初始化、条件表达式、循环后表达式都不是必须的。
+for-in语句 for(property in expression) statement 是一种严格的迭代语句，用于枚举对象中的非符号键属性
+ES中对象的属性是无序的，因此for-in语句不能保证返回对象属性的顺序
+如果for-in循环要迭代的变量是null或undefined，则不执行循环体
+for-of语句 for(property of expression)statement 是一种严格的迭代语句，用于遍历可迭代对象的元素
+for-of循环会按照可迭代对象的next()方法产生值的顺序迭代元素。
+如果尝试迭代的变量不支持迭代，则for-of语句会抛出错误
+标签语句 label:statement 用于给语句加标签
+可以在后面通过break或continue语句引用。标签语句的典型应用场景是嵌套循环
+break和continue语句 break用于立即退出循环，强制执行循环后的下一条语句，continue语句也用于立即退出循环，但会再次从循环顶部开始执行
+break和continue都可以与标签语句一起使用，返回代码中特定的位置。
+with语句 with的用途是将代码作用于设置为特定的对象
+with(expression)statement 使用with语句的主要场景是针对一个对象反复操作，这时候将代码作用域设置为该对象能提供便利
+let qs = location.search.subString(1) let hostname = location.hostname let url = location.href with(location){ let qs = search.subString(1) let hostname = hostname let url = href } with语句内部，每个变量首先会被认为是一个局部变量，如果没有找到该局部变量，则会搜索location对象，看它是否有一个同名属性。如果有，则该变量会被求值为location对象的属性
+严格模式不允许使用with语句，否则会抛出错误
+with语句影响性能且难以调试
+switch语句 switch(expression){ case value1: statement break; case value2: statement break; default: statement } 这里的每个case相当于如果表达式等于后面的值，则执行下面的语句。break关键字会导致代码执行跳出switch语句。如果没有break，则代码会继续匹配下一个条件。default关键字用于在任何条件都没有满足时默认执行的语句
+为避免不必要的条件判断，最好给每个条件后面都加上break语句。如果确实需要连续匹配几个条件，那么推荐写个注释表明是故意忽略了break
+switch语句可以用于所有数据类型，因此可以使用字符串甚至对象。 条件的值不需要是常量，也可以是变量或表达式
+switch语句在比较每个条件的值时使用全等操作符，因此不会强制转换数据类型">
+  <meta property="og:locale" content="en-us">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="posts">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="">
+<meta name="twitter:description" content="if语句
+if(condition) statement1 else statement2
+这里的条件condition可以是任何表达式，并且求值结果不一定是布尔值，ES会自动调用Boolean()函数将这个表达式的值转换为布尔值。如果条件求值为true，则执行语句statement1；如果条件求值为false，则执行语句statement2。
+这里的语句可能是一行代码，也可能是一个代码块，最佳实践是使用代码块，即使只有一行代码也是如此。
+if(condition1) statement1 else if(condition2) statement2 else statement3
+do-while语句
+do {
+	statement
+} while(expression)
+do-while是一种后测试循环语句，即循环体中的代码执行后才会对退出条件进行求值。换句话说，循环体内的代码至少执行一次
+while语句
+while(expression)statement
+while语句是一种先测试循环语句，即先检测退出条件，在执行循环体内的代码。因此，while循环体内的代码有可能不会执行
+for语句
+for(initialization;expression;post-loop-expression)statement
+也是先测试循环语句，只不过增加了进入循环之前的初始化代码和循环执行后要执行的表达式
+无法通过while循环实现的逻辑，同样也无法使用for循环实现。
+初始化、条件表达式、循环后表达式都不是必须的。
+for-in语句
+for(property in expression) statement
+是一种严格的迭代语句，用于枚举对象中的非符号键属性
+ES中对象的属性是无序的，因此for-in语句不能保证返回对象属性的顺序
+如果for-in循环要迭代的变量是null或undefined，则不执行循环体
+for-of语句
+for(property of expression)statement
+是一种严格的迭代语句，用于遍历可迭代对象的元素
+for-of循环会按照可迭代对象的next()方法产生值的顺序迭代元素。
+如果尝试迭代的变量不支持迭代，则for-of语句会抛出错误
+标签语句
+label:statement
+用于给语句加标签
+可以在后面通过break或continue语句引用。标签语句的典型应用场景是嵌套循环
+break和continue语句
+break用于立即退出循环，强制执行循环后的下一条语句，continue语句也用于立即退出循环，但会再次从循环顶部开始执行
+break和continue都可以与标签语句一起使用，返回代码中特定的位置。
+with语句
+with的用途是将代码作用于设置为特定的对象
+with(expression)statement
+使用with语句的主要场景是针对一个对象反复操作，这时候将代码作用域设置为该对象能提供便利
+let qs = location.search.subString(1)
+let hostname = location.hostname
+let url = location.href
+with(location){
+    let qs = search.subString(1)
+    let hostname = hostname
+    let url = href
+}
+with语句内部，每个变量首先会被认为是一个局部变量，如果没有找到该局部变量，则会搜索location对象，看它是否有一个同名属性。如果有，则该变量会被求值为location对象的属性
+严格模式不允许使用with语句，否则会抛出错误
+with语句影响性能且难以调试
+switch语句
+switch(expression){
+	case value1:
+		statement
+		break;
+	case value2:
+		statement
+		break;
+	default:
+		statement
+}
+这里的每个case相当于如果表达式等于后面的值，则执行下面的语句。break关键字会导致代码执行跳出switch语句。如果没有break，则代码会继续匹配下一个条件。default关键字用于在任何条件都没有满足时默认执行的语句
+为避免不必要的条件判断，最好给每个条件后面都加上break语句。如果确实需要连续匹配几个条件，那么推荐写个注释表明是故意忽略了break
+switch语句可以用于所有数据类型，因此可以使用字符串甚至对象。
+条件的值不需要是常量，也可以是变量或表达式
+switch语句在比较每个条件的值时使用全等操作符，因此不会强制转换数据类型">
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position":  1 ,
+      "name": "Posts",
+      "item": "https://example.org/posts/"
+    }, 
+    {
+      "@type": "ListItem",
+      "position":  2 ,
+      "name": "",
+      "item": "https://example.org/posts/%E7%BA%A2%E5%AE%9D%E4%B9%A6%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/%E7%AC%AC%E4%B8%89%E7%AB%A0/3.5%E8%AF%AD%E5%8F%A5/"
+    }
+  ]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "",
+  "name": "",
+  "description": "if语句 if(condition) statement1 else statement2 这里的条件condition可以是任何表达式，并且求值结果不一定是布尔值，ES会自动调用Boolean()函数将这个表达式的值转换为布尔值。如果条件求值为true，则执行语句statement1；如果条件求值为false，则执行语句statement2。 这里的语句可能是一行代码，也可能是一个代码块，最佳实践是使用代码块，即使只有一行代码也是如此。\nif(condition1) statement1 else if(condition2) statement2 else statement3 do-while语句 do { statement } while(expression) do-while是一种后测试循环语句，即循环体中的代码执行后才会对退出条件进行求值。换句话说，循环体内的代码至少执行一次\nwhile语句 while(expression)statement while语句是一种先测试循环语句，即先检测退出条件，在执行循环体内的代码。因此，while循环体内的代码有可能不会执行\nfor语句 for(initialization;expression;post-loop-expression)statement 也是先测试循环语句，只不过增加了进入循环之前的初始化代码和循环执行后要执行的表达式\n无法通过while循环实现的逻辑，同样也无法使用for循环实现。\n初始化、条件表达式、循环后表达式都不是必须的。\nfor-in语句 for(property in expression) statement 是一种严格的迭代语句，用于枚举对象中的非符号键属性\nES中对象的属性是无序的，因此for-in语句不能保证返回对象属性的顺序\n如果for-in循环要迭代的变量是null或undefined，则不执行循环体\nfor-of语句 for(property of expression)statement 是一种严格的迭代语句，用于遍历可迭代对象的元素\nfor-of循环会按照可迭代对象的next()方法产生值的顺序迭代元素。\n如果尝试迭代的变量不支持迭代，则for-of语句会抛出错误\n标签语句 label:statement 用于给语句加标签\n可以在后面通过break或continue语句引用。标签语句的典型应用场景是嵌套循环\nbreak和continue语句 break用于立即退出循环，强制执行循环后的下一条语句，continue语句也用于立即退出循环，但会再次从循环顶部开始执行\nbreak和continue都可以与标签语句一起使用，返回代码中特定的位置。\nwith语句 with的用途是将代码作用于设置为特定的对象\nwith(expression)statement 使用with语句的主要场景是针对一个对象反复操作，这时候将代码作用域设置为该对象能提供便利\nlet qs = location.search.subString(1) let hostname = location.hostname let url = location.href with(location){ let qs = search.subString(1) let hostname = hostname let url = href } with语句内部，每个变量首先会被认为是一个局部变量，如果没有找到该局部变量，则会搜索location对象，看它是否有一个同名属性。如果有，则该变量会被求值为location对象的属性\n严格模式不允许使用with语句，否则会抛出错误\nwith语句影响性能且难以调试\nswitch语句 switch(expression){ case value1: statement break; case value2: statement break; default: statement } 这里的每个case相当于如果表达式等于后面的值，则执行下面的语句。break关键字会导致代码执行跳出switch语句。如果没有break，则代码会继续匹配下一个条件。default关键字用于在任何条件都没有满足时默认执行的语句\n为避免不必要的条件判断，最好给每个条件后面都加上break语句。如果确实需要连续匹配几个条件，那么推荐写个注释表明是故意忽略了break\nswitch语句可以用于所有数据类型，因此可以使用字符串甚至对象。 条件的值不需要是常量，也可以是变量或表达式\nswitch语句在比较每个条件的值时使用全等操作符，因此不会强制转换数据类型\n",
+  "keywords": [
+    
+  ],
+  "articleBody": "if语句 if(condition) statement1 else statement2 这里的条件condition可以是任何表达式，并且求值结果不一定是布尔值，ES会自动调用Boolean()函数将这个表达式的值转换为布尔值。如果条件求值为true，则执行语句statement1；如果条件求值为false，则执行语句statement2。 这里的语句可能是一行代码，也可能是一个代码块，最佳实践是使用代码块，即使只有一行代码也是如此。\nif(condition1) statement1 else if(condition2) statement2 else statement3 do-while语句 do { statement } while(expression) do-while是一种后测试循环语句，即循环体中的代码执行后才会对退出条件进行求值。换句话说，循环体内的代码至少执行一次\nwhile语句 while(expression)statement while语句是一种先测试循环语句，即先检测退出条件，在执行循环体内的代码。因此，while循环体内的代码有可能不会执行\nfor语句 for(initialization;expression;post-loop-expression)statement 也是先测试循环语句，只不过增加了进入循环之前的初始化代码和循环执行后要执行的表达式\n无法通过while循环实现的逻辑，同样也无法使用for循环实现。\n初始化、条件表达式、循环后表达式都不是必须的。\nfor-in语句 for(property in expression) statement 是一种严格的迭代语句，用于枚举对象中的非符号键属性\nES中对象的属性是无序的，因此for-in语句不能保证返回对象属性的顺序\n如果for-in循环要迭代的变量是null或undefined，则不执行循环体\nfor-of语句 for(property of expression)statement 是一种严格的迭代语句，用于遍历可迭代对象的元素\nfor-of循环会按照可迭代对象的next()方法产生值的顺序迭代元素。\n如果尝试迭代的变量不支持迭代，则for-of语句会抛出错误\n标签语句 label:statement 用于给语句加标签\n可以在后面通过break或continue语句引用。标签语句的典型应用场景是嵌套循环\nbreak和continue语句 break用于立即退出循环，强制执行循环后的下一条语句，continue语句也用于立即退出循环，但会再次从循环顶部开始执行\nbreak和continue都可以与标签语句一起使用，返回代码中特定的位置。\nwith语句 with的用途是将代码作用于设置为特定的对象\nwith(expression)statement 使用with语句的主要场景是针对一个对象反复操作，这时候将代码作用域设置为该对象能提供便利\nlet qs = location.search.subString(1) let hostname = location.hostname let url = location.href with(location){ let qs = search.subString(1) let hostname = hostname let url = href } with语句内部，每个变量首先会被认为是一个局部变量，如果没有找到该局部变量，则会搜索location对象，看它是否有一个同名属性。如果有，则该变量会被求值为location对象的属性\n严格模式不允许使用with语句，否则会抛出错误\nwith语句影响性能且难以调试\nswitch语句 switch(expression){ case value1: statement break; case value2: statement break; default: statement } 这里的每个case相当于如果表达式等于后面的值，则执行下面的语句。break关键字会导致代码执行跳出switch语句。如果没有break，则代码会继续匹配下一个条件。default关键字用于在任何条件都没有满足时默认执行的语句\n为避免不必要的条件判断，最好给每个条件后面都加上break语句。如果确实需要连续匹配几个条件，那么推荐写个注释表明是故意忽略了break\nswitch语句可以用于所有数据类型，因此可以使用字符串甚至对象。 条件的值不需要是常量，也可以是变量或表达式\nswitch语句在比较每个条件的值时使用全等操作符，因此不会强制转换数据类型\n",
+  "wordCount" : "102",
+  "inLanguage": "en",
+  "datePublished": "0001-01-01T00:00:00Z",
+  "dateModified": "0001-01-01T00:00:00Z",
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://example.org/posts/%E7%BA%A2%E5%AE%9D%E4%B9%A6%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/%E7%AC%AC%E4%B8%89%E7%AB%A0/3.5%E8%AF%AD%E5%8F%A5/"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "My New Hugo Site",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://example.org/favicon.ico"
+    }
+  }
+}
+</script>
+</head>
+
+<body class="" id="top">
+<script>
+    if (localStorage.getItem("pref-theme") === "dark") {
+        document.body.classList.add('dark');
+    } else if (localStorage.getItem("pref-theme") === "light") {
+        document.body.classList.remove('dark')
+    } else if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+        document.body.classList.add('dark');
+    }
+
+</script>
+
+<header class="header">
+    <nav class="nav">
+        <div class="logo">
+            <a href="https://example.org/" accesskey="h" title="My New Hugo Site (Alt + H)">My New Hugo Site</a>
+            <div class="logo-switches">
+                <button id="theme-toggle" accesskey="t" title="(Alt + T)" aria-label="Toggle theme">
+                    <svg id="moon" xmlns="http://www.w3.org/2000/svg" width="24" height="18" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                    </svg>
+                    <svg id="sun" xmlns="http://www.w3.org/2000/svg" width="24" height="18" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <circle cx="12" cy="12" r="5"></circle>
+                        <line x1="12" y1="1" x2="12" y2="3"></line>
+                        <line x1="12" y1="21" x2="12" y2="23"></line>
+                        <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                        <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                        <line x1="1" y1="12" x2="3" y2="12"></line>
+                        <line x1="21" y1="12" x2="23" y2="12"></line>
+                        <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                        <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+                    </svg>
+                </button>
+            </div>
+        </div>
+        <ul id="menu">
+        </ul>
+    </nav>
+</header>
+<main class="main">
+
+<article class="post-single">
+  <header class="post-header">
+    
+    <h1 class="post-title entry-hint-parent">
+      
+    </h1>
+    <div class="post-meta">
+
+</div>
+  </header> 
+  <div class="post-content"><h1 id="if语句">if语句<a hidden class="anchor" aria-hidden="true" href="#if语句">#</a></h1>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-js" data-lang="js"><span style="display:flex;"><span><span style="color:#66d9ef">if</span>(<span style="color:#a6e22e">condition</span>) <span style="color:#a6e22e">statement1</span> <span style="color:#66d9ef">else</span> <span style="color:#a6e22e">statement2</span>
+</span></span></code></pre></div><p>这里的条件condition可以是任何表达式，并且求值结果不一定是布尔值，ES会自动调用Boolean()函数将这个表达式的值转换为布尔值。如果条件求值为true，则执行语句statement1；如果条件求值为false，则执行语句statement2。
+这里的语句可能是一行代码，也可能是一个代码块，最佳实践是使用代码块，即使只有一行代码也是如此。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-js" data-lang="js"><span style="display:flex;"><span><span style="color:#66d9ef">if</span>(<span style="color:#a6e22e">condition1</span>) <span style="color:#a6e22e">statement1</span> <span style="color:#66d9ef">else</span> <span style="color:#66d9ef">if</span>(<span style="color:#a6e22e">condition2</span>) <span style="color:#a6e22e">statement2</span> <span style="color:#66d9ef">else</span> <span style="color:#a6e22e">statement3</span>
+</span></span></code></pre></div><h1 id="do-while语句">do-while语句<a hidden class="anchor" aria-hidden="true" href="#do-while语句">#</a></h1>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-js" data-lang="js"><span style="display:flex;"><span><span style="color:#66d9ef">do</span> {
+</span></span><span style="display:flex;"><span>	<span style="color:#a6e22e">statement</span>
+</span></span><span style="display:flex;"><span>} <span style="color:#66d9ef">while</span>(<span style="color:#a6e22e">expression</span>)
+</span></span></code></pre></div><p>do-while是一种后测试循环语句，即循环体中的代码执行后才会对退出条件进行求值。换句话说，循环体内的代码至少执行一次</p>
+<h1 id="while语句">while语句<a hidden class="anchor" aria-hidden="true" href="#while语句">#</a></h1>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-js" data-lang="js"><span style="display:flex;"><span><span style="color:#66d9ef">while</span>(<span style="color:#a6e22e">expression</span>)<span style="color:#a6e22e">statement</span>
+</span></span></code></pre></div><p>while语句是一种先测试循环语句，即先检测退出条件，在执行循环体内的代码。因此，while循环体内的代码有可能不会执行</p>
+<h1 id="for语句">for语句<a hidden class="anchor" aria-hidden="true" href="#for语句">#</a></h1>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-js" data-lang="js"><span style="display:flex;"><span><span style="color:#66d9ef">for</span>(<span style="color:#a6e22e">initialization</span>;<span style="color:#a6e22e">expression</span>;<span style="color:#a6e22e">post</span><span style="color:#f92672">-</span><span style="color:#a6e22e">loop</span><span style="color:#f92672">-</span><span style="color:#a6e22e">expression</span>)<span style="color:#a6e22e">statement</span>
+</span></span></code></pre></div><p>也是先测试循环语句，只不过增加了进入循环之前的初始化代码和循环执行后要执行的表达式</p>
+<p>无法通过while循环实现的逻辑，同样也无法使用for循环实现。</p>
+<p>初始化、条件表达式、循环后表达式都不是必须的。</p>
+<h1 id="for-in语句">for-in语句<a hidden class="anchor" aria-hidden="true" href="#for-in语句">#</a></h1>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-js" data-lang="js"><span style="display:flex;"><span><span style="color:#66d9ef">for</span>(<span style="color:#a6e22e">property</span> <span style="color:#66d9ef">in</span> <span style="color:#a6e22e">expression</span>) <span style="color:#a6e22e">statement</span>
+</span></span></code></pre></div><p>是一种严格的迭代语句，用于枚举对象中的非符号键属性</p>
+<p>ES中对象的属性是无序的，因此for-in语句不能保证返回对象属性的顺序</p>
+<p>如果for-in循环要迭代的变量是null或undefined，则不执行循环体</p>
+<h1 id="for-of语句">for-of语句<a hidden class="anchor" aria-hidden="true" href="#for-of语句">#</a></h1>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-js" data-lang="js"><span style="display:flex;"><span><span style="color:#66d9ef">for</span>(<span style="color:#a6e22e">property</span> <span style="color:#66d9ef">of</span> <span style="color:#a6e22e">expression</span>)<span style="color:#a6e22e">statement</span>
+</span></span></code></pre></div><p>是一种严格的迭代语句，用于遍历可迭代对象的元素</p>
+<p>for-of循环会按照可迭代对象的next()方法产生值的顺序迭代元素。</p>
+<p>如果尝试迭代的变量不支持迭代，则for-of语句会抛出错误</p>
+<h1 id="标签语句">标签语句<a hidden class="anchor" aria-hidden="true" href="#标签语句">#</a></h1>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-js" data-lang="js"><span style="display:flex;"><span><span style="color:#a6e22e">label</span><span style="color:#f92672">:</span><span style="color:#a6e22e">statement</span>
+</span></span></code></pre></div><p>用于给语句加标签</p>
+<p>可以在后面通过break或continue语句引用。标签语句的典型应用场景是嵌套循环</p>
+<h1 id="break和continue语句">break和continue语句<a hidden class="anchor" aria-hidden="true" href="#break和continue语句">#</a></h1>
+<p>break用于立即退出循环，强制执行循环后的下一条语句，continue语句也用于立即退出循环，但会再次从循环顶部开始执行</p>
+<p>break和continue都可以与标签语句一起使用，返回代码中特定的位置。</p>
+<h1 id="with语句">with语句<a hidden class="anchor" aria-hidden="true" href="#with语句">#</a></h1>
+<p>with的用途是将代码作用于设置为特定的对象</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-js" data-lang="js"><span style="display:flex;"><span><span style="color:#66d9ef">with</span>(<span style="color:#a6e22e">expression</span>)<span style="color:#a6e22e">statement</span>
+</span></span></code></pre></div><p>使用with语句的主要场景是针对一个对象反复操作，这时候将代码作用域设置为该对象能提供便利</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-js" data-lang="js"><span style="display:flex;"><span><span style="color:#66d9ef">let</span> <span style="color:#a6e22e">qs</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">location</span>.<span style="color:#a6e22e">search</span>.<span style="color:#a6e22e">subString</span>(<span style="color:#ae81ff">1</span>)
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">let</span> <span style="color:#a6e22e">hostname</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">location</span>.<span style="color:#a6e22e">hostname</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">let</span> <span style="color:#a6e22e">url</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">location</span>.<span style="color:#a6e22e">href</span>
+</span></span></code></pre></div><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-js" data-lang="js"><span style="display:flex;"><span><span style="color:#66d9ef">with</span>(<span style="color:#a6e22e">location</span>){
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">let</span> <span style="color:#a6e22e">qs</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">search</span>.<span style="color:#a6e22e">subString</span>(<span style="color:#ae81ff">1</span>)
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">let</span> <span style="color:#a6e22e">hostname</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">hostname</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">let</span> <span style="color:#a6e22e">url</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">href</span>
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>with语句内部，每个变量首先会被认为是一个局部变量，如果没有找到该局部变量，则会搜索location对象，看它是否有一个同名属性。如果有，则该变量会被求值为location对象的属性</p>
+<p>严格模式不允许使用with语句，否则会抛出错误</p>
+<p>with语句影响性能且难以调试</p>
+<h1 id="switch语句">switch语句<a hidden class="anchor" aria-hidden="true" href="#switch语句">#</a></h1>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-js" data-lang="js"><span style="display:flex;"><span><span style="color:#66d9ef">switch</span>(<span style="color:#a6e22e">expression</span>){
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">case</span> <span style="color:#a6e22e">value1</span><span style="color:#f92672">:</span>
+</span></span><span style="display:flex;"><span>		<span style="color:#a6e22e">statement</span>
+</span></span><span style="display:flex;"><span>		<span style="color:#66d9ef">break</span>;
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">case</span> <span style="color:#a6e22e">value2</span><span style="color:#f92672">:</span>
+</span></span><span style="display:flex;"><span>		<span style="color:#a6e22e">statement</span>
+</span></span><span style="display:flex;"><span>		<span style="color:#66d9ef">break</span>;
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">default</span><span style="color:#f92672">:</span>
+</span></span><span style="display:flex;"><span>		<span style="color:#a6e22e">statement</span>
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>这里的每个case相当于如果表达式等于后面的值，则执行下面的语句。break关键字会导致代码执行跳出switch语句。如果没有break，则代码会继续匹配下一个条件。default关键字用于在任何条件都没有满足时默认执行的语句</p>
+<p>为避免不必要的条件判断，最好给每个条件后面都加上break语句。如果确实需要连续匹配几个条件，那么推荐写个注释表明是故意忽略了break</p>
+<p>switch语句可以用于所有数据类型，因此可以使用字符串甚至对象。
+条件的值不需要是常量，也可以是变量或表达式</p>
+<p>switch语句在比较每个条件的值时使用全等操作符，因此不会强制转换数据类型</p>
+
+
+  </div>
+
+  <footer class="post-footer">
+    <ul class="post-tags">
+    </ul>
+  </footer>
+</article>
+    </main>
+    
+<footer class="footer">
+        <span>&copy; 2025 <a href="https://example.org/">My New Hugo Site</a></span> · 
+
+    <span>
+        Powered by
+        <a href="https://gohugo.io/" rel="noopener noreferrer" target="_blank">Hugo</a> &
+        <a href="https://github.com/adityatelange/hugo-PaperMod/" rel="noopener" target="_blank">PaperMod</a>
+    </span>
+</footer>
+<a href="#top" aria-label="go to top" title="Go to Top (Alt + G)" class="top-link" id="top-link" accesskey="g">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 12 6" fill="currentColor">
+        <path d="M12 6H0l6-6z" />
+    </svg>
+</a>
+
+<script>
+    let menu = document.getElementById('menu')
+    if (menu) {
+        menu.scrollLeft = localStorage.getItem("menu-scroll-position");
+        menu.onscroll = function () {
+            localStorage.setItem("menu-scroll-position", menu.scrollLeft);
+        }
+    }
+
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener("click", function (e) {
+            e.preventDefault();
+            var id = this.getAttribute("href").substr(1);
+            if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView({
+                    behavior: "smooth"
+                });
+            } else {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView();
+            }
+            if (id === "top") {
+                history.replaceState(null, null, " ");
+            } else {
+                history.pushState(null, null, `#${id}`);
+            }
+        });
+    });
+
+</script>
+<script>
+    var mybutton = document.getElementById("top-link");
+    window.onscroll = function () {
+        if (document.body.scrollTop > 800 || document.documentElement.scrollTop > 800) {
+            mybutton.style.visibility = "visible";
+            mybutton.style.opacity = "1";
+        } else {
+            mybutton.style.visibility = "hidden";
+            mybutton.style.opacity = "0";
+        }
+    };
+
+</script>
+<script>
+    document.getElementById("theme-toggle").addEventListener("click", () => {
+        if (document.body.className.includes("dark")) {
+            document.body.classList.remove('dark');
+            localStorage.setItem("pref-theme", 'light');
+        } else {
+            document.body.classList.add('dark');
+            localStorage.setItem("pref-theme", 'dark');
+        }
+    })
+
+</script>
+</body>
+
+</html>
