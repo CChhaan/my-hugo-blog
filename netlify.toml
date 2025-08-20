@@ -3,7 +3,8 @@
   publish = "public"
 
 [build.environment]
-  HUGO_VERSION = "0.124.1"  # 指定Hugo版本，可替换为你本地使用的版本
+  HUGO_VERSION = "0.146.0"  # 升级到PaperMod要求的最低版本
+  HUGO_EXTENDED = "true"    # 启用扩展版本
 
 [context.production.environment]
   HUGO_ENV = "production"
