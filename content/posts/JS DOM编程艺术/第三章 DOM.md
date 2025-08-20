@@ -1,3 +1,9 @@
+---
+title: "第三章 Dom"
+date: 2025-08-20T19:49:53
+draft: false
+---
+
 ### 一、DOM 的核心概念
 
 DOM（Document Object Model，文档对象模型）是一套用于抽象和概念化文档内容的接口，它将网页文档转换为可通过 JavaScript 操作的对象树结构。
