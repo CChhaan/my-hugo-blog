@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <meta name="robots" content="index, follow">
-<title>My New Hugo Site</title>
+<title>拾光博客 - 永浩</title>
 <meta name="keywords" content="">
 <meta name="description" content="
 本文摘要：JavaScript对象可以通过文字声明或构造形式定义，两种方式结果相同但写法不同。JS有6种基本类型和多种对象子类型，包括内置对象如Array、Date等。对象属性存储的是名称而非值本身，可通过点语法或块访问访问。属性描述符可控制属性的可写性、可配置性等特性。通过Object.preventExtensions()、Object.seal()和Object.freeze()可实现不同级别的对象不可变性。in、hasOwnProperty()等方法可用于检查属性存在性，forEach、every等辅助迭代器可用于数组遍历。for..of循环通过内置@@iterator实现迭代访问。
@@ -104,16 +104,16 @@ every()和some()中特殊的返回值和普通for循环中的break语句类似�
 for..of循环首先会向被访问对象请求一个迭代器对象，然后通过调用迭代器对象的next()方法来遍历所有返回值
 数组有内置的@@iterator（返回迭代器对象的函数），因此for&hellip;of可以直接应用在数组上">
 <meta name="author" content="">
-<link rel="canonical" href="https://example.org/posts/%E4%BD%A0%E4%B8%8D%E7%9F%A5%E9%81%93%E7%9A%84js/this%E5%92%8C%E5%AF%B9%E8%B1%A1%E5%8E%9F%E5%9E%8B/2.-%E5%AF%B9%E8%B1%A1/">
+<link rel="canonical" href="https://growyears.netlify.app/posts/%E4%BD%A0%E4%B8%8D%E7%9F%A5%E9%81%93%E7%9A%84js/this%E5%92%8C%E5%AF%B9%E8%B1%A1%E5%8E%9F%E5%9E%8B/2.-%E5%AF%B9%E8%B1%A1/">
 <link crossorigin="anonymous" href="/assets/css/stylesheet.36819bea596090d8b48cf10d9831382996197aa7e4fc86f792f7c08c9ca4d23b.css" integrity="sha256-NoGb6llgkNi0jPENmDE4KZYZeqfk/Ib3kvfAjJyk0js=" rel="preload stylesheet" as="style">
-<link rel="icon" href="https://example.org/favicon.ico">
-<link rel="icon" type="image/png" sizes="16x16" href="https://example.org/favicon-16x16.png">
-<link rel="icon" type="image/png" sizes="32x32" href="https://example.org/favicon-32x32.png">
-<link rel="apple-touch-icon" href="https://example.org/apple-touch-icon.png">
-<link rel="mask-icon" href="https://example.org/safari-pinned-tab.svg">
+<link rel="icon" href="https://growyears.netlify.app/favicon.ico">
+<link rel="icon" type="image/png" sizes="16x16" href="https://growyears.netlify.app/favicon-16x16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="https://growyears.netlify.app/favicon-32x32.png">
+<link rel="apple-touch-icon" href="https://growyears.netlify.app/apple-touch-icon.png">
+<link rel="mask-icon" href="https://growyears.netlify.app/safari-pinned-tab.svg">
 <meta name="theme-color" content="#2e2e33">
 <meta name="msapplication-TileColor" content="#2e2e33">
-<link rel="alternate" hreflang="en" href="https://example.org/posts/%E4%BD%A0%E4%B8%8D%E7%9F%A5%E9%81%93%E7%9A%84js/this%E5%92%8C%E5%AF%B9%E8%B1%A1%E5%8E%9F%E5%9E%8B/2.-%E5%AF%B9%E8%B1%A1/">
+<link rel="alternate" hreflang="en" href="https://growyears.netlify.app/posts/%E4%BD%A0%E4%B8%8D%E7%9F%A5%E9%81%93%E7%9A%84js/this%E5%92%8C%E5%AF%B9%E8%B1%A1%E5%8E%9F%E5%9E%8B/2.-%E5%AF%B9%E8%B1%A1/">
 <noscript>
     <style>
         #theme-toggle,
@@ -150,9 +150,9 @@ for..of循环首先会向被访问对象请求一个迭代器对象，然后通�
         }
 
     </style>
-</noscript><meta property="og:url" content="https://example.org/posts/%E4%BD%A0%E4%B8%8D%E7%9F%A5%E9%81%93%E7%9A%84js/this%E5%92%8C%E5%AF%B9%E8%B1%A1%E5%8E%9F%E5%9E%8B/2.-%E5%AF%B9%E8%B1%A1/">
-  <meta property="og:site_name" content="My New Hugo Site">
-  <meta property="og:title" content="My New Hugo Site">
+</noscript><meta property="og:url" content="https://growyears.netlify.app/posts/%E4%BD%A0%E4%B8%8D%E7%9F%A5%E9%81%93%E7%9A%84js/this%E5%92%8C%E5%AF%B9%E8%B1%A1%E5%8E%9F%E5%9E%8B/2.-%E5%AF%B9%E8%B1%A1/">
+  <meta property="og:site_name" content="拾光博客 - 永浩">
+  <meta property="og:title" content="拾光博客 - 永浩">
   <meta property="og:description" content=" 本文摘要：JavaScript对象可以通过文字声明或构造形式定义，两种方式结果相同但写法不同。JS有6种基本类型和多种对象子类型，包括内置对象如Array、Date等。对象属性存储的是名称而非值本身，可通过点语法或块访问访问。属性描述符可控制属性的可写性、可配置性等特性。通过Object.preventExtensions()、Object.seal()和Object.freeze()可实现不同级别的对象不可变性。in、hasOwnProperty()等方法可用于检查属性存在性，forEach、every等辅助迭代器可用于数组遍历。for..of循环通过内置@@iterator实现迭代访问。
 对象可以通过两种形式定义：声明文字形式和构造形式
 构造形式和文字形式生成的对象是一样的，唯一的区别是，在文字声明中可以添加多个键值对，但是在构造形式中必须逐个添加属性
@@ -207,7 +207,7 @@ ES5中增加了一些数组的辅助迭代器，每种辅助迭代器都可以�
 forEach()会遍历数组中的所有值并忽略回调函数的返回值 every()会一直运行直到回调函数返回false some()会一直运行直到回调函数返回true every()和some()中特殊的返回值和普通for循环中的break语句类似，它们会提前终止遍历
 for..of循环首先会向被访问对象请求一个迭代器对象，然后通过调用迭代器对象的next()方法来遍历所有返回值
 数组有内置的@@iterator（返回迭代器对象的函数），因此for…of可以直接应用在数组上">
-  <meta property="og:locale" content="en-us">
+  <meta property="og:locale" content="zh-cn">
   <meta property="og:type" content="article">
     <meta property="article:section" content="posts">
 <meta name="twitter:card" content="summary">
@@ -319,13 +319,13 @@ for..of循环首先会向被访问对象请求一个迭代器对象，然后通�
       "@type": "ListItem",
       "position":  1 ,
       "name": "Posts",
-      "item": "https://example.org/posts/"
+      "item": "https://growyears.netlify.app/posts/"
     }, 
     {
       "@type": "ListItem",
       "position":  2 ,
       "name": "",
-      "item": "https://example.org/posts/%E4%BD%A0%E4%B8%8D%E7%9F%A5%E9%81%93%E7%9A%84js/this%E5%92%8C%E5%AF%B9%E8%B1%A1%E5%8E%9F%E5%9E%8B/2.-%E5%AF%B9%E8%B1%A1/"
+      "item": "https://growyears.netlify.app/posts/%E4%BD%A0%E4%B8%8D%E7%9F%A5%E9%81%93%E7%9A%84js/this%E5%92%8C%E5%AF%B9%E8%B1%A1%E5%8E%9F%E5%9E%8B/2.-%E5%AF%B9%E8%B1%A1/"
     }
   ]
 }
@@ -347,14 +347,14 @@ for..of循环首先会向被访问对象请求一个迭代器对象，然后通�
   "dateModified": "0001-01-01T00:00:00Z",
   "mainEntityOfPage": {
     "@type": "WebPage",
-    "@id": "https://example.org/posts/%E4%BD%A0%E4%B8%8D%E7%9F%A5%E9%81%93%E7%9A%84js/this%E5%92%8C%E5%AF%B9%E8%B1%A1%E5%8E%9F%E5%9E%8B/2.-%E5%AF%B9%E8%B1%A1/"
+    "@id": "https://growyears.netlify.app/posts/%E4%BD%A0%E4%B8%8D%E7%9F%A5%E9%81%93%E7%9A%84js/this%E5%92%8C%E5%AF%B9%E8%B1%A1%E5%8E%9F%E5%9E%8B/2.-%E5%AF%B9%E8%B1%A1/"
   },
   "publisher": {
     "@type": "Organization",
-    "name": "My New Hugo Site",
+    "name": "拾光博客 - 永浩",
     "logo": {
       "@type": "ImageObject",
-      "url": "https://example.org/favicon.ico"
+      "url": "https://growyears.netlify.app/favicon.ico"
     }
   }
 }
@@ -376,7 +376,7 @@ for..of循环首先会向被访问对象请求一个迭代器对象，然后通�
 <header class="header">
     <nav class="nav">
         <div class="logo">
-            <a href="https://example.org/" accesskey="h" title="My New Hugo Site (Alt + H)">My New Hugo Site</a>
+            <a href="https://growyears.netlify.app/" accesskey="h" title="拾光博客 - 永浩 (Alt + H)">拾光博客 - 永浩</a>
             <div class="logo-switches">
                 <button id="theme-toggle" accesskey="t" title="(Alt + T)" aria-label="Toggle theme">
                     <svg id="moon" xmlns="http://www.w3.org/2000/svg" width="24" height="18" viewBox="0 0 24 24"
@@ -526,7 +526,7 @@ for..of循环首先会向被访问对象请求一个迭代器对象，然后通�
     </main>
     
 <footer class="footer">
-        <span>&copy; 2025 <a href="https://example.org/">My New Hugo Site</a></span> · 
+        <span>&copy; 2025 <a href="https://growyears.netlify.app/">拾光博客 - 永浩</a></span> · 
 
     <span>
         Powered by

@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <meta name="robots" content="index, follow">
-<title>My New Hugo Site</title>
+<title>拾光博客 - 永浩</title>
 <meta name="keywords" content="">
 <meta name="description" content="
 摘要：面向对象编程中，类作为蓝图定义了数据结构与行为的封装，通过继承实现父类与子类的特殊化关系，核心概念包括多态（方法重写与相对引用）和实例化（构造函数创建对象副本）。然而JavaScript的对象机制与传统类继承不同，采用原型关联而非复制，并不存在真正的类实例化概念。(148字)
@@ -30,16 +30,16 @@
 
 在继承和实例化时，JS的对象机制并不会自动执行复制行为，JS中只有对象，并不存在可以被实例化的类，一个对象并不会被复制到其他对象，它们会被关联起来">
 <meta name="author" content="">
-<link rel="canonical" href="https://example.org/posts/%E4%BD%A0%E4%B8%8D%E7%9F%A5%E9%81%93%E7%9A%84js/this%E5%92%8C%E5%AF%B9%E8%B1%A1%E5%8E%9F%E5%9E%8B/3.-%E6%B7%B7%E5%90%88%E5%AF%B9%E8%B1%A1%E7%B1%BB/">
+<link rel="canonical" href="https://growyears.netlify.app/posts/%E4%BD%A0%E4%B8%8D%E7%9F%A5%E9%81%93%E7%9A%84js/this%E5%92%8C%E5%AF%B9%E8%B1%A1%E5%8E%9F%E5%9E%8B/3.-%E6%B7%B7%E5%90%88%E5%AF%B9%E8%B1%A1%E7%B1%BB/">
 <link crossorigin="anonymous" href="/assets/css/stylesheet.36819bea596090d8b48cf10d9831382996197aa7e4fc86f792f7c08c9ca4d23b.css" integrity="sha256-NoGb6llgkNi0jPENmDE4KZYZeqfk/Ib3kvfAjJyk0js=" rel="preload stylesheet" as="style">
-<link rel="icon" href="https://example.org/favicon.ico">
-<link rel="icon" type="image/png" sizes="16x16" href="https://example.org/favicon-16x16.png">
-<link rel="icon" type="image/png" sizes="32x32" href="https://example.org/favicon-32x32.png">
-<link rel="apple-touch-icon" href="https://example.org/apple-touch-icon.png">
-<link rel="mask-icon" href="https://example.org/safari-pinned-tab.svg">
+<link rel="icon" href="https://growyears.netlify.app/favicon.ico">
+<link rel="icon" type="image/png" sizes="16x16" href="https://growyears.netlify.app/favicon-16x16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="https://growyears.netlify.app/favicon-32x32.png">
+<link rel="apple-touch-icon" href="https://growyears.netlify.app/apple-touch-icon.png">
+<link rel="mask-icon" href="https://growyears.netlify.app/safari-pinned-tab.svg">
 <meta name="theme-color" content="#2e2e33">
 <meta name="msapplication-TileColor" content="#2e2e33">
-<link rel="alternate" hreflang="en" href="https://example.org/posts/%E4%BD%A0%E4%B8%8D%E7%9F%A5%E9%81%93%E7%9A%84js/this%E5%92%8C%E5%AF%B9%E8%B1%A1%E5%8E%9F%E5%9E%8B/3.-%E6%B7%B7%E5%90%88%E5%AF%B9%E8%B1%A1%E7%B1%BB/">
+<link rel="alternate" hreflang="en" href="https://growyears.netlify.app/posts/%E4%BD%A0%E4%B8%8D%E7%9F%A5%E9%81%93%E7%9A%84js/this%E5%92%8C%E5%AF%B9%E8%B1%A1%E5%8E%9F%E5%9E%8B/3.-%E6%B7%B7%E5%90%88%E5%AF%B9%E8%B1%A1%E7%B1%BB/">
 <noscript>
     <style>
         #theme-toggle,
@@ -76,9 +76,9 @@
         }
 
     </style>
-</noscript><meta property="og:url" content="https://example.org/posts/%E4%BD%A0%E4%B8%8D%E7%9F%A5%E9%81%93%E7%9A%84js/this%E5%92%8C%E5%AF%B9%E8%B1%A1%E5%8E%9F%E5%9E%8B/3.-%E6%B7%B7%E5%90%88%E5%AF%B9%E8%B1%A1%E7%B1%BB/">
-  <meta property="og:site_name" content="My New Hugo Site">
-  <meta property="og:title" content="My New Hugo Site">
+</noscript><meta property="og:url" content="https://growyears.netlify.app/posts/%E4%BD%A0%E4%B8%8D%E7%9F%A5%E9%81%93%E7%9A%84js/this%E5%92%8C%E5%AF%B9%E8%B1%A1%E5%8E%9F%E5%9E%8B/3.-%E6%B7%B7%E5%90%88%E5%AF%B9%E8%B1%A1%E7%B1%BB/">
+  <meta property="og:site_name" content="拾光博客 - 永浩">
+  <meta property="og:title" content="拾光博客 - 永浩">
   <meta property="og:description" content=" 摘要：面向对象编程中，类作为蓝图定义了数据结构与行为的封装，通过继承实现父类与子类的特殊化关系，核心概念包括多态（方法重写与相对引用）和实例化（构造函数创建对象副本）。然而JavaScript的对象机制与传统类继承不同，采用原型关联而非复制，并不存在真正的类实例化概念。(148字)
 类继承描述了一种代码的组织结构形式，一种在软件中对真实世界中问题领域的建模方法
 面向对象编程强调的是数据和操作数据的行为本质上是互相关联的，因此好的设计就是把数据以及和它相关的行为打包起来。这在正式的计算机科学中有时被称为数据结构
@@ -97,7 +97,7 @@
 多态的另一方面是，在继承链的不同层次中一个方法名可以被多次定义，当调用方法时会自动选择合适的定义
 方法定义的多态性取决于是在哪个类的实例中引用它
 在继承和实例化时，JS的对象机制并不会自动执行复制行为，JS中只有对象，并不存在可以被实例化的类，一个对象并不会被复制到其他对象，它们会被关联起来">
-  <meta property="og:locale" content="en-us">
+  <meta property="og:locale" content="zh-cn">
   <meta property="og:type" content="article">
     <meta property="article:section" content="posts">
 <meta name="twitter:card" content="summary">
@@ -135,13 +135,13 @@
       "@type": "ListItem",
       "position":  1 ,
       "name": "Posts",
-      "item": "https://example.org/posts/"
+      "item": "https://growyears.netlify.app/posts/"
     }, 
     {
       "@type": "ListItem",
       "position":  2 ,
       "name": "",
-      "item": "https://example.org/posts/%E4%BD%A0%E4%B8%8D%E7%9F%A5%E9%81%93%E7%9A%84js/this%E5%92%8C%E5%AF%B9%E8%B1%A1%E5%8E%9F%E5%9E%8B/3.-%E6%B7%B7%E5%90%88%E5%AF%B9%E8%B1%A1%E7%B1%BB/"
+      "item": "https://growyears.netlify.app/posts/%E4%BD%A0%E4%B8%8D%E7%9F%A5%E9%81%93%E7%9A%84js/this%E5%92%8C%E5%AF%B9%E8%B1%A1%E5%8E%9F%E5%9E%8B/3.-%E6%B7%B7%E5%90%88%E5%AF%B9%E8%B1%A1%E7%B1%BB/"
     }
   ]
 }
@@ -163,14 +163,14 @@
   "dateModified": "0001-01-01T00:00:00Z",
   "mainEntityOfPage": {
     "@type": "WebPage",
-    "@id": "https://example.org/posts/%E4%BD%A0%E4%B8%8D%E7%9F%A5%E9%81%93%E7%9A%84js/this%E5%92%8C%E5%AF%B9%E8%B1%A1%E5%8E%9F%E5%9E%8B/3.-%E6%B7%B7%E5%90%88%E5%AF%B9%E8%B1%A1%E7%B1%BB/"
+    "@id": "https://growyears.netlify.app/posts/%E4%BD%A0%E4%B8%8D%E7%9F%A5%E9%81%93%E7%9A%84js/this%E5%92%8C%E5%AF%B9%E8%B1%A1%E5%8E%9F%E5%9E%8B/3.-%E6%B7%B7%E5%90%88%E5%AF%B9%E8%B1%A1%E7%B1%BB/"
   },
   "publisher": {
     "@type": "Organization",
-    "name": "My New Hugo Site",
+    "name": "拾光博客 - 永浩",
     "logo": {
       "@type": "ImageObject",
-      "url": "https://example.org/favicon.ico"
+      "url": "https://growyears.netlify.app/favicon.ico"
     }
   }
 }
@@ -192,7 +192,7 @@
 <header class="header">
     <nav class="nav">
         <div class="logo">
-            <a href="https://example.org/" accesskey="h" title="My New Hugo Site (Alt + H)">My New Hugo Site</a>
+            <a href="https://growyears.netlify.app/" accesskey="h" title="拾光博客 - 永浩 (Alt + H)">拾光博客 - 永浩</a>
             <div class="logo-switches">
                 <button id="theme-toggle" accesskey="t" title="(Alt + T)" aria-label="Toggle theme">
                     <svg id="moon" xmlns="http://www.w3.org/2000/svg" width="24" height="18" viewBox="0 0 24 24"
@@ -266,7 +266,7 @@
     </main>
     
 <footer class="footer">
-        <span>&copy; 2025 <a href="https://example.org/">My New Hugo Site</a></span> · 
+        <span>&copy; 2025 <a href="https://growyears.netlify.app/">拾光博客 - 永浩</a></span> · 
 
     <span>
         Powered by

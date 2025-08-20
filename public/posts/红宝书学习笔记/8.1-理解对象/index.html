@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <meta name="robots" content="index, follow">
-<title>My New Hugo Site</title>
+<title>拾光博客 - 永浩</title>
 <meta name="keywords" content="">
 <meta name="description" content="
 摘要：本文介绍了JavaScript对象的属性特征和管理方法。对象属性分为数据属性和访问器属性，可通过Object.defineProperty()方法定义特性。数据属性包含[[Value]]等4个特性，访问器属性包含[[Get]]/[[Set]]函数。还讲解了Object.assign()合并对象、Object.is()比较对象、对象解构赋值等ES6新特性，以及简写属性名和可计算属性等语法糖。最后说明了如何在函数参数中使用对象解构。这些特性增强了对象操作的灵活性和代码简洁性。
@@ -65,16 +65,16 @@ ES6规范新增了Object.is()方法，这个方法和===很像，但同时也考
 涉及多个属性的解构赋值是一个输出无关的顺序化操作，如果一个解构表达式涉及多个赋值，开始的赋值成功而后面的赋值出错，则整个解构赋值只会完成一部分
 在函数参数列表中也可以进行解构赋值，对参数的解构赋值不会影响arguments对象，但可以在函数签名中声明在函数体内使用局部变量">
 <meta name="author" content="">
-<link rel="canonical" href="https://example.org/posts/%E7%BA%A2%E5%AE%9D%E4%B9%A6%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/8.1-%E7%90%86%E8%A7%A3%E5%AF%B9%E8%B1%A1/">
+<link rel="canonical" href="https://growyears.netlify.app/posts/%E7%BA%A2%E5%AE%9D%E4%B9%A6%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/8.1-%E7%90%86%E8%A7%A3%E5%AF%B9%E8%B1%A1/">
 <link crossorigin="anonymous" href="/assets/css/stylesheet.36819bea596090d8b48cf10d9831382996197aa7e4fc86f792f7c08c9ca4d23b.css" integrity="sha256-NoGb6llgkNi0jPENmDE4KZYZeqfk/Ib3kvfAjJyk0js=" rel="preload stylesheet" as="style">
-<link rel="icon" href="https://example.org/favicon.ico">
-<link rel="icon" type="image/png" sizes="16x16" href="https://example.org/favicon-16x16.png">
-<link rel="icon" type="image/png" sizes="32x32" href="https://example.org/favicon-32x32.png">
-<link rel="apple-touch-icon" href="https://example.org/apple-touch-icon.png">
-<link rel="mask-icon" href="https://example.org/safari-pinned-tab.svg">
+<link rel="icon" href="https://growyears.netlify.app/favicon.ico">
+<link rel="icon" type="image/png" sizes="16x16" href="https://growyears.netlify.app/favicon-16x16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="https://growyears.netlify.app/favicon-32x32.png">
+<link rel="apple-touch-icon" href="https://growyears.netlify.app/apple-touch-icon.png">
+<link rel="mask-icon" href="https://growyears.netlify.app/safari-pinned-tab.svg">
 <meta name="theme-color" content="#2e2e33">
 <meta name="msapplication-TileColor" content="#2e2e33">
-<link rel="alternate" hreflang="en" href="https://example.org/posts/%E7%BA%A2%E5%AE%9D%E4%B9%A6%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/8.1-%E7%90%86%E8%A7%A3%E5%AF%B9%E8%B1%A1/">
+<link rel="alternate" hreflang="en" href="https://growyears.netlify.app/posts/%E7%BA%A2%E5%AE%9D%E4%B9%A6%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/8.1-%E7%90%86%E8%A7%A3%E5%AF%B9%E8%B1%A1/">
 <noscript>
     <style>
         #theme-toggle,
@@ -111,9 +111,9 @@ ES6规范新增了Object.is()方法，这个方法和===很像，但同时也考
         }
 
     </style>
-</noscript><meta property="og:url" content="https://example.org/posts/%E7%BA%A2%E5%AE%9D%E4%B9%A6%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/8.1-%E7%90%86%E8%A7%A3%E5%AF%B9%E8%B1%A1/">
-  <meta property="og:site_name" content="My New Hugo Site">
-  <meta property="og:title" content="My New Hugo Site">
+</noscript><meta property="og:url" content="https://growyears.netlify.app/posts/%E7%BA%A2%E5%AE%9D%E4%B9%A6%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/8.1-%E7%90%86%E8%A7%A3%E5%AF%B9%E8%B1%A1/">
+  <meta property="og:site_name" content="拾光博客 - 永浩">
+  <meta property="og:title" content="拾光博客 - 永浩">
   <meta property="og:description" content=" 摘要：本文介绍了JavaScript对象的属性特征和管理方法。对象属性分为数据属性和访问器属性，可通过Object.defineProperty()方法定义特性。数据属性包含[[Value]]等4个特性，访问器属性包含[[Get]]/[[Set]]函数。还讲解了Object.assign()合并对象、Object.is()比较对象、对象解构赋值等ES6新特性，以及简写属性名和可计算属性等语法糖。最后说明了如何在函数参数中使用对象解构。这些特性增强了对象操作的灵活性和代码简洁性。
 对象就是一组没有特定顺序的值，对象的每个属性或者方法都可由一个名称来标识，这个名称映射到一个值。可以把对象想象成一张散列表，其中的内容就是一组名值对，值可以是数据或者函数
 创建自定义对象的通常方式是创建Object的一个新实例，然后再给它添加属性和方法。早期开发者频繁使用这种方式创建新对象，几年后，对象字面量变成了更流行的方式
@@ -149,7 +149,7 @@ ES6规范新增了Object.is()方法，这个方法和===很像，但同时也考
 解构对于引用嵌套的属性或目标没有限制，为此，可以通过解构来复制对象属性，解构赋值可以使用嵌套解构，以匹配嵌套的属性，在外层属性没有定义的情况下不能使用嵌套解构，无论源对象还是目标对象都一样
 涉及多个属性的解构赋值是一个输出无关的顺序化操作，如果一个解构表达式涉及多个赋值，开始的赋值成功而后面的赋值出错，则整个解构赋值只会完成一部分
 在函数参数列表中也可以进行解构赋值，对参数的解构赋值不会影响arguments对象，但可以在函数签名中声明在函数体内使用局部变量">
-  <meta property="og:locale" content="en-us">
+  <meta property="og:locale" content="zh-cn">
   <meta property="og:type" content="article">
     <meta property="article:section" content="posts">
 <meta name="twitter:card" content="summary">
@@ -222,13 +222,13 @@ ES6规范新增了Object.is()方法，这个方法和===很像，但同时也考
       "@type": "ListItem",
       "position":  1 ,
       "name": "Posts",
-      "item": "https://example.org/posts/"
+      "item": "https://growyears.netlify.app/posts/"
     }, 
     {
       "@type": "ListItem",
       "position":  2 ,
       "name": "",
-      "item": "https://example.org/posts/%E7%BA%A2%E5%AE%9D%E4%B9%A6%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/8.1-%E7%90%86%E8%A7%A3%E5%AF%B9%E8%B1%A1/"
+      "item": "https://growyears.netlify.app/posts/%E7%BA%A2%E5%AE%9D%E4%B9%A6%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/8.1-%E7%90%86%E8%A7%A3%E5%AF%B9%E8%B1%A1/"
     }
   ]
 }
@@ -250,14 +250,14 @@ ES6规范新增了Object.is()方法，这个方法和===很像，但同时也考
   "dateModified": "0001-01-01T00:00:00Z",
   "mainEntityOfPage": {
     "@type": "WebPage",
-    "@id": "https://example.org/posts/%E7%BA%A2%E5%AE%9D%E4%B9%A6%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/8.1-%E7%90%86%E8%A7%A3%E5%AF%B9%E8%B1%A1/"
+    "@id": "https://growyears.netlify.app/posts/%E7%BA%A2%E5%AE%9D%E4%B9%A6%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/8.1-%E7%90%86%E8%A7%A3%E5%AF%B9%E8%B1%A1/"
   },
   "publisher": {
     "@type": "Organization",
-    "name": "My New Hugo Site",
+    "name": "拾光博客 - 永浩",
     "logo": {
       "@type": "ImageObject",
-      "url": "https://example.org/favicon.ico"
+      "url": "https://growyears.netlify.app/favicon.ico"
     }
   }
 }
@@ -279,7 +279,7 @@ ES6规范新增了Object.is()方法，这个方法和===很像，但同时也考
 <header class="header">
     <nav class="nav">
         <div class="logo">
-            <a href="https://example.org/" accesskey="h" title="My New Hugo Site (Alt + H)">My New Hugo Site</a>
+            <a href="https://growyears.netlify.app/" accesskey="h" title="拾光博客 - 永浩 (Alt + H)">拾光博客 - 永浩</a>
             <div class="logo-switches">
                 <button id="theme-toggle" accesskey="t" title="(Alt + T)" aria-label="Toggle theme">
                     <svg id="moon" xmlns="http://www.w3.org/2000/svg" width="24" height="18" viewBox="0 0 24 24"
@@ -388,7 +388,7 @@ ES6规范新增了Object.is()方法，这个方法和===很像，但同时也考
     </main>
     
 <footer class="footer">
-        <span>&copy; 2025 <a href="https://example.org/">My New Hugo Site</a></span> · 
+        <span>&copy; 2025 <a href="https://growyears.netlify.app/">拾光博客 - 永浩</a></span> · 
 
     <span>
         Powered by

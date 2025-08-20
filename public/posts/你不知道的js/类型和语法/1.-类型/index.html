@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <meta name="robots" content="index, follow">
-<title>My New Hugo Site</title>
+<title>拾光博客 - 永浩</title>
 <meta name="keywords" content="">
 <meta name="description" content="一、内置类型概述
 
@@ -73,16 +73,16 @@ typeof 的安全防范机制：
 
 ">
 <meta name="author" content="">
-<link rel="canonical" href="https://example.org/posts/%E4%BD%A0%E4%B8%8D%E7%9F%A5%E9%81%93%E7%9A%84js/%E7%B1%BB%E5%9E%8B%E5%92%8C%E8%AF%AD%E6%B3%95/1.-%E7%B1%BB%E5%9E%8B/">
+<link rel="canonical" href="https://growyears.netlify.app/posts/%E4%BD%A0%E4%B8%8D%E7%9F%A5%E9%81%93%E7%9A%84js/%E7%B1%BB%E5%9E%8B%E5%92%8C%E8%AF%AD%E6%B3%95/1.-%E7%B1%BB%E5%9E%8B/">
 <link crossorigin="anonymous" href="/assets/css/stylesheet.36819bea596090d8b48cf10d9831382996197aa7e4fc86f792f7c08c9ca4d23b.css" integrity="sha256-NoGb6llgkNi0jPENmDE4KZYZeqfk/Ib3kvfAjJyk0js=" rel="preload stylesheet" as="style">
-<link rel="icon" href="https://example.org/favicon.ico">
-<link rel="icon" type="image/png" sizes="16x16" href="https://example.org/favicon-16x16.png">
-<link rel="icon" type="image/png" sizes="32x32" href="https://example.org/favicon-32x32.png">
-<link rel="apple-touch-icon" href="https://example.org/apple-touch-icon.png">
-<link rel="mask-icon" href="https://example.org/safari-pinned-tab.svg">
+<link rel="icon" href="https://growyears.netlify.app/favicon.ico">
+<link rel="icon" type="image/png" sizes="16x16" href="https://growyears.netlify.app/favicon-16x16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="https://growyears.netlify.app/favicon-32x32.png">
+<link rel="apple-touch-icon" href="https://growyears.netlify.app/apple-touch-icon.png">
+<link rel="mask-icon" href="https://growyears.netlify.app/safari-pinned-tab.svg">
 <meta name="theme-color" content="#2e2e33">
 <meta name="msapplication-TileColor" content="#2e2e33">
-<link rel="alternate" hreflang="en" href="https://example.org/posts/%E4%BD%A0%E4%B8%8D%E7%9F%A5%E9%81%93%E7%9A%84js/%E7%B1%BB%E5%9E%8B%E5%92%8C%E8%AF%AD%E6%B3%95/1.-%E7%B1%BB%E5%9E%8B/">
+<link rel="alternate" hreflang="en" href="https://growyears.netlify.app/posts/%E4%BD%A0%E4%B8%8D%E7%9F%A5%E9%81%93%E7%9A%84js/%E7%B1%BB%E5%9E%8B%E5%92%8C%E8%AF%AD%E6%B3%95/1.-%E7%B1%BB%E5%9E%8B/">
 <noscript>
     <style>
         #theme-toggle,
@@ -119,11 +119,11 @@ typeof 的安全防范机制：
         }
 
     </style>
-</noscript><meta property="og:url" content="https://example.org/posts/%E4%BD%A0%E4%B8%8D%E7%9F%A5%E9%81%93%E7%9A%84js/%E7%B1%BB%E5%9E%8B%E5%92%8C%E8%AF%AD%E6%B3%95/1.-%E7%B1%BB%E5%9E%8B/">
-  <meta property="og:site_name" content="My New Hugo Site">
-  <meta property="og:title" content="My New Hugo Site">
+</noscript><meta property="og:url" content="https://growyears.netlify.app/posts/%E4%BD%A0%E4%B8%8D%E7%9F%A5%E9%81%93%E7%9A%84js/%E7%B1%BB%E5%9E%8B%E5%92%8C%E8%AF%AD%E6%B3%95/1.-%E7%B1%BB%E5%9E%8B/">
+  <meta property="og:site_name" content="拾光博客 - 永浩">
+  <meta property="og:title" content="拾光博客 - 永浩">
   <meta property="og:description" content="一、内置类型概述 定义：类型是值的内部特征，决定值的行为，以区分于其他值。 分类： 基本类型（共 6 种）：空值（null）、未定义（undefined）、布尔值（boolean）、数字（number）、字符串（string）、符号（symbol）。不可再分的原子值，存储值本身（而非引用）。 对象类型（1 种）：对象（object），其他类型统称为基本类型。复杂结构，存储引用地址，可包含多个值（属性 / 元素）。 二、typeof 运算符 作用：用于查看值的类型，返回类型的字符串值，共 7 种可能结果。 特殊情况： null 类型使用 typeof 检测时返回 “object”。（JavaScript 历史 bug，无法修复，需特殊处理） 检测 null 值类型的复合条件：!a &amp;&amp; typeof a === &#39;object&#39;（因 null 是假值，且是唯一用 typeof 检测返回 ‘object’ 的基本类型值）。 三、对象子类型 函数（function）： 是 object 的子类型，属于可调用对象。 具有内部属性 [[Call]]，使其可被调用。 可拥有属性，如 length 属性表示其声明的参数个数。 typeof function返回&#34;function&#34;，是历史遗留的特殊处理 数组： 是 object 的子类型。 元素按数字顺序索引，length 属性表示元素个数。 四、值和类型的特性 变量与类型的关系： JS 中变量无类型，只有值有类型。 变量可随时持有任何类型的值，语言引擎不强制变量持有与初始值同类型的值。 对变量执行 typeof 操作，结果是变量所持值的类型（因变量无类型），且 typeof 始终返回字符串。 undefined 与 undeclared 的区别： undefined：变量已在作用域中声明但未赋值。 undeclared：变量未在作用域中声明过。 typeof 的安全防范机制： 对 undeclared 变量使用 typeof，返回 undefined，不会抛出 ReferenceError 错误。 应用场景：在共享全局命名空间中，检查用户定义变量或内建 API 是否存在。 其他安全检查方法： 检查全局变量是否为全局对象的属性（访问不存在的对象属性不会产生 Reference 错误）。 依赖注入设计模式：将依赖通过参数显式传递到函数中。 ">
-  <meta property="og:locale" content="en-us">
+  <meta property="og:locale" content="zh-cn">
   <meta property="og:type" content="article">
     <meta property="article:section" content="posts">
 <meta name="twitter:card" content="summary">
@@ -204,13 +204,13 @@ typeof 的安全防范机制：
       "@type": "ListItem",
       "position":  1 ,
       "name": "Posts",
-      "item": "https://example.org/posts/"
+      "item": "https://growyears.netlify.app/posts/"
     }, 
     {
       "@type": "ListItem",
       "position":  2 ,
       "name": "",
-      "item": "https://example.org/posts/%E4%BD%A0%E4%B8%8D%E7%9F%A5%E9%81%93%E7%9A%84js/%E7%B1%BB%E5%9E%8B%E5%92%8C%E8%AF%AD%E6%B3%95/1.-%E7%B1%BB%E5%9E%8B/"
+      "item": "https://growyears.netlify.app/posts/%E4%BD%A0%E4%B8%8D%E7%9F%A5%E9%81%93%E7%9A%84js/%E7%B1%BB%E5%9E%8B%E5%92%8C%E8%AF%AD%E6%B3%95/1.-%E7%B1%BB%E5%9E%8B/"
     }
   ]
 }
@@ -232,14 +232,14 @@ typeof 的安全防范机制：
   "dateModified": "0001-01-01T00:00:00Z",
   "mainEntityOfPage": {
     "@type": "WebPage",
-    "@id": "https://example.org/posts/%E4%BD%A0%E4%B8%8D%E7%9F%A5%E9%81%93%E7%9A%84js/%E7%B1%BB%E5%9E%8B%E5%92%8C%E8%AF%AD%E6%B3%95/1.-%E7%B1%BB%E5%9E%8B/"
+    "@id": "https://growyears.netlify.app/posts/%E4%BD%A0%E4%B8%8D%E7%9F%A5%E9%81%93%E7%9A%84js/%E7%B1%BB%E5%9E%8B%E5%92%8C%E8%AF%AD%E6%B3%95/1.-%E7%B1%BB%E5%9E%8B/"
   },
   "publisher": {
     "@type": "Organization",
-    "name": "My New Hugo Site",
+    "name": "拾光博客 - 永浩",
     "logo": {
       "@type": "ImageObject",
-      "url": "https://example.org/favicon.ico"
+      "url": "https://growyears.netlify.app/favicon.ico"
     }
   }
 }
@@ -261,7 +261,7 @@ typeof 的安全防范机制：
 <header class="header">
     <nav class="nav">
         <div class="logo">
-            <a href="https://example.org/" accesskey="h" title="My New Hugo Site (Alt + H)">My New Hugo Site</a>
+            <a href="https://growyears.netlify.app/" accesskey="h" title="拾光博客 - 永浩 (Alt + H)">拾光博客 - 永浩</a>
             <div class="logo-switches">
                 <button id="theme-toggle" accesskey="t" title="(Alt + T)" aria-label="Toggle theme">
                     <svg id="moon" xmlns="http://www.w3.org/2000/svg" width="24" height="18" viewBox="0 0 24 24"
@@ -378,7 +378,7 @@ typeof 的安全防范机制：
     </main>
     
 <footer class="footer">
-        <span>&copy; 2025 <a href="https://example.org/">My New Hugo Site</a></span> · 
+        <span>&copy; 2025 <a href="https://growyears.netlify.app/">拾光博客 - 永浩</a></span> · 
 
     <span>
         Powered by

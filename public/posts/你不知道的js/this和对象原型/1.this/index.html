@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <meta name="robots" content="index, follow">
-<title>My New Hugo Site</title>
+<title>拾光博客 - 永浩</title>
 <meta name="keywords" content="">
 <meta name="description" content="
 JavaScript中this的绑定规则取决于函数的调用方式而非声明位置。核心规则包括：默认绑定（非严格模式绑定全局对象，严格模式为undefined）、隐式绑定（通过对象调用）、显式绑定（call/apply/bind）和new绑定（构造函数调用）。箭头函数例外，它继承外层作用域的this且不可更改。优先级顺序为：new绑定 &gt; 显式绑定 &gt; 隐式绑定 &gt; 默认绑定。特殊情况下，传入null/undefined会触发默认绑定，而硬绑定函数被new调用时会替换this。理解这些规则对掌握JavaScript的执行上下文至关重要。
@@ -73,16 +73,16 @@ Object.create(null)可以创建一个空对象，并且不会创建Object.protot
 箭头函数不使用this的四种标准规则，而是根据外层作用域来决定this
 箭头函数的绑定无法被修改，箭头函数可以像bind一样确保函数的this绑定到指定的对象，用常见的词法作用域取代了传统的this机制">
 <meta name="author" content="">
-<link rel="canonical" href="https://example.org/posts/%E4%BD%A0%E4%B8%8D%E7%9F%A5%E9%81%93%E7%9A%84js/this%E5%92%8C%E5%AF%B9%E8%B1%A1%E5%8E%9F%E5%9E%8B/1.this/">
+<link rel="canonical" href="https://growyears.netlify.app/posts/%E4%BD%A0%E4%B8%8D%E7%9F%A5%E9%81%93%E7%9A%84js/this%E5%92%8C%E5%AF%B9%E8%B1%A1%E5%8E%9F%E5%9E%8B/1.this/">
 <link crossorigin="anonymous" href="/assets/css/stylesheet.36819bea596090d8b48cf10d9831382996197aa7e4fc86f792f7c08c9ca4d23b.css" integrity="sha256-NoGb6llgkNi0jPENmDE4KZYZeqfk/Ib3kvfAjJyk0js=" rel="preload stylesheet" as="style">
-<link rel="icon" href="https://example.org/favicon.ico">
-<link rel="icon" type="image/png" sizes="16x16" href="https://example.org/favicon-16x16.png">
-<link rel="icon" type="image/png" sizes="32x32" href="https://example.org/favicon-32x32.png">
-<link rel="apple-touch-icon" href="https://example.org/apple-touch-icon.png">
-<link rel="mask-icon" href="https://example.org/safari-pinned-tab.svg">
+<link rel="icon" href="https://growyears.netlify.app/favicon.ico">
+<link rel="icon" type="image/png" sizes="16x16" href="https://growyears.netlify.app/favicon-16x16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="https://growyears.netlify.app/favicon-32x32.png">
+<link rel="apple-touch-icon" href="https://growyears.netlify.app/apple-touch-icon.png">
+<link rel="mask-icon" href="https://growyears.netlify.app/safari-pinned-tab.svg">
 <meta name="theme-color" content="#2e2e33">
 <meta name="msapplication-TileColor" content="#2e2e33">
-<link rel="alternate" hreflang="en" href="https://example.org/posts/%E4%BD%A0%E4%B8%8D%E7%9F%A5%E9%81%93%E7%9A%84js/this%E5%92%8C%E5%AF%B9%E8%B1%A1%E5%8E%9F%E5%9E%8B/1.this/">
+<link rel="alternate" hreflang="en" href="https://growyears.netlify.app/posts/%E4%BD%A0%E4%B8%8D%E7%9F%A5%E9%81%93%E7%9A%84js/this%E5%92%8C%E5%AF%B9%E8%B1%A1%E5%8E%9F%E5%9E%8B/1.this/">
 <noscript>
     <style>
         #theme-toggle,
@@ -119,9 +119,9 @@ Object.create(null)可以创建一个空对象，并且不会创建Object.protot
         }
 
     </style>
-</noscript><meta property="og:url" content="https://example.org/posts/%E4%BD%A0%E4%B8%8D%E7%9F%A5%E9%81%93%E7%9A%84js/this%E5%92%8C%E5%AF%B9%E8%B1%A1%E5%8E%9F%E5%9E%8B/1.this/">
-  <meta property="og:site_name" content="My New Hugo Site">
-  <meta property="og:title" content="My New Hugo Site">
+</noscript><meta property="og:url" content="https://growyears.netlify.app/posts/%E4%BD%A0%E4%B8%8D%E7%9F%A5%E9%81%93%E7%9A%84js/this%E5%92%8C%E5%AF%B9%E8%B1%A1%E5%8E%9F%E5%9E%8B/1.this/">
+  <meta property="og:site_name" content="拾光博客 - 永浩">
+  <meta property="og:title" content="拾光博客 - 永浩">
   <meta property="og:description" content=" JavaScript中this的绑定规则取决于函数的调用方式而非声明位置。核心规则包括：默认绑定（非严格模式绑定全局对象，严格模式为undefined）、隐式绑定（通过对象调用）、显式绑定（call/apply/bind）和new绑定（构造函数调用）。箭头函数例外，它继承外层作用域的this且不可更改。优先级顺序为：new绑定 &gt; 显式绑定 &gt; 隐式绑定 &gt; 默认绑定。特殊情况下，传入null/undefined会触发默认绑定，而硬绑定函数被new调用时会替换this。理解这些规则对掌握JavaScript的执行上下文至关重要。
 this是在运行时进行绑定的，并不是在编写时绑定，它的上下文取决于函数调用时的各种条件
 this的绑定和函数声明的位置没有任何关系，只取决于函数的调用方式
@@ -150,7 +150,7 @@ Object.create(null)可以创建一个空对象，并且不会创建Object.protot
 有可能会创建一个函数的间接引用，在这种情况下，调用这个函数会应用默认绑定规则
 箭头函数不使用this的四种标准规则，而是根据外层作用域来决定this
 箭头函数的绑定无法被修改，箭头函数可以像bind一样确保函数的this绑定到指定的对象，用常见的词法作用域取代了传统的this机制">
-  <meta property="og:locale" content="en-us">
+  <meta property="og:locale" content="zh-cn">
   <meta property="og:type" content="article">
     <meta property="article:section" content="posts">
 <meta name="twitter:card" content="summary">
@@ -231,13 +231,13 @@ Object.create(null)可以创建一个空对象，并且不会创建Object.protot
       "@type": "ListItem",
       "position":  1 ,
       "name": "Posts",
-      "item": "https://example.org/posts/"
+      "item": "https://growyears.netlify.app/posts/"
     }, 
     {
       "@type": "ListItem",
       "position":  2 ,
       "name": "",
-      "item": "https://example.org/posts/%E4%BD%A0%E4%B8%8D%E7%9F%A5%E9%81%93%E7%9A%84js/this%E5%92%8C%E5%AF%B9%E8%B1%A1%E5%8E%9F%E5%9E%8B/1.this/"
+      "item": "https://growyears.netlify.app/posts/%E4%BD%A0%E4%B8%8D%E7%9F%A5%E9%81%93%E7%9A%84js/this%E5%92%8C%E5%AF%B9%E8%B1%A1%E5%8E%9F%E5%9E%8B/1.this/"
     }
   ]
 }
@@ -259,14 +259,14 @@ Object.create(null)可以创建一个空对象，并且不会创建Object.protot
   "dateModified": "0001-01-01T00:00:00Z",
   "mainEntityOfPage": {
     "@type": "WebPage",
-    "@id": "https://example.org/posts/%E4%BD%A0%E4%B8%8D%E7%9F%A5%E9%81%93%E7%9A%84js/this%E5%92%8C%E5%AF%B9%E8%B1%A1%E5%8E%9F%E5%9E%8B/1.this/"
+    "@id": "https://growyears.netlify.app/posts/%E4%BD%A0%E4%B8%8D%E7%9F%A5%E9%81%93%E7%9A%84js/this%E5%92%8C%E5%AF%B9%E8%B1%A1%E5%8E%9F%E5%9E%8B/1.this/"
   },
   "publisher": {
     "@type": "Organization",
-    "name": "My New Hugo Site",
+    "name": "拾光博客 - 永浩",
     "logo": {
       "@type": "ImageObject",
-      "url": "https://example.org/favicon.ico"
+      "url": "https://growyears.netlify.app/favicon.ico"
     }
   }
 }
@@ -288,7 +288,7 @@ Object.create(null)可以创建一个空对象，并且不会创建Object.protot
 <header class="header">
     <nav class="nav">
         <div class="logo">
-            <a href="https://example.org/" accesskey="h" title="My New Hugo Site (Alt + H)">My New Hugo Site</a>
+            <a href="https://growyears.netlify.app/" accesskey="h" title="拾光博客 - 永浩 (Alt + H)">拾光博客 - 永浩</a>
             <div class="logo-switches">
                 <button id="theme-toggle" accesskey="t" title="(Alt + T)" aria-label="Toggle theme">
                     <svg id="moon" xmlns="http://www.w3.org/2000/svg" width="24" height="18" viewBox="0 0 24 24"
@@ -405,7 +405,7 @@ Object.create(null)可以创建一个空对象，并且不会创建Object.protot
     </main>
     
 <footer class="footer">
-        <span>&copy; 2025 <a href="https://example.org/">My New Hugo Site</a></span> · 
+        <span>&copy; 2025 <a href="https://growyears.netlify.app/">拾光博客 - 永浩</a></span> · 
 
     <span>
         Powered by

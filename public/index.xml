@@ -1,17 +1,17 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
   <channel>
-    <title>My New Hugo Site</title>
-    <link>https://example.org/</link>
-    <description>Recent content on My New Hugo Site</description>
+    <title>拾光博客 - 永浩</title>
+    <link>https://growyears.netlify.app/</link>
+    <description>Recent content on 拾光博客 - 永浩</description>
     <generator>Hugo -- 0.148.2</generator>
-    <language>en-us</language>
-    <atom:link href="https://example.org/index.xml" rel="self" type="application/rss+xml" />
+    <language>zh-cn</language>
+    <atom:link href="https://growyears.netlify.app/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title></title>
-      <link>https://example.org/posts/git%E4%BB%8E%E5%85%A5%E9%97%A8%E5%88%B0%E7%B2%BE%E9%80%9A/%E7%AC%AC%E4%B8%80-~-%E5%9B%9B%E7%AB%A0-%E5%88%9D%E6%AD%A5%E4%BD%BF%E7%94%A8git/</link>
+      <link>https://growyears.netlify.app/posts/git%E4%BB%8E%E5%85%A5%E9%97%A8%E5%88%B0%E7%B2%BE%E9%80%9A/%E7%AC%AC%E4%B8%80-~-%E5%9B%9B%E7%AB%A0-%E5%88%9D%E6%AD%A5%E4%BD%BF%E7%94%A8git/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      <guid>https://example.org/posts/git%E4%BB%8E%E5%85%A5%E9%97%A8%E5%88%B0%E7%B2%BE%E9%80%9A/%E7%AC%AC%E4%B8%80-~-%E5%9B%9B%E7%AB%A0-%E5%88%9D%E6%AD%A5%E4%BD%BF%E7%94%A8git/</guid>
+      <guid>https://growyears.netlify.app/posts/git%E4%BB%8E%E5%85%A5%E9%97%A8%E5%88%B0%E7%B2%BE%E9%80%9A/%E7%AC%AC%E4%B8%80-~-%E5%9B%9B%E7%AB%A0-%E5%88%9D%E6%AD%A5%E4%BD%BF%E7%94%A8git/</guid>
       <description>&lt;h2 id=&#34;git-概述&#34;&gt;Git 概述&lt;/h2&gt;
 &lt;p&gt;Git 是一种分布式版本控制系统，具有以下优点：&lt;/p&gt;
 &lt;ul&gt;
@@ -110,9 +110,9 @@
     </item>
     <item>
       <title></title>
-      <link>https://example.org/posts/git%E4%BB%8E%E5%85%A5%E9%97%A8%E5%88%B0%E7%B2%BE%E9%80%9A/%E7%AC%AC%E4%B8%83%E7%AB%A0-%E4%BF%AE%E6%94%B9%E5%8E%86%E5%8F%B2%E8%AE%B0%E5%BD%95/</link>
+      <link>https://growyears.netlify.app/posts/git%E4%BB%8E%E5%85%A5%E9%97%A8%E5%88%B0%E7%B2%BE%E9%80%9A/%E7%AC%AC%E4%B8%83%E7%AB%A0-%E4%BF%AE%E6%94%B9%E5%8E%86%E5%8F%B2%E8%AE%B0%E5%BD%95/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      <guid>https://example.org/posts/git%E4%BB%8E%E5%85%A5%E9%97%A8%E5%88%B0%E7%B2%BE%E9%80%9A/%E7%AC%AC%E4%B8%83%E7%AB%A0-%E4%BF%AE%E6%94%B9%E5%8E%86%E5%8F%B2%E8%AE%B0%E5%BD%95/</guid>
+      <guid>https://growyears.netlify.app/posts/git%E4%BB%8E%E5%85%A5%E9%97%A8%E5%88%B0%E7%B2%BE%E9%80%9A/%E7%AC%AC%E4%B8%83%E7%AB%A0-%E4%BF%AE%E6%94%B9%E5%8E%86%E5%8F%B2%E8%AE%B0%E5%BD%95/</guid>
       <description>&lt;h2 id=&#34;修改历史信息&#34;&gt;修改历史信息&lt;/h2&gt;
 &lt;ul&gt;
 &lt;li&gt;
@@ -162,9 +162,9 @@
     </item>
     <item>
       <title></title>
-      <link>https://example.org/posts/git%E4%BB%8E%E5%85%A5%E9%97%A8%E5%88%B0%E7%B2%BE%E9%80%9A/%E7%AC%AC%E4%B9%9D%E7%AB%A0-%E5%85%B6%E4%BB%96%E5%B8%B8%E8%A7%81%E7%9A%84%E6%83%85%E5%86%B5%E5%8F%8A%E5%86%B7%E7%9F%A5%E8%AF%86/</link>
+      <link>https://growyears.netlify.app/posts/git%E4%BB%8E%E5%85%A5%E9%97%A8%E5%88%B0%E7%B2%BE%E9%80%9A/%E7%AC%AC%E4%B9%9D%E7%AB%A0-%E5%85%B6%E4%BB%96%E5%B8%B8%E8%A7%81%E7%9A%84%E6%83%85%E5%86%B5%E5%8F%8A%E5%86%B7%E7%9F%A5%E8%AF%86/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      <guid>https://example.org/posts/git%E4%BB%8E%E5%85%A5%E9%97%A8%E5%88%B0%E7%B2%BE%E9%80%9A/%E7%AC%AC%E4%B9%9D%E7%AB%A0-%E5%85%B6%E4%BB%96%E5%B8%B8%E8%A7%81%E7%9A%84%E6%83%85%E5%86%B5%E5%8F%8A%E5%86%B7%E7%9F%A5%E8%AF%86/</guid>
+      <guid>https://growyears.netlify.app/posts/git%E4%BB%8E%E5%85%A5%E9%97%A8%E5%88%B0%E7%B2%BE%E9%80%9A/%E7%AC%AC%E4%B9%9D%E7%AB%A0-%E5%85%B6%E4%BB%96%E5%B8%B8%E8%A7%81%E7%9A%84%E6%83%85%E5%86%B5%E5%8F%8A%E5%86%B7%E7%9F%A5%E8%AF%86/</guid>
       <description>&lt;h4 id=&#34;一工作中途切换任务的处理git-stash&#34;&gt;一、工作中途切换任务的处理（git stash）&lt;/h4&gt;
 &lt;p&gt;&lt;code&gt;git stash&lt;/code&gt;用于临时保存工作区和暂存区的修改（未提交的内容），以便切换分支处理其他任务，后续可恢复继续工作。&lt;/p&gt;
 &lt;ul&gt;
@@ -202,9 +202,9 @@
     </item>
     <item>
       <title></title>
-      <link>https://example.org/posts/git%E4%BB%8E%E5%85%A5%E9%97%A8%E5%88%B0%E7%B2%BE%E9%80%9A/%E7%AC%AC%E4%BA%94%E7%AB%A0-%E5%BC%80%E5%A7%8B%E4%BD%BF%E7%94%A8git/</link>
+      <link>https://growyears.netlify.app/posts/git%E4%BB%8E%E5%85%A5%E9%97%A8%E5%88%B0%E7%B2%BE%E9%80%9A/%E7%AC%AC%E4%BA%94%E7%AB%A0-%E5%BC%80%E5%A7%8B%E4%BD%BF%E7%94%A8git/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      <guid>https://example.org/posts/git%E4%BB%8E%E5%85%A5%E9%97%A8%E5%88%B0%E7%B2%BE%E9%80%9A/%E7%AC%AC%E4%BA%94%E7%AB%A0-%E5%BC%80%E5%A7%8B%E4%BD%BF%E7%94%A8git/</guid>
+      <guid>https://growyears.netlify.app/posts/git%E4%BB%8E%E5%85%A5%E9%97%A8%E5%88%B0%E7%B2%BE%E9%80%9A/%E7%AC%AC%E4%BA%94%E7%AB%A0-%E5%BC%80%E5%A7%8B%E4%BD%BF%E7%94%A8git/</guid>
       <description>&lt;h2 id=&#34;新增初始-repository&#34;&gt;新增、初始 Repository&lt;/h2&gt;
 &lt;ul&gt;
 &lt;li&gt;
@@ -289,9 +289,9 @@
     </item>
     <item>
       <title></title>
-      <link>https://example.org/posts/git%E4%BB%8E%E5%85%A5%E9%97%A8%E5%88%B0%E7%B2%BE%E9%80%9A/%E7%AC%AC%E5%85%AB%E7%AB%A0%E5%92%8C%E7%AC%AC%E5%8D%81%E4%B8%80%E7%AB%A0-%E6%A0%87%E7%AD%BE%E5%92%8Cgitflow/</link>
+      <link>https://growyears.netlify.app/posts/git%E4%BB%8E%E5%85%A5%E9%97%A8%E5%88%B0%E7%B2%BE%E9%80%9A/%E7%AC%AC%E5%85%AB%E7%AB%A0%E5%92%8C%E7%AC%AC%E5%8D%81%E4%B8%80%E7%AB%A0-%E6%A0%87%E7%AD%BE%E5%92%8Cgitflow/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      <guid>https://example.org/posts/git%E4%BB%8E%E5%85%A5%E9%97%A8%E5%88%B0%E7%B2%BE%E9%80%9A/%E7%AC%AC%E5%85%AB%E7%AB%A0%E5%92%8C%E7%AC%AC%E5%8D%81%E4%B8%80%E7%AB%A0-%E6%A0%87%E7%AD%BE%E5%92%8Cgitflow/</guid>
+      <guid>https://growyears.netlify.app/posts/git%E4%BB%8E%E5%85%A5%E9%97%A8%E5%88%B0%E7%B2%BE%E9%80%9A/%E7%AC%AC%E5%85%AB%E7%AB%A0%E5%92%8C%E7%AC%AC%E5%8D%81%E4%B8%80%E7%AB%A0-%E6%A0%87%E7%AD%BE%E5%92%8Cgitflow/</guid>
       <description>&lt;h3 id=&#34;git-标签相关知识&#34;&gt;Git 标签相关知识&lt;/h3&gt;
 &lt;h4 id=&#34;一标签的概念与作用&#34;&gt;一、标签的概念与作用&lt;/h4&gt;
 &lt;ul&gt;
@@ -346,9 +346,9 @@
     </item>
     <item>
       <title></title>
-      <link>https://example.org/posts/git%E4%BB%8E%E5%85%A5%E9%97%A8%E5%88%B0%E7%B2%BE%E9%80%9A/%E7%AC%AC%E5%85%AD%E7%AB%A0-%E4%BD%BF%E7%94%A8%E5%88%86%E6%94%AF/</link>
+      <link>https://growyears.netlify.app/posts/git%E4%BB%8E%E5%85%A5%E9%97%A8%E5%88%B0%E7%B2%BE%E9%80%9A/%E7%AC%AC%E5%85%AD%E7%AB%A0-%E4%BD%BF%E7%94%A8%E5%88%86%E6%94%AF/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      <guid>https://example.org/posts/git%E4%BB%8E%E5%85%A5%E9%97%A8%E5%88%B0%E7%B2%BE%E9%80%9A/%E7%AC%AC%E5%85%AD%E7%AB%A0-%E4%BD%BF%E7%94%A8%E5%88%86%E6%94%AF/</guid>
+      <guid>https://growyears.netlify.app/posts/git%E4%BB%8E%E5%85%A5%E9%97%A8%E5%88%B0%E7%B2%BE%E9%80%9A/%E7%AC%AC%E5%85%AD%E7%AB%A0-%E4%BD%BF%E7%94%A8%E5%88%86%E6%94%AF/</guid>
       <description>&lt;h2 id=&#34;分支的基本操作&#34;&gt;分支的基本操作&lt;/h2&gt;
 &lt;ol&gt;
 &lt;li&gt;&lt;strong&gt;查看分支&lt;/strong&gt;&lt;/li&gt;
@@ -410,9 +410,9 @@
     </item>
     <item>
       <title></title>
-      <link>https://example.org/posts/git%E4%BB%8E%E5%85%A5%E9%97%A8%E5%88%B0%E7%B2%BE%E9%80%9A/%E7%AC%AC%E5%8D%81%E7%AB%A0-%E8%BF%9C%E7%A8%8B%E5%85%B1%E5%90%8C%E5%8D%8F%E4%BD%9C/</link>
+      <link>https://growyears.netlify.app/posts/git%E4%BB%8E%E5%85%A5%E9%97%A8%E5%88%B0%E7%B2%BE%E9%80%9A/%E7%AC%AC%E5%8D%81%E7%AB%A0-%E8%BF%9C%E7%A8%8B%E5%85%B1%E5%90%8C%E5%8D%8F%E4%BD%9C/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      <guid>https://example.org/posts/git%E4%BB%8E%E5%85%A5%E9%97%A8%E5%88%B0%E7%B2%BE%E9%80%9A/%E7%AC%AC%E5%8D%81%E7%AB%A0-%E8%BF%9C%E7%A8%8B%E5%85%B1%E5%90%8C%E5%8D%8F%E4%BD%9C/</guid>
+      <guid>https://growyears.netlify.app/posts/git%E4%BB%8E%E5%85%A5%E9%97%A8%E5%88%B0%E7%B2%BE%E9%80%9A/%E7%AC%AC%E5%8D%81%E7%AB%A0-%E8%BF%9C%E7%A8%8B%E5%85%B1%E5%90%8C%E5%8D%8F%E4%BD%9C/</guid>
       <description>&lt;h4 id=&#34;一将内容推送到-github&#34;&gt;一、将内容推送到 GitHub&lt;/h4&gt;
 &lt;ul&gt;
 &lt;li&gt;
@@ -508,9 +508,9 @@
     </item>
     <item>
       <title></title>
-      <link>https://example.org/posts/js-dom%E7%BC%96%E7%A8%8B%E8%89%BA%E6%9C%AF/%E7%AC%AC%E4%B8%80%E7%AB%A0-js%E7%AE%80%E5%8F%B2/</link>
+      <link>https://growyears.netlify.app/posts/js-dom%E7%BC%96%E7%A8%8B%E8%89%BA%E6%9C%AF/%E7%AC%AC%E4%B8%80%E7%AB%A0-js%E7%AE%80%E5%8F%B2/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      <guid>https://example.org/posts/js-dom%E7%BC%96%E7%A8%8B%E8%89%BA%E6%9C%AF/%E7%AC%AC%E4%B8%80%E7%AB%A0-js%E7%AE%80%E5%8F%B2/</guid>
+      <guid>https://growyears.netlify.app/posts/js-dom%E7%BC%96%E7%A8%8B%E8%89%BA%E6%9C%AF/%E7%AC%AC%E4%B8%80%E7%AB%A0-js%E7%AE%80%E5%8F%B2/</guid>
       <description>&lt;h3 id=&#34;一dom文档对象模型&#34;&gt;一、DOM（文档对象模型）&lt;/h3&gt;
 &lt;ul&gt;
 &lt;li&gt;&lt;strong&gt;核心定义&lt;/strong&gt;：DOM 是一套对文档内容进行抽象和概念化的方法，它将 HTML/XML 文档的结构转化为一个树形的对象模型，使得程序（如 JS）可以访问和操作文档的内容、结构和样式。&lt;/li&gt;
@@ -542,9 +542,9 @@
     </item>
     <item>
       <title></title>
-      <link>https://example.org/posts/js-dom%E7%BC%96%E7%A8%8B%E8%89%BA%E6%9C%AF/%E7%AC%AC%E4%B8%83%E7%AB%A0-%E5%8A%A8%E6%80%81%E5%88%9B%E5%BB%BA%E6%A0%87%E8%AE%B0/</link>
+      <link>https://growyears.netlify.app/posts/js-dom%E7%BC%96%E7%A8%8B%E8%89%BA%E6%9C%AF/%E7%AC%AC%E4%B8%83%E7%AB%A0-%E5%8A%A8%E6%80%81%E5%88%9B%E5%BB%BA%E6%A0%87%E8%AE%B0/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      <guid>https://example.org/posts/js-dom%E7%BC%96%E7%A8%8B%E8%89%BA%E6%9C%AF/%E7%AC%AC%E4%B8%83%E7%AB%A0-%E5%8A%A8%E6%80%81%E5%88%9B%E5%BB%BA%E6%A0%87%E8%AE%B0/</guid>
+      <guid>https://growyears.netlify.app/posts/js-dom%E7%BC%96%E7%A8%8B%E8%89%BA%E6%9C%AF/%E7%AC%AC%E4%B8%83%E7%AB%A0-%E5%8A%A8%E6%80%81%E5%88%9B%E5%BB%BA%E6%A0%87%E8%AE%B0/</guid>
       <description>&lt;h3 id=&#34;一传统文档操作方法&#34;&gt;一、传统文档操作方法&lt;/h3&gt;
 &lt;h4 id=&#34;1-documentwrite&#34;&gt;1. &lt;code&gt;document.write()&lt;/code&gt;&lt;/h4&gt;
 &lt;ul&gt;
@@ -592,9 +592,9 @@
     </item>
     <item>
       <title></title>
-      <link>https://example.org/posts/js-dom%E7%BC%96%E7%A8%8B%E8%89%BA%E6%9C%AF/%E7%AC%AC%E4%B8%89%E7%AB%A0-dom/</link>
+      <link>https://growyears.netlify.app/posts/js-dom%E7%BC%96%E7%A8%8B%E8%89%BA%E6%9C%AF/%E7%AC%AC%E4%B8%89%E7%AB%A0-dom/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      <guid>https://example.org/posts/js-dom%E7%BC%96%E7%A8%8B%E8%89%BA%E6%9C%AF/%E7%AC%AC%E4%B8%89%E7%AB%A0-dom/</guid>
+      <guid>https://growyears.netlify.app/posts/js-dom%E7%BC%96%E7%A8%8B%E8%89%BA%E6%9C%AF/%E7%AC%AC%E4%B8%89%E7%AB%A0-dom/</guid>
       <description>&lt;h3 id=&#34;一dom-的核心概念&#34;&gt;一、DOM 的核心概念&lt;/h3&gt;
 &lt;p&gt;DOM（Document Object Model，文档对象模型）是一套用于抽象和概念化文档内容的接口，它将网页文档转换为可通过 JavaScript 操作的对象树结构。&lt;/p&gt;
 &lt;h4 id=&#34;1-d文档document&#34;&gt;1. D：文档（Document）&lt;/h4&gt;
@@ -678,9 +678,9 @@
     </item>
     <item>
       <title></title>
-      <link>https://example.org/posts/js-dom%E7%BC%96%E7%A8%8B%E8%89%BA%E6%9C%AF/%E7%AC%AC%E4%B9%9D%E7%AB%A0-css-dom/</link>
+      <link>https://growyears.netlify.app/posts/js-dom%E7%BC%96%E7%A8%8B%E8%89%BA%E6%9C%AF/%E7%AC%AC%E4%B9%9D%E7%AB%A0-css-dom/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      <guid>https://example.org/posts/js-dom%E7%BC%96%E7%A8%8B%E8%89%BA%E6%9C%AF/%E7%AC%AC%E4%B9%9D%E7%AB%A0-css-dom/</guid>
+      <guid>https://growyears.netlify.app/posts/js-dom%E7%BC%96%E7%A8%8B%E8%89%BA%E6%9C%AF/%E7%AC%AC%E4%B9%9D%E7%AB%A0-css-dom/</guid>
       <description>&lt;h3 id=&#34;一网页的三层结构&#34;&gt;一、网页的三层结构&lt;/h3&gt;
 &lt;p&gt;网页的呈现和交互由&lt;strong&gt;结构层、表示层、行为层&lt;/strong&gt;共同构成，三者各司其职又协同工作：&lt;/p&gt;
 &lt;ol&gt;
@@ -737,9 +737,9 @@
     </item>
     <item>
       <title></title>
-      <link>https://example.org/posts/js-dom%E7%BC%96%E7%A8%8B%E8%89%BA%E6%9C%AF/%E7%AC%AC%E4%BA%8C%E7%AB%A0-js%E8%AF%AD%E6%B3%95/</link>
+      <link>https://growyears.netlify.app/posts/js-dom%E7%BC%96%E7%A8%8B%E8%89%BA%E6%9C%AF/%E7%AC%AC%E4%BA%8C%E7%AB%A0-js%E8%AF%AD%E6%B3%95/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      <guid>https://example.org/posts/js-dom%E7%BC%96%E7%A8%8B%E8%89%BA%E6%9C%AF/%E7%AC%AC%E4%BA%8C%E7%AB%A0-js%E8%AF%AD%E6%B3%95/</guid>
+      <guid>https://growyears.netlify.app/posts/js-dom%E7%BC%96%E7%A8%8B%E8%89%BA%E6%9C%AF/%E7%AC%AC%E4%BA%8C%E7%AB%A0-js%E8%AF%AD%E6%B3%95/</guid>
       <description>&lt;h3 id=&#34;一语法&#34;&gt;一、语法&lt;/h3&gt;
 &lt;h4 id=&#34;1-变量&#34;&gt;1. 变量&lt;/h4&gt;
 &lt;ul&gt;
@@ -854,9 +854,9 @@
     </item>
     <item>
       <title></title>
-      <link>https://example.org/posts/js-dom%E7%BC%96%E7%A8%8B%E8%89%BA%E6%9C%AF/%E7%AC%AC%E4%BA%94%E7%AB%A0-%E6%9C%80%E4%BD%B3%E5%AE%9E%E8%B7%B5/</link>
+      <link>https://growyears.netlify.app/posts/js-dom%E7%BC%96%E7%A8%8B%E8%89%BA%E6%9C%AF/%E7%AC%AC%E4%BA%94%E7%AB%A0-%E6%9C%80%E4%BD%B3%E5%AE%9E%E8%B7%B5/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      <guid>https://example.org/posts/js-dom%E7%BC%96%E7%A8%8B%E8%89%BA%E6%9C%AF/%E7%AC%AC%E4%BA%94%E7%AB%A0-%E6%9C%80%E4%BD%B3%E5%AE%9E%E8%B7%B5/</guid>
+      <guid>https://growyears.netlify.app/posts/js-dom%E7%BC%96%E7%A8%8B%E8%89%BA%E6%9C%AF/%E7%AC%AC%E4%BA%94%E7%AB%A0-%E6%9C%80%E4%BD%B3%E5%AE%9E%E8%B7%B5/</guid>
       <description>&lt;h3 id=&#34;一平稳退化&#34;&gt;一、平稳退化&lt;/h3&gt;
 &lt;ul&gt;
 &lt;li&gt;&lt;strong&gt;定义&lt;/strong&gt;：确保网站在浏览器不支持 JavaScript 或 JS 被禁用时，核心功能仍可正常使用（如链接可点击、内容可访问）。&lt;/li&gt;
@@ -910,9 +910,9 @@
     </item>
     <item>
       <title></title>
-      <link>https://example.org/posts/js-dom%E7%BC%96%E7%A8%8B%E8%89%BA%E6%9C%AF/%E7%AC%AC%E5%85%AB%E7%AB%A0-%E5%85%85%E5%AE%9E%E7%9A%84%E6%96%87%E6%A1%A3%E7%9A%84%E5%86%85%E5%AE%B9/</link>
+      <link>https://growyears.netlify.app/posts/js-dom%E7%BC%96%E7%A8%8B%E8%89%BA%E6%9C%AF/%E7%AC%AC%E5%85%AB%E7%AB%A0-%E5%85%85%E5%AE%9E%E7%9A%84%E6%96%87%E6%A1%A3%E7%9A%84%E5%86%85%E5%AE%B9/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      <guid>https://example.org/posts/js-dom%E7%BC%96%E7%A8%8B%E8%89%BA%E6%9C%AF/%E7%AC%AC%E5%85%AB%E7%AB%A0-%E5%85%85%E5%AE%9E%E7%9A%84%E6%96%87%E6%A1%A3%E7%9A%84%E5%86%85%E5%AE%B9/</guid>
+      <guid>https://growyears.netlify.app/posts/js-dom%E7%BC%96%E7%A8%8B%E8%89%BA%E6%9C%AF/%E7%AC%AC%E5%85%AB%E7%AB%A0-%E5%85%85%E5%AE%9E%E7%9A%84%E6%96%87%E6%A1%A3%E7%9A%84%E5%86%85%E5%AE%B9/</guid>
       <description>&lt;h3 id=&#34;一abbr-与-acronym-标签&#34;&gt;一、&lt;code&gt;&amp;lt;abbr&amp;gt;&lt;/code&gt; 与 &lt;code&gt;&amp;lt;acronym&amp;gt;&lt;/code&gt; 标签&lt;/h3&gt;
 &lt;ul&gt;
 &lt;li&gt;
@@ -968,9 +968,9 @@
     </item>
     <item>
       <title></title>
-      <link>https://example.org/posts/js-dom%E7%BC%96%E7%A8%8B%E8%89%BA%E6%9C%AF/%E7%AC%AC%E5%85%AD%E7%AB%A0-%E6%A1%88%E4%BE%8B%E7%A0%94%E7%A9%B6%E5%9B%BE%E7%89%87%E5%BA%93%E6%94%B9%E8%BF%9B%E7%89%88/</link>
+      <link>https://growyears.netlify.app/posts/js-dom%E7%BC%96%E7%A8%8B%E8%89%BA%E6%9C%AF/%E7%AC%AC%E5%85%AD%E7%AB%A0-%E6%A1%88%E4%BE%8B%E7%A0%94%E7%A9%B6%E5%9B%BE%E7%89%87%E5%BA%93%E6%94%B9%E8%BF%9B%E7%89%88/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      <guid>https://example.org/posts/js-dom%E7%BC%96%E7%A8%8B%E8%89%BA%E6%9C%AF/%E7%AC%AC%E5%85%AD%E7%AB%A0-%E6%A1%88%E4%BE%8B%E7%A0%94%E7%A9%B6%E5%9B%BE%E7%89%87%E5%BA%93%E6%94%B9%E8%BF%9B%E7%89%88/</guid>
+      <guid>https://growyears.netlify.app/posts/js-dom%E7%BC%96%E7%A8%8B%E8%89%BA%E6%9C%AF/%E7%AC%AC%E5%85%AD%E7%AB%A0-%E6%A1%88%E4%BE%8B%E7%A0%94%E7%A9%B6%E5%9B%BE%E7%89%87%E5%BA%93%E6%94%B9%E8%BF%9B%E7%89%88/</guid>
       <description>&lt;h3 id=&#34;一js-与网页结构的解耦原则&#34;&gt;一、JS 与网页结构的解耦原则&lt;/h3&gt;
 &lt;ul&gt;
 &lt;li&gt;&lt;strong&gt;核心思想&lt;/strong&gt;：为网页添加行为时，JS 代码应尽量避免依赖特定的 HTML 结构（如固定的标签嵌套、类名顺序等）。&lt;/li&gt;
@@ -1035,9 +1035,9 @@
     </item>
     <item>
       <title></title>
-      <link>https://example.org/posts/js-dom%E7%BC%96%E7%A8%8B%E8%89%BA%E6%9C%AF/%E7%AC%AC%E5%9B%9B%E7%AB%A0-%E6%A1%88%E4%BE%8B%E7%A0%94%E7%A9%B6js%E5%9B%BE%E7%89%87%E5%BA%93/</link>
+      <link>https://growyears.netlify.app/posts/js-dom%E7%BC%96%E7%A8%8B%E8%89%BA%E6%9C%AF/%E7%AC%AC%E5%9B%9B%E7%AB%A0-%E6%A1%88%E4%BE%8B%E7%A0%94%E7%A9%B6js%E5%9B%BE%E7%89%87%E5%BA%93/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      <guid>https://example.org/posts/js-dom%E7%BC%96%E7%A8%8B%E8%89%BA%E6%9C%AF/%E7%AC%AC%E5%9B%9B%E7%AB%A0-%E6%A1%88%E4%BE%8B%E7%A0%94%E7%A9%B6js%E5%9B%BE%E7%89%87%E5%BA%93/</guid>
+      <guid>https://growyears.netlify.app/posts/js-dom%E7%BC%96%E7%A8%8B%E8%89%BA%E6%9C%AF/%E7%AC%AC%E5%9B%9B%E7%AB%A0-%E6%A1%88%E4%BE%8B%E7%A0%94%E7%A9%B6js%E5%9B%BE%E7%89%87%E5%BA%93/</guid>
       <description>&lt;h3 id=&#34;一元素属性操作的两种方式&#34;&gt;一、元素属性操作的两种方式&lt;/h3&gt;
 &lt;h4 id=&#34;1-直接属性赋值传统方式&#34;&gt;1. 直接属性赋值（传统方式）&lt;/h4&gt;
 &lt;ul&gt;
@@ -1091,9 +1091,9 @@
     </item>
     <item>
       <title></title>
-      <link>https://example.org/posts/ts/01--ts/</link>
+      <link>https://growyears.netlify.app/posts/ts/01--ts/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      <guid>https://example.org/posts/ts/01--ts/</guid>
+      <guid>https://growyears.netlify.app/posts/ts/01--ts/</guid>
       <description>&lt;h3 id=&#34;1-静态检查与静态类型检查&#34;&gt;1. &lt;strong&gt;静态检查与静态类型检查&lt;/strong&gt;&lt;/h3&gt;
 &lt;ul&gt;
 &lt;li&gt;
@@ -1145,9 +1145,9 @@
     </item>
     <item>
       <title></title>
-      <link>https://example.org/posts/ts/02--%E6%97%A5%E5%B8%B8%E7%B1%BB%E5%9E%8B/</link>
+      <link>https://growyears.netlify.app/posts/ts/02--%E6%97%A5%E5%B8%B8%E7%B1%BB%E5%9E%8B/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      <guid>https://example.org/posts/ts/02--%E6%97%A5%E5%B8%B8%E7%B1%BB%E5%9E%8B/</guid>
+      <guid>https://growyears.netlify.app/posts/ts/02--%E6%97%A5%E5%B8%B8%E7%B1%BB%E5%9E%8B/</guid>
       <description>&lt;h3 id=&#34;1-基础类型与数组类型&#34;&gt;1. &lt;strong&gt;基础类型与数组类型&lt;/strong&gt;&lt;/h3&gt;
 &lt;ul&gt;
 &lt;li&gt;
@@ -1204,9 +1204,9 @@
     </item>
     <item>
       <title></title>
-      <link>https://example.org/posts/ts/03--%E7%B1%BB%E5%9E%8B%E7%BC%A9%E5%B0%8F/</link>
+      <link>https://growyears.netlify.app/posts/ts/03--%E7%B1%BB%E5%9E%8B%E7%BC%A9%E5%B0%8F/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      <guid>https://example.org/posts/ts/03--%E7%B1%BB%E5%9E%8B%E7%BC%A9%E5%B0%8F/</guid>
+      <guid>https://growyears.netlify.app/posts/ts/03--%E7%B1%BB%E5%9E%8B%E7%BC%A9%E5%B0%8F/</guid>
       <description>&lt;h3 id=&#34;1-类型缩小与控制流分析基础&#34;&gt;1. &lt;strong&gt;类型缩小与控制流分析基础&lt;/strong&gt;&lt;/h3&gt;
 &lt;ul&gt;
 &lt;li&gt;
@@ -1286,9 +1286,9 @@
     </item>
     <item>
       <title></title>
-      <link>https://example.org/posts/ts/04--%E6%9B%B4%E5%A4%9A%E5%85%B3%E4%BA%8E%E5%87%BD%E6%95%B0/</link>
+      <link>https://growyears.netlify.app/posts/ts/04--%E6%9B%B4%E5%A4%9A%E5%85%B3%E4%BA%8E%E5%87%BD%E6%95%B0/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      <guid>https://example.org/posts/ts/04--%E6%9B%B4%E5%A4%9A%E5%85%B3%E4%BA%8E%E5%87%BD%E6%95%B0/</guid>
+      <guid>https://growyears.netlify.app/posts/ts/04--%E6%9B%B4%E5%A4%9A%E5%85%B3%E4%BA%8E%E5%87%BD%E6%95%B0/</guid>
       <description>&lt;h3 id=&#34;1-函数类型表达式&#34;&gt;1. 函数类型表达式&lt;/h3&gt;
 &lt;ul&gt;
 &lt;li&gt;
@@ -1392,9 +1392,9 @@
     </item>
     <item>
       <title></title>
-      <link>https://example.org/posts/ts/05--%E5%AF%B9%E8%B1%A1%E7%B1%BB%E5%9E%8B/</link>
+      <link>https://growyears.netlify.app/posts/ts/05--%E5%AF%B9%E8%B1%A1%E7%B1%BB%E5%9E%8B/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      <guid>https://example.org/posts/ts/05--%E5%AF%B9%E8%B1%A1%E7%B1%BB%E5%9E%8B/</guid>
+      <guid>https://growyears.netlify.app/posts/ts/05--%E5%AF%B9%E8%B1%A1%E7%B1%BB%E5%9E%8B/</guid>
       <description>&lt;h3 id=&#34;一对象类型的基本定义&#34;&gt;一、对象类型的基本定义&lt;/h3&gt;
 &lt;p&gt;对象类型是 TS 中描述数据结构的核心方式，主要有三种定义形式：&lt;/p&gt;
 &lt;ol&gt;
@@ -1475,9 +1475,9 @@
     </item>
     <item>
       <title></title>
-      <link>https://example.org/posts/ts/06--%E6%B3%9B%E5%9E%8B/</link>
+      <link>https://growyears.netlify.app/posts/ts/06--%E6%B3%9B%E5%9E%8B/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      <guid>https://example.org/posts/ts/06--%E6%B3%9B%E5%9E%8B/</guid>
+      <guid>https://growyears.netlify.app/posts/ts/06--%E6%B3%9B%E5%9E%8B/</guid>
       <description>&lt;h3 id=&#34;一类型变量&#34;&gt;一、类型变量&lt;/h3&gt;
 &lt;p&gt;类型变量是泛型的 “灵魂”，用于在&lt;strong&gt;类型层面&lt;/strong&gt;建立关联（而非值层面），解决 “同一份逻辑适配多种类型” 的问题。&lt;/p&gt;
 &lt;h4 id=&#34;基本用法&#34;&gt;基本用法&lt;/h4&gt;
@@ -1543,9 +1543,9 @@
     </item>
     <item>
       <title></title>
-      <link>https://example.org/posts/ts/07--%E7%B1%BB%E5%9E%8B%E8%BF%90%E7%AE%97%E7%AC%A6/</link>
+      <link>https://growyears.netlify.app/posts/ts/07--%E7%B1%BB%E5%9E%8B%E8%BF%90%E7%AE%97%E7%AC%A6/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      <guid>https://example.org/posts/ts/07--%E7%B1%BB%E5%9E%8B%E8%BF%90%E7%AE%97%E7%AC%A6/</guid>
+      <guid>https://growyears.netlify.app/posts/ts/07--%E7%B1%BB%E5%9E%8B%E8%BF%90%E7%AE%97%E7%AC%A6/</guid>
       <description>&lt;h3 id=&#34;一keyof-运算符&#34;&gt;一、&lt;code&gt;keyof&lt;/code&gt; 运算符&lt;/h3&gt;
 &lt;p&gt;&lt;code&gt;keyof&lt;/code&gt; 用于将对象类型的所有键名转换为&lt;strong&gt;字面量联合类型&lt;/strong&gt;，是实现 “类型安全的键访问” 的基础。&lt;/p&gt;
 &lt;h4 id=&#34;1-基础用法&#34;&gt;1. 基础用法&lt;/h4&gt;
@@ -1577,9 +1577,9 @@
     </item>
     <item>
       <title></title>
-      <link>https://example.org/posts/ts/08--%E6%9D%A1%E4%BB%B6%E7%B1%BB%E5%9E%8B/</link>
+      <link>https://growyears.netlify.app/posts/ts/08--%E6%9D%A1%E4%BB%B6%E7%B1%BB%E5%9E%8B/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      <guid>https://example.org/posts/ts/08--%E6%9D%A1%E4%BB%B6%E7%B1%BB%E5%9E%8B/</guid>
+      <guid>https://growyears.netlify.app/posts/ts/08--%E6%9D%A1%E4%BB%B6%E7%B1%BB%E5%9E%8B/</guid>
       <description>&lt;h3 id=&#34;一条件类型&#34;&gt;一、条件类型&lt;/h3&gt;
 &lt;p&gt;条件类型通过判断类型关系返回不同类型，基本形式为 &lt;code&gt;SomeType extends OtherType ? TrueType : FalseType&lt;/code&gt;，核心价值在于与泛型结合实现灵活的类型逻辑。&lt;/p&gt;
 &lt;h4 id=&#34;1-基本用法&#34;&gt;1. 基本用法&lt;/h4&gt;
@@ -1619,9 +1619,9 @@
     </item>
     <item>
       <title></title>
-      <link>https://example.org/posts/ts/09--%E7%B1%BB/</link>
+      <link>https://growyears.netlify.app/posts/ts/09--%E7%B1%BB/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      <guid>https://example.org/posts/ts/09--%E7%B1%BB/</guid>
+      <guid>https://growyears.netlify.app/posts/ts/09--%E7%B1%BB/</guid>
       <description>&lt;h4 id=&#34;一类的字段&#34;&gt;一、类的字段&lt;/h4&gt;
 &lt;p&gt;字段是类存储数据的基础属性，其行为受类型、初始化规则和修饰符约束。&lt;/p&gt;
 &lt;ol&gt;
@@ -1703,9 +1703,9 @@
     </item>
     <item>
       <title></title>
-      <link>https://example.org/posts/%E4%BD%A0%E4%B8%8D%E7%9F%A5%E9%81%93%E7%9A%84js/this%E5%92%8C%E5%AF%B9%E8%B1%A1%E5%8E%9F%E5%9E%8B/1.this/</link>
+      <link>https://growyears.netlify.app/posts/%E4%BD%A0%E4%B8%8D%E7%9F%A5%E9%81%93%E7%9A%84js/this%E5%92%8C%E5%AF%B9%E8%B1%A1%E5%8E%9F%E5%9E%8B/1.this/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      <guid>https://example.org/posts/%E4%BD%A0%E4%B8%8D%E7%9F%A5%E9%81%93%E7%9A%84js/this%E5%92%8C%E5%AF%B9%E8%B1%A1%E5%8E%9F%E5%9E%8B/1.this/</guid>
+      <guid>https://growyears.netlify.app/posts/%E4%BD%A0%E4%B8%8D%E7%9F%A5%E9%81%93%E7%9A%84js/this%E5%92%8C%E5%AF%B9%E8%B1%A1%E5%8E%9F%E5%9E%8B/1.this/</guid>
       <description>&lt;blockquote&gt;
 &lt;p&gt;JavaScript中this的绑定规则取决于函数的调用方式而非声明位置。核心规则包括：默认绑定（非严格模式绑定全局对象，严格模式为undefined）、隐式绑定（通过对象调用）、显式绑定（call/apply/bind）和new绑定（构造函数调用）。箭头函数例外，它继承外层作用域的this且不可更改。优先级顺序为：new绑定 &amp;gt; 显式绑定 &amp;gt; 隐式绑定 &amp;gt; 默认绑定。特殊情况下，传入null/undefined会触发默认绑定，而硬绑定函数被new调用时会替换this。理解这些规则对掌握JavaScript的执行上下文至关重要。&lt;/p&gt;&lt;/blockquote&gt;
 &lt;p&gt;this是在运行时进行绑定的，并不是在编写时绑定，它的上下文取决于函数调用时的各种条件&lt;/p&gt;
@@ -1774,9 +1774,9 @@
     </item>
     <item>
       <title></title>
-      <link>https://example.org/posts/%E4%BD%A0%E4%B8%8D%E7%9F%A5%E9%81%93%E7%9A%84js/this%E5%92%8C%E5%AF%B9%E8%B1%A1%E5%8E%9F%E5%9E%8B/2.-%E5%AF%B9%E8%B1%A1/</link>
+      <link>https://growyears.netlify.app/posts/%E4%BD%A0%E4%B8%8D%E7%9F%A5%E9%81%93%E7%9A%84js/this%E5%92%8C%E5%AF%B9%E8%B1%A1%E5%8E%9F%E5%9E%8B/2.-%E5%AF%B9%E8%B1%A1/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      <guid>https://example.org/posts/%E4%BD%A0%E4%B8%8D%E7%9F%A5%E9%81%93%E7%9A%84js/this%E5%92%8C%E5%AF%B9%E8%B1%A1%E5%8E%9F%E5%9E%8B/2.-%E5%AF%B9%E8%B1%A1/</guid>
+      <guid>https://growyears.netlify.app/posts/%E4%BD%A0%E4%B8%8D%E7%9F%A5%E9%81%93%E7%9A%84js/this%E5%92%8C%E5%AF%B9%E8%B1%A1%E5%8E%9F%E5%9E%8B/2.-%E5%AF%B9%E8%B1%A1/</guid>
       <description>&lt;blockquote&gt;
 &lt;p&gt;本文摘要：JavaScript对象可以通过文字声明或构造形式定义，两种方式结果相同但写法不同。JS有6种基本类型和多种对象子类型，包括内置对象如Array、Date等。对象属性存储的是名称而非值本身，可通过点语法或块访问访问。属性描述符可控制属性的可写性、可配置性等特性。通过Object.preventExtensions()、Object.seal()和Object.freeze()可实现不同级别的对象不可变性。in、hasOwnProperty()等方法可用于检查属性存在性，forEach、every等辅助迭代器可用于数组遍历。for..of循环通过内置@@iterator实现迭代访问。&lt;/p&gt;&lt;/blockquote&gt;
 &lt;p&gt;对象可以通过两种形式定义：声明文字形式和构造形式&lt;/p&gt;
@@ -1876,9 +1876,9 @@
     </item>
     <item>
       <title></title>
-      <link>https://example.org/posts/%E4%BD%A0%E4%B8%8D%E7%9F%A5%E9%81%93%E7%9A%84js/this%E5%92%8C%E5%AF%B9%E8%B1%A1%E5%8E%9F%E5%9E%8B/3.-%E6%B7%B7%E5%90%88%E5%AF%B9%E8%B1%A1%E7%B1%BB/</link>
+      <link>https://growyears.netlify.app/posts/%E4%BD%A0%E4%B8%8D%E7%9F%A5%E9%81%93%E7%9A%84js/this%E5%92%8C%E5%AF%B9%E8%B1%A1%E5%8E%9F%E5%9E%8B/3.-%E6%B7%B7%E5%90%88%E5%AF%B9%E8%B1%A1%E7%B1%BB/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      <guid>https://example.org/posts/%E4%BD%A0%E4%B8%8D%E7%9F%A5%E9%81%93%E7%9A%84js/this%E5%92%8C%E5%AF%B9%E8%B1%A1%E5%8E%9F%E5%9E%8B/3.-%E6%B7%B7%E5%90%88%E5%AF%B9%E8%B1%A1%E7%B1%BB/</guid>
+      <guid>https://growyears.netlify.app/posts/%E4%BD%A0%E4%B8%8D%E7%9F%A5%E9%81%93%E7%9A%84js/this%E5%92%8C%E5%AF%B9%E8%B1%A1%E5%8E%9F%E5%9E%8B/3.-%E6%B7%B7%E5%90%88%E5%AF%B9%E8%B1%A1%E7%B1%BB/</guid>
       <description>&lt;blockquote&gt;
 &lt;p&gt;摘要：面向对象编程中，类作为蓝图定义了数据结构与行为的封装，通过继承实现父类与子类的特殊化关系，核心概念包括多态（方法重写与相对引用）和实例化（构造函数创建对象副本）。然而JavaScript的对象机制与传统类继承不同，采用原型关联而非复制，并不存在真正的类实例化概念。(148字)&lt;/p&gt;&lt;/blockquote&gt;
 &lt;p&gt;类继承描述了一种代码的组织结构形式，一种在软件中对真实世界中问题领域的建模方法&lt;/p&gt;
@@ -1904,9 +1904,9 @@
     </item>
     <item>
       <title></title>
-      <link>https://example.org/posts/%E4%BD%A0%E4%B8%8D%E7%9F%A5%E9%81%93%E7%9A%84js/this%E5%92%8C%E5%AF%B9%E8%B1%A1%E5%8E%9F%E5%9E%8B/4.-%E5%8E%9F%E5%9E%8B/</link>
+      <link>https://growyears.netlify.app/posts/%E4%BD%A0%E4%B8%8D%E7%9F%A5%E9%81%93%E7%9A%84js/this%E5%92%8C%E5%AF%B9%E8%B1%A1%E5%8E%9F%E5%9E%8B/4.-%E5%8E%9F%E5%9E%8B/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      <guid>https://example.org/posts/%E4%BD%A0%E4%B8%8D%E7%9F%A5%E9%81%93%E7%9A%84js/this%E5%92%8C%E5%AF%B9%E8%B1%A1%E5%8E%9F%E5%9E%8B/4.-%E5%8E%9F%E5%9E%8B/</guid>
+      <guid>https://growyears.netlify.app/posts/%E4%BD%A0%E4%B8%8D%E7%9F%A5%E9%81%93%E7%9A%84js/this%E5%92%8C%E5%AF%B9%E8%B1%A1%E5%8E%9F%E5%9E%8B/4.-%E5%8E%9F%E5%9E%8B/</guid>
       <description>&lt;blockquote&gt;
 &lt;p&gt;摘要：JavaScript对象通过[[Prototype]]链实现原型继承机制，属性访问会沿着原型链查找。对象创建时[[Prototype]]会被赋予非空值，最终指向Object.prototype。属性赋值可能产生屏蔽效果，不同情况处理方式不同。构造函数.prototype属性用于关联新对象，但JS本质是对象互相关联而非类继承。Object.create()和__proto__等方法可操作原型链，空[[Prototype]]对象适合数据存储。JS通过原型链实现对象间的委托而非传统类继承。（150字）&lt;/p&gt;&lt;/blockquote&gt;
 &lt;p&gt;JS中的对象有一个特殊的[[Prototype]]内置属性，其实就是对于其他对象的引用。几乎所有的对象在创建时[[Prototype]]属性都会被赋予一个非空的值&lt;/p&gt;
@@ -1957,9 +1957,9 @@
     </item>
     <item>
       <title></title>
-      <link>https://example.org/posts/%E4%BD%A0%E4%B8%8D%E7%9F%A5%E9%81%93%E7%9A%84js/this%E5%92%8C%E5%AF%B9%E8%B1%A1%E5%8E%9F%E5%9E%8B/5.-%E8%A1%8C%E4%B8%BA%E5%A7%94%E6%89%98%E5%92%8Cclass/</link>
+      <link>https://growyears.netlify.app/posts/%E4%BD%A0%E4%B8%8D%E7%9F%A5%E9%81%93%E7%9A%84js/this%E5%92%8C%E5%AF%B9%E8%B1%A1%E5%8E%9F%E5%9E%8B/5.-%E8%A1%8C%E4%B8%BA%E5%A7%94%E6%89%98%E5%92%8Cclass/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      <guid>https://example.org/posts/%E4%BD%A0%E4%B8%8D%E7%9F%A5%E9%81%93%E7%9A%84js/this%E5%92%8C%E5%AF%B9%E8%B1%A1%E5%8E%9F%E5%9E%8B/5.-%E8%A1%8C%E4%B8%BA%E5%A7%94%E6%89%98%E5%92%8Cclass/</guid>
+      <guid>https://growyears.netlify.app/posts/%E4%BD%A0%E4%B8%8D%E7%9F%A5%E9%81%93%E7%9A%84js/this%E5%92%8C%E5%AF%B9%E8%B1%A1%E5%8E%9F%E5%9E%8B/5.-%E8%A1%8C%E4%B8%BA%E5%A7%94%E6%89%98%E5%92%8Cclass/</guid>
       <description>&lt;blockquote&gt;
 &lt;p&gt;本文对比了对象关联和类继承两种编程模式的区别。对象关联采用[[Prototype]]委托机制，强调状态存储在委托者而非目标上，避免同名方法重写，提倡使用描述性方法名以提高代码可读性。同时指出委托行为存在循环委托的限制。另一方面，class语法支持super多态和extends继承，但本质上仍是语法糖，存在静态绑定super、无法声明属性和动态修改等局限性。两种模式各有特点，开发者需要根据实际需求选择合适的实现方式。&lt;/p&gt;&lt;/blockquote&gt;
 &lt;p&gt;相比于面向类，对象关联风格的代码有一些不同之处：&lt;/p&gt;
@@ -1985,9 +1985,9 @@
     </item>
     <item>
       <title></title>
-      <link>https://example.org/posts/%E4%BD%A0%E4%B8%8D%E7%9F%A5%E9%81%93%E7%9A%84js/%E4%BD%9C%E7%94%A8%E5%9F%9F%E5%92%8C%E9%97%AD%E5%8C%85/1.%E4%BD%9C%E7%94%A8%E5%9F%9F%E6%98%AF%E4%BB%80%E4%B9%88/</link>
+      <link>https://growyears.netlify.app/posts/%E4%BD%A0%E4%B8%8D%E7%9F%A5%E9%81%93%E7%9A%84js/%E4%BD%9C%E7%94%A8%E5%9F%9F%E5%92%8C%E9%97%AD%E5%8C%85/1.%E4%BD%9C%E7%94%A8%E5%9F%9F%E6%98%AF%E4%BB%80%E4%B9%88/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      <guid>https://example.org/posts/%E4%BD%A0%E4%B8%8D%E7%9F%A5%E9%81%93%E7%9A%84js/%E4%BD%9C%E7%94%A8%E5%9F%9F%E5%92%8C%E9%97%AD%E5%8C%85/1.%E4%BD%9C%E7%94%A8%E5%9F%9F%E6%98%AF%E4%BB%80%E4%B9%88/</guid>
+      <guid>https://growyears.netlify.app/posts/%E4%BD%A0%E4%B8%8D%E7%9F%A5%E9%81%93%E7%9A%84js/%E4%BD%9C%E7%94%A8%E5%9F%9F%E5%92%8C%E9%97%AD%E5%8C%85/1.%E4%BD%9C%E7%94%A8%E5%9F%9F%E6%98%AF%E4%BB%80%E4%B9%88/</guid>
       <description>&lt;blockquote&gt;
 &lt;p&gt;本文总结《你不了解的JS》第一部分第一章的核心概念，重点介绍了JavaScript的编译原理和作用域机制。笔记指出程序状态通过变量存储和访问实现，作用域是一套管理变量的规则体系。编译过程包括分词、语法分析和代码生成三个阶段。在变量赋值时，编译器处理声明，引擎执行查询（LHS/RHS）。作用域嵌套时，引擎会逐级向上查找变量。文章还区分了RHS和LHS查询的区别，以及在不同情况下可能出现的ReferenceError和TypeError异常。严格模式会改变LHS查询失败时的默认行为。&lt;/p&gt;&lt;/blockquote&gt;
 &lt;h3 id=&#34;一核心概念&#34;&gt;一、核心概念&lt;/h3&gt;
@@ -2061,9 +2061,9 @@
     </item>
     <item>
       <title></title>
-      <link>https://example.org/posts/%E4%BD%A0%E4%B8%8D%E7%9F%A5%E9%81%93%E7%9A%84js/%E4%BD%9C%E7%94%A8%E5%9F%9F%E5%92%8C%E9%97%AD%E5%8C%85/2.%E8%AF%8D%E6%B3%95%E4%BD%9C%E7%94%A8%E5%9F%9F/</link>
+      <link>https://growyears.netlify.app/posts/%E4%BD%A0%E4%B8%8D%E7%9F%A5%E9%81%93%E7%9A%84js/%E4%BD%9C%E7%94%A8%E5%9F%9F%E5%92%8C%E9%97%AD%E5%8C%85/2.%E8%AF%8D%E6%B3%95%E4%BD%9C%E7%94%A8%E5%9F%9F/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      <guid>https://example.org/posts/%E4%BD%A0%E4%B8%8D%E7%9F%A5%E9%81%93%E7%9A%84js/%E4%BD%9C%E7%94%A8%E5%9F%9F%E5%92%8C%E9%97%AD%E5%8C%85/2.%E8%AF%8D%E6%B3%95%E4%BD%9C%E7%94%A8%E5%9F%9F/</guid>
+      <guid>https://growyears.netlify.app/posts/%E4%BD%A0%E4%B8%8D%E7%9F%A5%E9%81%93%E7%9A%84js/%E4%BD%9C%E7%94%A8%E5%9F%9F%E5%92%8C%E9%97%AD%E5%8C%85/2.%E8%AF%8D%E6%B3%95%E4%BD%9C%E7%94%A8%E5%9F%9F/</guid>
       <description>&lt;blockquote&gt;
 &lt;p&gt;《你不了解的JS》笔记：词法作用域与欺骗词法&lt;/p&gt;
 &lt;p&gt;词法作用域由代码书写位置决定，查找从内向外进行，存在遮蔽效应。全局变量可通过window对象间接访问。欺骗词法的方式包括eval和with：eval动态修改作用域（严格模式除外），with将对象处理为临时作用域。两者都会影响性能，eval在严格模式下有独立作用域，with会将var声明泄漏到函数作用域。这些特性都可能导致代码运行效率下降。&lt;/p&gt;&lt;/blockquote&gt;
@@ -2120,9 +2120,9 @@
     </item>
     <item>
       <title></title>
-      <link>https://example.org/posts/%E4%BD%A0%E4%B8%8D%E7%9F%A5%E9%81%93%E7%9A%84js/%E4%BD%9C%E7%94%A8%E5%9F%9F%E5%92%8C%E9%97%AD%E5%8C%85/3.%E5%87%BD%E6%95%B0%E4%BD%9C%E7%94%A8%E5%9F%9F%E5%92%8C%E5%9D%97%E4%BD%9C%E7%94%A8%E5%9F%9F/</link>
+      <link>https://growyears.netlify.app/posts/%E4%BD%A0%E4%B8%8D%E7%9F%A5%E9%81%93%E7%9A%84js/%E4%BD%9C%E7%94%A8%E5%9F%9F%E5%92%8C%E9%97%AD%E5%8C%85/3.%E5%87%BD%E6%95%B0%E4%BD%9C%E7%94%A8%E5%9F%9F%E5%92%8C%E5%9D%97%E4%BD%9C%E7%94%A8%E5%9F%9F/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      <guid>https://example.org/posts/%E4%BD%A0%E4%B8%8D%E7%9F%A5%E9%81%93%E7%9A%84js/%E4%BD%9C%E7%94%A8%E5%9F%9F%E5%92%8C%E9%97%AD%E5%8C%85/3.%E5%87%BD%E6%95%B0%E4%BD%9C%E7%94%A8%E5%9F%9F%E5%92%8C%E5%9D%97%E4%BD%9C%E7%94%A8%E5%9F%9F/</guid>
+      <guid>https://growyears.netlify.app/posts/%E4%BD%A0%E4%B8%8D%E7%9F%A5%E9%81%93%E7%9A%84js/%E4%BD%9C%E7%94%A8%E5%9F%9F%E5%92%8C%E9%97%AD%E5%8C%85/3.%E5%87%BD%E6%95%B0%E4%BD%9C%E7%94%A8%E5%9F%9F%E5%92%8C%E5%9D%97%E4%BD%9C%E7%94%A8%E5%9F%9F/</guid>
       <description>&lt;blockquote&gt;
 &lt;p&gt;《你不了解的JS》第一部分第三章探讨了函数和块作用域的概念。函数作用域允许变量在函数内部复用，并可通过隐藏内部实现遵循最小特权原则，避免命名冲突。函数声明与表达式的主要区别在于标识符绑定位置，建议为函数表达式命名以便调试。IIFE（立即执行函数表达式）是常见模式，可用于传递参数和解决变量覆盖问题。块作用域通过let和const实现变量本地化，let在循环中每次迭代重新绑定变量，const则创建不可变绑定。这些机制有助于优化变量生命周期和避免提升问题。&lt;/p&gt;&lt;/blockquote&gt;
 &lt;h3 id=&#34;一函数作用域的核心特性&#34;&gt;一、函数作用域的核心特性&lt;/h3&gt;
@@ -2201,9 +2201,9 @@
     </item>
     <item>
       <title></title>
-      <link>https://example.org/posts/%E4%BD%A0%E4%B8%8D%E7%9F%A5%E9%81%93%E7%9A%84js/%E4%BD%9C%E7%94%A8%E5%9F%9F%E5%92%8C%E9%97%AD%E5%8C%85/4.%E6%8F%90%E5%8D%87/</link>
+      <link>https://growyears.netlify.app/posts/%E4%BD%A0%E4%B8%8D%E7%9F%A5%E9%81%93%E7%9A%84js/%E4%BD%9C%E7%94%A8%E5%9F%9F%E5%92%8C%E9%97%AD%E5%8C%85/4.%E6%8F%90%E5%8D%87/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      <guid>https://example.org/posts/%E4%BD%A0%E4%B8%8D%E7%9F%A5%E9%81%93%E7%9A%84js/%E4%BD%9C%E7%94%A8%E5%9F%9F%E5%92%8C%E9%97%AD%E5%8C%85/4.%E6%8F%90%E5%8D%87/</guid>
+      <guid>https://growyears.netlify.app/posts/%E4%BD%A0%E4%B8%8D%E7%9F%A5%E9%81%93%E7%9A%84js/%E4%BD%9C%E7%94%A8%E5%9F%9F%E5%92%8C%E9%97%AD%E5%8C%85/4.%E6%8F%90%E5%8D%87/</guid>
       <description>&lt;blockquote&gt;
 &lt;p&gt;JS中的变量和函数声明会在代码执行前被&amp;quot;提升&amp;quot;。引擎在编译阶段会将所有声明提前处理，但赋值操作保留原位。函数声明优先于变量声明，且会被提升到作用域顶部。需要注意的是，函数表达式不会被提升，块级函数声明也存在提升问题。开发者应避免在块内部声明函数，且重复声明时后面的函数会覆盖前面的。这些机制体现了JS编译阶段和执行阶段的差异性。&lt;/p&gt;&lt;/blockquote&gt;
 &lt;h3 id=&#34;一变量和函数声明的提升机制&#34;&gt;一、变量和函数声明的提升机制&lt;/h3&gt;
@@ -2244,9 +2244,9 @@
     </item>
     <item>
       <title></title>
-      <link>https://example.org/posts/%E4%BD%A0%E4%B8%8D%E7%9F%A5%E9%81%93%E7%9A%84js/%E4%BD%9C%E7%94%A8%E5%9F%9F%E5%92%8C%E9%97%AD%E5%8C%85/5.%E4%BD%9C%E7%94%A8%E5%9F%9F%E9%97%AD%E5%8C%85/</link>
+      <link>https://growyears.netlify.app/posts/%E4%BD%A0%E4%B8%8D%E7%9F%A5%E9%81%93%E7%9A%84js/%E4%BD%9C%E7%94%A8%E5%9F%9F%E5%92%8C%E9%97%AD%E5%8C%85/5.%E4%BD%9C%E7%94%A8%E5%9F%9F%E9%97%AD%E5%8C%85/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      <guid>https://example.org/posts/%E4%BD%A0%E4%B8%8D%E7%9F%A5%E9%81%93%E7%9A%84js/%E4%BD%9C%E7%94%A8%E5%9F%9F%E5%92%8C%E9%97%AD%E5%8C%85/5.%E4%BD%9C%E7%94%A8%E5%9F%9F%E9%97%AD%E5%8C%85/</guid>
+      <guid>https://growyears.netlify.app/posts/%E4%BD%A0%E4%B8%8D%E7%9F%A5%E9%81%93%E7%9A%84js/%E4%BD%9C%E7%94%A8%E5%9F%9F%E5%92%8C%E9%97%AD%E5%8C%85/5.%E4%BD%9C%E7%94%A8%E5%9F%9F%E9%97%AD%E5%8C%85/</guid>
       <description>&lt;blockquote&gt;
 &lt;p&gt;摘要：闭包是指函数能够记住并访问其词法作用域，即使在其作用域外执行。通过回调函数或将内部函数传递到外部都可形成闭包。示例展示了用IIFE解决循环变量共享问题，以及let在循环中的特殊行为。模块模式需满足：1)外部封闭函数被调用创建实例；2)返回内部函数形成闭包访问私有状态。ES6模块与函数模块不同，具有静态API检查机制，需定义在单独文件中，其内容如同在闭包中处理。&lt;/p&gt;&lt;/blockquote&gt;
 &lt;p&gt;当函数可以记住并访问所在的词法作用域时，就产生了闭包，即使函数是在当前词法作用域之外执行的&lt;/p&gt;
@@ -2277,9 +2277,9 @@
     </item>
     <item>
       <title></title>
-      <link>https://example.org/posts/%E4%BD%A0%E4%B8%8D%E7%9F%A5%E9%81%93%E7%9A%84js/%E4%BD%9C%E7%94%A8%E5%9F%9F%E5%92%8C%E9%97%AD%E5%8C%85/6.%E9%99%84%E5%BD%95/</link>
+      <link>https://growyears.netlify.app/posts/%E4%BD%A0%E4%B8%8D%E7%9F%A5%E9%81%93%E7%9A%84js/%E4%BD%9C%E7%94%A8%E5%9F%9F%E5%92%8C%E9%97%AD%E5%8C%85/6.%E9%99%84%E5%BD%95/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      <guid>https://example.org/posts/%E4%BD%A0%E4%B8%8D%E7%9F%A5%E9%81%93%E7%9A%84js/%E4%BD%9C%E7%94%A8%E5%9F%9F%E5%92%8C%E9%97%AD%E5%8C%85/6.%E9%99%84%E5%BD%95/</guid>
+      <guid>https://growyears.netlify.app/posts/%E4%BD%A0%E4%B8%8D%E7%9F%A5%E9%81%93%E7%9A%84js/%E4%BD%9C%E7%94%A8%E5%9F%9F%E5%92%8C%E9%97%AD%E5%8C%85/6.%E9%99%84%E5%BD%95/</guid>
       <description>&lt;blockquote&gt;
 &lt;p&gt;摘要：词法作用域在代码定义时确定，关注函数声明位置；动态作用域在运行时确定，关注函数调用位置。ES6前可用try/catch模拟let的块作用域。箭头函数通过词法作用域绑定this，替代普通函数的this绑定规则，其效果类似于使用self变量或bind方法，解决了this指向问题。三种方式都能确保this正确指向外层对象（示例中的obj），但箭头函数提供了更简洁的语法实现。&lt;/p&gt;&lt;/blockquote&gt;
 &lt;p&gt;词法作用域是在写代码或者说定义时确定的，而动态作用域是在运行时确定的，词法作用域关注函数在何处声明，而动态作用域关注函数从何处调用&lt;/p&gt;
@@ -2333,9 +2333,9 @@
     </item>
     <item>
       <title></title>
-      <link>https://example.org/posts/%E4%BD%A0%E4%B8%8D%E7%9F%A5%E9%81%93%E7%9A%84js/%E5%BC%82%E6%AD%A5%E5%92%8C%E6%80%A7%E8%83%BD/1.-%E5%BC%82%E6%AD%A5%E7%8E%B0%E5%9C%A8%E4%B8%8E%E5%B0%86%E6%9D%A5/</link>
+      <link>https://growyears.netlify.app/posts/%E4%BD%A0%E4%B8%8D%E7%9F%A5%E9%81%93%E7%9A%84js/%E5%BC%82%E6%AD%A5%E5%92%8C%E6%80%A7%E8%83%BD/1.-%E5%BC%82%E6%AD%A5%E7%8E%B0%E5%9C%A8%E4%B8%8E%E5%B0%86%E6%9D%A5/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      <guid>https://example.org/posts/%E4%BD%A0%E4%B8%8D%E7%9F%A5%E9%81%93%E7%9A%84js/%E5%BC%82%E6%AD%A5%E5%92%8C%E6%80%A7%E8%83%BD/1.-%E5%BC%82%E6%AD%A5%E7%8E%B0%E5%9C%A8%E4%B8%8E%E5%B0%86%E6%9D%A5/</guid>
+      <guid>https://growyears.netlify.app/posts/%E4%BD%A0%E4%B8%8D%E7%9F%A5%E9%81%93%E7%9A%84js/%E5%BC%82%E6%AD%A5%E5%92%8C%E6%80%A7%E8%83%BD/1.-%E5%BC%82%E6%AD%A5%E7%8E%B0%E5%9C%A8%E4%B8%8E%E5%B0%86%E6%9D%A5/</guid>
       <description>&lt;h3 id=&#34;一分块的程序与异步机制&#34;&gt;一、分块的程序与异步机制&lt;/h3&gt;
 &lt;ol&gt;
 &lt;li&gt;&lt;strong&gt;分块程序的本质&lt;/strong&gt;：
@@ -2410,9 +2410,9 @@
     </item>
     <item>
       <title></title>
-      <link>https://example.org/posts/%E4%BD%A0%E4%B8%8D%E7%9F%A5%E9%81%93%E7%9A%84js/%E5%BC%82%E6%AD%A5%E5%92%8C%E6%80%A7%E8%83%BD/2.-%E5%9B%9E%E8%B0%83/</link>
+      <link>https://growyears.netlify.app/posts/%E4%BD%A0%E4%B8%8D%E7%9F%A5%E9%81%93%E7%9A%84js/%E5%BC%82%E6%AD%A5%E5%92%8C%E6%80%A7%E8%83%BD/2.-%E5%9B%9E%E8%B0%83/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      <guid>https://example.org/posts/%E4%BD%A0%E4%B8%8D%E7%9F%A5%E9%81%93%E7%9A%84js/%E5%BC%82%E6%AD%A5%E5%92%8C%E6%80%A7%E8%83%BD/2.-%E5%9B%9E%E8%B0%83/</guid>
+      <guid>https://growyears.netlify.app/posts/%E4%BD%A0%E4%B8%8D%E7%9F%A5%E9%81%93%E7%9A%84js/%E5%BC%82%E6%AD%A5%E5%92%8C%E6%80%A7%E8%83%BD/2.-%E5%9B%9E%E8%B0%83/</guid>
       <description>&lt;h3 id=&#34;一回调函数的本质&#34;&gt;一、回调函数的本质&lt;/h3&gt;
 &lt;p&gt;回调函数的核心作用是&lt;strong&gt;包裹或封装程序的延续逻辑&lt;/strong&gt;—— 即当前操作完成后 “接下来要执行的代码”。通过回调，我们可以定义异步操作（如网络请求、定时器）结束后应执行的步骤。&lt;/p&gt;
 &lt;h3 id=&#34;二回调地狱callback-hell的成因&#34;&gt;二、回调地狱（Callback Hell）的成因&lt;/h3&gt;
@@ -2452,9 +2452,9 @@
     </item>
     <item>
       <title></title>
-      <link>https://example.org/posts/%E4%BD%A0%E4%B8%8D%E7%9F%A5%E9%81%93%E7%9A%84js/%E5%BC%82%E6%AD%A5%E5%92%8C%E6%80%A7%E8%83%BD/3.-promise/</link>
+      <link>https://growyears.netlify.app/posts/%E4%BD%A0%E4%B8%8D%E7%9F%A5%E9%81%93%E7%9A%84js/%E5%BC%82%E6%AD%A5%E5%92%8C%E6%80%A7%E8%83%BD/3.-promise/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      <guid>https://example.org/posts/%E4%BD%A0%E4%B8%8D%E7%9F%A5%E9%81%93%E7%9A%84js/%E5%BC%82%E6%AD%A5%E5%92%8C%E6%80%A7%E8%83%BD/3.-promise/</guid>
+      <guid>https://growyears.netlify.app/posts/%E4%BD%A0%E4%B8%8D%E7%9F%A5%E9%81%93%E7%9A%84js/%E5%BC%82%E6%AD%A5%E5%92%8C%E6%80%A7%E8%83%BD/3.-promise/</guid>
       <description>&lt;h3 id=&#34;一什么是-promise&#34;&gt;一、什么是 Promise&lt;/h3&gt;
 &lt;h4 id=&#34;1-未来值&#34;&gt;1. 未来值&lt;/h4&gt;
 &lt;ul&gt;
@@ -2628,9 +2628,9 @@
     </item>
     <item>
       <title></title>
-      <link>https://example.org/posts/%E4%BD%A0%E4%B8%8D%E7%9F%A5%E9%81%93%E7%9A%84js/%E5%BC%82%E6%AD%A5%E5%92%8C%E6%80%A7%E8%83%BD/4.-%E7%94%9F%E6%88%90%E5%99%A8/</link>
+      <link>https://growyears.netlify.app/posts/%E4%BD%A0%E4%B8%8D%E7%9F%A5%E9%81%93%E7%9A%84js/%E5%BC%82%E6%AD%A5%E5%92%8C%E6%80%A7%E8%83%BD/4.-%E7%94%9F%E6%88%90%E5%99%A8/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      <guid>https://example.org/posts/%E4%BD%A0%E4%B8%8D%E7%9F%A5%E9%81%93%E7%9A%84js/%E5%BC%82%E6%AD%A5%E5%92%8C%E6%80%A7%E8%83%BD/4.-%E7%94%9F%E6%88%90%E5%99%A8/</guid>
+      <guid>https://growyears.netlify.app/posts/%E4%BD%A0%E4%B8%8D%E7%9F%A5%E9%81%93%E7%9A%84js/%E5%BC%82%E6%AD%A5%E5%92%8C%E6%80%A7%E8%83%BD/4.-%E7%94%9F%E6%88%90%E5%99%A8/</guid>
       <description>&lt;h3 id=&#34;一生成器的基本概念与特性&#34;&gt;一、生成器的基本概念与特性&lt;/h3&gt;
 &lt;ol&gt;
 &lt;li&gt;&lt;strong&gt;定义与控制方式&lt;/strong&gt;：
@@ -2725,9 +2725,9 @@
     </item>
     <item>
       <title></title>
-      <link>https://example.org/posts/%E4%BD%A0%E4%B8%8D%E7%9F%A5%E9%81%93%E7%9A%84js/%E5%BC%82%E6%AD%A5%E5%92%8C%E6%80%A7%E8%83%BD/5.-%E7%A8%8B%E5%BA%8F%E6%80%A7%E8%83%BD/</link>
+      <link>https://growyears.netlify.app/posts/%E4%BD%A0%E4%B8%8D%E7%9F%A5%E9%81%93%E7%9A%84js/%E5%BC%82%E6%AD%A5%E5%92%8C%E6%80%A7%E8%83%BD/5.-%E7%A8%8B%E5%BA%8F%E6%80%A7%E8%83%BD/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      <guid>https://example.org/posts/%E4%BD%A0%E4%B8%8D%E7%9F%A5%E9%81%93%E7%9A%84js/%E5%BC%82%E6%AD%A5%E5%92%8C%E6%80%A7%E8%83%BD/5.-%E7%A8%8B%E5%BA%8F%E6%80%A7%E8%83%BD/</guid>
+      <guid>https://growyears.netlify.app/posts/%E4%BD%A0%E4%B8%8D%E7%9F%A5%E9%81%93%E7%9A%84js/%E5%BC%82%E6%AD%A5%E5%92%8C%E6%80%A7%E8%83%BD/5.-%E7%A8%8B%E5%BA%8F%E6%80%A7%E8%83%BD/</guid>
       <description>&lt;h3 id=&#34;一web-worker-基础&#34;&gt;一、Web Worker 基础&lt;/h3&gt;
 &lt;ol&gt;
 &lt;li&gt;
@@ -2802,9 +2802,9 @@
     </item>
     <item>
       <title></title>
-      <link>https://example.org/posts/%E4%BD%A0%E4%B8%8D%E7%9F%A5%E9%81%93%E7%9A%84js/%E7%B1%BB%E5%9E%8B%E5%92%8C%E8%AF%AD%E6%B3%95/1.-%E7%B1%BB%E5%9E%8B/</link>
+      <link>https://growyears.netlify.app/posts/%E4%BD%A0%E4%B8%8D%E7%9F%A5%E9%81%93%E7%9A%84js/%E7%B1%BB%E5%9E%8B%E5%92%8C%E8%AF%AD%E6%B3%95/1.-%E7%B1%BB%E5%9E%8B/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      <guid>https://example.org/posts/%E4%BD%A0%E4%B8%8D%E7%9F%A5%E9%81%93%E7%9A%84js/%E7%B1%BB%E5%9E%8B%E5%92%8C%E8%AF%AD%E6%B3%95/1.-%E7%B1%BB%E5%9E%8B/</guid>
+      <guid>https://growyears.netlify.app/posts/%E4%BD%A0%E4%B8%8D%E7%9F%A5%E9%81%93%E7%9A%84js/%E7%B1%BB%E5%9E%8B%E5%92%8C%E8%AF%AD%E6%B3%95/1.-%E7%B1%BB%E5%9E%8B/</guid>
       <description>&lt;h3 id=&#34;一内置类型概述&#34;&gt;一、内置类型概述&lt;/h3&gt;
 &lt;ol&gt;
 &lt;li&gt;&lt;strong&gt;定义&lt;/strong&gt;：类型是值的内部特征，决定值的行为，以区分于其他值。&lt;/li&gt;
@@ -2873,9 +2873,9 @@
     </item>
     <item>
       <title></title>
-      <link>https://example.org/posts/%E4%BD%A0%E4%B8%8D%E7%9F%A5%E9%81%93%E7%9A%84js/%E7%B1%BB%E5%9E%8B%E5%92%8C%E8%AF%AD%E6%B3%95/2.-%E5%80%BC/</link>
+      <link>https://growyears.netlify.app/posts/%E4%BD%A0%E4%B8%8D%E7%9F%A5%E9%81%93%E7%9A%84js/%E7%B1%BB%E5%9E%8B%E5%92%8C%E8%AF%AD%E6%B3%95/2.-%E5%80%BC/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      <guid>https://example.org/posts/%E4%BD%A0%E4%B8%8D%E7%9F%A5%E9%81%93%E7%9A%84js/%E7%B1%BB%E5%9E%8B%E5%92%8C%E8%AF%AD%E6%B3%95/2.-%E5%80%BC/</guid>
+      <guid>https://growyears.netlify.app/posts/%E4%BD%A0%E4%B8%8D%E7%9F%A5%E9%81%93%E7%9A%84js/%E7%B1%BB%E5%9E%8B%E5%92%8C%E8%AF%AD%E6%B3%95/2.-%E5%80%BC/</guid>
       <description>&lt;h3 id=&#34;一数组&#34;&gt;一、数组&lt;/h3&gt;
 &lt;ol&gt;
 &lt;li&gt;&lt;strong&gt;特性&lt;/strong&gt;：
@@ -3050,9 +3050,9 @@
     </item>
     <item>
       <title></title>
-      <link>https://example.org/posts/%E4%BD%A0%E4%B8%8D%E7%9F%A5%E9%81%93%E7%9A%84js/%E7%B1%BB%E5%9E%8B%E5%92%8C%E8%AF%AD%E6%B3%95/3.-%E5%8E%9F%E7%94%9F%E5%87%BD%E6%95%B0/</link>
+      <link>https://growyears.netlify.app/posts/%E4%BD%A0%E4%B8%8D%E7%9F%A5%E9%81%93%E7%9A%84js/%E7%B1%BB%E5%9E%8B%E5%92%8C%E8%AF%AD%E6%B3%95/3.-%E5%8E%9F%E7%94%9F%E5%87%BD%E6%95%B0/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      <guid>https://example.org/posts/%E4%BD%A0%E4%B8%8D%E7%9F%A5%E9%81%93%E7%9A%84js/%E7%B1%BB%E5%9E%8B%E5%92%8C%E8%AF%AD%E6%B3%95/3.-%E5%8E%9F%E7%94%9F%E5%87%BD%E6%95%B0/</guid>
+      <guid>https://growyears.netlify.app/posts/%E4%BD%A0%E4%B8%8D%E7%9F%A5%E9%81%93%E7%9A%84js/%E7%B1%BB%E5%9E%8B%E5%92%8C%E8%AF%AD%E6%B3%95/3.-%E5%8E%9F%E7%94%9F%E5%87%BD%E6%95%B0/</guid>
       <description>&lt;h3 id=&#34;一内部属性-class&#34;&gt;一、内部属性 [[Class]]&lt;/h3&gt;
 &lt;ol&gt;
 &lt;li&gt;&lt;strong&gt;基本概念&lt;/strong&gt;：
@@ -3146,9 +3146,9 @@
     </item>
     <item>
       <title></title>
-      <link>https://example.org/posts/%E4%BD%A0%E4%B8%8D%E7%9F%A5%E9%81%93%E7%9A%84js/%E7%B1%BB%E5%9E%8B%E5%92%8C%E8%AF%AD%E6%B3%95/4.-%E5%BC%BA%E5%88%B6%E7%B1%BB%E5%9E%8B%E8%BD%AC%E6%8D%A2/</link>
+      <link>https://growyears.netlify.app/posts/%E4%BD%A0%E4%B8%8D%E7%9F%A5%E9%81%93%E7%9A%84js/%E7%B1%BB%E5%9E%8B%E5%92%8C%E8%AF%AD%E6%B3%95/4.-%E5%BC%BA%E5%88%B6%E7%B1%BB%E5%9E%8B%E8%BD%AC%E6%8D%A2/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      <guid>https://example.org/posts/%E4%BD%A0%E4%B8%8D%E7%9F%A5%E9%81%93%E7%9A%84js/%E7%B1%BB%E5%9E%8B%E5%92%8C%E8%AF%AD%E6%B3%95/4.-%E5%BC%BA%E5%88%B6%E7%B1%BB%E5%9E%8B%E8%BD%AC%E6%8D%A2/</guid>
+      <guid>https://growyears.netlify.app/posts/%E4%BD%A0%E4%B8%8D%E7%9F%A5%E9%81%93%E7%9A%84js/%E7%B1%BB%E5%9E%8B%E5%92%8C%E8%AF%AD%E6%B3%95/4.-%E5%BC%BA%E5%88%B6%E7%B1%BB%E5%9E%8B%E8%BD%AC%E6%8D%A2/</guid>
       <description>&lt;h3 id=&#34;一值类型转换的基本概念&#34;&gt;一、值类型转换的基本概念&lt;/h3&gt;
 &lt;ol&gt;
 &lt;li&gt;定义与区分：
@@ -3304,9 +3304,9 @@
     </item>
     <item>
       <title></title>
-      <link>https://example.org/posts/%E4%BD%A0%E4%B8%8D%E7%9F%A5%E9%81%93%E7%9A%84js/%E7%B1%BB%E5%9E%8B%E5%92%8C%E8%AF%AD%E6%B3%95/5.-%E8%AF%AD%E6%B3%95/</link>
+      <link>https://growyears.netlify.app/posts/%E4%BD%A0%E4%B8%8D%E7%9F%A5%E9%81%93%E7%9A%84js/%E7%B1%BB%E5%9E%8B%E5%92%8C%E8%AF%AD%E6%B3%95/5.-%E8%AF%AD%E6%B3%95/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      <guid>https://example.org/posts/%E4%BD%A0%E4%B8%8D%E7%9F%A5%E9%81%93%E7%9A%84js/%E7%B1%BB%E5%9E%8B%E5%92%8C%E8%AF%AD%E6%B3%95/5.-%E8%AF%AD%E6%B3%95/</guid>
+      <guid>https://growyears.netlify.app/posts/%E4%BD%A0%E4%B8%8D%E7%9F%A5%E9%81%93%E7%9A%84js/%E7%B1%BB%E5%9E%8B%E5%92%8C%E8%AF%AD%E6%B3%95/5.-%E8%AF%AD%E6%B3%95/</guid>
       <description>&lt;h2 id=&#34;一语句与表达式的基本概念&#34;&gt;一、语句与表达式的基本概念&lt;/h2&gt;
 &lt;ul&gt;
 &lt;li&gt;&lt;strong&gt;表达式&lt;/strong&gt;：能返回一个结果值的代码片段（如&lt;code&gt;1 + 2&lt;/code&gt;返回&lt;code&gt;3&lt;/code&gt;，&lt;code&gt;obj.prop&lt;/code&gt;返回属性值）。&lt;/li&gt;
@@ -3364,9 +3364,9 @@
     </item>
     <item>
       <title></title>
-      <link>https://example.org/posts/%E4%BD%A0%E4%B8%8D%E7%9F%A5%E9%81%93%E7%9A%84js/%E7%B1%BB%E5%9E%8B%E5%92%8C%E8%AF%AD%E6%B3%95/%E9%99%84%E5%BD%95-%E6%B7%B7%E5%90%88%E7%8E%AF%E5%A2%83js/</link>
+      <link>https://growyears.netlify.app/posts/%E4%BD%A0%E4%B8%8D%E7%9F%A5%E9%81%93%E7%9A%84js/%E7%B1%BB%E5%9E%8B%E5%92%8C%E8%AF%AD%E6%B3%95/%E9%99%84%E5%BD%95-%E6%B7%B7%E5%90%88%E7%8E%AF%E5%A2%83js/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      <guid>https://example.org/posts/%E4%BD%A0%E4%B8%8D%E7%9F%A5%E9%81%93%E7%9A%84js/%E7%B1%BB%E5%9E%8B%E5%92%8C%E8%AF%AD%E6%B3%95/%E9%99%84%E5%BD%95-%E6%B7%B7%E5%90%88%E7%8E%AF%E5%A2%83js/</guid>
+      <guid>https://growyears.netlify.app/posts/%E4%BD%A0%E4%B8%8D%E7%9F%A5%E9%81%93%E7%9A%84js/%E7%B1%BB%E5%9E%8B%E5%92%8C%E8%AF%AD%E6%B3%95/%E9%99%84%E5%BD%95-%E6%B7%B7%E5%90%88%E7%8E%AF%E5%A2%83js/</guid>
       <description>&lt;h3 id=&#34;一annex-bes-规范的兼容性补充&#34;&gt;一、Annex B（ES 规范的兼容性补充）&lt;/h3&gt;
 &lt;ol&gt;
 &lt;li&gt;
@@ -3461,9 +3461,9 @@ ECMAScript（ES）是 JS 的官方规范，Annex B 专门定义因浏览器兼�
     </item>
     <item>
       <title></title>
-      <link>https://example.org/posts/%E7%BA%A2%E5%AE%9D%E4%B9%A6%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/10.1-10.5-%E5%87%BD%E6%95%B0/</link>
+      <link>https://growyears.netlify.app/posts/%E7%BA%A2%E5%AE%9D%E4%B9%A6%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/10.1-10.5-%E5%87%BD%E6%95%B0/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      <guid>https://example.org/posts/%E7%BA%A2%E5%AE%9D%E4%B9%A6%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/10.1-10.5-%E5%87%BD%E6%95%B0/</guid>
+      <guid>https://growyears.netlify.app/posts/%E7%BA%A2%E5%AE%9D%E4%B9%A6%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/10.1-10.5-%E5%87%BD%E6%95%B0/</guid>
       <description>&lt;blockquote&gt;
 &lt;p&gt;本文介绍了JavaScript函数的几个重要概念。首先指出函数是Function类型的实例，箭头函数具有独特限制（不能使用arguments、不能作为构造函数等）。其次说明函数名是指向函数的指针，ES6函数具有name属性。接着详细讲解函数参数机制，包括arguments对象的使用、参数传递方式（按值传递），以及如何在严格模式下处理参数。关于函数重载，文章指出JavaScript不支持传统重载，但可以模拟实现。最后介绍了ES6默认参数的用法，包括基本语法、参数初始化顺序和作用域规则，以及箭头函数使用默认参数的方法。&lt;/p&gt;&lt;/blockquote&gt;
 &lt;h2 id=&#34;箭头函数&#34;&gt;箭头函数&lt;/h2&gt;
@@ -3503,9 +3503,9 @@ ECMAScript（ES）是 JS 的官方规范，Annex B 专门定义因浏览器兼�
     </item>
     <item>
       <title></title>
-      <link>https://example.org/posts/%E7%BA%A2%E5%AE%9D%E4%B9%A6%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/10.11-10.16-%E5%87%BD%E6%95%B0/</link>
+      <link>https://growyears.netlify.app/posts/%E7%BA%A2%E5%AE%9D%E4%B9%A6%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/10.11-10.16-%E5%87%BD%E6%95%B0/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      <guid>https://example.org/posts/%E7%BA%A2%E5%AE%9D%E4%B9%A6%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/10.11-10.16-%E5%87%BD%E6%95%B0/</guid>
+      <guid>https://growyears.netlify.app/posts/%E7%BA%A2%E5%AE%9D%E4%B9%A6%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/10.11-10.16-%E5%87%BD%E6%95%B0/</guid>
       <description>&lt;blockquote&gt;
 &lt;p&gt;本文介绍了JavaScript中函数表达式、递归、尾调用优化、闭包、立即调用函数表达式(IIFE)和私有变量等核心概念。重点包括：函数表达式的定义与使用；递归的实现方式；尾调用优化的条件；闭包的作用机制及其内存影响；IIFE的模拟块级作用域应用；通过构造函数和静态变量实现私有变量的方法。文章通过代码示例详细说明了这些特性在JavaScript中的实际应用，帮助理解函数式编程的关键技术点。&lt;/p&gt;&lt;/blockquote&gt;
 &lt;h2 id=&#34;函数表达式&#34;&gt;函数表达式&lt;/h2&gt;
@@ -3596,9 +3596,9 @@ ECMAScript（ES）是 JS 的官方规范，Annex B 专门定义因浏览器兼�
     </item>
     <item>
       <title></title>
-      <link>https://example.org/posts/%E7%BA%A2%E5%AE%9D%E4%B9%A6%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/10.6-10.10-%E5%87%BD%E6%95%B0/</link>
+      <link>https://growyears.netlify.app/posts/%E7%BA%A2%E5%AE%9D%E4%B9%A6%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/10.6-10.10-%E5%87%BD%E6%95%B0/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      <guid>https://example.org/posts/%E7%BA%A2%E5%AE%9D%E4%B9%A6%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/10.6-10.10-%E5%87%BD%E6%95%B0/</guid>
+      <guid>https://growyears.netlify.app/posts/%E7%BA%A2%E5%AE%9D%E4%B9%A6%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/10.6-10.10-%E5%87%BD%E6%95%B0/</guid>
       <description>&lt;blockquote&gt;
 &lt;p&gt;ES6扩展操作符简化了函数参数处理，可拆分可迭代对象为单独参数或收集剩余参数为数组。函数声明会提升，表达式则不会。函数可作为值传递或返回。函数内部有arguments、this、caller等特性，方法包括apply/call改变this和bind创建绑定函数。严格模式影响this行为，箭头函数保持定义时上下文。函数属性如length、prototype，继承方法返回函数代码或自身。&lt;/p&gt;&lt;/blockquote&gt;
 &lt;h2 id=&#34;参数扩展与收集&#34;&gt;参数扩展与收集&lt;/h2&gt;
@@ -3641,9 +3641,9 @@ ECMAScript（ES）是 JS 的官方规范，Annex B 专门定义因浏览器兼�
     </item>
     <item>
       <title></title>
-      <link>https://example.org/posts/%E7%BA%A2%E5%AE%9D%E4%B9%A6%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/3.3-%E5%8F%98%E9%87%8F/</link>
+      <link>https://growyears.netlify.app/posts/%E7%BA%A2%E5%AE%9D%E4%B9%A6%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/3.3-%E5%8F%98%E9%87%8F/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      <guid>https://example.org/posts/%E7%BA%A2%E5%AE%9D%E4%B9%A6%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/3.3-%E5%8F%98%E9%87%8F/</guid>
+      <guid>https://growyears.netlify.app/posts/%E7%BA%A2%E5%AE%9D%E4%B9%A6%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/3.3-%E5%8F%98%E9%87%8F/</guid>
       <description>&lt;blockquote&gt;
 &lt;p&gt;摘要：JavaScript变量声明方式包括var、let和const。var存在变量提升和函数作用域特性，let提供块级作用域且禁止重复声明，const用于声明不可变常量。建议优先使用const，其次是let，避免使用var以提升代码质量。let和const解决了var带来的变量泄露等问题，使变量作用域更可控。对于对象类型的const变量，仅限制引用不可变，内部属性仍可修改。&lt;/p&gt;&lt;/blockquote&gt;
 &lt;p&gt;要定义变量，可以使用var操作符，后跟变量名&lt;/p&gt;
@@ -3671,9 +3671,9 @@ ECMAScript（ES）是 JS 的官方规范，Annex B 专门定义因浏览器兼�
     </item>
     <item>
       <title></title>
-      <link>https://example.org/posts/%E7%BA%A2%E5%AE%9D%E4%B9%A6%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/4.2-%E6%89%A7%E8%A1%8C%E4%B8%8A%E4%B8%8B%E6%96%87%E4%B8%8E%E4%BD%9C%E7%94%A8%E5%9F%9F/</link>
+      <link>https://growyears.netlify.app/posts/%E7%BA%A2%E5%AE%9D%E4%B9%A6%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/4.2-%E6%89%A7%E8%A1%8C%E4%B8%8A%E4%B8%8B%E6%96%87%E4%B8%8E%E4%BD%9C%E7%94%A8%E5%9F%9F/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      <guid>https://example.org/posts/%E7%BA%A2%E5%AE%9D%E4%B9%A6%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/4.2-%E6%89%A7%E8%A1%8C%E4%B8%8A%E4%B8%8B%E6%96%87%E4%B8%8E%E4%BD%9C%E7%94%A8%E5%9F%9F/</guid>
+      <guid>https://growyears.netlify.app/posts/%E7%BA%A2%E5%AE%9D%E4%B9%A6%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/4.2-%E6%89%A7%E8%A1%8C%E4%B8%8A%E4%B8%8B%E6%96%87%E4%B8%8E%E4%BD%9C%E7%94%A8%E5%9F%9F/</guid>
       <description>&lt;blockquote&gt;
 &lt;p&gt;本文深入解析了JavaScript的执行上下文和作用域机制。执行上下文分为全局和函数上下文，每个函数调用会创建新上下文并压入栈中。作用域链决定了变量访问顺序，内部可访问外部变量但反之不行。文章对比了var、let和const的特性：var存在变量提升，let提供块级作用域，const声明不可更改的常量。详细解释了标识符搜索规则，从当前作用域开始逐级向外查找，直至全局上下文。还介绍了with和try/catch语句对作用域链的临时影响。通过剖析上下文创建、销毁过程和变量查找机制，揭示了JavaScript的核心作用域工作原理。&lt;/p&gt;&lt;/blockquote&gt;
 &lt;p&gt;变量或函数的上下文决定了它们可以访问哪些数据，以及它们的行为。每个上下文都有一个关联的变量对象，而这个上下文中定义的所有变量和函数都存在与这个对象上&lt;/p&gt;
@@ -3711,9 +3711,9 @@ ECMAScript（ES）是 JS 的官方规范，Annex B 专门定义因浏览器兼�
     </item>
     <item>
       <title></title>
-      <link>https://example.org/posts/%E7%BA%A2%E5%AE%9D%E4%B9%A6%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/8.1-%E7%90%86%E8%A7%A3%E5%AF%B9%E8%B1%A1/</link>
+      <link>https://growyears.netlify.app/posts/%E7%BA%A2%E5%AE%9D%E4%B9%A6%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/8.1-%E7%90%86%E8%A7%A3%E5%AF%B9%E8%B1%A1/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      <guid>https://example.org/posts/%E7%BA%A2%E5%AE%9D%E4%B9%A6%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/8.1-%E7%90%86%E8%A7%A3%E5%AF%B9%E8%B1%A1/</guid>
+      <guid>https://growyears.netlify.app/posts/%E7%BA%A2%E5%AE%9D%E4%B9%A6%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/8.1-%E7%90%86%E8%A7%A3%E5%AF%B9%E8%B1%A1/</guid>
       <description>&lt;blockquote&gt;
 &lt;p&gt;摘要：本文介绍了JavaScript对象的属性特征和管理方法。对象属性分为数据属性和访问器属性，可通过Object.defineProperty()方法定义特性。数据属性包含[[Value]]等4个特性，访问器属性包含[[Get]]/[[Set]]函数。还讲解了Object.assign()合并对象、Object.is()比较对象、对象解构赋值等ES6新特性，以及简写属性名和可计算属性等语法糖。最后说明了如何在函数参数中使用对象解构。这些特性增强了对象操作的灵活性和代码简洁性。&lt;/p&gt;&lt;/blockquote&gt;
 &lt;p&gt;对象就是一组没有特定顺序的值，对象的每个属性或者方法都可由一个名称来标识，这个名称映射到一个值。可以把对象想象成一张散列表，其中的内容就是一组名值对，值可以是数据或者函数&lt;/p&gt;
@@ -3774,9 +3774,9 @@ ECMAScript（ES）是 JS 的官方规范，Annex B 专门定义因浏览器兼�
     </item>
     <item>
       <title></title>
-      <link>https://example.org/posts/%E7%BA%A2%E5%AE%9D%E4%B9%A6%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/8.2-%E5%88%9B%E5%BB%BA%E5%AF%B9%E8%B1%A1/</link>
+      <link>https://growyears.netlify.app/posts/%E7%BA%A2%E5%AE%9D%E4%B9%A6%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/8.2-%E5%88%9B%E5%BB%BA%E5%AF%B9%E8%B1%A1/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      <guid>https://example.org/posts/%E7%BA%A2%E5%AE%9D%E4%B9%A6%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/8.2-%E5%88%9B%E5%BB%BA%E5%AF%B9%E8%B1%A1/</guid>
+      <guid>https://growyears.netlify.app/posts/%E7%BA%A2%E5%AE%9D%E4%B9%A6%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/8.2-%E5%88%9B%E5%BB%BA%E5%AF%B9%E8%B1%A1/</guid>
       <description>&lt;blockquote&gt;
 &lt;p&gt;摘要：本文探讨了JavaScript对象创建的几种模式。工厂模式虽能批量创建对象但无法标识类型，构造函数模式通过new操作符解决类型识别问题，但实例方法会被重复创建。原型模式通过在prototype上定义共享属性和方法优化了性能，并详细介绍了原型链、属性查找机制、原型修改及其对实例的影响，以及相关操作符和方法的使用。最后指出原型模式的局限性在于共享特性导致实例属性初始值相同。&lt;/p&gt;&lt;/blockquote&gt;
 &lt;p&gt;虽然使用Object构造函数或对象字面量可以方便地创建对象，但这些方式有明显不足：创建具有同样接口的多个对象需要重复编写很多代码&lt;/p&gt;
@@ -3835,9 +3835,9 @@ ECMAScript（ES）是 JS 的官方规范，Annex B 专门定义因浏览器兼�
     </item>
     <item>
       <title></title>
-      <link>https://example.org/posts/%E7%BA%A2%E5%AE%9D%E4%B9%A6%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/8.3-%E7%BB%A7%E6%89%BF/</link>
+      <link>https://growyears.netlify.app/posts/%E7%BA%A2%E5%AE%9D%E4%B9%A6%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/8.3-%E7%BB%A7%E6%89%BF/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      <guid>https://example.org/posts/%E7%BA%A2%E5%AE%9D%E4%B9%A6%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/8.3-%E7%BB%A7%E6%89%BF/</guid>
+      <guid>https://growyears.netlify.app/posts/%E7%BA%A2%E5%AE%9D%E4%B9%A6%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/8.3-%E7%BB%A7%E6%89%BF/</guid>
       <description>&lt;blockquote&gt;
 &lt;p&gt;本文介绍了JS中的5种主要继承方式：原型链、盗用构造函数、组合继承、原型式继承和寄生式继承。原型链通过原型对象实现继承，但存在引用值共享和传参问题；盗用构造函数通过调用父类构造函数解决了传参问题，但方法无法重用；组合继承结合了两者优点；原型式继承基于对象浅复制，适合共享信息；寄生式继承通过增强对象实现继承。最后提到寄生式组合继承解决了组合继承的效率问题，是引用类型继承的最佳模式。各种方式各有适用场景，开发者需根据需求选择。&lt;/p&gt;&lt;/blockquote&gt;
 &lt;h3 id=&#34;原型链&#34;&gt;原型链&lt;/h3&gt;
@@ -3888,9 +3888,9 @@ ECMAScript（ES）是 JS 的官方规范，Annex B 专门定义因浏览器兼�
     </item>
     <item>
       <title></title>
-      <link>https://example.org/posts/%E7%BA%A2%E5%AE%9D%E4%B9%A6%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/8.4-%E7%B1%BB/</link>
+      <link>https://growyears.netlify.app/posts/%E7%BA%A2%E5%AE%9D%E4%B9%A6%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/8.4-%E7%B1%BB/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      <guid>https://example.org/posts/%E7%BA%A2%E5%AE%9D%E4%B9%A6%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/8.4-%E7%B1%BB/</guid>
+      <guid>https://growyears.netlify.app/posts/%E7%BA%A2%E5%AE%9D%E4%B9%A6%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/8.4-%E7%B1%BB/</guid>
       <description>&lt;blockquote&gt;
 &lt;p&gt;本文系统介绍了JavaScript类的定义与继承机制。类可通过声明或表达式定义，具有块级作用域且不支持提升。类包含构造函数、实例方法、静态方法等，默认严格模式执行。构造函数使用new操作符实例化，遵循特定对象创建流程。类支持实例成员、原型方法和静态方法，可通过extends实现单继承，使用super访问父类。文章详细解析了继承规则、抽象基类实现、内置类型扩展及混入模式等高级特性，阐明了类与传统构造函数的区别，为面向对象编程提供了全面指导。&lt;/p&gt;&lt;/blockquote&gt;
 &lt;p&gt;与函数类型相似，定义类也有两种主要方式：类声明和类表达式，这两种方式都使用class关键字加大括号&lt;/p&gt;

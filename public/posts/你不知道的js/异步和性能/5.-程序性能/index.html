@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <meta name="robots" content="index, follow">
-<title>My New Hugo Site</title>
+<title>拾光博客 - 永浩</title>
 <meta name="keywords" content="">
 <meta name="description" content="一、Web Worker 基础
 
@@ -79,16 +79,16 @@ Worker 内部可调用 self.close() 主动终止自身。
 
 结构化克隆：">
 <meta name="author" content="">
-<link rel="canonical" href="https://example.org/posts/%E4%BD%A0%E4%B8%8D%E7%9F%A5%E9%81%93%E7%9A%84js/%E5%BC%82%E6%AD%A5%E5%92%8C%E6%80%A7%E8%83%BD/5.-%E7%A8%8B%E5%BA%8F%E6%80%A7%E8%83%BD/">
+<link rel="canonical" href="https://growyears.netlify.app/posts/%E4%BD%A0%E4%B8%8D%E7%9F%A5%E9%81%93%E7%9A%84js/%E5%BC%82%E6%AD%A5%E5%92%8C%E6%80%A7%E8%83%BD/5.-%E7%A8%8B%E5%BA%8F%E6%80%A7%E8%83%BD/">
 <link crossorigin="anonymous" href="/assets/css/stylesheet.36819bea596090d8b48cf10d9831382996197aa7e4fc86f792f7c08c9ca4d23b.css" integrity="sha256-NoGb6llgkNi0jPENmDE4KZYZeqfk/Ib3kvfAjJyk0js=" rel="preload stylesheet" as="style">
-<link rel="icon" href="https://example.org/favicon.ico">
-<link rel="icon" type="image/png" sizes="16x16" href="https://example.org/favicon-16x16.png">
-<link rel="icon" type="image/png" sizes="32x32" href="https://example.org/favicon-32x32.png">
-<link rel="apple-touch-icon" href="https://example.org/apple-touch-icon.png">
-<link rel="mask-icon" href="https://example.org/safari-pinned-tab.svg">
+<link rel="icon" href="https://growyears.netlify.app/favicon.ico">
+<link rel="icon" type="image/png" sizes="16x16" href="https://growyears.netlify.app/favicon-16x16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="https://growyears.netlify.app/favicon-32x32.png">
+<link rel="apple-touch-icon" href="https://growyears.netlify.app/apple-touch-icon.png">
+<link rel="mask-icon" href="https://growyears.netlify.app/safari-pinned-tab.svg">
 <meta name="theme-color" content="#2e2e33">
 <meta name="msapplication-TileColor" content="#2e2e33">
-<link rel="alternate" hreflang="en" href="https://example.org/posts/%E4%BD%A0%E4%B8%8D%E7%9F%A5%E9%81%93%E7%9A%84js/%E5%BC%82%E6%AD%A5%E5%92%8C%E6%80%A7%E8%83%BD/5.-%E7%A8%8B%E5%BA%8F%E6%80%A7%E8%83%BD/">
+<link rel="alternate" hreflang="en" href="https://growyears.netlify.app/posts/%E4%BD%A0%E4%B8%8D%E7%9F%A5%E9%81%93%E7%9A%84js/%E5%BC%82%E6%AD%A5%E5%92%8C%E6%80%A7%E8%83%BD/5.-%E7%A8%8B%E5%BA%8F%E6%80%A7%E8%83%BD/">
 <noscript>
     <style>
         #theme-toggle,
@@ -125,9 +125,9 @@ Worker 内部可调用 self.close() 主动终止自身。
         }
 
     </style>
-</noscript><meta property="og:url" content="https://example.org/posts/%E4%BD%A0%E4%B8%8D%E7%9F%A5%E9%81%93%E7%9A%84js/%E5%BC%82%E6%AD%A5%E5%92%8C%E6%80%A7%E8%83%BD/5.-%E7%A8%8B%E5%BA%8F%E6%80%A7%E8%83%BD/">
-  <meta property="og:site_name" content="My New Hugo Site">
-  <meta property="og:title" content="My New Hugo Site">
+</noscript><meta property="og:url" content="https://growyears.netlify.app/posts/%E4%BD%A0%E4%B8%8D%E7%9F%A5%E9%81%93%E7%9A%84js/%E5%BC%82%E6%AD%A5%E5%92%8C%E6%80%A7%E8%83%BD/5.-%E7%A8%8B%E5%BA%8F%E6%80%A7%E8%83%BD/">
+  <meta property="og:site_name" content="拾光博客 - 永浩">
+  <meta property="og:title" content="拾光博客 - 永浩">
   <meta property="og:description" content="一、Web Worker 基础 定义与作用：
 Web Worker 是浏览器提供的多线程机制，允许 JS 主程序创建独立线程运行代码块（任务并行），避免主线程阻塞（如 UI 卡顿）。 每个 Worker 是独立的 JS 引擎实例，运行在单独线程，与主程序及其他 Worker 隔离。 创建与类型：
 专用 Worker（Dedicated Worker）：通过 new Worker(&#39;script.js&#39;) 创建，与主程序是一对一关系，仅能与创建它的程序通信。
@@ -137,7 +137,7 @@ Web Worker 是浏览器提供的多线程机制，允许 JS 主程序创建独�
 主程序与 Worker 内部均通过postMessage(data)发送消息，通过onmessage监听消息：
 // 主程序 w1.postMessage(&#39;hello&#39;); // 发送消息到 Worker w1.onmessage = (e) =&gt; console.log(&#39;收到 Worker 消息：&#39;, e.data); // worker.js 内部 self.onmessage = (e) =&gt; { console.log(&#39;收到主程序消息：&#39;, e.data); self.postMessage(&#39;hi&#39;); // 发送消息到主程序 }; 终止 Worker：
 主程序中调用 w1.terminate() 可立即终止 Worker（无清理机会）； Worker 内部可调用 self.close() 主动终止自身。 三、Worker 运行环境 限制与可用资源： 不可访问 DOM、主程序全局变量，但可使用 navigator、location、JSON、setTimeout 等，支持网络请求（如 fetch）。 可通过 importScripts(&#39;script1.js&#39;, &#39;script2.js&#39;) 同步加载额外脚本（阻塞 Worker 执行直到加载完成）。 典型应用场景： 密集型数学计算、大数据排序、数据预处理、高频网络通信等（避免阻塞主线程）。 四、数据传递方式 结构化克隆：">
-  <meta property="og:locale" content="en-us">
+  <meta property="og:locale" content="zh-cn">
   <meta property="og:type" content="article">
     <meta property="article:section" content="posts">
 <meta name="twitter:card" content="summary">
@@ -224,13 +224,13 @@ Worker 内部可调用 self.close() 主动终止自身。
       "@type": "ListItem",
       "position":  1 ,
       "name": "Posts",
-      "item": "https://example.org/posts/"
+      "item": "https://growyears.netlify.app/posts/"
     }, 
     {
       "@type": "ListItem",
       "position":  2 ,
       "name": "",
-      "item": "https://example.org/posts/%E4%BD%A0%E4%B8%8D%E7%9F%A5%E9%81%93%E7%9A%84js/%E5%BC%82%E6%AD%A5%E5%92%8C%E6%80%A7%E8%83%BD/5.-%E7%A8%8B%E5%BA%8F%E6%80%A7%E8%83%BD/"
+      "item": "https://growyears.netlify.app/posts/%E4%BD%A0%E4%B8%8D%E7%9F%A5%E9%81%93%E7%9A%84js/%E5%BC%82%E6%AD%A5%E5%92%8C%E6%80%A7%E8%83%BD/5.-%E7%A8%8B%E5%BA%8F%E6%80%A7%E8%83%BD/"
     }
   ]
 }
@@ -252,14 +252,14 @@ Worker 内部可调用 self.close() 主动终止自身。
   "dateModified": "0001-01-01T00:00:00Z",
   "mainEntityOfPage": {
     "@type": "WebPage",
-    "@id": "https://example.org/posts/%E4%BD%A0%E4%B8%8D%E7%9F%A5%E9%81%93%E7%9A%84js/%E5%BC%82%E6%AD%A5%E5%92%8C%E6%80%A7%E8%83%BD/5.-%E7%A8%8B%E5%BA%8F%E6%80%A7%E8%83%BD/"
+    "@id": "https://growyears.netlify.app/posts/%E4%BD%A0%E4%B8%8D%E7%9F%A5%E9%81%93%E7%9A%84js/%E5%BC%82%E6%AD%A5%E5%92%8C%E6%80%A7%E8%83%BD/5.-%E7%A8%8B%E5%BA%8F%E6%80%A7%E8%83%BD/"
   },
   "publisher": {
     "@type": "Organization",
-    "name": "My New Hugo Site",
+    "name": "拾光博客 - 永浩",
     "logo": {
       "@type": "ImageObject",
-      "url": "https://example.org/favicon.ico"
+      "url": "https://growyears.netlify.app/favicon.ico"
     }
   }
 }
@@ -281,7 +281,7 @@ Worker 内部可调用 self.close() 主动终止自身。
 <header class="header">
     <nav class="nav">
         <div class="logo">
-            <a href="https://example.org/" accesskey="h" title="My New Hugo Site (Alt + H)">My New Hugo Site</a>
+            <a href="https://growyears.netlify.app/" accesskey="h" title="拾光博客 - 永浩 (Alt + H)">拾光博客 - 永浩</a>
             <div class="logo-switches">
                 <button id="theme-toggle" accesskey="t" title="(Alt + T)" aria-label="Toggle theme">
                     <svg id="moon" xmlns="http://www.w3.org/2000/svg" width="24" height="18" viewBox="0 0 24 24"
@@ -485,7 +485,7 @@ Worker 内部可调用 self.close() 主动终止自身。
     </main>
     
 <footer class="footer">
-        <span>&copy; 2025 <a href="https://example.org/">My New Hugo Site</a></span> · 
+        <span>&copy; 2025 <a href="https://growyears.netlify.app/">拾光博客 - 永浩</a></span> · 
 
     <span>
         Powered by

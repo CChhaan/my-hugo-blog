@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <meta name="robots" content="index, follow">
-<title>My New Hugo Site</title>
+<title>拾光博客 - 永浩</title>
 <meta name="keywords" content="">
 <meta name="description" content="
 摘要：JavaScript变量声明方式包括var、let和const。var存在变量提升和函数作用域特性，let提供块级作用域且禁止重复声明，const用于声明不可变常量。建议优先使用const，其次是let，避免使用var以提升代码质量。let和const解决了var带来的变量泄露等问题，使变量作用域更可控。对于对象类型的const变量，仅限制引用不可变，内部属性仍可修改。
@@ -32,16 +32,16 @@ const声明的限制只适用于它指向的变量的引用，如果const变量�
 
 有助于提升代码质量的最佳实践：不使用var，const优先，let次之">
 <meta name="author" content="">
-<link rel="canonical" href="https://example.org/posts/%E7%BA%A2%E5%AE%9D%E4%B9%A6%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/3.3-%E5%8F%98%E9%87%8F/">
+<link rel="canonical" href="https://growyears.netlify.app/posts/%E7%BA%A2%E5%AE%9D%E4%B9%A6%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/3.3-%E5%8F%98%E9%87%8F/">
 <link crossorigin="anonymous" href="/assets/css/stylesheet.36819bea596090d8b48cf10d9831382996197aa7e4fc86f792f7c08c9ca4d23b.css" integrity="sha256-NoGb6llgkNi0jPENmDE4KZYZeqfk/Ib3kvfAjJyk0js=" rel="preload stylesheet" as="style">
-<link rel="icon" href="https://example.org/favicon.ico">
-<link rel="icon" type="image/png" sizes="16x16" href="https://example.org/favicon-16x16.png">
-<link rel="icon" type="image/png" sizes="32x32" href="https://example.org/favicon-32x32.png">
-<link rel="apple-touch-icon" href="https://example.org/apple-touch-icon.png">
-<link rel="mask-icon" href="https://example.org/safari-pinned-tab.svg">
+<link rel="icon" href="https://growyears.netlify.app/favicon.ico">
+<link rel="icon" type="image/png" sizes="16x16" href="https://growyears.netlify.app/favicon-16x16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="https://growyears.netlify.app/favicon-32x32.png">
+<link rel="apple-touch-icon" href="https://growyears.netlify.app/apple-touch-icon.png">
+<link rel="mask-icon" href="https://growyears.netlify.app/safari-pinned-tab.svg">
 <meta name="theme-color" content="#2e2e33">
 <meta name="msapplication-TileColor" content="#2e2e33">
-<link rel="alternate" hreflang="en" href="https://example.org/posts/%E7%BA%A2%E5%AE%9D%E4%B9%A6%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/3.3-%E5%8F%98%E9%87%8F/">
+<link rel="alternate" hreflang="en" href="https://growyears.netlify.app/posts/%E7%BA%A2%E5%AE%9D%E4%B9%A6%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/3.3-%E5%8F%98%E9%87%8F/">
 <noscript>
     <style>
         #theme-toggle,
@@ -78,9 +78,9 @@ const声明的限制只适用于它指向的变量的引用，如果const变量�
         }
 
     </style>
-</noscript><meta property="og:url" content="https://example.org/posts/%E7%BA%A2%E5%AE%9D%E4%B9%A6%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/3.3-%E5%8F%98%E9%87%8F/">
-  <meta property="og:site_name" content="My New Hugo Site">
-  <meta property="og:title" content="My New Hugo Site">
+</noscript><meta property="og:url" content="https://growyears.netlify.app/posts/%E7%BA%A2%E5%AE%9D%E4%B9%A6%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/3.3-%E5%8F%98%E9%87%8F/">
+  <meta property="og:site_name" content="拾光博客 - 永浩">
+  <meta property="og:title" content="拾光博客 - 永浩">
   <meta property="og:description" content=" 摘要：JavaScript变量声明方式包括var、let和const。var存在变量提升和函数作用域特性，let提供块级作用域且禁止重复声明，const用于声明不可变常量。建议优先使用const，其次是let，避免使用var以提升代码质量。let和const解决了var带来的变量泄露等问题，使变量作用域更可控。对于对象类型的const变量，仅限制引用不可变，内部属性仍可修改。
 要定义变量，可以使用var操作符，后跟变量名
 ES实现变量初始化，因此可以同时定义变量并设置它的值
@@ -101,7 +101,7 @@ const的行为与let基本相同，唯一一个重要的区别是用它声明变
 const声明的限制只适用于它指向的变量的引用，如果const变量引用的是一个对象，那么修改这个对象内部的属性并不违反const的限制
 不能用const生命迭代变量，因为迭代变量会自增，for-of和for-in可以
 有助于提升代码质量的最佳实践：不使用var，const优先，let次之">
-  <meta property="og:locale" content="en-us">
+  <meta property="og:locale" content="zh-cn">
   <meta property="og:type" content="article">
     <meta property="article:section" content="posts">
 <meta name="twitter:card" content="summary">
@@ -141,13 +141,13 @@ const声明的限制只适用于它指向的变量的引用，如果const变量�
       "@type": "ListItem",
       "position":  1 ,
       "name": "Posts",
-      "item": "https://example.org/posts/"
+      "item": "https://growyears.netlify.app/posts/"
     }, 
     {
       "@type": "ListItem",
       "position":  2 ,
       "name": "",
-      "item": "https://example.org/posts/%E7%BA%A2%E5%AE%9D%E4%B9%A6%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/3.3-%E5%8F%98%E9%87%8F/"
+      "item": "https://growyears.netlify.app/posts/%E7%BA%A2%E5%AE%9D%E4%B9%A6%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/3.3-%E5%8F%98%E9%87%8F/"
     }
   ]
 }
@@ -169,14 +169,14 @@ const声明的限制只适用于它指向的变量的引用，如果const变量�
   "dateModified": "0001-01-01T00:00:00Z",
   "mainEntityOfPage": {
     "@type": "WebPage",
-    "@id": "https://example.org/posts/%E7%BA%A2%E5%AE%9D%E4%B9%A6%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/3.3-%E5%8F%98%E9%87%8F/"
+    "@id": "https://growyears.netlify.app/posts/%E7%BA%A2%E5%AE%9D%E4%B9%A6%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/3.3-%E5%8F%98%E9%87%8F/"
   },
   "publisher": {
     "@type": "Organization",
-    "name": "My New Hugo Site",
+    "name": "拾光博客 - 永浩",
     "logo": {
       "@type": "ImageObject",
-      "url": "https://example.org/favicon.ico"
+      "url": "https://growyears.netlify.app/favicon.ico"
     }
   }
 }
@@ -198,7 +198,7 @@ const声明的限制只适用于它指向的变量的引用，如果const变量�
 <header class="header">
     <nav class="nav">
         <div class="logo">
-            <a href="https://example.org/" accesskey="h" title="My New Hugo Site (Alt + H)">My New Hugo Site</a>
+            <a href="https://growyears.netlify.app/" accesskey="h" title="拾光博客 - 永浩 (Alt + H)">拾光博客 - 永浩</a>
             <div class="logo-switches">
                 <button id="theme-toggle" accesskey="t" title="(Alt + T)" aria-label="Toggle theme">
                     <svg id="moon" xmlns="http://www.w3.org/2000/svg" width="24" height="18" viewBox="0 0 24 24"
@@ -274,7 +274,7 @@ const声明的限制只适用于它指向的变量的引用，如果const变量�
     </main>
     
 <footer class="footer">
-        <span>&copy; 2025 <a href="https://example.org/">My New Hugo Site</a></span> · 
+        <span>&copy; 2025 <a href="https://growyears.netlify.app/">拾光博客 - 永浩</a></span> · 
 
     <span>
         Powered by

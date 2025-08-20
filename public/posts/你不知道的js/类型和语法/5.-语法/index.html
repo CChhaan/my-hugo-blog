@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <meta name="robots" content="index, follow">
-<title>My New Hugo Site</title>
+<title>拾光博客 - 永浩</title>
 <meta name="keywords" content="">
 <meta name="description" content="一、语句与表达式的基本概念
 
@@ -62,16 +62,16 @@ continue 标签：仅用于循环，跳转到标签标记的循环的下一轮�
 
 JSON 与 JSON-P：">
 <meta name="author" content="">
-<link rel="canonical" href="https://example.org/posts/%E4%BD%A0%E4%B8%8D%E7%9F%A5%E9%81%93%E7%9A%84js/%E7%B1%BB%E5%9E%8B%E5%92%8C%E8%AF%AD%E6%B3%95/5.-%E8%AF%AD%E6%B3%95/">
+<link rel="canonical" href="https://growyears.netlify.app/posts/%E4%BD%A0%E4%B8%8D%E7%9F%A5%E9%81%93%E7%9A%84js/%E7%B1%BB%E5%9E%8B%E5%92%8C%E8%AF%AD%E6%B3%95/5.-%E8%AF%AD%E6%B3%95/">
 <link crossorigin="anonymous" href="/assets/css/stylesheet.36819bea596090d8b48cf10d9831382996197aa7e4fc86f792f7c08c9ca4d23b.css" integrity="sha256-NoGb6llgkNi0jPENmDE4KZYZeqfk/Ib3kvfAjJyk0js=" rel="preload stylesheet" as="style">
-<link rel="icon" href="https://example.org/favicon.ico">
-<link rel="icon" type="image/png" sizes="16x16" href="https://example.org/favicon-16x16.png">
-<link rel="icon" type="image/png" sizes="32x32" href="https://example.org/favicon-32x32.png">
-<link rel="apple-touch-icon" href="https://example.org/apple-touch-icon.png">
-<link rel="mask-icon" href="https://example.org/safari-pinned-tab.svg">
+<link rel="icon" href="https://growyears.netlify.app/favicon.ico">
+<link rel="icon" type="image/png" sizes="16x16" href="https://growyears.netlify.app/favicon-16x16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="https://growyears.netlify.app/favicon-32x32.png">
+<link rel="apple-touch-icon" href="https://growyears.netlify.app/apple-touch-icon.png">
+<link rel="mask-icon" href="https://growyears.netlify.app/safari-pinned-tab.svg">
 <meta name="theme-color" content="#2e2e33">
 <meta name="msapplication-TileColor" content="#2e2e33">
-<link rel="alternate" hreflang="en" href="https://example.org/posts/%E4%BD%A0%E4%B8%8D%E7%9F%A5%E9%81%93%E7%9A%84js/%E7%B1%BB%E5%9E%8B%E5%92%8C%E8%AF%AD%E6%B3%95/5.-%E8%AF%AD%E6%B3%95/">
+<link rel="alternate" hreflang="en" href="https://growyears.netlify.app/posts/%E4%BD%A0%E4%B8%8D%E7%9F%A5%E9%81%93%E7%9A%84js/%E7%B1%BB%E5%9E%8B%E5%92%8C%E8%AF%AD%E6%B3%95/5.-%E8%AF%AD%E6%B3%95/">
 <noscript>
     <style>
         #theme-toggle,
@@ -108,14 +108,14 @@ JSON 与 JSON-P：">
         }
 
     </style>
-</noscript><meta property="og:url" content="https://example.org/posts/%E4%BD%A0%E4%B8%8D%E7%9F%A5%E9%81%93%E7%9A%84js/%E7%B1%BB%E5%9E%8B%E5%92%8C%E8%AF%AD%E6%B3%95/5.-%E8%AF%AD%E6%B3%95/">
-  <meta property="og:site_name" content="My New Hugo Site">
-  <meta property="og:title" content="My New Hugo Site">
+</noscript><meta property="og:url" content="https://growyears.netlify.app/posts/%E4%BD%A0%E4%B8%8D%E7%9F%A5%E9%81%93%E7%9A%84js/%E7%B1%BB%E5%9E%8B%E5%92%8C%E8%AF%AD%E6%B3%95/5.-%E8%AF%AD%E6%B3%95/">
+  <meta property="og:site_name" content="拾光博客 - 永浩">
+  <meta property="og:title" content="拾光博客 - 永浩">
   <meta property="og:description" content="一、语句与表达式的基本概念 表达式：能返回一个结果值的代码片段（如1 &#43; 2返回3，obj.prop返回属性值）。 语句：执行某种操作的代码（如if、for、return），所有语句都有结果值，但语法默认不允许直接获取。 语句的结果值 常见语句的结果值： 赋值语句a = b：结果值为被赋予的值（即b的值）。 变量声明var a：结果值为undefined（let/const同理）。 代码块{...}：结果值为块内最后一个语句 / 表达式的结果（如{1; 2; 3}结果为3）。 获取语句结果值的方式：语法不直接支持，但可通过eval()获取（如eval(&#39;{a=1; b=2}&#39;)返回2）。 二、表达式的副作用 副作用指表达式执行时对外部环境的改变（如修改变量、删除属性等）。
 常见有副作用的表达式 函数调用：最常见（如console.log(1)会输出内容，改变控制台状态）。 自增 / 自减运算符： a&#43;&#43;：先返回a的当前值，再将a加 1（副作用在后）。 &#43;&#43;a：先将a加 1，再返回新值（副作用在前）。 注意：&#43;&#43;a&#43;&#43;会报错（ReferenceError），因运算符需要可赋值的变量作为操作数。 逗号运算符：将多个表达式串联为一个语句，返回最后一个表达式的结果（如a=1, b=2, a&#43;b结果为3），副作用是执行所有表达式。 delete 操作符： 作用：删除对象属性或数组单元。 结果值：成功删除（属性不存在或可配置）返回true；失败（不可配置属性）返回false或报错。 副作用：实际移除属性 / 单元（如delete obj.prop后obj.prop为undefined）。 赋值语句：a = 42结果为42，副作用是a被赋值为42；链式赋值（如a = b = 42）利用赋值表达式的结果值实现。 三、上下文规则 3.1 大括号{}的用法 对象常量：定义对象字面量（如{a: 1, b: 2}）。
 标签（label）：用于标记代码块，配合break/ continue跳转：
 break 标签：跳出标签标记的循环 / 代码块，执行后续代码（如跳出内层循环到外层）。 continue 标签：仅用于循环，跳转到标签标记的循环的下一轮（不能用于非循环代码块）。 注意：标签不能用双引号；非循环代码块可使用break 标签，但不能用continue 标签。 JSON 与 JSON-P：">
-  <meta property="og:locale" content="en-us">
+  <meta property="og:locale" content="zh-cn">
   <meta property="og:type" content="article">
     <meta property="article:section" content="posts">
 <meta name="twitter:card" content="summary">
@@ -185,13 +185,13 @@ JSON 与 JSON-P：">
       "@type": "ListItem",
       "position":  1 ,
       "name": "Posts",
-      "item": "https://example.org/posts/"
+      "item": "https://growyears.netlify.app/posts/"
     }, 
     {
       "@type": "ListItem",
       "position":  2 ,
       "name": "",
-      "item": "https://example.org/posts/%E4%BD%A0%E4%B8%8D%E7%9F%A5%E9%81%93%E7%9A%84js/%E7%B1%BB%E5%9E%8B%E5%92%8C%E8%AF%AD%E6%B3%95/5.-%E8%AF%AD%E6%B3%95/"
+      "item": "https://growyears.netlify.app/posts/%E4%BD%A0%E4%B8%8D%E7%9F%A5%E9%81%93%E7%9A%84js/%E7%B1%BB%E5%9E%8B%E5%92%8C%E8%AF%AD%E6%B3%95/5.-%E8%AF%AD%E6%B3%95/"
     }
   ]
 }
@@ -213,14 +213,14 @@ JSON 与 JSON-P：">
   "dateModified": "0001-01-01T00:00:00Z",
   "mainEntityOfPage": {
     "@type": "WebPage",
-    "@id": "https://example.org/posts/%E4%BD%A0%E4%B8%8D%E7%9F%A5%E9%81%93%E7%9A%84js/%E7%B1%BB%E5%9E%8B%E5%92%8C%E8%AF%AD%E6%B3%95/5.-%E8%AF%AD%E6%B3%95/"
+    "@id": "https://growyears.netlify.app/posts/%E4%BD%A0%E4%B8%8D%E7%9F%A5%E9%81%93%E7%9A%84js/%E7%B1%BB%E5%9E%8B%E5%92%8C%E8%AF%AD%E6%B3%95/5.-%E8%AF%AD%E6%B3%95/"
   },
   "publisher": {
     "@type": "Organization",
-    "name": "My New Hugo Site",
+    "name": "拾光博客 - 永浩",
     "logo": {
       "@type": "ImageObject",
-      "url": "https://example.org/favicon.ico"
+      "url": "https://growyears.netlify.app/favicon.ico"
     }
   }
 }
@@ -242,7 +242,7 @@ JSON 与 JSON-P：">
 <header class="header">
     <nav class="nav">
         <div class="logo">
-            <a href="https://example.org/" accesskey="h" title="My New Hugo Site (Alt + H)">My New Hugo Site</a>
+            <a href="https://growyears.netlify.app/" accesskey="h" title="拾光博客 - 永浩 (Alt + H)">拾光博客 - 永浩</a>
             <div class="logo-switches">
                 <button id="theme-toggle" accesskey="t" title="(Alt + T)" aria-label="Toggle theme">
                     <svg id="moon" xmlns="http://www.w3.org/2000/svg" width="24" height="18" viewBox="0 0 24 24"
@@ -458,7 +458,7 @@ JSON 与 JSON-P：">
     </main>
     
 <footer class="footer">
-        <span>&copy; 2025 <a href="https://example.org/">My New Hugo Site</a></span> · 
+        <span>&copy; 2025 <a href="https://growyears.netlify.app/">拾光博客 - 永浩</a></span> · 
 
     <span>
         Powered by

@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <meta name="robots" content="index, follow">
-<title>My New Hugo Site</title>
+<title>拾光博客 - 永浩</title>
 <meta name="keywords" content="">
 <meta name="description" content="
 本文介绍了JS中的5种主要继承方式：原型链、盗用构造函数、组合继承、原型式继承和寄生式继承。原型链通过原型对象实现继承，但存在引用值共享和传参问题；盗用构造函数通过调用父类构造函数解决了传参问题，但方法无法重用；组合继承结合了两者优点；原型式继承基于对象浅复制，适合共享信息；寄生式继承通过增强对象实现继承。最后提到寄生式组合继承解决了组合继承的效率问题，是引用类型继承的最佳模式。各种方式各有适用场景，开发者需根据需求选择。
@@ -55,16 +55,16 @@ ES5通过Object.create()方法将原型式继承的概念规范化了，这个�
 组合式继承存在效率问题，父类构造函数始终会被调用两次：一次实在创建子类原型时调用，另一次是在子类构造函数中调用。本质是，子类原型最终是要包含超类对象的所有实例属性，子类构造函数只要在执行时重写自己的原型就行了
 寄生式组合继承通过盗用构造函数继承属性，但使用混合式原型链继承方法。基本思路是不通过调用父类构造函数给子类原型赋值，而是取得父类原型的一个副本，说到底就是使用寄生式继承来继承父类原型，然后将返回的新对象赋值给子类原型。">
 <meta name="author" content="">
-<link rel="canonical" href="https://example.org/posts/%E7%BA%A2%E5%AE%9D%E4%B9%A6%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/8.3-%E7%BB%A7%E6%89%BF/">
+<link rel="canonical" href="https://growyears.netlify.app/posts/%E7%BA%A2%E5%AE%9D%E4%B9%A6%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/8.3-%E7%BB%A7%E6%89%BF/">
 <link crossorigin="anonymous" href="/assets/css/stylesheet.36819bea596090d8b48cf10d9831382996197aa7e4fc86f792f7c08c9ca4d23b.css" integrity="sha256-NoGb6llgkNi0jPENmDE4KZYZeqfk/Ib3kvfAjJyk0js=" rel="preload stylesheet" as="style">
-<link rel="icon" href="https://example.org/favicon.ico">
-<link rel="icon" type="image/png" sizes="16x16" href="https://example.org/favicon-16x16.png">
-<link rel="icon" type="image/png" sizes="32x32" href="https://example.org/favicon-32x32.png">
-<link rel="apple-touch-icon" href="https://example.org/apple-touch-icon.png">
-<link rel="mask-icon" href="https://example.org/safari-pinned-tab.svg">
+<link rel="icon" href="https://growyears.netlify.app/favicon.ico">
+<link rel="icon" type="image/png" sizes="16x16" href="https://growyears.netlify.app/favicon-16x16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="https://growyears.netlify.app/favicon-32x32.png">
+<link rel="apple-touch-icon" href="https://growyears.netlify.app/apple-touch-icon.png">
+<link rel="mask-icon" href="https://growyears.netlify.app/safari-pinned-tab.svg">
 <meta name="theme-color" content="#2e2e33">
 <meta name="msapplication-TileColor" content="#2e2e33">
-<link rel="alternate" hreflang="en" href="https://example.org/posts/%E7%BA%A2%E5%AE%9D%E4%B9%A6%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/8.3-%E7%BB%A7%E6%89%BF/">
+<link rel="alternate" hreflang="en" href="https://growyears.netlify.app/posts/%E7%BA%A2%E5%AE%9D%E4%B9%A6%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/8.3-%E7%BB%A7%E6%89%BF/">
 <noscript>
     <style>
         #theme-toggle,
@@ -101,9 +101,9 @@ ES5通过Object.create()方法将原型式继承的概念规范化了，这个�
         }
 
     </style>
-</noscript><meta property="og:url" content="https://example.org/posts/%E7%BA%A2%E5%AE%9D%E4%B9%A6%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/8.3-%E7%BB%A7%E6%89%BF/">
-  <meta property="og:site_name" content="My New Hugo Site">
-  <meta property="og:title" content="My New Hugo Site">
+</noscript><meta property="og:url" content="https://growyears.netlify.app/posts/%E7%BA%A2%E5%AE%9D%E4%B9%A6%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/8.3-%E7%BB%A7%E6%89%BF/">
+  <meta property="og:site_name" content="拾光博客 - 永浩">
+  <meta property="og:title" content="拾光博客 - 永浩">
   <meta property="og:description" content=" 本文介绍了JS中的5种主要继承方式：原型链、盗用构造函数、组合继承、原型式继承和寄生式继承。原型链通过原型对象实现继承，但存在引用值共享和传参问题；盗用构造函数通过调用父类构造函数解决了传参问题，但方法无法重用；组合继承结合了两者优点；原型式继承基于对象浅复制，适合共享信息；寄生式继承通过增强对象实现继承。最后提到寄生式组合继承解决了组合继承的效率问题，是引用类型继承的最佳模式。各种方式各有适用场景，开发者需根据需求选择。
 原型链 原型链是ES的主要继承方式，其基本思想就是通过原型继承多个引用类型的属性和方法
 每个构造函数都有一个原型对象，原型有一个属性指回构造函数，而实例有一个内部指针指向原型。如果原型是另一个类型的实例，那就意味着这个原型本身有一个内部指针指向另一个原型，相应的另一个原型也有一个指针指向另一个构造函数，这样就在实例和原型之间构造了一条原型链
@@ -133,7 +133,7 @@ ES5通过Object.create()方法将原型式继承的概念规范化了，这个�
 寄生式组合继承
 组合式继承存在效率问题，父类构造函数始终会被调用两次：一次实在创建子类原型时调用，另一次是在子类构造函数中调用。本质是，子类原型最终是要包含超类对象的所有实例属性，子类构造函数只要在执行时重写自己的原型就行了
 寄生式组合继承通过盗用构造函数继承属性，但使用混合式原型链继承方法。基本思路是不通过调用父类构造函数给子类原型赋值，而是取得父类原型的一个副本，说到底就是使用寄生式继承来继承父类原型，然后将返回的新对象赋值给子类原型。">
-  <meta property="og:locale" content="en-us">
+  <meta property="og:locale" content="zh-cn">
   <meta property="og:type" content="article">
     <meta property="article:section" content="posts">
 <meta name="twitter:card" content="summary">
@@ -196,13 +196,13 @@ ES5通过Object.create()方法将原型式继承的概念规范化了，这个�
       "@type": "ListItem",
       "position":  1 ,
       "name": "Posts",
-      "item": "https://example.org/posts/"
+      "item": "https://growyears.netlify.app/posts/"
     }, 
     {
       "@type": "ListItem",
       "position":  2 ,
       "name": "",
-      "item": "https://example.org/posts/%E7%BA%A2%E5%AE%9D%E4%B9%A6%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/8.3-%E7%BB%A7%E6%89%BF/"
+      "item": "https://growyears.netlify.app/posts/%E7%BA%A2%E5%AE%9D%E4%B9%A6%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/8.3-%E7%BB%A7%E6%89%BF/"
     }
   ]
 }
@@ -224,14 +224,14 @@ ES5通过Object.create()方法将原型式继承的概念规范化了，这个�
   "dateModified": "0001-01-01T00:00:00Z",
   "mainEntityOfPage": {
     "@type": "WebPage",
-    "@id": "https://example.org/posts/%E7%BA%A2%E5%AE%9D%E4%B9%A6%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/8.3-%E7%BB%A7%E6%89%BF/"
+    "@id": "https://growyears.netlify.app/posts/%E7%BA%A2%E5%AE%9D%E4%B9%A6%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/8.3-%E7%BB%A7%E6%89%BF/"
   },
   "publisher": {
     "@type": "Organization",
-    "name": "My New Hugo Site",
+    "name": "拾光博客 - 永浩",
     "logo": {
       "@type": "ImageObject",
-      "url": "https://example.org/favicon.ico"
+      "url": "https://growyears.netlify.app/favicon.ico"
     }
   }
 }
@@ -253,7 +253,7 @@ ES5通过Object.create()方法将原型式继承的概念规范化了，这个�
 <header class="header">
     <nav class="nav">
         <div class="logo">
-            <a href="https://example.org/" accesskey="h" title="My New Hugo Site (Alt + H)">My New Hugo Site</a>
+            <a href="https://growyears.netlify.app/" accesskey="h" title="拾光博客 - 永浩 (Alt + H)">拾光博客 - 永浩</a>
             <div class="logo-switches">
                 <button id="theme-toggle" accesskey="t" title="(Alt + T)" aria-label="Toggle theme">
                     <svg id="moon" xmlns="http://www.w3.org/2000/svg" width="24" height="18" viewBox="0 0 24 24"
@@ -352,7 +352,7 @@ ES5通过Object.create()方法将原型式继承的概念规范化了，这个�
     </main>
     
 <footer class="footer">
-        <span>&copy; 2025 <a href="https://example.org/">My New Hugo Site</a></span> · 
+        <span>&copy; 2025 <a href="https://growyears.netlify.app/">拾光博客 - 永浩</a></span> · 
 
     <span>
         Powered by

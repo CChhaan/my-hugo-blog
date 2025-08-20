@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <meta name="robots" content="index, follow">
-<title>My New Hugo Site</title>
+<title>拾光博客 - 永浩</title>
 <meta name="keywords" content="">
 <meta name="description" content="
 本文对比了对象关联和类继承两种编程模式的区别。对象关联采用[[Prototype]]委托机制，强调状态存储在委托者而非目标上，避免同名方法重写，提倡使用描述性方法名以提高代码可读性。同时指出委托行为存在循环委托的限制。另一方面，class语法支持super多态和extends继承，但本质上仍是语法糖，存在静态绑定super、无法声明属性和动态修改等局限性。两种模式各有特点，开发者需要根据实际需求选择合适的实现方式。
@@ -30,16 +30,16 @@ class字面语法不能声明属性，只能声明方法
 但是本质是语法糖，没法真正实现类，并且super声明时是静态绑定而不是动态绑定的，所以定义了class后不容易对其动态修改
 ">
 <meta name="author" content="">
-<link rel="canonical" href="https://example.org/posts/%E4%BD%A0%E4%B8%8D%E7%9F%A5%E9%81%93%E7%9A%84js/this%E5%92%8C%E5%AF%B9%E8%B1%A1%E5%8E%9F%E5%9E%8B/5.-%E8%A1%8C%E4%B8%BA%E5%A7%94%E6%89%98%E5%92%8Cclass/">
+<link rel="canonical" href="https://growyears.netlify.app/posts/%E4%BD%A0%E4%B8%8D%E7%9F%A5%E9%81%93%E7%9A%84js/this%E5%92%8C%E5%AF%B9%E8%B1%A1%E5%8E%9F%E5%9E%8B/5.-%E8%A1%8C%E4%B8%BA%E5%A7%94%E6%89%98%E5%92%8Cclass/">
 <link crossorigin="anonymous" href="/assets/css/stylesheet.36819bea596090d8b48cf10d9831382996197aa7e4fc86f792f7c08c9ca4d23b.css" integrity="sha256-NoGb6llgkNi0jPENmDE4KZYZeqfk/Ib3kvfAjJyk0js=" rel="preload stylesheet" as="style">
-<link rel="icon" href="https://example.org/favicon.ico">
-<link rel="icon" type="image/png" sizes="16x16" href="https://example.org/favicon-16x16.png">
-<link rel="icon" type="image/png" sizes="32x32" href="https://example.org/favicon-32x32.png">
-<link rel="apple-touch-icon" href="https://example.org/apple-touch-icon.png">
-<link rel="mask-icon" href="https://example.org/safari-pinned-tab.svg">
+<link rel="icon" href="https://growyears.netlify.app/favicon.ico">
+<link rel="icon" type="image/png" sizes="16x16" href="https://growyears.netlify.app/favicon-16x16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="https://growyears.netlify.app/favicon-32x32.png">
+<link rel="apple-touch-icon" href="https://growyears.netlify.app/apple-touch-icon.png">
+<link rel="mask-icon" href="https://growyears.netlify.app/safari-pinned-tab.svg">
 <meta name="theme-color" content="#2e2e33">
 <meta name="msapplication-TileColor" content="#2e2e33">
-<link rel="alternate" hreflang="en" href="https://example.org/posts/%E4%BD%A0%E4%B8%8D%E7%9F%A5%E9%81%93%E7%9A%84js/this%E5%92%8C%E5%AF%B9%E8%B1%A1%E5%8E%9F%E5%9E%8B/5.-%E8%A1%8C%E4%B8%BA%E5%A7%94%E6%89%98%E5%92%8Cclass/">
+<link rel="alternate" hreflang="en" href="https://growyears.netlify.app/posts/%E4%BD%A0%E4%B8%8D%E7%9F%A5%E9%81%93%E7%9A%84js/this%E5%92%8C%E5%AF%B9%E8%B1%A1%E5%8E%9F%E5%9E%8B/5.-%E8%A1%8C%E4%B8%BA%E5%A7%94%E6%89%98%E5%92%8Cclass/">
 <noscript>
     <style>
         #theme-toggle,
@@ -76,9 +76,9 @@ class字面语法不能声明属性，只能声明方法
         }
 
     </style>
-</noscript><meta property="og:url" content="https://example.org/posts/%E4%BD%A0%E4%B8%8D%E7%9F%A5%E9%81%93%E7%9A%84js/this%E5%92%8C%E5%AF%B9%E8%B1%A1%E5%8E%9F%E5%9E%8B/5.-%E8%A1%8C%E4%B8%BA%E5%A7%94%E6%89%98%E5%92%8Cclass/">
-  <meta property="og:site_name" content="My New Hugo Site">
-  <meta property="og:title" content="My New Hugo Site">
+</noscript><meta property="og:url" content="https://growyears.netlify.app/posts/%E4%BD%A0%E4%B8%8D%E7%9F%A5%E9%81%93%E7%9A%84js/this%E5%92%8C%E5%AF%B9%E8%B1%A1%E5%8E%9F%E5%9E%8B/5.-%E8%A1%8C%E4%B8%BA%E5%A7%94%E6%89%98%E5%92%8Cclass/">
+  <meta property="og:site_name" content="拾光博客 - 永浩">
+  <meta property="og:title" content="拾光博客 - 永浩">
   <meta property="og:description" content=" 本文对比了对象关联和类继承两种编程模式的区别。对象关联采用[[Prototype]]委托机制，强调状态存储在委托者而非目标上，避免同名方法重写，提倡使用描述性方法名以提高代码可读性。同时指出委托行为存在循环委托的限制。另一方面，class语法支持super多态和extends继承，但本质上仍是语法糖，存在静态绑定super、无法声明属性和动态修改等局限性。两种模式各有特点，开发者需要根据实际需求选择合适的实现方式。
 相比于面向类，对象关联风格的代码有一些不同之处：
 在[[Prototype]]委托中最好把状态保存在委托者而不是委托目标上
@@ -88,7 +88,7 @@ class字面语法不能声明属性，只能声明方法
 无法在两个或两个以上互相委托的对象之间创建循环委托，如果把B关联到A然后试着把A关联到B，就会出错
 class语法特点：
 可以通过super()来实现相对多态，这样任何方法都可以引用原型链上层的同名方法 class字面语法不能声明属性，只能声明方法 可以通过extends很自然的扩展对象类型，甚至是内置对象类型 但是本质是语法糖，没法真正实现类，并且super声明时是静态绑定而不是动态绑定的，所以定义了class后不容易对其动态修改 ">
-  <meta property="og:locale" content="en-us">
+  <meta property="og:locale" content="zh-cn">
   <meta property="og:type" content="article">
     <meta property="article:section" content="posts">
 <meta name="twitter:card" content="summary">
@@ -126,13 +126,13 @@ class字面语法不能声明属性，只能声明方法
       "@type": "ListItem",
       "position":  1 ,
       "name": "Posts",
-      "item": "https://example.org/posts/"
+      "item": "https://growyears.netlify.app/posts/"
     }, 
     {
       "@type": "ListItem",
       "position":  2 ,
       "name": "",
-      "item": "https://example.org/posts/%E4%BD%A0%E4%B8%8D%E7%9F%A5%E9%81%93%E7%9A%84js/this%E5%92%8C%E5%AF%B9%E8%B1%A1%E5%8E%9F%E5%9E%8B/5.-%E8%A1%8C%E4%B8%BA%E5%A7%94%E6%89%98%E5%92%8Cclass/"
+      "item": "https://growyears.netlify.app/posts/%E4%BD%A0%E4%B8%8D%E7%9F%A5%E9%81%93%E7%9A%84js/this%E5%92%8C%E5%AF%B9%E8%B1%A1%E5%8E%9F%E5%9E%8B/5.-%E8%A1%8C%E4%B8%BA%E5%A7%94%E6%89%98%E5%92%8Cclass/"
     }
   ]
 }
@@ -154,14 +154,14 @@ class字面语法不能声明属性，只能声明方法
   "dateModified": "0001-01-01T00:00:00Z",
   "mainEntityOfPage": {
     "@type": "WebPage",
-    "@id": "https://example.org/posts/%E4%BD%A0%E4%B8%8D%E7%9F%A5%E9%81%93%E7%9A%84js/this%E5%92%8C%E5%AF%B9%E8%B1%A1%E5%8E%9F%E5%9E%8B/5.-%E8%A1%8C%E4%B8%BA%E5%A7%94%E6%89%98%E5%92%8Cclass/"
+    "@id": "https://growyears.netlify.app/posts/%E4%BD%A0%E4%B8%8D%E7%9F%A5%E9%81%93%E7%9A%84js/this%E5%92%8C%E5%AF%B9%E8%B1%A1%E5%8E%9F%E5%9E%8B/5.-%E8%A1%8C%E4%B8%BA%E5%A7%94%E6%89%98%E5%92%8Cclass/"
   },
   "publisher": {
     "@type": "Organization",
-    "name": "My New Hugo Site",
+    "name": "拾光博客 - 永浩",
     "logo": {
       "@type": "ImageObject",
-      "url": "https://example.org/favicon.ico"
+      "url": "https://growyears.netlify.app/favicon.ico"
     }
   }
 }
@@ -183,7 +183,7 @@ class字面语法不能声明属性，只能声明方法
 <header class="header">
     <nav class="nav">
         <div class="logo">
-            <a href="https://example.org/" accesskey="h" title="My New Hugo Site (Alt + H)">My New Hugo Site</a>
+            <a href="https://growyears.netlify.app/" accesskey="h" title="拾光博客 - 永浩 (Alt + H)">拾光博客 - 永浩</a>
             <div class="logo-switches">
                 <button id="theme-toggle" accesskey="t" title="(Alt + T)" aria-label="Toggle theme">
                     <svg id="moon" xmlns="http://www.w3.org/2000/svg" width="24" height="18" viewBox="0 0 24 24"
@@ -257,7 +257,7 @@ class字面语法不能声明属性，只能声明方法
     </main>
     
 <footer class="footer">
-        <span>&copy; 2025 <a href="https://example.org/">My New Hugo Site</a></span> · 
+        <span>&copy; 2025 <a href="https://growyears.netlify.app/">拾光博客 - 永浩</a></span> · 
 
     <span>
         Powered by

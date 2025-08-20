@@ -1,4 +1,4 @@
 theme = 'PaperMod'
-baseURL = 'https://example.org/'
-languageCode = 'en-us'
-title = 'My New Hugo Site'
+baseURL = 'https://growyears.netlify.app/'
+languageCode = 'zh-cn'
+title = '拾光博客 - 永浩'

@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <meta name="robots" content="index, follow">
-<title>My New Hugo Site</title>
+<title>拾光博客 - 永浩</title>
 <meta name="keywords" content="">
 <meta name="description" content="一、条件类型
 条件类型通过判断类型关系返回不同类型，基本形式为 SomeType extends OtherType ? TrueType : FalseType，核心价值在于与泛型结合实现灵活的类型逻辑。
@@ -44,16 +44,16 @@ type Num = Flatten&lt;number&gt;; // type Num = number（不满足数组，返�
 
 示例 2：提取函数返回类型">
 <meta name="author" content="">
-<link rel="canonical" href="https://example.org/posts/ts/08--%E6%9D%A1%E4%BB%B6%E7%B1%BB%E5%9E%8B/">
+<link rel="canonical" href="https://growyears.netlify.app/posts/ts/08--%E6%9D%A1%E4%BB%B6%E7%B1%BB%E5%9E%8B/">
 <link crossorigin="anonymous" href="/assets/css/stylesheet.36819bea596090d8b48cf10d9831382996197aa7e4fc86f792f7c08c9ca4d23b.css" integrity="sha256-NoGb6llgkNi0jPENmDE4KZYZeqfk/Ib3kvfAjJyk0js=" rel="preload stylesheet" as="style">
-<link rel="icon" href="https://example.org/favicon.ico">
-<link rel="icon" type="image/png" sizes="16x16" href="https://example.org/favicon-16x16.png">
-<link rel="icon" type="image/png" sizes="32x32" href="https://example.org/favicon-32x32.png">
-<link rel="apple-touch-icon" href="https://example.org/apple-touch-icon.png">
-<link rel="mask-icon" href="https://example.org/safari-pinned-tab.svg">
+<link rel="icon" href="https://growyears.netlify.app/favicon.ico">
+<link rel="icon" type="image/png" sizes="16x16" href="https://growyears.netlify.app/favicon-16x16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="https://growyears.netlify.app/favicon-32x32.png">
+<link rel="apple-touch-icon" href="https://growyears.netlify.app/apple-touch-icon.png">
+<link rel="mask-icon" href="https://growyears.netlify.app/safari-pinned-tab.svg">
 <meta name="theme-color" content="#2e2e33">
 <meta name="msapplication-TileColor" content="#2e2e33">
-<link rel="alternate" hreflang="en" href="https://example.org/posts/ts/08--%E6%9D%A1%E4%BB%B6%E7%B1%BB%E5%9E%8B/">
+<link rel="alternate" hreflang="en" href="https://growyears.netlify.app/posts/ts/08--%E6%9D%A1%E4%BB%B6%E7%B1%BB%E5%9E%8B/">
 <noscript>
     <style>
         #theme-toggle,
@@ -90,16 +90,16 @@ type Num = Flatten&lt;number&gt;; // type Num = number（不满足数组，返�
         }
 
     </style>
-</noscript><meta property="og:url" content="https://example.org/posts/ts/08--%E6%9D%A1%E4%BB%B6%E7%B1%BB%E5%9E%8B/">
-  <meta property="og:site_name" content="My New Hugo Site">
-  <meta property="og:title" content="My New Hugo Site">
+</noscript><meta property="og:url" content="https://growyears.netlify.app/posts/ts/08--%E6%9D%A1%E4%BB%B6%E7%B1%BB%E5%9E%8B/">
+  <meta property="og:site_name" content="拾光博客 - 永浩">
+  <meta property="og:title" content="拾光博客 - 永浩">
   <meta property="og:description" content="一、条件类型 条件类型通过判断类型关系返回不同类型，基本形式为 SomeType extends OtherType ? TrueType : FalseType，核心价值在于与泛型结合实现灵活的类型逻辑。
 1. 基本用法 当SomeType可赋值给OtherType时，返回TrueType；否则返回FalseType
 type Example1 = Dog extends Animal ? number : string; // 若Dog是Animal的子类型，返回number 2. 与泛型结合 条件类型与泛型结合可简化重载，实现类型与值的动态关联：
 // 需求：输入number返回IdLabel，输入string返回NameLabel type IdLabel = { id: number }; type NameLabel = { name: string }; // 条件类型关联输入与输出类型 type Label&lt;T extends number | string&gt; = T extends number ? IdLabel : NameLabel; // 单个函数替代重载 function createLabel&lt;T extends number | string&gt;(value: T): Label&lt;T&gt; { return typeof value === &#39;number&#39; ? { id: value } : { name: value } as Label&lt;T&gt;; } const label1 = createLabel(10); // 类型：IdLabel（{ id: number }） const label2 = createLabel(&#34;Alice&#34;); // 类型：NameLabel（{ name: string }） 3. 类型推断与 infer 通过 infer 关键字在条件类型中声明性推断类型，无需显式指定提取逻辑：
 示例 1：提取数组元素类型
 type Flatten&lt;Type&gt; = Type extends Array&lt;infer Item&gt; ? Item : Type; type Str = Flatten&lt;string[]&gt;; // type Str = string（推断Item为string） type Num = Flatten&lt;number&gt;; // type Num = number（不满足数组，返回原类型） 示例 2：提取函数返回类型">
-  <meta property="og:locale" content="en-us">
+  <meta property="og:locale" content="zh-cn">
   <meta property="og:type" content="article">
     <meta property="article:section" content="posts">
 <meta name="twitter:card" content="summary">
@@ -151,13 +151,13 @@ type Num = Flatten&lt;number&gt;; // type Num = number（不满足数组，返�
       "@type": "ListItem",
       "position":  1 ,
       "name": "Posts",
-      "item": "https://example.org/posts/"
+      "item": "https://growyears.netlify.app/posts/"
     }, 
     {
       "@type": "ListItem",
       "position":  2 ,
       "name": "",
-      "item": "https://example.org/posts/ts/08--%E6%9D%A1%E4%BB%B6%E7%B1%BB%E5%9E%8B/"
+      "item": "https://growyears.netlify.app/posts/ts/08--%E6%9D%A1%E4%BB%B6%E7%B1%BB%E5%9E%8B/"
     }
   ]
 }
@@ -179,14 +179,14 @@ type Num = Flatten&lt;number&gt;; // type Num = number（不满足数组，返�
   "dateModified": "0001-01-01T00:00:00Z",
   "mainEntityOfPage": {
     "@type": "WebPage",
-    "@id": "https://example.org/posts/ts/08--%E6%9D%A1%E4%BB%B6%E7%B1%BB%E5%9E%8B/"
+    "@id": "https://growyears.netlify.app/posts/ts/08--%E6%9D%A1%E4%BB%B6%E7%B1%BB%E5%9E%8B/"
   },
   "publisher": {
     "@type": "Organization",
-    "name": "My New Hugo Site",
+    "name": "拾光博客 - 永浩",
     "logo": {
       "@type": "ImageObject",
-      "url": "https://example.org/favicon.ico"
+      "url": "https://growyears.netlify.app/favicon.ico"
     }
   }
 }
@@ -208,7 +208,7 @@ type Num = Flatten&lt;number&gt;; // type Num = number（不满足数组，返�
 <header class="header">
     <nav class="nav">
         <div class="logo">
-            <a href="https://example.org/" accesskey="h" title="My New Hugo Site (Alt + H)">My New Hugo Site</a>
+            <a href="https://growyears.netlify.app/" accesskey="h" title="拾光博客 - 永浩 (Alt + H)">拾光博客 - 永浩</a>
             <div class="logo-switches">
                 <button id="theme-toggle" accesskey="t" title="(Alt + T)" aria-label="Toggle theme">
                     <svg id="moon" xmlns="http://www.w3.org/2000/svg" width="24" height="18" viewBox="0 0 24 24"
@@ -459,7 +459,7 @@ type Num = Flatten&lt;number&gt;; // type Num = number（不满足数组，返�
     </main>
     
 <footer class="footer">
-        <span>&copy; 2025 <a href="https://example.org/">My New Hugo Site</a></span> · 
+        <span>&copy; 2025 <a href="https://growyears.netlify.app/">拾光博客 - 永浩</a></span> · 
 
     <span>
         Powered by

@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <meta name="robots" content="index, follow">
-<title>My New Hugo Site</title>
+<title>拾光博客 - 永浩</title>
 <meta name="keywords" content="">
 <meta name="description" content="
 JS中的变量和函数声明会在代码执行前被&quot;提升&quot;。引擎在编译阶段会将所有声明提前处理，但赋值操作保留原位。函数声明优先于变量声明，且会被提升到作用域顶部。需要注意的是，函数表达式不会被提升，块级函数声明也存在提升问题。开发者应避免在块内部声明函数，且重复声明时后面的函数会覆盖前面的。这些机制体现了JS编译阶段和执行阶段的差异性。
@@ -45,16 +45,16 @@ JS中的变量和函数声明会在代码执行前被&quot;提升&quot;。引擎
 
 ">
 <meta name="author" content="">
-<link rel="canonical" href="https://example.org/posts/%E4%BD%A0%E4%B8%8D%E7%9F%A5%E9%81%93%E7%9A%84js/%E4%BD%9C%E7%94%A8%E5%9F%9F%E5%92%8C%E9%97%AD%E5%8C%85/4.%E6%8F%90%E5%8D%87/">
+<link rel="canonical" href="https://growyears.netlify.app/posts/%E4%BD%A0%E4%B8%8D%E7%9F%A5%E9%81%93%E7%9A%84js/%E4%BD%9C%E7%94%A8%E5%9F%9F%E5%92%8C%E9%97%AD%E5%8C%85/4.%E6%8F%90%E5%8D%87/">
 <link crossorigin="anonymous" href="/assets/css/stylesheet.36819bea596090d8b48cf10d9831382996197aa7e4fc86f792f7c08c9ca4d23b.css" integrity="sha256-NoGb6llgkNi0jPENmDE4KZYZeqfk/Ib3kvfAjJyk0js=" rel="preload stylesheet" as="style">
-<link rel="icon" href="https://example.org/favicon.ico">
-<link rel="icon" type="image/png" sizes="16x16" href="https://example.org/favicon-16x16.png">
-<link rel="icon" type="image/png" sizes="32x32" href="https://example.org/favicon-32x32.png">
-<link rel="apple-touch-icon" href="https://example.org/apple-touch-icon.png">
-<link rel="mask-icon" href="https://example.org/safari-pinned-tab.svg">
+<link rel="icon" href="https://growyears.netlify.app/favicon.ico">
+<link rel="icon" type="image/png" sizes="16x16" href="https://growyears.netlify.app/favicon-16x16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="https://growyears.netlify.app/favicon-32x32.png">
+<link rel="apple-touch-icon" href="https://growyears.netlify.app/apple-touch-icon.png">
+<link rel="mask-icon" href="https://growyears.netlify.app/safari-pinned-tab.svg">
 <meta name="theme-color" content="#2e2e33">
 <meta name="msapplication-TileColor" content="#2e2e33">
-<link rel="alternate" hreflang="en" href="https://example.org/posts/%E4%BD%A0%E4%B8%8D%E7%9F%A5%E9%81%93%E7%9A%84js/%E4%BD%9C%E7%94%A8%E5%9F%9F%E5%92%8C%E9%97%AD%E5%8C%85/4.%E6%8F%90%E5%8D%87/">
+<link rel="alternate" hreflang="en" href="https://growyears.netlify.app/posts/%E4%BD%A0%E4%B8%8D%E7%9F%A5%E9%81%93%E7%9A%84js/%E4%BD%9C%E7%94%A8%E5%9F%9F%E5%92%8C%E9%97%AD%E5%8C%85/4.%E6%8F%90%E5%8D%87/">
 <noscript>
     <style>
         #theme-toggle,
@@ -91,12 +91,12 @@ JS中的变量和函数声明会在代码执行前被&quot;提升&quot;。引擎
         }
 
     </style>
-</noscript><meta property="og:url" content="https://example.org/posts/%E4%BD%A0%E4%B8%8D%E7%9F%A5%E9%81%93%E7%9A%84js/%E4%BD%9C%E7%94%A8%E5%9F%9F%E5%92%8C%E9%97%AD%E5%8C%85/4.%E6%8F%90%E5%8D%87/">
-  <meta property="og:site_name" content="My New Hugo Site">
-  <meta property="og:title" content="My New Hugo Site">
+</noscript><meta property="og:url" content="https://growyears.netlify.app/posts/%E4%BD%A0%E4%B8%8D%E7%9F%A5%E9%81%93%E7%9A%84js/%E4%BD%9C%E7%94%A8%E5%9F%9F%E5%92%8C%E9%97%AD%E5%8C%85/4.%E6%8F%90%E5%8D%87/">
+  <meta property="og:site_name" content="拾光博客 - 永浩">
+  <meta property="og:title" content="拾光博客 - 永浩">
   <meta property="og:description" content=" JS中的变量和函数声明会在代码执行前被&#34;提升&#34;。引擎在编译阶段会将所有声明提前处理，但赋值操作保留原位。函数声明优先于变量声明，且会被提升到作用域顶部。需要注意的是，函数表达式不会被提升，块级函数声明也存在提升问题。开发者应避免在块内部声明函数，且重复声明时后面的函数会覆盖前面的。这些机制体现了JS编译阶段和执行阶段的差异性。
 一、变量和函数声明的提升机制 提升的本质： 引擎在编译阶段会提前处理所有变量和函数声明，将其 “移动” 到所在作用域的顶部（仅声明被提升，赋值及运行逻辑留在原地）。 作用域范围：每个作用域（全局、函数、块作用域）都会独立进行提升操作。 二、函数声明与变量声明的提升优先级 函数声明优先： 函数声明的提升优先级高于变量声明，会被提升到作用域更顶部。 示例：若同时存在function a() {}和var a，函数声明会先被提升，变量声明因重复被忽略（但变量赋值会覆盖函数）。 函数表达式不提升： 函数表达式（如var fn = function() {}）的变量声明会提升，但函数赋值留在原地，因此在赋值前调用会得到undefined。 具名函数表达式（如var fn = function named() {}）的名称标识符仅在函数内部有效，外部作用域中无法提前使用。 三、特殊情况与注意事项 重复声明的覆盖： 变量重复声明（如var a = 1; var a = 2）会被忽略前序，保留最后一次赋值； 函数重复声明（如function a() {}; function a() {}）后序声明会覆盖前序。 块级函数声明的问题： 普通块内部的函数声明（如if (true) { function a() {} }）可能被提升到所在作用域顶部（不同 JS 环境处理有差异），易导致逻辑混乱，应避免在块内声明函数。 ">
-  <meta property="og:locale" content="en-us">
+  <meta property="og:locale" content="zh-cn">
   <meta property="og:type" content="article">
     <meta property="article:section" content="posts">
 <meta name="twitter:card" content="summary">
@@ -149,13 +149,13 @@ JS中的变量和函数声明会在代码执行前被&quot;提升&quot;。引擎
       "@type": "ListItem",
       "position":  1 ,
       "name": "Posts",
-      "item": "https://example.org/posts/"
+      "item": "https://growyears.netlify.app/posts/"
     }, 
     {
       "@type": "ListItem",
       "position":  2 ,
       "name": "",
-      "item": "https://example.org/posts/%E4%BD%A0%E4%B8%8D%E7%9F%A5%E9%81%93%E7%9A%84js/%E4%BD%9C%E7%94%A8%E5%9F%9F%E5%92%8C%E9%97%AD%E5%8C%85/4.%E6%8F%90%E5%8D%87/"
+      "item": "https://growyears.netlify.app/posts/%E4%BD%A0%E4%B8%8D%E7%9F%A5%E9%81%93%E7%9A%84js/%E4%BD%9C%E7%94%A8%E5%9F%9F%E5%92%8C%E9%97%AD%E5%8C%85/4.%E6%8F%90%E5%8D%87/"
     }
   ]
 }
@@ -177,14 +177,14 @@ JS中的变量和函数声明会在代码执行前被&quot;提升&quot;。引擎
   "dateModified": "0001-01-01T00:00:00Z",
   "mainEntityOfPage": {
     "@type": "WebPage",
-    "@id": "https://example.org/posts/%E4%BD%A0%E4%B8%8D%E7%9F%A5%E9%81%93%E7%9A%84js/%E4%BD%9C%E7%94%A8%E5%9F%9F%E5%92%8C%E9%97%AD%E5%8C%85/4.%E6%8F%90%E5%8D%87/"
+    "@id": "https://growyears.netlify.app/posts/%E4%BD%A0%E4%B8%8D%E7%9F%A5%E9%81%93%E7%9A%84js/%E4%BD%9C%E7%94%A8%E5%9F%9F%E5%92%8C%E9%97%AD%E5%8C%85/4.%E6%8F%90%E5%8D%87/"
   },
   "publisher": {
     "@type": "Organization",
-    "name": "My New Hugo Site",
+    "name": "拾光博客 - 永浩",
     "logo": {
       "@type": "ImageObject",
-      "url": "https://example.org/favicon.ico"
+      "url": "https://growyears.netlify.app/favicon.ico"
     }
   }
 }
@@ -206,7 +206,7 @@ JS中的变量和函数声明会在代码执行前被&quot;提升&quot;。引擎
 <header class="header">
     <nav class="nav">
         <div class="logo">
-            <a href="https://example.org/" accesskey="h" title="My New Hugo Site (Alt + H)">My New Hugo Site</a>
+            <a href="https://growyears.netlify.app/" accesskey="h" title="拾光博客 - 永浩 (Alt + H)">拾光博客 - 永浩</a>
             <div class="logo-switches">
                 <button id="theme-toggle" accesskey="t" title="(Alt + T)" aria-label="Toggle theme">
                     <svg id="moon" xmlns="http://www.w3.org/2000/svg" width="24" height="18" viewBox="0 0 24 24"
@@ -295,7 +295,7 @@ JS中的变量和函数声明会在代码执行前被&quot;提升&quot;。引擎
     </main>
     
 <footer class="footer">
-        <span>&copy; 2025 <a href="https://example.org/">My New Hugo Site</a></span> · 
+        <span>&copy; 2025 <a href="https://growyears.netlify.app/">拾光博客 - 永浩</a></span> · 
 
     <span>
         Powered by

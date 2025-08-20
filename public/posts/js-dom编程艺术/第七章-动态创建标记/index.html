@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <meta name="robots" content="index, follow">
-<title>My New Hugo Site</title>
+<title>拾光博客 - 永浩</title>
 <meta name="keywords" content="">
 <meta name="description" content="一、传统文档操作方法
 1. document.write()
@@ -52,16 +52,16 @@ DOM 是文档的双向映射：既能读取文档结构（通过节点属性和�
 
 插入节点到文档：">
 <meta name="author" content="">
-<link rel="canonical" href="https://example.org/posts/js-dom%E7%BC%96%E7%A8%8B%E8%89%BA%E6%9C%AF/%E7%AC%AC%E4%B8%83%E7%AB%A0-%E5%8A%A8%E6%80%81%E5%88%9B%E5%BB%BA%E6%A0%87%E8%AE%B0/">
+<link rel="canonical" href="https://growyears.netlify.app/posts/js-dom%E7%BC%96%E7%A8%8B%E8%89%BA%E6%9C%AF/%E7%AC%AC%E4%B8%83%E7%AB%A0-%E5%8A%A8%E6%80%81%E5%88%9B%E5%BB%BA%E6%A0%87%E8%AE%B0/">
 <link crossorigin="anonymous" href="/assets/css/stylesheet.36819bea596090d8b48cf10d9831382996197aa7e4fc86f792f7c08c9ca4d23b.css" integrity="sha256-NoGb6llgkNi0jPENmDE4KZYZeqfk/Ib3kvfAjJyk0js=" rel="preload stylesheet" as="style">
-<link rel="icon" href="https://example.org/favicon.ico">
-<link rel="icon" type="image/png" sizes="16x16" href="https://example.org/favicon-16x16.png">
-<link rel="icon" type="image/png" sizes="32x32" href="https://example.org/favicon-32x32.png">
-<link rel="apple-touch-icon" href="https://example.org/apple-touch-icon.png">
-<link rel="mask-icon" href="https://example.org/safari-pinned-tab.svg">
+<link rel="icon" href="https://growyears.netlify.app/favicon.ico">
+<link rel="icon" type="image/png" sizes="16x16" href="https://growyears.netlify.app/favicon-16x16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="https://growyears.netlify.app/favicon-32x32.png">
+<link rel="apple-touch-icon" href="https://growyears.netlify.app/apple-touch-icon.png">
+<link rel="mask-icon" href="https://growyears.netlify.app/safari-pinned-tab.svg">
 <meta name="theme-color" content="#2e2e33">
 <meta name="msapplication-TileColor" content="#2e2e33">
-<link rel="alternate" hreflang="en" href="https://example.org/posts/js-dom%E7%BC%96%E7%A8%8B%E8%89%BA%E6%9C%AF/%E7%AC%AC%E4%B8%83%E7%AB%A0-%E5%8A%A8%E6%80%81%E5%88%9B%E5%BB%BA%E6%A0%87%E8%AE%B0/">
+<link rel="alternate" hreflang="en" href="https://growyears.netlify.app/posts/js-dom%E7%BC%96%E7%A8%8B%E8%89%BA%E6%9C%AF/%E7%AC%AC%E4%B8%83%E7%AB%A0-%E5%8A%A8%E6%80%81%E5%88%9B%E5%BB%BA%E6%A0%87%E8%AE%B0/">
 <noscript>
     <style>
         #theme-toggle,
@@ -98,13 +98,13 @@ DOM 是文档的双向映射：既能读取文档结构（通过节点属性和�
         }
 
     </style>
-</noscript><meta property="og:url" content="https://example.org/posts/js-dom%E7%BC%96%E7%A8%8B%E8%89%BA%E6%9C%AF/%E7%AC%AC%E4%B8%83%E7%AB%A0-%E5%8A%A8%E6%80%81%E5%88%9B%E5%BB%BA%E6%A0%87%E8%AE%B0/">
-  <meta property="og:site_name" content="My New Hugo Site">
-  <meta property="og:title" content="My New Hugo Site">
+</noscript><meta property="og:url" content="https://growyears.netlify.app/posts/js-dom%E7%BC%96%E7%A8%8B%E8%89%BA%E6%9C%AF/%E7%AC%AC%E4%B8%83%E7%AB%A0-%E5%8A%A8%E6%80%81%E5%88%9B%E5%BB%BA%E6%A0%87%E8%AE%B0/">
+  <meta property="og:site_name" content="拾光博客 - 永浩">
+  <meta property="og:title" content="拾光博客 - 永浩">
   <meta property="og:description" content="一、传统文档操作方法 1. document.write() 功能：将字符串直接插入到文档中，语法简单（如 document.write(&#34;&lt;p&gt;Hello&lt;/p&gt;&#34;)）。 缺点： 违背 “行为与表现分离” 原则，需在 HTML 中嵌入 &lt;script&gt; 调用，导致代码耦合。 可能引发文档验证错误，且与 application/xhtml&#43;xml 类型文档不兼容（浏览器会忽略该方法）。 2. innerHTML 功能：读写元素内的 HTML 内容（如 div.innerHTML = &#34;&lt;span&gt;Hi&lt;/span&gt;&#34; 可设置内容，const html = div.innerHTML 可读取内容）。 特点： 简洁高效，适合批量操作 HTML 片段，但无法精确控制单个节点（会整体替换元素内容）。 局限性：HTML 专有属性，不支持 XHTML 文档；安全性风险（可能引入 XSS 攻击，需谨慎处理用户输入）。 替代方案：标准 DOM 方法（如 createElement、appendChild）虽代码量增加，但可精确控制节点，兼容性更强。 二、标准 DOM 操作方法 1. 核心思想 DOM 是文档的双向映射：既能读取文档结构（通过节点属性和方法），也能修改节点树（实时反映到浏览器渲染结果）。 浏览器显示的是 DOM 节点树，而非原始 HTML 代码，因此修改 DOM 会直接改变页面表现。 2. 创建与插入节点 创建元素节点：document.createElement(tagName)
 示例：const newDiv = document.createElement(&#34;div&#34;);（创建 &lt;div&gt; 元素，初始为 “文档碎片”，未插入文档）。 创建文本节点：document.createTextNode(text)
 示例：const textNode = document.createTextNode(&#34;Hello DOM&#34;);（创建包含文本的节点）。 插入节点到文档：">
-  <meta property="og:locale" content="en-us">
+  <meta property="og:locale" content="zh-cn">
   <meta property="og:type" content="article">
     <meta property="article:section" content="posts">
 <meta name="twitter:card" content="summary">
@@ -164,13 +164,13 @@ DOM 是文档的双向映射：既能读取文档结构（通过节点属性和�
       "@type": "ListItem",
       "position":  1 ,
       "name": "Posts",
-      "item": "https://example.org/posts/"
+      "item": "https://growyears.netlify.app/posts/"
     }, 
     {
       "@type": "ListItem",
       "position":  2 ,
       "name": "",
-      "item": "https://example.org/posts/js-dom%E7%BC%96%E7%A8%8B%E8%89%BA%E6%9C%AF/%E7%AC%AC%E4%B8%83%E7%AB%A0-%E5%8A%A8%E6%80%81%E5%88%9B%E5%BB%BA%E6%A0%87%E8%AE%B0/"
+      "item": "https://growyears.netlify.app/posts/js-dom%E7%BC%96%E7%A8%8B%E8%89%BA%E6%9C%AF/%E7%AC%AC%E4%B8%83%E7%AB%A0-%E5%8A%A8%E6%80%81%E5%88%9B%E5%BB%BA%E6%A0%87%E8%AE%B0/"
     }
   ]
 }
@@ -192,14 +192,14 @@ DOM 是文档的双向映射：既能读取文档结构（通过节点属性和�
   "dateModified": "0001-01-01T00:00:00Z",
   "mainEntityOfPage": {
     "@type": "WebPage",
-    "@id": "https://example.org/posts/js-dom%E7%BC%96%E7%A8%8B%E8%89%BA%E6%9C%AF/%E7%AC%AC%E4%B8%83%E7%AB%A0-%E5%8A%A8%E6%80%81%E5%88%9B%E5%BB%BA%E6%A0%87%E8%AE%B0/"
+    "@id": "https://growyears.netlify.app/posts/js-dom%E7%BC%96%E7%A8%8B%E8%89%BA%E6%9C%AF/%E7%AC%AC%E4%B8%83%E7%AB%A0-%E5%8A%A8%E6%80%81%E5%88%9B%E5%BB%BA%E6%A0%87%E8%AE%B0/"
   },
   "publisher": {
     "@type": "Organization",
-    "name": "My New Hugo Site",
+    "name": "拾光博客 - 永浩",
     "logo": {
       "@type": "ImageObject",
-      "url": "https://example.org/favicon.ico"
+      "url": "https://growyears.netlify.app/favicon.ico"
     }
   }
 }
@@ -221,7 +221,7 @@ DOM 是文档的双向映射：既能读取文档结构（通过节点属性和�
 <header class="header">
     <nav class="nav">
         <div class="logo">
-            <a href="https://example.org/" accesskey="h" title="My New Hugo Site (Alt + H)">My New Hugo Site</a>
+            <a href="https://growyears.netlify.app/" accesskey="h" title="拾光博客 - 永浩 (Alt + H)">拾光博客 - 永浩</a>
             <div class="logo-switches">
                 <button id="theme-toggle" accesskey="t" title="(Alt + T)" aria-label="Toggle theme">
                     <svg id="moon" xmlns="http://www.w3.org/2000/svg" width="24" height="18" viewBox="0 0 24 24"
@@ -402,7 +402,7 @@ DOM 是文档的双向映射：既能读取文档结构（通过节点属性和�
     </main>
     
 <footer class="footer">
-        <span>&copy; 2025 <a href="https://example.org/">My New Hugo Site</a></span> · 
+        <span>&copy; 2025 <a href="https://growyears.netlify.app/">拾光博客 - 永浩</a></span> · 
 
     <span>
         Powered by

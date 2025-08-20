@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <meta name="robots" content="index, follow">
-<title>My New Hugo Site</title>
+<title>拾光博客 - 永浩</title>
 <meta name="keywords" content="">
 <meta name="description" content="一、数组
 
@@ -179,16 +179,16 @@ JS 中引用指向值，而非变量；多个引用可指向同一值，但引�
 
 ">
 <meta name="author" content="">
-<link rel="canonical" href="https://example.org/posts/%E4%BD%A0%E4%B8%8D%E7%9F%A5%E9%81%93%E7%9A%84js/%E7%B1%BB%E5%9E%8B%E5%92%8C%E8%AF%AD%E6%B3%95/2.-%E5%80%BC/">
+<link rel="canonical" href="https://growyears.netlify.app/posts/%E4%BD%A0%E4%B8%8D%E7%9F%A5%E9%81%93%E7%9A%84js/%E7%B1%BB%E5%9E%8B%E5%92%8C%E8%AF%AD%E6%B3%95/2.-%E5%80%BC/">
 <link crossorigin="anonymous" href="/assets/css/stylesheet.36819bea596090d8b48cf10d9831382996197aa7e4fc86f792f7c08c9ca4d23b.css" integrity="sha256-NoGb6llgkNi0jPENmDE4KZYZeqfk/Ib3kvfAjJyk0js=" rel="preload stylesheet" as="style">
-<link rel="icon" href="https://example.org/favicon.ico">
-<link rel="icon" type="image/png" sizes="16x16" href="https://example.org/favicon-16x16.png">
-<link rel="icon" type="image/png" sizes="32x32" href="https://example.org/favicon-32x32.png">
-<link rel="apple-touch-icon" href="https://example.org/apple-touch-icon.png">
-<link rel="mask-icon" href="https://example.org/safari-pinned-tab.svg">
+<link rel="icon" href="https://growyears.netlify.app/favicon.ico">
+<link rel="icon" type="image/png" sizes="16x16" href="https://growyears.netlify.app/favicon-16x16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="https://growyears.netlify.app/favicon-32x32.png">
+<link rel="apple-touch-icon" href="https://growyears.netlify.app/apple-touch-icon.png">
+<link rel="mask-icon" href="https://growyears.netlify.app/safari-pinned-tab.svg">
 <meta name="theme-color" content="#2e2e33">
 <meta name="msapplication-TileColor" content="#2e2e33">
-<link rel="alternate" hreflang="en" href="https://example.org/posts/%E4%BD%A0%E4%B8%8D%E7%9F%A5%E9%81%93%E7%9A%84js/%E7%B1%BB%E5%9E%8B%E5%92%8C%E8%AF%AD%E6%B3%95/2.-%E5%80%BC/">
+<link rel="alternate" hreflang="en" href="https://growyears.netlify.app/posts/%E4%BD%A0%E4%B8%8D%E7%9F%A5%E9%81%93%E7%9A%84js/%E7%B1%BB%E5%9E%8B%E5%92%8C%E8%AF%AD%E6%B3%95/2.-%E5%80%BC/">
 <noscript>
     <style>
         #theme-toggle,
@@ -225,13 +225,13 @@ JS 中引用指向值，而非变量；多个引用可指向同一值，但引�
         }
 
     </style>
-</noscript><meta property="og:url" content="https://example.org/posts/%E4%BD%A0%E4%B8%8D%E7%9F%A5%E9%81%93%E7%9A%84js/%E7%B1%BB%E5%9E%8B%E5%92%8C%E8%AF%AD%E6%B3%95/2.-%E5%80%BC/">
-  <meta property="og:site_name" content="My New Hugo Site">
-  <meta property="og:title" content="My New Hugo Site">
+</noscript><meta property="og:url" content="https://growyears.netlify.app/posts/%E4%BD%A0%E4%B8%8D%E7%9F%A5%E9%81%93%E7%9A%84js/%E7%B1%BB%E5%9E%8B%E5%92%8C%E8%AF%AD%E6%B3%95/2.-%E5%80%BC/">
+  <meta property="og:site_name" content="拾光博客 - 永浩">
+  <meta property="og:title" content="拾光博客 - 永浩">
   <meta property="og:description" content="一、数组 特性： 可容纳任何类型的值，声明后可直接添加值，无需预先设定大小。 使用delete运算符删除单元后，位置变为空白单元，数组length属性不变。 稀疏数组： 指含有空白 / 空缺单元的数组，空白单元值为undefined，但与显式赋值为undefined的单元有区别（如[,,]与[undefined, undefined]行为不同）。 索引与属性： 主要通过数字索引访问，但本质是对象，可包含字符串键值和属性（不计算在length内，length只计算数字索引的最大整数 &#43; 1）。 若字符串键值可强制转换为十进制数字，则会被当作数字索引处理。 类数组转换： 类数组特征：有length和数字索引，但无数组方法（如arguments、DOM 集合NodeList） 可转换为真正的数组，常用方法： Array.prototype.slice.call(类数组) ES6 的Array.from(类数组) 扩展运算符（需类数组为可迭代对象） 二、字符串 与数组的区别： 是类数组（有length、indexOf()、concat()等），但并非字符数组。 字符串不可变：成员函数不修改原始值，而是返回新字符串；数组可变：成员函数直接操作原始值。 数组方法的借用： 可借用数组的非变更方法（如Array.prototype.indexOf.call(str, &#39;a&#39;)）处理字符串。 不可借用数组的变更方法（因字符串不可变），需先通过split(&#39;&#39;)转为数组，处理后再用join(&#39;&#39;)转回字符串。 三、数字 类型与格式： JS 只有一种数值类型number（双精度浮点数），包含整数（如42.0）和带小数的十进制数。 字面量表示： 十进制：可省略小数点前的 0（.42）或后多余的 0（42.）。 特殊格式：指数形式（1e3）、二进制（0b1010）、八进制（0o12）、十六进制（0xa）。 显示规则： 大部分数字默认以十进制显示，省略小数部分末尾的 0；特别大 / 小的数字默认用指数形式（同toExponential()）。 Number 对象方法： toFixed(n)：指定小数部分显示位数，不足用 0 补齐（返回字符串）。 toPrecision(n)：指定有效数位的显示位数。 注意：数字字面量调用方法时，需避免.被误判为数字一部分（如42..toFixed(2)或42 .toFixed(2)）。 精度与范围： 精度问题：0.1 &#43; 0.2 !== 0.3（浮点数二进制存储导致精度丢失），可通过Math.abs(n1 - n2) &lt; Number.EPSILON（机器精度）判断近似相等。
 范围：
 最大浮点数：Number.MAX_VALUE；最小浮点数（接近 0 的正数）：Number.MIN_VALUE。 安全整数范围：Number.MIN_SAFE_INTEGER（-2^53 &#43; 1）到Number.MAX_SAFE_INTEGER（2^53 - 1），超出需用字符串处理。 BigInt解决大整数：用n后缀声明，支持超出安全范围的整数运算 const big = 9007199254740993n; big &#43; 1n; // 9007199254740994n（精确计算） 检测方法： Number.isInteger(num)：检测是否为整数（ES6&#43;）。 Number.isSafeInteger(num)：检测是否为安全整数（ES6&#43;）。 四、特殊数值 null 与 undefined： 均为唯一值，名称即类型也即值。 区别： null：表示 “空值”（曾赋值，当前无值），不是标识符，不能作为变量赋值。 undefined：表示 “未赋值”，是内置标识符（不建议手动赋值，严格模式下可能报错）。 void运算符：表达式void XXX返回undefined，不改变表达式副作用（惯例用void 0获取undefined）。 NaN（Not a Number）： 属于number类型，代表数学运算失败的警戒值。 特性：与自身不相等（NaN !== NaN）。 检测：isNaN()不可靠（误判非数字类型），Number.isNaN()更准确（仅检测NaN）。 无穷数（Infinity）： 产生：正数除以 0 得Infinity，负数除以 0 得-Infinity；运算溢出时也会返回。 特性： Infinity / Infinity结果为NaN。 有穷正数 /Infinity为 0，有穷负数 /Infinity为-0。 溢出为无穷数后，无法再得到有穷数。 负零（-0）： 产生：某些数学运算（如-1 / Infinity）的结果，加减法不会得到-0。 特性： 字符串化返回&#34;0&#34;，但从字符串转回数字时保留符号。 -0 === 0为true，ES6 的Object.is(-0, 0)为false（可准确区分）。 五、值和引用 引用本质： JS 中引用指向值，而非变量；多个引用可指向同一值，但引用间无相互指向关系。 赋值 / 传递规则： 由值的类型决定，与语法无关： 基本类型（null、undefined、string、number、boolean、symbol）：通过值复制（赋值 / 传递的是值的副本）。 复合值（对象、函数、数组等）：通过引用复制（赋值 / 传递的是指向值的引用）。 操作特性： 引用无法修改另一个引用的指向（如a = b后修改a不影响b）。 复合值的复制：需创建复本（如a.slice()返回数组浅复本），避免引用共享。 基本类型的修改：若需在函数内修改基本类型，需封装到复合值中（通过引用传递）。 基本类型不可变：其值无法被修改（如字符串的方法均返回新值）。 ">
-  <meta property="og:locale" content="en-us">
+  <meta property="og:locale" content="zh-cn">
   <meta property="og:type" content="article">
     <meta property="article:section" content="posts">
 <meta name="twitter:card" content="summary">
@@ -418,13 +418,13 @@ JS 中引用指向值，而非变量；多个引用可指向同一值，但引�
       "@type": "ListItem",
       "position":  1 ,
       "name": "Posts",
-      "item": "https://example.org/posts/"
+      "item": "https://growyears.netlify.app/posts/"
     }, 
     {
       "@type": "ListItem",
       "position":  2 ,
       "name": "",
-      "item": "https://example.org/posts/%E4%BD%A0%E4%B8%8D%E7%9F%A5%E9%81%93%E7%9A%84js/%E7%B1%BB%E5%9E%8B%E5%92%8C%E8%AF%AD%E6%B3%95/2.-%E5%80%BC/"
+      "item": "https://growyears.netlify.app/posts/%E4%BD%A0%E4%B8%8D%E7%9F%A5%E9%81%93%E7%9A%84js/%E7%B1%BB%E5%9E%8B%E5%92%8C%E8%AF%AD%E6%B3%95/2.-%E5%80%BC/"
     }
   ]
 }
@@ -446,14 +446,14 @@ JS 中引用指向值，而非变量；多个引用可指向同一值，但引�
   "dateModified": "0001-01-01T00:00:00Z",
   "mainEntityOfPage": {
     "@type": "WebPage",
-    "@id": "https://example.org/posts/%E4%BD%A0%E4%B8%8D%E7%9F%A5%E9%81%93%E7%9A%84js/%E7%B1%BB%E5%9E%8B%E5%92%8C%E8%AF%AD%E6%B3%95/2.-%E5%80%BC/"
+    "@id": "https://growyears.netlify.app/posts/%E4%BD%A0%E4%B8%8D%E7%9F%A5%E9%81%93%E7%9A%84js/%E7%B1%BB%E5%9E%8B%E5%92%8C%E8%AF%AD%E6%B3%95/2.-%E5%80%BC/"
   },
   "publisher": {
     "@type": "Organization",
-    "name": "My New Hugo Site",
+    "name": "拾光博客 - 永浩",
     "logo": {
       "@type": "ImageObject",
-      "url": "https://example.org/favicon.ico"
+      "url": "https://growyears.netlify.app/favicon.ico"
     }
   }
 }
@@ -475,7 +475,7 @@ JS 中引用指向值，而非变量；多个引用可指向同一值，但引�
 <header class="header">
     <nav class="nav">
         <div class="logo">
-            <a href="https://example.org/" accesskey="h" title="My New Hugo Site (Alt + H)">My New Hugo Site</a>
+            <a href="https://growyears.netlify.app/" accesskey="h" title="拾光博客 - 永浩 (Alt + H)">拾光博客 - 永浩</a>
             <div class="logo-switches">
                 <button id="theme-toggle" accesskey="t" title="(Alt + T)" aria-label="Toggle theme">
                     <svg id="moon" xmlns="http://www.w3.org/2000/svg" width="24" height="18" viewBox="0 0 24 24"
@@ -698,7 +698,7 @@ JS 中引用指向值，而非变量；多个引用可指向同一值，但引�
     </main>
     
 <footer class="footer">
-        <span>&copy; 2025 <a href="https://example.org/">My New Hugo Site</a></span> · 
+        <span>&copy; 2025 <a href="https://growyears.netlify.app/">拾光博客 - 永浩</a></span> · 
 
     <span>
         Powered by

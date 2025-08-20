@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <meta name="robots" content="index, follow">
-<title>My New Hugo Site</title>
+<title>拾光博客 - 永浩</title>
 <meta name="keywords" content="">
 <meta name="description" content="
 本文总结《你不了解的JS》第一部分第一章的核心概念，重点介绍了JavaScript的编译原理和作用域机制。笔记指出程序状态通过变量存储和访问实现，作用域是一套管理变量的规则体系。编译过程包括分词、语法分析和代码生成三个阶段。在变量赋值时，编译器处理声明，引擎执行查询（LHS/RHS）。作用域嵌套时，引擎会逐级向上查找变量。文章还区分了RHS和LHS查询的区别，以及在不同情况下可能出现的ReferenceError和TypeError异常。严格模式会改变LHS查询失败时的默认行为。
@@ -78,16 +78,16 @@ LHS 查询：严格模式下，在所有作用域中未找到目标变量时抛�
 TypeError（类型错误）：RHS 查询找到变量，但对其值进行不合理操作（如对非函数变量调用方法）时抛出。
 ">
 <meta name="author" content="">
-<link rel="canonical" href="https://example.org/posts/%E4%BD%A0%E4%B8%8D%E7%9F%A5%E9%81%93%E7%9A%84js/%E4%BD%9C%E7%94%A8%E5%9F%9F%E5%92%8C%E9%97%AD%E5%8C%85/1.%E4%BD%9C%E7%94%A8%E5%9F%9F%E6%98%AF%E4%BB%80%E4%B9%88/">
+<link rel="canonical" href="https://growyears.netlify.app/posts/%E4%BD%A0%E4%B8%8D%E7%9F%A5%E9%81%93%E7%9A%84js/%E4%BD%9C%E7%94%A8%E5%9F%9F%E5%92%8C%E9%97%AD%E5%8C%85/1.%E4%BD%9C%E7%94%A8%E5%9F%9F%E6%98%AF%E4%BB%80%E4%B9%88/">
 <link crossorigin="anonymous" href="/assets/css/stylesheet.36819bea596090d8b48cf10d9831382996197aa7e4fc86f792f7c08c9ca4d23b.css" integrity="sha256-NoGb6llgkNi0jPENmDE4KZYZeqfk/Ib3kvfAjJyk0js=" rel="preload stylesheet" as="style">
-<link rel="icon" href="https://example.org/favicon.ico">
-<link rel="icon" type="image/png" sizes="16x16" href="https://example.org/favicon-16x16.png">
-<link rel="icon" type="image/png" sizes="32x32" href="https://example.org/favicon-32x32.png">
-<link rel="apple-touch-icon" href="https://example.org/apple-touch-icon.png">
-<link rel="mask-icon" href="https://example.org/safari-pinned-tab.svg">
+<link rel="icon" href="https://growyears.netlify.app/favicon.ico">
+<link rel="icon" type="image/png" sizes="16x16" href="https://growyears.netlify.app/favicon-16x16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="https://growyears.netlify.app/favicon-32x32.png">
+<link rel="apple-touch-icon" href="https://growyears.netlify.app/apple-touch-icon.png">
+<link rel="mask-icon" href="https://growyears.netlify.app/safari-pinned-tab.svg">
 <meta name="theme-color" content="#2e2e33">
 <meta name="msapplication-TileColor" content="#2e2e33">
-<link rel="alternate" hreflang="en" href="https://example.org/posts/%E4%BD%A0%E4%B8%8D%E7%9F%A5%E9%81%93%E7%9A%84js/%E4%BD%9C%E7%94%A8%E5%9F%9F%E5%92%8C%E9%97%AD%E5%8C%85/1.%E4%BD%9C%E7%94%A8%E5%9F%9F%E6%98%AF%E4%BB%80%E4%B9%88/">
+<link rel="alternate" hreflang="en" href="https://growyears.netlify.app/posts/%E4%BD%A0%E4%B8%8D%E7%9F%A5%E9%81%93%E7%9A%84js/%E4%BD%9C%E7%94%A8%E5%9F%9F%E5%92%8C%E9%97%AD%E5%8C%85/1.%E4%BD%9C%E7%94%A8%E5%9F%9F%E6%98%AF%E4%BB%80%E4%B9%88/">
 <noscript>
     <style>
         #theme-toggle,
@@ -124,12 +124,12 @@ TypeError（类型错误）：RHS 查询找到变量，但对其值进行不合�
         }
 
     </style>
-</noscript><meta property="og:url" content="https://example.org/posts/%E4%BD%A0%E4%B8%8D%E7%9F%A5%E9%81%93%E7%9A%84js/%E4%BD%9C%E7%94%A8%E5%9F%9F%E5%92%8C%E9%97%AD%E5%8C%85/1.%E4%BD%9C%E7%94%A8%E5%9F%9F%E6%98%AF%E4%BB%80%E4%B9%88/">
-  <meta property="og:site_name" content="My New Hugo Site">
-  <meta property="og:title" content="My New Hugo Site">
+</noscript><meta property="og:url" content="https://growyears.netlify.app/posts/%E4%BD%A0%E4%B8%8D%E7%9F%A5%E9%81%93%E7%9A%84js/%E4%BD%9C%E7%94%A8%E5%9F%9F%E5%92%8C%E9%97%AD%E5%8C%85/1.%E4%BD%9C%E7%94%A8%E5%9F%9F%E6%98%AF%E4%BB%80%E4%B9%88/">
+  <meta property="og:site_name" content="拾光博客 - 永浩">
+  <meta property="og:title" content="拾光博客 - 永浩">
   <meta property="og:description" content=" 本文总结《你不了解的JS》第一部分第一章的核心概念，重点介绍了JavaScript的编译原理和作用域机制。笔记指出程序状态通过变量存储和访问实现，作用域是一套管理变量的规则体系。编译过程包括分词、语法分析和代码生成三个阶段。在变量赋值时，编译器处理声明，引擎执行查询（LHS/RHS）。作用域嵌套时，引擎会逐级向上查找变量。文章还区分了RHS和LHS查询的区别，以及在不同情况下可能出现的ReferenceError和TypeError异常。严格模式会改变LHS查询失败时的默认行为。
 一、核心概念 程序状态与变量：存储和访问变量值的能力为程序赋予了状态。 作用域定义：一套规则体系，用于管理变量的存储方式和查找逻辑，确保代码能按规则访问变量。 二、编译原理 传统编译三阶段： 分词 / 词法分析：将源代码字符串分解为有意义的词法单元（如关键字、变量名、运算符等）。 解析 / 语法分析：将词法单元流转换为抽象语法树（AST），AST 是体现程序语法结构的嵌套树状结构。 代码生成：将 AST 转换为可执行代码。 JavaScript 编译特点：多数情况下，编译在代码片段执行前的几微秒内完成（即时编译）。 三、作用域的核心角色 引擎：负责整个 JavaScript 程序的编译及执行全过程。 编译器：负责语法分析、代码生成等编译相关工作。 作用域：负责收集并维护所有声明的标识符（变量、函数名等），并制定规则确定当前执行的代码对这些标识符的访问权限。 四、变量声明与赋值过程（以var a = 2为例） 变量声明（编译器处理）： 编译器询问当前作用域：是否已存在名为a的变量。 若存在，忽略该声明；若不存在，要求作用域在当前集合中声明一个新变量a。 变量赋值（引擎处理）： 引擎询问当前作用域：是否存在名为a的变量。存在则直接使用，不存在则继续向上查找。 找到a后，将 2 赋值给它；未找到则抛出异常。 LHS 与 RHS 查询： RHS 查询：查找变量的值（如console.log(a)中对a的查询）。 LHS 查询：查找变量的容器本身，用于赋值（如a = 2中对a的查询）。 函数声明处理：编译器在代码生成阶段同步处理函数的声明和值定义。 五、作用域嵌套 嵌套场景：当块或函数嵌套在另一个块或函数中时，形成作用域嵌套。 查找规则： 引擎从当前执行作用域开始查找变量，找不到则向上一级嵌套作用域继续查找。 直至找到变量或抵达全局作用域，查找过程终止。 六、异常类型及触发场景 ReferenceError（引用错误）： RHS 查询：在所有嵌套作用域中未找到目标变量时抛出。 LHS 查询：严格模式下，在所有作用域中未找到目标变量时抛出（非严格模式下会自动在全局作用域创建该变量，let/const本身在非严格模式下也不会隐式创建全局变量）。 TypeError（类型错误）：RHS 查询找到变量，但对其值进行不合理操作（如对非函数变量调用方法）时抛出。 ">
-  <meta property="og:locale" content="en-us">
+  <meta property="og:locale" content="zh-cn">
   <meta property="og:type" content="article">
     <meta property="article:section" content="posts">
 <meta name="twitter:card" content="summary">
@@ -215,13 +215,13 @@ TypeError（类型错误）：RHS 查询找到变量，但对其值进行不合�
       "@type": "ListItem",
       "position":  1 ,
       "name": "Posts",
-      "item": "https://example.org/posts/"
+      "item": "https://growyears.netlify.app/posts/"
     }, 
     {
       "@type": "ListItem",
       "position":  2 ,
       "name": "",
-      "item": "https://example.org/posts/%E4%BD%A0%E4%B8%8D%E7%9F%A5%E9%81%93%E7%9A%84js/%E4%BD%9C%E7%94%A8%E5%9F%9F%E5%92%8C%E9%97%AD%E5%8C%85/1.%E4%BD%9C%E7%94%A8%E5%9F%9F%E6%98%AF%E4%BB%80%E4%B9%88/"
+      "item": "https://growyears.netlify.app/posts/%E4%BD%A0%E4%B8%8D%E7%9F%A5%E9%81%93%E7%9A%84js/%E4%BD%9C%E7%94%A8%E5%9F%9F%E5%92%8C%E9%97%AD%E5%8C%85/1.%E4%BD%9C%E7%94%A8%E5%9F%9F%E6%98%AF%E4%BB%80%E4%B9%88/"
     }
   ]
 }
@@ -243,14 +243,14 @@ TypeError（类型错误）：RHS 查询找到变量，但对其值进行不合�
   "dateModified": "0001-01-01T00:00:00Z",
   "mainEntityOfPage": {
     "@type": "WebPage",
-    "@id": "https://example.org/posts/%E4%BD%A0%E4%B8%8D%E7%9F%A5%E9%81%93%E7%9A%84js/%E4%BD%9C%E7%94%A8%E5%9F%9F%E5%92%8C%E9%97%AD%E5%8C%85/1.%E4%BD%9C%E7%94%A8%E5%9F%9F%E6%98%AF%E4%BB%80%E4%B9%88/"
+    "@id": "https://growyears.netlify.app/posts/%E4%BD%A0%E4%B8%8D%E7%9F%A5%E9%81%93%E7%9A%84js/%E4%BD%9C%E7%94%A8%E5%9F%9F%E5%92%8C%E9%97%AD%E5%8C%85/1.%E4%BD%9C%E7%94%A8%E5%9F%9F%E6%98%AF%E4%BB%80%E4%B9%88/"
   },
   "publisher": {
     "@type": "Organization",
-    "name": "My New Hugo Site",
+    "name": "拾光博客 - 永浩",
     "logo": {
       "@type": "ImageObject",
-      "url": "https://example.org/favicon.ico"
+      "url": "https://growyears.netlify.app/favicon.ico"
     }
   }
 }
@@ -272,7 +272,7 @@ TypeError（类型错误）：RHS 查询找到变量，但对其值进行不合�
 <header class="header">
     <nav class="nav">
         <div class="logo">
-            <a href="https://example.org/" accesskey="h" title="My New Hugo Site (Alt + H)">My New Hugo Site</a>
+            <a href="https://growyears.netlify.app/" accesskey="h" title="拾光博客 - 永浩 (Alt + H)">拾光博客 - 永浩</a>
             <div class="logo-switches">
                 <button id="theme-toggle" accesskey="t" title="(Alt + T)" aria-label="Toggle theme">
                     <svg id="moon" xmlns="http://www.w3.org/2000/svg" width="24" height="18" viewBox="0 0 24 24"
@@ -394,7 +394,7 @@ TypeError（类型错误）：RHS 查询找到变量，但对其值进行不合�
     </main>
     
 <footer class="footer">
-        <span>&copy; 2025 <a href="https://example.org/">My New Hugo Site</a></span> · 
+        <span>&copy; 2025 <a href="https://growyears.netlify.app/">拾光博客 - 永浩</a></span> · 
 
     <span>
         Powered by

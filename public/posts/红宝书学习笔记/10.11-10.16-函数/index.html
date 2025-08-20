@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <meta name="robots" content="index, follow">
-<title>My New Hugo Site</title>
+<title>拾光博客 - 永浩</title>
 <meta name="keywords" content="">
 <meta name="description" content="
 本文介绍了JavaScript中函数表达式、递归、尾调用优化、闭包、立即调用函数表达式(IIFE)和私有变量等核心概念。重点包括：函数表达式的定义与使用；递归的实现方式；尾调用优化的条件；闭包的作用机制及其内存影响；IIFE的模拟块级作用域应用；通过构造函数和静态变量实现私有变量的方法。文章通过代码示例详细说明了这些特性在JavaScript中的实际应用，帮助理解函数式编程的关键技术点。
@@ -95,16 +95,16 @@ let singleton = function(){
 }
 模块模式在一个单例对象上实现了相同的隔离和封装。模块模式使用了匿名函数返回一个对象，在匿名函数内部，首先定义私有变量和私有函数。之后，创建一个要通过匿名函数返回的对象字面量。这个对象字面量中只包含可以公开访问的属性和方法。因为这个对象定义在匿名函数内部，所以它的公有方法都可以访问同一个作用域的私有变量和私有函数。">
 <meta name="author" content="">
-<link rel="canonical" href="https://example.org/posts/%E7%BA%A2%E5%AE%9D%E4%B9%A6%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/10.11-10.16-%E5%87%BD%E6%95%B0/">
+<link rel="canonical" href="https://growyears.netlify.app/posts/%E7%BA%A2%E5%AE%9D%E4%B9%A6%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/10.11-10.16-%E5%87%BD%E6%95%B0/">
 <link crossorigin="anonymous" href="/assets/css/stylesheet.36819bea596090d8b48cf10d9831382996197aa7e4fc86f792f7c08c9ca4d23b.css" integrity="sha256-NoGb6llgkNi0jPENmDE4KZYZeqfk/Ib3kvfAjJyk0js=" rel="preload stylesheet" as="style">
-<link rel="icon" href="https://example.org/favicon.ico">
-<link rel="icon" type="image/png" sizes="16x16" href="https://example.org/favicon-16x16.png">
-<link rel="icon" type="image/png" sizes="32x32" href="https://example.org/favicon-32x32.png">
-<link rel="apple-touch-icon" href="https://example.org/apple-touch-icon.png">
-<link rel="mask-icon" href="https://example.org/safari-pinned-tab.svg">
+<link rel="icon" href="https://growyears.netlify.app/favicon.ico">
+<link rel="icon" type="image/png" sizes="16x16" href="https://growyears.netlify.app/favicon-16x16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="https://growyears.netlify.app/favicon-32x32.png">
+<link rel="apple-touch-icon" href="https://growyears.netlify.app/apple-touch-icon.png">
+<link rel="mask-icon" href="https://growyears.netlify.app/safari-pinned-tab.svg">
 <meta name="theme-color" content="#2e2e33">
 <meta name="msapplication-TileColor" content="#2e2e33">
-<link rel="alternate" hreflang="en" href="https://example.org/posts/%E7%BA%A2%E5%AE%9D%E4%B9%A6%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/10.11-10.16-%E5%87%BD%E6%95%B0/">
+<link rel="alternate" hreflang="en" href="https://growyears.netlify.app/posts/%E7%BA%A2%E5%AE%9D%E4%B9%A6%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/10.11-10.16-%E5%87%BD%E6%95%B0/">
 <noscript>
     <style>
         #theme-toggle,
@@ -141,9 +141,9 @@ let singleton = function(){
         }
 
     </style>
-</noscript><meta property="og:url" content="https://example.org/posts/%E7%BA%A2%E5%AE%9D%E4%B9%A6%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/10.11-10.16-%E5%87%BD%E6%95%B0/">
-  <meta property="og:site_name" content="My New Hugo Site">
-  <meta property="og:title" content="My New Hugo Site">
+</noscript><meta property="og:url" content="https://growyears.netlify.app/posts/%E7%BA%A2%E5%AE%9D%E4%B9%A6%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/10.11-10.16-%E5%87%BD%E6%95%B0/">
+  <meta property="og:site_name" content="拾光博客 - 永浩">
+  <meta property="og:title" content="拾光博客 - 永浩">
   <meta property="og:description" content=" 本文介绍了JavaScript中函数表达式、递归、尾调用优化、闭包、立即调用函数表达式(IIFE)和私有变量等核心概念。重点包括：函数表达式的定义与使用；递归的实现方式；尾调用优化的条件；闭包的作用机制及其内存影响；IIFE的模拟块级作用域应用；通过构造函数和静态变量实现私有变量的方法。文章通过代码示例详细说明了这些特性在JavaScript中的实际应用，帮助理解函数式编程的关键技术点。
 函数表达式 函数声明的关键特点是函数声明提升，即函数声明会在代码执行之前获得定义，这意味着函数声明可以出现在调用它的代码之后
 函数表达式看起来像一个普通的变量定义和赋值，即创建一个函数再把它赋值给一个变量，这样创建的函数叫做匿名函数或兰姆达函数，因为function关键字后面没有标识符，未赋值给其他变量的匿名函数的name属性是空字符串
@@ -178,7 +178,7 @@ function MyObject(){ let privateVariable = 10 function privateFunction(){ return
 构造函数标识符未使用任何关键字，因为不使用关键字声明的变量会创建在全局作用域中，可以在私有作用域外部被访问
 该模式，私有变量和私有函数是由实例共享的，因为特权方法定义在原型上，所以同样是由实例共享的。特权方法作为一个闭包，始终引用着包含它的作用域
 let singleton = function(){ let privateVariable = 10 function privateFunction(){ return false } return { publicProperty:true publicMethod(){ privateVariable&#43;&#43; return privateFunction() } } } 模块模式在一个单例对象上实现了相同的隔离和封装。模块模式使用了匿名函数返回一个对象，在匿名函数内部，首先定义私有变量和私有函数。之后，创建一个要通过匿名函数返回的对象字面量。这个对象字面量中只包含可以公开访问的属性和方法。因为这个对象定义在匿名函数内部，所以它的公有方法都可以访问同一个作用域的私有变量和私有函数。">
-  <meta property="og:locale" content="en-us">
+  <meta property="og:locale" content="zh-cn">
   <meta property="og:type" content="article">
     <meta property="article:section" content="posts">
 <meta name="twitter:card" content="summary">
@@ -281,13 +281,13 @@ let singleton = function(){
       "@type": "ListItem",
       "position":  1 ,
       "name": "Posts",
-      "item": "https://example.org/posts/"
+      "item": "https://growyears.netlify.app/posts/"
     }, 
     {
       "@type": "ListItem",
       "position":  2 ,
       "name": "",
-      "item": "https://example.org/posts/%E7%BA%A2%E5%AE%9D%E4%B9%A6%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/10.11-10.16-%E5%87%BD%E6%95%B0/"
+      "item": "https://growyears.netlify.app/posts/%E7%BA%A2%E5%AE%9D%E4%B9%A6%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/10.11-10.16-%E5%87%BD%E6%95%B0/"
     }
   ]
 }
@@ -309,14 +309,14 @@ let singleton = function(){
   "dateModified": "0001-01-01T00:00:00Z",
   "mainEntityOfPage": {
     "@type": "WebPage",
-    "@id": "https://example.org/posts/%E7%BA%A2%E5%AE%9D%E4%B9%A6%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/10.11-10.16-%E5%87%BD%E6%95%B0/"
+    "@id": "https://growyears.netlify.app/posts/%E7%BA%A2%E5%AE%9D%E4%B9%A6%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/10.11-10.16-%E5%87%BD%E6%95%B0/"
   },
   "publisher": {
     "@type": "Organization",
-    "name": "My New Hugo Site",
+    "name": "拾光博客 - 永浩",
     "logo": {
       "@type": "ImageObject",
-      "url": "https://example.org/favicon.ico"
+      "url": "https://growyears.netlify.app/favicon.ico"
     }
   }
 }
@@ -338,7 +338,7 @@ let singleton = function(){
 <header class="header">
     <nav class="nav">
         <div class="logo">
-            <a href="https://example.org/" accesskey="h" title="My New Hugo Site (Alt + H)">My New Hugo Site</a>
+            <a href="https://growyears.netlify.app/" accesskey="h" title="拾光博客 - 永浩 (Alt + H)">拾光博客 - 永浩</a>
             <div class="logo-switches">
                 <button id="theme-toggle" accesskey="t" title="(Alt + T)" aria-label="Toggle theme">
                     <svg id="moon" xmlns="http://www.w3.org/2000/svg" width="24" height="18" viewBox="0 0 24 24"
@@ -478,7 +478,7 @@ let singleton = function(){
     </main>
     
 <footer class="footer">
-        <span>&copy; 2025 <a href="https://example.org/">My New Hugo Site</a></span> · 
+        <span>&copy; 2025 <a href="https://growyears.netlify.app/">拾光博客 - 永浩</a></span> · 
 
     <span>
         Powered by

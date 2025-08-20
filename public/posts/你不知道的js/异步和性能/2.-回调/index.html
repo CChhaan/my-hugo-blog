@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <meta name="robots" content="index, follow">
-<title>My New Hugo Site</title>
+<title>拾光博客 - 永浩</title>
 <meta name="keywords" content="">
 <meta name="description" content="一、回调函数的本质
 回调函数的核心作用是包裹或封装程序的延续逻辑—— 即当前操作完成后 “接下来要执行的代码”。通过回调，我们可以定义异步操作（如网络请求、定时器）结束后应执行的步骤。
@@ -44,16 +44,16 @@
 保证所有回调都遵循相同的异步逻辑，减少不可预测性。
 ">
 <meta name="author" content="">
-<link rel="canonical" href="https://example.org/posts/%E4%BD%A0%E4%B8%8D%E7%9F%A5%E9%81%93%E7%9A%84js/%E5%BC%82%E6%AD%A5%E5%92%8C%E6%80%A7%E8%83%BD/2.-%E5%9B%9E%E8%B0%83/">
+<link rel="canonical" href="https://growyears.netlify.app/posts/%E4%BD%A0%E4%B8%8D%E7%9F%A5%E9%81%93%E7%9A%84js/%E5%BC%82%E6%AD%A5%E5%92%8C%E6%80%A7%E8%83%BD/2.-%E5%9B%9E%E8%B0%83/">
 <link crossorigin="anonymous" href="/assets/css/stylesheet.36819bea596090d8b48cf10d9831382996197aa7e4fc86f792f7c08c9ca4d23b.css" integrity="sha256-NoGb6llgkNi0jPENmDE4KZYZeqfk/Ib3kvfAjJyk0js=" rel="preload stylesheet" as="style">
-<link rel="icon" href="https://example.org/favicon.ico">
-<link rel="icon" type="image/png" sizes="16x16" href="https://example.org/favicon-16x16.png">
-<link rel="icon" type="image/png" sizes="32x32" href="https://example.org/favicon-32x32.png">
-<link rel="apple-touch-icon" href="https://example.org/apple-touch-icon.png">
-<link rel="mask-icon" href="https://example.org/safari-pinned-tab.svg">
+<link rel="icon" href="https://growyears.netlify.app/favicon.ico">
+<link rel="icon" type="image/png" sizes="16x16" href="https://growyears.netlify.app/favicon-16x16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="https://growyears.netlify.app/favicon-32x32.png">
+<link rel="apple-touch-icon" href="https://growyears.netlify.app/apple-touch-icon.png">
+<link rel="mask-icon" href="https://growyears.netlify.app/safari-pinned-tab.svg">
 <meta name="theme-color" content="#2e2e33">
 <meta name="msapplication-TileColor" content="#2e2e33">
-<link rel="alternate" hreflang="en" href="https://example.org/posts/%E4%BD%A0%E4%B8%8D%E7%9F%A5%E9%81%93%E7%9A%84js/%E5%BC%82%E6%AD%A5%E5%92%8C%E6%80%A7%E8%83%BD/2.-%E5%9B%9E%E8%B0%83/">
+<link rel="alternate" hreflang="en" href="https://growyears.netlify.app/posts/%E4%BD%A0%E4%B8%8D%E7%9F%A5%E9%81%93%E7%9A%84js/%E5%BC%82%E6%AD%A5%E5%92%8C%E6%80%A7%E8%83%BD/2.-%E5%9B%9E%E8%B0%83/">
 <noscript>
     <style>
         #theme-toggle,
@@ -90,9 +90,9 @@
         }
 
     </style>
-</noscript><meta property="og:url" content="https://example.org/posts/%E4%BD%A0%E4%B8%8D%E7%9F%A5%E9%81%93%E7%9A%84js/%E5%BC%82%E6%AD%A5%E5%92%8C%E6%80%A7%E8%83%BD/2.-%E5%9B%9E%E8%B0%83/">
-  <meta property="og:site_name" content="My New Hugo Site">
-  <meta property="og:title" content="My New Hugo Site">
+</noscript><meta property="og:url" content="https://growyears.netlify.app/posts/%E4%BD%A0%E4%B8%8D%E7%9F%A5%E9%81%93%E7%9A%84js/%E5%BC%82%E6%AD%A5%E5%92%8C%E6%80%A7%E8%83%BD/2.-%E5%9B%9E%E8%B0%83/">
+  <meta property="og:site_name" content="拾光博客 - 永浩">
+  <meta property="og:title" content="拾光博客 - 永浩">
   <meta property="og:description" content="一、回调函数的本质 回调函数的核心作用是包裹或封装程序的延续逻辑—— 即当前操作完成后 “接下来要执行的代码”。通过回调，我们可以定义异步操作（如网络请求、定时器）结束后应执行的步骤。
 二、回调地狱（Callback Hell）的成因 回调地狱指多层嵌套回调导致的代码可读性差、维护困难问题，根源在于两点：
 思维与代码的不匹配：人类习惯线性、顺序的思维模式，而回调驱动的异步代码需要嵌套表达 “先完成 A，再做 B，然后做 C” 的逻辑，形成 “金字塔式嵌套”。
@@ -101,7 +101,7 @@
 分离回调（Split Callbacks）： 为成功和错误分别指定回调函数，避免在单一回调中用条件判断区分结果。 错误优先回调（Error-First Callbacks，Node 风格）： 回调函数的第一个参数固定为错误对象，后续参数为成功结果：
 若操作成功，错误参数为null或undefined； 若操作失败，错误参数为非空值（通常是Error对象）。 四、回调调用的最佳实践：永远异步执行 即使回调逻辑可以同步完成，也应强制异步调用（如通过setTimeout或队列机制），确保回调行为的一致性：
 避免同步回调导致的 “时序混乱”（如回调在异步操作触发前执行）； 保证所有回调都遵循相同的异步逻辑，减少不可预测性。 ">
-  <meta property="og:locale" content="en-us">
+  <meta property="og:locale" content="zh-cn">
   <meta property="og:type" content="article">
     <meta property="article:section" content="posts">
 <meta name="twitter:card" content="summary">
@@ -153,13 +153,13 @@
       "@type": "ListItem",
       "position":  1 ,
       "name": "Posts",
-      "item": "https://example.org/posts/"
+      "item": "https://growyears.netlify.app/posts/"
     }, 
     {
       "@type": "ListItem",
       "position":  2 ,
       "name": "",
-      "item": "https://example.org/posts/%E4%BD%A0%E4%B8%8D%E7%9F%A5%E9%81%93%E7%9A%84js/%E5%BC%82%E6%AD%A5%E5%92%8C%E6%80%A7%E8%83%BD/2.-%E5%9B%9E%E8%B0%83/"
+      "item": "https://growyears.netlify.app/posts/%E4%BD%A0%E4%B8%8D%E7%9F%A5%E9%81%93%E7%9A%84js/%E5%BC%82%E6%AD%A5%E5%92%8C%E6%80%A7%E8%83%BD/2.-%E5%9B%9E%E8%B0%83/"
     }
   ]
 }
@@ -181,14 +181,14 @@
   "dateModified": "0001-01-01T00:00:00Z",
   "mainEntityOfPage": {
     "@type": "WebPage",
-    "@id": "https://example.org/posts/%E4%BD%A0%E4%B8%8D%E7%9F%A5%E9%81%93%E7%9A%84js/%E5%BC%82%E6%AD%A5%E5%92%8C%E6%80%A7%E8%83%BD/2.-%E5%9B%9E%E8%B0%83/"
+    "@id": "https://growyears.netlify.app/posts/%E4%BD%A0%E4%B8%8D%E7%9F%A5%E9%81%93%E7%9A%84js/%E5%BC%82%E6%AD%A5%E5%92%8C%E6%80%A7%E8%83%BD/2.-%E5%9B%9E%E8%B0%83/"
   },
   "publisher": {
     "@type": "Organization",
-    "name": "My New Hugo Site",
+    "name": "拾光博客 - 永浩",
     "logo": {
       "@type": "ImageObject",
-      "url": "https://example.org/favicon.ico"
+      "url": "https://growyears.netlify.app/favicon.ico"
     }
   }
 }
@@ -210,7 +210,7 @@
 <header class="header">
     <nav class="nav">
         <div class="logo">
-            <a href="https://example.org/" accesskey="h" title="My New Hugo Site (Alt + H)">My New Hugo Site</a>
+            <a href="https://growyears.netlify.app/" accesskey="h" title="拾光博客 - 永浩 (Alt + H)">拾光博客 - 永浩</a>
             <div class="logo-switches">
                 <button id="theme-toggle" accesskey="t" title="(Alt + T)" aria-label="Toggle theme">
                     <svg id="moon" xmlns="http://www.w3.org/2000/svg" width="24" height="18" viewBox="0 0 24 24"
@@ -298,7 +298,7 @@
     </main>
     
 <footer class="footer">
-        <span>&copy; 2025 <a href="https://example.org/">My New Hugo Site</a></span> · 
+        <span>&copy; 2025 <a href="https://growyears.netlify.app/">拾光博客 - 永浩</a></span> · 
 
     <span>
         Powered by

@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <meta name="robots" content="index, follow">
-<title>My New Hugo Site</title>
+<title>拾光博客 - 永浩</title>
 <meta name="keywords" content="">
 <meta name="description" content="一、什么是 Promise
 1. 未来值
@@ -178,16 +178,16 @@ Promise.race 传入空数组 “永远不决议” 是标准行为（因无竞�
 所有回调的 “异步执行” 基于事件循环，确保宏观任务队列的顺序性，避免同步执行导致的时序混乱。
 ">
 <meta name="author" content="">
-<link rel="canonical" href="https://example.org/posts/%E4%BD%A0%E4%B8%8D%E7%9F%A5%E9%81%93%E7%9A%84js/%E5%BC%82%E6%AD%A5%E5%92%8C%E6%80%A7%E8%83%BD/3.-promise/">
+<link rel="canonical" href="https://growyears.netlify.app/posts/%E4%BD%A0%E4%B8%8D%E7%9F%A5%E9%81%93%E7%9A%84js/%E5%BC%82%E6%AD%A5%E5%92%8C%E6%80%A7%E8%83%BD/3.-promise/">
 <link crossorigin="anonymous" href="/assets/css/stylesheet.36819bea596090d8b48cf10d9831382996197aa7e4fc86f792f7c08c9ca4d23b.css" integrity="sha256-NoGb6llgkNi0jPENmDE4KZYZeqfk/Ib3kvfAjJyk0js=" rel="preload stylesheet" as="style">
-<link rel="icon" href="https://example.org/favicon.ico">
-<link rel="icon" type="image/png" sizes="16x16" href="https://example.org/favicon-16x16.png">
-<link rel="icon" type="image/png" sizes="32x32" href="https://example.org/favicon-32x32.png">
-<link rel="apple-touch-icon" href="https://example.org/apple-touch-icon.png">
-<link rel="mask-icon" href="https://example.org/safari-pinned-tab.svg">
+<link rel="icon" href="https://growyears.netlify.app/favicon.ico">
+<link rel="icon" type="image/png" sizes="16x16" href="https://growyears.netlify.app/favicon-16x16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="https://growyears.netlify.app/favicon-32x32.png">
+<link rel="apple-touch-icon" href="https://growyears.netlify.app/apple-touch-icon.png">
+<link rel="mask-icon" href="https://growyears.netlify.app/safari-pinned-tab.svg">
 <meta name="theme-color" content="#2e2e33">
 <meta name="msapplication-TileColor" content="#2e2e33">
-<link rel="alternate" hreflang="en" href="https://example.org/posts/%E4%BD%A0%E4%B8%8D%E7%9F%A5%E9%81%93%E7%9A%84js/%E5%BC%82%E6%AD%A5%E5%92%8C%E6%80%A7%E8%83%BD/3.-promise/">
+<link rel="alternate" hreflang="en" href="https://growyears.netlify.app/posts/%E4%BD%A0%E4%B8%8D%E7%9F%A5%E9%81%93%E7%9A%84js/%E5%BC%82%E6%AD%A5%E5%92%8C%E6%80%A7%E8%83%BD/3.-promise/">
 <noscript>
     <style>
         #theme-toggle,
@@ -224,11 +224,11 @@ Promise.race 传入空数组 “永远不决议” 是标准行为（因无竞�
         }
 
     </style>
-</noscript><meta property="og:url" content="https://example.org/posts/%E4%BD%A0%E4%B8%8D%E7%9F%A5%E9%81%93%E7%9A%84js/%E5%BC%82%E6%AD%A5%E5%92%8C%E6%80%A7%E8%83%BD/3.-promise/">
-  <meta property="og:site_name" content="My New Hugo Site">
-  <meta property="og:title" content="My New Hugo Site">
+</noscript><meta property="og:url" content="https://growyears.netlify.app/posts/%E4%BD%A0%E4%B8%8D%E7%9F%A5%E9%81%93%E7%9A%84js/%E5%BC%82%E6%AD%A5%E5%92%8C%E6%80%A7%E8%83%BD/3.-promise/">
+  <meta property="og:site_name" content="拾光博客 - 永浩">
+  <meta property="og:title" content="拾光博客 - 永浩">
   <meta property="og:description" content="一、什么是 Promise 1. 未来值 核心特性：Promise 封装了一个 “未来才会确定的值”，将 “现在”（发起异步操作）和 “将来”（操作结果）的逻辑归一化，确保输出可预测。 状态与不可变性： 封装依赖时间的状态（等待、完成、拒绝），自身与时间无关，可按可预测方式组合。 一旦决议（完成或拒绝），状态永久固定为 “不变值”，可多次查看且不会被修改，多方依赖时观察结果一致。 then 方法的双回调：调用then(onFulfilled, onRejected)时，第一个参数处理 “完成”（操作成功），第二个处理 “拒绝”（操作失败）。 2. 完成事件（流程控制） 本质：Promise 的决议可作为异步任务中多步骤的流程控制信号（时序上的 “this-then-that”）。 反控制反转： 传统回调存在 “控制反转”（第三方控制回调执行），而 Promise 通过 “侦听决议事件” 反转这种关系 —— 调用者通过then注册回调，等待 Promise 决议后触发，将控制返还给调用代码。 信号特性：决议可仅作为流程信号（不传递具体值），且一旦决议，后续步骤逻辑始终一致（无论现在或将来决议）。 二、具有 then 方法的鸭子类型 thenable 定义：任何具有then方法的对象或函数，被视为与 Promise 一致的 “thenable”。 鸭子类型：通过值的形态（是否有then方法）假定其类型，这是识别 Promise 的核心逻辑。 三、Promise 信任问题（可靠性保障） 异步回调：对 Promise 调用then时，即使 Promise 已决议，回调也始终异步执行（下一个事件循环 tick），确保行为一致。 决议的唯一性： Promise 只能被决议一次（首次调用resolve或reject生效，后续调用被忽略），因此then注册的回调仅执行一次。 若同一回调多次注册，会按注册次数执行。 决议值的单一性： 至多有一个决议值（未显式决议时为undefined），传给所有注册的回调。 调用resolve/reject时，仅第一个参数有效，后续参数被忽略；多值需封装为数组 / 对象传递。 异常处理：Promise 创建或决议过程中出现的 JS 异常会被捕捉，导致 Promise 被拒绝。 Promise.resolve 的作用： 传入非 Promise / 非 thenable 值：返回以该值完成的 Promise。 传入真正的 Promise：直接返回该 Promise。 传入 thenable：递归展开至非 thenable 的最终值，返回一个可信任的真正 Promise。 作用：确保任何值通过Promise.resolve过滤后都是可信任的 Promise。 四、链式流（Promise 链式调用） 链式基础： 每次调用then都会创建并返回新的 Promise，支持链式连接。 完成回调的返回值会自动作为新 Promise 的完成值（若返回 Promise/thenable，会展开其决议值）。 错误传播： 若then仅传入完成回调，默认拒绝处理函数会 “重新抛出错误”，使错误沿链传播，直至被显式拒绝处理函数捕获。 若then未传入有效完成回调，默认完成处理函数会将值传递给下一个步骤。 catch 的本质：catch(onRejected)是then(null, onRejected)的缩写，仅处理拒绝，自动传递完成值。 五、Promise 模式 1. Promise.all（“门” 模式） 作用：等待多个并行 / 并发任务全部完成后再继续，顺序无关。 参数：接受一个由 Promise、thenable 或立即值组成的数组（元素会被Promise.resolve规范化）。 决议规则： 完成：所有成员 Promise 完成后，主 Promise 以 “成员完成值组成的数组” 完成（顺序与传入数组一致，与完成顺序无关）。 拒绝：任一成员 Promise 拒绝时，主 Promise 立即以该拒绝理由拒绝（忽略其他结果）。 特殊情况：传入空数组时，主 Promise立即完成（值为 []）。 2. Promise.race（“门闩” 模式） 作用：仅响应第一个决议的 Promise（完成或拒绝），忽略其他。 参数：接受一个由 Promise、thenable 或立即值组成的数组（元素会被Promise.resolve规范化）。 决议规则： 完成：第一个完成的成员 Promise 的完成值作为主 Promise 的完成值。 拒绝：第一个拒绝的成员 Promise 的拒绝理由作为主 Promise 的拒绝理由。 特殊情况：传入空数组时，主 Promise永远不会决议。 六、Promise API 概述 1. new Promise 构造器 必须与new配合使用，参数为一个同步执行的回调函数，该回调接受两个参数（resolve和reject）： reject(reason)：直接拒绝 Promise，理由为reason。 resolve(value)： 若value为非 Promise / 非 thenable：以value完成 Promise。 若value为 Promise/thenable：递归展开，采用其最终决议状态 / 值。 2. Promise.resolve 和 Promise.reject（静态方法） Promise.reject(reason)：快捷创建已拒绝的 Promise，理由为reason（不展开reason，即使其为 thenable）。 Promise.resolve(value)： 若value为 Promise：直接返回该 Promise。 若value为 thenable：展开至最终值，返回以该值决议的 Promise（完成或拒绝）。 其他情况：返回以value完成的 Promise。 3. then 和 catch（实例方法） then(onFulfilled?, onRejected?)： 注册完成 / 拒绝回调，返回新 Promise。 若回调为非函数：替换为默认回调（完成回调传递值，拒绝回调重新抛错）。 回调返回值处理： 抛出异常：新 Promise 以该异常拒绝。 返回非 Promise / 非 thenable：新 Promise 以该值完成。 返回 Promise/thenable：新 Promise 采用其最终决议状态 / 值。 catch(onRejected)：等价于then(null, onRejected)，仅注册拒绝回调。 4. Promise.all 和 Promise.race（静态方法） 同 “Promise 模式” 中描述，核心为 “门” 和 “门闩” 模式，控制多 Promise 的并发协作。 七、Promise 局限性 错误易被忽略： 若 Promise 链未设置错误处理函数，链中任何错误会一直传播，直至被捕获（可能导致隐性 bug）。 链中无统一实体标识，无法从外部观察未处理的错误。 单一决议值： 只能有一个完成值或拒绝理由，复杂场景需拆分多个 Promise。 无法中途取消： 一旦创建 Promise 并注册回调，若任务悬而未决，无法从外部终止其进程。 轻微性能开销： 相比非 Promise 回调，因内建可靠性（如异步保证、状态管理），性能略低，但可忽略不计。 补充说明（修正与强调） “决议” 包含 “完成（fulfilled）” 和 “拒绝（rejected）” 两种状态，避免混淆为单一概念。 Promise.race 传入空数组 “永远不决议” 是标准行为（因无竞争对象），需注意与 Promise.all 空数组的区别。 所有回调的 “异步执行” 基于事件循环，确保宏观任务队列的顺序性，避免同步执行导致的时序混乱。 ">
-  <meta property="og:locale" content="en-us">
+  <meta property="og:locale" content="zh-cn">
   <meta property="og:type" content="article">
     <meta property="article:section" content="posts">
 <meta name="twitter:card" content="summary">
@@ -414,13 +414,13 @@ Promise.race 传入空数组 “永远不决议” 是标准行为（因无竞�
       "@type": "ListItem",
       "position":  1 ,
       "name": "Posts",
-      "item": "https://example.org/posts/"
+      "item": "https://growyears.netlify.app/posts/"
     }, 
     {
       "@type": "ListItem",
       "position":  2 ,
       "name": "",
-      "item": "https://example.org/posts/%E4%BD%A0%E4%B8%8D%E7%9F%A5%E9%81%93%E7%9A%84js/%E5%BC%82%E6%AD%A5%E5%92%8C%E6%80%A7%E8%83%BD/3.-promise/"
+      "item": "https://growyears.netlify.app/posts/%E4%BD%A0%E4%B8%8D%E7%9F%A5%E9%81%93%E7%9A%84js/%E5%BC%82%E6%AD%A5%E5%92%8C%E6%80%A7%E8%83%BD/3.-promise/"
     }
   ]
 }
@@ -442,14 +442,14 @@ Promise.race 传入空数组 “永远不决议” 是标准行为（因无竞�
   "dateModified": "0001-01-01T00:00:00Z",
   "mainEntityOfPage": {
     "@type": "WebPage",
-    "@id": "https://example.org/posts/%E4%BD%A0%E4%B8%8D%E7%9F%A5%E9%81%93%E7%9A%84js/%E5%BC%82%E6%AD%A5%E5%92%8C%E6%80%A7%E8%83%BD/3.-promise/"
+    "@id": "https://growyears.netlify.app/posts/%E4%BD%A0%E4%B8%8D%E7%9F%A5%E9%81%93%E7%9A%84js/%E5%BC%82%E6%AD%A5%E5%92%8C%E6%80%A7%E8%83%BD/3.-promise/"
   },
   "publisher": {
     "@type": "Organization",
-    "name": "My New Hugo Site",
+    "name": "拾光博客 - 永浩",
     "logo": {
       "@type": "ImageObject",
-      "url": "https://example.org/favicon.ico"
+      "url": "https://growyears.netlify.app/favicon.ico"
     }
   }
 }
@@ -471,7 +471,7 @@ Promise.race 传入空数组 “永远不决议” 是标准行为（因无竞�
 <header class="header">
     <nav class="nav">
         <div class="logo">
-            <a href="https://example.org/" accesskey="h" title="My New Hugo Site (Alt + H)">My New Hugo Site</a>
+            <a href="https://growyears.netlify.app/" accesskey="h" title="拾光博客 - 永浩 (Alt + H)">拾光博客 - 永浩</a>
             <div class="logo-switches">
                 <button id="theme-toggle" accesskey="t" title="(Alt + T)" aria-label="Toggle theme">
                     <svg id="moon" xmlns="http://www.w3.org/2000/svg" width="24" height="18" viewBox="0 0 24 24"
@@ -693,7 +693,7 @@ Promise.race 传入空数组 “永远不决议” 是标准行为（因无竞�
     </main>
     
 <footer class="footer">
-        <span>&copy; 2025 <a href="https://example.org/">My New Hugo Site</a></span> · 
+        <span>&copy; 2025 <a href="https://growyears.netlify.app/">拾光博客 - 永浩</a></span> · 
 
     <span>
         Powered by

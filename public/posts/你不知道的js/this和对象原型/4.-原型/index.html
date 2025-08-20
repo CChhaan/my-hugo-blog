@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <meta name="robots" content="index, follow">
-<title>My New Hugo Site</title>
+<title>拾光博客 - 永浩</title>
 <meta name="keywords" content="">
 <meta name="description" content="
 摘要：JavaScript对象通过[[Prototype]]链实现原型继承机制，属性访问会沿着原型链查找。对象创建时[[Prototype]]会被赋予非空值，最终指向Object.prototype。属性赋值可能产生屏蔽效果，不同情况处理方式不同。构造函数.prototype属性用于关联新对象，但JS本质是对象互相关联而非类继承。Object.create()和__proto__等方法可操作原型链，空[[Prototype]]对象适合数据存储。JS通过原型链实现对象间的委托而非传统类继承。（150字）
@@ -55,16 +55,16 @@ a.__proto__ === Foo.prototype
 Object.create()会创建一个新对象，并把它关联到我们指定的对象，这样可以充分发挥[[Prototype]]机制的威力并且避免不必要的麻烦
 Object.create(null)会创建一个拥有空[[Prototype]]链接的对象，这个对象无法进行委托。这些空[[Prototype]]对象通常被称作字典，他们完全不会受到原型链的干扰，非常适合用来存储数据">
 <meta name="author" content="">
-<link rel="canonical" href="https://example.org/posts/%E4%BD%A0%E4%B8%8D%E7%9F%A5%E9%81%93%E7%9A%84js/this%E5%92%8C%E5%AF%B9%E8%B1%A1%E5%8E%9F%E5%9E%8B/4.-%E5%8E%9F%E5%9E%8B/">
+<link rel="canonical" href="https://growyears.netlify.app/posts/%E4%BD%A0%E4%B8%8D%E7%9F%A5%E9%81%93%E7%9A%84js/this%E5%92%8C%E5%AF%B9%E8%B1%A1%E5%8E%9F%E5%9E%8B/4.-%E5%8E%9F%E5%9E%8B/">
 <link crossorigin="anonymous" href="/assets/css/stylesheet.36819bea596090d8b48cf10d9831382996197aa7e4fc86f792f7c08c9ca4d23b.css" integrity="sha256-NoGb6llgkNi0jPENmDE4KZYZeqfk/Ib3kvfAjJyk0js=" rel="preload stylesheet" as="style">
-<link rel="icon" href="https://example.org/favicon.ico">
-<link rel="icon" type="image/png" sizes="16x16" href="https://example.org/favicon-16x16.png">
-<link rel="icon" type="image/png" sizes="32x32" href="https://example.org/favicon-32x32.png">
-<link rel="apple-touch-icon" href="https://example.org/apple-touch-icon.png">
-<link rel="mask-icon" href="https://example.org/safari-pinned-tab.svg">
+<link rel="icon" href="https://growyears.netlify.app/favicon.ico">
+<link rel="icon" type="image/png" sizes="16x16" href="https://growyears.netlify.app/favicon-16x16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="https://growyears.netlify.app/favicon-32x32.png">
+<link rel="apple-touch-icon" href="https://growyears.netlify.app/apple-touch-icon.png">
+<link rel="mask-icon" href="https://growyears.netlify.app/safari-pinned-tab.svg">
 <meta name="theme-color" content="#2e2e33">
 <meta name="msapplication-TileColor" content="#2e2e33">
-<link rel="alternate" hreflang="en" href="https://example.org/posts/%E4%BD%A0%E4%B8%8D%E7%9F%A5%E9%81%93%E7%9A%84js/this%E5%92%8C%E5%AF%B9%E8%B1%A1%E5%8E%9F%E5%9E%8B/4.-%E5%8E%9F%E5%9E%8B/">
+<link rel="alternate" hreflang="en" href="https://growyears.netlify.app/posts/%E4%BD%A0%E4%B8%8D%E7%9F%A5%E9%81%93%E7%9A%84js/this%E5%92%8C%E5%AF%B9%E8%B1%A1%E5%8E%9F%E5%9E%8B/4.-%E5%8E%9F%E5%9E%8B/">
 <noscript>
     <style>
         #theme-toggle,
@@ -101,9 +101,9 @@ Object.create(null)会创建一个拥有空[[Prototype]]链接的对象，这个
         }
 
     </style>
-</noscript><meta property="og:url" content="https://example.org/posts/%E4%BD%A0%E4%B8%8D%E7%9F%A5%E9%81%93%E7%9A%84js/this%E5%92%8C%E5%AF%B9%E8%B1%A1%E5%8E%9F%E5%9E%8B/4.-%E5%8E%9F%E5%9E%8B/">
-  <meta property="og:site_name" content="My New Hugo Site">
-  <meta property="og:title" content="My New Hugo Site">
+</noscript><meta property="og:url" content="https://growyears.netlify.app/posts/%E4%BD%A0%E4%B8%8D%E7%9F%A5%E9%81%93%E7%9A%84js/this%E5%92%8C%E5%AF%B9%E8%B1%A1%E5%8E%9F%E5%9E%8B/4.-%E5%8E%9F%E5%9E%8B/">
+  <meta property="og:site_name" content="拾光博客 - 永浩">
+  <meta property="og:title" content="拾光博客 - 永浩">
   <meta property="og:description" content=" 摘要：JavaScript对象通过[[Prototype]]链实现原型继承机制，属性访问会沿着原型链查找。对象创建时[[Prototype]]会被赋予非空值，最终指向Object.prototype。属性赋值可能产生屏蔽效果，不同情况处理方式不同。构造函数.prototype属性用于关联新对象，但JS本质是对象互相关联而非类继承。Object.create()和__proto__等方法可操作原型链，空[[Prototype]]对象适合数据存储。JS通过原型链实现对象间的委托而非传统类继承。（150字）
 JS中的对象有一个特殊的[[Prototype]]内置属性，其实就是对于其他对象的引用。几乎所有的对象在创建时[[Prototype]]属性都会被赋予一个非空的值
 当试图引用对象的属性时就会触发[[Get]]操作，对于默认的[[Get]]操作来说，第一步是检查对象本身是否有这个属性，如果有的话就使用它。但是如果不在，就需要使用对象的[[Prototype]]链了。对于默认的[[Get]]操作来说，如果无法在对象本身找到需要的属性，就会继续访问对象的[[Prototype]]链。这个过程会持续到找到匹配的属性名或者查找完整条[[Prototype]]链，如果是后者的话，[[Get]]操作的返回值就是undefined
@@ -137,7 +137,7 @@ a.__proto__ === Foo.prototype 这个__proto__属性引用了内部的[[Prototype
 [[Prototype]]机制就是存在于对象中的一个内部链接，它会引用其他对象，这个链接的作用是：如果在对象上没有找到需要的属性或者方法引用，引擎就会继续在[[Prototype]]关联的对象上进行查找，同理，如果在后者中也没有找到需要的引用就会继续查找它的[[Prototype]]，以此类推，这一系列对象的链接被称为原型链
 Object.create()会创建一个新对象，并把它关联到我们指定的对象，这样可以充分发挥[[Prototype]]机制的威力并且避免不必要的麻烦
 Object.create(null)会创建一个拥有空[[Prototype]]链接的对象，这个对象无法进行委托。这些空[[Prototype]]对象通常被称作字典，他们完全不会受到原型链的干扰，非常适合用来存储数据">
-  <meta property="og:locale" content="en-us">
+  <meta property="og:locale" content="zh-cn">
   <meta property="og:type" content="article">
     <meta property="article:section" content="posts">
 <meta name="twitter:card" content="summary">
@@ -200,13 +200,13 @@ Object.create(null)会创建一个拥有空[[Prototype]]链接的对象，这个
       "@type": "ListItem",
       "position":  1 ,
       "name": "Posts",
-      "item": "https://example.org/posts/"
+      "item": "https://growyears.netlify.app/posts/"
     }, 
     {
       "@type": "ListItem",
       "position":  2 ,
       "name": "",
-      "item": "https://example.org/posts/%E4%BD%A0%E4%B8%8D%E7%9F%A5%E9%81%93%E7%9A%84js/this%E5%92%8C%E5%AF%B9%E8%B1%A1%E5%8E%9F%E5%9E%8B/4.-%E5%8E%9F%E5%9E%8B/"
+      "item": "https://growyears.netlify.app/posts/%E4%BD%A0%E4%B8%8D%E7%9F%A5%E9%81%93%E7%9A%84js/this%E5%92%8C%E5%AF%B9%E8%B1%A1%E5%8E%9F%E5%9E%8B/4.-%E5%8E%9F%E5%9E%8B/"
     }
   ]
 }
@@ -228,14 +228,14 @@ Object.create(null)会创建一个拥有空[[Prototype]]链接的对象，这个
   "dateModified": "0001-01-01T00:00:00Z",
   "mainEntityOfPage": {
     "@type": "WebPage",
-    "@id": "https://example.org/posts/%E4%BD%A0%E4%B8%8D%E7%9F%A5%E9%81%93%E7%9A%84js/this%E5%92%8C%E5%AF%B9%E8%B1%A1%E5%8E%9F%E5%9E%8B/4.-%E5%8E%9F%E5%9E%8B/"
+    "@id": "https://growyears.netlify.app/posts/%E4%BD%A0%E4%B8%8D%E7%9F%A5%E9%81%93%E7%9A%84js/this%E5%92%8C%E5%AF%B9%E8%B1%A1%E5%8E%9F%E5%9E%8B/4.-%E5%8E%9F%E5%9E%8B/"
   },
   "publisher": {
     "@type": "Organization",
-    "name": "My New Hugo Site",
+    "name": "拾光博客 - 永浩",
     "logo": {
       "@type": "ImageObject",
-      "url": "https://example.org/favicon.ico"
+      "url": "https://growyears.netlify.app/favicon.ico"
     }
   }
 }
@@ -257,7 +257,7 @@ Object.create(null)会创建一个拥有空[[Prototype]]链接的对象，这个
 <header class="header">
     <nav class="nav">
         <div class="logo">
-            <a href="https://example.org/" accesskey="h" title="My New Hugo Site (Alt + H)">My New Hugo Site</a>
+            <a href="https://growyears.netlify.app/" accesskey="h" title="拾光博客 - 永浩 (Alt + H)">拾光博客 - 永浩</a>
             <div class="logo-switches">
                 <button id="theme-toggle" accesskey="t" title="(Alt + T)" aria-label="Toggle theme">
                     <svg id="moon" xmlns="http://www.w3.org/2000/svg" width="24" height="18" viewBox="0 0 24 24"
@@ -356,7 +356,7 @@ Object.create(null)会创建一个拥有空[[Prototype]]链接的对象，这个
     </main>
     
 <footer class="footer">
-        <span>&copy; 2025 <a href="https://example.org/">My New Hugo Site</a></span> · 
+        <span>&copy; 2025 <a href="https://growyears.netlify.app/">拾光博客 - 永浩</a></span> · 
 
     <span>
         Powered by

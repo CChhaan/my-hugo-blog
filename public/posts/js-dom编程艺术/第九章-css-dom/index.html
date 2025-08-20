@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <meta name="robots" content="index, follow">
-<title>My New Hugo Site</title>
+<title>拾光博客 - 永浩</title>
 <meta name="keywords" content="">
 <meta name="description" content="一、网页的三层结构
 网页的呈现和交互由结构层、表示层、行为层共同构成，三者各司其职又协同工作：
@@ -61,16 +61,16 @@
 
 style 对象的属性是可读写的，可通过赋值修改样式，值需为字符串（需加引号）。">
 <meta name="author" content="">
-<link rel="canonical" href="https://example.org/posts/js-dom%E7%BC%96%E7%A8%8B%E8%89%BA%E6%9C%AF/%E7%AC%AC%E4%B9%9D%E7%AB%A0-css-dom/">
+<link rel="canonical" href="https://growyears.netlify.app/posts/js-dom%E7%BC%96%E7%A8%8B%E8%89%BA%E6%9C%AF/%E7%AC%AC%E4%B9%9D%E7%AB%A0-css-dom/">
 <link crossorigin="anonymous" href="/assets/css/stylesheet.36819bea596090d8b48cf10d9831382996197aa7e4fc86f792f7c08c9ca4d23b.css" integrity="sha256-NoGb6llgkNi0jPENmDE4KZYZeqfk/Ib3kvfAjJyk0js=" rel="preload stylesheet" as="style">
-<link rel="icon" href="https://example.org/favicon.ico">
-<link rel="icon" type="image/png" sizes="16x16" href="https://example.org/favicon-16x16.png">
-<link rel="icon" type="image/png" sizes="32x32" href="https://example.org/favicon-32x32.png">
-<link rel="apple-touch-icon" href="https://example.org/apple-touch-icon.png">
-<link rel="mask-icon" href="https://example.org/safari-pinned-tab.svg">
+<link rel="icon" href="https://growyears.netlify.app/favicon.ico">
+<link rel="icon" type="image/png" sizes="16x16" href="https://growyears.netlify.app/favicon-16x16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="https://growyears.netlify.app/favicon-32x32.png">
+<link rel="apple-touch-icon" href="https://growyears.netlify.app/apple-touch-icon.png">
+<link rel="mask-icon" href="https://growyears.netlify.app/safari-pinned-tab.svg">
 <meta name="theme-color" content="#2e2e33">
 <meta name="msapplication-TileColor" content="#2e2e33">
-<link rel="alternate" hreflang="en" href="https://example.org/posts/js-dom%E7%BC%96%E7%A8%8B%E8%89%BA%E6%9C%AF/%E7%AC%AC%E4%B9%9D%E7%AB%A0-css-dom/">
+<link rel="alternate" hreflang="en" href="https://growyears.netlify.app/posts/js-dom%E7%BC%96%E7%A8%8B%E8%89%BA%E6%9C%AF/%E7%AC%AC%E4%B9%9D%E7%AB%A0-css-dom/">
 <noscript>
     <style>
         #theme-toggle,
@@ -107,9 +107,9 @@ style 对象的属性是可读写的，可通过赋值修改样式，值需为�
         }
 
     </style>
-</noscript><meta property="og:url" content="https://example.org/posts/js-dom%E7%BC%96%E7%A8%8B%E8%89%BA%E6%9C%AF/%E7%AC%AC%E4%B9%9D%E7%AB%A0-css-dom/">
-  <meta property="og:site_name" content="My New Hugo Site">
-  <meta property="og:title" content="My New Hugo Site">
+</noscript><meta property="og:url" content="https://growyears.netlify.app/posts/js-dom%E7%BC%96%E7%A8%8B%E8%89%BA%E6%9C%AF/%E7%AC%AC%E4%B9%9D%E7%AB%A0-css-dom/">
+  <meta property="og:site_name" content="拾光博客 - 永浩">
+  <meta property="og:title" content="拾光博客 - 永浩">
   <meta property="og:description" content="一、网页的三层结构 网页的呈现和交互由结构层、表示层、行为层共同构成，三者各司其职又协同工作：
 结构层： 由 HTML/XHTML 标记语言实现，通过标签（如 &lt;p&gt;、&lt;div&gt;）描述内容的语义和结构（如标题、段落、列表），不包含样式或行为信息。 示例：&lt;h1&gt;标题&lt;/h1&gt; 仅定义 “这是一个一级标题”，不规定其颜色、大小。 表示层： 由 CSS 负责，定义内容的视觉呈现（如颜色、字体、布局）。 即使未显式编写 CSS，浏览器也会应用默认样式（如 &lt;h1&gt; 默认加粗、字号较大）。 行为层： 由 JavaScript 和 DOM 控制，定义内容对事件的响应方式（如点击、鼠标悬停）。 浏览器默认也有基础行为（如链接点击跳转、表单提交），JS 可扩展或修改这些行为。 二、通过 DOM 操作样式：style 属性 1. style 属性的特性 每个元素节点的 style 属性是一个对象，包含该元素的内嵌样式（即通过 style 属性直接定义的样式，如 &lt;div style=&#34;color: red&#34;&gt;）。
 命名规则：CSS 属性名中的减号（如 font-size）在 style 对象中需转换为驼峰命名法（如 style.fontSize），避免与 JS 语法冲突。
@@ -117,7 +117,7 @@ style 对象的属性是可读写的，可通过赋值修改样式，值需为�
 仅能获取 / 修改内嵌样式，无法访问外部 CSS 文件或 &lt;style&gt; 标签中定义的样式。
 示例：
 &lt;div id=&#34;box&#34; style=&#34;width: 100px; color: blue;&#34;&gt;&lt;/div&gt; &lt;script&gt; const box = document.getElementById(&#34;box&#34;); console.log(box.style.width); // 输出 &#34;100px&#34;（获取内嵌样式） console.log(box.style.fontSize); // 输出 &#34;&#34;（非内嵌样式无法获取） &lt;/script&gt; 2. 通过 style 属性设置样式 style 对象的属性是可读写的，可通过赋值修改样式，值需为字符串（需加引号）。">
-  <meta property="og:locale" content="en-us">
+  <meta property="og:locale" content="zh-cn">
   <meta property="og:type" content="article">
     <meta property="article:section" content="posts">
 <meta name="twitter:card" content="summary">
@@ -186,13 +186,13 @@ style 对象的属性是可读写的，可通过赋值修改样式，值需为�
       "@type": "ListItem",
       "position":  1 ,
       "name": "Posts",
-      "item": "https://example.org/posts/"
+      "item": "https://growyears.netlify.app/posts/"
     }, 
     {
       "@type": "ListItem",
       "position":  2 ,
       "name": "",
-      "item": "https://example.org/posts/js-dom%E7%BC%96%E7%A8%8B%E8%89%BA%E6%9C%AF/%E7%AC%AC%E4%B9%9D%E7%AB%A0-css-dom/"
+      "item": "https://growyears.netlify.app/posts/js-dom%E7%BC%96%E7%A8%8B%E8%89%BA%E6%9C%AF/%E7%AC%AC%E4%B9%9D%E7%AB%A0-css-dom/"
     }
   ]
 }
@@ -214,14 +214,14 @@ style 对象的属性是可读写的，可通过赋值修改样式，值需为�
   "dateModified": "0001-01-01T00:00:00Z",
   "mainEntityOfPage": {
     "@type": "WebPage",
-    "@id": "https://example.org/posts/js-dom%E7%BC%96%E7%A8%8B%E8%89%BA%E6%9C%AF/%E7%AC%AC%E4%B9%9D%E7%AB%A0-css-dom/"
+    "@id": "https://growyears.netlify.app/posts/js-dom%E7%BC%96%E7%A8%8B%E8%89%BA%E6%9C%AF/%E7%AC%AC%E4%B9%9D%E7%AB%A0-css-dom/"
   },
   "publisher": {
     "@type": "Organization",
-    "name": "My New Hugo Site",
+    "name": "拾光博客 - 永浩",
     "logo": {
       "@type": "ImageObject",
-      "url": "https://example.org/favicon.ico"
+      "url": "https://growyears.netlify.app/favicon.ico"
     }
   }
 }
@@ -243,7 +243,7 @@ style 对象的属性是可读写的，可通过赋值修改样式，值需为�
 <header class="header">
     <nav class="nav">
         <div class="logo">
-            <a href="https://example.org/" accesskey="h" title="My New Hugo Site (Alt + H)">My New Hugo Site</a>
+            <a href="https://growyears.netlify.app/" accesskey="h" title="拾光博客 - 永浩 (Alt + H)">拾光博客 - 永浩</a>
             <div class="logo-switches">
                 <button id="theme-toggle" accesskey="t" title="(Alt + T)" aria-label="Toggle theme">
                     <svg id="moon" xmlns="http://www.w3.org/2000/svg" width="24" height="18" viewBox="0 0 24 24"
@@ -415,7 +415,7 @@ style 对象的属性是可读写的，可通过赋值修改样式，值需为�
     </main>
     
 <footer class="footer">
-        <span>&copy; 2025 <a href="https://example.org/">My New Hugo Site</a></span> · 
+        <span>&copy; 2025 <a href="https://growyears.netlify.app/">拾光博客 - 永浩</a></span> · 
 
     <span>
         Powered by

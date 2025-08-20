@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <meta name="robots" content="index, follow">
-<title>My New Hugo Site</title>
+<title>拾光博客 - 永浩</title>
 <meta name="keywords" content="">
 <meta name="description" content="一、DOM 的核心概念
 DOM（Document Object Model，文档对象模型）是一套用于抽象和概念化文档内容的接口，它将网页文档转换为可通过 JavaScript 操作的对象树结构。
@@ -88,16 +88,16 @@ id 属性：
 
 作用：根据元素的 id 属性值获取唯一元素节点。">
 <meta name="author" content="">
-<link rel="canonical" href="https://example.org/posts/js-dom%E7%BC%96%E7%A8%8B%E8%89%BA%E6%9C%AF/%E7%AC%AC%E4%B8%89%E7%AB%A0-dom/">
+<link rel="canonical" href="https://growyears.netlify.app/posts/js-dom%E7%BC%96%E7%A8%8B%E8%89%BA%E6%9C%AF/%E7%AC%AC%E4%B8%89%E7%AB%A0-dom/">
 <link crossorigin="anonymous" href="/assets/css/stylesheet.36819bea596090d8b48cf10d9831382996197aa7e4fc86f792f7c08c9ca4d23b.css" integrity="sha256-NoGb6llgkNi0jPENmDE4KZYZeqfk/Ib3kvfAjJyk0js=" rel="preload stylesheet" as="style">
-<link rel="icon" href="https://example.org/favicon.ico">
-<link rel="icon" type="image/png" sizes="16x16" href="https://example.org/favicon-16x16.png">
-<link rel="icon" type="image/png" sizes="32x32" href="https://example.org/favicon-32x32.png">
-<link rel="apple-touch-icon" href="https://example.org/apple-touch-icon.png">
-<link rel="mask-icon" href="https://example.org/safari-pinned-tab.svg">
+<link rel="icon" href="https://growyears.netlify.app/favicon.ico">
+<link rel="icon" type="image/png" sizes="16x16" href="https://growyears.netlify.app/favicon-16x16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="https://growyears.netlify.app/favicon-32x32.png">
+<link rel="apple-touch-icon" href="https://growyears.netlify.app/apple-touch-icon.png">
+<link rel="mask-icon" href="https://growyears.netlify.app/safari-pinned-tab.svg">
 <meta name="theme-color" content="#2e2e33">
 <meta name="msapplication-TileColor" content="#2e2e33">
-<link rel="alternate" hreflang="en" href="https://example.org/posts/js-dom%E7%BC%96%E7%A8%8B%E8%89%BA%E6%9C%AF/%E7%AC%AC%E4%B8%89%E7%AB%A0-dom/">
+<link rel="alternate" hreflang="en" href="https://growyears.netlify.app/posts/js-dom%E7%BC%96%E7%A8%8B%E8%89%BA%E6%9C%AF/%E7%AC%AC%E4%B8%89%E7%AB%A0-dom/">
 <noscript>
     <style>
         #theme-toggle,
@@ -134,13 +134,13 @@ id 属性：
         }
 
     </style>
-</noscript><meta property="og:url" content="https://example.org/posts/js-dom%E7%BC%96%E7%A8%8B%E8%89%BA%E6%9C%AF/%E7%AC%AC%E4%B8%89%E7%AB%A0-dom/">
-  <meta property="og:site_name" content="My New Hugo Site">
-  <meta property="og:title" content="My New Hugo Site">
+</noscript><meta property="og:url" content="https://growyears.netlify.app/posts/js-dom%E7%BC%96%E7%A8%8B%E8%89%BA%E6%9C%AF/%E7%AC%AC%E4%B8%89%E7%AB%A0-dom/">
+  <meta property="og:site_name" content="拾光博客 - 永浩">
+  <meta property="og:title" content="拾光博客 - 永浩">
   <meta property="og:description" content="一、DOM 的核心概念 DOM（Document Object Model，文档对象模型）是一套用于抽象和概念化文档内容的接口，它将网页文档转换为可通过 JavaScript 操作的对象树结构。
 1. D：文档（Document） 当网页加载到浏览器时，浏览器会自动将 HTML/XML 文档解析为一个 文档对象，即 DOM 的基础。 2. O：对象（Object） 对象是包含数据和方法的集合： 属性：对象关联的变量（如 element.id）； 方法：对象可调用的函数（如 element.appendChild()）。 JS 中的对象类型： 用户定义对象：开发者创建的自定义对象； 内建对象：JS 自带的对象（如 Array、Date）； 宿主对象：浏览器环境提供的对象（如 window、document）。 关键宿主对象： window：对应浏览器窗口，属于 BOM（浏览器对象模型）； document：对应网页内容，是操作 DOM 的核心对象。 3. M：模型（Model） DOM 将文档表示为一棵节点树（类似家谱树），用 “父子”“兄弟” 等关系描述元素间的层次结构： 根元素是 &lt;html&gt;，所有其他元素都是其后代； 节点树清晰展示了元素的嵌套关系，便于通过 JS 遍历和操作。 二、节点（Node） DOM 文档由多种节点组成，核心类型包括：
 1. 元素节点（Element Node） 文档的基本构成单位，对应 HTML 标签（如 &lt;div&gt;、&lt;p&gt;）。 特点：可包含其他元素节点或文本节点，是节点树的 “骨架”。 根元素：&lt;html&gt; 是唯一不被其他元素包含的元素节点。 2. 文本节点（Text Node） 包含文本内容（如文字、空格），总是被元素节点包含（如 &lt;p&gt;Hello&lt;/p&gt; 中，“Hello” 是文本节点）。 注意：并非所有元素节点都包含文本节点（如空标签 &lt;img&gt;）。 3. 属性节点（Attribute Node） 描述元素的附加信息（如 class、id、src），仅存在于元素的起始标签中。 特点：依赖元素节点存在，无法独立于元素存在（如 &lt;a href=&#34;url&#34;&gt; 中，href 是属性节点）。 三、CSS 与 DOM 的关联 CSS 通过节点树结构应用样式，子元素会继承父元素的样式（继承性）。 为精准定位元素，常用 class 和 id 属性： class 属性： 可在多个元素上重复使用，用于为一组元素定义相同样式（如 .active { color: red; }）。 一个元素可包含多个类名（用空格分隔，如 class=&#34;btn primary&#34;）。 id 属性： 每个 id 在文档中唯一，用于标识单个元素（如 id=&#34;logo&#34;）。 可作为样式或 DOM 操作的 “挂钩”（如 #logo { width: 100px; }）。 四、获取元素节点的 DOM 方法 1. getElementById() 作用：根据元素的 id 属性值获取唯一元素节点。">
-  <meta property="og:locale" content="en-us">
+  <meta property="og:locale" content="zh-cn">
   <meta property="og:type" content="article">
     <meta property="article:section" content="posts">
 <meta name="twitter:card" content="summary">
@@ -236,13 +236,13 @@ id 属性：
       "@type": "ListItem",
       "position":  1 ,
       "name": "Posts",
-      "item": "https://example.org/posts/"
+      "item": "https://growyears.netlify.app/posts/"
     }, 
     {
       "@type": "ListItem",
       "position":  2 ,
       "name": "",
-      "item": "https://example.org/posts/js-dom%E7%BC%96%E7%A8%8B%E8%89%BA%E6%9C%AF/%E7%AC%AC%E4%B8%89%E7%AB%A0-dom/"
+      "item": "https://growyears.netlify.app/posts/js-dom%E7%BC%96%E7%A8%8B%E8%89%BA%E6%9C%AF/%E7%AC%AC%E4%B8%89%E7%AB%A0-dom/"
     }
   ]
 }
@@ -264,14 +264,14 @@ id 属性：
   "dateModified": "0001-01-01T00:00:00Z",
   "mainEntityOfPage": {
     "@type": "WebPage",
-    "@id": "https://example.org/posts/js-dom%E7%BC%96%E7%A8%8B%E8%89%BA%E6%9C%AF/%E7%AC%AC%E4%B8%89%E7%AB%A0-dom/"
+    "@id": "https://growyears.netlify.app/posts/js-dom%E7%BC%96%E7%A8%8B%E8%89%BA%E6%9C%AF/%E7%AC%AC%E4%B8%89%E7%AB%A0-dom/"
   },
   "publisher": {
     "@type": "Organization",
-    "name": "My New Hugo Site",
+    "name": "拾光博客 - 永浩",
     "logo": {
       "@type": "ImageObject",
-      "url": "https://example.org/favicon.ico"
+      "url": "https://growyears.netlify.app/favicon.ico"
     }
   }
 }
@@ -293,7 +293,7 @@ id 属性：
 <header class="header">
     <nav class="nav">
         <div class="logo">
-            <a href="https://example.org/" accesskey="h" title="My New Hugo Site (Alt + H)">My New Hugo Site</a>
+            <a href="https://growyears.netlify.app/" accesskey="h" title="拾光博客 - 永浩 (Alt + H)">拾光博客 - 永浩</a>
             <div class="logo-switches">
                 <button id="theme-toggle" accesskey="t" title="(Alt + T)" aria-label="Toggle theme">
                     <svg id="moon" xmlns="http://www.w3.org/2000/svg" width="24" height="18" viewBox="0 0 24 24"
@@ -523,7 +523,7 @@ id 属性：
     </main>
     
 <footer class="footer">
-        <span>&copy; 2025 <a href="https://example.org/">My New Hugo Site</a></span> · 
+        <span>&copy; 2025 <a href="https://growyears.netlify.app/">拾光博客 - 永浩</a></span> · 
 
     <span>
         Powered by

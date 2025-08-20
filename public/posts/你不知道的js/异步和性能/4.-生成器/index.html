@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <meta name="robots" content="index, follow">
-<title>My New Hugo Site</title>
+<title>拾光博客 - 永浩</title>
 <meta name="keywords" content="">
 <meta name="description" content="一、生成器的基本概念与特性
 
@@ -99,16 +99,16 @@ Promise 拒绝时，调用it.throw(错误)向生成器抛错。
 for..of与迭代器的兼容性：仅支持符合 ES6 迭代器标准的对象（实现Symbol.iterator）。
 ">
 <meta name="author" content="">
-<link rel="canonical" href="https://example.org/posts/%E4%BD%A0%E4%B8%8D%E7%9F%A5%E9%81%93%E7%9A%84js/%E5%BC%82%E6%AD%A5%E5%92%8C%E6%80%A7%E8%83%BD/4.-%E7%94%9F%E6%88%90%E5%99%A8/">
+<link rel="canonical" href="https://growyears.netlify.app/posts/%E4%BD%A0%E4%B8%8D%E7%9F%A5%E9%81%93%E7%9A%84js/%E5%BC%82%E6%AD%A5%E5%92%8C%E6%80%A7%E8%83%BD/4.-%E7%94%9F%E6%88%90%E5%99%A8/">
 <link crossorigin="anonymous" href="/assets/css/stylesheet.36819bea596090d8b48cf10d9831382996197aa7e4fc86f792f7c08c9ca4d23b.css" integrity="sha256-NoGb6llgkNi0jPENmDE4KZYZeqfk/Ib3kvfAjJyk0js=" rel="preload stylesheet" as="style">
-<link rel="icon" href="https://example.org/favicon.ico">
-<link rel="icon" type="image/png" sizes="16x16" href="https://example.org/favicon-16x16.png">
-<link rel="icon" type="image/png" sizes="32x32" href="https://example.org/favicon-32x32.png">
-<link rel="apple-touch-icon" href="https://example.org/apple-touch-icon.png">
-<link rel="mask-icon" href="https://example.org/safari-pinned-tab.svg">
+<link rel="icon" href="https://growyears.netlify.app/favicon.ico">
+<link rel="icon" type="image/png" sizes="16x16" href="https://growyears.netlify.app/favicon-16x16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="https://growyears.netlify.app/favicon-32x32.png">
+<link rel="apple-touch-icon" href="https://growyears.netlify.app/apple-touch-icon.png">
+<link rel="mask-icon" href="https://growyears.netlify.app/safari-pinned-tab.svg">
 <meta name="theme-color" content="#2e2e33">
 <meta name="msapplication-TileColor" content="#2e2e33">
-<link rel="alternate" hreflang="en" href="https://example.org/posts/%E4%BD%A0%E4%B8%8D%E7%9F%A5%E9%81%93%E7%9A%84js/%E5%BC%82%E6%AD%A5%E5%92%8C%E6%80%A7%E8%83%BD/4.-%E7%94%9F%E6%88%90%E5%99%A8/">
+<link rel="alternate" hreflang="en" href="https://growyears.netlify.app/posts/%E4%BD%A0%E4%B8%8D%E7%9F%A5%E9%81%93%E7%9A%84js/%E5%BC%82%E6%AD%A5%E5%92%8C%E6%80%A7%E8%83%BD/4.-%E7%94%9F%E6%88%90%E5%99%A8/">
 <noscript>
     <style>
         #theme-toggle,
@@ -145,12 +145,12 @@ for..of与迭代器的兼容性：仅支持符合 ES6 迭代器标准的对象�
         }
 
     </style>
-</noscript><meta property="og:url" content="https://example.org/posts/%E4%BD%A0%E4%B8%8D%E7%9F%A5%E9%81%93%E7%9A%84js/%E5%BC%82%E6%AD%A5%E5%92%8C%E6%80%A7%E8%83%BD/4.-%E7%94%9F%E6%88%90%E5%99%A8/">
-  <meta property="og:site_name" content="My New Hugo Site">
-  <meta property="og:title" content="My New Hugo Site">
+</noscript><meta property="og:url" content="https://growyears.netlify.app/posts/%E4%BD%A0%E4%B8%8D%E7%9F%A5%E9%81%93%E7%9A%84js/%E5%BC%82%E6%AD%A5%E5%92%8C%E6%80%A7%E8%83%BD/4.-%E7%94%9F%E6%88%90%E5%99%A8/">
+  <meta property="og:site_name" content="拾光博客 - 永浩">
+  <meta property="og:title" content="拾光博客 - 永浩">
   <meta property="og:description" content="一、生成器的基本概念与特性 定义与控制方式： 生成器是一类特殊函数，声明方式为function*（函数名前加*），可暂停、恢复执行，不一定需要完成。 通过迭代器控制生成器：调用生成器函数（如*foo()）会返回一个迭代器对象（如it），通过it.next()启动或恢复生成器执行，直至下一个yield或结束。 next()与yield的交互： next()返回一个对象{ value, done }：value是yield产出的值，done为布尔值（true表示生成器执行完毕）。 yield作为表达式可双向传递消息：yield向外发送值，next()可向暂停的yield传入值（第一个next()的参数会被忽略，因此时无暂停的yield）。 生成器实例与并发： 每次通过生成器函数创建迭代器，均对应生成器的一个独立实例，实例间可独立运行甚至交互。 二、生成器产生值：生产者与迭代器 1. 迭代器接口 作用：定义从生产者逐步获取一系列值的标准接口，核心是next()方法。 next()返回值：{ done: boolean, value: any }，done标识迭代是否结束，value为当前迭代值。 2. for..of循环 自动迭代标准迭代器：每次循环调用next()，不传入参数，遇done: true自动停止。 支持内建可迭代对象：如数组（array）等内建数据结构默认实现迭代器，可直接用于for..of。 3. Iterable（可迭代对象） 定义：包含迭代器的对象，需实现Symbol.iterator方法（调用时返回一个新迭代器）。 for..of的依赖：for..of循环期望操作可迭代对象，通过调用其Symbol.iterator获取迭代器。 4. 生成器迭代器的特性 生成器执行后返回的迭代器兼具迭代器接口与生成器控制能力。 异常终止：for..of因break、return或未捕获异常终止时，会向迭代器发送停止信号；可手动调用it.return(value)终止生成器，返回{ value: 传入值, done: true }。 三、异步迭代生成器 生成器可简化异步流程，将异步操作抽象为同步形式的代码：
 function foo(x, y) { ajax(&#34;http://...&#34;, (err, data) =&gt; { if (err) it.throw(err); // 向生成器抛错 else it.next(data); // 向生成器传递异步结果 }); } function* main() { try { const text = yield foo(11, 31); // 暂停等待异步结果 console.log(text); } catch (err) { console.error(err); // 捕获异步错误 } } const it = main(); it.next(); // 启动生成器 上述代码中，yield等待异步操作foo完成，通过it.next(data)或it.throw(err)恢复执行，实现 “同步写法 &#43; 异步执行”。 四、生成器与 Promise 的结合 优势：生成器的 “同步化异步代码” 与 Promise 的 “可信任异步结果” 结合，是 ES6 中处理异步的理想模式。 实现方式：yield产出一个 Promise，通过 Promise 的状态（完成 / 拒绝）控制生成器迭代器： Promise 完成时，调用it.next(结果值)恢复生成器； Promise 拒绝时，调用it.throw(错误)向生成器抛错。 五、生成器委托（yield*） 语法：yield* 迭代对象（如yield* foo()，foo为生成器或其他可迭代对象）。 作用：将迭代控制委托给另一个迭代器，暂停当前生成器的迭代控制，转由目标迭代器接管。 特性：支持双向消息与错误传递（目标迭代器的yield与当前生成器的next/throw可交互）。 六、形实转换程序（Thunk） 定义：JS 中的 thunk 指一个无参数函数，其作用是调用另一个函数（封装参数或逻辑）。 用途：常用于简化函数调用，尤其是在异步流程中封装回调或参数，配合生成器使用可进一步简化异步代码。 补充说明 生成器的yield数量与next()调用次数关系：next()调用次数比yield语句多 1（最后一次next()用于获取done: true）。 生成器迭代器的独立性：同一生成器的多个实例（迭代器）互不干扰，可并发运行。 for..of与迭代器的兼容性：仅支持符合 ES6 迭代器标准的对象（实现Symbol.iterator）。 ">
-  <meta property="og:locale" content="en-us">
+  <meta property="og:locale" content="zh-cn">
   <meta property="og:type" content="article">
     <meta property="article:section" content="posts">
 <meta name="twitter:card" content="summary">
@@ -257,13 +257,13 @@ for..of与迭代器的兼容性：仅支持符合 ES6 迭代器标准的对象�
       "@type": "ListItem",
       "position":  1 ,
       "name": "Posts",
-      "item": "https://example.org/posts/"
+      "item": "https://growyears.netlify.app/posts/"
     }, 
     {
       "@type": "ListItem",
       "position":  2 ,
       "name": "",
-      "item": "https://example.org/posts/%E4%BD%A0%E4%B8%8D%E7%9F%A5%E9%81%93%E7%9A%84js/%E5%BC%82%E6%AD%A5%E5%92%8C%E6%80%A7%E8%83%BD/4.-%E7%94%9F%E6%88%90%E5%99%A8/"
+      "item": "https://growyears.netlify.app/posts/%E4%BD%A0%E4%B8%8D%E7%9F%A5%E9%81%93%E7%9A%84js/%E5%BC%82%E6%AD%A5%E5%92%8C%E6%80%A7%E8%83%BD/4.-%E7%94%9F%E6%88%90%E5%99%A8/"
     }
   ]
 }
@@ -285,14 +285,14 @@ for..of与迭代器的兼容性：仅支持符合 ES6 迭代器标准的对象�
   "dateModified": "0001-01-01T00:00:00Z",
   "mainEntityOfPage": {
     "@type": "WebPage",
-    "@id": "https://example.org/posts/%E4%BD%A0%E4%B8%8D%E7%9F%A5%E9%81%93%E7%9A%84js/%E5%BC%82%E6%AD%A5%E5%92%8C%E6%80%A7%E8%83%BD/4.-%E7%94%9F%E6%88%90%E5%99%A8/"
+    "@id": "https://growyears.netlify.app/posts/%E4%BD%A0%E4%B8%8D%E7%9F%A5%E9%81%93%E7%9A%84js/%E5%BC%82%E6%AD%A5%E5%92%8C%E6%80%A7%E8%83%BD/4.-%E7%94%9F%E6%88%90%E5%99%A8/"
   },
   "publisher": {
     "@type": "Organization",
-    "name": "My New Hugo Site",
+    "name": "拾光博客 - 永浩",
     "logo": {
       "@type": "ImageObject",
-      "url": "https://example.org/favicon.ico"
+      "url": "https://growyears.netlify.app/favicon.ico"
     }
   }
 }
@@ -314,7 +314,7 @@ for..of与迭代器的兼容性：仅支持符合 ES6 迭代器标准的对象�
 <header class="header">
     <nav class="nav">
         <div class="logo">
-            <a href="https://example.org/" accesskey="h" title="My New Hugo Site (Alt + H)">My New Hugo Site</a>
+            <a href="https://growyears.netlify.app/" accesskey="h" title="拾光博客 - 永浩 (Alt + H)">拾光博客 - 永浩</a>
             <div class="logo-switches">
                 <button id="theme-toggle" accesskey="t" title="(Alt + T)" aria-label="Toggle theme">
                     <svg id="moon" xmlns="http://www.w3.org/2000/svg" width="24" height="18" viewBox="0 0 24 24"
@@ -457,7 +457,7 @@ for..of与迭代器的兼容性：仅支持符合 ES6 迭代器标准的对象�
     </main>
     
 <footer class="footer">
-        <span>&copy; 2025 <a href="https://example.org/">My New Hugo Site</a></span> · 
+        <span>&copy; 2025 <a href="https://growyears.netlify.app/">拾光博客 - 永浩</a></span> · 
 
     <span>
         Powered by

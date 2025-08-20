@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <meta name="robots" content="index, follow">
-<title>My New Hugo Site</title>
+<title>拾光博客 - 永浩</title>
 <meta name="keywords" content="">
 <meta name="description" content="1. 函数类型表达式
 
@@ -108,16 +108,16 @@ function combine&lt;Type&gt;(arr1: Type[], arr2: Type[]): Type[] {
 const arr = combine&lt;string | number&gt;([1, 2, 3], [&#34;hello&#34;]); // 手动指定Type为string | number
 泛型函数设计原则（面试常问）：">
 <meta name="author" content="">
-<link rel="canonical" href="https://example.org/posts/ts/04--%E6%9B%B4%E5%A4%9A%E5%85%B3%E4%BA%8E%E5%87%BD%E6%95%B0/">
+<link rel="canonical" href="https://growyears.netlify.app/posts/ts/04--%E6%9B%B4%E5%A4%9A%E5%85%B3%E4%BA%8E%E5%87%BD%E6%95%B0/">
 <link crossorigin="anonymous" href="/assets/css/stylesheet.36819bea596090d8b48cf10d9831382996197aa7e4fc86f792f7c08c9ca4d23b.css" integrity="sha256-NoGb6llgkNi0jPENmDE4KZYZeqfk/Ib3kvfAjJyk0js=" rel="preload stylesheet" as="style">
-<link rel="icon" href="https://example.org/favicon.ico">
-<link rel="icon" type="image/png" sizes="16x16" href="https://example.org/favicon-16x16.png">
-<link rel="icon" type="image/png" sizes="32x32" href="https://example.org/favicon-32x32.png">
-<link rel="apple-touch-icon" href="https://example.org/apple-touch-icon.png">
-<link rel="mask-icon" href="https://example.org/safari-pinned-tab.svg">
+<link rel="icon" href="https://growyears.netlify.app/favicon.ico">
+<link rel="icon" type="image/png" sizes="16x16" href="https://growyears.netlify.app/favicon-16x16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="https://growyears.netlify.app/favicon-32x32.png">
+<link rel="apple-touch-icon" href="https://growyears.netlify.app/apple-touch-icon.png">
+<link rel="mask-icon" href="https://growyears.netlify.app/safari-pinned-tab.svg">
 <meta name="theme-color" content="#2e2e33">
 <meta name="msapplication-TileColor" content="#2e2e33">
-<link rel="alternate" hreflang="en" href="https://example.org/posts/ts/04--%E6%9B%B4%E5%A4%9A%E5%85%B3%E4%BA%8E%E5%87%BD%E6%95%B0/">
+<link rel="alternate" hreflang="en" href="https://growyears.netlify.app/posts/ts/04--%E6%9B%B4%E5%A4%9A%E5%85%B3%E4%BA%8E%E5%87%BD%E6%95%B0/">
 <noscript>
     <style>
         #theme-toggle,
@@ -154,15 +154,15 @@ const arr = combine&lt;string | number&gt;([1, 2, 3], [&#34;hello&#34;]); // 手
         }
 
     </style>
-</noscript><meta property="og:url" content="https://example.org/posts/ts/04--%E6%9B%B4%E5%A4%9A%E5%85%B3%E4%BA%8E%E5%87%BD%E6%95%B0/">
-  <meta property="og:site_name" content="My New Hugo Site">
-  <meta property="og:title" content="My New Hugo Site">
+</noscript><meta property="og:url" content="https://growyears.netlify.app/posts/ts/04--%E6%9B%B4%E5%A4%9A%E5%85%B3%E4%BA%8E%E5%87%BD%E6%95%B0/">
+  <meta property="og:site_name" content="拾光博客 - 永浩">
+  <meta property="og:title" content="拾光博客 - 永浩">
   <meta property="og:description" content="1. 函数类型表达式 基本语法：用箭头函数形式描述函数类型，如(a: string) =&gt; void（参数a为string类型，无返回值）。
 特点：参数名必须存在（仅用于标识，不影响类型匹配），未指定类型时隐式为any（可通过noImplicitAny禁用）。 示例：
 function greeter(fn: (a: string) =&gt; void) { fn(&#34;Hello, World&#34;); } function printToConsole(s: string) { console.log(s); } greeter(printToConsole); // 符合函数类型要求 类型别名命名：通过type给函数类型命名，提升可读性和复用性： type GreetFunction = (a: string) =&gt; void; function greeter(fn: GreetFunction) { /* ... */ } 类型兼容性（面试高频）：函数类型兼容遵循 “参数少的可赋值给参数多的”（逆变原则简化版）： type F1 = (a: string) =&gt; void; type F2 = (a: string, b: number) =&gt; void; const f1: F1 = (a) =&gt; {}; const f2: F2 = f1; // 合法：F1参数更少，可兼容F2 2. 带属性的函数与调用签名 函数类型表达式的局限：仅能描述函数的调用方式，无法声明函数自身的属性（如fn.prop）。
 调用签名：若需描述可调用且带属性的对象，可在对象类型中编写调用签名，参数列表与返回类型间用:分隔（而非=&gt;）：
 type DescribableFunction = { description: string; (someArg: number): boolean; // 调用签名 }; function doSomething(fn: DescribableFunction) { console.log(fn.description &#43; &#34; returned &#34; &#43; fn(6)); } function myFunc(someArg: number) { return someArg &gt; 3; } myFunc.description = &#34;default description&#34;; doSomething(myFunc); // 符合带属性的函数类型 3. 构造函数与构造签名 构造函数：可通过new运算符调用的函数，TypeScript 中用构造签名描述，即在调用签名前加new关键字： type SomeConstructor = { new (s: string): SomeObject; // 构造签名 }; function fn(ctor: SomeConstructor) { return new ctor(&#34;hello&#34;); // 符合构造函数调用方式 } 可同时调用与构造的函数：如Date，可组合调用签名和构造签名（可直接调用Date()返回字符串，也可new Date()返回实例）： interface CallOrConstruct { (n?: number): string; // 普通调用签名 new (s: string): Date; // 构造签名 } function fn(ctor: CallOrConstruct) { console.log(ctor(10)); // 普通调用 console.log(new ctor(&#34;10&#34;)); // 构造调用 } fn(Date); // Date符合该类型 4. 泛型函数 基本概念：通过类型参数（如&lt;T&gt;）关联输入与输出类型，实现 “类型动态适配” // 类型参数Type关联输入数组与返回值 function firstElement&lt;Type&gt;(arr: Type[]): Type | undefined { return arr[0]; } 类型推断：TS 会根据传入的实参自动推断类型参数，无需显式指定（复杂场景需手动指定）： function map&lt;Input, Output&gt;(arr: Input[], func: (arg: Input) =&gt; Output): Output[] { return arr.map(func); } const parsed = map([&#34;1&#34;, &#34;2&#34;, &#34;3&#34;], (n) =&gt; parseInt(n)); // 推断Input为string，Output为number 类型约束：通过extends限制类型参数的范围，仅允许符合约束的类型： // 限制Type必须有length属性 function longest&lt;Type extends { length: number }&gt;(a: Type, b: Type): Type { return a.length &gt;= b.length ? a : b; } 手动指定类型参数：当类型推断不明确时，可手动指定： function combine&lt;Type&gt;(arr1: Type[], arr2: Type[]): Type[] { return arr1.concat(arr2); } const arr = combine&lt;string | number&gt;([1, 2, 3], [&#34;hello&#34;]); // 手动指定Type为string | number 泛型函数设计原则（面试常问）：">
-  <meta property="og:locale" content="en-us">
+  <meta property="og:locale" content="zh-cn">
   <meta property="og:type" content="article">
     <meta property="article:section" content="posts">
 <meta name="twitter:card" content="summary">
@@ -278,13 +278,13 @@ const arr = combine&lt;string | number&gt;([1, 2, 3], [&#34;hello&#34;]); // 手
       "@type": "ListItem",
       "position":  1 ,
       "name": "Posts",
-      "item": "https://example.org/posts/"
+      "item": "https://growyears.netlify.app/posts/"
     }, 
     {
       "@type": "ListItem",
       "position":  2 ,
       "name": "",
-      "item": "https://example.org/posts/ts/04--%E6%9B%B4%E5%A4%9A%E5%85%B3%E4%BA%8E%E5%87%BD%E6%95%B0/"
+      "item": "https://growyears.netlify.app/posts/ts/04--%E6%9B%B4%E5%A4%9A%E5%85%B3%E4%BA%8E%E5%87%BD%E6%95%B0/"
     }
   ]
 }
@@ -306,14 +306,14 @@ const arr = combine&lt;string | number&gt;([1, 2, 3], [&#34;hello&#34;]); // 手
   "dateModified": "0001-01-01T00:00:00Z",
   "mainEntityOfPage": {
     "@type": "WebPage",
-    "@id": "https://example.org/posts/ts/04--%E6%9B%B4%E5%A4%9A%E5%85%B3%E4%BA%8E%E5%87%BD%E6%95%B0/"
+    "@id": "https://growyears.netlify.app/posts/ts/04--%E6%9B%B4%E5%A4%9A%E5%85%B3%E4%BA%8E%E5%87%BD%E6%95%B0/"
   },
   "publisher": {
     "@type": "Organization",
-    "name": "My New Hugo Site",
+    "name": "拾光博客 - 永浩",
     "logo": {
       "@type": "ImageObject",
-      "url": "https://example.org/favicon.ico"
+      "url": "https://growyears.netlify.app/favicon.ico"
     }
   }
 }
@@ -335,7 +335,7 @@ const arr = combine&lt;string | number&gt;([1, 2, 3], [&#34;hello&#34;]); // 手
 <header class="header">
     <nav class="nav">
         <div class="logo">
-            <a href="https://example.org/" accesskey="h" title="My New Hugo Site (Alt + H)">My New Hugo Site</a>
+            <a href="https://growyears.netlify.app/" accesskey="h" title="拾光博客 - 永浩 (Alt + H)">拾光博客 - 永浩</a>
             <div class="logo-switches">
                 <button id="theme-toggle" accesskey="t" title="(Alt + T)" aria-label="Toggle theme">
                     <svg id="moon" xmlns="http://www.w3.org/2000/svg" width="24" height="18" viewBox="0 0 24 24"
@@ -602,7 +602,7 @@ const arr = combine&lt;string | number&gt;([1, 2, 3], [&#34;hello&#34;]); // 手
     </main>
     
 <footer class="footer">
-        <span>&copy; 2025 <a href="https://example.org/">My New Hugo Site</a></span> · 
+        <span>&copy; 2025 <a href="https://growyears.netlify.app/">拾光博客 - 永浩</a></span> · 
 
     <span>
         Powered by

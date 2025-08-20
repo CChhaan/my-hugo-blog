@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <meta name="robots" content="index, follow">
-<title>My New Hugo Site</title>
+<title>拾光博客 - 永浩</title>
 <meta name="keywords" content="">
 <meta name="description" content="一、keyof 运算符
 keyof 用于将对象类型的所有键名转换为字面量联合类型，是实现 “类型安全的键访问” 的基础。
@@ -36,16 +36,16 @@ Object.keys：在值层面工作，返回键的字符串数组（运行时）。
 二、typeof 运算符（类型上下文）
 typeof 在类型上下文中用于获取变量或属性的类型，将 “值世界” 的信息传递到 “类型世界”，避免重复声明类型，常与其他类型工具结合使用。">
 <meta name="author" content="">
-<link rel="canonical" href="https://example.org/posts/ts/07--%E7%B1%BB%E5%9E%8B%E8%BF%90%E7%AE%97%E7%AC%A6/">
+<link rel="canonical" href="https://growyears.netlify.app/posts/ts/07--%E7%B1%BB%E5%9E%8B%E8%BF%90%E7%AE%97%E7%AC%A6/">
 <link crossorigin="anonymous" href="/assets/css/stylesheet.36819bea596090d8b48cf10d9831382996197aa7e4fc86f792f7c08c9ca4d23b.css" integrity="sha256-NoGb6llgkNi0jPENmDE4KZYZeqfk/Ib3kvfAjJyk0js=" rel="preload stylesheet" as="style">
-<link rel="icon" href="https://example.org/favicon.ico">
-<link rel="icon" type="image/png" sizes="16x16" href="https://example.org/favicon-16x16.png">
-<link rel="icon" type="image/png" sizes="32x32" href="https://example.org/favicon-32x32.png">
-<link rel="apple-touch-icon" href="https://example.org/apple-touch-icon.png">
-<link rel="mask-icon" href="https://example.org/safari-pinned-tab.svg">
+<link rel="icon" href="https://growyears.netlify.app/favicon.ico">
+<link rel="icon" type="image/png" sizes="16x16" href="https://growyears.netlify.app/favicon-16x16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="https://growyears.netlify.app/favicon-32x32.png">
+<link rel="apple-touch-icon" href="https://growyears.netlify.app/apple-touch-icon.png">
+<link rel="mask-icon" href="https://growyears.netlify.app/safari-pinned-tab.svg">
 <meta name="theme-color" content="#2e2e33">
 <meta name="msapplication-TileColor" content="#2e2e33">
-<link rel="alternate" hreflang="en" href="https://example.org/posts/ts/07--%E7%B1%BB%E5%9E%8B%E8%BF%90%E7%AE%97%E7%AC%A6/">
+<link rel="alternate" hreflang="en" href="https://growyears.netlify.app/posts/ts/07--%E7%B1%BB%E5%9E%8B%E8%BF%90%E7%AE%97%E7%AC%A6/">
 <noscript>
     <style>
         #theme-toggle,
@@ -82,13 +82,13 @@ typeof 在类型上下文中用于获取变量或属性的类型，将 “值世
         }
 
     </style>
-</noscript><meta property="og:url" content="https://example.org/posts/ts/07--%E7%B1%BB%E5%9E%8B%E8%BF%90%E7%AE%97%E7%AC%A6/">
-  <meta property="og:site_name" content="My New Hugo Site">
-  <meta property="og:title" content="My New Hugo Site">
+</noscript><meta property="og:url" content="https://growyears.netlify.app/posts/ts/07--%E7%B1%BB%E5%9E%8B%E8%BF%90%E7%AE%97%E7%AC%A6/">
+  <meta property="og:site_name" content="拾光博客 - 永浩">
+  <meta property="og:title" content="拾光博客 - 永浩">
   <meta property="og:description" content="一、keyof 运算符 keyof 用于将对象类型的所有键名转换为字面量联合类型，是实现 “类型安全的键访问” 的基础。
 1. 基础用法 type Point = { x: number; y: number }; type P = keyof Point; // 等价于 type P = &#34;x&#34; | &#34;y&#34; 作用：将对象类型的所有键名提取为联合类型，常用于约束函数参数必须是对象的有效键，避免拼写错误（如访问不存在的属性）。 2. 与索引签名结合 当对象类型包含 string 或 number 索引签名时，keyof 会返回对应的索引类型：
 // number 索引签名 type Arrayish = { [n: number]: unknown }; type A = keyof Arrayish; // type A = number（仅允许 number 类型索引） // string 索引签名 type Mapish = { [k: string]: boolean }; type M = keyof Mapish; // type M = string | number 因为 JavaScript 会将数字索引自动转换为字符串（如 obj[0] 等价于 obj[&#34;0&#34;]），因此 string 索引签名隐含支持 number 索引。 keyof与Object.keys的区别： keyof：在类型层面工作，返回键的字面量联合类型（编译时）。 Object.keys：在值层面工作，返回键的字符串数组（运行时）。 二、typeof 运算符（类型上下文） typeof 在类型上下文中用于获取变量或属性的类型，将 “值世界” 的信息传递到 “类型世界”，避免重复声明类型，常与其他类型工具结合使用。">
-  <meta property="og:locale" content="en-us">
+  <meta property="og:locale" content="zh-cn">
   <meta property="og:type" content="article">
     <meta property="article:section" content="posts">
 <meta name="twitter:card" content="summary">
@@ -132,13 +132,13 @@ typeof 在类型上下文中用于获取变量或属性的类型，将 “值世
       "@type": "ListItem",
       "position":  1 ,
       "name": "Posts",
-      "item": "https://example.org/posts/"
+      "item": "https://growyears.netlify.app/posts/"
     }, 
     {
       "@type": "ListItem",
       "position":  2 ,
       "name": "",
-      "item": "https://example.org/posts/ts/07--%E7%B1%BB%E5%9E%8B%E8%BF%90%E7%AE%97%E7%AC%A6/"
+      "item": "https://growyears.netlify.app/posts/ts/07--%E7%B1%BB%E5%9E%8B%E8%BF%90%E7%AE%97%E7%AC%A6/"
     }
   ]
 }
@@ -160,14 +160,14 @@ typeof 在类型上下文中用于获取变量或属性的类型，将 “值世
   "dateModified": "0001-01-01T00:00:00Z",
   "mainEntityOfPage": {
     "@type": "WebPage",
-    "@id": "https://example.org/posts/ts/07--%E7%B1%BB%E5%9E%8B%E8%BF%90%E7%AE%97%E7%AC%A6/"
+    "@id": "https://growyears.netlify.app/posts/ts/07--%E7%B1%BB%E5%9E%8B%E8%BF%90%E7%AE%97%E7%AC%A6/"
   },
   "publisher": {
     "@type": "Organization",
-    "name": "My New Hugo Site",
+    "name": "拾光博客 - 永浩",
     "logo": {
       "@type": "ImageObject",
-      "url": "https://example.org/favicon.ico"
+      "url": "https://growyears.netlify.app/favicon.ico"
     }
   }
 }
@@ -189,7 +189,7 @@ typeof 在类型上下文中用于获取变量或属性的类型，将 “值世
 <header class="header">
     <nav class="nav">
         <div class="logo">
-            <a href="https://example.org/" accesskey="h" title="My New Hugo Site (Alt + H)">My New Hugo Site</a>
+            <a href="https://growyears.netlify.app/" accesskey="h" title="拾光博客 - 永浩 (Alt + H)">拾光博客 - 永浩</a>
             <div class="logo-switches">
                 <button id="theme-toggle" accesskey="t" title="(Alt + T)" aria-label="Toggle theme">
                     <svg id="moon" xmlns="http://www.w3.org/2000/svg" width="24" height="18" viewBox="0 0 24 24"
@@ -329,7 +329,7 @@ typeof 在类型上下文中用于获取变量或属性的类型，将 “值世
     </main>
     
 <footer class="footer">
-        <span>&copy; 2025 <a href="https://example.org/">My New Hugo Site</a></span> · 
+        <span>&copy; 2025 <a href="https://growyears.netlify.app/">拾光博客 - 永浩</a></span> · 
 
     <span>
         Powered by

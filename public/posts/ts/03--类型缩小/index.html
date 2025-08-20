@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <meta name="robots" content="index, follow">
-<title>My New Hugo Site</title>
+<title>拾光博客 - 永浩</title>
 <meta name="keywords" content="">
 <meta name="description" content="1. 类型缩小与控制流分析基础
 
@@ -84,16 +84,16 @@ instanceof是类型保护，TypeScript 会在instanceof保护的分支中缩小�
 
 缩小类型时，若联合的选项被全部消除，会得到never类型，表示不应该存在的状态。">
 <meta name="author" content="">
-<link rel="canonical" href="https://example.org/posts/ts/03--%E7%B1%BB%E5%9E%8B%E7%BC%A9%E5%B0%8F/">
+<link rel="canonical" href="https://growyears.netlify.app/posts/ts/03--%E7%B1%BB%E5%9E%8B%E7%BC%A9%E5%B0%8F/">
 <link crossorigin="anonymous" href="/assets/css/stylesheet.36819bea596090d8b48cf10d9831382996197aa7e4fc86f792f7c08c9ca4d23b.css" integrity="sha256-NoGb6llgkNi0jPENmDE4KZYZeqfk/Ib3kvfAjJyk0js=" rel="preload stylesheet" as="style">
-<link rel="icon" href="https://example.org/favicon.ico">
-<link rel="icon" type="image/png" sizes="16x16" href="https://example.org/favicon-16x16.png">
-<link rel="icon" type="image/png" sizes="32x32" href="https://example.org/favicon-32x32.png">
-<link rel="apple-touch-icon" href="https://example.org/apple-touch-icon.png">
-<link rel="mask-icon" href="https://example.org/safari-pinned-tab.svg">
+<link rel="icon" href="https://growyears.netlify.app/favicon.ico">
+<link rel="icon" type="image/png" sizes="16x16" href="https://growyears.netlify.app/favicon-16x16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="https://growyears.netlify.app/favicon-32x32.png">
+<link rel="apple-touch-icon" href="https://growyears.netlify.app/apple-touch-icon.png">
+<link rel="mask-icon" href="https://growyears.netlify.app/safari-pinned-tab.svg">
 <meta name="theme-color" content="#2e2e33">
 <meta name="msapplication-TileColor" content="#2e2e33">
-<link rel="alternate" hreflang="en" href="https://example.org/posts/ts/03--%E7%B1%BB%E5%9E%8B%E7%BC%A9%E5%B0%8F/">
+<link rel="alternate" hreflang="en" href="https://growyears.netlify.app/posts/ts/03--%E7%B1%BB%E5%9E%8B%E7%BC%A9%E5%B0%8F/">
 <noscript>
     <style>
         #theme-toggle,
@@ -130,9 +130,9 @@ instanceof是类型保护，TypeScript 会在instanceof保护的分支中缩小�
         }
 
     </style>
-</noscript><meta property="og:url" content="https://example.org/posts/ts/03--%E7%B1%BB%E5%9E%8B%E7%BC%A9%E5%B0%8F/">
-  <meta property="og:site_name" content="My New Hugo Site">
-  <meta property="og:title" content="My New Hugo Site">
+</noscript><meta property="og:url" content="https://growyears.netlify.app/posts/ts/03--%E7%B1%BB%E5%9E%8B%E7%BC%A9%E5%B0%8F/">
+  <meta property="og:site_name" content="拾光博客 - 永浩">
+  <meta property="og:title" content="拾光博客 - 永浩">
   <meta property="og:description" content="1. 类型缩小与控制流分析基础 TS 会跟踪代码执行路径（如if/else、switch、循环等），分析变量在不同分支中的具体类型。
 类型保护：特殊表达式（如typeof x === &#39;string&#39;），TS 可通过它判断变量类型，从而缩小类型范围。
 类型缩小：通过类型保护或赋值操作，将变量类型从 “宽泛”（如联合类型）收缩为 “具体”（如单一类型）的过程。
@@ -148,7 +148,7 @@ TypeScript 将in运算符视为缩小潜在类型的方式：对于&#34;value&#3
 6. 基于 instanceof 的类型缩小 检查值的原型链是否包含构造函数的prototype，适用于new创建的对象
 instanceof是类型保护，TypeScript 会在instanceof保护的分支中缩小类型。
 7. 基于赋值的类型缩小 变量赋值后，TS 会根据赋值内容缩小其类型。 8. 用户定义的类型保护 定义方式：创建返回类型为类型谓词的函数，谓词形式为parameterName is Type，其中parameterName必须是当前函数签名中的参数名称。 9. 可区分的联合 联合类型中的每个成员都包含一个字面量类型的公共属性（如type字段），用于区分不同类型，TypeScript 将其视为可区分的联合，可通过检查该属性缩小联合的成员范围，switch语句中也适用这种检查。 10. never 类型与穷尽检查 缩小类型时，若联合的选项被全部消除，会得到never类型，表示不应该存在的状态。">
-  <meta property="og:locale" content="en-us">
+  <meta property="og:locale" content="zh-cn">
   <meta property="og:type" content="article">
     <meta property="article:section" content="posts">
 <meta name="twitter:card" content="summary">
@@ -240,13 +240,13 @@ instanceof是类型保护，TypeScript 会在instanceof保护的分支中缩小�
       "@type": "ListItem",
       "position":  1 ,
       "name": "Posts",
-      "item": "https://example.org/posts/"
+      "item": "https://growyears.netlify.app/posts/"
     }, 
     {
       "@type": "ListItem",
       "position":  2 ,
       "name": "",
-      "item": "https://example.org/posts/ts/03--%E7%B1%BB%E5%9E%8B%E7%BC%A9%E5%B0%8F/"
+      "item": "https://growyears.netlify.app/posts/ts/03--%E7%B1%BB%E5%9E%8B%E7%BC%A9%E5%B0%8F/"
     }
   ]
 }
@@ -268,14 +268,14 @@ instanceof是类型保护，TypeScript 会在instanceof保护的分支中缩小�
   "dateModified": "0001-01-01T00:00:00Z",
   "mainEntityOfPage": {
     "@type": "WebPage",
-    "@id": "https://example.org/posts/ts/03--%E7%B1%BB%E5%9E%8B%E7%BC%A9%E5%B0%8F/"
+    "@id": "https://growyears.netlify.app/posts/ts/03--%E7%B1%BB%E5%9E%8B%E7%BC%A9%E5%B0%8F/"
   },
   "publisher": {
     "@type": "Organization",
-    "name": "My New Hugo Site",
+    "name": "拾光博客 - 永浩",
     "logo": {
       "@type": "ImageObject",
-      "url": "https://example.org/favicon.ico"
+      "url": "https://growyears.netlify.app/favicon.ico"
     }
   }
 }
@@ -297,7 +297,7 @@ instanceof是类型保护，TypeScript 会在instanceof保护的分支中缩小�
 <header class="header">
     <nav class="nav">
         <div class="logo">
-            <a href="https://example.org/" accesskey="h" title="My New Hugo Site (Alt + H)">My New Hugo Site</a>
+            <a href="https://growyears.netlify.app/" accesskey="h" title="拾光博客 - 永浩 (Alt + H)">拾光博客 - 永浩</a>
             <div class="logo-switches">
                 <button id="theme-toggle" accesskey="t" title="(Alt + T)" aria-label="Toggle theme">
                     <svg id="moon" xmlns="http://www.w3.org/2000/svg" width="24" height="18" viewBox="0 0 24 24"
@@ -482,7 +482,7 @@ instanceof是类型保护，TypeScript 会在instanceof保护的分支中缩小�
     </main>
     
 <footer class="footer">
-        <span>&copy; 2025 <a href="https://example.org/">My New Hugo Site</a></span> · 
+        <span>&copy; 2025 <a href="https://growyears.netlify.app/">拾光博客 - 永浩</a></span> · 
 
     <span>
         Powered by

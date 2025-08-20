@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <meta name="robots" content="index, follow">
-<title>My New Hugo Site</title>
+<title>拾光博客 - 永浩</title>
 <meta name="keywords" content="">
 <meta name="description" content="
 本文系统介绍了JavaScript类的定义与继承机制。类可通过声明或表达式定义，具有块级作用域且不支持提升。类包含构造函数、实例方法、静态方法等，默认严格模式执行。构造函数使用new操作符实例化，遵循特定对象创建流程。类支持实例成员、原型方法和静态方法，可通过extends实现单继承，使用super访问父类。文章详细解析了继承规则、抽象基类实现、内置类型扩展及混入模式等高级特性，阐明了类与传统构造函数的区别，为面向对象编程提供了全面指导。
@@ -63,16 +63,16 @@ ES6类为继承内置引用类型提供了顺畅的机制，开发者可以方�
 有些内置类型的方法，会返回新实例，默认情况下，返回实例的类型与原始实例的类型是一致的，如果想覆盖这个默认行为，则可以覆盖Symbol.species访问器，这个访问器决定在创建返回的实例时使用的类
 把不同类的行为集中到一个类是一种常见的JS模式，extends关键字后面是一个JS表达式，任何可以解析为一个类或一个构造函数的表达式都是有效的，这个表达式会在求值类定义时被求值。混入模式可以通过在一个表达式中连缀多个混入元素来实现，这个表达式最终会解析为一个可以被继承的类。可以定义一组可嵌套的函数，每个函数分别接收一个超类作为参数，而将混入类定义为这个参数的子类，并返回这个类，这些组合函数连缀调用，最终组合成超类表达式">
 <meta name="author" content="">
-<link rel="canonical" href="https://example.org/posts/%E7%BA%A2%E5%AE%9D%E4%B9%A6%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/8.4-%E7%B1%BB/">
+<link rel="canonical" href="https://growyears.netlify.app/posts/%E7%BA%A2%E5%AE%9D%E4%B9%A6%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/8.4-%E7%B1%BB/">
 <link crossorigin="anonymous" href="/assets/css/stylesheet.36819bea596090d8b48cf10d9831382996197aa7e4fc86f792f7c08c9ca4d23b.css" integrity="sha256-NoGb6llgkNi0jPENmDE4KZYZeqfk/Ib3kvfAjJyk0js=" rel="preload stylesheet" as="style">
-<link rel="icon" href="https://example.org/favicon.ico">
-<link rel="icon" type="image/png" sizes="16x16" href="https://example.org/favicon-16x16.png">
-<link rel="icon" type="image/png" sizes="32x32" href="https://example.org/favicon-32x32.png">
-<link rel="apple-touch-icon" href="https://example.org/apple-touch-icon.png">
-<link rel="mask-icon" href="https://example.org/safari-pinned-tab.svg">
+<link rel="icon" href="https://growyears.netlify.app/favicon.ico">
+<link rel="icon" type="image/png" sizes="16x16" href="https://growyears.netlify.app/favicon-16x16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="https://growyears.netlify.app/favicon-32x32.png">
+<link rel="apple-touch-icon" href="https://growyears.netlify.app/apple-touch-icon.png">
+<link rel="mask-icon" href="https://growyears.netlify.app/safari-pinned-tab.svg">
 <meta name="theme-color" content="#2e2e33">
 <meta name="msapplication-TileColor" content="#2e2e33">
-<link rel="alternate" hreflang="en" href="https://example.org/posts/%E7%BA%A2%E5%AE%9D%E4%B9%A6%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/8.4-%E7%B1%BB/">
+<link rel="alternate" hreflang="en" href="https://growyears.netlify.app/posts/%E7%BA%A2%E5%AE%9D%E4%B9%A6%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/8.4-%E7%B1%BB/">
 <noscript>
     <style>
         #theme-toggle,
@@ -109,9 +109,9 @@ ES6类为继承内置引用类型提供了顺畅的机制，开发者可以方�
         }
 
     </style>
-</noscript><meta property="og:url" content="https://example.org/posts/%E7%BA%A2%E5%AE%9D%E4%B9%A6%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/8.4-%E7%B1%BB/">
-  <meta property="og:site_name" content="My New Hugo Site">
-  <meta property="og:title" content="My New Hugo Site">
+</noscript><meta property="og:url" content="https://growyears.netlify.app/posts/%E7%BA%A2%E5%AE%9D%E4%B9%A6%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/8.4-%E7%B1%BB/">
+  <meta property="og:site_name" content="拾光博客 - 永浩">
+  <meta property="og:title" content="拾光博客 - 永浩">
   <meta property="og:description" content=" 本文系统介绍了JavaScript类的定义与继承机制。类可通过声明或表达式定义，具有块级作用域且不支持提升。类包含构造函数、实例方法、静态方法等，默认严格模式执行。构造函数使用new操作符实例化，遵循特定对象创建流程。类支持实例成员、原型方法和静态方法，可通过extends实现单继承，使用super访问父类。文章详细解析了继承规则、抽象基类实现、内置类型扩展及混入模式等高级特性，阐明了类与传统构造函数的区别，为面向对象编程提供了全面指导。
 与函数类型相似，定义类也有两种主要方式：类声明和类表达式，这两种方式都使用class关键字加大括号
 与函数表达式类似，类表达式在它们被求值前也不能引用，不过与函数定义不同的是，虽然函数声明可以提升，但类定义不能，函数受函数作用域限制，而类受块作用域限制
@@ -147,7 +147,7 @@ super只能在派生类构造函数和静态方法中使用 不能单独引用su
 ES6类为继承内置引用类型提供了顺畅的机制，开发者可以方便的扩展内置类型
 有些内置类型的方法，会返回新实例，默认情况下，返回实例的类型与原始实例的类型是一致的，如果想覆盖这个默认行为，则可以覆盖Symbol.species访问器，这个访问器决定在创建返回的实例时使用的类
 把不同类的行为集中到一个类是一种常见的JS模式，extends关键字后面是一个JS表达式，任何可以解析为一个类或一个构造函数的表达式都是有效的，这个表达式会在求值类定义时被求值。混入模式可以通过在一个表达式中连缀多个混入元素来实现，这个表达式最终会解析为一个可以被继承的类。可以定义一组可嵌套的函数，每个函数分别接收一个超类作为参数，而将混入类定义为这个参数的子类，并返回这个类，这些组合函数连缀调用，最终组合成超类表达式">
-  <meta property="og:locale" content="en-us">
+  <meta property="og:locale" content="zh-cn">
   <meta property="og:type" content="article">
     <meta property="article:section" content="posts">
 <meta name="twitter:card" content="summary">
@@ -218,13 +218,13 @@ ES6类为继承内置引用类型提供了顺畅的机制，开发者可以方�
       "@type": "ListItem",
       "position":  1 ,
       "name": "Posts",
-      "item": "https://example.org/posts/"
+      "item": "https://growyears.netlify.app/posts/"
     }, 
     {
       "@type": "ListItem",
       "position":  2 ,
       "name": "",
-      "item": "https://example.org/posts/%E7%BA%A2%E5%AE%9D%E4%B9%A6%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/8.4-%E7%B1%BB/"
+      "item": "https://growyears.netlify.app/posts/%E7%BA%A2%E5%AE%9D%E4%B9%A6%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/8.4-%E7%B1%BB/"
     }
   ]
 }
@@ -246,14 +246,14 @@ ES6类为继承内置引用类型提供了顺畅的机制，开发者可以方�
   "dateModified": "0001-01-01T00:00:00Z",
   "mainEntityOfPage": {
     "@type": "WebPage",
-    "@id": "https://example.org/posts/%E7%BA%A2%E5%AE%9D%E4%B9%A6%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/8.4-%E7%B1%BB/"
+    "@id": "https://growyears.netlify.app/posts/%E7%BA%A2%E5%AE%9D%E4%B9%A6%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/8.4-%E7%B1%BB/"
   },
   "publisher": {
     "@type": "Organization",
-    "name": "My New Hugo Site",
+    "name": "拾光博客 - 永浩",
     "logo": {
       "@type": "ImageObject",
-      "url": "https://example.org/favicon.ico"
+      "url": "https://growyears.netlify.app/favicon.ico"
     }
   }
 }
@@ -275,7 +275,7 @@ ES6类为继承内置引用类型提供了顺畅的机制，开发者可以方�
 <header class="header">
     <nav class="nav">
         <div class="logo">
-            <a href="https://example.org/" accesskey="h" title="My New Hugo Site (Alt + H)">My New Hugo Site</a>
+            <a href="https://growyears.netlify.app/" accesskey="h" title="拾光博客 - 永浩 (Alt + H)">拾光博客 - 永浩</a>
             <div class="logo-switches">
                 <button id="theme-toggle" accesskey="t" title="(Alt + T)" aria-label="Toggle theme">
                     <svg id="moon" xmlns="http://www.w3.org/2000/svg" width="24" height="18" viewBox="0 0 24 24"
@@ -382,7 +382,7 @@ ES6类为继承内置引用类型提供了顺畅的机制，开发者可以方�
     </main>
     
 <footer class="footer">
-        <span>&copy; 2025 <a href="https://example.org/">My New Hugo Site</a></span> · 
+        <span>&copy; 2025 <a href="https://growyears.netlify.app/">拾光博客 - 永浩</a></span> · 
 
     <span>
         Powered by

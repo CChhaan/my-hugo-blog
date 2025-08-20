@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <meta name="robots" content="index, follow">
-<title>My New Hugo Site</title>
+<title>拾光博客 - 永浩</title>
 <meta name="keywords" content="">
 <meta name="description" content="一、类型变量
 类型变量是泛型的 “灵魂”，用于在类型层面建立关联（而非值层面），解决 “同一份逻辑适配多种类型” 的问题。
@@ -70,16 +70,16 @@ myGenericNumber.add = (x, y) =&gt; x &#43; y;
 
 静态成员限制：泛型类的类型参数仅作用于实例端，静态成员不能使用类的类型参数，静态成员属于类本身，而非实例，无法关联实例的类型变量。">
 <meta name="author" content="">
-<link rel="canonical" href="https://example.org/posts/ts/06--%E6%B3%9B%E5%9E%8B/">
+<link rel="canonical" href="https://growyears.netlify.app/posts/ts/06--%E6%B3%9B%E5%9E%8B/">
 <link crossorigin="anonymous" href="/assets/css/stylesheet.36819bea596090d8b48cf10d9831382996197aa7e4fc86f792f7c08c9ca4d23b.css" integrity="sha256-NoGb6llgkNi0jPENmDE4KZYZeqfk/Ib3kvfAjJyk0js=" rel="preload stylesheet" as="style">
-<link rel="icon" href="https://example.org/favicon.ico">
-<link rel="icon" type="image/png" sizes="16x16" href="https://example.org/favicon-16x16.png">
-<link rel="icon" type="image/png" sizes="32x32" href="https://example.org/favicon-32x32.png">
-<link rel="apple-touch-icon" href="https://example.org/apple-touch-icon.png">
-<link rel="mask-icon" href="https://example.org/safari-pinned-tab.svg">
+<link rel="icon" href="https://growyears.netlify.app/favicon.ico">
+<link rel="icon" type="image/png" sizes="16x16" href="https://growyears.netlify.app/favicon-16x16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="https://growyears.netlify.app/favicon-32x32.png">
+<link rel="apple-touch-icon" href="https://growyears.netlify.app/apple-touch-icon.png">
+<link rel="mask-icon" href="https://growyears.netlify.app/safari-pinned-tab.svg">
 <meta name="theme-color" content="#2e2e33">
 <meta name="msapplication-TileColor" content="#2e2e33">
-<link rel="alternate" hreflang="en" href="https://example.org/posts/ts/06--%E6%B3%9B%E5%9E%8B/">
+<link rel="alternate" hreflang="en" href="https://growyears.netlify.app/posts/ts/06--%E6%B3%9B%E5%9E%8B/">
 <noscript>
     <style>
         #theme-toggle,
@@ -116,9 +116,9 @@ myGenericNumber.add = (x, y) =&gt; x &#43; y;
         }
 
     </style>
-</noscript><meta property="og:url" content="https://example.org/posts/ts/06--%E6%B3%9B%E5%9E%8B/">
-  <meta property="og:site_name" content="My New Hugo Site">
-  <meta property="og:title" content="My New Hugo Site">
+</noscript><meta property="og:url" content="https://growyears.netlify.app/posts/ts/06--%E6%B3%9B%E5%9E%8B/">
+  <meta property="og:site_name" content="拾光博客 - 永浩">
+  <meta property="og:title" content="拾光博客 - 永浩">
   <meta property="og:description" content="一、类型变量 类型变量是泛型的 “灵魂”，用于在类型层面建立关联（而非值层面），解决 “同一份逻辑适配多种类型” 的问题。
 基本用法 // 定义泛型函数：类型变量&lt;Type&gt;关联输入与输出类型 function identity&lt;Type&gt;(arg: Type): Type { return arg; } // 两种调用方式 let output1 = identity&lt;string&gt;(&#34;myString&#34;); // 显式指定类型参数 let output2 = identity(42); // 类型推断（推荐）：编译器自动推断Type为number 核心价值：避免重复编写不同类型的同名函数（如identityString、identityNumber），同时保持类型安全（对比any：any会丢失类型关联，泛型则保留输入与输出的类型一致性）。 类型推断：编译器可通过传入的值自动推断类型参数，简化代码。复杂场景下若推断失败，需显式指定类型。 类型约束：函数体内必须正确使用泛型参数（视为 “任意类型” 处理）。 二、泛型函数的类型定义 泛型函数的类型与非泛型函数类似，需先声明类型参数，有多种表达方式：
 直接作为函数类型
@@ -127,7 +127,7 @@ let myIdentity: &lt;Input&gt;(arg: Input) =&gt; Input = identity; // 合法：In
 let myIdentity: { &lt;Type&gt;(arg: Type): Type } = identity; 泛型接口
 // 接口内声明泛型调用签名 interface GenericIdentityFn { &lt;Type&gt;(arg: Type): Type; } let myIdentity: GenericIdentityFn = identity; // 接口本身泛型化（更常用） interface GenericIdentityFn&lt;Type&gt; { (arg: Type): Type; } let myIdentity: GenericIdentityFn&lt;number&gt; = identity; // 绑定类型参数为number 三、泛型类 泛型类在类名后通过&lt;&gt;声明类型参数，确保类的所有实例属性使用相同类型。
 基本用法 class GenericNumber&lt;NumType&gt; { zeroValue: NumType; // 实例属性使用泛型类型 add: (x: NumType, y: NumType) =&gt; NumType; // 方法参数与返回值使用泛型类型 } // 实例化时指定类型参数为number let myGenericNumber = new GenericNumber&lt;number&gt;(); myGenericNumber.zeroValue = 0; myGenericNumber.add = (x, y) =&gt; x &#43; y; 注意点 静态成员限制：泛型类的类型参数仅作用于实例端，静态成员不能使用类的类型参数，静态成员属于类本身，而非实例，无法关联实例的类型变量。">
-  <meta property="og:locale" content="en-us">
+  <meta property="og:locale" content="zh-cn">
   <meta property="og:type" content="article">
     <meta property="article:section" content="posts">
 <meta name="twitter:card" content="summary">
@@ -205,13 +205,13 @@ myGenericNumber.add = (x, y) =&gt; x &#43; y;
       "@type": "ListItem",
       "position":  1 ,
       "name": "Posts",
-      "item": "https://example.org/posts/"
+      "item": "https://growyears.netlify.app/posts/"
     }, 
     {
       "@type": "ListItem",
       "position":  2 ,
       "name": "",
-      "item": "https://example.org/posts/ts/06--%E6%B3%9B%E5%9E%8B/"
+      "item": "https://growyears.netlify.app/posts/ts/06--%E6%B3%9B%E5%9E%8B/"
     }
   ]
 }
@@ -233,14 +233,14 @@ myGenericNumber.add = (x, y) =&gt; x &#43; y;
   "dateModified": "0001-01-01T00:00:00Z",
   "mainEntityOfPage": {
     "@type": "WebPage",
-    "@id": "https://example.org/posts/ts/06--%E6%B3%9B%E5%9E%8B/"
+    "@id": "https://growyears.netlify.app/posts/ts/06--%E6%B3%9B%E5%9E%8B/"
   },
   "publisher": {
     "@type": "Organization",
-    "name": "My New Hugo Site",
+    "name": "拾光博客 - 永浩",
     "logo": {
       "@type": "ImageObject",
-      "url": "https://example.org/favicon.ico"
+      "url": "https://growyears.netlify.app/favicon.ico"
     }
   }
 }
@@ -262,7 +262,7 @@ myGenericNumber.add = (x, y) =&gt; x &#43; y;
 <header class="header">
     <nav class="nav">
         <div class="logo">
-            <a href="https://example.org/" accesskey="h" title="My New Hugo Site (Alt + H)">My New Hugo Site</a>
+            <a href="https://growyears.netlify.app/" accesskey="h" title="拾光博客 - 永浩 (Alt + H)">拾光博客 - 永浩</a>
             <div class="logo-switches">
                 <button id="theme-toggle" accesskey="t" title="(Alt + T)" aria-label="Toggle theme">
                     <svg id="moon" xmlns="http://www.w3.org/2000/svg" width="24" height="18" viewBox="0 0 24 24"
@@ -486,7 +486,7 @@ myGenericNumber.add = (x, y) =&gt; x &#43; y;
     </main>
     
 <footer class="footer">
-        <span>&copy; 2025 <a href="https://example.org/">My New Hugo Site</a></span> · 
+        <span>&copy; 2025 <a href="https://growyears.netlify.app/">拾光博客 - 永浩</a></span> · 
 
     <span>
         Powered by
