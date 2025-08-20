@@ -1,0 +1,10 @@
+[build]
+  command = "hugo"
+  publish = "public"
+
+[build.environment]
+  HUGO_VERSION = "0.124.1"  # 指定Hugo版本，可替换为你本地使用的版本
+
+[context.production.environment]
+  HUGO_ENV = "production"
+    
