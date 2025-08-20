@@ -1,0 +1,687 @@
+<!DOCTYPE html>
+<html lang="en" dir="auto">
+
+<head><meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="robots" content="index, follow">
+<title>My New Hugo Site</title>
+<meta name="keywords" content="">
+<meta name="description" content="一、对象类型的基本定义
+对象类型是 TS 中描述数据结构的核心方式，主要有三种定义形式：
+
+
+匿名对象类型
+直接在参数或变量声明中定义，无需命名：
+function greet(person: { name: string; age: number }) {
+  return &#34;Hello &#34; &#43; person.name;
+}
+
+
+接口（interface）
+通过interface关键字命名对象类型，支持声明合并（多次定义同一接口会自动合并），可复用：
+interface Person {
+  name: string;
+  age: number;
+}
+function greet(person: Person) { /* ... */ }
+
+
+类型别名（type alias）
+通过type关键字为对象类型命名：
+type Person = {
+  name: string;
+  age: number;
+};
+function greet(person: Person) { /* ... */ }
+
+
+面试高频对比：
+
+  
+      
+          场景
+          interface
+          type
+      
+  
+  
+      
+          声明合并
+          支持
+          不支持（重复声明报错）
+      
+      
+          扩展方式
+          extends继承
+          交叉类型（&amp;）合并
+      
+      
+          适用类型
+          仅对象 / 类形状
+          任意类型（对象、联合、基础类型等）
+      
+  
+
+二、对象属性的特性
+对象类型的属性可通过修饰符指定特性：
+
+
+可选属性
+
+
+标记为?的属性可省略，类型为T | undefined（在strictNullChecks开启时需显式处理undefined）。
+
+
+示例：
+interface User {
+  name: string;
+  age?: number; // 可选属性
+}
+const user: User = { name: &#34;Alice&#34; }; // 合法，age可省略
+
+
+
+
+只读属性（readonly）">
+<meta name="author" content="">
+<link rel="canonical" href="https://example.org/posts/ts/05--%E5%AF%B9%E8%B1%A1%E7%B1%BB%E5%9E%8B/">
+<link crossorigin="anonymous" href="/assets/css/stylesheet.36819bea596090d8b48cf10d9831382996197aa7e4fc86f792f7c08c9ca4d23b.css" integrity="sha256-NoGb6llgkNi0jPENmDE4KZYZeqfk/Ib3kvfAjJyk0js=" rel="preload stylesheet" as="style">
+<link rel="icon" href="https://example.org/favicon.ico">
+<link rel="icon" type="image/png" sizes="16x16" href="https://example.org/favicon-16x16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="https://example.org/favicon-32x32.png">
+<link rel="apple-touch-icon" href="https://example.org/apple-touch-icon.png">
+<link rel="mask-icon" href="https://example.org/safari-pinned-tab.svg">
+<meta name="theme-color" content="#2e2e33">
+<meta name="msapplication-TileColor" content="#2e2e33">
+<link rel="alternate" hreflang="en" href="https://example.org/posts/ts/05--%E5%AF%B9%E8%B1%A1%E7%B1%BB%E5%9E%8B/">
+<noscript>
+    <style>
+        #theme-toggle,
+        .top-link {
+            display: none;
+        }
+
+    </style>
+    <style>
+        @media (prefers-color-scheme: dark) {
+            :root {
+                --theme: rgb(29, 30, 32);
+                --entry: rgb(46, 46, 51);
+                --primary: rgb(218, 218, 219);
+                --secondary: rgb(155, 156, 157);
+                --tertiary: rgb(65, 66, 68);
+                --content: rgb(196, 196, 197);
+                --code-block-bg: rgb(46, 46, 51);
+                --code-bg: rgb(55, 56, 62);
+                --border: rgb(51, 51, 51);
+            }
+
+            .list {
+                background: var(--theme);
+            }
+
+            .list:not(.dark)::-webkit-scrollbar-track {
+                background: 0 0;
+            }
+
+            .list:not(.dark)::-webkit-scrollbar-thumb {
+                border-color: var(--theme);
+            }
+        }
+
+    </style>
+</noscript><meta property="og:url" content="https://example.org/posts/ts/05--%E5%AF%B9%E8%B1%A1%E7%B1%BB%E5%9E%8B/">
+  <meta property="og:site_name" content="My New Hugo Site">
+  <meta property="og:title" content="My New Hugo Site">
+  <meta property="og:description" content="一、对象类型的基本定义 对象类型是 TS 中描述数据结构的核心方式，主要有三种定义形式：
+匿名对象类型 直接在参数或变量声明中定义，无需命名：
+function greet(person: { name: string; age: number }) { return &#34;Hello &#34; &#43; person.name; } 接口（interface） 通过interface关键字命名对象类型，支持声明合并（多次定义同一接口会自动合并），可复用：
+interface Person { name: string; age: number; } function greet(person: Person) { /* ... */ } 类型别名（type alias） 通过type关键字为对象类型命名：
+type Person = { name: string; age: number; }; function greet(person: Person) { /* ... */ } 面试高频对比：
+场景 interface type 声明合并 支持 不支持（重复声明报错） 扩展方式 extends继承 交叉类型（&amp;）合并 适用类型 仅对象 / 类形状 任意类型（对象、联合、基础类型等） 二、对象属性的特性 对象类型的属性可通过修饰符指定特性：
+可选属性
+标记为?的属性可省略，类型为T | undefined（在strictNullChecks开启时需显式处理undefined）。
+示例：
+interface User { name: string; age?: number; // 可选属性 } const user: User = { name: &#34;Alice&#34; }; // 合法，age可省略 只读属性（readonly）">
+  <meta property="og:locale" content="en-us">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="posts">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="">
+<meta name="twitter:description" content="一、对象类型的基本定义
+对象类型是 TS 中描述数据结构的核心方式，主要有三种定义形式：
+
+
+匿名对象类型
+直接在参数或变量声明中定义，无需命名：
+function greet(person: { name: string; age: number }) {
+  return &#34;Hello &#34; &#43; person.name;
+}
+
+
+接口（interface）
+通过interface关键字命名对象类型，支持声明合并（多次定义同一接口会自动合并），可复用：
+interface Person {
+  name: string;
+  age: number;
+}
+function greet(person: Person) { /* ... */ }
+
+
+类型别名（type alias）
+通过type关键字为对象类型命名：
+type Person = {
+  name: string;
+  age: number;
+};
+function greet(person: Person) { /* ... */ }
+
+
+面试高频对比：
+
+  
+      
+          场景
+          interface
+          type
+      
+  
+  
+      
+          声明合并
+          支持
+          不支持（重复声明报错）
+      
+      
+          扩展方式
+          extends继承
+          交叉类型（&amp;）合并
+      
+      
+          适用类型
+          仅对象 / 类形状
+          任意类型（对象、联合、基础类型等）
+      
+  
+
+二、对象属性的特性
+对象类型的属性可通过修饰符指定特性：
+
+
+可选属性
+
+
+标记为?的属性可省略，类型为T | undefined（在strictNullChecks开启时需显式处理undefined）。
+
+
+示例：
+interface User {
+  name: string;
+  age?: number; // 可选属性
+}
+const user: User = { name: &#34;Alice&#34; }; // 合法，age可省略
+
+
+
+
+只读属性（readonly）">
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position":  1 ,
+      "name": "Posts",
+      "item": "https://example.org/posts/"
+    }, 
+    {
+      "@type": "ListItem",
+      "position":  2 ,
+      "name": "",
+      "item": "https://example.org/posts/ts/05--%E5%AF%B9%E8%B1%A1%E7%B1%BB%E5%9E%8B/"
+    }
+  ]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "",
+  "name": "",
+  "description": "一、对象类型的基本定义 对象类型是 TS 中描述数据结构的核心方式，主要有三种定义形式：\n匿名对象类型 直接在参数或变量声明中定义，无需命名：\nfunction greet(person: { name: string; age: number }) { return \u0026#34;Hello \u0026#34; + person.name; } 接口（interface） 通过interface关键字命名对象类型，支持声明合并（多次定义同一接口会自动合并），可复用：\ninterface Person { name: string; age: number; } function greet(person: Person) { /* ... */ } 类型别名（type alias） 通过type关键字为对象类型命名：\ntype Person = { name: string; age: number; }; function greet(person: Person) { /* ... */ } 面试高频对比：\n场景 interface type 声明合并 支持 不支持（重复声明报错） 扩展方式 extends继承 交叉类型（\u0026amp;）合并 适用类型 仅对象 / 类形状 任意类型（对象、联合、基础类型等） 二、对象属性的特性 对象类型的属性可通过修饰符指定特性：\n可选属性\n标记为?的属性可省略，类型为T | undefined（在strictNullChecks开启时需显式处理undefined）。\n示例：\ninterface User { name: string; age?: number; // 可选属性 } const user: User = { name: \u0026#34;Alice\u0026#34; }; // 合法，age可省略 只读属性（readonly）\n",
+  "keywords": [
+    
+  ],
+  "articleBody": "一、对象类型的基本定义 对象类型是 TS 中描述数据结构的核心方式，主要有三种定义形式：\n匿名对象类型 直接在参数或变量声明中定义，无需命名：\nfunction greet(person: { name: string; age: number }) { return \"Hello \" + person.name; } 接口（interface） 通过interface关键字命名对象类型，支持声明合并（多次定义同一接口会自动合并），可复用：\ninterface Person { name: string; age: number; } function greet(person: Person) { /* ... */ } 类型别名（type alias） 通过type关键字为对象类型命名：\ntype Person = { name: string; age: number; }; function greet(person: Person) { /* ... */ } 面试高频对比：\n场景 interface type 声明合并 支持 不支持（重复声明报错） 扩展方式 extends继承 交叉类型（\u0026）合并 适用类型 仅对象 / 类形状 任意类型（对象、联合、基础类型等） 二、对象属性的特性 对象类型的属性可通过修饰符指定特性：\n可选属性\n标记为?的属性可省略，类型为T | undefined（在strictNullChecks开启时需显式处理undefined）。\n示例：\ninterface User { name: string; age?: number; // 可选属性 } const user: User = { name: \"Alice\" }; // 合法，age可省略 只读属性（readonly）\n标记为readonly的属性在类型检查期间不可被重写，但不影响其内部内容的可变性（如对象属性仍可修改）。\nTypeScript 检查类型兼容性时不考虑readonly，因此可通过别名修改只读属性。\n示例：\ninterface Point { readonly x: number; readonly y: number; } const p: Point = { x: 1, y: 2 }; p.x = 3; // 错误：只读属性不可修改 三、索引签名 当属性名不确定但值类型已知时，用索引签名描述键值关系：\n基本语法\ninterface StringArray { [index: number]: string; // 索引签名：number类型索引返回string } const arr: StringArray = [\"a\", \"b\"]; const item = arr[0]; // 类型为string 允许的索引类型 索引签名的类型只能是string、number、symbol、模板字符串模式，或这些类型的联合。\nnumber 与 string 索引的关系\n当同时使用 number 和 string 索引时，number 索引返回的类型必须是 string 索引返回类型的子类型（因为 JavaScript 会将 number 索引转为 string）。\n示例：\ninterface Example { [x: string]: number; [x: number]: number; // 合法：number是string索引返回类型的子类型 } 只读索引签名 禁止通过索引赋值，确保对象不可修改：\ninterface ReadonlyDict { readonly [key: string]: string; } const dict: ReadonlyDict = { a: \"1\" }; dict[\"b\"] = \"2\"; // 错误：只读索引不可赋值 四、溢出属性检查 对象字面量被分配给变量或作为参数传递时，TypeScript 会进行额外的属性检查，若存在目标类型没有的属性则报错。\ninterface Square { color: string } const square = { color: \"red\", size: 10 }; // 对象字面量 const s: Square = square; // 合法：通过变量间接赋值，不触发溢出检查 const s2: Square = { color: \"red\", size: 10 }; // 错误：直接赋值触发检查，size为溢出属性 绕过检查的方法\n类型断言：强制指定类型，忽略额外属性。\ninterface SquareConfig { color?: string; } const config = { color: \"red\", size: 10 } as SquareConfig; 添加字符串索引签名：允许任意额外属性。\ninterface SquareConfig { color?: string; [prop: string]: unknown; // 允许任意string属性 } 分配给变量：变量不会触发溢出检查，只要存在公共属性即可。\nconst options = { color: \"red\", size: 10 }; const config: SquareConfig = options; // 合法：共享color属性 五、接口扩展与交叉类型 1. 接口扩展（extends） 作用：从其他类型复制成员并添加新成员，可扩展多个类型。\n示例：\ninterface Shape { name: string; } interface Circle extends Shape { radius: number; } // 扩展Shape const circle: Circle = { name: \"circle\", radius: 10 }; 冲突处理：若父接口与子接口有同名属性且类型不兼容，直接报错。\n2. 交叉类型（\u0026） 作用：组合现有对象类型，使用\u0026运算符定义。\n示例：\ntype A = { x: number }; type B = { y: string }; type C = A \u0026 B; // 交叉类型：{ x: number; y: string } 冲突处理：同名属性类型不同时，会合并为联合类型（如{ x: number } \u0026 { x: string }的x类型为number \u0026 string，即never）。\n接口扩展更适合 “is-a” 关系（如 Circle 是一种 Shape），交叉类型更适合 “has-a” 组合（如同时具有 A 和 B 的属性）。\n六、泛型对象类型 通过类型参数实现 “与元素类型无关的容器类型” 复用\n泛型接口 示例：\ninterface Box\u003cType\u003e { contents: Type; // 类型参数Type定义内容类型 } const stringBox: Box\u003cstring\u003e = { contents: \"hello\" }; 泛型类型别名 类型别名也可泛型，适用于描述非对象类型的组合：\ntype Pair\u003cType\u003e = [Type, Type]; const numPair: Pair\u003cnumber\u003e = [1, 2]; 常见泛型数据结构\nArray（简写Type[]）：数组类型，如number[]即Array。 Map：键为K、值为V的映射。 Set：元素为T的集合。 Promise：返回值为T的 Promise。 七、ReadonlyArray 用于描述不应被修改的数组，是类型安全的只读容器。\n特性\n无构造函数，可将普通数组赋值给ReadonlyArray，无修改方法（push、pop等），确保数组不可变，提升类型安全。。 简写形式：readonly Type[]（与ReadonlyArray完全等价）。 赋值关系：普通数组可赋值给ReadonlyArray，但反之不可。 示例\nconst arr: number[] = [1, 2]; const readonlyArr: ReadonlyArray\u003cnumber\u003e = arr; // 合法 arr.push(3); // 合法 readonlyArr.push(3); // 错误：ReadonlyArray无push方法 八、元组类型 元组是明确元素数量和类型的数组类型，适用于固定结构的数据。\n基本定义\ntype StringNumberPair = [string, number]; // 元组：第一个元素string，第二个number const pair: StringNumberPair = [\"a\", 10]; 可选元素 用?标记末尾元素为可选，影响元组长度：\ntype OptionalTuple = [string, number?]; const t1: OptionalTuple = [\"a\"]; // 合法，长度1 const t2: OptionalTuple = [\"a\", 10]; // 合法，长度2 剩余元素 用...指定可变数量的元素，需为数组 / 元组类型：\ntype TupleWithRest = [number, ...string[]]; const t: TupleWithRest = [1, \"a\", \"b\"]; // 合法 只读元组 前缀readonly禁止修改（推荐默认使用，避免意外修改）：\ntype ReadonlyTuple = readonly [string, number]; const rt: ReadonlyTuple = [\"a\", 10]; rt[0] = \"b\"; // 错误：只读元组不可修改 访问超出元组长度的索引时，类型为undefined\n",
+  "wordCount" : "528",
+  "inLanguage": "en",
+  "datePublished": "0001-01-01T00:00:00Z",
+  "dateModified": "0001-01-01T00:00:00Z",
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://example.org/posts/ts/05--%E5%AF%B9%E8%B1%A1%E7%B1%BB%E5%9E%8B/"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "My New Hugo Site",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://example.org/favicon.ico"
+    }
+  }
+}
+</script>
+</head>
+
+<body class="" id="top">
+<script>
+    if (localStorage.getItem("pref-theme") === "dark") {
+        document.body.classList.add('dark');
+    } else if (localStorage.getItem("pref-theme") === "light") {
+        document.body.classList.remove('dark')
+    } else if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+        document.body.classList.add('dark');
+    }
+
+</script>
+
+<header class="header">
+    <nav class="nav">
+        <div class="logo">
+            <a href="https://example.org/" accesskey="h" title="My New Hugo Site (Alt + H)">My New Hugo Site</a>
+            <div class="logo-switches">
+                <button id="theme-toggle" accesskey="t" title="(Alt + T)" aria-label="Toggle theme">
+                    <svg id="moon" xmlns="http://www.w3.org/2000/svg" width="24" height="18" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                    </svg>
+                    <svg id="sun" xmlns="http://www.w3.org/2000/svg" width="24" height="18" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <circle cx="12" cy="12" r="5"></circle>
+                        <line x1="12" y1="1" x2="12" y2="3"></line>
+                        <line x1="12" y1="21" x2="12" y2="23"></line>
+                        <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                        <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                        <line x1="1" y1="12" x2="3" y2="12"></line>
+                        <line x1="21" y1="12" x2="23" y2="12"></line>
+                        <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                        <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+                    </svg>
+                </button>
+            </div>
+        </div>
+        <ul id="menu">
+        </ul>
+    </nav>
+</header>
+<main class="main">
+
+<article class="post-single">
+  <header class="post-header">
+    
+    <h1 class="post-title entry-hint-parent">
+      
+    </h1>
+    <div class="post-meta">
+
+</div>
+  </header> 
+  <div class="post-content"><h3 id="一对象类型的基本定义">一、对象类型的基本定义<a hidden class="anchor" aria-hidden="true" href="#一对象类型的基本定义">#</a></h3>
+<p>对象类型是 TS 中描述数据结构的核心方式，主要有三种定义形式：</p>
+<ol>
+<li>
+<p><strong>匿名对象类型</strong>
+直接在参数或变量声明中定义，无需命名：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-ts" data-lang="ts"><span style="display:flex;"><span><span style="color:#66d9ef">function</span> <span style="color:#a6e22e">greet</span>(<span style="color:#a6e22e">person</span><span style="color:#f92672">:</span> { <span style="color:#a6e22e">name</span>: <span style="color:#66d9ef">string</span>; <span style="color:#a6e22e">age</span>: <span style="color:#66d9ef">number</span> }) {
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">return</span> <span style="color:#e6db74">&#34;Hello &#34;</span> <span style="color:#f92672">+</span> <span style="color:#a6e22e">person</span>.<span style="color:#a6e22e">name</span>;
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div></li>
+<li>
+<p><strong>接口（interface）</strong>
+通过<code>interface</code>关键字命名对象类型，支持<strong>声明合并</strong>（多次定义同一接口会自动合并），可复用：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-ts" data-lang="ts"><span style="display:flex;"><span><span style="color:#66d9ef">interface</span> <span style="color:#a6e22e">Person</span> {
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">name</span>: <span style="color:#66d9ef">string</span>;
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">age</span>: <span style="color:#66d9ef">number</span>;
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">function</span> <span style="color:#a6e22e">greet</span>(<span style="color:#a6e22e">person</span>: <span style="color:#66d9ef">Person</span>) { <span style="color:#75715e">/* ... */</span> }
+</span></span></code></pre></div></li>
+<li>
+<p><strong>类型别名（type alias）</strong>
+通过<code>type</code>关键字为对象类型命名：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-ts" data-lang="ts"><span style="display:flex;"><span><span style="color:#66d9ef">type</span> <span style="color:#a6e22e">Person</span> <span style="color:#f92672">=</span> {
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">name</span>: <span style="color:#66d9ef">string</span>;
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">age</span>: <span style="color:#66d9ef">number</span>;
+</span></span><span style="display:flex;"><span>};
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">function</span> <span style="color:#a6e22e">greet</span>(<span style="color:#a6e22e">person</span>: <span style="color:#66d9ef">Person</span>) { <span style="color:#75715e">/* ... */</span> }
+</span></span></code></pre></div></li>
+</ol>
+<p><strong>面试高频对比</strong>：</p>
+<table>
+  <thead>
+      <tr>
+          <th>场景</th>
+          <th><code>interface</code></th>
+          <th><code>type</code></th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td>声明合并</td>
+          <td>支持</td>
+          <td>不支持（重复声明报错）</td>
+      </tr>
+      <tr>
+          <td>扩展方式</td>
+          <td><code>extends</code>继承</td>
+          <td>交叉类型（<code>&amp;</code>）合并</td>
+      </tr>
+      <tr>
+          <td>适用类型</td>
+          <td>仅对象 / 类形状</td>
+          <td>任意类型（对象、联合、基础类型等）</td>
+      </tr>
+  </tbody>
+</table>
+<h3 id="二对象属性的特性">二、对象属性的特性<a hidden class="anchor" aria-hidden="true" href="#二对象属性的特性">#</a></h3>
+<p>对象类型的属性可通过修饰符指定特性：</p>
+<ol>
+<li>
+<p><strong>可选属性</strong></p>
+<ul>
+<li>
+<p>标记为<code>?</code>的属性可省略，类型为<code>T | undefined</code>（在<code>strictNullChecks</code>开启时需显式处理<code>undefined</code>）。</p>
+</li>
+<li>
+<p>示例：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-ts" data-lang="ts"><span style="display:flex;"><span><span style="color:#66d9ef">interface</span> <span style="color:#a6e22e">User</span> {
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">name</span>: <span style="color:#66d9ef">string</span>;
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">age?</span>: <span style="color:#66d9ef">number</span>; <span style="color:#75715e">// 可选属性
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>}
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">const</span> <span style="color:#a6e22e">user</span>: <span style="color:#66d9ef">User</span> <span style="color:#f92672">=</span> { <span style="color:#a6e22e">name</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#34;Alice&#34;</span> }; <span style="color:#75715e">// 合法，age可省略
+</span></span></span></code></pre></div></li>
+</ul>
+</li>
+<li>
+<p><strong>只读属性（readonly）</strong></p>
+<ul>
+<li>
+<p>标记为<code>readonly</code>的属性在类型检查期间不可被重写，但不影响其内部内容的可变性（如对象属性仍可修改）。</p>
+</li>
+<li>
+<p>TypeScript 检查类型兼容性时不考虑<code>readonly</code>，因此可通过别名修改只读属性。</p>
+</li>
+<li>
+<p>示例：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-ts" data-lang="ts"><span style="display:flex;"><span><span style="color:#66d9ef">interface</span> <span style="color:#a6e22e">Point</span> {
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">readonly</span> <span style="color:#a6e22e">x</span>: <span style="color:#66d9ef">number</span>;
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">readonly</span> <span style="color:#a6e22e">y</span>: <span style="color:#66d9ef">number</span>;
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">const</span> <span style="color:#a6e22e">p</span>: <span style="color:#66d9ef">Point</span> <span style="color:#f92672">=</span> { <span style="color:#a6e22e">x</span>: <span style="color:#66d9ef">1</span>, <span style="color:#a6e22e">y</span>: <span style="color:#66d9ef">2</span> };
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">p</span>.<span style="color:#a6e22e">x</span> <span style="color:#f92672">=</span> <span style="color:#ae81ff">3</span>; <span style="color:#75715e">// 错误：只读属性不可修改
+</span></span></span></code></pre></div></li>
+</ul>
+</li>
+</ol>
+<h3 id="三索引签名">三、索引签名<a hidden class="anchor" aria-hidden="true" href="#三索引签名">#</a></h3>
+<p>当属性名不确定但值类型已知时，用索引签名描述键值关系：</p>
+<ol>
+<li>
+<p><strong>基本语法</strong></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-ts" data-lang="ts"><span style="display:flex;"><span><span style="color:#66d9ef">interface</span> <span style="color:#a6e22e">StringArray</span> {
+</span></span><span style="display:flex;"><span>  [<span style="color:#a6e22e">index</span>: <span style="color:#66d9ef">number</span>]<span style="color:#f92672">:</span> <span style="color:#66d9ef">string</span>; <span style="color:#75715e">// 索引签名：number类型索引返回string
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>}
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">const</span> <span style="color:#a6e22e">arr</span>: <span style="color:#66d9ef">StringArray</span> <span style="color:#f92672">=</span> [<span style="color:#e6db74">&#34;a&#34;</span>, <span style="color:#e6db74">&#34;b&#34;</span>];
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">const</span> <span style="color:#a6e22e">item</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">arr</span>[<span style="color:#ae81ff">0</span>]; <span style="color:#75715e">// 类型为string
+</span></span></span></code></pre></div></li>
+<li>
+<p><strong>允许的索引类型</strong>
+索引签名的类型只能是<code>string</code>、<code>number</code>、<code>symbol</code>、模板字符串模式，或这些类型的联合。</p>
+</li>
+<li>
+<p><strong>number 与 string 索引的关系</strong></p>
+<ul>
+<li>
+<p>当同时使用 number 和 string 索引时，number 索引返回的类型必须是 string 索引返回类型的子类型（因为 JavaScript 会将 number 索引转为 string）。</p>
+</li>
+<li>
+<p>示例：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-ts" data-lang="ts"><span style="display:flex;"><span><span style="color:#66d9ef">interface</span> <span style="color:#a6e22e">Example</span> {
+</span></span><span style="display:flex;"><span>  [<span style="color:#a6e22e">x</span>: <span style="color:#66d9ef">string</span>]<span style="color:#f92672">:</span> <span style="color:#66d9ef">number</span>;
+</span></span><span style="display:flex;"><span>  [<span style="color:#a6e22e">x</span>: <span style="color:#66d9ef">number</span>]<span style="color:#f92672">:</span> <span style="color:#66d9ef">number</span>; <span style="color:#75715e">// 合法：number是string索引返回类型的子类型
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>}
+</span></span></code></pre></div></li>
+</ul>
+</li>
+<li>
+<p><strong>只读索引签名</strong>
+禁止通过索引赋值，确保对象不可修改：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-ts" data-lang="ts"><span style="display:flex;"><span><span style="color:#66d9ef">interface</span> <span style="color:#a6e22e">ReadonlyDict</span> {
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">readonly</span> [<span style="color:#a6e22e">key</span>: <span style="color:#66d9ef">string</span>]<span style="color:#f92672">:</span> <span style="color:#66d9ef">string</span>;
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">const</span> <span style="color:#a6e22e">dict</span>: <span style="color:#66d9ef">ReadonlyDict</span> <span style="color:#f92672">=</span> { <span style="color:#a6e22e">a</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#34;1&#34;</span> };
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">dict</span>[<span style="color:#e6db74">&#34;b&#34;</span>] <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;2&#34;</span>; <span style="color:#75715e">// 错误：只读索引不可赋值
+</span></span></span></code></pre></div></li>
+</ol>
+<h3 id="四溢出属性检查">四、溢出属性检查<a hidden class="anchor" aria-hidden="true" href="#四溢出属性检查">#</a></h3>
+<p>对象字面量被分配给变量或作为参数传递时，TypeScript 会进行额外的属性检查，若存在目标类型没有的属性则报错。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-ts" data-lang="ts"><span style="display:flex;"><span><span style="color:#66d9ef">interface</span> <span style="color:#a6e22e">Square</span> { <span style="color:#a6e22e">color</span>: <span style="color:#66d9ef">string</span> }
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">const</span> <span style="color:#a6e22e">square</span> <span style="color:#f92672">=</span> { <span style="color:#a6e22e">color</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#34;red&#34;</span>, <span style="color:#a6e22e">size</span>: <span style="color:#66d9ef">10</span> }; <span style="color:#75715e">// 对象字面量
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">const</span> <span style="color:#a6e22e">s</span>: <span style="color:#66d9ef">Square</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">square</span>; <span style="color:#75715e">// 合法：通过变量间接赋值，不触发溢出检查
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">const</span> <span style="color:#a6e22e">s2</span>: <span style="color:#66d9ef">Square</span> <span style="color:#f92672">=</span> { <span style="color:#a6e22e">color</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#34;red&#34;</span>, <span style="color:#a6e22e">size</span>: <span style="color:#66d9ef">10</span> }; <span style="color:#75715e">// 错误：直接赋值触发检查，size为溢出属性
+</span></span></span></code></pre></div><p>绕过检查的方法</p>
+<ul>
+<li>
+<p>类型断言：强制指定类型，忽略额外属性。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-ts" data-lang="ts"><span style="display:flex;"><span><span style="color:#66d9ef">interface</span> <span style="color:#a6e22e">SquareConfig</span> { <span style="color:#a6e22e">color?</span>: <span style="color:#66d9ef">string</span>; }
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">const</span> <span style="color:#a6e22e">config</span> <span style="color:#f92672">=</span> { <span style="color:#a6e22e">color</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#34;red&#34;</span>, <span style="color:#a6e22e">size</span>: <span style="color:#66d9ef">10</span> } <span style="color:#66d9ef">as</span> <span style="color:#a6e22e">SquareConfig</span>;
+</span></span></code></pre></div></li>
+<li>
+<p>添加字符串索引签名：允许任意额外属性。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-ts" data-lang="ts"><span style="display:flex;"><span><span style="color:#66d9ef">interface</span> <span style="color:#a6e22e">SquareConfig</span> {
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">color?</span>: <span style="color:#66d9ef">string</span>;
+</span></span><span style="display:flex;"><span>  [<span style="color:#a6e22e">prop</span>: <span style="color:#66d9ef">string</span>]<span style="color:#f92672">:</span> <span style="color:#66d9ef">unknown</span>; <span style="color:#75715e">// 允许任意string属性
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>}
+</span></span></code></pre></div></li>
+<li>
+<p>分配给变量：变量不会触发溢出检查，只要存在公共属性即可。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-ts" data-lang="ts"><span style="display:flex;"><span><span style="color:#66d9ef">const</span> <span style="color:#a6e22e">options</span> <span style="color:#f92672">=</span> { <span style="color:#a6e22e">color</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#34;red&#34;</span>, <span style="color:#a6e22e">size</span>: <span style="color:#66d9ef">10</span> };
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">const</span> <span style="color:#a6e22e">config</span>: <span style="color:#66d9ef">SquareConfig</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">options</span>; <span style="color:#75715e">// 合法：共享color属性
+</span></span></span></code></pre></div></li>
+</ul>
+<h3 id="五接口扩展与交叉类型">五、接口扩展与交叉类型<a hidden class="anchor" aria-hidden="true" href="#五接口扩展与交叉类型">#</a></h3>
+<h4 id="1-接口扩展extends">1. 接口扩展（extends）<a hidden class="anchor" aria-hidden="true" href="#1-接口扩展extends">#</a></h4>
+<ul>
+<li>
+<p>作用：从其他类型复制成员并添加新成员，可扩展多个类型。</p>
+</li>
+<li>
+<p>示例：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-ts" data-lang="ts"><span style="display:flex;"><span><span style="color:#66d9ef">interface</span> <span style="color:#a6e22e">Shape</span> { <span style="color:#a6e22e">name</span>: <span style="color:#66d9ef">string</span>; }
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">interface</span> <span style="color:#a6e22e">Circle</span> <span style="color:#66d9ef">extends</span> <span style="color:#a6e22e">Shape</span> { <span style="color:#a6e22e">radius</span>: <span style="color:#66d9ef">number</span>; } <span style="color:#75715e">// 扩展Shape
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">const</span> <span style="color:#a6e22e">circle</span>: <span style="color:#66d9ef">Circle</span> <span style="color:#f92672">=</span> { <span style="color:#a6e22e">name</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#34;circle&#34;</span>, <span style="color:#a6e22e">radius</span>: <span style="color:#66d9ef">10</span> };
+</span></span></code></pre></div></li>
+<li>
+<p>冲突处理：若父接口与子接口有同名属性且类型不兼容，直接报错。</p>
+</li>
+</ul>
+<h4 id="2-交叉类型">2. 交叉类型（&amp;）<a hidden class="anchor" aria-hidden="true" href="#2-交叉类型">#</a></h4>
+<ul>
+<li>
+<p>作用：组合现有对象类型，使用<code>&amp;</code>运算符定义。</p>
+</li>
+<li>
+<p>示例：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-ts" data-lang="ts"><span style="display:flex;"><span><span style="color:#66d9ef">type</span> <span style="color:#a6e22e">A</span> <span style="color:#f92672">=</span> { <span style="color:#a6e22e">x</span>: <span style="color:#66d9ef">number</span> };
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">type</span> <span style="color:#a6e22e">B</span> <span style="color:#f92672">=</span> { <span style="color:#a6e22e">y</span>: <span style="color:#66d9ef">string</span> };
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">type</span> <span style="color:#a6e22e">C</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">A</span> <span style="color:#f92672">&amp;</span> <span style="color:#a6e22e">B</span>; <span style="color:#75715e">// 交叉类型：{ x: number; y: string }
+</span></span></span></code></pre></div></li>
+<li>
+<p>冲突处理：同名属性类型不同时，会合并为联合类型（如<code>{ x: number } &amp; { x: string }</code>的<code>x</code>类型为<code>number &amp; string</code>，即<code>never</code>）。</p>
+</li>
+</ul>
+<p>接口扩展更适合 “is-a” 关系（如 Circle 是一种 Shape），交叉类型更适合 “has-a” 组合（如同时具有 A 和 B 的属性）。</p>
+<h3 id="六泛型对象类型">六、泛型对象类型<a hidden class="anchor" aria-hidden="true" href="#六泛型对象类型">#</a></h3>
+<p>通过类型参数实现 “与元素类型无关的容器类型” 复用</p>
+<ol>
+<li>
+<p><strong>泛型接口</strong>
+示例：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-ts" data-lang="ts"><span style="display:flex;"><span><span style="color:#66d9ef">interface</span> <span style="color:#a6e22e">Box</span>&lt;<span style="color:#f92672">Type</span>&gt; {
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">contents</span>: <span style="color:#66d9ef">Type</span>; <span style="color:#75715e">// 类型参数Type定义内容类型
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>}
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">const</span> <span style="color:#a6e22e">stringBox</span>: <span style="color:#66d9ef">Box</span>&lt;<span style="color:#f92672">string</span>&gt; <span style="color:#f92672">=</span> { <span style="color:#a6e22e">contents</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#34;hello&#34;</span> };
+</span></span></code></pre></div></li>
+<li>
+<p><strong>泛型类型别名</strong>
+类型别名也可泛型，适用于描述非对象类型的组合：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-ts" data-lang="ts"><span style="display:flex;"><span><span style="color:#66d9ef">type</span> <span style="color:#a6e22e">Pair</span>&lt;<span style="color:#f92672">Type</span>&gt; <span style="color:#f92672">=</span> [<span style="color:#a6e22e">Type</span>, <span style="color:#a6e22e">Type</span>];
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">const</span> <span style="color:#a6e22e">numPair</span>: <span style="color:#66d9ef">Pair</span>&lt;<span style="color:#f92672">number</span>&gt; <span style="color:#f92672">=</span> [<span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">2</span>];
+</span></span></code></pre></div></li>
+<li>
+<p><strong>常见泛型数据结构</strong></p>
+<ul>
+<li><code>Array&lt;Type&gt;</code>（简写<code>Type[]</code>）：数组类型，如<code>number[]</code>即<code>Array&lt;number&gt;</code>。</li>
+<li><code>Map&lt;K, V&gt;</code>：键为<code>K</code>、值为<code>V</code>的映射。</li>
+<li><code>Set&lt;T&gt;</code>：元素为<code>T</code>的集合。</li>
+<li><code>Promise&lt;T&gt;</code>：返回值为<code>T</code>的 Promise。</li>
+</ul>
+</li>
+</ol>
+<h3 id="七readonlyarray">七、ReadonlyArray<a hidden class="anchor" aria-hidden="true" href="#七readonlyarray">#</a></h3>
+<p>用于描述不应被修改的数组，是类型安全的只读容器。</p>
+<ol>
+<li>
+<p><strong>特性</strong></p>
+<ul>
+<li>无构造函数，可将普通数组赋值给<code>ReadonlyArray</code>，无修改方法（<code>push</code>、<code>pop</code>等），确保数组不可变，提升类型安全。。</li>
+<li>简写形式：<code>readonly Type[]</code>（与<code>ReadonlyArray&lt;T&gt;</code>完全等价）。</li>
+<li>赋值关系：普通数组可赋值给<code>ReadonlyArray</code>，但反之不可。</li>
+</ul>
+</li>
+<li>
+<p><strong>示例</strong></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-ts" data-lang="ts"><span style="display:flex;"><span><span style="color:#66d9ef">const</span> <span style="color:#a6e22e">arr</span>: <span style="color:#66d9ef">number</span>[] <span style="color:#f92672">=</span> [<span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">2</span>];
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">const</span> <span style="color:#a6e22e">readonlyArr</span>: <span style="color:#66d9ef">ReadonlyArray</span>&lt;<span style="color:#f92672">number</span>&gt; <span style="color:#f92672">=</span> <span style="color:#a6e22e">arr</span>; <span style="color:#75715e">// 合法
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#a6e22e">arr</span>.<span style="color:#a6e22e">push</span>(<span style="color:#ae81ff">3</span>); <span style="color:#75715e">// 合法
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#a6e22e">readonlyArr</span>.<span style="color:#a6e22e">push</span>(<span style="color:#ae81ff">3</span>); <span style="color:#75715e">// 错误：ReadonlyArray无push方法
+</span></span></span></code></pre></div></li>
+</ol>
+<h3 id="八元组类型">八、元组类型<a hidden class="anchor" aria-hidden="true" href="#八元组类型">#</a></h3>
+<p>元组是明确元素数量和类型的数组类型，适用于固定结构的数据。</p>
+<ol>
+<li>
+<p><strong>基本定义</strong></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-ts" data-lang="ts"><span style="display:flex;"><span><span style="color:#66d9ef">type</span> <span style="color:#a6e22e">StringNumberPair</span> <span style="color:#f92672">=</span> [<span style="color:#66d9ef">string</span>, <span style="color:#66d9ef">number</span>]; <span style="color:#75715e">// 元组：第一个元素string，第二个number
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">const</span> <span style="color:#a6e22e">pair</span>: <span style="color:#66d9ef">StringNumberPair</span> <span style="color:#f92672">=</span> [<span style="color:#e6db74">&#34;a&#34;</span>, <span style="color:#ae81ff">10</span>];
+</span></span></code></pre></div></li>
+<li>
+<p><strong>可选元素</strong>
+用<code>?</code>标记末尾元素为可选，影响元组长度：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-ts" data-lang="ts"><span style="display:flex;"><span><span style="color:#66d9ef">type</span> <span style="color:#a6e22e">OptionalTuple</span> <span style="color:#f92672">=</span> [<span style="color:#66d9ef">string</span>, <span style="color:#66d9ef">number</span><span style="color:#f92672">?</span>];
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">const</span> <span style="color:#a6e22e">t1</span>: <span style="color:#66d9ef">OptionalTuple</span> <span style="color:#f92672">=</span> [<span style="color:#e6db74">&#34;a&#34;</span>]; <span style="color:#75715e">// 合法，长度1
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">const</span> <span style="color:#a6e22e">t2</span>: <span style="color:#66d9ef">OptionalTuple</span> <span style="color:#f92672">=</span> [<span style="color:#e6db74">&#34;a&#34;</span>, <span style="color:#ae81ff">10</span>]; <span style="color:#75715e">// 合法，长度2
+</span></span></span></code></pre></div></li>
+<li>
+<p><strong>剩余元素</strong>
+用<code>...</code>指定可变数量的元素，需为数组 / 元组类型：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-ts" data-lang="ts"><span style="display:flex;"><span><span style="color:#66d9ef">type</span> <span style="color:#a6e22e">TupleWithRest</span> <span style="color:#f92672">=</span> [<span style="color:#66d9ef">number</span>, ...<span style="color:#66d9ef">string</span>[]];
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">const</span> <span style="color:#a6e22e">t</span>: <span style="color:#66d9ef">TupleWithRest</span> <span style="color:#f92672">=</span> [<span style="color:#ae81ff">1</span>, <span style="color:#e6db74">&#34;a&#34;</span>, <span style="color:#e6db74">&#34;b&#34;</span>]; <span style="color:#75715e">// 合法
+</span></span></span></code></pre></div><p><strong>只读元组</strong>
+前缀<code>readonly</code>禁止修改（推荐默认使用，避免意外修改）：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-ts" data-lang="ts"><span style="display:flex;"><span><span style="color:#66d9ef">type</span> <span style="color:#a6e22e">ReadonlyTuple</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">readonly</span> [<span style="color:#66d9ef">string</span>, <span style="color:#66d9ef">number</span>];
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">const</span> <span style="color:#a6e22e">rt</span>: <span style="color:#66d9ef">ReadonlyTuple</span> <span style="color:#f92672">=</span> [<span style="color:#e6db74">&#34;a&#34;</span>, <span style="color:#ae81ff">10</span>];
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">rt</span>[<span style="color:#ae81ff">0</span>] <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;b&#34;</span>; <span style="color:#75715e">// 错误：只读元组不可修改
+</span></span></span></code></pre></div><p>访问超出元组长度的索引时，类型为<code>undefined</code></p>
+</li>
+</ol>
+
+
+  </div>
+
+  <footer class="post-footer">
+    <ul class="post-tags">
+    </ul>
+  </footer>
+</article>
+    </main>
+    
+<footer class="footer">
+        <span>&copy; 2025 <a href="https://example.org/">My New Hugo Site</a></span> · 
+
+    <span>
+        Powered by
+        <a href="https://gohugo.io/" rel="noopener noreferrer" target="_blank">Hugo</a> &
+        <a href="https://github.com/adityatelange/hugo-PaperMod/" rel="noopener" target="_blank">PaperMod</a>
+    </span>
+</footer>
+<a href="#top" aria-label="go to top" title="Go to Top (Alt + G)" class="top-link" id="top-link" accesskey="g">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 12 6" fill="currentColor">
+        <path d="M12 6H0l6-6z" />
+    </svg>
+</a>
+
+<script>
+    let menu = document.getElementById('menu')
+    if (menu) {
+        menu.scrollLeft = localStorage.getItem("menu-scroll-position");
+        menu.onscroll = function () {
+            localStorage.setItem("menu-scroll-position", menu.scrollLeft);
+        }
+    }
+
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener("click", function (e) {
+            e.preventDefault();
+            var id = this.getAttribute("href").substr(1);
+            if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView({
+                    behavior: "smooth"
+                });
+            } else {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView();
+            }
+            if (id === "top") {
+                history.replaceState(null, null, " ");
+            } else {
+                history.pushState(null, null, `#${id}`);
+            }
+        });
+    });
+
+</script>
+<script>
+    var mybutton = document.getElementById("top-link");
+    window.onscroll = function () {
+        if (document.body.scrollTop > 800 || document.documentElement.scrollTop > 800) {
+            mybutton.style.visibility = "visible";
+            mybutton.style.opacity = "1";
+        } else {
+            mybutton.style.visibility = "hidden";
+            mybutton.style.opacity = "0";
+        }
+    };
+
+</script>
+<script>
+    document.getElementById("theme-toggle").addEventListener("click", () => {
+        if (document.body.className.includes("dark")) {
+            document.body.classList.remove('dark');
+            localStorage.setItem("pref-theme", 'light');
+        } else {
+            document.body.classList.add('dark');
+            localStorage.setItem("pref-theme", 'dark');
+        }
+    })
+
+</script>
+</body>
+
+</html>

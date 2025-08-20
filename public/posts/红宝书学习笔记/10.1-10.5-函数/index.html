@@ -1,0 +1,389 @@
+<!DOCTYPE html>
+<html lang="en" dir="auto">
+
+<head><meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="robots" content="index, follow">
+<title>My New Hugo Site</title>
+<meta name="keywords" content="">
+<meta name="description" content="
+本文介绍了JavaScript函数的几个重要概念。首先指出函数是Function类型的实例，箭头函数具有独特限制（不能使用arguments、不能作为构造函数等）。其次说明函数名是指向函数的指针，ES6函数具有name属性。接着详细讲解函数参数机制，包括arguments对象的使用、参数传递方式（按值传递），以及如何在严格模式下处理参数。关于函数重载，文章指出JavaScript不支持传统重载，但可以模拟实现。最后介绍了ES6默认参数的用法，包括基本语法、参数初始化顺序和作用域规则，以及箭头函数使用默认参数的方法。
+箭头函数
+函数实际上是对象，每个函数都是Function类型的实例，而Function也有属性和方法，跟其他引用类型一样。函数名是指向函数对象的指针，而且不一定与函数本身紧密绑定
+箭头函数不能使用arguments、super和new.target，也不能用作构造函数。此外，箭头函数也没有prototype属性
+
+函数名
+函数名就是指向函数的指针，一个函数可以有多个名称，使用不带括号的函数名会访问函数指针，而不是执行函数
+ES6的所有函数对象都会暴露一个只读的name属性，其中包含关于函数的信息。多数情况下，这个属性中保存的就是一个函数标识符，或者说是一个字符串化的变量名。即使函数没有名称，也会如实显示成空字符串，如果它是使用function构造函数创建的，则会标识成anonymous，如果函数是一个获取函数、设置函数，或者使用bind实例化，那么标识符前面会加上一个前缀
+
+函数参数
+ES函数既不关心传入的参数个数，也不关心这些参数的数据类型。
+ES函数的参数在内部表现为一个数组，函数被调用时总会接收一个数组，但函数并不关心这个数组中包含什么。
+在使用function关键字定义函数时，可以在函数内部访问arguments对象，从中取得传进来的每个参数值
+arguments对象是一个类数组对象（不是Array的实例），因此可以使用中括号语法访问其中的元素，而要确定传进来多少个参数，可以访问arguments.length属性
+ES函数的参数只是为了方便才写出来的，并不是必须写出来的，命名参数不会创建让之后的调用必须匹配的函数签名，因为根本不存在验证命名参数的机制
+arguments对象可以跟命名参数一起使用，arguments的值始终会与对应的命名参数同步，但这并不意味着它们都访问同一个内存地址，它们在内存中还是分开的，只不过会保持同步而已。
+对于命名参数而言，如果调用函数时没有传这个参数，那么它的值就是undefined，这就类似于定义了变量但没有初始化
+严格模式下，arguments对象与命名参数不同步，并且在函数中尝试重写arguments对象会导致语法错误
+如果函数是箭头语法定义的，那么传给函数的参数将不能使用arguments关键字访问，而只能通过定义的命名参数访问。虽然箭头函数中没有arguments对象，但可以在包装函数中把它提供给箭头函数
+ES中的所有参数都是按值传递的，不可能按引用传递参数，如果把对象作为参数传递，那么传递的值就是这个对象的引用
+
+函数重载
+ES函数没有签名，因为参数是由包含零个或多个值的数组表示的，自然也就没有重载。如果在ES中定义了两个同名函数，则后定义的会覆盖先定义的。
+可以通过检查参数的类型和数量，然后分别执行不同的逻辑来模拟函数重载
+
+默认参数
+ES5之前，实现默认参数的一种常用方式就是检测某个参数是否等于undefined，如果是则意味着没有传这个参数，那就给它赋一个值
+ES6支持显示定义默认参数，只要在函数定义中的参数后面用=就可以为参数赋一个默认值
+给参数传undefined相当于没有传值，不过这样可以利用多个独立的默认值
+在使用默认参数时，arguments对应的值不反映参数的默认值，只反映传给函数的参数。
+默认参数值并不限于原始值或对象类型，也可以使用调用函数返回的值
+函数默认参数只有在函数被调用时才会求值，不会在函数定义时求值，而且计算默认值的函数只有在调用函数但未传相应参数时才会被调用
+箭头函数同样也可以这样使用默认参数
+给多个参数定义默认值实际上跟使用let关键字顺序声明变量一样，默认参数会按照定义它们的顺序依次被初始化，后定义默认值的参数可以引用先定义的参数。
+参数初始化顺序遵循暂时性死区规则，即前面定义的参数不能引用后面定义的，参数也存在于自己的作用域中，它们不能引用函数体的作用域">
+<meta name="author" content="">
+<link rel="canonical" href="https://example.org/posts/%E7%BA%A2%E5%AE%9D%E4%B9%A6%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/10.1-10.5-%E5%87%BD%E6%95%B0/">
+<link crossorigin="anonymous" href="/assets/css/stylesheet.36819bea596090d8b48cf10d9831382996197aa7e4fc86f792f7c08c9ca4d23b.css" integrity="sha256-NoGb6llgkNi0jPENmDE4KZYZeqfk/Ib3kvfAjJyk0js=" rel="preload stylesheet" as="style">
+<link rel="icon" href="https://example.org/favicon.ico">
+<link rel="icon" type="image/png" sizes="16x16" href="https://example.org/favicon-16x16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="https://example.org/favicon-32x32.png">
+<link rel="apple-touch-icon" href="https://example.org/apple-touch-icon.png">
+<link rel="mask-icon" href="https://example.org/safari-pinned-tab.svg">
+<meta name="theme-color" content="#2e2e33">
+<meta name="msapplication-TileColor" content="#2e2e33">
+<link rel="alternate" hreflang="en" href="https://example.org/posts/%E7%BA%A2%E5%AE%9D%E4%B9%A6%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/10.1-10.5-%E5%87%BD%E6%95%B0/">
+<noscript>
+    <style>
+        #theme-toggle,
+        .top-link {
+            display: none;
+        }
+
+    </style>
+    <style>
+        @media (prefers-color-scheme: dark) {
+            :root {
+                --theme: rgb(29, 30, 32);
+                --entry: rgb(46, 46, 51);
+                --primary: rgb(218, 218, 219);
+                --secondary: rgb(155, 156, 157);
+                --tertiary: rgb(65, 66, 68);
+                --content: rgb(196, 196, 197);
+                --code-block-bg: rgb(46, 46, 51);
+                --code-bg: rgb(55, 56, 62);
+                --border: rgb(51, 51, 51);
+            }
+
+            .list {
+                background: var(--theme);
+            }
+
+            .list:not(.dark)::-webkit-scrollbar-track {
+                background: 0 0;
+            }
+
+            .list:not(.dark)::-webkit-scrollbar-thumb {
+                border-color: var(--theme);
+            }
+        }
+
+    </style>
+</noscript><meta property="og:url" content="https://example.org/posts/%E7%BA%A2%E5%AE%9D%E4%B9%A6%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/10.1-10.5-%E5%87%BD%E6%95%B0/">
+  <meta property="og:site_name" content="My New Hugo Site">
+  <meta property="og:title" content="My New Hugo Site">
+  <meta property="og:description" content=" 本文介绍了JavaScript函数的几个重要概念。首先指出函数是Function类型的实例，箭头函数具有独特限制（不能使用arguments、不能作为构造函数等）。其次说明函数名是指向函数的指针，ES6函数具有name属性。接着详细讲解函数参数机制，包括arguments对象的使用、参数传递方式（按值传递），以及如何在严格模式下处理参数。关于函数重载，文章指出JavaScript不支持传统重载，但可以模拟实现。最后介绍了ES6默认参数的用法，包括基本语法、参数初始化顺序和作用域规则，以及箭头函数使用默认参数的方法。
+箭头函数 函数实际上是对象，每个函数都是Function类型的实例，而Function也有属性和方法，跟其他引用类型一样。函数名是指向函数对象的指针，而且不一定与函数本身紧密绑定
+箭头函数不能使用arguments、super和new.target，也不能用作构造函数。此外，箭头函数也没有prototype属性
+函数名 函数名就是指向函数的指针，一个函数可以有多个名称，使用不带括号的函数名会访问函数指针，而不是执行函数
+ES6的所有函数对象都会暴露一个只读的name属性，其中包含关于函数的信息。多数情况下，这个属性中保存的就是一个函数标识符，或者说是一个字符串化的变量名。即使函数没有名称，也会如实显示成空字符串，如果它是使用function构造函数创建的，则会标识成anonymous，如果函数是一个获取函数、设置函数，或者使用bind实例化，那么标识符前面会加上一个前缀
+函数参数 ES函数既不关心传入的参数个数，也不关心这些参数的数据类型。
+ES函数的参数在内部表现为一个数组，函数被调用时总会接收一个数组，但函数并不关心这个数组中包含什么。
+在使用function关键字定义函数时，可以在函数内部访问arguments对象，从中取得传进来的每个参数值
+arguments对象是一个类数组对象（不是Array的实例），因此可以使用中括号语法访问其中的元素，而要确定传进来多少个参数，可以访问arguments.length属性
+ES函数的参数只是为了方便才写出来的，并不是必须写出来的，命名参数不会创建让之后的调用必须匹配的函数签名，因为根本不存在验证命名参数的机制
+arguments对象可以跟命名参数一起使用，arguments的值始终会与对应的命名参数同步，但这并不意味着它们都访问同一个内存地址，它们在内存中还是分开的，只不过会保持同步而已。
+对于命名参数而言，如果调用函数时没有传这个参数，那么它的值就是undefined，这就类似于定义了变量但没有初始化
+严格模式下，arguments对象与命名参数不同步，并且在函数中尝试重写arguments对象会导致语法错误
+如果函数是箭头语法定义的，那么传给函数的参数将不能使用arguments关键字访问，而只能通过定义的命名参数访问。虽然箭头函数中没有arguments对象，但可以在包装函数中把它提供给箭头函数
+ES中的所有参数都是按值传递的，不可能按引用传递参数，如果把对象作为参数传递，那么传递的值就是这个对象的引用
+函数重载 ES函数没有签名，因为参数是由包含零个或多个值的数组表示的，自然也就没有重载。如果在ES中定义了两个同名函数，则后定义的会覆盖先定义的。
+可以通过检查参数的类型和数量，然后分别执行不同的逻辑来模拟函数重载
+默认参数 ES5之前，实现默认参数的一种常用方式就是检测某个参数是否等于undefined，如果是则意味着没有传这个参数，那就给它赋一个值
+ES6支持显示定义默认参数，只要在函数定义中的参数后面用=就可以为参数赋一个默认值
+给参数传undefined相当于没有传值，不过这样可以利用多个独立的默认值
+在使用默认参数时，arguments对应的值不反映参数的默认值，只反映传给函数的参数。
+默认参数值并不限于原始值或对象类型，也可以使用调用函数返回的值
+函数默认参数只有在函数被调用时才会求值，不会在函数定义时求值，而且计算默认值的函数只有在调用函数但未传相应参数时才会被调用
+箭头函数同样也可以这样使用默认参数
+给多个参数定义默认值实际上跟使用let关键字顺序声明变量一样，默认参数会按照定义它们的顺序依次被初始化，后定义默认值的参数可以引用先定义的参数。
+参数初始化顺序遵循暂时性死区规则，即前面定义的参数不能引用后面定义的，参数也存在于自己的作用域中，它们不能引用函数体的作用域">
+  <meta property="og:locale" content="en-us">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="posts">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="">
+<meta name="twitter:description" content="
+本文介绍了JavaScript函数的几个重要概念。首先指出函数是Function类型的实例，箭头函数具有独特限制（不能使用arguments、不能作为构造函数等）。其次说明函数名是指向函数的指针，ES6函数具有name属性。接着详细讲解函数参数机制，包括arguments对象的使用、参数传递方式（按值传递），以及如何在严格模式下处理参数。关于函数重载，文章指出JavaScript不支持传统重载，但可以模拟实现。最后介绍了ES6默认参数的用法，包括基本语法、参数初始化顺序和作用域规则，以及箭头函数使用默认参数的方法。
+箭头函数
+函数实际上是对象，每个函数都是Function类型的实例，而Function也有属性和方法，跟其他引用类型一样。函数名是指向函数对象的指针，而且不一定与函数本身紧密绑定
+箭头函数不能使用arguments、super和new.target，也不能用作构造函数。此外，箭头函数也没有prototype属性
+
+函数名
+函数名就是指向函数的指针，一个函数可以有多个名称，使用不带括号的函数名会访问函数指针，而不是执行函数
+ES6的所有函数对象都会暴露一个只读的name属性，其中包含关于函数的信息。多数情况下，这个属性中保存的就是一个函数标识符，或者说是一个字符串化的变量名。即使函数没有名称，也会如实显示成空字符串，如果它是使用function构造函数创建的，则会标识成anonymous，如果函数是一个获取函数、设置函数，或者使用bind实例化，那么标识符前面会加上一个前缀
+
+函数参数
+ES函数既不关心传入的参数个数，也不关心这些参数的数据类型。
+ES函数的参数在内部表现为一个数组，函数被调用时总会接收一个数组，但函数并不关心这个数组中包含什么。
+在使用function关键字定义函数时，可以在函数内部访问arguments对象，从中取得传进来的每个参数值
+arguments对象是一个类数组对象（不是Array的实例），因此可以使用中括号语法访问其中的元素，而要确定传进来多少个参数，可以访问arguments.length属性
+ES函数的参数只是为了方便才写出来的，并不是必须写出来的，命名参数不会创建让之后的调用必须匹配的函数签名，因为根本不存在验证命名参数的机制
+arguments对象可以跟命名参数一起使用，arguments的值始终会与对应的命名参数同步，但这并不意味着它们都访问同一个内存地址，它们在内存中还是分开的，只不过会保持同步而已。
+对于命名参数而言，如果调用函数时没有传这个参数，那么它的值就是undefined，这就类似于定义了变量但没有初始化
+严格模式下，arguments对象与命名参数不同步，并且在函数中尝试重写arguments对象会导致语法错误
+如果函数是箭头语法定义的，那么传给函数的参数将不能使用arguments关键字访问，而只能通过定义的命名参数访问。虽然箭头函数中没有arguments对象，但可以在包装函数中把它提供给箭头函数
+ES中的所有参数都是按值传递的，不可能按引用传递参数，如果把对象作为参数传递，那么传递的值就是这个对象的引用
+
+函数重载
+ES函数没有签名，因为参数是由包含零个或多个值的数组表示的，自然也就没有重载。如果在ES中定义了两个同名函数，则后定义的会覆盖先定义的。
+可以通过检查参数的类型和数量，然后分别执行不同的逻辑来模拟函数重载
+
+默认参数
+ES5之前，实现默认参数的一种常用方式就是检测某个参数是否等于undefined，如果是则意味着没有传这个参数，那就给它赋一个值
+ES6支持显示定义默认参数，只要在函数定义中的参数后面用=就可以为参数赋一个默认值
+给参数传undefined相当于没有传值，不过这样可以利用多个独立的默认值
+在使用默认参数时，arguments对应的值不反映参数的默认值，只反映传给函数的参数。
+默认参数值并不限于原始值或对象类型，也可以使用调用函数返回的值
+函数默认参数只有在函数被调用时才会求值，不会在函数定义时求值，而且计算默认值的函数只有在调用函数但未传相应参数时才会被调用
+箭头函数同样也可以这样使用默认参数
+给多个参数定义默认值实际上跟使用let关键字顺序声明变量一样，默认参数会按照定义它们的顺序依次被初始化，后定义默认值的参数可以引用先定义的参数。
+参数初始化顺序遵循暂时性死区规则，即前面定义的参数不能引用后面定义的，参数也存在于自己的作用域中，它们不能引用函数体的作用域">
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position":  1 ,
+      "name": "Posts",
+      "item": "https://example.org/posts/"
+    }, 
+    {
+      "@type": "ListItem",
+      "position":  2 ,
+      "name": "",
+      "item": "https://example.org/posts/%E7%BA%A2%E5%AE%9D%E4%B9%A6%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/10.1-10.5-%E5%87%BD%E6%95%B0/"
+    }
+  ]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "",
+  "name": "",
+  "description": " 本文介绍了JavaScript函数的几个重要概念。首先指出函数是Function类型的实例，箭头函数具有独特限制（不能使用arguments、不能作为构造函数等）。其次说明函数名是指向函数的指针，ES6函数具有name属性。接着详细讲解函数参数机制，包括arguments对象的使用、参数传递方式（按值传递），以及如何在严格模式下处理参数。关于函数重载，文章指出JavaScript不支持传统重载，但可以模拟实现。最后介绍了ES6默认参数的用法，包括基本语法、参数初始化顺序和作用域规则，以及箭头函数使用默认参数的方法。\n箭头函数 函数实际上是对象，每个函数都是Function类型的实例，而Function也有属性和方法，跟其他引用类型一样。函数名是指向函数对象的指针，而且不一定与函数本身紧密绑定\n箭头函数不能使用arguments、super和new.target，也不能用作构造函数。此外，箭头函数也没有prototype属性\n函数名 函数名就是指向函数的指针，一个函数可以有多个名称，使用不带括号的函数名会访问函数指针，而不是执行函数\nES6的所有函数对象都会暴露一个只读的name属性，其中包含关于函数的信息。多数情况下，这个属性中保存的就是一个函数标识符，或者说是一个字符串化的变量名。即使函数没有名称，也会如实显示成空字符串，如果它是使用function构造函数创建的，则会标识成anonymous，如果函数是一个获取函数、设置函数，或者使用bind实例化，那么标识符前面会加上一个前缀\n函数参数 ES函数既不关心传入的参数个数，也不关心这些参数的数据类型。\nES函数的参数在内部表现为一个数组，函数被调用时总会接收一个数组，但函数并不关心这个数组中包含什么。\n在使用function关键字定义函数时，可以在函数内部访问arguments对象，从中取得传进来的每个参数值\narguments对象是一个类数组对象（不是Array的实例），因此可以使用中括号语法访问其中的元素，而要确定传进来多少个参数，可以访问arguments.length属性\nES函数的参数只是为了方便才写出来的，并不是必须写出来的，命名参数不会创建让之后的调用必须匹配的函数签名，因为根本不存在验证命名参数的机制\narguments对象可以跟命名参数一起使用，arguments的值始终会与对应的命名参数同步，但这并不意味着它们都访问同一个内存地址，它们在内存中还是分开的，只不过会保持同步而已。\n对于命名参数而言，如果调用函数时没有传这个参数，那么它的值就是undefined，这就类似于定义了变量但没有初始化\n严格模式下，arguments对象与命名参数不同步，并且在函数中尝试重写arguments对象会导致语法错误\n如果函数是箭头语法定义的，那么传给函数的参数将不能使用arguments关键字访问，而只能通过定义的命名参数访问。虽然箭头函数中没有arguments对象，但可以在包装函数中把它提供给箭头函数\nES中的所有参数都是按值传递的，不可能按引用传递参数，如果把对象作为参数传递，那么传递的值就是这个对象的引用\n函数重载 ES函数没有签名，因为参数是由包含零个或多个值的数组表示的，自然也就没有重载。如果在ES中定义了两个同名函数，则后定义的会覆盖先定义的。\n可以通过检查参数的类型和数量，然后分别执行不同的逻辑来模拟函数重载\n默认参数 ES5之前，实现默认参数的一种常用方式就是检测某个参数是否等于undefined，如果是则意味着没有传这个参数，那就给它赋一个值\nES6支持显示定义默认参数，只要在函数定义中的参数后面用=就可以为参数赋一个默认值\n给参数传undefined相当于没有传值，不过这样可以利用多个独立的默认值\n在使用默认参数时，arguments对应的值不反映参数的默认值，只反映传给函数的参数。\n默认参数值并不限于原始值或对象类型，也可以使用调用函数返回的值\n函数默认参数只有在函数被调用时才会求值，不会在函数定义时求值，而且计算默认值的函数只有在调用函数但未传相应参数时才会被调用\n箭头函数同样也可以这样使用默认参数\n给多个参数定义默认值实际上跟使用let关键字顺序声明变量一样，默认参数会按照定义它们的顺序依次被初始化，后定义默认值的参数可以引用先定义的参数。\n参数初始化顺序遵循暂时性死区规则，即前面定义的参数不能引用后面定义的，参数也存在于自己的作用域中，它们不能引用函数体的作用域\n",
+  "keywords": [
+    
+  ],
+  "articleBody": " 本文介绍了JavaScript函数的几个重要概念。首先指出函数是Function类型的实例，箭头函数具有独特限制（不能使用arguments、不能作为构造函数等）。其次说明函数名是指向函数的指针，ES6函数具有name属性。接着详细讲解函数参数机制，包括arguments对象的使用、参数传递方式（按值传递），以及如何在严格模式下处理参数。关于函数重载，文章指出JavaScript不支持传统重载，但可以模拟实现。最后介绍了ES6默认参数的用法，包括基本语法、参数初始化顺序和作用域规则，以及箭头函数使用默认参数的方法。\n箭头函数 函数实际上是对象，每个函数都是Function类型的实例，而Function也有属性和方法，跟其他引用类型一样。函数名是指向函数对象的指针，而且不一定与函数本身紧密绑定\n箭头函数不能使用arguments、super和new.target，也不能用作构造函数。此外，箭头函数也没有prototype属性\n函数名 函数名就是指向函数的指针，一个函数可以有多个名称，使用不带括号的函数名会访问函数指针，而不是执行函数\nES6的所有函数对象都会暴露一个只读的name属性，其中包含关于函数的信息。多数情况下，这个属性中保存的就是一个函数标识符，或者说是一个字符串化的变量名。即使函数没有名称，也会如实显示成空字符串，如果它是使用function构造函数创建的，则会标识成anonymous，如果函数是一个获取函数、设置函数，或者使用bind实例化，那么标识符前面会加上一个前缀\n函数参数 ES函数既不关心传入的参数个数，也不关心这些参数的数据类型。\nES函数的参数在内部表现为一个数组，函数被调用时总会接收一个数组，但函数并不关心这个数组中包含什么。\n在使用function关键字定义函数时，可以在函数内部访问arguments对象，从中取得传进来的每个参数值\narguments对象是一个类数组对象（不是Array的实例），因此可以使用中括号语法访问其中的元素，而要确定传进来多少个参数，可以访问arguments.length属性\nES函数的参数只是为了方便才写出来的，并不是必须写出来的，命名参数不会创建让之后的调用必须匹配的函数签名，因为根本不存在验证命名参数的机制\narguments对象可以跟命名参数一起使用，arguments的值始终会与对应的命名参数同步，但这并不意味着它们都访问同一个内存地址，它们在内存中还是分开的，只不过会保持同步而已。\n对于命名参数而言，如果调用函数时没有传这个参数，那么它的值就是undefined，这就类似于定义了变量但没有初始化\n严格模式下，arguments对象与命名参数不同步，并且在函数中尝试重写arguments对象会导致语法错误\n如果函数是箭头语法定义的，那么传给函数的参数将不能使用arguments关键字访问，而只能通过定义的命名参数访问。虽然箭头函数中没有arguments对象，但可以在包装函数中把它提供给箭头函数\nES中的所有参数都是按值传递的，不可能按引用传递参数，如果把对象作为参数传递，那么传递的值就是这个对象的引用\n函数重载 ES函数没有签名，因为参数是由包含零个或多个值的数组表示的，自然也就没有重载。如果在ES中定义了两个同名函数，则后定义的会覆盖先定义的。\n可以通过检查参数的类型和数量，然后分别执行不同的逻辑来模拟函数重载\n默认参数 ES5之前，实现默认参数的一种常用方式就是检测某个参数是否等于undefined，如果是则意味着没有传这个参数，那就给它赋一个值\nES6支持显示定义默认参数，只要在函数定义中的参数后面用=就可以为参数赋一个默认值\n给参数传undefined相当于没有传值，不过这样可以利用多个独立的默认值\n在使用默认参数时，arguments对应的值不反映参数的默认值，只反映传给函数的参数。\n默认参数值并不限于原始值或对象类型，也可以使用调用函数返回的值\n函数默认参数只有在函数被调用时才会求值，不会在函数定义时求值，而且计算默认值的函数只有在调用函数但未传相应参数时才会被调用\n箭头函数同样也可以这样使用默认参数\n给多个参数定义默认值实际上跟使用let关键字顺序声明变量一样，默认参数会按照定义它们的顺序依次被初始化，后定义默认值的参数可以引用先定义的参数。\n参数初始化顺序遵循暂时性死区规则，即前面定义的参数不能引用后面定义的，参数也存在于自己的作用域中，它们不能引用函数体的作用域\n",
+  "wordCount" : "31",
+  "inLanguage": "en",
+  "datePublished": "0001-01-01T00:00:00Z",
+  "dateModified": "0001-01-01T00:00:00Z",
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://example.org/posts/%E7%BA%A2%E5%AE%9D%E4%B9%A6%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/10.1-10.5-%E5%87%BD%E6%95%B0/"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "My New Hugo Site",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://example.org/favicon.ico"
+    }
+  }
+}
+</script>
+</head>
+
+<body class="" id="top">
+<script>
+    if (localStorage.getItem("pref-theme") === "dark") {
+        document.body.classList.add('dark');
+    } else if (localStorage.getItem("pref-theme") === "light") {
+        document.body.classList.remove('dark')
+    } else if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+        document.body.classList.add('dark');
+    }
+
+</script>
+
+<header class="header">
+    <nav class="nav">
+        <div class="logo">
+            <a href="https://example.org/" accesskey="h" title="My New Hugo Site (Alt + H)">My New Hugo Site</a>
+            <div class="logo-switches">
+                <button id="theme-toggle" accesskey="t" title="(Alt + T)" aria-label="Toggle theme">
+                    <svg id="moon" xmlns="http://www.w3.org/2000/svg" width="24" height="18" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                    </svg>
+                    <svg id="sun" xmlns="http://www.w3.org/2000/svg" width="24" height="18" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <circle cx="12" cy="12" r="5"></circle>
+                        <line x1="12" y1="1" x2="12" y2="3"></line>
+                        <line x1="12" y1="21" x2="12" y2="23"></line>
+                        <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                        <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                        <line x1="1" y1="12" x2="3" y2="12"></line>
+                        <line x1="21" y1="12" x2="23" y2="12"></line>
+                        <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                        <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+                    </svg>
+                </button>
+            </div>
+        </div>
+        <ul id="menu">
+        </ul>
+    </nav>
+</header>
+<main class="main">
+
+<article class="post-single">
+  <header class="post-header">
+    
+    <h1 class="post-title entry-hint-parent">
+      
+    </h1>
+    <div class="post-meta">
+
+</div>
+  </header> 
+  <div class="post-content"><blockquote>
+<p>本文介绍了JavaScript函数的几个重要概念。首先指出函数是Function类型的实例，箭头函数具有独特限制（不能使用arguments、不能作为构造函数等）。其次说明函数名是指向函数的指针，ES6函数具有name属性。接着详细讲解函数参数机制，包括arguments对象的使用、参数传递方式（按值传递），以及如何在严格模式下处理参数。关于函数重载，文章指出JavaScript不支持传统重载，但可以模拟实现。最后介绍了ES6默认参数的用法，包括基本语法、参数初始化顺序和作用域规则，以及箭头函数使用默认参数的方法。</p></blockquote>
+<h2 id="箭头函数">箭头函数<a hidden class="anchor" aria-hidden="true" href="#箭头函数">#</a></h2>
+<p>函数实际上是对象，每个函数都是Function类型的实例，而Function也有属性和方法，跟其他引用类型一样。函数名是指向函数对象的指针，而且不一定与函数本身紧密绑定</p>
+<p>箭头函数不能使用arguments、super和new.target，也不能用作构造函数。此外，箭头函数也没有prototype属性</p>
+<hr>
+<h2 id="函数名">函数名<a hidden class="anchor" aria-hidden="true" href="#函数名">#</a></h2>
+<p>函数名就是指向函数的指针，一个函数可以有多个名称，使用不带括号的函数名会访问函数指针，而不是执行函数</p>
+<p>ES6的所有函数对象都会暴露一个只读的name属性，其中包含关于函数的信息。多数情况下，这个属性中保存的就是一个函数标识符，或者说是一个字符串化的变量名。即使函数没有名称，也会如实显示成空字符串，如果它是使用function构造函数创建的，则会标识成anonymous，如果函数是一个获取函数、设置函数，或者使用bind实例化，那么标识符前面会加上一个前缀</p>
+<hr>
+<h2 id="函数参数">函数参数<a hidden class="anchor" aria-hidden="true" href="#函数参数">#</a></h2>
+<p>ES函数既不关心传入的参数个数，也不关心这些参数的数据类型。</p>
+<p>ES函数的参数在内部表现为一个数组，函数被调用时总会接收一个数组，但函数并不关心这个数组中包含什么。</p>
+<p>在使用function关键字定义函数时，可以在函数内部访问arguments对象，从中取得传进来的每个参数值</p>
+<p>arguments对象是一个类数组对象（不是Array的实例），因此可以使用中括号语法访问其中的元素，而要确定传进来多少个参数，可以访问arguments.length属性</p>
+<p>ES函数的参数只是为了方便才写出来的，并不是必须写出来的，命名参数不会创建让之后的调用必须匹配的函数签名，因为根本不存在验证命名参数的机制</p>
+<p>arguments对象可以跟命名参数一起使用，arguments的值始终会与对应的命名参数同步，但这并不意味着它们都访问同一个内存地址，它们在内存中还是分开的，只不过会保持同步而已。</p>
+<p>对于命名参数而言，如果调用函数时没有传这个参数，那么它的值就是undefined，这就类似于定义了变量但没有初始化</p>
+<p>严格模式下，arguments对象与命名参数不同步，并且在函数中尝试重写arguments对象会导致语法错误</p>
+<p>如果函数是箭头语法定义的，那么传给函数的参数将不能使用arguments关键字访问，而只能通过定义的命名参数访问。虽然箭头函数中没有arguments对象，但可以在包装函数中把它提供给箭头函数</p>
+<p>ES中的所有参数都是按值传递的，不可能按引用传递参数，如果把对象作为参数传递，那么传递的值就是这个对象的引用</p>
+<hr>
+<h2 id="函数重载">函数重载<a hidden class="anchor" aria-hidden="true" href="#函数重载">#</a></h2>
+<p>ES函数没有签名，因为参数是由包含零个或多个值的数组表示的，自然也就没有重载。如果在ES中定义了两个同名函数，则后定义的会覆盖先定义的。</p>
+<p>可以通过检查参数的类型和数量，然后分别执行不同的逻辑来模拟函数重载</p>
+<hr>
+<h2 id="默认参数">默认参数<a hidden class="anchor" aria-hidden="true" href="#默认参数">#</a></h2>
+<p>ES5之前，实现默认参数的一种常用方式就是检测某个参数是否等于undefined，如果是则意味着没有传这个参数，那就给它赋一个值</p>
+<p>ES6支持显示定义默认参数，只要在函数定义中的参数后面用=就可以为参数赋一个默认值</p>
+<p>给参数传undefined相当于没有传值，不过这样可以利用多个独立的默认值</p>
+<p>在使用默认参数时，arguments对应的值不反映参数的默认值，只反映传给函数的参数。</p>
+<p>默认参数值并不限于原始值或对象类型，也可以使用调用函数返回的值</p>
+<p>函数默认参数只有在函数被调用时才会求值，不会在函数定义时求值，而且计算默认值的函数只有在调用函数但未传相应参数时才会被调用</p>
+<p>箭头函数同样也可以这样使用默认参数</p>
+<p>给多个参数定义默认值实际上跟使用let关键字顺序声明变量一样，默认参数会按照定义它们的顺序依次被初始化，后定义默认值的参数可以引用先定义的参数。</p>
+<p>参数初始化顺序遵循暂时性死区规则，即前面定义的参数不能引用后面定义的，参数也存在于自己的作用域中，它们不能引用函数体的作用域</p>
+
+
+  </div>
+
+  <footer class="post-footer">
+    <ul class="post-tags">
+    </ul>
+  </footer>
+</article>
+    </main>
+    
+<footer class="footer">
+        <span>&copy; 2025 <a href="https://example.org/">My New Hugo Site</a></span> · 
+
+    <span>
+        Powered by
+        <a href="https://gohugo.io/" rel="noopener noreferrer" target="_blank">Hugo</a> &
+        <a href="https://github.com/adityatelange/hugo-PaperMod/" rel="noopener" target="_blank">PaperMod</a>
+    </span>
+</footer>
+<a href="#top" aria-label="go to top" title="Go to Top (Alt + G)" class="top-link" id="top-link" accesskey="g">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 12 6" fill="currentColor">
+        <path d="M12 6H0l6-6z" />
+    </svg>
+</a>
+
+<script>
+    let menu = document.getElementById('menu')
+    if (menu) {
+        menu.scrollLeft = localStorage.getItem("menu-scroll-position");
+        menu.onscroll = function () {
+            localStorage.setItem("menu-scroll-position", menu.scrollLeft);
+        }
+    }
+
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener("click", function (e) {
+            e.preventDefault();
+            var id = this.getAttribute("href").substr(1);
+            if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView({
+                    behavior: "smooth"
+                });
+            } else {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView();
+            }
+            if (id === "top") {
+                history.replaceState(null, null, " ");
+            } else {
+                history.pushState(null, null, `#${id}`);
+            }
+        });
+    });
+
+</script>
+<script>
+    var mybutton = document.getElementById("top-link");
+    window.onscroll = function () {
+        if (document.body.scrollTop > 800 || document.documentElement.scrollTop > 800) {
+            mybutton.style.visibility = "visible";
+            mybutton.style.opacity = "1";
+        } else {
+            mybutton.style.visibility = "hidden";
+            mybutton.style.opacity = "0";
+        }
+    };
+
+</script>
+<script>
+    document.getElementById("theme-toggle").addEventListener("click", () => {
+        if (document.body.className.includes("dark")) {
+            document.body.classList.remove('dark');
+            localStorage.setItem("pref-theme", 'light');
+        } else {
+            document.body.classList.add('dark');
+            localStorage.setItem("pref-theme", 'dark');
+        }
+    })
+
+</script>
+</body>
+
+</html>

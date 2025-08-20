@@ -1,0 +1,559 @@
+<!DOCTYPE html>
+<html lang="en" dir="auto">
+
+<head><meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="robots" content="index, follow">
+<title>My New Hugo Site</title>
+<meta name="keywords" content="">
+<meta name="description" content="一、类型变量
+类型变量是泛型的 “灵魂”，用于在类型层面建立关联（而非值层面），解决 “同一份逻辑适配多种类型” 的问题。
+基本用法
+// 定义泛型函数：类型变量&lt;Type&gt;关联输入与输出类型
+function identity&lt;Type&gt;(arg: Type): Type {
+  return arg;
+}
+
+// 两种调用方式
+let output1 = identity&lt;string&gt;(&#34;myString&#34;); // 显式指定类型参数
+let output2 = identity(42); // 类型推断（推荐）：编译器自动推断Type为number
+
+核心价值：避免重复编写不同类型的同名函数（如identityString、identityNumber），同时保持类型安全（对比any：any会丢失类型关联，泛型则保留输入与输出的类型一致性）。
+类型推断：编译器可通过传入的值自动推断类型参数，简化代码。复杂场景下若推断失败，需显式指定类型。
+类型约束：函数体内必须正确使用泛型参数（视为 “任意类型” 处理）。
+
+二、泛型函数的类型定义
+泛型函数的类型与非泛型函数类似，需先声明类型参数，有多种表达方式：
+
+
+直接作为函数类型
+let myIdentity: &lt;Type&gt;(arg: Type) =&gt; Type = identity;
+
+
+使用不同名称的类型变量（只要数量和使用方式一致）
+let myIdentity: &lt;Input&gt;(arg: Input) =&gt; Input = identity; // 合法：Input与Type作用相同
+
+
+对象字面量的调用签名
+let myIdentity: { &lt;Type&gt;(arg: Type): Type } = identity;
+
+
+泛型接口
+// 接口内声明泛型调用签名
+interface GenericIdentityFn {
+  &lt;Type&gt;(arg: Type): Type;
+}
+let myIdentity: GenericIdentityFn = identity;
+
+// 接口本身泛型化（更常用）
+interface GenericIdentityFn&lt;Type&gt; {
+  (arg: Type): Type;
+}
+let myIdentity: GenericIdentityFn&lt;number&gt; = identity; // 绑定类型参数为number
+
+
+三、泛型类
+泛型类在类名后通过&lt;&gt;声明类型参数，确保类的所有实例属性使用相同类型。
+基本用法
+class GenericNumber&lt;NumType&gt; {
+  zeroValue: NumType; // 实例属性使用泛型类型
+  add: (x: NumType, y: NumType) =&gt; NumType; // 方法参数与返回值使用泛型类型
+}
+
+// 实例化时指定类型参数为number
+let myGenericNumber = new GenericNumber&lt;number&gt;();
+myGenericNumber.zeroValue = 0;
+myGenericNumber.add = (x, y) =&gt; x &#43; y;
+注意点
+
+
+静态成员限制：泛型类的类型参数仅作用于实例端，静态成员不能使用类的类型参数，静态成员属于类本身，而非实例，无法关联实例的类型变量。">
+<meta name="author" content="">
+<link rel="canonical" href="https://example.org/posts/ts/06--%E6%B3%9B%E5%9E%8B/">
+<link crossorigin="anonymous" href="/assets/css/stylesheet.36819bea596090d8b48cf10d9831382996197aa7e4fc86f792f7c08c9ca4d23b.css" integrity="sha256-NoGb6llgkNi0jPENmDE4KZYZeqfk/Ib3kvfAjJyk0js=" rel="preload stylesheet" as="style">
+<link rel="icon" href="https://example.org/favicon.ico">
+<link rel="icon" type="image/png" sizes="16x16" href="https://example.org/favicon-16x16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="https://example.org/favicon-32x32.png">
+<link rel="apple-touch-icon" href="https://example.org/apple-touch-icon.png">
+<link rel="mask-icon" href="https://example.org/safari-pinned-tab.svg">
+<meta name="theme-color" content="#2e2e33">
+<meta name="msapplication-TileColor" content="#2e2e33">
+<link rel="alternate" hreflang="en" href="https://example.org/posts/ts/06--%E6%B3%9B%E5%9E%8B/">
+<noscript>
+    <style>
+        #theme-toggle,
+        .top-link {
+            display: none;
+        }
+
+    </style>
+    <style>
+        @media (prefers-color-scheme: dark) {
+            :root {
+                --theme: rgb(29, 30, 32);
+                --entry: rgb(46, 46, 51);
+                --primary: rgb(218, 218, 219);
+                --secondary: rgb(155, 156, 157);
+                --tertiary: rgb(65, 66, 68);
+                --content: rgb(196, 196, 197);
+                --code-block-bg: rgb(46, 46, 51);
+                --code-bg: rgb(55, 56, 62);
+                --border: rgb(51, 51, 51);
+            }
+
+            .list {
+                background: var(--theme);
+            }
+
+            .list:not(.dark)::-webkit-scrollbar-track {
+                background: 0 0;
+            }
+
+            .list:not(.dark)::-webkit-scrollbar-thumb {
+                border-color: var(--theme);
+            }
+        }
+
+    </style>
+</noscript><meta property="og:url" content="https://example.org/posts/ts/06--%E6%B3%9B%E5%9E%8B/">
+  <meta property="og:site_name" content="My New Hugo Site">
+  <meta property="og:title" content="My New Hugo Site">
+  <meta property="og:description" content="一、类型变量 类型变量是泛型的 “灵魂”，用于在类型层面建立关联（而非值层面），解决 “同一份逻辑适配多种类型” 的问题。
+基本用法 // 定义泛型函数：类型变量&lt;Type&gt;关联输入与输出类型 function identity&lt;Type&gt;(arg: Type): Type { return arg; } // 两种调用方式 let output1 = identity&lt;string&gt;(&#34;myString&#34;); // 显式指定类型参数 let output2 = identity(42); // 类型推断（推荐）：编译器自动推断Type为number 核心价值：避免重复编写不同类型的同名函数（如identityString、identityNumber），同时保持类型安全（对比any：any会丢失类型关联，泛型则保留输入与输出的类型一致性）。 类型推断：编译器可通过传入的值自动推断类型参数，简化代码。复杂场景下若推断失败，需显式指定类型。 类型约束：函数体内必须正确使用泛型参数（视为 “任意类型” 处理）。 二、泛型函数的类型定义 泛型函数的类型与非泛型函数类似，需先声明类型参数，有多种表达方式：
+直接作为函数类型
+let myIdentity: &lt;Type&gt;(arg: Type) =&gt; Type = identity; 使用不同名称的类型变量（只要数量和使用方式一致）
+let myIdentity: &lt;Input&gt;(arg: Input) =&gt; Input = identity; // 合法：Input与Type作用相同 对象字面量的调用签名
+let myIdentity: { &lt;Type&gt;(arg: Type): Type } = identity; 泛型接口
+// 接口内声明泛型调用签名 interface GenericIdentityFn { &lt;Type&gt;(arg: Type): Type; } let myIdentity: GenericIdentityFn = identity; // 接口本身泛型化（更常用） interface GenericIdentityFn&lt;Type&gt; { (arg: Type): Type; } let myIdentity: GenericIdentityFn&lt;number&gt; = identity; // 绑定类型参数为number 三、泛型类 泛型类在类名后通过&lt;&gt;声明类型参数，确保类的所有实例属性使用相同类型。
+基本用法 class GenericNumber&lt;NumType&gt; { zeroValue: NumType; // 实例属性使用泛型类型 add: (x: NumType, y: NumType) =&gt; NumType; // 方法参数与返回值使用泛型类型 } // 实例化时指定类型参数为number let myGenericNumber = new GenericNumber&lt;number&gt;(); myGenericNumber.zeroValue = 0; myGenericNumber.add = (x, y) =&gt; x &#43; y; 注意点 静态成员限制：泛型类的类型参数仅作用于实例端，静态成员不能使用类的类型参数，静态成员属于类本身，而非实例，无法关联实例的类型变量。">
+  <meta property="og:locale" content="en-us">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="posts">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="">
+<meta name="twitter:description" content="一、类型变量
+类型变量是泛型的 “灵魂”，用于在类型层面建立关联（而非值层面），解决 “同一份逻辑适配多种类型” 的问题。
+基本用法
+// 定义泛型函数：类型变量&lt;Type&gt;关联输入与输出类型
+function identity&lt;Type&gt;(arg: Type): Type {
+  return arg;
+}
+
+// 两种调用方式
+let output1 = identity&lt;string&gt;(&#34;myString&#34;); // 显式指定类型参数
+let output2 = identity(42); // 类型推断（推荐）：编译器自动推断Type为number
+
+核心价值：避免重复编写不同类型的同名函数（如identityString、identityNumber），同时保持类型安全（对比any：any会丢失类型关联，泛型则保留输入与输出的类型一致性）。
+类型推断：编译器可通过传入的值自动推断类型参数，简化代码。复杂场景下若推断失败，需显式指定类型。
+类型约束：函数体内必须正确使用泛型参数（视为 “任意类型” 处理）。
+
+二、泛型函数的类型定义
+泛型函数的类型与非泛型函数类似，需先声明类型参数，有多种表达方式：
+
+
+直接作为函数类型
+let myIdentity: &lt;Type&gt;(arg: Type) =&gt; Type = identity;
+
+
+使用不同名称的类型变量（只要数量和使用方式一致）
+let myIdentity: &lt;Input&gt;(arg: Input) =&gt; Input = identity; // 合法：Input与Type作用相同
+
+
+对象字面量的调用签名
+let myIdentity: { &lt;Type&gt;(arg: Type): Type } = identity;
+
+
+泛型接口
+// 接口内声明泛型调用签名
+interface GenericIdentityFn {
+  &lt;Type&gt;(arg: Type): Type;
+}
+let myIdentity: GenericIdentityFn = identity;
+
+// 接口本身泛型化（更常用）
+interface GenericIdentityFn&lt;Type&gt; {
+  (arg: Type): Type;
+}
+let myIdentity: GenericIdentityFn&lt;number&gt; = identity; // 绑定类型参数为number
+
+
+三、泛型类
+泛型类在类名后通过&lt;&gt;声明类型参数，确保类的所有实例属性使用相同类型。
+基本用法
+class GenericNumber&lt;NumType&gt; {
+  zeroValue: NumType; // 实例属性使用泛型类型
+  add: (x: NumType, y: NumType) =&gt; NumType; // 方法参数与返回值使用泛型类型
+}
+
+// 实例化时指定类型参数为number
+let myGenericNumber = new GenericNumber&lt;number&gt;();
+myGenericNumber.zeroValue = 0;
+myGenericNumber.add = (x, y) =&gt; x &#43; y;
+注意点
+
+
+静态成员限制：泛型类的类型参数仅作用于实例端，静态成员不能使用类的类型参数，静态成员属于类本身，而非实例，无法关联实例的类型变量。">
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position":  1 ,
+      "name": "Posts",
+      "item": "https://example.org/posts/"
+    }, 
+    {
+      "@type": "ListItem",
+      "position":  2 ,
+      "name": "",
+      "item": "https://example.org/posts/ts/06--%E6%B3%9B%E5%9E%8B/"
+    }
+  ]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "",
+  "name": "",
+  "description": "一、类型变量 类型变量是泛型的 “灵魂”，用于在类型层面建立关联（而非值层面），解决 “同一份逻辑适配多种类型” 的问题。\n基本用法 // 定义泛型函数：类型变量\u0026lt;Type\u0026gt;关联输入与输出类型 function identity\u0026lt;Type\u0026gt;(arg: Type): Type { return arg; } // 两种调用方式 let output1 = identity\u0026lt;string\u0026gt;(\u0026#34;myString\u0026#34;); // 显式指定类型参数 let output2 = identity(42); // 类型推断（推荐）：编译器自动推断Type为number 核心价值：避免重复编写不同类型的同名函数（如identityString、identityNumber），同时保持类型安全（对比any：any会丢失类型关联，泛型则保留输入与输出的类型一致性）。 类型推断：编译器可通过传入的值自动推断类型参数，简化代码。复杂场景下若推断失败，需显式指定类型。 类型约束：函数体内必须正确使用泛型参数（视为 “任意类型” 处理）。 二、泛型函数的类型定义 泛型函数的类型与非泛型函数类似，需先声明类型参数，有多种表达方式：\n直接作为函数类型\nlet myIdentity: \u0026lt;Type\u0026gt;(arg: Type) =\u0026gt; Type = identity; 使用不同名称的类型变量（只要数量和使用方式一致）\nlet myIdentity: \u0026lt;Input\u0026gt;(arg: Input) =\u0026gt; Input = identity; // 合法：Input与Type作用相同 对象字面量的调用签名\nlet myIdentity: { \u0026lt;Type\u0026gt;(arg: Type): Type } = identity; 泛型接口\n// 接口内声明泛型调用签名 interface GenericIdentityFn { \u0026lt;Type\u0026gt;(arg: Type): Type; } let myIdentity: GenericIdentityFn = identity; // 接口本身泛型化（更常用） interface GenericIdentityFn\u0026lt;Type\u0026gt; { (arg: Type): Type; } let myIdentity: GenericIdentityFn\u0026lt;number\u0026gt; = identity; // 绑定类型参数为number 三、泛型类 泛型类在类名后通过\u0026lt;\u0026gt;声明类型参数，确保类的所有实例属性使用相同类型。\n基本用法 class GenericNumber\u0026lt;NumType\u0026gt; { zeroValue: NumType; // 实例属性使用泛型类型 add: (x: NumType, y: NumType) =\u0026gt; NumType; // 方法参数与返回值使用泛型类型 } // 实例化时指定类型参数为number let myGenericNumber = new GenericNumber\u0026lt;number\u0026gt;(); myGenericNumber.zeroValue = 0; myGenericNumber.add = (x, y) =\u0026gt; x + y; 注意点 静态成员限制：泛型类的类型参数仅作用于实例端，静态成员不能使用类的类型参数，静态成员属于类本身，而非实例，无法关联实例的类型变量。\n",
+  "keywords": [
+    
+  ],
+  "articleBody": "一、类型变量 类型变量是泛型的 “灵魂”，用于在类型层面建立关联（而非值层面），解决 “同一份逻辑适配多种类型” 的问题。\n基本用法 // 定义泛型函数：类型变量关联输入与输出类型 function identity\u003cType\u003e(arg: Type): Type { return arg; } // 两种调用方式 let output1 = identity\u003cstring\u003e(\"myString\"); // 显式指定类型参数 let output2 = identity(42); // 类型推断（推荐）：编译器自动推断Type为number 核心价值：避免重复编写不同类型的同名函数（如identityString、identityNumber），同时保持类型安全（对比any：any会丢失类型关联，泛型则保留输入与输出的类型一致性）。 类型推断：编译器可通过传入的值自动推断类型参数，简化代码。复杂场景下若推断失败，需显式指定类型。 类型约束：函数体内必须正确使用泛型参数（视为 “任意类型” 处理）。 二、泛型函数的类型定义 泛型函数的类型与非泛型函数类似，需先声明类型参数，有多种表达方式：\n直接作为函数类型\nlet myIdentity: \u003cType\u003e(arg: Type) =\u003e Type = identity; 使用不同名称的类型变量（只要数量和使用方式一致）\nlet myIdentity: \u003cInput\u003e(arg: Input) =\u003e Input = identity; // 合法：Input与Type作用相同 对象字面量的调用签名\nlet myIdentity: { \u003cType\u003e(arg: Type): Type } = identity; 泛型接口\n// 接口内声明泛型调用签名 interface GenericIdentityFn { \u003cType\u003e(arg: Type): Type; } let myIdentity: GenericIdentityFn = identity; // 接口本身泛型化（更常用） interface GenericIdentityFn\u003cType\u003e { (arg: Type): Type; } let myIdentity: GenericIdentityFn\u003cnumber\u003e = identity; // 绑定类型参数为number 三、泛型类 泛型类在类名后通过\u003c\u003e声明类型参数，确保类的所有实例属性使用相同类型。\n基本用法 class GenericNumber\u003cNumType\u003e { zeroValue: NumType; // 实例属性使用泛型类型 add: (x: NumType, y: NumType) =\u003e NumType; // 方法参数与返回值使用泛型类型 } // 实例化时指定类型参数为number let myGenericNumber = new GenericNumber\u003cnumber\u003e(); myGenericNumber.zeroValue = 0; myGenericNumber.add = (x, y) =\u003e x + y; 注意点 静态成员限制：泛型类的类型参数仅作用于实例端，静态成员不能使用类的类型参数，静态成员属于类本身，而非实例，无法关联实例的类型变量。\nclass MyClass\u003cT\u003e { static prop: T; // 错误：静态成员不能使用类型参数T } 四、类型约束 通过extends关键字限制类型参数的范围，确保泛型参数具有特定属性或满足特定条件，避免函数体内因缺乏属性而报错。\n1. 基础约束 // 定义约束接口：必须包含length属性 interface Lengthwise { length: number; } // 泛型参数Type必须满足Lengthwise约束 function loggingIdentity\u003cType extends Lengthwise\u003e(arg: Type): Type { console.log(arg.length); // 合法：确保有length属性 return arg; } loggingIdentity(\"hello\"); // 合法：string有length属性 loggingIdentity(123); // 错误：number无length属性 2. 相互约束（类型参数受另一个类型参数约束） // Key必须是Type的键（Key extends keyof Type） function getProperty\u003cType, Key extends keyof Type\u003e(obj: Type, key: Key) { return obj[key]; // 安全：key一定是obj的有效键 } let x = { a: 1, b: 2 }; getProperty(x, \"a\"); // 合法：\"a\"是x的键 getProperty(x, \"m\"); // 错误：\"m\"不是x的键 keyof与约束结合是实现 “类型安全的属性访问” 的核心\n五、泛型工厂函数与类类型 创建泛型工厂函数时，需通过构造函数引用类类型，使用{ new (): Type }表示 “可实例化的类”。\n// 工厂函数：接收类构造函数，返回实例 function create\u003cType\u003e(c: { new (): Type }): Type { return new c(); } // 示例：用于任何具有无参构造函数的类 class Foo { constructor() {} } const foo = create(Foo); // foo类型为Foo 扩展：支持带参数的构造函数：\nfunction createWithArgs\u003cT\u003e(ctor: { new (name: string): T }, name: string): T { return new ctor(name); } class Person { constructor(public name: string) {} } const person = createWithArgs(Person, \"Bob\"); // person.name为\"Bob\" 六、泛型参数默认值 为类型参数指定默认值，使其成为 “可选参数”，未显式指定时使用默认值（类似函数参数默认值）。\n基本用法 // T默认值为HTMLDivElement，U默认值为T[] declare function create\u003c T extends HTMLElement = HTMLDivElement, U extends HTMLElement[] = T[] \u003e(element?: T, children?: U): Container\u003cT, U\u003e; const div = create(); // T=HTMLDivElement，U=HTMLDivElement[] const p = create(new HTMLParagraphElement()); // T=HTMLParagraphElement，U=HTMLParagraphElement[] 规则 带默认值的类型参数视为可选。 必需的类型参数不能跟在可选参数后。 默认类型必须满足类型参数的约束。 未指定的类型参数解析为默认值。 合并类 / 接口时，可给现有类型参数加默认值，或新增带默认值的类型参数。 七、方差 方差描述泛型类型在类型参数变化时的兼容性，分为协变、逆变和不变，TypeScript 会自动推断。\n1. 协变 关系与类型参数一致：若T extends U，则Producer extends Producer。\n示例：返回值类型为泛型参数时通常是协变。\ninterface Producer\u003cout T\u003e { make(): T; } // out表示协变（可省略，TypeScript自动推断） // Cat extends Animal → Producer extends Producer 2. 逆变 关系与类型参数相反：若T extends U，则Consumer extends Consumer。\n示例：参数类型为泛型参数时通常是逆变。\ninterface Consumer\u003cin T\u003e { consume(arg: T): void; } // in表示逆变（可省略） // Cat extends Animal → Consumer extends Consumer 3. 不变 仅当类型参数完全相同时才兼容：若T extends U，ProducerConsumer与ProducerConsumer互不兼容。\n示例：同时包含协变和逆变成员的类型是不变的。\ninterface ProducerConsumer\u003cT\u003e { make(): T; // 协变 consume(arg: T): void; // 逆变 → 整体不变 } 方差注释注意事项 TypeScript 自动推断方差，几乎不需要手动注释。 注释（in/out）仅在基于实例的比较中有效，不改变结构类型行为。 禁止编写与结构行为不符的注释（如给接收T参数的接口标out）。 仅在调试或极端性能优化时临时使用，调试后应删除。 ",
+  "wordCount" : "417",
+  "inLanguage": "en",
+  "datePublished": "0001-01-01T00:00:00Z",
+  "dateModified": "0001-01-01T00:00:00Z",
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://example.org/posts/ts/06--%E6%B3%9B%E5%9E%8B/"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "My New Hugo Site",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://example.org/favicon.ico"
+    }
+  }
+}
+</script>
+</head>
+
+<body class="" id="top">
+<script>
+    if (localStorage.getItem("pref-theme") === "dark") {
+        document.body.classList.add('dark');
+    } else if (localStorage.getItem("pref-theme") === "light") {
+        document.body.classList.remove('dark')
+    } else if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+        document.body.classList.add('dark');
+    }
+
+</script>
+
+<header class="header">
+    <nav class="nav">
+        <div class="logo">
+            <a href="https://example.org/" accesskey="h" title="My New Hugo Site (Alt + H)">My New Hugo Site</a>
+            <div class="logo-switches">
+                <button id="theme-toggle" accesskey="t" title="(Alt + T)" aria-label="Toggle theme">
+                    <svg id="moon" xmlns="http://www.w3.org/2000/svg" width="24" height="18" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                    </svg>
+                    <svg id="sun" xmlns="http://www.w3.org/2000/svg" width="24" height="18" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <circle cx="12" cy="12" r="5"></circle>
+                        <line x1="12" y1="1" x2="12" y2="3"></line>
+                        <line x1="12" y1="21" x2="12" y2="23"></line>
+                        <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                        <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                        <line x1="1" y1="12" x2="3" y2="12"></line>
+                        <line x1="21" y1="12" x2="23" y2="12"></line>
+                        <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                        <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+                    </svg>
+                </button>
+            </div>
+        </div>
+        <ul id="menu">
+        </ul>
+    </nav>
+</header>
+<main class="main">
+
+<article class="post-single">
+  <header class="post-header">
+    
+    <h1 class="post-title entry-hint-parent">
+      
+    </h1>
+    <div class="post-meta">
+
+</div>
+  </header> 
+  <div class="post-content"><h3 id="一类型变量">一、类型变量<a hidden class="anchor" aria-hidden="true" href="#一类型变量">#</a></h3>
+<p>类型变量是泛型的 “灵魂”，用于在<strong>类型层面</strong>建立关联（而非值层面），解决 “同一份逻辑适配多种类型” 的问题。</p>
+<h4 id="基本用法">基本用法<a hidden class="anchor" aria-hidden="true" href="#基本用法">#</a></h4>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-ts" data-lang="ts"><span style="display:flex;"><span><span style="color:#75715e">// 定义泛型函数：类型变量&lt;Type&gt;关联输入与输出类型
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">function</span> <span style="color:#a6e22e">identity</span>&lt;<span style="color:#f92672">Type</span>&gt;(<span style="color:#a6e22e">arg</span>: <span style="color:#66d9ef">Type</span>)<span style="color:#f92672">:</span> <span style="color:#a6e22e">Type</span> {
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">return</span> <span style="color:#a6e22e">arg</span>;
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">// 两种调用方式
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">let</span> <span style="color:#a6e22e">output1</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">identity</span>&lt;<span style="color:#f92672">string</span>&gt;(<span style="color:#e6db74">&#34;myString&#34;</span>); <span style="color:#75715e">// 显式指定类型参数
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">let</span> <span style="color:#a6e22e">output2</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">identity</span>(<span style="color:#ae81ff">42</span>); <span style="color:#75715e">// 类型推断（推荐）：编译器自动推断Type为number
+</span></span></span></code></pre></div><ul>
+<li><strong>核心价值</strong>：避免重复编写不同类型的同名函数（如<code>identityString</code>、<code>identityNumber</code>），同时保持类型安全（对比<code>any</code>：<code>any</code>会丢失类型关联，泛型则保留输入与输出的类型一致性）。</li>
+<li><strong>类型推断</strong>：编译器可通过传入的值自动推断类型参数，简化代码。复杂场景下若推断失败，需显式指定类型。</li>
+<li><strong>类型约束</strong>：函数体内必须正确使用泛型参数（视为 “任意类型” 处理）。</li>
+</ul>
+<h3 id="二泛型函数的类型定义">二、泛型函数的类型定义<a hidden class="anchor" aria-hidden="true" href="#二泛型函数的类型定义">#</a></h3>
+<p>泛型函数的类型与非泛型函数类似，需先声明类型参数，有多种表达方式：</p>
+<ol>
+<li>
+<p><strong>直接作为函数类型</strong></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-ts" data-lang="ts"><span style="display:flex;"><span><span style="color:#66d9ef">let</span> <span style="color:#a6e22e">myIdentity</span><span style="color:#f92672">:</span> &lt;<span style="color:#f92672">Type</span>&gt;(<span style="color:#a6e22e">arg</span>: <span style="color:#66d9ef">Type</span>) <span style="color:#f92672">=&gt;</span> <span style="color:#a6e22e">Type</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">identity</span>;
+</span></span></code></pre></div></li>
+<li>
+<p><strong>使用不同名称的类型变量</strong>（只要数量和使用方式一致）</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-ts" data-lang="ts"><span style="display:flex;"><span><span style="color:#66d9ef">let</span> <span style="color:#a6e22e">myIdentity</span><span style="color:#f92672">:</span> &lt;<span style="color:#f92672">Input</span>&gt;(<span style="color:#a6e22e">arg</span>: <span style="color:#66d9ef">Input</span>) <span style="color:#f92672">=&gt;</span> <span style="color:#a6e22e">Input</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">identity</span>; <span style="color:#75715e">// 合法：Input与Type作用相同
+</span></span></span></code></pre></div></li>
+<li>
+<p><strong>对象字面量的调用签名</strong></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-ts" data-lang="ts"><span style="display:flex;"><span><span style="color:#66d9ef">let</span> <span style="color:#a6e22e">myIdentity</span><span style="color:#f92672">:</span> { &lt;<span style="color:#f92672">Type</span>&gt;(<span style="color:#a6e22e">arg</span>: <span style="color:#66d9ef">Type</span>)<span style="color:#f92672">:</span> <span style="color:#a6e22e">Type</span> } <span style="color:#f92672">=</span> <span style="color:#a6e22e">identity</span>;
+</span></span></code></pre></div></li>
+<li>
+<p><strong>泛型接口</strong></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-ts" data-lang="ts"><span style="display:flex;"><span><span style="color:#75715e">// 接口内声明泛型调用签名
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">interface</span> <span style="color:#a6e22e">GenericIdentityFn</span> {
+</span></span><span style="display:flex;"><span>  &lt;<span style="color:#f92672">Type</span>&gt;(<span style="color:#a6e22e">arg</span>: <span style="color:#66d9ef">Type</span>)<span style="color:#f92672">:</span> <span style="color:#a6e22e">Type</span>;
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">let</span> <span style="color:#a6e22e">myIdentity</span>: <span style="color:#66d9ef">GenericIdentityFn</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">identity</span>;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">// 接口本身泛型化（更常用）
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">interface</span> <span style="color:#a6e22e">GenericIdentityFn</span>&lt;<span style="color:#f92672">Type</span>&gt; {
+</span></span><span style="display:flex;"><span>  (<span style="color:#a6e22e">arg</span>: <span style="color:#66d9ef">Type</span>)<span style="color:#f92672">:</span> <span style="color:#a6e22e">Type</span>;
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">let</span> <span style="color:#a6e22e">myIdentity</span>: <span style="color:#66d9ef">GenericIdentityFn</span>&lt;<span style="color:#f92672">number</span>&gt; <span style="color:#f92672">=</span> <span style="color:#a6e22e">identity</span>; <span style="color:#75715e">// 绑定类型参数为number
+</span></span></span></code></pre></div></li>
+</ol>
+<h3 id="三泛型类">三、泛型类<a hidden class="anchor" aria-hidden="true" href="#三泛型类">#</a></h3>
+<p>泛型类在类名后通过<code>&lt;&gt;</code>声明类型参数，确保类的所有实例属性使用相同类型。</p>
+<h4 id="基本用法-1">基本用法<a hidden class="anchor" aria-hidden="true" href="#基本用法-1">#</a></h4>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-ts" data-lang="ts"><span style="display:flex;"><span><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">GenericNumber</span>&lt;<span style="color:#f92672">NumType</span>&gt; {
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">zeroValue</span>: <span style="color:#66d9ef">NumType</span>; <span style="color:#75715e">// 实例属性使用泛型类型
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>  <span style="color:#a6e22e">add</span><span style="color:#f92672">:</span> (<span style="color:#a6e22e">x</span>: <span style="color:#66d9ef">NumType</span>, <span style="color:#a6e22e">y</span>: <span style="color:#66d9ef">NumType</span>) <span style="color:#f92672">=&gt;</span> <span style="color:#a6e22e">NumType</span>; <span style="color:#75715e">// 方法参数与返回值使用泛型类型
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">// 实例化时指定类型参数为number
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">let</span> <span style="color:#a6e22e">myGenericNumber</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> <span style="color:#a6e22e">GenericNumber</span>&lt;<span style="color:#f92672">number</span>&gt;();
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">myGenericNumber</span>.<span style="color:#a6e22e">zeroValue</span> <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">myGenericNumber</span>.<span style="color:#a6e22e">add</span> <span style="color:#f92672">=</span> (<span style="color:#a6e22e">x</span>, <span style="color:#a6e22e">y</span>) <span style="color:#f92672">=&gt;</span> <span style="color:#a6e22e">x</span> <span style="color:#f92672">+</span> <span style="color:#a6e22e">y</span>;
+</span></span></code></pre></div><h4 id="注意点">注意点<a hidden class="anchor" aria-hidden="true" href="#注意点">#</a></h4>
+<ul>
+<li>
+<p>静态成员限制：泛型类的类型参数仅作用于实例端，静态成员不能使用类的类型参数，静态成员属于类本身，而非实例，无法关联实例的类型变量。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-ts" data-lang="ts"><span style="display:flex;"><span><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">MyClass</span>&lt;<span style="color:#f92672">T</span>&gt; {
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">static</span> <span style="color:#a6e22e">prop</span>: <span style="color:#66d9ef">T</span>; <span style="color:#75715e">// 错误：静态成员不能使用类型参数T
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>}
+</span></span></code></pre></div></li>
+</ul>
+<h3 id="四类型约束">四、类型约束<a hidden class="anchor" aria-hidden="true" href="#四类型约束">#</a></h3>
+<p>通过<code>extends</code>关键字限制类型参数的范围，确保泛型参数具有特定属性或满足特定条件，避免函数体内因缺乏属性而报错。</p>
+<h4 id="1-基础约束">1. 基础约束<a hidden class="anchor" aria-hidden="true" href="#1-基础约束">#</a></h4>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-ts" data-lang="ts"><span style="display:flex;"><span><span style="color:#75715e">// 定义约束接口：必须包含length属性
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">interface</span> <span style="color:#a6e22e">Lengthwise</span> {
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">length</span>: <span style="color:#66d9ef">number</span>;
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">// 泛型参数Type必须满足Lengthwise约束
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">function</span> <span style="color:#a6e22e">loggingIdentity</span>&lt;<span style="color:#f92672">Type</span> <span style="color:#a6e22e">extends</span> <span style="color:#a6e22e">Lengthwise</span>&gt;(<span style="color:#a6e22e">arg</span>: <span style="color:#66d9ef">Type</span>)<span style="color:#f92672">:</span> <span style="color:#a6e22e">Type</span> {
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#a6e22e">arg</span>.<span style="color:#a6e22e">length</span>); <span style="color:#75715e">// 合法：确保有length属性
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>  <span style="color:#66d9ef">return</span> <span style="color:#a6e22e">arg</span>;
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">loggingIdentity</span>(<span style="color:#e6db74">&#34;hello&#34;</span>); <span style="color:#75715e">// 合法：string有length属性
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#a6e22e">loggingIdentity</span>(<span style="color:#ae81ff">123</span>); <span style="color:#75715e">// 错误：number无length属性
+</span></span></span></code></pre></div><h4 id="2-相互约束类型参数受另一个类型参数约束">2. 相互约束（类型参数受另一个类型参数约束）<a hidden class="anchor" aria-hidden="true" href="#2-相互约束类型参数受另一个类型参数约束">#</a></h4>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-ts" data-lang="ts"><span style="display:flex;"><span><span style="color:#75715e">// Key必须是Type的键（Key extends keyof Type）
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">function</span> <span style="color:#a6e22e">getProperty</span>&lt;<span style="color:#f92672">Type</span>, <span style="color:#a6e22e">Key</span> <span style="color:#a6e22e">extends</span> <span style="color:#a6e22e">keyof</span> <span style="color:#a6e22e">Type</span>&gt;(<span style="color:#a6e22e">obj</span>: <span style="color:#66d9ef">Type</span>, <span style="color:#a6e22e">key</span>: <span style="color:#66d9ef">Key</span>) {
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">return</span> <span style="color:#a6e22e">obj</span>[<span style="color:#a6e22e">key</span>]; <span style="color:#75715e">// 安全：key一定是obj的有效键
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">let</span> <span style="color:#a6e22e">x</span> <span style="color:#f92672">=</span> { <span style="color:#a6e22e">a</span>: <span style="color:#66d9ef">1</span>, <span style="color:#a6e22e">b</span>: <span style="color:#66d9ef">2</span> };
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">getProperty</span>(<span style="color:#a6e22e">x</span>, <span style="color:#e6db74">&#34;a&#34;</span>); <span style="color:#75715e">// 合法：&#34;a&#34;是x的键
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#a6e22e">getProperty</span>(<span style="color:#a6e22e">x</span>, <span style="color:#e6db74">&#34;m&#34;</span>); <span style="color:#75715e">// 错误：&#34;m&#34;不是x的键
+</span></span></span></code></pre></div><p><code>keyof</code>与约束结合是实现 “类型安全的属性访问” 的核心</p>
+<h3 id="五泛型工厂函数与类类型">五、泛型工厂函数与类类型<a hidden class="anchor" aria-hidden="true" href="#五泛型工厂函数与类类型">#</a></h3>
+<p>创建泛型工厂函数时，需通过构造函数引用类类型，使用<code>{ new (): Type }</code>表示 “可实例化的类”。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-ts" data-lang="ts"><span style="display:flex;"><span><span style="color:#75715e">// 工厂函数：接收类构造函数，返回实例
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">function</span> <span style="color:#a6e22e">create</span>&lt;<span style="color:#f92672">Type</span>&gt;(<span style="color:#a6e22e">c</span><span style="color:#f92672">:</span> { <span style="color:#66d9ef">new</span> ()<span style="color:#f92672">:</span> <span style="color:#a6e22e">Type</span> })<span style="color:#f92672">:</span> <span style="color:#a6e22e">Type</span> {
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">return</span> <span style="color:#66d9ef">new</span> <span style="color:#a6e22e">c</span>();
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">// 示例：用于任何具有无参构造函数的类
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Foo</span> { <span style="color:#66d9ef">constructor</span>() {} }
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">const</span> <span style="color:#a6e22e">foo</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">create</span>(<span style="color:#a6e22e">Foo</span>); <span style="color:#75715e">// foo类型为Foo
+</span></span></span></code></pre></div><p><strong>扩展</strong>：支持带参数的构造函数：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-typescript" data-lang="typescript"><span style="display:flex;"><span><span style="color:#66d9ef">function</span> <span style="color:#a6e22e">createWithArgs</span>&lt;<span style="color:#f92672">T</span>&gt;(<span style="color:#a6e22e">ctor</span><span style="color:#f92672">:</span> { <span style="color:#66d9ef">new</span> (<span style="color:#a6e22e">name</span>: <span style="color:#66d9ef">string</span>)<span style="color:#f92672">:</span> <span style="color:#a6e22e">T</span> }, <span style="color:#a6e22e">name</span>: <span style="color:#66d9ef">string</span>)<span style="color:#f92672">:</span> <span style="color:#a6e22e">T</span> {
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">return</span> <span style="color:#66d9ef">new</span> <span style="color:#a6e22e">ctor</span>(<span style="color:#a6e22e">name</span>);
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Person</span> { <span style="color:#66d9ef">constructor</span>(<span style="color:#66d9ef">public</span> <span style="color:#a6e22e">name</span>: <span style="color:#66d9ef">string</span>) {} }
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">const</span> <span style="color:#a6e22e">person</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">createWithArgs</span>(<span style="color:#a6e22e">Person</span>, <span style="color:#e6db74">&#34;Bob&#34;</span>); <span style="color:#75715e">// person.name为&#34;Bob&#34;
+</span></span></span></code></pre></div><h3 id="六泛型参数默认值">六、泛型参数默认值<a hidden class="anchor" aria-hidden="true" href="#六泛型参数默认值">#</a></h3>
+<p>为类型参数指定默认值，使其成为 “可选参数”，未显式指定时使用默认值（类似函数参数默认值）。</p>
+<h4 id="基本用法-2">基本用法<a hidden class="anchor" aria-hidden="true" href="#基本用法-2">#</a></h4>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-ts" data-lang="ts"><span style="display:flex;"><span><span style="color:#75715e">// T默认值为HTMLDivElement，U默认值为T[]
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">declare</span> <span style="color:#66d9ef">function</span> <span style="color:#a6e22e">create</span><span style="color:#f92672">&lt;</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">T</span> <span style="color:#66d9ef">extends</span> <span style="color:#a6e22e">HTMLElement</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">HTMLDivElement</span>,
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">U</span> <span style="color:#66d9ef">extends</span> <span style="color:#a6e22e">HTMLElement</span>[] <span style="color:#f92672">=</span> <span style="color:#a6e22e">T</span>[]
+</span></span><span style="display:flex;"><span><span style="color:#f92672">&gt;</span>(<span style="color:#a6e22e">element?</span>: <span style="color:#66d9ef">T</span>, <span style="color:#a6e22e">children?</span>: <span style="color:#66d9ef">U</span>)<span style="color:#f92672">:</span> <span style="color:#a6e22e">Container</span>&lt;<span style="color:#f92672">T</span>, <span style="color:#a6e22e">U</span>&gt;;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">const</span> <span style="color:#a6e22e">div</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">create</span>(); <span style="color:#75715e">// T=HTMLDivElement，U=HTMLDivElement[]
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">const</span> <span style="color:#a6e22e">p</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">create</span>(<span style="color:#66d9ef">new</span> <span style="color:#a6e22e">HTMLParagraphElement</span>()); <span style="color:#75715e">// T=HTMLParagraphElement，U=HTMLParagraphElement[]
+</span></span></span></code></pre></div><h4 id="规则">规则<a hidden class="anchor" aria-hidden="true" href="#规则">#</a></h4>
+<ul>
+<li>带默认值的类型参数视为可选。</li>
+<li>必需的类型参数不能跟在可选参数后。</li>
+<li>默认类型必须满足类型参数的约束。</li>
+<li>未指定的类型参数解析为默认值。</li>
+<li>合并类 / 接口时，可给现有类型参数加默认值，或新增带默认值的类型参数。</li>
+</ul>
+<h3 id="七方差">七、方差<a hidden class="anchor" aria-hidden="true" href="#七方差">#</a></h3>
+<p>方差描述泛型类型在类型参数变化时的兼容性，分为<strong>协变</strong>、<strong>逆变</strong>和<strong>不变</strong>，TypeScript 会自动推断。</p>
+<h4 id="1-协变">1. 协变<a hidden class="anchor" aria-hidden="true" href="#1-协变">#</a></h4>
+<ul>
+<li>
+<p>关系与类型参数一致：若<code>T extends U</code>，则<code>Producer&lt;T&gt; extends Producer&lt;U&gt;</code>。</p>
+</li>
+<li>
+<p>示例：返回值类型为泛型参数时通常是协变。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-ts" data-lang="ts"><span style="display:flex;"><span><span style="color:#66d9ef">interface</span> <span style="color:#a6e22e">Producer</span>&lt;<span style="color:#f92672">out</span> <span style="color:#a6e22e">T</span>&gt; { <span style="color:#a6e22e">make</span>()<span style="color:#f92672">:</span> <span style="color:#a6e22e">T</span>; } <span style="color:#75715e">// out表示协变（可省略，TypeScript自动推断）
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">// Cat extends Animal → Producer&lt;Cat&gt; extends Producer&lt;Animal&gt;
+</span></span></span></code></pre></div></li>
+</ul>
+<h4 id="2-逆变">2. 逆变<a hidden class="anchor" aria-hidden="true" href="#2-逆变">#</a></h4>
+<ul>
+<li>
+<p>关系与类型参数相反：若<code>T extends U</code>，则<code>Consumer&lt;U&gt; extends Consumer&lt;T&gt;</code>。</p>
+</li>
+<li>
+<p>示例：参数类型为泛型参数时通常是逆变。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-ts" data-lang="ts"><span style="display:flex;"><span><span style="color:#66d9ef">interface</span> <span style="color:#a6e22e">Consumer</span>&lt;<span style="color:#f92672">in</span> <span style="color:#a6e22e">T</span>&gt; { <span style="color:#a6e22e">consume</span>(<span style="color:#a6e22e">arg</span>: <span style="color:#66d9ef">T</span>)<span style="color:#f92672">:</span> <span style="color:#66d9ef">void</span>; } <span style="color:#75715e">// in表示逆变（可省略）
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">// Cat extends Animal → Consumer&lt;Animal&gt; extends Consumer&lt;Cat&gt;
+</span></span></span></code></pre></div></li>
+</ul>
+<h4 id="3-不变">3. 不变<a hidden class="anchor" aria-hidden="true" href="#3-不变">#</a></h4>
+<ul>
+<li>
+<p>仅当类型参数完全相同时才兼容：若<code>T extends U</code>，<code>ProducerConsumer&lt;T&gt;</code>与<code>ProducerConsumer&lt;U&gt;</code>互不兼容。</p>
+</li>
+<li>
+<p>示例：同时包含协变和逆变成员的类型是不变的。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-ts" data-lang="ts"><span style="display:flex;"><span><span style="color:#66d9ef">interface</span> <span style="color:#a6e22e">ProducerConsumer</span>&lt;<span style="color:#f92672">T</span>&gt; {
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">make</span>()<span style="color:#f92672">:</span> <span style="color:#a6e22e">T</span>; <span style="color:#75715e">// 协变
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>  <span style="color:#a6e22e">consume</span>(<span style="color:#a6e22e">arg</span>: <span style="color:#66d9ef">T</span>)<span style="color:#f92672">:</span> <span style="color:#66d9ef">void</span>; <span style="color:#75715e">// 逆变 → 整体不变
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>}
+</span></span></code></pre></div></li>
+</ul>
+<h4 id="方差注释注意事项">方差注释注意事项<a hidden class="anchor" aria-hidden="true" href="#方差注释注意事项">#</a></h4>
+<ul>
+<li>TypeScript 自动推断方差，<strong>几乎不需要手动注释</strong>。</li>
+<li>注释（<code>in</code>/<code>out</code>）仅在基于实例的比较中有效，不改变结构类型行为。</li>
+<li>禁止编写与结构行为不符的注释（如给接收<code>T</code>参数的接口标<code>out</code>）。</li>
+<li>仅在调试或极端性能优化时临时使用，调试后应删除。</li>
+</ul>
+
+
+  </div>
+
+  <footer class="post-footer">
+    <ul class="post-tags">
+    </ul>
+  </footer>
+</article>
+    </main>
+    
+<footer class="footer">
+        <span>&copy; 2025 <a href="https://example.org/">My New Hugo Site</a></span> · 
+
+    <span>
+        Powered by
+        <a href="https://gohugo.io/" rel="noopener noreferrer" target="_blank">Hugo</a> &
+        <a href="https://github.com/adityatelange/hugo-PaperMod/" rel="noopener" target="_blank">PaperMod</a>
+    </span>
+</footer>
+<a href="#top" aria-label="go to top" title="Go to Top (Alt + G)" class="top-link" id="top-link" accesskey="g">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 12 6" fill="currentColor">
+        <path d="M12 6H0l6-6z" />
+    </svg>
+</a>
+
+<script>
+    let menu = document.getElementById('menu')
+    if (menu) {
+        menu.scrollLeft = localStorage.getItem("menu-scroll-position");
+        menu.onscroll = function () {
+            localStorage.setItem("menu-scroll-position", menu.scrollLeft);
+        }
+    }
+
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener("click", function (e) {
+            e.preventDefault();
+            var id = this.getAttribute("href").substr(1);
+            if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView({
+                    behavior: "smooth"
+                });
+            } else {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView();
+            }
+            if (id === "top") {
+                history.replaceState(null, null, " ");
+            } else {
+                history.pushState(null, null, `#${id}`);
+            }
+        });
+    });
+
+</script>
+<script>
+    var mybutton = document.getElementById("top-link");
+    window.onscroll = function () {
+        if (document.body.scrollTop > 800 || document.documentElement.scrollTop > 800) {
+            mybutton.style.visibility = "visible";
+            mybutton.style.opacity = "1";
+        } else {
+            mybutton.style.visibility = "hidden";
+            mybutton.style.opacity = "0";
+        }
+    };
+
+</script>
+<script>
+    document.getElementById("theme-toggle").addEventListener("click", () => {
+        if (document.body.className.includes("dark")) {
+            document.body.classList.remove('dark');
+            localStorage.setItem("pref-theme", 'light');
+        } else {
+            document.body.classList.add('dark');
+            localStorage.setItem("pref-theme", 'dark');
+        }
+    })
+
+</script>
+</body>
+
+</html>

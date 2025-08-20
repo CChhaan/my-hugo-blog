@@ -11,7 +11,7 @@
 <meta name="description" content="">
 <meta name="author" content="">
 <link rel="canonical" href="https://example.org/">
-<link crossorigin="anonymous" href="/assets/css/stylesheet.8fe10233a706bc87f2e08b3cf97b8bd4c0a80f10675a143675d59212121037c0.css" integrity="sha256-j&#43;ECM6cGvIfy4Is8&#43;XuL1MCoDxBnWhQ2ddWSEhIQN8A=" rel="preload stylesheet" as="style">
+<link crossorigin="anonymous" href="/assets/css/stylesheet.36819bea596090d8b48cf10d9831382996197aa7e4fc86f792f7c08c9ca4d23b.css" integrity="sha256-NoGb6llgkNi0jPENmDE4KZYZeqfk/Ib3kvfAjJyk0js=" rel="preload stylesheet" as="style">
 <link rel="icon" href="https://example.org/favicon.ico">
 <link rel="icon" type="image/png" sizes="16x16" href="https://example.org/favicon-16x16.png">
 <link rel="icon" type="image/png" sizes="32x32" href="https://example.org/favicon-32x32.png">
@@ -231,116 +231,21 @@ Windows 系统：Alt &#43; 快捷键（如 Alt &#43; h）； macOS 系统：Ctrl
     </h2>
   </header>
   <div class="entry-content">
-    <p>&lt;!DOCTYPE html&gt; Vite App </p>
-  </div>
-  <footer class="entry-footer"></footer>
-  <a class="entry-link" aria-label="post link to " href="https://example.org/posts/vue%E5%AD%A6%E4%B9%A0/code/vue-project/"></a>
-</article>
-
-<article class="post-entry"> 
-  <header class="entry-header">
-    <h2 class="entry-hint-parent">
-    </h2>
-  </header>
-  <div class="entry-content">
-    <p> JavaScript中this的绑定规则取决于函数的调用方式而非声明位置。核心规则包括：默认绑定（非严格模式绑定全局对象，严格模式为undefined）、隐式绑定（通过对象调用）、显式绑定（call/apply/bind）和new绑定（构造函数调用）。箭头函数例外，它继承外层作用域的this且不可更改。优先级顺序为：new绑定 &gt; 显式绑定 &gt; 隐式绑定 &gt; 默认绑定。特殊情况下，传入null/undefined会触发默认绑定，而硬绑定函数被new调用时会替换this。理解这些规则对掌握JavaScript的执行上下文至关重要。
-this是在运行时进行绑定的，并不是在编写时绑定，它的上下文取决于函数调用时的各种条件
-this的绑定和函数声明的位置没有任何关系，只取决于函数的调用方式
-当一个函数被调用时，会创建一个活动记录（也称为执行上下文），这个记录会包含函数在哪里被调用，函数的调用方式，传入的参数等信息，this就是这个记录的一个属性，会在函数执行的过程中用到
-调用位置就是函数在代码中被调用的位置，在当前正在执行的函数的前一个调用中
-默认绑定：函数直接使用不带任何修饰的函数引用进行调用（独立函数调用），只能使用默认绑定，无法应用其他规则，非严格模式下，默认绑定绑定到全局对象，在严格模式下绑定到undefined
-隐式绑定：当函数引用有上下文对象时，隐式绑定规则会把函数调用中的this绑定到这个上下文对象
-对象属性引用链中只有上一层或者说最后一层在调用位置中起作用
-显示绑定：所有函数都可以使用call()和apply()方法，它们的第一个参数是一个对象，接着在调用函数时将其绑定到this
-如果传入一个原始值来当做this的绑定对象，这个原始值会被转换成它的对象形式，这通常被称为装箱
-硬绑定：一种显式的强制绑定
-function foo(){ console.log(this.a) } var obj = { a:2 } var bar = function(){ foo.call(obj) } 可以创建一个包裹函数，负责接收参数并返回值
-var bar = function(){ return foo.apply(obj,arguments) } 另一种是创建一个可以重复使用的辅助函数
-function bind(fn,obj){ return function(){ return fn.apply(obj,arguments) } } var bar = bind(foo,obj) bar(3) ES5提供了内置的方法Function.prototype.bind，返回一个硬编码的新函数，把指定的参数设置为this的上下文并调用原始函数
-JS许多内置函数或第三方库函数都提供了一个可选的参数，通常被称为上下文，其作用和bind一样，确保回调函数使用指定的this，实际上都是通过call或apply实现了显示绑定
-new绑定：在JS中，构造函数只是一些使用new操作符时被调用的函数，它们并不会属于某个类，也不会实例化一个类，只是被new操作符调用的普通函数而已
-所有函数都可以用new调用，这种函数调用被称为构造函数调用
-使用new来调用函数，或者说发生构造函数调用时，会自动执行下面的操作：
-创建一个全新的对象 这个新对象会被执行[[Prototype]]连接 这个新对象会绑定到函数调用的this 如果函数没有返回其他对象，那么new表达式中的函数调用会自动返回这个新对象 bind()方法会判断硬绑定函数是否被new调用，如果是的话就会使用新创建的this替换硬绑定的this。
-在new中使用硬绑定函数主要目的是预先设置函数的一些参数，这样在使用new进行初始化时就可以只传入其余的参数
-根据优先级判断this：
-函数是否在new中调用？如果是的话this绑定的是新创建的对象 函数是否通过call，apply或者硬绑定调用？如果是的话，this绑定的是指定的对象 函数是否在某个上下文对象中调用？如果是的话，this绑定的是那个上下文对象 如果都不是的话，使用默认绑定，如果在严格模式下，就绑定到undefined，否则绑定到全局对象 如果null或undefined作为this的绑定对象传入call、apply或者bind，这些值在调用时会被忽略，实际应用的是默认绑定规则
-apply可以用来展开数组，并当做参数传入一个函数；bind可以对参数进行柯里化，预先设置一些参数
-Object.create(null)可以创建一个空对象，并且不会创建Object.prototype这个委托，比{}更空
-忽略this绑定时传入空对象可以避免对全局对象产生影响
-有可能会创建一个函数的间接引用，在这种情况下，调用这个函数会应用默认绑定规则
-箭头函数不使用this的四种标准规则，而是根据外层作用域来决定this
-箭头函数的绑定无法被修改，箭头函数可以像bind一样确保函数的this绑定到指定的对象，用常见的词法作用域取代了传统的this机制
-</p>
-  </div>
-  <footer class="entry-footer"></footer>
-  <a class="entry-link" aria-label="post link to " href="https://example.org/posts/%E4%BD%A0%E4%B8%8D%E7%9F%A5%E9%81%93%E7%9A%84js/this%E5%92%8C%E5%AF%B9%E8%B1%A1%E5%8E%9F%E5%9E%8B/1.this/"></a>
-</article>
-
-<article class="post-entry"> 
-  <header class="entry-header">
-    <h2 class="entry-hint-parent">
-    </h2>
-  </header>
-  <div class="entry-content">
-    <p> 本文摘要：JavaScript对象可以通过文字声明或构造形式定义，两种方式结果相同但写法不同。JS有6种基本类型和多种对象子类型，包括内置对象如Array、Date等。对象属性存储的是名称而非值本身，可通过点语法或块访问访问。属性描述符可控制属性的可写性、可配置性等特性。通过Object.preventExtensions()、Object.seal()和Object.freeze()可实现不同级别的对象不可变性。in、hasOwnProperty()等方法可用于检查属性存在性，forEach、every等辅助迭代器可用于数组遍历。for..of循环通过内置@@iterator实现迭代访问。
-对象可以通过两种形式定义：声明文字形式和构造形式
-构造形式和文字形式生成的对象是一样的，唯一的区别是，在文字声明中可以添加多个键值对，但是在构造形式中必须逐个添加属性
-在JS中一共有六种主要类型：string、number、boolean、null、undefined和object
-简单基本类型本身并不是对象，JS中有许多特殊的对象子类型，我们称之为复杂基本类型
-函数就是对象的一个子类型（可调用的对象），JS中的函数是一等公民，因为他本质上和普通的对象一样（只是可调用），所以可以像操作其他对象一样操作函数
-数组也是对象的一种类型，具备一些额外的行为，数组中内容的组织方式比一般的对象要稍微复杂一些
-JS还有一些对象子类型，被称为内置对象，String、Number、Boolean、Object、Function、Array、Date、RegExp、Error
-这些内置函数可以当做构造函数来使用，从而可以构造一个对应子类型的新对象
-有必要时，语言会自动把字面量转换成对应的内置对象，也就是说并不需要显式创建一个对象
-null和undefined没有对应的构造形式，它们只有文字形式，Date只有构造，没有文字形式
-对于Object、Array、Function和RegExp来说，无论使用文字形式还是构造形式，它们都是对象，不是字面量。在某些情况下，构造形式可以提供一些额外选项，建议只在需要那些额外选项时使用构造形式
-Error对象很少在代码中显式创建，一般是在抛出异常时被自动创建，也可以使用new Error()这种构造形式来创建
-对象的内容是由一些存储在特定命名位置的值组成的，我们称之为属性
-在引擎内部，这些值的存储方式是多种多样的，一般并不会存在对象容器内部，存储在对象容器内部的是这些属性的名称，它们就像指针一样，指向这些值真正的存储位置
-.语法通常被称为属性访问，[&#34;&#34;]语法通常被称为块访问，这两种语法的主要区别是.操作符要求属性名满足标识符的命名规范，[&#34;&#34;]语法可以接受任意UTF-8/Unicode字符串作为属性名。此外，由于[&#34;&#34;]语法使用字符串来访问属性，所以可以在程序中构造这个字符串
-在对象中，属性名永远都是字符串，如果使用string字面量以外的其他值作为属性名，那它首先会被转换为一个字符串
-可以在文字形式中使用[]包裹一个表达式来当做属性名（可计算属性名）
-函数永远不会属于一个对象，无论返回值是什么类型，每次访问对象的属性就是属性访问，属性访问返回的函数和其他函数没有任何区别
-数组也支持[]访问形式，数组有一套更加结构化的值存储机制，数组期望的是数值下标，也就是说值存储的位置是非负整数
-数组也是对象，虽然每个下标都是整数，但仍然可以给数组添加命名属性，数组的length值不会发生变化
-完全可以把数组当成一个普通的键值对象来使用，并且不添加任何数值索引，但最好只用对象来存储键值对，只用数组来存储下标值对
-如果试图向数组添加一个属性，但是属性名看起来像一个数字，那他会变成一个数值下标
-对于JSON安全的对象来说，进行深拷贝可以通过：
-var newObj = JSON.parse(JSON.stringify(someObj)) ES6定义了Object.assign()方法实现浅拷贝，第一个参数是目标对象，之后可以跟一个或多个源对象。它会遍历一个或多个源对象的所有可枚举的自有键并把它们复制到目标对象，最后返回目标对象。
-因为Object.assign()使用=操作符来赋值，所以源对象属性的一些特性不会被复制到目标对象
-在创建普通属性时属性描述符会使用默认值，我们也可以使用Object.defineProperty()来添加一个新属性或者修改一个已有属性并对特性进行设置
-writable：决定是否可以修改属性的值 configurable：只要属性是可配置的，就可以使用defineProperty()方法来修改属性描述符，将其改成false是单项操作，不能撤销 ​	除了无法修改，configurable:false还会禁止删除这个属性
-​	delete只用来删除对象的属性
-enumerable：这个描述符控制的是属性是否会出现在对象的属性枚举中。如果把enumerable设置成false，这个属性就不会出现在枚举中，虽然仍然可以正常访问它。
-get：对象默认的内置[[Get]]操作首先在对象中查找是否有名称相同的属性，如果找到就会返回这个属性的值。如果没有找到名称相同的属性，GET算法会执行原型链查找，如果无论如何都没有找到名称相同的属性，会返回undefined
-put：如果已经存在这个属性，put算法大致会检查下面这些内容：
-属性是否是访问操作符？如果是并且存在setter就调用setter 属性的数据描述符中writable是否是false？如果是，在非严格模式下静默失败，在严格模式下抛出类型异常 如果都不是，将该值设置为属性值 如果对象中不存在这个属性，put操作会更加复杂
-getter是一个隐藏函数，会在获取属性值时调用。setter也是一个隐藏函数，会在设置属性值时调用。当给一个属性定义getter、setter或者两者都有时，这个属性会被定义为访问描述符（和数据描述符相对）。对于访问描述符来说，JS会忽略它们的value和writable特性，取而代之的是关心set和get特性
-​	不管是对象文字语法中的get a(){}，还是defineProperty()中的显示定义，二者都会在对象中创建一个不包含值的属性，对于这个属性的访问会自动调用一个隐藏函数，它的返回值会被当做属性访问的返回值
-​	setter会覆盖单个属性默认的put操作，通常来说getter和setter是成对出现的
-让属性或对象是不可变的：
-对象常量：结合writable:false和configurable:false就可以创建一个真正的常量属性（不可修改、重定义或者删除）
-禁止扩展：使用Object.preventExtensions()可以禁止一个对象添加新属性并且保留已有属性
-密封：Object.seal()会创建一个密封的对象，这个方法实际上会在一个现有对象上调用Object.preventExtensions()并把所有现有属性标记为configurable:false。所以密封之后不仅不能添加新属性，也不能重新配置或者删除任何现有属性（虽然可以修改属性的值）
-Object.freeze()会创建一个冻结对象。这个方法实际上会在一个现有对象上调用Object.seal()并把所有数据访问属性标记为writable:false，这样就无法修改它们的值
-这个方法是可以应用在对象上的级别最高的不可变性，它会禁止对于对象本身及其任意直接属性的修改
-以上所有的方法创建的都是浅不变形，也就是说，它们只会影响目标对象和它的直接属性。如果目标对象引用了其他对象，其他对象的内容不受影响，仍然是可变的。
-存在性：
-in操作符会检查属性是否在对象及其原型链中。hasOwnProperty()只会检查属性是否在对象中，不会检查原型链
-propertyIsEnumerable()方法会检查给定的属性名是否直接存在于对象中，而不是原型链上，并且满足enumerable:true
-Object.keys()会返回一个数组，包含所有可枚举属性，Object.getOwnPropertyNames()会返回一个数组，包含所有属性，无论它们是否可枚举
-in和hasOwnProperty()的区别在于是否查找原型链，然而，Object.keys()和Object.getOwnPropertyNames()都只会查找对象直接包含的属性
-for…in循环可以用来遍历对象的可枚举属性列表（包括原型链），遍历顺序是不确定的，在不同的JS引擎中可能不一样
-对于数值索引的数组来说，可以使用标准的for循环来遍历值
-ES5中增加了一些数组的辅助迭代器，每种辅助迭代器都可以接受一个回调函数并把它应用到数组的每个元素上，唯一的区别就是它对于回调函数返回值的处理方式不同：
-forEach()会遍历数组中的所有值并忽略回调函数的返回值 every()会一直运行直到回调函数返回false some()会一直运行直到回调函数返回true every()和some()中特殊的返回值和普通for循环中的break语句类似，它们会提前终止遍历
-for..of循环首先会向被访问对象请求一个迭代器对象，然后通过调用迭代器对象的next()方法来遍历所有返回值
-数组有内置的@@iterator（返回迭代器对象的函数），因此for…of可以直接应用在数组上
+    <p>1. 静态检查与静态类型检查 静态检查：在代码运行前（编译阶段）检测错误，无需执行代码。与之对应的是动态检查（运行时检测错误，如 JS 中的TypeError）。
+静态类型检查：基于值的类型规则检测错误（如给 number 类型变量赋值字符串），而静态检查还包括语法错误、变量未定义等非类型错误。
+2. TypeScript 与 JavaScript 的关系 TypeScript 是 JavaScript 的超集：所有合法 JS 语法在 TS 中均有效，TS 代码最终会被编译为纯 JS 代码运行。
+关键区别：TS 增加了静态类型系统，而 JS 是动态类型语言（类型检查仅在运行时发生）。
+重要特性：
+TS 不会改变 JS 的运行时行为（“不破坏 JS” 原则）：即使 TS 代码有类型错误，编译后的 JS 仍可正常运行（类型错误不影响执行）。 TS 类型系统仅在编译阶段生效，编译后会被完全擦除（“类型擦除”），生成的 JS 无任何类型信息。 注意：TS 会对 JS 代码进行类型检查（如let a = 1; a = &#39;str&#39;在 TS 中会报错），但不会拒绝 JS 语法（语法上完全兼容）。
+3. TypeScript 的核心优势（面试高频） 提前发现错误：静态类型检查在编码阶段捕获类型不匹配、未定义变量等问题，减少运行时错误。
+增强代码可读性：类型注解明确变量 / 函数的预期用途，降低团队协作成本。
+提升开发效率：IDE 支持（自动补全、类型提示、重构安全）大幅提升编码速度。
+更好的可维护性：类型约束使代码逻辑更严谨，重构时更可靠（如修改函数参数类型时，所有调用处会即时报错）。
+4. TypeScript 的类型推断与扩展 类型推断：TS 会自动推导变量 / 表达式的类型（无需显式声明）。 例：let x = 10 → TS 推断x为number；const y = { name: &#39;ts&#39; } → 推断y为{ name: string }。
 ...</p>
   </div>
   <footer class="entry-footer"></footer>
-  <a class="entry-link" aria-label="post link to " href="https://example.org/posts/%E4%BD%A0%E4%B8%8D%E7%9F%A5%E9%81%93%E7%9A%84js/this%E5%92%8C%E5%AF%B9%E8%B1%A1%E5%8E%9F%E5%9E%8B/2.-%E5%AF%B9%E8%B1%A1/"></a>
+  <a class="entry-link" aria-label="post link to " href="https://example.org/posts/ts/01--ts/"></a>
 </article>
 
 <article class="post-entry"> 
@@ -349,28 +254,64 @@ for..of循环首先会向被访问对象请求一个迭代器对象，然后通�
     </h2>
   </header>
   <div class="entry-content">
-    <p> 摘要：面向对象编程中，类作为蓝图定义了数据结构与行为的封装，通过继承实现父类与子类的特殊化关系，核心概念包括多态（方法重写与相对引用）和实例化（构造函数创建对象副本）。然而JavaScript的对象机制与传统类继承不同，采用原型关联而非复制，并不存在真正的类实例化概念。(148字)
-类继承描述了一种代码的组织结构形式，一种在软件中对真实世界中问题领域的建模方法
-面向对象编程强调的是数据和操作数据的行为本质上是互相关联的，因此好的设计就是把数据以及和它相关的行为打包起来。这在正式的计算机科学中有时被称为数据结构
-我们可以实用类对数据结构进行分类，把任意数据结构看作范围更广的定义的一种特例
-类的另一个核心概念是多态，这个概念就是说父类的通用行为可以被子类用更特殊的行为重写。实际上，相对多态性允许我们从重写行为中引用基础行为
-类理论强烈建议父类和子类使用相同的方法名来表示特定的行为，从而让子类重写父类
-一个类就是一张蓝图，为了获得真正可以交互的对象，我们必须按照类来建造一个东西，这个东西通常被称为实例，有需要的话，我们可以直接在实例上调用方法并访问其所有共有数据属性。这个对象就是类中描述的所有特性的一份副本
-通常不会使用一个实例对象来直接访问并操作它的类，不过至少可以判断出这个实例对象来自哪个类
-类通过复制操作被实例化为对象形式
-类实例是由一个特殊的类方法构造的，这个方法名通常和类名相同，被称为构造函数。这个方法的任务就是初始化实例需要的所有信息。
-类构造函数属于类，而且通常和类同名，此外，构造函数大多需要用new来调，这样语言引擎才知道你想用构造一个新的类实例
-在面向类的语言中，可以先定义一个类，然后定义一个继承前者的类，后者通常被称为子类，前者通常被称为父类。
-定义好一个子类之后，相对于父类来说它就是一个独立并且完全不同的类。子类会包含父类行为的原始副本。但是也可以重写所有继承的行为甚至定义新行为
-多态是一个很广泛的话题，相对是多态的一个方面：任何方法都可以引用继承层次中高层的方法（无论高层的方法名和当前方法名是否相同）。之所以说相对，是因为我们并不会定义想要访问的绝对继承层次，而是使用相对引用查找上一层
-许多语言中可以用super，它的含义是超类，表示当前类的父类/祖先类，从子类的构造函数中通过super可以直接调用父类的构造函数。
-多态的另一方面是，在继承链的不同层次中一个方法名可以被多次定义，当调用方法时会自动选择合适的定义
-方法定义的多态性取决于是在哪个类的实例中引用它
-在继承和实例化时，JS的对象机制并不会自动执行复制行为，JS中只有对象，并不存在可以被实例化的类，一个对象并不会被复制到其他对象，它们会被关联起来
-</p>
+    <p>1. 基础类型与数组类型 JavaScript 基础类型：string、number 、 boolean（对应 JS 原始类型），TypeScript 中可直接作为类型注解使用。
+特点：使用typeof运算符对这些类型的值操作时，返回值与类型名一致（如typeof &#39;abc&#39; === &#39;string&#39;）。 数组类型：
+两种声明方式：T[]（如number[]表示数字数组）或Array&lt;T&gt;（泛型形式，如Array&lt;number&gt;），两者完全等价。 2. 特殊类型 any 核心特性：关闭类型检查，允许值被任意操作（访问任意属性、作为函数调用、赋值给任何类型等）。
+适用场景：
+处理动态内容（如来自 API 的未知数据）。 迁移 JS 项目时临时兼容无类型代码。 隐式any：未指定类型且 TS 无法推断时，编译器默认视为any（可通过noImplicitAny配置项禁用，强制显式声明类型，面试高频考点）。
+风险与替代：
+滥用any会失去 TS 类型检查的意义，建议优先使用unknown（更安全，需显式类型断言后使用）。 3. 变量与函数的类型注解 变量注解： let 变量名: 类型 = 值（如 let age: number = 20）。
+多数情况可省略：TS 会自动推断类型（如let name = &#39;ts&#39; → 推断为string）。 函数参数类型注解：在每个参数名称后添加，用于声明函数接受的参数类型，即使参数无类型注释，TypeScript 仍会检查参数数量是否正确。
+函数返回类型注解：出现在参数列表之后。（如function add(a: number, b: number): number { return a &#43; b }）。
+函数参数类型自动推断：当函数出现在 TypeScript 可确定调用方式的地方时，其参数会自动被赋予类型。
+...</p>
   </div>
   <footer class="entry-footer"></footer>
-  <a class="entry-link" aria-label="post link to " href="https://example.org/posts/%E4%BD%A0%E4%B8%8D%E7%9F%A5%E9%81%93%E7%9A%84js/this%E5%92%8C%E5%AF%B9%E8%B1%A1%E5%8E%9F%E5%9E%8B/3.-%E6%B7%B7%E5%90%88%E5%AF%B9%E8%B1%A1%E7%B1%BB/"></a>
+  <a class="entry-link" aria-label="post link to " href="https://example.org/posts/ts/02--%E6%97%A5%E5%B8%B8%E7%B1%BB%E5%9E%8B/"></a>
+</article>
+
+<article class="post-entry"> 
+  <header class="entry-header">
+    <h2 class="entry-hint-parent">
+    </h2>
+  </header>
+  <div class="entry-content">
+    <p>1. 类型缩小与控制流分析基础 TS 会跟踪代码执行路径（如if/else、switch、循环等），分析变量在不同分支中的具体类型。
+类型保护：特殊表达式（如typeof x === &#39;string&#39;），TS 可通过它判断变量类型，从而缩小类型范围。
+类型缩小：通过类型保护或赋值操作，将变量类型从 “宽泛”（如联合类型）收缩为 “具体”（如单一类型）的过程。
+2. 基于 typeof 运算符的类型缩小 TS 可识别typeof的 8 种返回值：&#34;string&#34;、&#34;number&#34;、&#34;bigint&#34;、&#34;boolean&#34;、&#34;symbol&#34;、&#34;undefined&#34;、&#34;object&#34;、&#34;function&#34;。
+typeof检查是一种类型保护，TypeScript 编码了typeof对不同值的操作逻辑，包括其在 JavaScript 中的一些特性。
+3. 基于真值检查的类型缩小 JavaScript 中，if等构造会将条件强制为布尔值，0、NaN、&#34;&#34;（空字符串）、0n（bigint版本零）、null、undefined强制为false，其他值强制为true。
+可通过Boolean函数或双布尔否定（!!）将值强制为布尔值，后者的优势是 TypeScript 会推断出缩小的字面布尔类型true，而前者推断为boolean类型。
+利用这种行为防范null或undefined很常见，带有!的布尔否定会从否定分支中过滤掉这些值。
+4. 基于相等性检查的类型缩小 TypeScript 使用switch语句和===、!==、==、!=等相等性检查来缩小类型。
+== null不仅检查值是否为null，还检查是否为undefined；== undefined同样检查值是null还是undefined。
+5. 基于 in 运算符的类型缩小 JavaScript 的in运算符用于确定对象或其原型链是否具有指定名称的属性。
+TypeScript 将in运算符视为缩小潜在类型的方式：对于&#34;value&#34; in x（“value&#34;为字符串字面，x为联合类型），“true” 分支会缩小x为具有可选或必需属性value的类型，“false” 分支缩小为具有可选或缺少属性value的类型。
+6. 基于 instanceof 的类型缩小 检查值的原型链是否包含构造函数的prototype，适用于new创建的对象
+instanceof是类型保护，TypeScript 会在instanceof保护的分支中缩小类型。
+7. 基于赋值的类型缩小 变量赋值后，TS 会根据赋值内容缩小其类型。 8. 用户定义的类型保护 定义方式：创建返回类型为类型谓词的函数，谓词形式为parameterName is Type，其中parameterName必须是当前函数签名中的参数名称。 9. 可区分的联合 联合类型中的每个成员都包含一个字面量类型的公共属性（如type字段），用于区分不同类型，TypeScript 将其视为可区分的联合，可通过检查该属性缩小联合的成员范围，switch语句中也适用这种检查。 10. never 类型与穷尽检查 缩小类型时，若联合的选项被全部消除，会得到never类型，表示不应该存在的状态。
+...</p>
+  </div>
+  <footer class="entry-footer"></footer>
+  <a class="entry-link" aria-label="post link to " href="https://example.org/posts/ts/03--%E7%B1%BB%E5%9E%8B%E7%BC%A9%E5%B0%8F/"></a>
+</article>
+
+<article class="post-entry"> 
+  <header class="entry-header">
+    <h2 class="entry-hint-parent">
+    </h2>
+  </header>
+  <div class="entry-content">
+    <p>1. 函数类型表达式 基本语法：用箭头函数形式描述函数类型，如(a: string) =&gt; void（参数a为string类型，无返回值）。
+特点：参数名必须存在（仅用于标识，不影响类型匹配），未指定类型时隐式为any（可通过noImplicitAny禁用）。 示例：
+function greeter(fn: (a: string) =&gt; void) { fn(&#34;Hello, World&#34;); } function printToConsole(s: string) { console.log(s); } greeter(printToConsole); // 符合函数类型要求 类型别名命名：通过type给函数类型命名，提升可读性和复用性： type GreetFunction = (a: string) =&gt; void; function greeter(fn: GreetFunction) { /* ... */ } 类型兼容性（面试高频）：函数类型兼容遵循 “参数少的可赋值给参数多的”（逆变原则简化版）： type F1 = (a: string) =&gt; void; type F2 = (a: string, b: number) =&gt; void; const f1: F1 = (a) =&gt; {}; const f2: F2 = f1; // 合法：F1参数更少，可兼容F2 2. 带属性的函数与调用签名 函数类型表达式的局限：仅能描述函数的调用方式，无法声明函数自身的属性（如fn.prop）。
+调用签名：若需描述可调用且带属性的对象，可在对象类型中编写调用签名，参数列表与返回类型间用:分隔（而非=&gt;）：
+type DescribableFunction = { description: string; (someArg: number): boolean; // 调用签名 }; function doSomething(fn: DescribableFunction) { console.log(fn.description &#43; &#34; returned &#34; &#43; fn(6)); } function myFunc(someArg: number) { return someArg &gt; 3; } myFunc.description = &#34;default description&#34;; doSomething(myFunc); // 符合带属性的函数类型 3. 构造函数与构造签名 构造函数：可通过new运算符调用的函数，TypeScript 中用构造签名描述，即在调用签名前加new关键字： type SomeConstructor = { new (s: string): SomeObject; // 构造签名 }; function fn(ctor: SomeConstructor) { return new ctor(&#34;hello&#34;); // 符合构造函数调用方式 } 可同时调用与构造的函数：如Date，可组合调用签名和构造签名（可直接调用Date()返回字符串，也可new Date()返回实例）： interface CallOrConstruct { (n?: number): string; // 普通调用签名 new (s: string): Date; // 构造签名 } function fn(ctor: CallOrConstruct) { console.log(ctor(10)); // 普通调用 console.log(new ctor(&#34;10&#34;)); // 构造调用 } fn(Date); // Date符合该类型 4. 泛型函数 基本概念：通过类型参数（如&lt;T&gt;）关联输入与输出类型，实现 “类型动态适配” // 类型参数Type关联输入数组与返回值 function firstElement&lt;Type&gt;(arr: Type[]): Type | undefined { return arr[0]; } 类型推断：TS 会根据传入的实参自动推断类型参数，无需显式指定（复杂场景需手动指定）： function map&lt;Input, Output&gt;(arr: Input[], func: (arg: Input) =&gt; Output): Output[] { return arr.map(func); } const parsed = map([&#34;1&#34;, &#34;2&#34;, &#34;3&#34;], (n) =&gt; parseInt(n)); // 推断Input为string，Output为number 类型约束：通过extends限制类型参数的范围，仅允许符合约束的类型： // 限制Type必须有length属性 function longest&lt;Type extends { length: number }&gt;(a: Type, b: Type): Type { return a.length &gt;= b.length ? a : b; } 手动指定类型参数：当类型推断不明确时，可手动指定： function combine&lt;Type&gt;(arr1: Type[], arr2: Type[]): Type[] { return arr1.concat(arr2); } const arr = combine&lt;string | number&gt;([1, 2, 3], [&#34;hello&#34;]); // 手动指定Type为string | number 泛型函数设计原则（面试常问）：
+...</p>
+  </div>
+  <footer class="entry-footer"></footer>
+  <a class="entry-link" aria-label="post link to " href="https://example.org/posts/ts/04--%E6%9B%B4%E5%A4%9A%E5%85%B3%E4%BA%8E%E5%87%BD%E6%95%B0/"></a>
 </article>
 <footer class="page-footer">
   <nav class="pagination">
