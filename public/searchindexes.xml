@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><search><entry><title>第一 ~ 四章 初步使用git</title><url>/post/git%E4%BB%8E%E5%85%A5%E9%97%A8%E5%88%B0%E7%B2%BE%E9%80%9A/%E7%AC%AC%E4%B8%80-~-%E5%9B%9B%E7%AB%A0-%E5%88%9D%E6%AD%A5%E4%BD%BF%E7%94%A8git/</url><categories><category>git从入门到精通</category></categories><tags><tag>Git</tag><tag>命令行</tag><tag>vim</tag><tag>版本控制工具</tag></tags><content type="html"><![CDATA[  Git 概述Git 是一种分布式版本控制系统，具有以下优点：
+免费开源，降低使用成本，支持二次开发和定制化需求。 操作速度快、存储效率高，通过快照式存储而非差异对比，高效处理大型项目的版本控制。 分布式架构：无需依赖中央服务器，每个开发者可拥有完整版本库，断网时仍能提交代码，多人协作更灵活。 常用命令（跨系统对比）Windows macOS/Linux 说明 cd cd 切换目录 cd pwd 获取当前所在的位置 dir ls 列出当前目录的文件和目录 mkdir mkdir 创建新的目录 无 touch 创建文件 copy cp 复制文件 move mv 移动文件 del rm 删除文件 cls clear 清除终端显示内容 命令示例# 切换到上一层目录 cd .. # ~表示home目录，切换到home目录下的project目录 cd ~/project/ # 显示当前所在目录 pwd # 列出当前目录下所有文件及目录，包括以小数点开头的文件，并显示完整信息（权限、所有者、创建及修改时间等） ls -al # 删除目录中所有的.html文档 rm *.html # 创建文件，若文件不存在则创建空白文件，若已存在则仅修改最后修改时间 touch index.htmlls 命令说明ls 命令用于列出当前目录下的所有文件及目录，-al 参数中：
+a：表示显示以小数点开头的文件。 l：表示显示文件的完整权限、所有者以及创建、修改的时间等信息。 vim 操作vim 主要通过模式切换进行输入、光标移动、选取、复制及粘贴等操作，常用模式有两种：
+Normal 模式（命令模式）：默认进入的模式，无法输入文本，仅能进行复制、粘贴、存储或离开等操作。 Insert 模式（插入模式）：输入文本前需进入该模式，可通过按下 i（当前位置插入）、a（当前位置后插入）、o（新行插入）进入进入。在 Insert 模式下，按下 &amp;lsquo;Esc&amp;rsquo; 键或 &amp;lsquo;Ctrl+[&amp;rsquo; 组合键可退回 Normal 模式。 Normal 模式常用命令按下 “:w”：对文件进行存储。 按下 “:q”：关闭文件（若未存储会提示先存储再离开）。 按下 “:wq”：存储完成后直接关闭文件。 :q!：强制退出（不保存修改，放弃当前编辑）。 Git 配置基本配置（用户信 …  ]]></content></entry><entry><title/><url>/post/git%E4%BB%8E%E5%85%A5%E9%97%A8%E5%88%B0%E7%B2%BE%E9%80%9A/%E7%AC%AC%E4%B8%83%E7%AB%A0-%E4%BF%AE%E6%94%B9%E5%8E%86%E5%8F%B2%E8%AE%B0%E5%BD%95/</url><categories/><tags/><content type="html"><![CDATA[  修改历史信息命令：git rebase -i &amp;lt;基准commit&amp;gt;
+-i：进入互动模式，可编辑历史提交。
+&amp;lt;基准commit&amp;gt;：指定修改范围为 “当前分支中，该 commit 之后的所有提交”（不包含该 commit 本身）。
+操作过程：
+执行命令后，弹出 vim 编辑器，列表中从上到下为 “从旧到新” 的 commit（与git log的 “从新到旧” 相反）。
+每行开头为操作指令，将pick改成reword（或简写r），表示要改动该 commit 的信息，存档离开后，会弹出另一个 vim 编辑器，修改提交信息后保存，生成新 commit。
+影响：由于 commit 对象信息会影响 SHA-1 计算，Git 会生成新的 Commit 对象替代原来的，且该 commit 之后的所有 commit 都会重做新的对象替代旧的。
+取消 rebase：git reset ORIG_HEAD &amp;ndash;hard
+把多个 commit 合并成一个 commit执行git rebase -i &amp;lt;最早要合并的commit的前一个哈希&amp;gt;（如合并最近 3 个 commit，基准为HEAD~4）。
+在编辑器中，将目标 commit 的pick改为squash（或fixup）
+保存退出后，若用squash：弹出编辑器，合并所有 commit 信息为一个（fixup则直接使用上一个 commit 的信息）。
+完成后，多个 commit 被合并为一个，历史更简洁。
+把一个 commit 拆解成多个 commit在 rebase 的互动模式下使用edit指令，继续执行 rebase，rebase 会在edit位置停下来。
+执行git reset HEAD^指令。
+重新 commit 拆出来的文件，再执行git rebase &amp;ndash;continue让 rebase 继续即可。
+在某些 commit 之间加新的 commit在 rebase 互动模式下，将目标 commit 改成edit，继续执行 rebase，让 rebase 停在该 commit 上。
+注意：处于 rebase 状态的 commit 列表与平常记录相反，需确认停下来的点正确。
+增加新的 commit，完成后执行git rebase &amp;ndash;continue，即可在指定 …  ]]></content></entry><entry><title/><url>/post/git%E4%BB%8E%E5%85%A5%E9%97%A8%E5%88%B0%E7%B2%BE%E9%80%9A/%E7%AC%AC%E4%B9%9D%E7%AB%A0-%E5%85%B6%E4%BB%96%E5%B8%B8%E8%A7%81%E7%9A%84%E6%83%85%E5%86%B5%E5%8F%8A%E5%86%B7%E7%9F%A5%E8%AF%86/</url><categories/><tags/><content type="html"><![CDATA[  一、工作中途切换任务的处理（git stash）git stash用于临时保存工作区和暂存区的修改（未提交的内容），以便切换分支处理其他任务，后续可恢复继续工作。
+保存当前修改： git stash # 保存已跟踪文件的修改（默认不包含untracked文件） git stash -u # 同时保存untracked文件（新文件） git stash -a # 保存所有修改（包括untracked和ignored文件，谨慎使用） git stash -m &amp;#34;描述信息&amp;#34; # 给stash添加描述，便于区分（推荐）查看保存的 stash： git stash list # 列出所有stash，格式：stash@{n}: WIP on &amp;lt;分支名&amp;gt;: &amp;lt;描述&amp;gt; # 示例：stash@{0}: WIP on feature/login: 完善表单验证恢复 stash：
+git stash pop &amp;lt;stash@{n}&amp;gt;：恢复指定 stash 并从列表中删除（默认恢复最新的 stash@{0}）。 git stash apply &amp;lt;stash@{n}&amp;gt;：恢复指定 stash 但不删除（可多次应用，适合多分支复用）。 删除 stash：
+git stash drop &amp;lt;stash@{n}&amp;gt; # 删除指定stash git stash clear # 清空所有stash（谨慎！）二、移除 Git 历史中的敏感信息（如账号密码）当不慎提交敏感文件后，需彻底从历史中删除。
+推荐方法：git filter-repo（现代替代filter-branch） git filter-branch因性能差、易出错已被官方推荐git filter-repo替代（需先安装：pip install git-filter-repo）。
+移除历史中的敏感文件：
+# 彻底删除历史中所有&amp;#34;敏感文件路径&amp;#34;的痕迹 git filter-repo --path &amp;#34;敏感文件路径&amp;#34; --invert-paths--path：指定要删除的文件路径； --invert-paths：保留除指定路径外的所有内容（即删除目标文件）。 简单但粗暴的方法 删除 .git 目录（丢失所有历史）→ 删除敏感文件 → 重新 …  ]]></content></entry><entry><title/><url>/post/git%E4%BB%8E%E5%85%A5%E9%97%A8%E5%88%B0%E7%B2%BE%E9%80%9A/%E7%AC%AC%E4%BA%94%E7%AB%A0-%E5%BC%80%E5%A7%8B%E4%BD%BF%E7%94%A8git/</url><categories/><tags/><content type="html"><![CDATA[  新增、初始 Repository命令：git init
+作用：在目录中创建一个.git目录，该目录是 Git 进行版本控制的核心。若移除.git目录，Git 将失去对该目录的控制权，可用于提供不含版控记录的内容给客户。
+把文件交给 Git 管控查看目录状态：git status
+显示文件状态：Untracked（未跟踪，新文件）、Modified（已修改未暂存）、Staged（已暂存待提交）。 添加文件到暂存区：
+单个文件：git add &amp;lt;文件名&amp;gt;，将指定文件安置到暂存区。
+特定类型文件：git add *.html，把所有后缀为.html的文件加到暂存区。
+全部文件：
+git add &amp;ndash;all（或git add -A），添加项目中所有异动文件到暂存区；
+git add .，添加当前目录及子目录中的异动文件到暂存区，对目录外文件无效。
+注意事项：git add后若再次改动文件，改动内容不会自动加入暂存区，暂存区仍为之前的版本，此时git status会显示文件同时处于Modified（工作区）和Staged（暂存区）状态。
+提交到存储库：git commit -m &amp;lsquo;init commit&amp;rsquo;，-m后为提交说明，将暂存区内容永久保存到存储库。每次commit仅处理暂存区内容，未加入暂存区的文件不会被提交。
+空提交：git commit &amp;ndash;allow-empty -m &amp;ldquo;&amp;quot;，加上&amp;ndash;allow-empty参数，无文件变动时强制提交（常用于触发 CI/CD 流程或标记重要节点）。
+工作区、暂存区与存储库关系：git add将文件从工作目录移至暂存区，git commit将暂存区内容移至存储库，完成commit才算整个流程结束。
+简化提交：git commit -a -m &amp;ldquo;update content&amp;rdquo;，-a参数可缩短流程，跳过git add，直接将已跟踪文件的修改提交（新文件Untracked不生效，仍需手动add）。
+查看记录基本查看：git log，越新的信息越靠上，显示作者、提交时间、提交说明等。 精简查看： git log --oneline：每行显示一条记录（哈希前缀 + 说明）。 git log --graph --oneline：图 …  ]]></content></entry><entry><title/><url>/post/git%E4%BB%8E%E5%85%A5%E9%97%A8%E5%88%B0%E7%B2%BE%E9%80%9A/%E7%AC%AC%E5%85%AB%E7%AB%A0%E5%92%8C%E7%AC%AC%E5%8D%81%E4%B8%80%E7%AB%A0-%E6%A0%87%E7%AD%BE%E5%92%8Cgitflow/</url><categories/><tags/><content type="html"><![CDATA[  Git 标签相关知识一、标签的概念与作用标签是 Git 中指向某个 commit 的指示标，常用于标记软件开发的特定里程碑（如版本发布）。 标签本质类似 “贴纸”，标签一旦创建，默认不会随新提交移动，删除标签不会影响对应的 commit 或文件。 二、标签的类型及使用轻量标签
+特点：仅作为指向某个 commit 的指示标，不含额外信息。
+创建方式：直接指定 commit（若不指定则默认当前 commit）
+git tag &amp;lt;标签名&amp;gt; [commit的SHA-1值]示例：
+git tag big_cats 51d54ff存储：指向某个 commit 的 SHA-1 值，存于 .git/refs/tags 目录。
+有附注的标签
+特点：包含更多信息（如标签创建者、时间、描述等），推荐使用。
+创建方式：通过-a 参数创建，-m 可添加描述（若无-m则弹出 vim 编辑器）
+git tag &amp;lt;标签名&amp;gt; [commit的SHA-1值] -a -m &amp;ldquo;描述信息&amp;rdquo; ```
+示例：```git tag big_cats 51d64ff -a -m &amp;ldquo;big cats are comming&amp;rdquo; ```
+存储：指向某个 Tag 对象的 SHA-1 值，该 Tag 对象再指向对应的 commit，存于 .git/refs/tags 目录。 标签的查看与删除
+查看标签信息：git show &amp;lt;标签名&amp;gt;（如 git show big_cats） 删除标签：git tag -d &amp;lt;标签名&amp;gt;（如 git tag -d big_cats） 三、标签与分支的区别对比项 标签 分支 存储位置 .git/refs/tags 目录 .git/refs/heads 目录 内容格式 40 字节的 SHA-1 值 40 字节的 SHA-1 值 动态性 固定不变，不会随新 commit 移动 会随新 commit 推进而移动 本质类比 固定的 “贴纸” 可移动的 “标签” 删除影响 不影响被指向的对象 不影响被指向的对象 Git Flow 分支模型Git Flow 是一种规范化的分支管理流程，适用于中大型项目的协同开发，核心是通过不同类型分支的分工保证代码质量。
+Git Flow 建议的分支类型及功能如 …  ]]></content></entry><entry><title/><url>/post/git%E4%BB%8E%E5%85%A5%E9%97%A8%E5%88%B0%E7%B2%BE%E9%80%9A/%E7%AC%AC%E5%85%AD%E7%AB%A0-%E4%BD%BF%E7%94%A8%E5%88%86%E6%94%AF/</url><categories/><tags/><content type="html"><![CDATA[  分支的基本操作查看分支 执行git branch命令，不带任何参数时，会输出当前项目中的所有分支，前面带有星号的分支表示当前所在分支（即 HEAD 指向的分支）。 扩展命令（面试高频）： git branch -r：查看远程分支（如origin/main）。 git branch -a：查看本地 + 远程所有分支（远程分支以remotes/前缀显示）。 git branch -v：显示各分支最后一次提交信息（哈希 + 说明）。 创建分支 在git branch命令后加上想要创建的分支名称，即可基于当前分支为基准创建新分支（仅创建，不切换），例如git branch cat。 修改分支名称 使用-m参数可以修改分支名称，即使是 master 分支也能修改，且不会影响文件或目录（当前分支可省略旧名，直接git branch -m &amp;lt;新名&amp;gt;），如git branch -m cat tiger。 删除分支 使用-d参数可以删除不需要的分支，如git branch -d dog。
+若要删除的分支未被完全合并，-d参数无法删除，此时可使用-D参数强制删除，如git branch -D dog。
+当前所在的分支不能删除，需先切换到其他分支再进行删除操作。
+切换分支 使用git checkout命令切换分支，如git checkout dog，切换的分支必须已存在，否则会出错（Git 2.23 + 推荐用git switch &amp;lt;分支名&amp;gt;，更直观）。
+若要切换的分支不存在，可在git checkout后加上-b参数，若分支不存在则创建并切换过去，若已存在则直接切换，如git checkout -b new_branch。
+注意：切换分支前，需 commit 或 stash 工作区的修改（否则未提交的修改会被带到新分支）。
+对分支的理解可以将分支想象成一张贴纸，贴在某个 commit 上。当进行新的 commit 后，新的 commit 会指向其前一个 commit，当前分支（HEAD 所指分支）会贴到新的 commit 上，HEAD 也会随之前进。
+Git 中的分支并非通过复制目录或文件夹形成，它只是一个指向 commit 的指标。
+切换分支的原理切换分支时，Git 会用该分支指向的 commit 内容更新暂存区及工作目录，切换前的改动会保留在工作目录中 …  ]]></content></entry><entry><title/><url>/post/git%E4%BB%8E%E5%85%A5%E9%97%A8%E5%88%B0%E7%B2%BE%E9%80%9A/%E7%AC%AC%E5%8D%81%E7%AB%A0-%E8%BF%9C%E7%A8%8B%E5%85%B1%E5%90%8C%E5%8D%8F%E4%BD%9C/</url><categories/><tags/><content type="html"><![CDATA[  一、将内容推送到 GitHub前置准备
+在 GitHub 新建仓库，设置仓库名称（不重复）和权限（public 免费，private 付费）。 仓库创建后，根据场景选择操作指南（新项目 / 现有项目），并选择连接方式（HTTPS/SSH，SSH 需配置 SSH Key）。 关联远端仓库
+git remote add origin &amp;lt;GitHub仓库地址&amp;gt;remote add：添加远端节点。
+origin：远端 节点的默认名称（可自定义或修改）。
+远端仓库管理（补充操作）查看远端配置：git remote -v（显示远端名称、地址及操作类型，确认是否关联正确）。 修改远端地址：git remote set-url origin &amp;lt;新地址&amp;gt;（如仓库迁移后更新地址）。 删除远端关联：git remote remove origin（解除与远端的绑定）。 推送内容到远端
+git push -u origin master作用：将本地 master 分支推送到 origin 远端，若远端无 master 则创建，同时通过 -u 设置 upstream（上游跟踪关系）。 后续推送：设置 upstream 后，直接执行 git push 即可（无需重复指定远端和分支）。 upstream 作用 本地分支通过 -u 关联远端分支（如 origin/master）后，pull/push 会默认操作关联的远端分支。 推送时重命名分支
+git push origin master:cat # 将本地master推送到远端并命名为cat二、从 GitHub 拉取更新（pull/fetch）命令 本质 适用场景 git fetch 仅获取远端更新（更新origin/xxx分支），不合并 需先查看远端修改再决定是否合并（安全） git pull git fetch + git merge 快速同步远端修改（可能产生合并 commit） git pull --rebase git fetch + git rebase 保持历史线性（无合并 commit，推荐协作场景） fetch是 “安全查看”：获取后可通过git diff origin/main对比本地与远端差异，再手动merge或rebase。 pull --rebase优于pull： …  ]]></content></entry></search>

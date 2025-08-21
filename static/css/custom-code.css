@@ -1,0 +1,28 @@
+/* .highlight>.code-header {
+  color: #000;
+  padding: .25rem 0;
+  width: 100%;
+} */
+
+/* .highlight {
+  position: relative;
+  background: #eee;
+  margin-bottom: 26px;
+  line-height: 1.25;
+} */
+
+.highlight>.chroma {
+  max-height: none;
+
+}
+
+/* .chroma {
+  color: #333
+} */
+
+/* code,
+kbd,
+samp {
+  font-size: 1.2em;
+
+} */

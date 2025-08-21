@@ -1,0 +1,519 @@
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!DOCTYPE html>
+<html lang="en-us" data-theme="light">
+
+<head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<meta name="theme-color" content="" media="(prefers-color-scheme: light)" />
+
+<meta name="generator" content="Hugo 0.148.2">
+<link rel="shortcut icon" type="image/x-icon" href="">
+<link rel="icon" type="image/x-icon" href="">
+<link rel="icon" type="image/png" sizes="16x16" href="">
+<link rel="icon" type="image/png" sizes="32x32" href="">
+<link rel="apple-touch-icon" sizes="180x180" href="">
+<meta itemprop="name" content="测试" />
+<meta itemprop="description" content="" />
+<meta name="description" content="" />
+
+
+
+
+
+
+
+<meta itemprop="image" content="http://localhost:1313/" />
+<meta itemprop="keywords" content="" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <link type="text/css" rel="stylesheet" href="%25!s%28%3cnil%3e%29/font-awesome/6.7.2/css/all.min.css" /> 
+
+  
+  <link type="text/css" rel="stylesheet" href="%25!s%28%3cnil%3e%29/animate.css/3.1.1/animate.min.css" /> 
+
+  
+  <link type="text/css" rel="stylesheet" href="%25!s%28%3cnil%3e%29/viewerjs/1.11.6/viewer.min.css" /> 
+
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/css/main.scss?=1755764109">
+
+
+<style type="text/css">
+  .post-footer hr:after {
+    content: "";
+  }
+
+  .flinks-list-footer hr:after {
+    content: "";
+  }
+
+  
+  
+</style>
+
+
+
+
+  
+<script type="text/javascript">
+(function(){
+  localDB = {
+    set: function (key, value, ttl) {
+      if (ttl === 0) return;
+      const now = new Date();
+      const expiryDay = ttl * 86400000;
+      const item = {
+        value: value,
+        expiry: now.getTime() + expiryDay
+      };
+      localStorage.setItem(key, JSON.stringify(item));
+    },
+    get: function (key) {
+      const itemStr = localStorage.getItem(key);
+      if (!itemStr) {
+        return undefined;
+      }
+  
+      const item = JSON.parse(itemStr);
+      const now = new Date();
+  
+      if (now.getTime() > item.expiry) {
+        localStorage.removeItem(key);
+        return undefined;
+      }
+      return item.value;
+    }
+  };
+
+  theme = {
+    active: function() {
+      const localState = localDB.get('theme');
+      if (localState == undefined) return;
+      theme.toggle(localState);
+      window.matchMedia("(prefers-color-scheme: dark)").addListener(function (evt) {
+        theme.toggle(evt.matches ? 'dark' : 'light');
+      });
+    },
+
+    toggle: function (theme) {
+      document.documentElement.setAttribute('data-theme',  theme);
+      localDB.set('theme', theme, 2);
+      
+      const iframe = document.querySelector('iframe.giscus-frame');
+      if (iframe) {
+        const config = { setConfig: { theme: theme } };
+        iframe.contentWindow.postMessage({ giscus: config }, 'https://giscus.app');
+      }
+    }
+  };
+
+  theme.active();
+})(window);
+</script>
+
+
+
+
+
+
+
+  <title>测试 - My New Hugo Site</title>
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" >
+  <div class="headband"></div>
+  <main class="main">
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner">
+        
+<div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+    
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <h1 class="site-title">My New Hugo Site</h1>
+      <i class="logo-line"></i>
+    </a>
+    
+    
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+      
+    </div>
+  </div>
+</div>
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu">    
+      
+
+  
+  </ul>
+</nav>
+
+      </div>
+      
+      
+      <div class="toggle sidebar-toggle" role="button">
+  <span class="toggle-line"></span>
+  <span class="toggle-line"></span>
+  <span class="toggle-line"></span>
+</div>
+
+<aside class="sidebar">
+  <div class="sidebar-inner sidebar-overview-active">
+    <ul class="sidebar-nav">
+      <li class="sidebar-nav-toc">
+        
+      </li>
+      <li class="sidebar-nav-overview">
+        
+      </li>
+    </ul>
+    <div class="sidebar-panel-container">
+      
+      <div class="post-toc-wrap sidebar-panel">
+        <div class="post-toc animated"><nav id="TableOfContents"></nav></div>
+      </div>
+      
+      <div class="site-overview-wrap sidebar-panel">
+        
+<div class="site-author site-overview-item animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  
+  <p class="site-author-name" itemprop="name"></p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+
+
+
+<div class="links-of-social site-overview-item animated">
+
+
+</div>
+
+
+
+
+        
+        
+        
+      </div>
+    </div>
+  </div>
+
+  
+
+  
+</aside>
+<div class="sidebar-dimmer"></div>
+
+      
+    </header>
+    
+    <div class="tool-buttons" >
+  
+  
+  <div id="toggle-theme" class="button" title="">
+    <i class="fas fa-adjust"></i>
+  </div>
+   
+</div>
+
+
+
+
+
+
+
+
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+    <div class="main-inner post posts-expand">
+      
+      
+  <div class="post-block">
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    
+    <link itemprop="mainEntityOfPage" href="http://localhost:1313/post/test/">
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="">
+      <meta itemprop="name" content="">
+    </span>
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="">
+      <meta itemprop="description" content="">
+    </span>
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="测试">
+      <meta itemprop="description" content="123">
+    </span>
+    
+    <header class="post-header">
+      
+ <h1  class="post-title" itemprop="name headline">
+  
+  
+  测试
+  
+  
+   </h1> 
+
+<div class="post-meta-container">
+  <div class="post-meta-items">
+    
+    
+    
+        
+  </div>
+  
+  <div class="post-meta-items">
+    
+    
+
+    
+    
+  </div>
+  
+</div>
+
+    </header>
+    
+    <div class="post-body " itemprop="articleBody">
+      
+
+  
+  
+  
+  
+  
+  
+  <p>123</p>
+  
+  <a id="more"></a>
+  
+
+
+    </div>
+    <footer class="post-footer">
+      
+
+
+
+
+<hr/>
+
+
+
+
+
+
+
+
+
+<div class="post-nav">
+  <div class="post-nav-next post-nav-item">
+    
+  </div>
+  <div class="post-nav-prev post-nav-item">
+    
+  </div>
+</div>
+
+
+
+    </footer>
+  </article>
+</div>
+
+
+      
+    </div>
+  </main>
+  <footer class="footer">
+    <div class="footer-inner">
+      
+      
+<div class="copyright">
+  &copy;
+  <span itemprop="copyrightYear">
+    
+    
+    2025
+    
+  </span>
+  <span class="with-love">
+    <i class=""></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder"></span>
+</div>
+
+
+
+
+
+
+
+    </div>
+  </footer>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"comments":null,"expired":null,"isHome":false,"isPage":true,"path":"test","permalink":"http://localhost:1313/post/test/","title":"测试","toc":null}</script>
+  
+
+
+
+ 
+  
+  <script type="text/javascript" src="%25!s%28%3cnil%3e%29/animejs/3.2.2/anime.min.js" crossorigin="anonymous" defer></script>
+ 
+  
+  <script type="text/javascript" src="%25!s%28%3cnil%3e%29/viewerjs/1.11.6/viewer.min.js" crossorigin="anonymous" defer></script>
+
+
+<script class="next-config" data-name="main" type="application/json">{"bookmark":null,"copybtn":null,"darkmode":null,"hostname":"http://localhost:1313/","i18n":{"ds_day":"","ds_days":"","ds_hour":"","ds_hours":"","ds_just":"","ds_min":"","ds_mins":"","ds_month":"","ds_years":"","empty":"","hits":"","hits_time":"","placeholder":""},"isMultiLang":false,"lang":"en-us","lazyload":null,"motion":null,"root":"/","scheme":null,"sidebar":null,"vendor":{"plugins":null,"router":{}},"version":"4.8.3"}</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<script type="text/javascript" src="/js/main.js?=1755764109" defer></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</body>
+
+</html>
