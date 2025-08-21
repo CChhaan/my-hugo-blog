@@ -234,7 +234,7 @@ params:
   scheme: Gemini
 
   # 开启暗模式
-  darkmode: true
+  darkmode: false
 
   # 站点基本信息
   author: 张永浩
