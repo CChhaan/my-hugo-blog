@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>版本管理规范 on 拾光博客 - 永浩</title><link>/tags/%E7%89%88%E6%9C%AC%E7%AE%A1%E7%90%86%E8%A7%84%E8%8C%83/</link><description>Recent content in 版本管理规范 on 拾光博客 - 永浩</description><generator>Hugo</generator><language>zh-CN</language><lastBuildDate>Tue, 22 Jul 2025 00:00:00 +0000</lastBuildDate><atom:link href="/tags/%E7%89%88%E6%9C%AC%E7%AE%A1%E7%90%86%E8%A7%84%E8%8C%83/rss.xml" rel="self" type="application/rss+xml"/><item><title>第八章和第十一章 标签和gitflow</title><link>/post/git%E4%BB%8E%E5%85%A5%E9%97%A8%E5%88%B0%E7%B2%BE%E9%80%9A/%E7%AC%AC%E5%85%AB%E7%AB%A0%E5%92%8C%E7%AC%AC%E5%8D%81%E4%B8%80%E7%AB%A0-%E6%A0%87%E7%AD%BE%E5%92%8Cgitflow/</link><pubDate>Tue, 22 Jul 2025 00:00:00 +0000</pubDate><guid>/post/git%E4%BB%8E%E5%85%A5%E9%97%A8%E5%88%B0%E7%B2%BE%E9%80%9A/%E7%AC%AC%E5%85%AB%E7%AB%A0%E5%92%8C%E7%AC%AC%E5%8D%81%E4%B8%80%E7%AB%A0-%E6%A0%87%E7%AD%BE%E5%92%8Cgitflow/</guid><description>&lt;h3 id="git-标签相关知识">Git 标签相关知识
+&lt;a class="header-anchor" href="#git-%e6%a0%87%e7%ad%be%e7%9b%b8%e5%85%b3%e7%9f%a5%e8%af%86">&lt;/a>
+&lt;/h3>&lt;h4 id="一标签的概念与作用">一、标签的概念与作用
+&lt;a class="header-anchor" href="#%e4%b8%80%e6%a0%87%e7%ad%be%e7%9a%84%e6%a6%82%e5%bf%b5%e4%b8%8e%e4%bd%9c%e7%94%a8">&lt;/a>
+&lt;/h4>&lt;ul>
+&lt;li>标签是 Git 中指向某个 commit 的指示标，常用于标记软件开发的特定里程碑（如版本发布）。&lt;/li>
+&lt;li>标签本质类似 “贴纸”，标签一旦创建，默认不会随新提交移动，删除标签不会影响对应的 commit 或文件。&lt;/li>
+&lt;/ul></description></item></channel></rss>

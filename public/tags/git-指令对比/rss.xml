@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Git 指令对比 on 拾光博客 - 永浩</title><link>/tags/git-%E6%8C%87%E4%BB%A4%E5%AF%B9%E6%AF%94/</link><description>Recent content in Git 指令对比 on 拾光博客 - 永浩</description><generator>Hugo</generator><language>zh-CN</language><lastBuildDate>Tue, 08 Jul 2025 00:00:00 +0000</lastBuildDate><atom:link href="/tags/git-%E6%8C%87%E4%BB%A4%E5%AF%B9%E6%AF%94/rss.xml" rel="self" type="application/rss+xml"/><item><title>第七章 修改历史记录</title><link>/post/git%E4%BB%8E%E5%85%A5%E9%97%A8%E5%88%B0%E7%B2%BE%E9%80%9A/%E7%AC%AC%E4%B8%83%E7%AB%A0-%E4%BF%AE%E6%94%B9%E5%8E%86%E5%8F%B2%E8%AE%B0%E5%BD%95/</link><pubDate>Tue, 08 Jul 2025 00:00:00 +0000</pubDate><guid>/post/git%E4%BB%8E%E5%85%A5%E9%97%A8%E5%88%B0%E7%B2%BE%E9%80%9A/%E7%AC%AC%E4%B8%83%E7%AB%A0-%E4%BF%AE%E6%94%B9%E5%8E%86%E5%8F%B2%E8%AE%B0%E5%BD%95/</guid><description>&lt;h2 id="修改历史信息">修改历史信息
+&lt;a class="header-anchor" href="#%e4%bf%ae%e6%94%b9%e5%8e%86%e5%8f%b2%e4%bf%a1%e6%81%af">&lt;/a>
+&lt;/h2>&lt;ul>
+&lt;li>&lt;strong>命令&lt;/strong>：git rebase -i &amp;lt;基准 commit&amp;gt;&lt;/li>
+&lt;li>&lt;code>-i&lt;/code>：进入互动模式，可编辑历史提交。&lt;/li>
+&lt;li>&lt;code>&amp;lt;基准commit&amp;gt;&lt;/code>：指定修改范围为 “当前分支中，该 commit 之后的所有提交”（不包含该 commit 本身）。&lt;/li>
+&lt;li>&lt;strong>操作过程&lt;/strong>：&lt;/li>
+&lt;li>执行命令后，弹出 vim 编辑器，列表中&lt;strong>从上到下为 “从旧到新” 的 commit&lt;/strong>（与 &lt;code>git log&lt;/code>的 “从新到旧” 相反）。&lt;/li>
+&lt;li>每行开头为操作指令，将 pick 改成 reword（或简写 r），表示要改动该 commit 的信息，存档离开后，会弹出另一个 vim 编辑器，修改提交信息后保存，生成新 commit。&lt;/li>
+&lt;li>&lt;strong>影响&lt;/strong>：由于 commit 对象信息会影响 SHA-1 计算，Git 会生成新的 Commit 对象替代原来的，且该 commit 之后的所有 commit 都会重做新的对象替代旧的。&lt;/li>
+&lt;li>&lt;strong>取消 rebase&lt;/strong>：git reset ORIG_HEAD &amp;ndash;hard&lt;/li>
+&lt;/ul></description></item></channel></rss>

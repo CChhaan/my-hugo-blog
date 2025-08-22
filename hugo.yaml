@@ -204,9 +204,9 @@ menus:
     #   pageRef: /post/11-mermaid-charts
     #   weight: 3
     #   parent: example
-    - identifier: archives
-      name: 归档
-      pageRef: /archives
+    - identifier: categories
+      name: 分类
+      pageRef: /categories
       pre: archive
       weight: 5
     # - identifier: commonweal
@@ -906,9 +906,9 @@ params:
     # 不蒜子统计
     # Show Views / Visitors of the website / page with busuanzi.
     # For more information: http://ibruce.info/2015/04/04/busuanzi/
-    # busuanzi:
-    #   visitorsIcon: fa fa-user
-    #   viewsIcon: fa fa-eye
+    busuanzi:
+      visitorsIcon: fa fa-user
+      viewsIcon: fa fa-eye
 
   # ---------------------------------------------------------------
   # 内容搜索服务

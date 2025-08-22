@@ -1,85 +1,59 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>版本控制工具 on 拾光博客 - 永浩</title><link>//localhost:1313/tags/%E7%89%88%E6%9C%AC%E6%8E%A7%E5%88%B6%E5%B7%A5%E5%85%B7/</link><description>Recent content in 版本控制工具 on 拾光博客 - 永浩</description><generator>Hugo</generator><language>zh-CN</language><lastBuildDate>Tue, 07 Jun 2022 19:09:52 +0800</lastBuildDate><atom:link href="//localhost:1313/tags/%E7%89%88%E6%9C%AC%E6%8E%A7%E5%88%B6%E5%B7%A5%E5%85%B7/rss.xml" rel="self" type="application/rss+xml"/><item><title>第一 ~ 四章 初步使用git</title><link>//localhost:1313/post/git%E4%BB%8E%E5%85%A5%E9%97%A8%E5%88%B0%E7%B2%BE%E9%80%9A/%E7%AC%AC%E4%B8%80-~-%E5%9B%9B%E7%AB%A0-%E5%88%9D%E6%AD%A5%E4%BD%BF%E7%94%A8git/</link><pubDate>Tue, 07 Jun 2022 19:09:52 +0800</pubDate><guid>//localhost:1313/post/git%E4%BB%8E%E5%85%A5%E9%97%A8%E5%88%B0%E7%B2%BE%E9%80%9A/%E7%AC%AC%E4%B8%80-~-%E5%9B%9B%E7%AB%A0-%E5%88%9D%E6%AD%A5%E4%BD%BF%E7%94%A8git/</guid><description>&lt;h2 id="git-概述">Git 概述
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>版本控制工具 on 拾光博客 - 永浩</title><link>/tags/%E7%89%88%E6%9C%AC%E6%8E%A7%E5%88%B6%E5%B7%A5%E5%85%B7/</link><description>Recent content in 版本控制工具 on 拾光博客 - 永浩</description><generator>Hugo</generator><language>zh-CN</language><lastBuildDate>Tue, 29 Jul 2025 00:00:00 +0000</lastBuildDate><atom:link href="/tags/%E7%89%88%E6%9C%AC%E6%8E%A7%E5%88%B6%E5%B7%A5%E5%85%B7/rss.xml" rel="self" type="application/rss+xml"/><item><title>第十章 远程共同协作</title><link>/post/git%E4%BB%8E%E5%85%A5%E9%97%A8%E5%88%B0%E7%B2%BE%E9%80%9A/%E7%AC%AC%E5%8D%81%E7%AB%A0-%E8%BF%9C%E7%A8%8B%E5%85%B1%E5%90%8C%E5%8D%8F%E4%BD%9C/</link><pubDate>Tue, 29 Jul 2025 00:00:00 +0000</pubDate><guid>/post/git%E4%BB%8E%E5%85%A5%E9%97%A8%E5%88%B0%E7%B2%BE%E9%80%9A/%E7%AC%AC%E5%8D%81%E7%AB%A0-%E8%BF%9C%E7%A8%8B%E5%85%B1%E5%90%8C%E5%8D%8F%E4%BD%9C/</guid><description>&lt;h2 id="将内容推送到-github">将内容推送到 GitHub
+&lt;a class="header-anchor" href="#%e5%b0%86%e5%86%85%e5%ae%b9%e6%8e%a8%e9%80%81%e5%88%b0-github">&lt;/a>
+&lt;/h2>&lt;ul>
+&lt;li>
+&lt;p>&lt;strong>前置准备&lt;/strong>&lt;/p>
+&lt;ul>
+&lt;li>在 GitHub 新建仓库，设置仓库名称（不重复）和权限（public 免费，private 付费）。&lt;/li>
+&lt;li>仓库创建后，根据场景选择操作指南（新项目 / 现有项目），并选择连接方式（HTTPS/SSH，SSH 需配置 SSH Key）。&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;/ul></description></item><item><title>第八章和第十一章 标签和gitflow</title><link>/post/git%E4%BB%8E%E5%85%A5%E9%97%A8%E5%88%B0%E7%B2%BE%E9%80%9A/%E7%AC%AC%E5%85%AB%E7%AB%A0%E5%92%8C%E7%AC%AC%E5%8D%81%E4%B8%80%E7%AB%A0-%E6%A0%87%E7%AD%BE%E5%92%8Cgitflow/</link><pubDate>Tue, 22 Jul 2025 00:00:00 +0000</pubDate><guid>/post/git%E4%BB%8E%E5%85%A5%E9%97%A8%E5%88%B0%E7%B2%BE%E9%80%9A/%E7%AC%AC%E5%85%AB%E7%AB%A0%E5%92%8C%E7%AC%AC%E5%8D%81%E4%B8%80%E7%AB%A0-%E6%A0%87%E7%AD%BE%E5%92%8Cgitflow/</guid><description>&lt;h3 id="git-标签相关知识">Git 标签相关知识
+&lt;a class="header-anchor" href="#git-%e6%a0%87%e7%ad%be%e7%9b%b8%e5%85%b3%e7%9f%a5%e8%af%86">&lt;/a>
+&lt;/h3>&lt;h4 id="一标签的概念与作用">一、标签的概念与作用
+&lt;a class="header-anchor" href="#%e4%b8%80%e6%a0%87%e7%ad%be%e7%9a%84%e6%a6%82%e5%bf%b5%e4%b8%8e%e4%bd%9c%e7%94%a8">&lt;/a>
+&lt;/h4>&lt;ul>
+&lt;li>标签是 Git 中指向某个 commit 的指示标，常用于标记软件开发的特定里程碑（如版本发布）。&lt;/li>
+&lt;li>标签本质类似 “贴纸”，标签一旦创建，默认不会随新提交移动，删除标签不会影响对应的 commit 或文件。&lt;/li>
+&lt;/ul></description></item><item><title>第七章 修改历史记录</title><link>/post/git%E4%BB%8E%E5%85%A5%E9%97%A8%E5%88%B0%E7%B2%BE%E9%80%9A/%E7%AC%AC%E4%B8%83%E7%AB%A0-%E4%BF%AE%E6%94%B9%E5%8E%86%E5%8F%B2%E8%AE%B0%E5%BD%95/</link><pubDate>Tue, 08 Jul 2025 00:00:00 +0000</pubDate><guid>/post/git%E4%BB%8E%E5%85%A5%E9%97%A8%E5%88%B0%E7%B2%BE%E9%80%9A/%E7%AC%AC%E4%B8%83%E7%AB%A0-%E4%BF%AE%E6%94%B9%E5%8E%86%E5%8F%B2%E8%AE%B0%E5%BD%95/</guid><description>&lt;h2 id="修改历史信息">修改历史信息
+&lt;a class="header-anchor" href="#%e4%bf%ae%e6%94%b9%e5%8e%86%e5%8f%b2%e4%bf%a1%e6%81%af">&lt;/a>
+&lt;/h2>&lt;ul>
+&lt;li>&lt;strong>命令&lt;/strong>：git rebase -i &amp;lt;基准 commit&amp;gt;&lt;/li>
+&lt;li>&lt;code>-i&lt;/code>：进入互动模式，可编辑历史提交。&lt;/li>
+&lt;li>&lt;code>&amp;lt;基准commit&amp;gt;&lt;/code>：指定修改范围为 “当前分支中，该 commit 之后的所有提交”（不包含该 commit 本身）。&lt;/li>
+&lt;li>&lt;strong>操作过程&lt;/strong>：&lt;/li>
+&lt;li>执行命令后，弹出 vim 编辑器，列表中&lt;strong>从上到下为 “从旧到新” 的 commit&lt;/strong>（与 &lt;code>git log&lt;/code>的 “从新到旧” 相反）。&lt;/li>
+&lt;li>每行开头为操作指令，将 pick 改成 reword（或简写 r），表示要改动该 commit 的信息，存档离开后，会弹出另一个 vim 编辑器，修改提交信息后保存，生成新 commit。&lt;/li>
+&lt;li>&lt;strong>影响&lt;/strong>：由于 commit 对象信息会影响 SHA-1 计算，Git 会生成新的 Commit 对象替代原来的，且该 commit 之后的所有 commit 都会重做新的对象替代旧的。&lt;/li>
+&lt;li>&lt;strong>取消 rebase&lt;/strong>：git reset ORIG_HEAD &amp;ndash;hard&lt;/li>
+&lt;/ul></description></item><item><title>第六章 使用分支</title><link>/post/git%E4%BB%8E%E5%85%A5%E9%97%A8%E5%88%B0%E7%B2%BE%E9%80%9A/%E7%AC%AC%E5%85%AD%E7%AB%A0-%E4%BD%BF%E7%94%A8%E5%88%86%E6%94%AF/</link><pubDate>Sat, 05 Jul 2025 00:00:00 +0000</pubDate><guid>/post/git%E4%BB%8E%E5%85%A5%E9%97%A8%E5%88%B0%E7%B2%BE%E9%80%9A/%E7%AC%AC%E5%85%AD%E7%AB%A0-%E4%BD%BF%E7%94%A8%E5%88%86%E6%94%AF/</guid><description>&lt;h2 id="分支的基本操作">分支的基本操作
+&lt;a class="header-anchor" href="#%e5%88%86%e6%94%af%e7%9a%84%e5%9f%ba%e6%9c%ac%e6%93%8d%e4%bd%9c">&lt;/a>
+&lt;/h2>&lt;ol>
+&lt;li>&lt;strong>查看分支&lt;/strong>&lt;/li>
+&lt;/ol>
+&lt;ul>
+&lt;li>执行 git branch 命令，不带任何参数时，会输出当前项目中的所有分支，前面带有星号的分支表示当前所在分支（即 HEAD 指向的分支）。&lt;/li>
+&lt;li>扩展命令（面试高频）：
+&lt;ul>
+&lt;li>&lt;code>git branch -r&lt;/code>：查看远程分支（如&lt;code>origin/main&lt;/code>）。&lt;/li>
+&lt;li>&lt;code>git branch -a&lt;/code>：查看本地 + 远程所有分支（远程分支以&lt;code>remotes/&lt;/code>前缀显示）。&lt;/li>
+&lt;li>&lt;code>git branch -v&lt;/code>：显示各分支最后一次提交信息（哈希 + 说明）。&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;/ul></description></item><item><title>第五章 开始使用git</title><link>/post/git%E4%BB%8E%E5%85%A5%E9%97%A8%E5%88%B0%E7%B2%BE%E9%80%9A/%E7%AC%AC%E4%BA%94%E7%AB%A0-%E5%BC%80%E5%A7%8B%E4%BD%BF%E7%94%A8git/</link><pubDate>Mon, 23 Jun 2025 00:00:00 +0000</pubDate><guid>/post/git%E4%BB%8E%E5%85%A5%E9%97%A8%E5%88%B0%E7%B2%BE%E9%80%9A/%E7%AC%AC%E4%BA%94%E7%AB%A0-%E5%BC%80%E5%A7%8B%E4%BD%BF%E7%94%A8git/</guid><description>&lt;h2 id="新增初始-repository">新增、初始 Repository
+&lt;a class="header-anchor" href="#%e6%96%b0%e5%a2%9e%e5%88%9d%e5%a7%8b-repository">&lt;/a>
+&lt;/h2>&lt;ul>
+&lt;li>
+&lt;p>&lt;strong>命令&lt;/strong>：git init&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>&lt;strong>作用&lt;/strong>：在目录中创建一个.git 目录，该目录是 Git 进行版本控制的核心。若移除.git 目录，Git 将失去对该目录的控制权，可用于提供不含版控记录的内容给客户。&lt;/p>
+&lt;/li>
+&lt;/ul></description></item><item><title>第一 ~ 四章 初步使用git</title><link>/post/git%E4%BB%8E%E5%85%A5%E9%97%A8%E5%88%B0%E7%B2%BE%E9%80%9A/%E7%AC%AC%E4%B8%80-~-%E5%9B%9B%E7%AB%A0-%E5%88%9D%E6%AD%A5%E4%BD%BF%E7%94%A8git/</link><pubDate>Fri, 20 Jun 2025 00:00:00 +0000</pubDate><guid>/post/git%E4%BB%8E%E5%85%A5%E9%97%A8%E5%88%B0%E7%B2%BE%E9%80%9A/%E7%AC%AC%E4%B8%80-~-%E5%9B%9B%E7%AB%A0-%E5%88%9D%E6%AD%A5%E4%BD%BF%E7%94%A8git/</guid><description>&lt;h2 id="git-概述">Git 概述
 &lt;a class="header-anchor" href="#git-%e6%a6%82%e8%bf%b0">&lt;/a>
 &lt;/h2>&lt;p>Git 是一种分布式版本控制系统，具有以下优点：&lt;/p>
 &lt;ul>
 &lt;li>免费开源，降低使用成本，支持二次开发和定制化需求。&lt;/li>
 &lt;li>操作速度快、存储效率高，通过快照式存储而非差异对比，高效处理大型项目的版本控制。&lt;/li>
 &lt;li>分布式架构：无需依赖中央服务器，每个开发者可拥有完整版本库，断网时仍能提交代码，多人协作更灵活。&lt;/li>
-&lt;/ul>
-&lt;h2 id="常用命令跨系统对比">常用命令（跨系统对比）
-&lt;a class="header-anchor" href="#%e5%b8%b8%e7%94%a8%e5%91%bd%e4%bb%a4%e8%b7%a8%e7%b3%bb%e7%bb%9f%e5%af%b9%e6%af%94">&lt;/a>
-&lt;/h2>&lt;table>
- &lt;thead>
- &lt;tr>
- &lt;th>Windows&lt;/th>
- &lt;th>macOS/Linux&lt;/th>
- &lt;th>说明&lt;/th>
- &lt;/tr>
- &lt;/thead>
- &lt;tbody>
- &lt;tr>
- &lt;td>cd&lt;/td>
- &lt;td>cd&lt;/td>
- &lt;td>切换目录&lt;/td>
- &lt;/tr>
- &lt;tr>
- &lt;td>cd&lt;/td>
- &lt;td>pwd&lt;/td>
- &lt;td>获取当前所在的位置&lt;/td>
- &lt;/tr>
- &lt;tr>
- &lt;td>dir&lt;/td>
- &lt;td>ls&lt;/td>
- &lt;td>列出当前目录的文件和目录&lt;/td>
- &lt;/tr>
- &lt;tr>
- &lt;td>mkdir&lt;/td>
- &lt;td>mkdir&lt;/td>
- &lt;td>创建新的目录&lt;/td>
- &lt;/tr>
- &lt;tr>
- &lt;td>无&lt;/td>
- &lt;td>touch&lt;/td>
- &lt;td>创建文件&lt;/td>
- &lt;/tr>
- &lt;tr>
- &lt;td>copy&lt;/td>
- &lt;td>cp&lt;/td>
- &lt;td>复制文件&lt;/td>
- &lt;/tr>
- &lt;tr>
- &lt;td>move&lt;/td>
- &lt;td>mv&lt;/td>
- &lt;td>移动文件&lt;/td>
- &lt;/tr>
- &lt;tr>
- &lt;td>del&lt;/td>
- &lt;td>rm&lt;/td>
- &lt;td>删除文件&lt;/td>
- &lt;/tr>
- &lt;tr>
- &lt;td>cls&lt;/td>
- &lt;td>clear&lt;/td>
- &lt;td>清除终端显示内容&lt;/td>
- &lt;/tr>
- &lt;/tbody>
-&lt;/table>
-&lt;h3 id="命令示例">命令示例
-&lt;a class="header-anchor" href="#%e5%91%bd%e4%bb%a4%e7%a4%ba%e4%be%8b">&lt;/a>
-&lt;/h3>
-&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-bash" data-lang="bash">&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># 切换到上一层目录&lt;/span>
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="nb">cd&lt;/span> ..
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># ~表示home目录，切换到home目录下的project目录&lt;/span>
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="nb">cd&lt;/span> ~/project/
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># 显示当前所在目录&lt;/span>
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="nb">pwd&lt;/span>
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># 列出当前目录下所有文件及目录，包括以小数点开头的文件，并显示完整信息（权限、所有者、创建及修改时间等）&lt;/span>
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">ls -al
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># 删除目录中所有的.html文档&lt;/span>
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">rm *.html
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># 创建文件，若文件不存在则创建空白文件，若已存在则仅修改最后修改时间&lt;/span>
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">touch index.html&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
-
-&lt;h3 id="ls-命令说明">ls 命令说明
-&lt;a class="header-anchor" href="#ls-%e5%91%bd%e4%bb%a4%e8%af%b4%e6%98%8e">&lt;/a>
-&lt;/h3>&lt;p>ls 命令用于列出当前目录下的所有文件及目录，-al 参数中：&lt;/p></description></item></channel></rss>
+&lt;/ul></description></item></channel></rss>

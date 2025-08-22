@@ -1,85 +1,17 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Git on 拾光博客 - 永浩</title><link>//localhost:1313/tags/git/</link><description>Recent content in Git on 拾光博客 - 永浩</description><generator>Hugo</generator><language>zh-CN</language><lastBuildDate>Tue, 07 Jun 2022 19:09:52 +0800</lastBuildDate><atom:link href="//localhost:1313/tags/git/rss.xml" rel="self" type="application/rss+xml"/><item><title>第一 ~ 四章 初步使用git</title><link>//localhost:1313/post/git%E4%BB%8E%E5%85%A5%E9%97%A8%E5%88%B0%E7%B2%BE%E9%80%9A/%E7%AC%AC%E4%B8%80-~-%E5%9B%9B%E7%AB%A0-%E5%88%9D%E6%AD%A5%E4%BD%BF%E7%94%A8git/</link><pubDate>Tue, 07 Jun 2022 19:09:52 +0800</pubDate><guid>//localhost:1313/post/git%E4%BB%8E%E5%85%A5%E9%97%A8%E5%88%B0%E7%B2%BE%E9%80%9A/%E7%AC%AC%E4%B8%80-~-%E5%9B%9B%E7%AB%A0-%E5%88%9D%E6%AD%A5%E4%BD%BF%E7%94%A8git/</guid><description>&lt;h2 id="git-概述">Git 概述
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Git on 拾光博客 - 永浩</title><link>/tags/git/</link><description>Recent content in Git on 拾光博客 - 永浩</description><generator>Hugo</generator><language>zh-CN</language><lastBuildDate>Mon, 23 Jun 2025 00:00:00 +0000</lastBuildDate><atom:link href="/tags/git/rss.xml" rel="self" type="application/rss+xml"/><item><title>第五章 开始使用git</title><link>/post/git%E4%BB%8E%E5%85%A5%E9%97%A8%E5%88%B0%E7%B2%BE%E9%80%9A/%E7%AC%AC%E4%BA%94%E7%AB%A0-%E5%BC%80%E5%A7%8B%E4%BD%BF%E7%94%A8git/</link><pubDate>Mon, 23 Jun 2025 00:00:00 +0000</pubDate><guid>/post/git%E4%BB%8E%E5%85%A5%E9%97%A8%E5%88%B0%E7%B2%BE%E9%80%9A/%E7%AC%AC%E4%BA%94%E7%AB%A0-%E5%BC%80%E5%A7%8B%E4%BD%BF%E7%94%A8git/</guid><description>&lt;h2 id="新增初始-repository">新增、初始 Repository
+&lt;a class="header-anchor" href="#%e6%96%b0%e5%a2%9e%e5%88%9d%e5%a7%8b-repository">&lt;/a>
+&lt;/h2>&lt;ul>
+&lt;li>
+&lt;p>&lt;strong>命令&lt;/strong>：git init&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>&lt;strong>作用&lt;/strong>：在目录中创建一个.git 目录，该目录是 Git 进行版本控制的核心。若移除.git 目录，Git 将失去对该目录的控制权，可用于提供不含版控记录的内容给客户。&lt;/p>
+&lt;/li>
+&lt;/ul></description></item><item><title>第一 ~ 四章 初步使用git</title><link>/post/git%E4%BB%8E%E5%85%A5%E9%97%A8%E5%88%B0%E7%B2%BE%E9%80%9A/%E7%AC%AC%E4%B8%80-~-%E5%9B%9B%E7%AB%A0-%E5%88%9D%E6%AD%A5%E4%BD%BF%E7%94%A8git/</link><pubDate>Fri, 20 Jun 2025 00:00:00 +0000</pubDate><guid>/post/git%E4%BB%8E%E5%85%A5%E9%97%A8%E5%88%B0%E7%B2%BE%E9%80%9A/%E7%AC%AC%E4%B8%80-~-%E5%9B%9B%E7%AB%A0-%E5%88%9D%E6%AD%A5%E4%BD%BF%E7%94%A8git/</guid><description>&lt;h2 id="git-概述">Git 概述
 &lt;a class="header-anchor" href="#git-%e6%a6%82%e8%bf%b0">&lt;/a>
 &lt;/h2>&lt;p>Git 是一种分布式版本控制系统，具有以下优点：&lt;/p>
 &lt;ul>
 &lt;li>免费开源，降低使用成本，支持二次开发和定制化需求。&lt;/li>
 &lt;li>操作速度快、存储效率高，通过快照式存储而非差异对比，高效处理大型项目的版本控制。&lt;/li>
 &lt;li>分布式架构：无需依赖中央服务器，每个开发者可拥有完整版本库，断网时仍能提交代码，多人协作更灵活。&lt;/li>
-&lt;/ul>
-&lt;h2 id="常用命令跨系统对比">常用命令（跨系统对比）
-&lt;a class="header-anchor" href="#%e5%b8%b8%e7%94%a8%e5%91%bd%e4%bb%a4%e8%b7%a8%e7%b3%bb%e7%bb%9f%e5%af%b9%e6%af%94">&lt;/a>
-&lt;/h2>&lt;table>
- &lt;thead>
- &lt;tr>
- &lt;th>Windows&lt;/th>
- &lt;th>macOS/Linux&lt;/th>
- &lt;th>说明&lt;/th>
- &lt;/tr>
- &lt;/thead>
- &lt;tbody>
- &lt;tr>
- &lt;td>cd&lt;/td>
- &lt;td>cd&lt;/td>
- &lt;td>切换目录&lt;/td>
- &lt;/tr>
- &lt;tr>
- &lt;td>cd&lt;/td>
- &lt;td>pwd&lt;/td>
- &lt;td>获取当前所在的位置&lt;/td>
- &lt;/tr>
- &lt;tr>
- &lt;td>dir&lt;/td>
- &lt;td>ls&lt;/td>
- &lt;td>列出当前目录的文件和目录&lt;/td>
- &lt;/tr>
- &lt;tr>
- &lt;td>mkdir&lt;/td>
- &lt;td>mkdir&lt;/td>
- &lt;td>创建新的目录&lt;/td>
- &lt;/tr>
- &lt;tr>
- &lt;td>无&lt;/td>
- &lt;td>touch&lt;/td>
- &lt;td>创建文件&lt;/td>
- &lt;/tr>
- &lt;tr>
- &lt;td>copy&lt;/td>
- &lt;td>cp&lt;/td>
- &lt;td>复制文件&lt;/td>
- &lt;/tr>
- &lt;tr>
- &lt;td>move&lt;/td>
- &lt;td>mv&lt;/td>
- &lt;td>移动文件&lt;/td>
- &lt;/tr>
- &lt;tr>
- &lt;td>del&lt;/td>
- &lt;td>rm&lt;/td>
- &lt;td>删除文件&lt;/td>
- &lt;/tr>
- &lt;tr>
- &lt;td>cls&lt;/td>
- &lt;td>clear&lt;/td>
- &lt;td>清除终端显示内容&lt;/td>
- &lt;/tr>
- &lt;/tbody>
-&lt;/table>
-&lt;h3 id="命令示例">命令示例
-&lt;a class="header-anchor" href="#%e5%91%bd%e4%bb%a4%e7%a4%ba%e4%be%8b">&lt;/a>
-&lt;/h3>
-&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-bash" data-lang="bash">&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># 切换到上一层目录&lt;/span>
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="nb">cd&lt;/span> ..
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># ~表示home目录，切换到home目录下的project目录&lt;/span>
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="nb">cd&lt;/span> ~/project/
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># 显示当前所在目录&lt;/span>
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="nb">pwd&lt;/span>
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># 列出当前目录下所有文件及目录，包括以小数点开头的文件，并显示完整信息（权限、所有者、创建及修改时间等）&lt;/span>
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">ls -al
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># 删除目录中所有的.html文档&lt;/span>
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">rm *.html
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># 创建文件，若文件不存在则创建空白文件，若已存在则仅修改最后修改时间&lt;/span>
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">touch index.html&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
-
-&lt;h3 id="ls-命令说明">ls 命令说明
-&lt;a class="header-anchor" href="#ls-%e5%91%bd%e4%bb%a4%e8%af%b4%e6%98%8e">&lt;/a>
-&lt;/h3>&lt;p>ls 命令用于列出当前目录下的所有文件及目录，-al 参数中：&lt;/p></description></item></channel></rss>
+&lt;/ul></description></item></channel></rss>

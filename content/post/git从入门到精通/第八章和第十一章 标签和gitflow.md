@@ -1,52 +1,76 @@
+---
+# 文章标题
+title: 第八章和第十一章 标签和gitflow
+# 文章内容摘要
+# 文章内容关键字
+keywords: Git, Git 标签，轻量标签，有附注标签，Git Flow, 分支模型，GitHub Flow, 版本管理规范
+# 发表日期
+date: 2025-07-22
+# 分类
+categories:
+  - git从入门到精通
+# 标签
+tags:
+  - Git 标签管理
+  - Git Flow 分支模型
+  - 版本管理规范
+  - 团队协作流程
+  - 版本控制工具
+---
+
 ### Git 标签相关知识
 
 #### 一、标签的概念与作用
 
 - 标签是 Git 中指向某个 commit 的指示标，常用于标记软件开发的特定里程碑（如版本发布）。
 - 标签本质类似 “贴纸”，标签一旦创建，默认不会随新提交移动，删除标签不会影响对应的 commit 或文件。
+  <!--more-->
 
 #### 二、标签的类型及使用
 
-1. **轻量标签**
+1.  **轻量标签**
 
-   - 特点：仅作为指向某个 commit 的指示标，不含额外信息。
+    - 特点：仅作为指向某个 commit 的指示标，不含额外信息。
 
-   - 创建方式：直接指定 commit（若不指定则默认当前 commit）
+    - 创建方式：直接指定 commit（若不指定则默认当前 commit）
 
-     ```bash
-     git tag <标签名> [commit的SHA-1值]
-     ```
+      ```bash
+      git tag <标签名> [commit的SHA-1值]
+      ```
 
-     示例：
+      示例：
 
-     ```
-     git tag big_cats 51d54ff
-     ```
+      ```
+      git tag big_cats 51d54ff
+      ```
 
-   - 存储：指向某个 commit 的 SHA-1 值，存于 `.git/refs/tags` 目录。
+    - 存储：指向某个 commit 的 SHA-1 值，存于 `.git/refs/tags` 目录。
 
-2. **有附注的标签**
+2.  **有附注的标签**
 
-   - 特点：包含更多信息（如标签创建者、时间、描述等），推荐使用。
+    - 特点：包含更多信息（如标签创建者、时间、描述等），推荐使用。
 
-   - 创建方式：通过```-a ```参数创建，```-m ```可添加描述（若无```-m```则弹出 vim 编辑器）
+    - 创建方式：通过`-a `参数创建，`-m `可添加描述（若无`-m`则弹出 vim 编辑器）
 
-     ```bash
-git tag <标签名> [commit的SHA-1值] -a -m "描述信息"
-     ```
+           ```bash
 
-     示例：
+      git tag <标签名> [commit 的 SHA-1 值] -a -m "描述信息"
 
-     ```
-git tag big_cats 51d64ff -a -m "big cats are comming"
-     ```
+      ````
 
-   - 存储：指向某个 Tag 对象的 SHA-1 值，该 Tag 对象再指向对应的 commit，存于 `.git/refs/tags` 目录。
+           示例：
 
-3. **标签的查看与删除**
+           ```
 
-   - 查看标签信息：`git show <标签名>`（如 `git show big_cats`）
-   - 删除标签：`git tag -d <标签名>`（如 `git tag -d big_cats`）
+      git tag big_cats 51d64ff -a -m "big cats are comming"
+      ````
+
+    - 存储：指向某个 Tag 对象的 SHA-1 值，该 Tag 对象再指向对应的 commit，存于 `.git/refs/tags` 目录。
+
+3.  **标签的查看与删除**
+
+    - 查看标签信息：`git show <标签名>`（如 `git show big_cats`）
+    - 删除标签：`git tag -d <标签名>`（如 `git tag -d big_cats`）
 
 #### 三、标签与分支的区别
 

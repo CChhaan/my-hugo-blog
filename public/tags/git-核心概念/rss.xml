@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Git 核心概念 on 拾光博客 - 永浩</title><link>/tags/git-%E6%A0%B8%E5%BF%83%E6%A6%82%E5%BF%B5/</link><description>Recent content in Git 核心概念 on 拾光博客 - 永浩</description><generator>Hugo</generator><language>zh-CN</language><lastBuildDate>Mon, 23 Jun 2025 00:00:00 +0000</lastBuildDate><atom:link href="/tags/git-%E6%A0%B8%E5%BF%83%E6%A6%82%E5%BF%B5/rss.xml" rel="self" type="application/rss+xml"/><item><title>第五章 开始使用git</title><link>/post/git%E4%BB%8E%E5%85%A5%E9%97%A8%E5%88%B0%E7%B2%BE%E9%80%9A/%E7%AC%AC%E4%BA%94%E7%AB%A0-%E5%BC%80%E5%A7%8B%E4%BD%BF%E7%94%A8git/</link><pubDate>Mon, 23 Jun 2025 00:00:00 +0000</pubDate><guid>/post/git%E4%BB%8E%E5%85%A5%E9%97%A8%E5%88%B0%E7%B2%BE%E9%80%9A/%E7%AC%AC%E4%BA%94%E7%AB%A0-%E5%BC%80%E5%A7%8B%E4%BD%BF%E7%94%A8git/</guid><description>&lt;h2 id="新增初始-repository">新增、初始 Repository
+&lt;a class="header-anchor" href="#%e6%96%b0%e5%a2%9e%e5%88%9d%e5%a7%8b-repository">&lt;/a>
+&lt;/h2>&lt;ul>
+&lt;li>
+&lt;p>&lt;strong>命令&lt;/strong>：git init&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>&lt;strong>作用&lt;/strong>：在目录中创建一个.git 目录，该目录是 Git 进行版本控制的核心。若移除.git 目录，Git 将失去对该目录的控制权，可用于提供不含版控记录的内容给客户。&lt;/p>
+&lt;/li>
+&lt;/ul></description></item></channel></rss>
