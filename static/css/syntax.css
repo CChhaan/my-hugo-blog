@@ -469,3 +469,11 @@
   max-height: none;
 
 }
+
+kbd,
+p>code,
+li>code {
+  background-color: #eee;
+  color: #000;
+  margin: 0 .5em
+}

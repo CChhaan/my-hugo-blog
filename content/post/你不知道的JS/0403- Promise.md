@@ -1,0 +1,140 @@
+---
+# 文章标题
+title: 4.3节 Promise
+# 文章内容摘要
+# description: 本文详细介绍了 Git 这一分布式版本控制系统的优点，对比了 Windows 与 macOS/Linux 系统下的常用命令，讲解了 vim 操作模式及常用命令，还阐述了 Git 的基本配置、特定项目配置和命令缩写设置等内容。
+# 文章内容关键字
+keywords: JavaScript, Promise, thenable, Promise.all, Promise.race, 链式调用，异步编程，决议状态
+# 发表日期
+date: 2025-08-12
+summary: 本节详细介绍了 Promise 的核心概念、分类、鸭子类型、信任问题、链式流和模式，帮助读者深入理解 Promise 的原理和用法。
+# 分类
+categories:
+  - 你不知道的JS
+# 标签
+tags:
+  - JavaScript 异步
+  - Promise 原理
+  - 异步模式
+  - 错误处理
+  - 前端开发
+---
+
+## 什么是 Promise
+
+### 未来值
+
+- **核心特性**：Promise 封装了一个 “未来才会确定的值”，将 “现在”（发起异步操作）和 “将来”（操作结果）的逻辑归一化，确保输出可预测。
+- 状态与不可变性：
+  - 封装依赖时间的状态（等待、完成、拒绝），自身与时间无关，可按可预测方式组合。
+  - 一旦决议（完成或拒绝），状态永久固定为 “不变值”，可多次查看且不会被修改，多方依赖时观察结果一致。
+- **then 方法的双回调**：调用`then(onFulfilled, onRejected)`时，第一个参数处理 “完成”（操作成功），第二个处理 “拒绝”（操作失败）。
+
+### 完成事件（流程控制）
+
+- **本质**：Promise 的决议可作为异步任务中多步骤的流程控制信号（时序上的 “this-then-that”）。
+- 反控制反转：
+  - 传统回调存在 “控制反转”（第三方控制回调执行），而 Promise 通过 “侦听决议事件” 反转这种关系 —— 调用者通过`then`注册回调，等待 Promise 决议后触发，将控制返还给调用代码。
+- **信号特性**：决议可仅作为流程信号（不传递具体值），且一旦决议，后续步骤逻辑始终一致（无论现在或将来决议）。
+
+## 具有 then 方法的鸭子类型
+
+- **thenable 定义**：任何具有`then`方法的对象或函数，被视为与 Promise 一致的 “thenable”。
+- **鸭子类型**：通过值的形态（是否有`then`方法）假定其类型，这是识别 Promise 的核心逻辑。
+
+## Promise 信任问题（可靠性保障）
+
+1. **异步回调**：对 Promise 调用`then`时，即使 Promise 已决议，回调也**始终异步执行**（下一个事件循环 tick），确保行为一致。
+2. 决议的唯一性：
+   - Promise 只能被决议一次（首次调用`resolve`或`reject`生效，后续调用被忽略），因此`then`注册的回调仅执行一次。
+   - 若同一回调多次注册，会按注册次数执行。
+3. 决议值的单一性：
+   - 至多有一个决议值（未显式决议时为`undefined`），传给所有注册的回调。
+   - 调用`resolve`/`reject`时，仅第一个参数有效，后续参数被忽略；多值需封装为数组 / 对象传递。
+4. **异常处理**：Promise 创建或决议过程中出现的 JS 异常会被捕捉，导致 Promise 被拒绝。
+5. Promise.resolve 的作用：
+   - 传入非 Promise / 非 thenable 值：返回以该值完成的 Promise。
+   - 传入真正的 Promise：直接返回该 Promise。
+   - 传入 thenable：递归展开至非 thenable 的最终值，返回一个可信任的真正 Promise。
+   - 作用：确保任何值通过`Promise.resolve`过滤后都是可信任的 Promise。
+
+## 链式流（Promise 链式调用）
+
+1. 链式基础：
+   - 每次调用`then`都会创建并返回**新的 Promise**，支持链式连接。
+   - 完成回调的返回值会自动作为新 Promise 的完成值（若返回 Promise/thenable，会展开其决议值）。
+2. 错误传播：
+   - 若`then`仅传入完成回调，默认拒绝处理函数会 “重新抛出错误”，使错误沿链传播，直至被显式拒绝处理函数捕获。
+   - 若`then`未传入有效完成回调，默认完成处理函数会将值传递给下一个步骤。
+3. **catch 的本质**：`catch(onRejected)`是`then(null, onRejected)`的缩写，仅处理拒绝，自动传递完成值。
+
+## Promise 模式
+
+### Promise.all（“门” 模式）
+
+- **作用**：等待多个并行 / 并发任务**全部完成**后再继续，顺序无关。
+- **参数**：接受一个由 Promise、thenable 或立即值组成的数组（元素会被`Promise.resolve`规范化）。
+- 决议规则：
+  - 完成：所有成员 Promise 完成后，主 Promise 以 “成员完成值组成的数组” 完成（顺序与传入数组一致，与完成顺序无关）。
+  - 拒绝：任一成员 Promise 拒绝时，主 Promise 立即以该拒绝理由拒绝（忽略其他结果）。
+- **特殊情况**：传入空数组时，主 Promise**立即完成**（值为 []）。
+
+### Promise.race（“门闩” 模式）
+
+- **作用**：仅响应**第一个决议**的 Promise（完成或拒绝），忽略其他。
+- **参数**：接受一个由 Promise、thenable 或立即值组成的数组（元素会被`Promise.resolve`规范化）。
+- 决议规则：
+  - 完成：第一个完成的成员 Promise 的完成值作为主 Promise 的完成值。
+  - 拒绝：第一个拒绝的成员 Promise 的拒绝理由作为主 Promise 的拒绝理由。
+- **特殊情况**：传入空数组时，主 Promise**永远不会决议**。
+
+## Promise API 概述
+
+### new Promise 构造器
+
+- 必须与 new 配合使用，参数为一个同步执行的回调函数，该回调接受两个参数（resolve 和 reject）：
+  - `reject(reason)`：直接拒绝 Promise，理由为`reason`。
+  - resolve(value)：
+    - 若`value`为非 Promise / 非 thenable：以`value`完成 Promise。
+    - 若`value`为 Promise/thenable：递归展开，采用其最终决议状态 / 值。
+
+### Promise.resolve 和 Promise.reject（静态方法）
+
+- **Promise.reject(reason)**：快捷创建已拒绝的 Promise，理由为`reason`（不展开`reason`，即使其为 thenable）。
+- Promise.resolve(value)：
+  - 若`value`为 Promise：直接返回该 Promise。
+  - 若`value`为 thenable：展开至最终值，返回以该值决议的 Promise（完成或拒绝）。
+  - 其他情况：返回以`value`完成的 Promise。
+
+### then 和 catch（实例方法）
+
+- then(onFulfilled?, onRejected?)：
+  - 注册完成 / 拒绝回调，返回新 Promise。
+  - 若回调为非函数：替换为默认回调（完成回调传递值，拒绝回调重新抛错）。
+  - 回调返回值处理：
+    - 抛出异常：新 Promise 以该异常拒绝。
+    - 返回非 Promise / 非 thenable：新 Promise 以该值完成。
+    - 返回 Promise/thenable：新 Promise 采用其最终决议状态 / 值。
+- **catch(onRejected)**：等价于`then(null, onRejected)`，仅注册拒绝回调。
+
+### Promise.all 和 Promise.race（静态方法）
+
+- 同 “Promise 模式” 中描述，核心为 “门” 和 “门闩” 模式，控制多 Promise 的并发协作。
+
+## Promise 局限性
+
+1. 错误易被忽略：
+   - 若 Promise 链未设置错误处理函数，链中任何错误会一直传播，直至被捕获（可能导致隐性 bug）。
+   - 链中无统一实体标识，无法从外部观察未处理的错误。
+2. 单一决议值：
+   - 只能有一个完成值或拒绝理由，复杂场景需拆分多个 Promise。
+3. 无法中途取消：
+   - 一旦创建 Promise 并注册回调，若任务悬而未决，无法从外部终止其进程。
+4. 轻微性能开销：
+   - 相比非 Promise 回调，因内建可靠性（如异步保证、状态管理），性能略低，但可忽略不计。
+
+## 补充说明（修正与强调）
+
+- “决议” 包含 “完成（fulfilled）” 和 “拒绝（rejected）” 两种状态，避免混淆为单一概念。
+- Promise.race 传入空数组 “永远不决议” 是标准行为（因无竞争对象），需注意与 Promise.all 空数组的区别。
+- 所有回调的 “异步执行” 基于事件循环，确保宏观任务队列的顺序性，避免同步执行导致的时序混乱。

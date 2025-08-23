@@ -254,6 +254,7 @@ params:
 
   # 用户自定义文件配置
   customFilePath:
+    # archives: custom_archieves.html
     #   sidebar: custom_sidebar.html
     #   footer: custom_footer.html
     # style: /css/custom_style.css
