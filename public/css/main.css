@@ -3094,6 +3094,16 @@ header.header {
   }
 }
 
+.footer-inner .vendors-list a:nth-child(2) img {
+  width: 14px;
+}
+
+@media (max-width: 767px) {
+  .footer-inner .vendors-list a:nth-child(2) img {
+    width: 4px;
+  }
+}
+
 .use-motion .footer {
   opacity: 0;
 }
