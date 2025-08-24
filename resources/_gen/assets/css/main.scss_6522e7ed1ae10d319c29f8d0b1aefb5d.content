@@ -4348,67 +4348,67 @@ ul.breadcrumb li:last-child {
 .tag-cloud-0 {
   border-bottom-color: #aaaaaa;
   color: #aaaaaa;
-  font-size: 0.85em;
+  font-size: 1em;
 }
 
 .tag-cloud-1 {
   border-bottom-color: #9b9b9b;
   color: #9b9b9b;
-  font-size: 0.9em;
+  font-size: 1.1em;
 }
 
 .tag-cloud-2 {
   border-bottom-color: #8b8b8b;
   color: #8b8b8b;
-  font-size: 0.95em;
+  font-size: 1.2em;
 }
 
 .tag-cloud-3 {
   border-bottom-color: #7c7c7c;
   color: #7c7c7c;
-  font-size: 1em;
+  font-size: 1.3em;
 }
 
 .tag-cloud-4 {
   border-bottom-color: #6d6d6d;
   color: #6d6d6d;
-  font-size: 1.05em;
+  font-size: 1.4em;
 }
 
 .tag-cloud-5 {
   border-bottom-color: #5e5e5e;
   color: #5e5e5e;
-  font-size: 1.1em;
+  font-size: 1.5em;
 }
 
 .tag-cloud-6 {
   border-bottom-color: #4e4e4e;
   color: #4e4e4e;
-  font-size: 1.15em;
+  font-size: 1.6em;
 }
 
 .tag-cloud-7 {
   border-bottom-color: #3f3f3f;
   color: #3f3f3f;
-  font-size: 1.2em;
+  font-size: 1.7em;
 }
 
 .tag-cloud-8 {
   border-bottom-color: #303030;
   color: #303030;
-  font-size: 1.25em;
+  font-size: 1.8em;
 }
 
 .tag-cloud-9 {
   border-bottom-color: #202020;
   color: #202020;
-  font-size: 1.3em;
+  font-size: 1.9em;
 }
 
 .tag-cloud-10 {
   border-bottom-color: #111111;
   color: #111111;
-  font-size: 1.35em;
+  font-size: 2em;
 }
 
 .flinks-block .flinks-header {
