@@ -13,11 +13,9 @@ categories:
   - JS DOM编程艺术
 # 标签
 tags:
-  - JS 库使用
-  - CDN 应用
-  - 库选型标准
-  - 方法连缀
-  - 前端开发效率
+  - CDN
+  - JavaScript
+  - 前端开发
 ---
 
 ## JavaScript 库的核心概念与优缺点

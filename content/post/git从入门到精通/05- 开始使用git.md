@@ -14,10 +14,7 @@ categories:
 # 标签
 tags:
   - Git
-  - Git 命令
   - 版本控制工具
-  - Git 核心概念
-  - 代码协作
 ---
 
 ## 新增、初始 Repository

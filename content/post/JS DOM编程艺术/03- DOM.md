@@ -13,10 +13,8 @@ categories:
   - JS DOM编程艺术
 # 标签
 tags:
+  - JavaScript
   - DOM 操作
-  - 节点类型
-  - 元素获取
-  - 属性操作
   - 前端开发
 ---
 

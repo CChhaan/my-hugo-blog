@@ -13,11 +13,9 @@ categories:
   - JS DOM编程艺术
 # 标签
 tags:
-  - HTML 结构层
-  - CSS 表示层
-  - DOM 样式控制
-  - className 操作
-  - 前端开发思维
+  - JavaScript
+  - DOM 操作
+  - 前端开发
 ---
 
 ## 网页的三层结构

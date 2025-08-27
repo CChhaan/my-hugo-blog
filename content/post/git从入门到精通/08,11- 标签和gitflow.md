@@ -14,7 +14,7 @@ categories:
 tags:
   - Git 标签管理
   - Git Flow 分支模型
-  - 版本管理规范
+  - Git
   - 团队协作流程
   - 版本控制工具
 ---
