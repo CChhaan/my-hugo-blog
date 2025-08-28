@@ -1,0 +1,149 @@
+{{ define "title" }}
+{{ .Params.Title | default (T .Data.Plural) | default .Data.Plural | dict "Some" | T "AllSome" }} - {{ .Site.Title }}
+{{ end }}
+{{ define "main_inner_class" }}{{.Data.Plural}} posts-expand{{ end }}
+{{ define "main" }}
+<div class="post-block" lang="{{ .Site.LanguageCode }}">
+  <div class="post-header">
+    <h1>
+      {{ if eq .Data.Plural "categories" }}
+      {{ T "CateTitle" }}
+      {{ else if eq .Data.Plural "tags" }}
+      {{ T "TagTitle" }}
+      {{ end }}
+    </h1>
+  </div>
+  <div class="post-body">
+    {{ if eq .Data.Plural "categories" }}
+    <div class="category-all-page">
+      <div class="category-all-title">
+        {{ T "Terms.categories" (.Scratch.Get "catsCount") | safeHTML }}
+      </div>
+      <div class="category-all">
+        <ul class="category-list">
+          {{ $allSecondaryCats := slice }}
+          {{ range .Site.Taxonomies.categories.ByCount }}
+          {{/*
+          Rollback the change of the primary category name.
+          & it could not support the lowercase category name.
+          {{ $primaryCategory := .Name }}
+          */}}
+          {{ $primaryCategory := .Page.Title }}
+          {{ $primaryCount := 0 }}
+          {{ $secondaryCategories := slice }}
+          {{ $pages := $.Scratch.Get "pages" }}
+          {{ range where $pages "Params.categories" "intersect" (slice $primaryCategory) }}
+          {{ if eq (index .Params.categories 0) $primaryCategory }}
+          {{ $primaryCount = add $primaryCount 1 }}
+          {{/** if and (isset .Params.categories 1) (not (in $secondaryCategories (index .Params.categories 1))) **/}}
+          {{ if isset .Params.categories 1 }}
+          {{ if not (in $secondaryCategories (index .Params.categories 1)) }}
+          {{ $secondaryCategories = $secondaryCategories | append (index .Params.categories 1) }}
+          {{ $allSecondaryCats = $allSecondaryCats | append (index .Params.categories 1) }}
+          {{ end }}
+          {{ end }}
+          {{ end }}
+          {{ end }}
+
+          {{ if not (in $allSecondaryCats $primaryCategory) }}
+          <li class="category-list-item">
+            <a class="category-list-link" href="{{ " categories/" | relLangURL }}{{ $primaryCategory | urlize }}/">
+              {{ $primaryCategory }}
+              <span class="category-list-count">{{ $primaryCount }}</span>
+            </a>
+          </li>
+          <ul class="category-children-list">
+            {{ range $secondaryCategories }}
+            {{ $secondaryCategory := . }}
+            {{ $secondaryCount := 0 }}
+            {{ range where $pages "Params.categories" "intersect" (slice $secondaryCategory) }}
+            {{ if and (eq (index .Params.categories 0) $primaryCategory) (eq (index .Params.categories 1)
+            $secondaryCategory) }}
+            {{ $secondaryCount = add $secondaryCount 1 }}
+            {{ end }}
+            {{ end }}
+            <li class="category-children-list-item">
+              <a class="category-list-link" href="{{ " categories/" | relLangURL }}{{ . | urlize }}/">
+                {{ . }}
+                <span class="category-list-count">{{ $secondaryCount }}</span>
+              </a>
+            </li>
+            {{ end }}
+          </ul>
+          {{ end }}
+          {{ end }}
+        </ul>
+        {{ end }}
+        {{ if eq .Data.Plural "tags" }}
+        {{ $tags := .Site.Taxonomies.tags }}
+        <div class="tag-cloud">
+          <div class="tag-cloud-title">
+            {{ T "Terms.tags" (.Scratch.Get "tagsCount") | safeHTML }}
+          </div>
+          <div class="tag-cloud-tags">
+            {{- /* 1. 基础配置：自定义等级数 x（可修改，如 5、8、10 等） */ -}}
+            {{ $customLevels := 10 }} <!-- 这里 x=8，可按需调整 -->
+
+            {{- /* 2. 计算所有标签的文章数量范围（用于匹配等级） */ -}}
+            {{ $minCount := 999999 }}
+            {{ $maxCount := 0 }}
+            {{- range $name, $items := $tags }}
+            {{ $count := len $items }}
+            {{- if lt $count $minCount }} {{ $minCount = $count }} {{ end -}}
+            {{- if gt $count $maxCount }} {{ $maxCount = $count }} {{ end -}}
+            {{ end -}}
+
+            {{- /* 3. 计算标签对应的等级（1-$customLevels） */ -}}
+            {{ $range := sub $maxCount $minCount }}
+            {{ $step := cond (eq $range 0) 1 (div $range $customLevels) }} <!-- 数量区间步长 -->
+
+            {{- /* 4. 颜色参数：从 #aaa（170）到 #000（0），分 x 级过渡 */ -}}
+            {{ $startRgb := 175 }} <!-- #aaa 的 RGB 值（170,170,170） -->
+            {{ $endRgb := 0 }} <!-- #000 的 RGB 值（0,0,0） -->
+            {{ $colorStep := cond (eq $customLevels 1) 0 (div (sub $startRgb $endRgb) (sub $customLevels 1)) }}
+            <!-- 每级颜色递减值 -->
+
+            {{- /* 5. 字体大小参数：从 1em 到 3em，分 x 级过渡 */ -}}
+            {{ $startFontSize := 1.0 }} <!-- 最小字体 -->
+            {{ $endFontSize := 2.0 }} <!-- 最大字体 -->
+            {{ $fontStep := cond (eq $customLevels 1) 0 (div (sub $endFontSize $startFontSize) (sub $customLevels 1)) }}
+            <!-- 每级字体递增值 -->
+
+            {{- /* 6. 遍历标签，生成带动态样式的链接 */ -}}
+            {{- range $name, $items := $tags }}
+            {{ $count := len $items }}
+            {{- /* 确定当前标签的等级（1-$customLevels） */ -}}
+            {{ $level := cond (eq $range 0) 1 (add 1 (div (sub $count $minCount) $step)) }}
+            {{ if gt $level $customLevels }} {{ $level = $customLevels }} {{ end }} <!-- 防止超界 -->
+
+            {{- /* 计算当前等级的颜色（文字色 + 下边框色） */ -}}
+            {{ $currentRgb := sub $startRgb (mul (sub $level 1) $colorStep) }} <!-- 等级越高，RGB值越小（颜色越深） -->
+            {{ $hex := printf "%02x" (int $currentRgb) }} <!-- 转为两位十六进制（如 170→aa，0→00） -->
+            {{ $color := print "#" $hex $hex $hex }} <!-- 组合为灰色（如 #999、#333） -->
+
+            {{- /* 计算当前等级的字体大小 */ -}}
+            {{ $fontSize := add $startFontSize (mul (sub $level 1) $fontStep) }} <!-- 等级越高，字体越大 -->
+            {{ $fontSize := printf "%.2f" $fontSize }} <!-- 保留两位小数，避免样式混乱（如 1.20em 而非 1.2em） -->
+
+            {{- /* 生成标签链接：无等级类名，所有样式通过内联控制 */ -}}
+            <a href="{{ " /tags/" | relLangURL }}{{ $name | urlize }}/" style="
+              font-size: {{ $fontSize }}em; 
+              color: {{ $color }}; 
+              border-bottom: 1px solid {{ $color }};  /* 下边框色与文字色一致 */
+              text-decoration: none;  /* 清除默认下划线，用下边框替代 */
+              margin: 4px 7px; 
+              display: inline-block;
+            ">
+              {{ .Page.Title }}
+              <span class="tag-list-count" style="color: {{ $color }}80;"> <!-- 数量颜色浅于标签名（加 80 透明度） -->
+                <sup>({{ $count }})</sup>
+              </span>
+            </a>
+            {{ end -}}
+          </div>
+
+        </div>
+        {{ end }}
+      </div>
+    </div>
+    {{ end }}
