@@ -3,8 +3,8 @@
 {{ end }}
 {{ define "main_inner_class" }}{{.Data.Plural}} posts-expand{{ end }}
 {{ define "main" }}
-<div class="post-block" lang="{{ .Site.LanguageCode }}">
-  <div class="post-header">
+<div class="post-block" lang="{{ .Site.LanguageCode }}" style="padding:20px">
+  <div class="post-header" style="margin-bottom:20px">
     <h1>
       {{ if eq .Data.Plural "categories" }}
       {{ T "CateTitle" }}
@@ -19,8 +19,8 @@
       <div class="category-all-title">
         {{ T "Terms.categories" (.Scratch.Get "catsCount") | safeHTML }}
       </div>
-      <div class="category-all">
-        <ul class="category-list">
+      <div class="category-all" style="margin-top:20px">
+        <ul class="category-list" style="margin-top:20px; margin-left:50px">
           {{ $allSecondaryCats := slice }}
           {{ range .Site.Taxonomies.categories.ByCount }}
           {{/*
@@ -80,9 +80,7 @@
           <div class="tag-cloud-title">
             {{ T "Terms.tags" (.Scratch.Get "tagsCount") | safeHTML }}
           </div>
-          <div class="tag-cloud-tags">
-            {{- /* 1. 基础配置：自定义等级数 x（可修改，如 5、8、10 等） */ -}}
-            {{ $customLevels := 10 }} <!-- 这里 x=8，可按需调整 -->
+          <div class="tag-cloud-tags" style="margin-top:20px">
 
             {{- /* 2. 计算所有标签的文章数量范围（用于匹配等级） */ -}}
             {{ $minCount := 999999 }}
@@ -92,6 +90,8 @@
             {{- if lt $count $minCount }} {{ $minCount = $count }} {{ end -}}
             {{- if gt $count $maxCount }} {{ $maxCount = $count }} {{ end -}}
             {{ end -}}
+            {{- /* 1. 基础配置：自定义等级数 x（可修改，如 5、8、10 等） */ -}}
+            {{ $customLevels := mul (div $maxCount 10) 10 }} <!-- 这里 x=8，可按需调整 -->
 
             {{- /* 3. 计算标签对应的等级（1-$customLevels） */ -}}
             {{ $range := sub $maxCount $minCount }}
@@ -105,7 +105,7 @@
 
             {{- /* 5. 字体大小参数：从 1em 到 3em，分 x 级过渡 */ -}}
             {{ $startFontSize := 1.0 }} <!-- 最小字体 -->
-            {{ $endFontSize := 2.0 }} <!-- 最大字体 -->
+            {{ $endFontSize := 2.5 }} <!-- 最大字体 -->
             {{ $fontStep := cond (eq $customLevels 1) 0 (div (sub $endFontSize $startFontSize) (sub $customLevels 1)) }}
             <!-- 每级字体递增值 -->
 
@@ -127,15 +127,21 @@
 
             {{- /* 生成标签链接：无等级类名，所有样式通过内联控制 */ -}}
             <a href="{{ " /tags/" | relLangURL }}{{ $name | urlize }}/" style="
+              background-color:#f9fbfd;
+              border-radius:10px;
+              text-decoration: none;  /* 清除默认下划线，用下边框替代 */
+              margin: 10px; 
+              padding: 0 10px;
+              display: inline-block;
+              transition: all 0.3s ease;
+              box-shadow: 0 2px 4px 2px rgba(0,0,0,0.1);
               font-size: {{ $fontSize }}em; 
               color: {{ $color }}; 
               border-bottom: 1px solid {{ $color }};  /* 下边框色与文字色一致 */
-              text-decoration: none;  /* 清除默认下划线，用下边框替代 */
-              margin: 4px 7px; 
-              display: inline-block;
-            ">
+            " onmouseover="this.style.transform='translateY(-2px)'; this.style.boxShadow='0 4px 8px 2px rgba(0,0,0,0.2)'"
+              onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='0 2px 4px 2px rgba(0,0,0,0.1)'">
               {{ .Page.Title }}
-              <span class="tag-list-count" style="color: {{ $color }}80;"> <!-- 数量颜色浅于标签名（加 80 透明度） -->
+              <span class="tag-list-count"> <!-- 数量颜色浅于标签名（加 80 透明度） -->
                 <sup>({{ $count }})</sup>
               </span>
             </a>
