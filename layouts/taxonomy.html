@@ -47,7 +47,7 @@
 
           {{ if not (in $allSecondaryCats $primaryCategory) }}
           <li class="category-list-item">
-            <a class="category-list-link" href="{{ " categories/" | relLangURL }}{{ $primaryCategory | urlize }}/">
+            <a class="category-list-link" href="{{ "categories/" | relLangURL }}{{ $primaryCategory | urlize }}/">
               {{ $primaryCategory }}
               <span class="category-list-count">{{ $primaryCount }}</span>
             </a>
@@ -63,7 +63,7 @@
             {{ end }}
             {{ end }}
             <li class="category-children-list-item">
-              <a class="category-list-link" href="{{ " categories/" | relLangURL }}{{ . | urlize }}/">
+              <a class="category-list-link" href="{{"/categories/"|relLangURL}}{{ . | urlize }}/">
                 {{ . }}
                 <span class="category-list-count">{{ $secondaryCount }}</span>
               </a>
@@ -90,8 +90,11 @@
             {{- if lt $count $minCount }} {{ $minCount = $count }} {{ end -}}
             {{- if gt $count $maxCount }} {{ $maxCount = $count }} {{ end -}}
             {{ end -}}
-            {{- /* 1. 基础配置：自定义等级数 x（可修改，如 5、8、10 等） */ -}}
-            {{ $customLevels := mul (div $maxCount 10) 10 }} <!-- 这里 x=8，可按需调整 -->
+            {{- /* 1. 动态计算等级数（限制在 3-10 之间，避免 0 或过大） */ -}}
+            {{ $baseLevels := div $maxCount 10 }} <!-- 基础等级数（按 maxCount/10 计算） -->
+            {{ $customLevels := cond (lt $baseLevels 3) 3 $baseLevels }} <!-- 最少 3 级 -->
+            {{ $customLevels := cond (gt $customLevels 10) 10 $customLevels }} <!-- 最多 10 级 -->
+            {{ $customLevels := cond (eq $customLevels 0) 3 $customLevels }} <!-- 防止 0（maxCount<10 时） -->
 
             {{- /* 3. 计算标签对应的等级（1-$customLevels） */ -}}
             {{ $range := sub $maxCount $minCount }}
@@ -126,8 +129,8 @@
             {{ $fontSize := printf "%.2f" $fontSize }} <!-- 保留两位小数，避免样式混乱（如 1.20em 而非 1.2em） -->
 
             {{- /* 生成标签链接：无等级类名，所有样式通过内联控制 */ -}}
-            <a href="{{ " /tags/" | relLangURL }}{{ $name | urlize }}/" style="
-              background-color:#f9fbfd;
+            <a href="{{"/tags/"|relLangURL}}{{ $name | urlize }}/" style="
+              background-color:#fefefe;
               border-radius:10px;
               text-decoration: none;  /* 清除默认下划线，用下边框替代 */
               margin: 10px; 
@@ -138,7 +141,7 @@
               font-size: {{ $fontSize }}em; 
               color: {{ $color }}; 
               border-bottom: 1px solid {{ $color }};  /* 下边框色与文字色一致 */
-            " onmouseover="this.style.transform='translateY(-2px)'; this.style.boxShadow='0 4px 8px 2px rgba(0,0,0,0.2)'"
+            " onmouseover="this.style.transform='translateY(-2px)'; this.style.boxShadow='0 2px 4px 2px rgba(0,0,0,0.2)'"
               onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='0 2px 4px 2px rgba(0,0,0,0.1)'">
               {{ .Page.Title }}
               <span class="tag-list-count"> <!-- 数量颜色浅于标签名（加 80 透明度） -->
