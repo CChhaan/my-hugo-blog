@@ -14,6 +14,7 @@ categories:
 # 标签
 tags:
   - JavaScript
+  - ECMAScript
   - 异步模式
   - Promise
   - 前端开发

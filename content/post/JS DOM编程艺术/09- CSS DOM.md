@@ -14,7 +14,8 @@ categories:
 # 标签
 tags:
   - JavaScript
-  - DOM 操作
+  - DOM
+  - CSS
   - 前端开发
 ---
 

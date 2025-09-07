@@ -12,10 +12,10 @@ categories:
   - Git从入门到精通
 # 标签
 tags:
-  - Git 标签管理
-  - Git Flow 分支模型
+  - Git 标签
+  - Git Flow
   - Git
-  - 团队协作流程
+  - 团队协作
   - 版本控制工具
 ---
 

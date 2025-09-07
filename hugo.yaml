@@ -214,13 +214,16 @@ menus:
       pageRef: /tags
       pre: tags
       weight: 6
-    # - identifier: archives
-    #   name: 归档
-    # - identifier: commonweal
-    #   name: 公益 404
-    #   pageRef: /404.html
-    #   pre: heartbeat
-    #   weight: 6
+    - identifier: archives
+      name: 归档
+      pageRef: /archives
+      pre: calendar
+      weight: 7
+    - identifier: commonweal
+      name: 公益 404
+      pageRef: /404.html
+      pre: heartbeat
+      weight: 8
 
 #-----------------------------------------
 # Hugo NexT 主题参数配置
