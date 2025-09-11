@@ -98,7 +98,7 @@
 
             {{- /* 3. 计算标签对应的等级（1-$customLevels） */ -}}
             {{ $range := sub $maxCount $minCount }}
-            {{ $step := cond (eq $range 0) 1 (div $range $customLevels) }} <!-- 数量区间步长 -->
+            {{ $step := cond (eq $range 0) 1 (sub (div $range $customLevels) 1) }} <!-- 数量区间步长 -->
 
             {{- /* 4. 颜色参数：从 #aaa（170）到 #000（0），分 x 级过渡 */ -}}
             {{ $startRgb := 175 }} <!-- #aaa 的 RGB 值（170,170,170） -->
