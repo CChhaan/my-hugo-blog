@@ -2428,13 +2428,7 @@ header.header {
   -moz-transition: top .3s;
   -webkit-transition: top .3s;
   -o-transition: top .3s;
-  right: 30px;
-}
-
-@media (max-width: 991px) {
-  .book-mark-link {
-    right: 16px;
-  }
+  left: 30px;
 }
 
 @media (max-width: 991px) {
@@ -2454,6 +2448,47 @@ header.header {
 
 .book-mark-link:hover, .book-mark-link-fixed {
   top: -2px;
+}
+
+@keyframes octocat-wave {
+  0%, 100% {
+    transform: rotate(0);
+  }
+  20%, 60% {
+    transform: rotate(-25deg);
+  }
+  40%, 80% {
+    transform: rotate(10deg);
+  }
+}
+
+.github-corner :hover .octo-arm {
+  animation: octocat-wave 560ms ease-in-out;
+}
+
+.github-corner svg {
+  color: white;
+  fill: var(--theme-color);
+  position: absolute;
+  right: 0;
+  top: 0;
+  z-index: 5;
+}
+
+@media (max-width: 991px) {
+  .github-corner {
+    display: none;
+  }
+  .github-corner svg {
+    color: var(--theme-color);
+    fill: white;
+  }
+  .github-corner .github-corner:hover .octo-arm {
+    animation: none;
+  }
+  .github-corner .github-corner .octo-arm {
+    animation: octocat-wave 560ms ease-in-out;
+  }
 }
 
 .sidebar-inner, .sidebar-card-widget {

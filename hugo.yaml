@@ -248,8 +248,8 @@ params:
 
   # 站点基本信息
   author: 张永浩
-  subtitle: 每天进步一点点
-  description: 博客记录生活，分享技术
+  subtitle: 日积跬步，以致千里
+  description: 博客，记录生活，分享技术
   keywords: 博客,前端,技术,生活,分享
 
   # 不同尺寸站点图标
@@ -612,9 +612,9 @@ params:
   # 右上角在 Github 上面关注我的横幅
   githubBanner:
     # 是否开启显示
-    enable: false
+    enable: true
     # 你的 Github 仓库地址
-    permalink: https://github.com/hugo-next
+    permalink: https://github.com/CChhaan/my-hugo-blog
     # 关注说明
     title: Follow me on GitHub
 

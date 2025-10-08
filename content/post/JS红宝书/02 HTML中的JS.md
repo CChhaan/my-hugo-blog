@@ -14,7 +14,7 @@ categories:
 # 标签
 tags:
   - JavaScript
-  - script 元素
+  - HTML
   - 性能优化
   - 前端开发
 ---

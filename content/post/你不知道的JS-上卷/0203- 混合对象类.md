@@ -15,9 +15,6 @@ categories:
 tags:
   - JavaScript
   - ECMAScript
-  - 对象
-  - 类
-  - 原型链
   - 前端开发
 ---
 
