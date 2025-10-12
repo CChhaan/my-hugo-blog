@@ -10,7 +10,7 @@ date: 2025-04-12
 summary: 本文主要介绍 Vue3 中组件的 Props，包括 Props 声明、响应式 Props 解构、传递 prop 的细节、单向数据流、Prop 校验等内容。
 # 分类
 categories:
-  - vue3文档阅读
+  - Vue3文档阅读
 # 标签
 tags:
   - vue

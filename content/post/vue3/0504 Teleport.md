@@ -10,7 +10,7 @@ date: 2025-04-18
 summary: 本文主要介绍了 Vue 3 中的 Teleport 组件，它可以将组件内部的一部分模板“传送”到该组件 DOM 结构外层的位置。使用场景包括全屏模态框等。Teleport 组件的使用方法、分类、与组件的搭配使用、禁用 Teleport、多个 Teleport 共享目标以及延迟解析的 Teleport 等内容都进行了详细说明。
 # 分类
 categories:
-  - vue3文档阅读
+  - Vue3文档阅读
 # 标签
 tags:
   - vue

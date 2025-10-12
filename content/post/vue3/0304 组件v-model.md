@@ -10,7 +10,7 @@ date: 2025-04-12
 summary: 本文主要介绍了 Vue 3.4 中组件 v-model 的使用方法，包括基本用法、分类、注意事项等。
 # 分类
 categories:
-  - vue3文档阅读
+  - Vue3文档阅读
 # 标签
 tags:
   - vue

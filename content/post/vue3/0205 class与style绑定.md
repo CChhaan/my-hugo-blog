@@ -10,7 +10,7 @@ date: 2025-04-10
 summary: 本文主要介绍了 Vue 3 中如何使用 `v-bind` 指令绑定 HTML 元素的 `class` 和 `style` 属性。
 # 分类
 categories:
-  - vue3文档阅读
+  - Vue3文档阅读
 # 标签
 tags:
   - vue

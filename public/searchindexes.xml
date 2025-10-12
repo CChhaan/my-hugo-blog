@@ -1,4 +1,196 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><search><entry><title>3.5 简化真值表</title><url>/post/%E9%80%BB%E8%BE%91%E4%B8%8E%E5%93%B2%E5%AD%A6/0305-%E7%AE%80%E5%8C%96%E7%9C%9F%E5%80%BC%E8%A1%A8/</url><categories><category>逻辑与哲学</category></categories><tags><tag>逻辑学</tag><tag>语句逻辑</tag><tag>真值表</tag></tags><content type="html">  简化真值表方法：检验论证无效性与语句集相容性在语句逻辑中，完整真值表虽能精准判定论证有效性和语句集相容性，但当支语句数量较多时（如 4 个支语句需 16 行真值组合），会显得繁琐低效。简化真值表方法通过“目标导向”的真值指派，直接定位关键解释（反例或相容解释），大幅简化推理过程，尤其适用于检验论证无效性和语句集相容性。
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><search><entry><title>2.4 HTTP 方法</title><url>/post/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/0204-http-%E6%96%B9%E6%B3%95/</url><categories><category>计算机网络</category></categories><tags><tag>计算机基础</tag><tag>计算机网络</tag></tags><content type="html">  GET 方法GET 方法是最常见的 HTTP 方法之一，用于从服务器请求数据，是一种不改变内容的询问信息。
+浏览器访问网页时，会向服务器发送 GET 请求，请求网页内容。服务器响应数据（如 HTML、图片或其他文件），浏览器显示结果。
+GET 请求不会修改任何数据，仅用于“读取”或检索信息。
+请求参数附加在 URL 中，因此可在浏览器地址栏中看到。
+常见应用场景：
+加载网页：输入 URL 或点击链接时，发起 GET 请求。 从 API 获取数据：开发者常使用 GET 请求从外部服务器获取信息。 搜索查询：搜索引擎查询会通过 GET 请求发送搜索词。 获取文件：用于下载图片、查看 PDF、播放视频等。 使用规范与实践：
+仅用于数据检索：避免使用 GET 发送敏感信息（如密码）。 保持 URL 简短清晰：避免数据过长或超出 URL 限制。 启用缓存以提升性能：服务器可设置缓存控制头来优化加载速度。 避免修改数据：GET 是“安全”方法，不应引发数据变更。 谨慎处理敏感数据：GET 请求中的参数可能被记录或保存。 POST 方法POST 方法用于向服务器发送数据，通常用于表单提交、数据存储或处理。与 GET 不同，POST 请求的数据存储在请求体（body）中，而不是 URL。
+GET 与 POST 的对比：
+比较项 GET POST 数据位置 数据包含在 URL 中 数据包含在请求体中 可见性 数据在地址栏中可见 数据隐藏，不在地址栏中显示 主要用途 仅检索数据 发送、修改或添加数据 缓存 可被缓存 不会被缓存 幂等性 幂等，多次结果相同 非幂等，多次请求结果可能不同 常见应用场景：
+提交表单 用户认证（用户名与密码验证） 上传文件 创建新资源 向 API 发送数据 在线购物支付处理 PUT 方法PUT 方法用于更新或替换服务器上的资源。
+它发送的数据告诉服务器“资源应该是什么样子”。
+应用场景：
+更新资源：用新数据替换现有资源。 创建资源：若资源不存在，则使用数据创建新资源。 API 更新操作：常用于更新用户资料、产品详情等。 PUT 与 POST 的对比：
+比较项 PUT POST 主要用途 更新或替换现有资源 创建或提交新资源 数据处理 替换整个资源 增量添加或修改 幂等性 幂等（重复执行结果相同） 非幂等（可能创建重复资源） 适用场景 更新或完全替换资源  …  </content></entry><entry><title>2.5 GET 与 POST</title><url>/post/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/0205-get%E4%B8%8Epost/</url><categories><category>计算机网络</category></categories><tags><tag>计算机基础</tag><tag>计算机网络</tag></tags><content type="html">  GET 与 POST 的基本区别GET 的语义是从服务器获取指定资源。这个资源可以是文本、页面、图片、视频等。GET 请求的参数一般写在 URL 中。
+URL 只支持 ASCII 字符。浏览器对 URL 长度有限制（HTTP 协议本身未规定）。
+特点：参数可见于地址栏。适合只读、无副作用的请求。
+POST 的语义是根据请求负荷（报文 body）对指定资源进行处理，处理方式取决于资源类型。POST 请求携带的数据一般是写在 报文 body 中，body 中的数据可以是任意格式，客户端与服务端协商确定。
+特点：浏览器对 body 无大小限制。数据不可见于地址栏。常用于提交、上传、创建数据等操作。
+安全性与幂等性安全：请求不会破坏服务器上的资源。
+幂等：多次执行相同请求，结果相同。
+RFC 语义定义：
+方法 是否安全 是否幂等 是否可缓存 GET ✅ 安全 ✅ 幂等 ✅ 可缓存 POST ❌ 不安全 ❌ 不幂等 ⚠️ 一般不可缓存 GET：
+只读操作，不修改服务器数据。 多次执行结果相同。 可缓存（浏览器或代理层，如 nginx）。可保存为书签。 POST：
+用于新增或提交数据，会修改服务器资源。 多次执行会产生不同结果（如多条数据）。 浏览器一般不缓存。不能保存为书签。 实际开发中的情况：
+可能用 GET 实现新增或删除操作 → 不再安全、幂等。 可能用 POST 实现查询操作 → 安全、幂等。 如果“安全”指信息不泄露：
+GET 参数在 URL 可见； POST 数据在 body 中不可见； 但两者的 HTTP 数据都以 明文传输，通过抓包都能看到。 结论：GET 并不比 POST 更不安全；需使用 HTTPS 才能确保数据加密传输。
+RFC 规范 未禁止 GET 请求带 body。理论上，任何请求 都可以带 body。只是 GET 的语义是获取资源，因此通常 不会使用 body。
+URL 查询参数 并非 GET 独有，POST 请求的 URL 也可以包含参数。
+  </content></entry><entry><title>2.3 HTTP 入门</title><url>/post/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/0203-http-%E5%85%A5%E9%97%A8/</url><categories><category>计算机网络</category></categories><tags><tag>计算机基础</tag><tag>计算机网络</tag></tags><content type="html">  HTTP（超文本传输协议）：浏览网页时使用的通信协议。
+工作原理：
+浏览器向服务器发出 HTTP 请求。 服务器响应资源（图片、视频或 HTML 网页）。 浏览器接收并显示内容。 模型特征：HTTP 是一个 基于消息的模型。每个 HTTP 交互包含一个 请求（Request） 和一个 响应（Response）。
+无状态性：
+每个请求都是 独立的。 每次请求必须包含足够的信息，服务器才能单独处理。 各事务之间相互独立。 URLsURL：用于识别 Web 资源的网址。
+网络围绕“资源”构建。资源包括文本、HTML 文件、文档、图像等。网络可以被视为 资源的集合。
+协议（Protocol）：通常为 HTTP 或 HTTPS（安全版本）。
+其他常见协议：
+FTP（文件传输协议）：在客户端与服务器之间传输文件。 SMTP（简单邮件传输协议）：用于电子邮件传输。 域名 — 用于识别资源所在的一个或多个 IP 地址。
+路径 — 指定服务器上的资源位置。
+参数 —用于识别或过滤服务器上的资源的附加数据。
+HTTP 请求每个 HTTP 请求包含：URL 地址、HTTP 方法、标头（Headers）、可选的消息正文（Body）
+HTTP 请求的第一部分包含三项：
+HTTP 方法：指定所使用的请求方式。最常用的是 GET（从服务器检索资源）。GET 请求没有消息体，标头后无内容。 请求的 URL HTTP 版本：常见版本1.1（主流）与 2.0（逐渐取代 1.1）。 当 URL 中包含 “?” 时，表示它携带查询参数。查询参数用于发送请求资源所需的附加数据。
+常见请求标头：
+Referer：告知请求的来源 URL。 User-Agent：提供发出请求的浏览器信息。 Host：标识主机名（当多个网站共用同一服务器时必需）。 Cookie：向客户端提交附加参数。 HTTP 响应HTTP 响应包含以下三部分：
+HTTP 版本 状态码（数字代码） 状态描述（文字说明） 常见响应标头：
+Server：提供所使用的 Web 服务器软件信息。 Set-Cookie：向浏览器发出 Cookie。 Content-Length：以字节为单位告知消息正文大小。 消息正文（Body）：包含实际响应内容。
+HTTP 方法方法 说明 GET 请求数据，不修改资源。 POST 向服务器发送数据以创建资源。 …  </content></entry><entry><title>2.2 什么是 HTTP？</title><url>/post/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/0202-%E4%BB%80%E4%B9%88%E6%98%AF-http/</url><categories><category>计算机网络</category></categories><tags><tag>计算机基础</tag><tag>计算机网络</tag></tags><content type="html">  HTTP 简介HTTP（超文本传输协议）：一种用于在互联网上交换信息的协议，是万维网的基础。
+功能：支持互联网数据传输，允许用户访问网站和其他在线资源。
+作用：
+确保信息从一个地方传输到另一个地方。 实现 Web 浏览器 与 服务器 之间的通信。 是 网页内容传输与展示的基础机制。 HTTP 请求-响应周期HTTP 的通信过程围绕着一个称为 请求-响应周期（Request-Response Cycle） 的机制展开。
+工作流程：
+客户端（如浏览器或移动应用）向服务器发送 HTTP 请求消息。请求中包含所需资源及附加参数等信息。 服务器 接收并处理请求。使用服务器资源生成 响应消息。 服务器 将响应消息发送回客户端。响应通常包含所请求的资源（例如网页）及附加元数据。 客户端 接收响应并进行处理。通常通过浏览器渲染网页或在应用中显示内容。 客户端 可根据需要再次发起新的请求。 周期可多次重复。
+HTTP 请求创建一个有效的 HTTP 请求需要包含以下内容：
+URL HTTP 方法 请求标头（Headers） 请求主体（Body） HTTP 请求 URLURL 是请求服务器上资源的唯一标识符。指向服务器上的特定 资源（Resource）。包括用户、产品、文章、文档、图像等。资源可以被视为一个 名词。
+HTTP 请求方法请求方法用于告诉服务器客户端希望执行的操作。
+常见方法如下：
+HEAD：向服务器询问资源的状态（如大小、可用性） GET：请求服务器检索资源。 POST：要求服务器创建新资源。 PUT：要求服务器编辑/更新现有资源。 DELETE：请求服务器删除资源。 HTTP 请求标头请求标头是客户端在 HTTP 请求中附加的名称/值信息。
+这些标头向服务器提供上下文信息。指示如何处理请求或定制响应。
+HTTP 请求主体请求主体是客户端在 HTTP 请求中发送给服务器的数据部分。
+HTTP 响应HTTP 响应是 服务器返回给客户端 的消息，用于回应客户端的请求。
+组成部分：
+状态行：包含 HTTP 版本、状态码、状态消息。
+响应标头：提供响应的附加信息，如内容类型、时间等。
+消息正文：包含实际返回的数据，如 HTML、JSON 或 XML。
+常见 HTTP 状态码：100： Continue （继续） 101：Switching Protocols （切换协议） 200：OK（成功） 201：Created（创建成功） 202：Accepted（已接受） 203： Non-Authoritative Information（非权威信息） 301： Moved Permanently（永久移动，资源已移至新的 URL） 404：Not Found（未找到，服务器上无请求的资源） 500：Internal Server Error（服务器内部错误）   </content></entry><entry><title>1.5 基于计网的前端优化思路</title><url>/post/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/0105-%E5%9F%BA%E4%BA%8E%E8%AE%A1%E7%BD%91%E7%9A%84%E5%89%8D%E7%AB%AF%E4%BC%98%E5%8C%96%E6%80%9D%E8%B7%AF/</url><categories><category>计算机网络</category></categories><tags><tag>计算机基础</tag><tag>计算机网络</tag><tag>性能优化</tag></tags><content type="html">  一、网页从服务器到用户屏幕的五个关键阶段阶段 层次对应 优化目标 1️ 请求阶段 DNS、TCP、TLS 连接更快（少重试、少延迟） 2️ 传输阶段 TCP/IP 层 数据包更少、更小 3️ 下载阶段 HTTP 层 资源请求并行化、压缩、缓存 4️ 解析与执行阶段 浏览器渲染层 更少的 JS 执行阻塞 5️ 渲染阶段 GPU / DOM 层 减少回流重绘、加速绘制 二、前端优化其实就是“减少负担 + 加快流动”我们来逐层对应一下你刚说的“封装包 → 解包 → 不卡死”思路 👇
+1. 减少要“装进包”的内容HTTP 传输的内容越多，包就越多 → 传输越慢。
+优化方式：
+代码压缩（JS/CSS/HTML minify） 图片压缩、懒加载、合图（sprite） Tree Shaking / 按需加载（减少没必要的模块） 延迟加载（lazy import、code splitting） 类比：打包少带点行李，车子跑得快。
+2. 让包传得更快优化“网络传输”这一段流水线。
+方式：
+CDN 加速（让资源从离你最近的服务器来） HTTP/2 多路复用（多个文件共用一个 TCP 连接） HTTP/3（基于 UDP，减少握手延迟） 缓存策略（304 / ETag / Service Worker） 类比：走最近的路 + 开高速公路 + 不重复寄。
+3. 减少“装包拆包”的开销让浏览器少做多余的工作。
+方式：
+合并请求（减少 TCP 连接） 避免太多小资源（请求越多，TCP/TLS 握手越多） 启用压缩传输（gzip、brotli） 类比：把很多小信封塞进一个包寄，省下装拆时间。
+4. 解包后渲染更高效即浏览器的“解析与渲染阶段”。
+方式：
+减少 JS 阻塞渲染（defer / async） 避免频繁 DOM 操作（虚拟 DOM、批量更新） CSS 放上面、JS 放下面 使用 GPU 加速动画（transform / opacity） 类比：包裹到了仓库后，快速分类、直接上架展示。
+5. 缓存结果，避免重复运输方式：
+使用本地缓存（LocalStorage、IndexedDB） 使用 HTTP 缓存头（Cache-Control, ETag） PWA / Service Worker 离线缓存 类比：快递到了第一次后，后面直接用本地备份，不再重新寄。
+三、前端性能优化的核心思路一句话总结：优化 = 让网页传得少、传得快、解得轻、显示得快。
+也就是：
+减少请求数（包少） 减少包大小（轻） 让传输通道更高效（快） 让解包和渲染更顺畅（不卡） 让重复访问更聪明（缓存）   </content></entry><entry><title>2.1 HTTP 基本概念</title><url>/post/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/0201-http%E5%9F%BA%E6%9C%AC%E6%A6%82%E5%BF%B5/</url><categories><category>计算机网络</category></categories><tags><tag>计算机基础</tag><tag>计算机网络</tag></tags><content type="html">  HTTP 是什么HTTP 是超文本传输协议（HyperText Transfer Protocol）。
+HTTP 的名称可以拆解为三个部分：
+超文本 传输 协议 协议协议的特点:
+“协”表示必须有两个以上的参与者。 “议”表示对参与者的行为约定和规范。 HTTP 是一个用在计算机世界里的协议。它使用计算机能够理解的语言确立交流通信规范。包括各种控制和错误处理方式。
+传输“传输”表示在两点之间传递数据，可以是从 A 到 B，也可以从 B 到 A。
+HTTP 是一个双向协议：浏览器发送请求 → 服务器响应数据 → 浏览器渲染结果。
+允许中间有中转或接力，只要遵从 HTTP 协议即可。
+本质上，HTTP 是一个在计算机世界里专门用来在两点之间传输数据的约定和规范。
+超文本“超文本”是超越普通文本的文本，包含文字、图片、视频等内容，且具备超链接特性，能从一个超文本跳转到另一个超文本。
+HTML 是最常见的超文本，虽然是纯文本文件，但通过标签定义了图片、视频等链接。浏览器解释 HTML 后，会呈现出文字、图片等混合的网页。
+HTTP 是一个在计算机世界里专门在“两点”之间“传输”文字、图片、音频、视频等“超文本”数据的“约定和规范”。
+HTTP 常见的状态码1xx：提示信息：
+表示协议处理中的中间状态，实际使用较少。 2xx：请求成功：
+200 OK：一切正常（非 HEAD 请求有 body 数据）。 204 No Content：与 200 类似，但响应头没有 body 数据。 206 Partial Content：用于分块下载或断点续传，返回的是资源的一部分。 3xx：重定向：
+301 Moved Permanently：永久重定向，请求资源需使用新的 URL。 302 Found：临时重定向，请求资源暂时需用另一个 URL。 二者均在响应头中使用 Location 字段指明新的 URL。 304 Not Modified：资源未修改，可继续使用缓存资源（缓存重定向）。 4xx：客户端错误：
+400 Bad Request：客户端请求报文有错误（笼统错误）。 403 Forbidden：服务器禁止访问资源。 404 Not Found：资源不存在或未找到。 5xx：服务器错误：
+500 Internal Server Error：服务器内部错误（笼统错误）。 …  </content></entry><entry><title>1.3 键入网址到网页显示期间发生了什么</title><url>/post/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/0103-%E9%94%AE%E5%85%A5%E7%BD%91%E5%9D%80%E5%88%B0%E7%BD%91%E9%A1%B5%E6%98%BE%E7%A4%BA%E6%9C%9F%E9%97%B4%E5%8F%91%E7%94%9F%E4%BA%86%E4%BB%80%E4%B9%88/</url><categories><category>计算机网络</category></categories><tags><tag>计算机基础</tag><tag>计算机网络</tag></tags><content type="html">  HTTP浏览器第一步工作是解析 URL，以生成发送给 Web 服务器的 HTTP 请求信息。
+URL 指向服务器中的文件资源。如果 URL 中没有路径名，访问默认文件
+解析结果：
+确定 Web 服务器 地址。 确定请求的 文件名。 浏览器根据这些信息生成 HTTP 请求消息。 DNSDNS 保存 域名与 IP 地址 的对应关系。能够将域名解析为 IP 地址，确保消息能够发送到目标服务器。
+域名层级结构DNS 使用句点分隔域名层级，如 www.server.com。
+在域名中，越靠右的位置表示其层级越高。
+越右层级越高：
+根域 DNS 服务器（.） 顶级域 DNS 服务器（如 .com） 权威 DNS 服务器（如 server.com） 客户端可通过任意 DNS 服务器逐层找到目标权威 DNS。
+域名解析流程客户端：
+发出 DNS 请求：查询 www.server.com 的 IP。 优先查找浏览器缓存。 本地 DNS：
+如果缓存有结果，直接返回。 如果没有，查询 根域名服务器。 根 DNS：指向顶级域服务器（如 .com）。
+顶级域 DNS：指向权威 DNS 服务器（如 server.com）。
+权威 DNS：返回域名对应的 IP 地址。
+本地 DNS：
+将 IP 地址返回给客户端。 缓存结果以便下次查询。 协议栈负责将应用层（HTTP）数据传输到网络中。
+组成：
+传输层：TCP / UDP
+接受应用层委托，处理收发数据。 网络层：IP
+将数据拆分为网络包，控制发送。
+包含 ICMP（错误与控制信息）和 ARP（IP → MAC 地址查询）。
+网络接口层：
+网卡驱动控制网卡硬件。
+网卡完成实际收发，将数字信息转为电信号。
+TCPHTTP 基于 TCP 传输。
+特点：
+面向连接 提供可靠传输（顺序、确认、重传、流量控制、拥塞控制） TCP 报文头部的格式源端口 &amp;amp;amp; 目标端口：确定数据发送和接收的应用。
+序号 &amp;amp;amp; 确认号：解决乱序与丢包问题。
+状态位：
+SYN：发起连接 ACK：确认 RST：重置连接 FIN：结束连接 窗口大小：用于流量控制。
+TCP 三次握手（建立连接）客户端 SYN → 服务器（SYN-SENT） 服务器 SYN + ACK → 客户端（SYN-RCVD） 客户端 ACK → 服务器（ESTABLISHED） 目的： …  </content></entry><entry><title>1.4 当您在浏览器中单击 URL 时会发生什么</title><url>/post/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/0104-%E5%BD%93%E6%82%A8%E5%9C%A8%E6%B5%8F%E8%A7%88%E5%99%A8%E4%B8%AD%E5%8D%95%E5%87%BB-url-%E6%97%B6%E4%BC%9A%E5%8F%91%E7%94%9F%E4%BB%80%E4%B9%88/</url><categories><category>计算机网络</category></categories><tags><tag>计算机基础</tag><tag>计算机网络</tag></tags><content type="html">  URL（统一资源定位符）URL 包含了要访问的资源的位置，是用户与资源进行交互或获取信息的地址。
+网站像房子，URL 就是它的地址。
+URL 的构成https://www.example.com/page1第一部分是 https。它告诉浏览器应使用哪种协议（如 http、https、ftp）。
+协议是一组浏览器用于通过网络通信的规则。
+https 是 http 的安全版本，信息以安全的方式交换。
+第二部分 www.example.com 是域名。它是网站的地址，用于连接到提供该网站信息的服务器。
+URL 与域名之间的区别URL：完整的地址，说明了信息交换的方法和到达路径。
+域名：URL 的一部分，仅表示网站的地址。
+域名域名是网站的地址，为网站提供在网络中的独特身份。没有两个域名可以相同。
+当点击 URL 或域名时，网站内容由服务器提供。
+每台计算机都有一个 IP 地址 用于互联网通信。当点击 URL 时，实际上是访问了提供网站内容的计算机的 IP 地址。
+DNS 是存储域名及其对应 IP 地址的系统。
+作用：将域名解析为 IP 地址，使浏览器能够找到服务器。
+DNS 查询：找到 IP 地址的过程DNS 类似“电话簿”，帮助找到与域名对应的 IP 地址。
+解析过程分为多个层级：
+浏览器缓存：浏览器保存访问过的网站的 DNS 记录；首先在浏览器缓存中查找域名对应的 IP 地址。 操作系统与路由器缓存：若浏览器缓存无结果，查询操作系统缓存；接着查询路由器缓存。 解析服务器（ISP 缓存）：若前两步未找到结果，请求发送到 ISP（互联网服务提供商） 的解析服务器；查询 ISP 的 DNS 缓存。 DNS 层次结构的顶级或根服务器：若仍未解析成功，请求发送至 根服务器；根服务器不会出现“找不到”的情况；它会告诉解析服务器去 顶级域服务器（如 .com、.net、.gov、.org） 查找。 后续解析流程：
+解析器 → 顶级域名服务器：请求获取域名的 IP 地址； 顶级域名服务器：告知解析器去询问 权威域名服务器； 权威域名服务器：保存关于域名的所有信息； 解析器（ISP）：最终获取 IP 地址并返回给浏览器。 缓存机制：获取到 IP 地址后，解析器将结果存入缓存；下次相同查询时，可直接从缓存获取，无需重复整个解析流程。
+TCP 连接： …  </content></entry><entry><title>1.1 TCP/IP 网络模型</title><url>/post/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/0101-tcp-ip%E7%BD%91%E7%BB%9C%E6%A8%A1%E5%9E%8B/</url><categories><category>计算机网络</category></categories><tags><tag>计算机基础</tag><tag>计算机网络</tag></tags><content type="html">  同一台设备上的进程间通信方式：管道、消息队列、共享内存、信号
+不同设备上的进程间通信：需要通过网络通信实现。
+网络协议的设计目标：兼容多种类型的设备；通过分层结构定义不同层的作用与职责。
+应用层最上层，也是用户能够直接接触到的一层。
+当两个不同设备的应用需要通信时，应用将应用数据传递给下一层（传输层）
+应用层只专注于为用户提供应用功能，无需关心数据如何传输。
+应用层运行于操作系统的用户态。传输层及以下运行于操作系统的内核态。
+传输层为应用层提供网络支持。负责将应用层的数据打包并传输给目标主机的指定应用。
+在传输层会有两个传输协议，分别是 TCP 和 UDP。
+主要协议：
+TCP（传输控制协议）：提供可靠传输；具有流量控制、超时重传、拥塞控制等特性；多数应用（如 HTTP）使用 TCP。 UDP（用户数据报协议）：不保证可靠性；仅负责发送数据包；实时性高、效率高；可靠性可在应用层自行实现。 当传输层的数据包大小超过 MSS（TCP 最大报文段长度），数据会被拆分成多个分块。每个分块称为一个 TCP 段（TCP Segment）。若其中一个分块丢失，只需重传该分块。
+设备上可能有多个应用在传输数据，端口号 用于区分不同应用：
+80 端口 → Web 服务器； 22 端口 → 远程登录服务器； 浏览器的每个标签页 → 独立进程，分配临时端口号。 报文携带端口号，使接收方能识别出目标应用。
+网络层负责不同网络之间的数据传输与路由选择。
+常用协议：IP 协议。
+数据封装过程：
+传输层报文作为数据部分； 加上 IP 包头组装成 IP 报文； 若 IP 报文大小超过 MTU（以太网中通常为 1500 字节），则进行分片。 IPv4 地址：32 位，分为 4 段（如 192.168.100.1）。
+作用：区分不同设备；实现寻址与路由。
+IP 地址结构：
+网络号：标识该地址所属的子网； 主机号：标识同一子网下的不同主机； 子网掩码：辅助计算网络号与主机号。 地址：10.100.122.0/24， /24 表示子网掩码为 255.255.255.0。
+IP 地址与子网掩码按位与 → 网络号；
+子网掩码取反后与 IP 地址按位与 → 主机号。
+寻址过程：先匹配网络号（确定子网）；再匹配主机号（确定主机）。
+寻址：确定目标地址所属的子网；
+路由：决定数据包下一跳的路径。
+实际通信中， …  </content></entry><entry><title>1.2 OSI 七层网络模型</title><url>/post/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/0102-osi-%E4%B8%83%E5%B1%82%E7%BD%91%E7%BB%9C%E6%A8%A1%E5%9E%8B/</url><categories><category>计算机网络</category></categories><tags><tag>计算机基础</tag><tag>计算机网络</tag></tags><content type="html">  常见网络术语节点（Node）定义：连接到网络的实际电子设备。如果设置得当，节点能够通过网络发送和/或接收信息。
+节点 A 可以直接连接节点 B；也可以通过中间节点（如交换机或路由器）连接。
+路由器：连接网络到互联网。交换机：促进网络内部通信。
+主机：需要 IP 地址的节点类型。所有主机都是节点，但并非所有节点都是主机。
+链路（Link）定义：连接网络上节点的通道。
+类型：
+有线链路（如以太网） 无线链路（如 WiFi） 连接方式：
+点对点（节点 A ↔ 节点 B） 多点（节点 A ↔ 节点 B、C） 传输信息时也可表示为“一对一”或“一对多”关系。
+协议（Protocol）定义：双方同意的一组规则，使两个节点能在网络上交换数据。
+内容：
+语法：可通信的内容 语义：通信方式 同步：通信时间与速度 实现方式：硬件、软件或两者结合。任何人都可创建协议，但最广泛采用的协议是基于标准的。
+有线与无线链路均可使用协议。
+网络（Network）定义：计算机、打印机或任何其他共享数据的设备集合。
+类型：LAN、HAN、CAN、MAN、WAN、BAN、VPN。
+拓扑（Topology）定义：描述节点和链路在网络配置中的连接方式。
+网络由以下部分组成：
+节点 节点之间的链路 控制节点间数据传输的协议 什么是 OSI 模型？OSI 模型由 七层网络结构 组成。
+每一层用于对网络功能与行为进行分类与分组。
+层级顺序：从最有形（物理）到最抽象（用户层）。
+层级特性：
+上层抽象下层功能； 用户只接触最高层； 下层的细节对用户隐藏。 物理层（Layer 1）定义：涉及物理网络设备、布线、信号类型及传输方式。关注设备连接与信号传输的物理特性。
+内容分类：
+节点与硬件组件：集线器、中继器、路由器、计算机、打印机、天线、放大器、网络接口卡 (NIC) 设备接口机制：电缆连接方式、连接器尺寸与形状、引脚功能及活动状态 功能与程序逻辑：定义引脚功能及通信顺序 布线协议与规范：以太网 (CAT)、USB、DSL 等；包括最大电缆长度、调制方式、无线电规格等 电缆类型：屏蔽或非屏蔽双绞线、同轴电缆等 信号类型：基带（单一比特流）、宽带（多比特流） 传输方式：有线：电（以太网）、光（光纤）；无线：无线电（WiFi、蓝牙） 数据单位：
+位（bit）：数字信息最小单位。1 字节 = 8 位。
+比特传 …  </content></entry><entry><title>3.5 简化真值表</title><url>/post/%E9%80%BB%E8%BE%91%E4%B8%8E%E5%93%B2%E5%AD%A6/0305-%E7%AE%80%E5%8C%96%E7%9C%9F%E5%80%BC%E8%A1%A8/</url><categories><category>逻辑与哲学</category></categories><tags><tag>逻辑学</tag><tag>语句逻辑</tag><tag>真值表</tag></tags><content type="html">  简化真值表方法：检验论证无效性与语句集相容性在语句逻辑中，完整真值表虽能精准判定论证有效性和语句集相容性，但当支语句数量较多时（如 4 个支语句需 16 行真值组合），会显得繁琐低效。简化真值表方法通过“目标导向”的真值指派，直接定位关键解释（反例或相容解释），大幅简化推理过程，尤其适用于检验论证无效性和语句集相容性。
 简化真值表方法：检验论证无效性论证无效的核心标志是“存在反例”——即存在一种支语句真值组合，使得所有前提为真（T）且结论为假（F）。简化真值表方法的本质的是“逆向推导”：先预设“前提皆真、结论假”的目标，再反向推导支语句的真值，若能找到无矛盾的真值组合，则论证无效（反例存在）；若推导过程中出现矛盾，则论证有效（反例不存在）。
 核心原理与步骤简化真值表检验论证无效性的核心逻辑是：先定目标（前提 T、结论 F），再推支语句真值，验证是否无矛盾。具体步骤如下：
 步骤 1：明确论证结构，列出前提与结论首先提取论证的所有前提和结论，用符号化形式表示（如前提：p⊃q、q∨r；结论：p⊃r），明确所有支语句（如 p、q、r）。
@@ -136,100 +328,21 @@ JSON …  </content></entry><entry><title>附录 混合环境JS</title><url>/pos
 String.prototype.substr与String.prototype.substring
 的区别：
 substring(start, end)：第二个参数为结束位置索引（不包含该位置）； substr(start, length)：第二个参数为截取长度。 Web ES 规范的额外差异：
-&amp;lt;!--和--&amp;gt;被视为合法单行注释分隔符； String.prototype包含返回 HTML 格式字符串的附加方法（如anchor()、bold()）； 正则表达式（RegExp）扩展及Function.prototype附加方法（非标准，依赖浏览器实现）。 宿主对象定义：由宿主环境（如浏览器、Node.js）创建并提供给 JS 引擎的对象 / 函数（如window、document、console），包括内建对象和工具函数。 特殊行为差异： 部分宿主对象强制转换为布尔值时可能为假值（如document.all，不符合 JS 标准假值规则）； 其他特性： 可能无法访问普通Object的内建方法（如toString()）； 部分属性为只读，无法覆盖； 方法的this无法重绑定到其他对象。 console 对象： 宿主环境提供的输出工具，浏览器中输出到开发控制台，Node.js 中指向标准输出（stdout）和标准错误输出（stderr）。 全局 DOM 对象全局变量与 global 对象：声明全局变量会同时在全局对象（如浏览器的window）中创建同名属性。 DOM 元素 ID 的副作用：因浏览器历史遗留问题，带id属性的 DOM 元素会自动创建同名全局变量（如&amp;lt;div id=&amp;quot;app&amp;quot;&amp;gt;会生成window.app）。 原生原型扩展的注意事项不建议扩展原生原型：除非确保无代码冲突（如第三方库 …  ]]></content></entry><entry><title>09- 类</title><url>/post/ts/09--%E7%B1%BB/</url><categories><category>typescript文档阅读</category></categories><tags><tag>TypeScript</tag><tag>前端开发</tag></tags><content type="html">  类的字段字段是类存储数据的基础属性，其行为受类型、初始化规则和修饰符约束。
-基本特性 字段声明默认创建公共可写属性，类型可显式声明（如x: number）或通过初始化值推断（如x = 0 → 推断为number）。 未指定类型且无初始化值时，隐式为any（可通过noImplicitAny禁用，强制显式声明）。 初始化相关 初始化器：字段可直接赋值（如x = 0），实例化时自动运行，，优先级高于构造函数，TypeScript 会根据初始化值推断类型。 strictPropertyInitialization 配置： 开启时，字段必须在构造函数内或初始化器中初始化，否则报错（防止访问未初始化的属性）。 例外：用!（明确赋值断言）标记 “后续会初始化” 的字段（如name!: string，常用于依赖注入场景）。 注意：字段必须在构造函数内直接初始化，TypeScript 不会分析构造函数调用的方法（因派生类可能覆盖方法导致初始化失败）。 readonly 修饰符 标记字段为只读，仅可在初始化器或构造函数中赋值，构造函数外修改会报错（编译时检查，运行时仍可通过类型断言绕过）。 构造函数类的初始化函数，用于实例化时设置初始状态。
-与函数的异同 相似性：支持类型注释、默认值、重载（如多构造函数签名）。 区别： 不能有类型参数（类型参数属于外部类声明）； 不能有返回类型注释（默认返回类实例类型）。 super () 调用要求 派生类构造函数中，使用this前必须调用super()（调用基类构造函数），否则 TypeScript 报错。 方法与访问器类的函数属性，用于定义行为和属性访问逻辑。
-方法 本质是类的函数属性，支持类型注释（参数和返回值）。 方法体内访问字段 / 其他方法必须通过this.，否则引用外部变量。 访问器 包括get（读取）和set（写入），封装属性访问逻辑（如验证、计算），替代直接暴露字段。 TypeScript 推断规则： 仅有get时，属性自动为readonly； 未指定set参数类型时，从get返回类型推断； 4.3+ 版本支持get和set使用不同类型。 注意：无额外逻辑的get/set对意义不大，建议直接用公共字段。 索引签名类可声明索引签名，与对象类型索引签名规则一致。
-示例：class MyClass { [s: string]: …  </content></entry><entry><title>06- 泛型</title><url>/post/ts/06--%E6%B3%9B%E5%9E%8B/</url><categories><category>typescript文档阅读</category></categories><tags><tag>TypeScript</tag><tag>前端开发</tag></tags><content type="html"><![CDATA[  类型变量类型变量是泛型的 “灵魂”，用于在类型层面建立关联（而非值层面），解决 “同一份逻辑适配多种类型” 的问题。
-基本用法// 定义泛型函数：类型变量&amp;lt;Type&amp;gt;关联输入与输出类型 function identity&amp;lt;Type&amp;gt;(arg: Type): Type { return arg; } // 两种调用方式 let output1 = identity&amp;lt;string&amp;gt;(&amp;#34;myString&amp;#34;); // 显式指定类型参数 let output2 = identity(42); // 类型推断（推荐）：编译器自动推断Type为number 核心价值：避免重复编写不同类型的同名函数（如identityString、identityNumber），同时保持类型安全（对比any：any会丢失类型关联，泛型则保留输入与输出的类型一致性）。 类型推断：编译器可通过传入的值自动推断类型参数，简化代码。复杂场景下若推断失败，需显式指定类型。 类型约束：函数体内必须正确使用泛型参数（视为 “任意类型” 处理）。 泛型函数的类型定义泛型函数的类型与非泛型函数类似，需先声明类型参数，有多种表达方式：
-直接作为函数类型
-let myIdentity: &amp;lt;Type&amp;gt;(arg: Type) =&amp;gt; Type = identity;使用不同名称的类型变量（只要数量和使用方式一致）
-let myIdentity: &amp;lt;Input&amp;gt;(arg: Input) =&amp;gt; Input = identity; // 合法：Input与Type作用相同 对象字面量的调用签名
-let myIdentity: { &amp;lt;Type&amp;gt;(arg: Type): Type } = identity;泛型接口
-// 接口内声明泛型调用签名 interface GenericIdentityFn { &amp;lt;Type&amp;gt;(arg: Type): Type; } let myIdentity: GenericIdentityFn = identity; // 接口本身泛型化（更常用） interface GenericIdentityFn&amp;lt;Type&amp;gt; { (arg: Type): Type; } let …  ]]></content></entry><entry><title>07- 类型运算符</title><url>/post/ts/07--%E7%B1%BB%E5%9E%8B%E8%BF%90%E7%AE%97%E7%AC%A6/</url><categories><category>typescript文档阅读</category></categories><tags><tag>TypeScript</tag><tag>前端开发</tag></tags><content type="html"><![CDATA[  keyof 运算符keyof 用于将对象类型的所有键名转换为字面量联合类型，是实现 “类型安全的键访问” 的基础。
-基础用法type Point = { x: number; y: number }; type P = keyof Point; // 等价于 type P = &amp;#34;x&amp;#34; | &amp;#34;y&amp;#34; 作用：将对象类型的所有键名提取为联合类型，常用于约束函数参数必须是对象的有效键，避免拼写错误（如访问不存在的属性）。 与索引签名结合当对象类型包含 string 或 number 索引签名时，keyof 会返回对应的索引类型：
-// number 索引签名 type Arrayish = { [n: number]: unknown }; type A = keyof Arrayish; // type A = number（仅允许 number 类型索引） // string 索引签名 type Mapish = { [k: string]: boolean }; type M = keyof Mapish; // type M = string | number 因为 JavaScript 会将数字索引自动转换为字符串（如 obj[0] 等价于 obj[&amp;quot;0&amp;quot;]），因此 string 索引签名隐含支持 number 索引。 keyof与Object.keys的区别： keyof：在类型层面工作，返回键的字面量联合类型（编译时）。 Object.keys：在值层面工作，返回键的字符串数组（运行时）。 typeof 运算符（类型上下文）typeof 在类型上下文中用于获取变量或属性的类型，将 “值世界” 的信息传递到 “类型世界”，避免重复声明类型，常与其他类型工具结合使用。
-基本用法let s = &amp;#34;hello&amp;#34;; let n: typeof s; // 类型为 string（n 的类型与 s 一致） 与函数结合获取函数的类型（而非调用结果的类型），配合 ReturnType 可提取返回值类型：
-function f() { return { x: 10, y: 3 }; } type FType = typeof f; // () =&amp;gt; { x: number; y: number } …  ]]></content></entry><entry><title>08- 条件类型</title><url>/post/ts/08--%E6%9D%A1%E4%BB%B6%E7%B1%BB%E5%9E%8B/</url><categories><category>typescript文档阅读</category></categories><tags><tag>TypeScript</tag><tag>前端开发</tag></tags><content type="html"><![CDATA[  条件类型条件类型通过判断类型关系返回不同类型，基本形式为 SomeType extends OtherType ? TrueType : FalseType，核心价值在于与泛型结合实现灵活的类型逻辑。
-基本用法当 SomeType 可赋值给 OtherType 时，返回 TrueType；否则返回 FalseType
-type Example1 = Dog extends Animal ? number : string; // 若Dog是Animal的子类型，返回number 与泛型结合条件类型与泛型结合可简化重载，实现类型与值的动态关联：
-// 需求：输入number返回IdLabel，输入string返回NameLabel type IdLabel = { id: number }; type NameLabel = { name: string }; // 条件类型关联输入与输出类型 type Label&amp;lt;T extends number | string&amp;gt; = T extends number ? IdLabel : NameLabel; // 单个函数替代重载 function createLabel&amp;lt;T extends number | string&amp;gt;(value: T): Label&amp;lt;T&amp;gt; { return typeof value === &amp;#34;number&amp;#34; ? { id: value } : ({ name: value } as Label&amp;lt;T&amp;gt;); } const label1 = createLabel(10); // 类型：IdLabel（{ id: number }） const label2 = createLabel(&amp;#34;Alice&amp;#34;); // 类型：NameLabel（{ name: string }） 类型推断与 infer通过 infer 关键字在条件类型中声明性推断类型，无需显式指定提取逻辑：
-示例 1：提取数组元素类型
-type Flatten&amp;lt;Type&amp;gt; = Type extends Array&amp;lt;infer Item&amp;gt; ? Item : Type; type Str = …  ]]></content></entry><entry><title>05- 对象类型</title><url>/post/ts/05--%E5%AF%B9%E8%B1%A1%E7%B1%BB%E5%9E%8B/</url><categories><category>typescript文档阅读</category></categories><tags><tag>TypeScript</tag><tag>前端开发</tag></tags><content type="html"><![CDATA[  对象类型的基本定义对象类型是 TS 中描述数据结构的核心方式，主要有三种定义形式：
-匿名对象类型 直接在参数或变量声明中定义，无需命名：
-function greet(person: { name: string; age: number }) { return &amp;#34;Hello &amp;#34; + person.name; }接口（interface） 通过interface关键字命名对象类型，支持声明合并（多次定义同一接口会自动合并），可复用：
-interface Person { name: string; age: number; } function greet(person: Person) { /* ... */ }类型别名（type alias） 通过type关键字为对象类型命名：
-type Person = { name: string; age: number; }; function greet(person: Person) { /* ... */ }面试高频对比：
-场景 interface type 声明合并 支持 不支持（重复声明报错） 扩展方式 extends继承 交叉类型（&amp;amp;）合并 适用类型 仅对象 / 类形状 任意类型（对象、联合、基础类型等） 对象属性的特性对象类型的属性可通过修饰符指定特性：
-可选属性
-标记为?的属性可省略，类型为T | undefined（在strictNullChecks开启时需显式处理undefined）。
-示例：
-interface User { name: string; age?: number; // 可选属性 } const user: User = { name: &amp;#34;Alice&amp;#34; }; // 合法，age可省略 只读属性（readonly）
-标记为readonly的属性在类型检查期间不可被重写，但不影响其内部内容的可变性（如对象属性仍可修改）。
-TypeScript 检查类型兼容性时不考虑readonly，因此可通过别名修改只读属性。
-示例：
-interface Point { readonly x: number; readonly y: number; } const p: Point = { x: 1, y: 2 }; p.x = 3; // 错误：只读属 …  ]]></content></entry><entry><title>4. 更多关于函数</title><url>/post/ts/04-%E6%9B%B4%E5%A4%9A%E5%85%B3%E4%BA%8E%E5%87%BD%E6%95%B0/</url><categories><category>typescript文档阅读</category></categories><tags><tag>TypeScript</tag><tag>前端开发</tag></tags><content type="html"><![CDATA[  函数类型表达式描述函数最简单的方法是使用函数类型表达式。这些类型在语法上类似于箭头函数。
-type GreetFunction = (a: string) =&amp;gt; void; function greeter(fn: GreetFunction) { // ... }(a: string) =&amp;gt; void 表示一个带有一个参数 a 的函数，该参数的类型为 string，没有返回值。
-如果未指定参数类型，则隐式为 any。
-参数名称是必需的。(string) =&amp;gt; void 表示“具有 any 类型名为 string 的参数的函数”。
-调用签名函数类型表达式语法不允许声明属性。如果想描述可调用且带属性的函数，可以用对象类型编写调用签名。
-type DescribableFunction = { description: string; (someArg: number): boolean; }; function doSomething(fn: DescribableFunction) { console.log(fn.description + &amp;#34; returned &amp;#34; + fn(6)); } function myFunc(someArg: number) { return someArg &amp;gt; 3; } myFunc.description = &amp;#34;default description&amp;#34;; doSomething(myFunc);与函数类型表达式不同，在参数列表和返回类型之间使用 : 而不是 =&amp;gt;。
-构造函数签名JavaScript 函数可以通过 new 调用，TypeScript 称这些为构造函数。 通过在调用签名前添加 new 来编写构造函数签名。
-type SomeConstructor = { new (s: string): SomeObject; }; function fn(ctor: SomeConstructor) { return new ctor(&amp;#34;hello&amp;#34;); }可组合调用与构造签名：
-interface CallOrConstruct { (n?: number): string; new (s: string): Date; }泛型函数当输入 …  ]]></content></entry><entry><title>3. 缩小</title><url>/post/ts/03-%E7%BC%A9%E5%B0%8F/</url><categories><category>typescript文档阅读</category></categories><tags><tag>TypeScript</tag><tag>前端开发</tag></tags><content type="html"><![CDATA[  TypeScript 会将类型分析覆盖在 JavaScript 的运行时控制流结构上，例如 if/else、条件表达式、循环、真值检查等，这些结构都会影响类型判断。
-当 TypeScript 看到如 typeof padding === &amp;quot;number&amp;quot; 的检查时，会将其识别为一种称为类型保护（Type Guard）的特殊代码形式。TypeScript 会跟踪程序可能的执行路径，分析各位置值的最具体类型，并通过这些检查和赋值将类型细化为更具体的类型，这一过程称为缩小（Narrowing）。
-typeof 类型保护JavaScript 的 typeof 操作符能在运行时提供值的类型信息。
-TypeScript 能理解 typeof 的结果，用以在不同分支中缩小类型范围。
-TypeScript 内置了对 typeof 的行为规则，因此能正确处理 JavaScript 的一些特例。
-真实性缩小在 JavaScript 中，if、&amp;amp;&amp;amp;、||、! 等条件语句可以接受任意类型的表达式。
-条件判断时会先将表达式强制为 boolean，再根据结果选择分支。
-可通过：Boolean(value)或 !!value将值强制为布尔类型。
-这种方式常用于防范 null 或 undefined。但对原始值的真值检查容易出错，TypeScript 仅能在有限范围内帮助发现问题。
-带有 ! 的布尔否定会从否定分支中过滤掉原值。
-相等缩小TypeScript 会利用 switch、===、!==、==、!= 来缩小类型。
-即使使用宽松等式（==、!=），TypeScript 也能正确缩小。
-x == null 同时检查 x 是否为 null 或 undefined。 x == undefined 亦同理。 in 操作符缩小JavaScript 的 in 操作符可判断某对象或其原型链中是否存在指定属性。TypeScript 利用此信息缩小可能的类型范围。
-可选属性在缩小时会同时存在于两侧分支。
-instanceof 缩小instanceof 用于检查某值是否是另一构造函数的实例。
-TypeScript 将其视为一种类型保护，可根据结果缩小分支类型。
-x instanceof Foo 会检查 x 的原型链中是否包含 Foo.prototype。
-赋值当变 …  ]]></content></entry><entry><title>2. 日常类型</title><url>/post/ts/02-%E6%97%A5%E5%B8%B8%E7%B1%BB%E5%9E%8B/</url><categories><category>typescript文档阅读</category></categories><tags><tag>TypeScript</tag><tag>前端开发</tag></tags><content type="html"><![CDATA[  原始类型：字符串、数字和布尔值JavaScript 有三个常用的原始类型：string、number、boolean。
-TypeScript 中对应的类型名称与 JavaScript 中 typeof 运算符的结果一致。
-应始终使用 小写的 string、number、boolean 作为类型。
-以大写开头的 String、Number、Boolean 是特殊内置类型，几乎不使用。
-数组数组类型的写法：
-number[]：数字数组 string[]：字符串数组 Array&amp;lt;number&amp;gt;：与 number[] 含义相同 注意：[number] 是不同的东西。
-any特殊类型 any 用于在不希望引发类型检查错误时使用。
-当值为 any 类型时：
-可以访问任何属性； 可以像函数一样调用； 可以赋值给任意类型或从任意类型赋值； 可执行所有语法合法的操作。 当不想写出冗长类型以通过编译时，any 很有用。
-noImplicitAny当未指定类型且 TypeScript 无法推断类型时，编译器默认将其设为 any。应避免这种情况。
-使用编译器标志 noImplicitAny 可将隐式 any 标记为错误。
-变量的类型注解使用 const、var 或 let 声明变量时，可选择添加类型注解。
-let myName: string = &amp;#34;Alice&amp;#34;;TypeScript 不使用“左侧类型”声明（如 int x = 0;），类型注解总是写在变量之后。
-多数情况下无需显式类型注解，TypeScript 会自动 推断类型。
-函数参数类型注解在参数名后添加类型注释声明函数的参数类型。
-TypeScript 会检查：
-参数类型是否匹配； 参数数量是否正确。 function greet(name: string) { console.log(&amp;#34;Hello, &amp;#34; + name.toUpperCase() + &amp;#34;!!&amp;#34;); }返回类型注释返回类型注释位于参数列表之后。
-TypeScript 通常能自动推断返回类型，但可显式指定以增强可读性。
-function getFavoriteNumber(): number { return 26; }匿名函数当函数出现在 TypeScript 能确定其调用方式的位置 …  ]]></content></entry><entry><title>1. 基础知识</title><url>/post/ts/01-%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/</url><categories><category>typescript文档阅读</category></categories><tags><tag>TypeScript</tag><tag>前端开发</tag></tags><content type="html">  JavaScript 与类型系统每个值都有一组行为，可以通过运行不同的操作观察这些行为。JavaScript 运行时根据值的 类型 来决定执行的操作。
-对于原始类型（如 string、number），可使用 typeof 运算符识别。对于函数等复杂类型，没有运行时机制可识别其类型。
-在纯 JavaScript 中，了解函数如何处理特定值的唯一方法是 调用它并观察结果。这种特性导致在代码运行前 难以预测行为。
-类型 是描述哪些值可以传递给函数、哪些值会导致崩溃的概念。
-JavaScript 提供的是 动态类型系统 —— 运行代码才能看到结果。静态类型系统 则能在代码运行 之前 预测执行行为。
-静态类型检查目的
-帮助在运行代码 之前 发现错误。 TypeScript 通过描述运行时值的形状与行为，提前检测潜在异常。 问题背景
-运行时错误被视为 bug。 测试不足或重构复杂时，错误难以发现或修复。 非异常失败JavaScript 遵循 ECMAScript 规范，在遇到意外情况时会定义特定行为。
-静态类型系统需自行决定哪些代码应被视为错误，即使这些代码在 JavaScript 中是“合法”的。
-TypeScript 的目标是捕获合法 bug，如：拼写错误，未调用的函数，基本逻辑错误
-工具类型TypeScript 不仅能捕获错误，还能 防止错误的发生。
-类型检查器可以：
-检查属性访问是否正确； 提供属性建议； 提供代码补全与错误提示。 支持 TypeScript 的编辑器还提供：
-快速修复 重构 跳转定义 查找引用 tsc，TypeScript 编译器安装
-npm install -g typescript编译
-tsc hello.ts若无类型错误，无输出（表示无问题）。 生成对应的 hello.js 文件，代码清晰且保留注释。 发出错误若存在类型检查错误，命令行会显示错误信息，但仍会生成 hello.js。
-TypeScript 假设 开发者比编译器更了解代码意图。
-可使用 noEmitOnError 参数让编译器在错误时不生成输出文件。
-显式类型function greet(person: string, date: Date) { console.log(`Hello ${person}, today is …  </content></entry><entry><title>11. git flow</title><url>/post/git/11-git-flow/</url><categories><category>Git从入门到精通</category></categories><tags><tag>Git</tag><tag>版本控制系统</tag></tags><content type="html">  根据 Git Flow 的建议，分支主要分为以下几类：
+&amp;lt;!--和--&amp;gt;被视为合法单行注释分隔符； String.prototype包含返回 HTML 格式字符串的附加方法（如anchor()、bold()）； 正则表达式（RegExp）扩展及Function.prototype附加方法（非标准，依赖浏览器实现）。 宿主对象定义：由宿主环境（如浏览器、Node.js）创建并提供给 JS 引擎的对象 / 函数（如window、document、console），包括内建对象和工具函数。 特殊行为差异： 部分宿主对象强制转换为布尔值时可能为假值（如document.all，不符合 JS 标准假值规则）； 其他特性： 可能无法访问普通Object的内建方法（如toString()）； 部分属性为只读，无法覆盖； 方法的this无法重绑定到其他对象。 console 对象： 宿主环境提供的输出工具，浏览器中输出到开发控制台，Node.js 中指向标准输出（stdout）和标准错误输出（stderr）。 全局 DOM 对象全局变量与 global 对象：声明全局变量会同时在全局对象（如浏览器的window）中创建同名属性。 DOM 元素 ID 的副作用：因浏览器历史遗留问题，带id属性的 DOM 元素会自动创建同名全局变量（如&amp;lt;div id=&amp;quot;app&amp;quot;&amp;gt;会生成window.app）。 原生原型扩展的注意事项不建议扩展原生原型：除非确保无代码冲突（如第三方库 …  ]]></content></entry><entry><title>3.4节 强制类型转换</title><url>/post/%E4%BD%A0%E4%B8%8D%E7%9F%A5%E9%81%93%E7%9A%84js-%E4%B8%AD%E5%8D%B7/0304--%E5%BC%BA%E5%88%B6%E7%B1%BB%E5%9E%8B%E8%BD%AC%E6%8D%A2/</url><categories><category>你不知道的JS</category></categories><tags><tag>JavaScript</tag><tag>ECMAScript</tag><tag>前端开发</tag></tags><content type="html"><![CDATA[  值类型转换的基本概念定义与区分： 显式类型转换：主动将值从一种类型转换为另一种（如String(123)）。 隐式强制类型转换：操作中自动发生的类型转换（如1 + &amp;quot;2&amp;quot;）。 特性：JS 强制类型转换始终返回标量基本类型值，对象封装（如new Number(1)）不算严格意义上的强制转换。 与其他语言的差异： 静态类型语言的 “类型转换” 发生在编译阶段； 动态类型语言（如 JS）的 “强制类型转换” 发生在运行时，隐式转换常为操作的副作用。 抽象值操作（内部使用的转换规则）抽象操作是 JS 引擎内部用于类型转换的逻辑，主要包括ToString、ToNumber、ToBoolean。
+ToString（非字符串 → 字符串）基本类型转换规则：
+null → &amp;quot;null&amp;quot;；undefined → &amp;quot;undefined&amp;quot;；true → &amp;quot;true&amp;quot;；false → &amp;quot;false&amp;quot;。 数字：常规数字直接转换（如123→&amp;quot;123&amp;quot;），极小 / 极大数字用指数形式（如1e-20、1e+20）。 对象 / 数组转换：
+普通对象：默认返回内部属性[[Class]]值（如&amp;quot;[object Object]&amp;quot;）；若自定义toString()方法，则调用该方法并使用其返回值。 数组：toString()将所有元素字符串化后用,连接（如[1, 2, 3].toString() → &amp;quot;1,2,3&amp;quot;）。 JSON.stringify () 的特殊处理：
+作用：将 JSON 对象序列化为字符串，遵循ToString规则但结果必为字符串。
+安全 JSON 值：可被序列化的值（字符串、数字、布尔值、null、数组、符合 JSON 结构的对象）；非安全值（ undefined、function 、symbol、循环引用对象）的处理：
+对象中遇到非安全值：自动忽略。 数组中遇到非安全值：返回null（保持数组长度）。 循环引用对象：直接报错。 toJSON()方法：若对象定义了toJSON()，序列化时会先调用该方法，使用其返回的安全值进行序列化（注意：toJSON()应返回安全值，而非字符串）。
+可选参数：
+replacer（数组 / 函 …  ]]></content></entry><entry><title>3.3节 原生函数</title><url>/post/%E4%BD%A0%E4%B8%8D%E7%9F%A5%E9%81%93%E7%9A%84js-%E4%B8%AD%E5%8D%B7/0303--%E5%8E%9F%E7%94%9F%E5%87%BD%E6%95%B0/</url><categories><category>你不知道的JS</category></categories><tags><tag>JavaScript</tag><tag>ECMAScript</tag><tag>前端开发</tag></tags><content type="html"><![CDATA[  内部属性 [[Class]]基本概念： 内建函数（原生函数）可作为构造函数，用于创建封装基本类型值的封装对象。 属性特征： 所有typeof返回值为object的对象都包含内部属性[[Class]]，该属性无法直接访问。 通常通过Object.prototype.toString()方法查看[[Class]]的值。 对应关系： 多数情况下，对象的[[Class]]属性值与创建该对象的内建原生构造函数相对应。 特殊情况：虽然不存在Null()和undefined()原生构造函数，但null和undefined的[[Class]]属性值分别为&#39;Null&#39;和&#39;Undefined&#39;。 封装对象包装自动包装机制： 基本类型值（如string、number等）本身没有属性和方法，JS 会自动为其包装一个封装对象，以便访问属性和方法，操作完成后立即销毁，避免性能损耗。 手动封装与拆封： 手动封装：使用Object()函数（不带new关键字）可将基本类型值封装为对象。 拆封：通过valueOf()方法可获取封装对象中的基本类型值；在需要基本类型值的场景中，会发生隐式拆封。 使用建议：除非必要，应避免使用构造函数创建封装对象。 原生函数作为构造函数Array()：
+不带new关键字时会被自动补全（等效于new Array()）。 仅带一个数字参数时，该参数表示数组预设长度（创建稀疏数组），而非数组元素。 替代方案：ES6 的Array.of()（无歧义，始终将参数作为元素） 稀疏数组：包含至少一个空单元的数组，可通过以下方式创建： 设置length属性值超过实际单元数； 使用delete删除数组单元。 可通过Array.apply(null, {length: 3})创建包含undefined单元（非空单元）的数组。 不建议使用的构造函数： 除非特殊需求，尽量避免使用Object()、Function()、RegExp()作为构造函数。
+Date()：
+必须使用new Date()创建日期对象：带参数时指定日期时间，不带参数时使用当前日期时间。 时间戳获取：getTime()方法或Date.now()（ES5+）可获取 Unix 时间戳。 特殊情况：不带new关键字调用Date()时，返回当前日期的字符串值（格式无统一规范）。 Error()： 带或不带new关键字均可使用。  …  ]]></content></entry><entry><title>3.2节 值</title><url>/post/%E4%BD%A0%E4%B8%8D%E7%9F%A5%E9%81%93%E7%9A%84js-%E4%B8%AD%E5%8D%B7/0302--%E5%80%BC/</url><categories><category>你不知道的JS</category></categories><tags><tag>JavaScript</tag><tag>ECMAScript</tag><tag>前端开发</tag></tags><content type="html"><![CDATA[  数组特性： 可容纳任何类型的值，声明后可直接添加值，无需预先设定大小。 使用delete运算符删除单元后，位置变为空白单元，数组length属性不变。 稀疏数组： 指含有空白 / 空缺单元的数组，空白单元值为undefined，但与显式赋值为undefined的单元有区别（如[,,]与[undefined, undefined]行为不同）。 索引与属性： 主要通过数字索引访问，但本质是对象，可包含字符串键值和属性（不计算在length内，length只计算数字索引的最大整数 + 1）。 若字符串键值可强制转换为十进制数字，则会被当作数字索引处理。 类数组转换： 类数组特征：有length和数字索引，但无数组方法（如arguments、DOM 集合NodeList） 可转换为真正的数组，常用方法： Array.prototype.slice.call(类数组) ES6 的Array.from(类数组) 扩展运算符（需类数组为可迭代对象） 字符串与数组的区别： 是类数组（有length、indexOf()、concat()等），但并非字符数组。 字符串不可变：成员函数不修改原始值，而是返回新字符串；数组可变：成员函数直接操作原始值。 数组方法的借用： 可借用数组的非变更方法（如Array.prototype.indexOf.call(str, &#39;a&#39;)）处理字符串。 不可借用数组的变更方法（因字符串不可变），需先通过split(&#39;&#39;)转为数组，处理后再用join(&#39;&#39;)转回字符串。 数字类型与格式：
+JS 只有一种数值类型number（双精度浮点数），包含整数（如42.0）和带小数的十进制数。 字面量表示： 十进制：可省略小数点前的 0（.42）或后多余的 0（42.）。 特殊格式：指数形式（1e3）、二进制（0b1010）、八进制（0o12）、十六进制（0xa）。 显示规则：
+大部分数字默认以十进制显示，省略小数部分末尾的 0；特别大 / 小的数字默认用指数形式（同toExponential()）。 Number 对象方法：
+toFixed(n)：指定小数部分显示位数，不足用 0 补齐（返回字符串）。 toPrecision(n)：指定有效数位的显示位数。 注意：数字字面量调用方法时，需避免.被误判为数字一部分（如42..toFixed(2)或42 …  ]]></content></entry><entry><title>3.1节 类型</title><url>/post/%E4%BD%A0%E4%B8%8D%E7%9F%A5%E9%81%93%E7%9A%84js-%E4%B8%AD%E5%8D%B7/0301--%E7%B1%BB%E5%9E%8B/</url><categories><category>你不知道的JS</category></categories><tags><tag>JavaScript</tag><tag>ECMAScript</tag><tag>前端开发</tag></tags><content type="html"><![CDATA[  内置类型概述定义：类型是值的内部特征，决定值的行为，以区分于其他值。 分类： 基本类型（共 6 种）：空值（null）、未定义（undefined）、布尔值（boolean）、数字（number）、字符串（string）、符号（symbol）。不可再分的原子值，存储值本身（而非引用）。 对象类型（1 种）：对象（object），其他类型统称为基本类型。复杂结构，存储引用地址，可包含多个值（属性 / 元素）。 typeof 运算符作用：用于查看值的类型，返回类型的字符串值，共 7 种可能结果。 特殊情况： null 类型使用 typeof 检测时返回 “object”。（JavaScript 历史 bug，无法修复，需特殊处理） 检测 null 值类型的复合条件：!a &amp;&amp; typeof a === 'object'（因 null 是假值，且是唯一用 typeof 检测返回 &lsquo;object&rsquo; 的基本类型值）。 对象子类型函数（function）： 是 object 的子类型，属于可调用对象。 具有内部属性 [[Call]]，使其可被调用。 可拥有属性，如 length 属性表示其声明的参数个数。 typeof function返回&quot;function&quot;，是历史遗留的特殊处理 数组： 是 object 的子类型。 元素按数字顺序索引，length 属性表示元素个数。 值和类型的特性变量与类型的关系： JS 中变量无类型，只有值有类型。 变量可随时持有任何类型的值，语言引擎不强制变量持有与初始值同类型的值。 对变量执行 typeof 操作，结果是变量所持值的类型（因变量无类型），且 typeof 始终返回字符串。 undefined 与 undeclared 的区别： undefined：变量已在作用域中声明但未赋值。 undeclared：变量未在作用域中声明过。 typeof 的安全防范机制： 对 undeclared 变量使用 typeof，返回 undefined，不会抛出 ReferenceError 错误。 应用场景：在共享全局命名空间中，检查用户定义变量或内建 API 是否存在。 其他安全检查方法： 检查全局变量是否为全局对象的属性（访问不存在的对象属性不会产生 Reference 错误）。 依赖注入设计模式：将依赖通过参数显式传递到函数中。   ]]></content></entry><entry><title>11. git flow</title><url>/post/git/11-git-flow/</url><categories><category>Git从入门到精通</category></categories><tags><tag>Git</tag><tag>版本控制系统</tag></tags><content type="html">  根据 Git Flow 的建议，分支主要分为以下几类：
 master 分支 develop 分支 hotfix 分支 release 分支 feature 分支 其中：
 master 和 develop 被称为 长期分支，因为它们会一直存在于整个 Git Flow 生命周期中。 其他分支（如 hotfix、release、feature）属于 临时分支，会在任务完成后被删除。 各分支职责master 分支
 用于存放 稳定、可随时上线的项目版本。 来源：只能从其他分支合并，开发者不会直接在 master 上 commit。 特征：每个稳定版本的 commit 通常会打上 版本号标签（tag）。 develop 分支
@@ -458,21 +571,153 @@ git config --local user.name &#34;Andy&#34; git config --local user.email &#34;a
 其他项目仍使用 global 设置。
 设置缩写git config --global alias.co checkout git config --global alias.l &#34;log --oneline --graph&#34;示例：
 git co = git checkout git l = git log --oneline --graph 这些 alias 配置可在 ~/.gitconfig 中修改。
-  ]]></content></entry><entry><title>3.4节 强制类型转换</title><url>/post/%E4%BD%A0%E4%B8%8D%E7%9F%A5%E9%81%93%E7%9A%84js-%E4%B8%AD%E5%8D%B7/0304--%E5%BC%BA%E5%88%B6%E7%B1%BB%E5%9E%8B%E8%BD%AC%E6%8D%A2/</url><categories><category>你不知道的JS</category></categories><tags><tag>JavaScript</tag><tag>ECMAScript</tag><tag>前端开发</tag></tags><content type="html"><![CDATA[  值类型转换的基本概念定义与区分： 显式类型转换：主动将值从一种类型转换为另一种（如String(123)）。 隐式强制类型转换：操作中自动发生的类型转换（如1 + &amp;quot;2&amp;quot;）。 特性：JS 强制类型转换始终返回标量基本类型值，对象封装（如new Number(1)）不算严格意义上的强制转换。 与其他语言的差异： 静态类型语言的 “类型转换” 发生在编译阶段； 动态类型语言（如 JS）的 “强制类型转换” 发生在运行时，隐式转换常为操作的副作用。 抽象值操作（内部使用的转换规则）抽象操作是 JS 引擎内部用于类型转换的逻辑，主要包括ToString、ToNumber、ToBoolean。
-ToString（非字符串 → 字符串）基本类型转换规则：
-null → &amp;quot;null&amp;quot;；undefined → &amp;quot;undefined&amp;quot;；true → &amp;quot;true&amp;quot;；false → &amp;quot;false&amp;quot;。 数字：常规数字直接转换（如123→&amp;quot;123&amp;quot;），极小 / 极大数字用指数形式（如1e-20、1e+20）。 对象 / 数组转换：
-普通对象：默认返回内部属性[[Class]]值（如&amp;quot;[object Object]&amp;quot;）；若自定义toString()方法，则调用该方法并使用其返回值。 数组：toString()将所有元素字符串化后用,连接（如[1, 2, 3].toString() → &amp;quot;1,2,3&amp;quot;）。 JSON.stringify () 的特殊处理：
-作用：将 JSON 对象序列化为字符串，遵循ToString规则但结果必为字符串。
-安全 JSON 值：可被序列化的值（字符串、数字、布尔值、null、数组、符合 JSON 结构的对象）；非安全值（ undefined、function 、symbol、循环引用对象）的处理：
-对象中遇到非安全值：自动忽略。 数组中遇到非安全值：返回null（保持数组长度）。 循环引用对象：直接报错。 toJSON()方法：若对象定义了toJSON()，序列化时会先调用该方法，使用其返回的安全值进行序列化（注意：toJSON()应返回安全值，而非字符串）。
-可选参数：
-replacer（数组 / 函 …  ]]></content></entry><entry><title>3.1节 类型</title><url>/post/%E4%BD%A0%E4%B8%8D%E7%9F%A5%E9%81%93%E7%9A%84js-%E4%B8%AD%E5%8D%B7/0301--%E7%B1%BB%E5%9E%8B/</url><categories><category>你不知道的JS</category></categories><tags><tag>JavaScript</tag><tag>ECMAScript</tag><tag>前端开发</tag></tags><content type="html"><![CDATA[  内置类型概述定义：类型是值的内部特征，决定值的行为，以区分于其他值。 分类： 基本类型（共 6 种）：空值（null）、未定义（undefined）、布尔值（boolean）、数字（number）、字符串（string）、符号（symbol）。不可再分的原子值，存储值本身（而非引用）。 对象类型（1 种）：对象（object），其他类型统称为基本类型。复杂结构，存储引用地址，可包含多个值（属性 / 元素）。 typeof 运算符作用：用于查看值的类型，返回类型的字符串值，共 7 种可能结果。 特殊情况： null 类型使用 typeof 检测时返回 “object”。（JavaScript 历史 bug，无法修复，需特殊处理） 检测 null 值类型的复合条件：!a &amp;&amp; typeof a === 'object'（因 null 是假值，且是唯一用 typeof 检测返回 &lsquo;object&rsquo; 的基本类型值）。 对象子类型函数（function）： 是 object 的子类型，属于可调用对象。 具有内部属性 [[Call]]，使其可被调用。 可拥有属性，如 length 属性表示其声明的参数个数。 typeof function返回&quot;function&quot;，是历史遗留的特殊处理 数组： 是 object 的子类型。 元素按数字顺序索引，length 属性表示元素个数。 值和类型的特性变量与类型的关系： JS 中变量无类型，只有值有类型。 变量可随时持有任何类型的值，语言引擎不强制变量持有与初始值同类型的值。 对变量执行 typeof 操作，结果是变量所持值的类型（因变量无类型），且 typeof 始终返回字符串。 undefined 与 undeclared 的区别： undefined：变量已在作用域中声明但未赋值。 undeclared：变量未在作用域中声明过。 typeof 的安全防范机制： 对 undeclared 变量使用 typeof，返回 undefined，不会抛出 ReferenceError 错误。 应用场景：在共享全局命名空间中，检查用户定义变量或内建 API 是否存在。 其他安全检查方法： 检查全局变量是否为全局对象的属性（访问不存在的对象属性不会产生 Reference 错误）。 依赖注入设计模式：将依赖通过参数显式传递到函数中。   ]]></content></entry><entry><title>3.2节 值</title><url>/post/%E4%BD%A0%E4%B8%8D%E7%9F%A5%E9%81%93%E7%9A%84js-%E4%B8%AD%E5%8D%B7/0302--%E5%80%BC/</url><categories><category>你不知道的JS</category></categories><tags><tag>JavaScript</tag><tag>ECMAScript</tag><tag>前端开发</tag></tags><content type="html"><![CDATA[  数组特性： 可容纳任何类型的值，声明后可直接添加值，无需预先设定大小。 使用delete运算符删除单元后，位置变为空白单元，数组length属性不变。 稀疏数组： 指含有空白 / 空缺单元的数组，空白单元值为undefined，但与显式赋值为undefined的单元有区别（如[,,]与[undefined, undefined]行为不同）。 索引与属性： 主要通过数字索引访问，但本质是对象，可包含字符串键值和属性（不计算在length内，length只计算数字索引的最大整数 + 1）。 若字符串键值可强制转换为十进制数字，则会被当作数字索引处理。 类数组转换： 类数组特征：有length和数字索引，但无数组方法（如arguments、DOM 集合NodeList） 可转换为真正的数组，常用方法： Array.prototype.slice.call(类数组) ES6 的Array.from(类数组) 扩展运算符（需类数组为可迭代对象） 字符串与数组的区别： 是类数组（有length、indexOf()、concat()等），但并非字符数组。 字符串不可变：成员函数不修改原始值，而是返回新字符串；数组可变：成员函数直接操作原始值。 数组方法的借用： 可借用数组的非变更方法（如Array.prototype.indexOf.call(str, &#39;a&#39;)）处理字符串。 不可借用数组的变更方法（因字符串不可变），需先通过split(&#39;&#39;)转为数组，处理后再用join(&#39;&#39;)转回字符串。 数字类型与格式：
-JS 只有一种数值类型number（双精度浮点数），包含整数（如42.0）和带小数的十进制数。 字面量表示： 十进制：可省略小数点前的 0（.42）或后多余的 0（42.）。 特殊格式：指数形式（1e3）、二进制（0b1010）、八进制（0o12）、十六进制（0xa）。 显示规则：
-大部分数字默认以十进制显示，省略小数部分末尾的 0；特别大 / 小的数字默认用指数形式（同toExponential()）。 Number 对象方法：
-toFixed(n)：指定小数部分显示位数，不足用 0 补齐（返回字符串）。 toPrecision(n)：指定有效数位的显示位数。 注意：数字字面量调用方法时，需避免.被误判为数字一部分（如42..toFixed(2)或42 …  ]]></content></entry><entry><title>3.3节 原生函数</title><url>/post/%E4%BD%A0%E4%B8%8D%E7%9F%A5%E9%81%93%E7%9A%84js-%E4%B8%AD%E5%8D%B7/0303--%E5%8E%9F%E7%94%9F%E5%87%BD%E6%95%B0/</url><categories><category>你不知道的JS</category></categories><tags><tag>JavaScript</tag><tag>ECMAScript</tag><tag>前端开发</tag></tags><content type="html"><![CDATA[  内部属性 [[Class]]基本概念： 内建函数（原生函数）可作为构造函数，用于创建封装基本类型值的封装对象。 属性特征： 所有typeof返回值为object的对象都包含内部属性[[Class]]，该属性无法直接访问。 通常通过Object.prototype.toString()方法查看[[Class]]的值。 对应关系： 多数情况下，对象的[[Class]]属性值与创建该对象的内建原生构造函数相对应。 特殊情况：虽然不存在Null()和undefined()原生构造函数，但null和undefined的[[Class]]属性值分别为&#39;Null&#39;和&#39;Undefined&#39;。 封装对象包装自动包装机制： 基本类型值（如string、number等）本身没有属性和方法，JS 会自动为其包装一个封装对象，以便访问属性和方法，操作完成后立即销毁，避免性能损耗。 手动封装与拆封： 手动封装：使用Object()函数（不带new关键字）可将基本类型值封装为对象。 拆封：通过valueOf()方法可获取封装对象中的基本类型值；在需要基本类型值的场景中，会发生隐式拆封。 使用建议：除非必要，应避免使用构造函数创建封装对象。 原生函数作为构造函数Array()：
-不带new关键字时会被自动补全（等效于new Array()）。 仅带一个数字参数时，该参数表示数组预设长度（创建稀疏数组），而非数组元素。 替代方案：ES6 的Array.of()（无歧义，始终将参数作为元素） 稀疏数组：包含至少一个空单元的数组，可通过以下方式创建： 设置length属性值超过实际单元数； 使用delete删除数组单元。 可通过Array.apply(null, {length: 3})创建包含undefined单元（非空单元）的数组。 不建议使用的构造函数： 除非特殊需求，尽量避免使用Object()、Function()、RegExp()作为构造函数。
-Date()：
-必须使用new Date()创建日期对象：带参数时指定日期时间，不带参数时使用当前日期时间。 时间戳获取：getTime()方法或Date.now()（ES5+）可获取 Unix 时间戳。 特殊情况：不带new关键字调用Date()时，返回当前日期的字符串值（格式无统一规范）。 Error()： 带或不带new关键字均可使用。  …  ]]></content></entry><entry><title>2.4节 原型</title><url>/post/%E4%BD%A0%E4%B8%8D%E7%9F%A5%E9%81%93%E7%9A%84js-%E4%B8%8A%E5%8D%B7/0204--%E5%8E%9F%E5%9E%8B/</url><categories><category>你不知道的JS</category></categories><tags><tag>JavaScript</tag><tag>ECMAScript</tag><tag>前端开发</tag></tags><content type="html"><![CDATA[  [[Prototype]] 基础定义：对象的特殊内置属性，本质是对其他对象的引用 默认值：几乎所有对象创建时，[[Prototype]] 都会被赋予非空值 [[Get]] 操作逻辑（属性查找）： 优先检查对象本身是否有目标属性，有则使用； 若无，沿 [[Prototype]] 链向上查找； 直至找到属性或遍历完整条原型链，未找到则返回 undefined 原型链终点：Object.prototype地位：所有普通对象的 [[Prototype]] 链最终都会指向 Object.prototype 作用：包含 JS 通用功能（如 toString()、hasOwnProperty() 等），供所有普通对象继承 核心通用方法方法 作用 示例 toString() 返回对象的字符串表示（默认&amp;quot;[object Object]&amp;quot;） ({}).toString() → &amp;quot;[object Object]&amp;quot; hasOwnProperty(key) 检查属性是否为对象自身所有（不含原型链） cat.hasOwnProperty(&amp;quot;eat&amp;quot;) → false（eat 在原型上） isPrototypeOf(obj) 检查当前对象是否在obj的原型链上 animal.isPrototypeOf(cat) → true valueOf() 返回对象的原始值（默认返回对象本身） (new Number(123)).valueOf() → 123 属性设置与屏蔽（myObject.foo = &#39;bar&#39;）基础逻辑若 myObject 本身有 foo 普通数据属性：仅修改属性值； 若 foo 不在 myObject 中：沿 [[Prototype]] 链查找，未找到则直接在 myObject 上添加 foo； 若 foo 既在 myObject 中，也在原型链上层：myObject 的 foo 屏蔽原型链上层的 foo（优先取最底层属性）。 特殊场景（foo 在原型链上层）原型链上层 foo 特性 结果 普通数据属性（非只读） 在 myObject 上添加 foo 屏蔽属性 只读数据属性（writable: false） 非严格模式：忽略赋值；严格模式：报错（无法添加屏蔽属性或修改原属性） 访问描述符（含 setter） 调 …  ]]></content></entry><entry><title>2.5节 行为委托和class</title><url>/post/%E4%BD%A0%E4%B8%8D%E7%9F%A5%E9%81%93%E7%9A%84js-%E4%B8%8A%E5%8D%B7/0205--%E8%A1%8C%E4%B8%BA%E5%A7%94%E6%89%98%E5%92%8Cclass/</url><categories><category>你不知道的JS</category></categories><tags><tag>JavaScript</tag><tag>ECMAScript</tag><tag>前端开发</tag></tags><content type="html">  对象关联风格的核心特性与设计原则状态存储原则核心规则：状态（数据属性）应保存在委托者对象上，而非委托目标（原型链上层对象）。 避免委托目标状态被多个委托者共享，导致数据污染或不可预期的修改。 方法命名原则核心规则：尽量避免在 [[Prototype]] 链不同级别使用相同命名的方法（与类风格的“重写”逻辑相反）。 设计建议：使用描述性方法名（需体现对象行为类型），降低命名冲突风险，提升代码可理解性与可维护性。 委托本质委托行为的核心：当对象自身找不到属性/方法时，会将请求委托给 [[Prototype]] 关联的对象（沿原型链向上查找）。 委托限制禁止循环委托：无法在两个及以上对象间创建互相委托（如 A 关联 B、B 关联 A），会触发错误。 思维模型与灵活性维度 特点 思维模型 仅关注对象之间的关联关系，不强调实体及实体间的层级（如父类-子类） 创建与初始化分离 支持“创建对象”与“初始化状态”分步执行，更符合关注分离原则，灵活性更高 对比类风格 类风格通常强制“构造+初始化”合并为一步（如 new 调用构造函数时同步初始化） class 语法特点（ES6+）多态实现支持通过 super() 实现相对多态：子类方法可通过 super 引用原型链上层的同名方法（模拟类继承中的“调用父类方法”）。 声明限制仅能声明方法：class 字面量语法中，无法直接声明数据属性（需在构造函数 constructor 中通过 this.属性名 定义）。 示例：class A { foo() {}; // 允许；bar = 1; // 类字段语法（ESNext，非标准字面量声明） } 扩展能力支持通过 extends 关键字自然扩展对象类型，包括内置对象类型（如 class MyArray extends Array {}），模拟类继承的“子类扩展父类”逻辑。 本质与局限性维度 特点 本质 是 [[Prototype]] 机制的语法糖，并非真正实现面向类语言的“类”（无类实例化复制、无类级别的类型约束） super 绑定方式 静态绑定：super 指向的原型链上层对象在 class 定义时确定，无法动态修改（与类风格的动态关联不同） 动态修改难度 class 定义后，难以对其原型链、方法等进行动态调整（如修改 prototype 指向、新增/删除方法），灵活性低于原生对象关联   </content></entry><entry><title>2.3节 混合对象类</title><url>/post/%E4%BD%A0%E4%B8%8D%E7%9F%A5%E9%81%93%E7%9A%84js-%E4%B8%8A%E5%8D%B7/0203--%E6%B7%B7%E5%90%88%E5%AF%B9%E8%B1%A1%E7%B1%BB/</url><categories><category>你不知道的JS</category></categories><tags><tag>JavaScript</tag><tag>ECMAScript</tag><tag>前端开发</tag></tags><content type="html">  类理论核心概念本质：一种代码组织结构形式，用于对真实世界问题领域建模 核心思想：数据与操作数据的行为紧密关联（数据结构的封装） 分类：通过类对数据结构分类，将特定数据结构视为更广泛定义的特例 多态：父类通用行为可被子类重写，子类可通过相对引用访问父类基础行为 设计建议：父类与子类使用相同方法名表示特定行为，便于子类重写 类的机制类的本质：蓝图或模板，定义对象的结构和行为 实例：根据类创建的具体对象，包含类中描述的所有特性的副本 交互方式：可在实例上直接调用方法和访问共有属性 类与实例关系：可判断实例所属的类，但通常不通过实例直接操作类 实例化机制：通过复制类的定义创建实例对象 构造函数作用：初始化实例所需的所有信息 特性：属于类，通常与类同名 调用方式：大多需要用 new 关键字调用，指示引擎创建新的类实例 类的继承定义：子类继承父类的行为，是独立于父类的全新类 继承内容：包含父类行为的原始副本 扩展能力：可重写继承的行为或定义新行为 多态特性相对多态：
+  ]]></content></entry><entry><title>10. 模块</title><url>/post/ts/10-%E6%A8%A1%E5%9D%97/</url><categories><category>Typescript文档阅读</category></categories><tags><tag>TypeScript</tag><tag>前端开发</tag></tags><content type="html"><![CDATA[  JavaScript 模块是如何定义的在 TypeScript 中，任何包含顶级 import 或 export 的文件都被视为模块。
+没有顶级导入或导出声明的文件将被视为脚本，其内容在全局范围内可用。
+模块在其自身作用域内执行，不在全局作用域执行。
+模块中声明的变量、函数、类等在模块外不可见，除非显式导出。
+使用其他模块的导出内容时，必须显式导入。
+非模块JavaScript 规范规定，没有 import、export 或顶层 await 的文件被视为脚本。
+在脚本文件中：
+变量和类型被声明在共享的全局范围内。 假定使用 outFile合并多个文件，或在 HTML 中通过多个 &amp;lt;script&amp;gt; 标签加载。 将文件显式设为模块：
+export {};此语法有效地将文件转换为一个不导出任何内容的模块。
+TypeScript 中的模块编写模块化 TypeScript 代码时，需考虑三点：
+语法：选择导入和导出的语法形式。 模块解析：确定模块名称/路径与文件之间的关系。 模块输出目标：确定编译后的 JavaScript 模块形式。 ES 模块语法默认导出与导入：
+export default function helloWorld() { console.log(&amp;#34;Hello, world!&amp;#34;); } import helloWorld from &amp;#34;./hello.js&amp;#34;; helloWorld();命名导出与导入：
+export var pi = 3.14; export let squareTwo = 1.41; export const phi = 1.61; export class RandomNumberGenerator {} export function absolute(num: number) { if (num &amp;lt; 0) return num * -1; return num; } import { pi, phi, absolute } from &amp;#34;./maths.js&amp;#34;;附加导入语法可通过 import {old as new} 重命名导入。
+可通过 import * as name 导入整个命名空间。
+import RandomNumberGenerator, …  ]]></content></entry><entry><title>9. 类</title><url>/post/ts/09-%E7%B1%BB/</url><categories><category>Typescript文档阅读</category></categories><tags><tag>TypeScript</tag><tag>前端开发</tag></tags><content type="html">  类成员字段字段声明在类上创建公共可写属性。类型注释可选，若未指定则为隐式 any。
+字段可带初始化程序，实例化时自动运行。类属性的初始化器会用于推断类型。
+strictPropertyInitialization控制字段是否必须在构造函数中初始化。
+TypeScript 不会分析构造函数中调用的方法是否初始化字段。
+若字段在构造函数外初始化，可使用明确赋值断言运算符 !。
+class OKGreeter { name!: string; // 不初始化但不报错 }readonly使用 readonly 前缀修饰字段，禁止在构造函数之外赋值。
+构造函数类构造函数可添加参数、类型注释、默认值和重载。
+class Point { x: number = 0; y: number = 0; constructor(x: number, y: number); constructor(xy: string); constructor(x: string | number, y: number = 0) {} }类构造函数签名和函数签名之间的差异：
+不能有类型参数。 不能指定返回类型注释。 继承规则：若类继承自基类，需在使用 this 前调用 super()。
+方法类上的函数属性称为方法。
+TypeScript 对方法无新增特性。
+方法体中必须通过 this. 访问成员。
+Getter/Setter类可以有访问器（getter/setter）
+在 JavaScript 中，没有额外逻辑的、由字段支持的 get/set 对很少用到。如果不需要在 get/set 操作中添加额外的逻辑，那么暴露公共字段也是可以的。
+TypeScript 对于访问器有一些特殊的推理规则：
+若仅存在 get，则该属性为 readonly。 若 set 未声明参数类型，则从 get 返回类型推断。 索引签名与普通对象索引签名相同。
+class MyClass { [s: string]: boolean | ((s: string) =&amp;amp;gt; boolean); check(s: string) { return this[s] as boolean; } }一般不推荐直接在类实例上存储索引数据。
+类继承implements 子句用于检查类是否满足某个接口。
+仅进行类型检查，不 …  </content></entry><entry><title>7. 类型运算符</title><url>/post/ts/07-%E7%B1%BB%E5%9E%8B%E8%BF%90%E7%AE%97%E7%AC%A6/</url><categories><category>Typescript文档阅读</category></categories><tags><tag>TypeScript</tag><tag>前端开发</tag></tags><content type="html"><![CDATA[  keyof 类型运算符keyof 运算符接受一个对象类型，并生成其键的字符串或数字字面量并集。
+如果类型具有 string 或 number 索引签名，则 keyof 将返回这些类型。
+typeof 类型运算符JavaScript 已经有一个可以在表达式上下文中使用的 typeof 运算符。
+TypeScript 添加了一个可以在类型上下文中使用的 typeof 运算符，用于引用变量或属性的类型。
+对于基本类型来说，typeof 用处不大。但结合其他类型运算符，可以方便地表达许多类型模式。
+预定义类型 ReturnType&lt;T&gt;：接受一个函数类型，并生成其返回类型。
+若尝试直接在函数名上使用 ReturnType，会看到一个错误，值和类型不是一回事。要引用值 f 的类型 ，需使用 typeof。
+function f() { return { x: 10, y: 3 }; } type P = ReturnType&lt;typeof f&gt;;限制TypeScript 有意限制了可使用 typeof 的表达式种类：typeof 仅能用于标识符（变量名）或其属性上。
+  ]]></content></entry><entry><title>8. 其他常用类型</title><url>/post/ts/08-%E5%85%B6%E4%BB%96%E5%B8%B8%E7%94%A8%E7%B1%BB%E5%9E%8B/</url><categories><category>Typescript文档阅读</category></categories><tags><tag>TypeScript</tag><tag>前端开发</tag></tags><content type="html"><![CDATA[  索引访问类型可以使用 索引访问类型 来查找另一种类型的特定属性。
+索引类型本身也是一种类型，因此可以使用 联合类型、keyof 或其他类型。
+type Person = { age: number; name: string; alive: boolean }; type Age = Person[&amp;#34;age&amp;#34;]; // type Age = number type I1 = Person[&amp;#34;age&amp;#34; | &amp;#34;name&amp;#34;]; // type I1 = string | number type I2 = Person[keyof Person]; // type I2 = string | number | boolean 如果尝试索引不存在的属性，会看到错误。
+使用 number 可以获取数组元素的类型。可与 typeof 结合使用，方便捕获数组字面量的元素类型。
+const MyArray = [ { name: &amp;#34;Alice&amp;#34;, age: 15 }, { name: &amp;#34;Bob&amp;#34;, age: 23 }, { name: &amp;#34;Eve&amp;#34;, age: 38 }, ]; type Person = (typeof MyArray)[number]; // type Person = { name: string; age: number; } type Age = (typeof MyArray)[number][&amp;#34;age&amp;#34;]; // type Age = number type Age2 = Person[&amp;#34;age&amp;#34;]; // type Age2 = number 索引时只能使用类型，不能使用 const 创建变量引用。
+可以使用 类型别名 实现类似的重构风格。
+const key = &amp;#34;age&amp;#34;; type Age = Person[key]; // error type key = &amp;#34;age&amp;#34;; type Age = Person[key];条件类型条件类型 用于描述输入和输出类型之间的关系。
+语法形式：
+SomeType extends OtherType ? TrueType : FalseType; …  ]]></content></entry><entry><title>6. 泛型</title><url>/post/ts/06-%E6%B3%9B%E5%9E%8B/</url><categories><category>Typescript文档阅读</category></categories><tags><tag>TypeScript</tag><tag>前端开发</tag></tags><content type="html"><![CDATA[  使用泛型变量类型变量：一种特殊的变量，它作用于类型而不是值。
+调用泛型函数的方式
+显式传入类型参数：将所有参数（包括类型参数）传递给函数。
+类型参数推断
+编译器自动推断类型参数。 若编译器无法推断类型（如复杂示例中），则需显式传递类型参数。 创建泛型函数时，编译器会强制在函数体中正确使用泛型参数，将其视为任意类型。
+泛型类型泛型函数的类型与非泛型函数类似，类型参数列在最前：
+let myIdentity: &amp;lt;Type&amp;gt;(arg: Type) =&amp;gt; Type = identity;可以在类型中使用不同名称的类型变量，只要数量和使用方式一致。
+也可以将泛型类型写为对象文字类型的调用签名：
+interface GenericIdentityFn { &amp;lt;Type&amp;gt;(arg: Type): Type; } interface GenericIdentityFn&amp;lt;Type&amp;gt; { (arg: Type): Type; }除了泛型接口，还可以创建泛型类。但无法创建泛型枚举和泛型命名空间。
+泛型类泛型类的结构与泛型接口类似。在类名后的尖括号 (&amp;lt;&amp;gt;) 中定义泛型类型参数。
+类的类型有两个方面：静态方面与实例方面。泛型类仅在实例方面是泛型。静态成员不能使用类的类型参数。
+泛型参数默认值通过为泛型类型参数声明默认值，可根据需要指定类型参数。
+declare function create&amp;lt; T extends HTMLElement = HTMLDivElement, U extends HTMLElement[] = T[] &amp;gt;(element?: T, children?: U): Container&amp;lt;T, U&amp;gt;;规则：
+若类型参数有默认值，则该类型参数被视为可选。 必需类型参数不得跟随可选类型参数。 默认类型必须满足约束。 指定类型实参时，只需为必需类型参数指定类型。未指定的类型参数将解析为其默认类型。 若推断无法选择候选项，则推断为默认类型。 与现有类或接口声明合并时，可为现有类型参数引入默认值。 也可引入新的类型参数，只要其指定默认值。 方差方差：指泛型类型中的可变性，决定类型参数如何与子类型和超类型交互。
+协变和逆变描述泛型类型间的关系。
+协变（Covariance）： …  ]]></content></entry><entry><title>5. 对象类型</title><url>/post/ts/05-%E5%AF%B9%E8%B1%A1%E7%B1%BB%E5%9E%8B/</url><categories><category>Typescript文档阅读</category></categories><tags><tag>TypeScript</tag><tag>前端开发</tag></tags><content type="html">  属性修饰符对象类型中的每个属性都可以指定几件事：类型、属性是否可选以及属性是否可以写入。
+可选属性很多时候，我们会处理可能设置了属性的对象。在这种情况下，可以在属性名称末尾添加问号（?）将属性标记为可选。
+interface PaintOptions { shape: Shape; xPos?: number; yPos?: number; }可选属性若被设置，则最好具有特定的类型。
+在启用 strictNullChecks 时，TypeScript 会提示这些属性可能是 undefined。
+在 JavaScript 中，未设置的属性访问结果为 undefined，可通过判断 undefined 特殊处理。
+为未指定的值设置默认值是一种常见模式，JavaScript 对此有专门语法支持。
+当前无法在解构模式中添加类型注解，因为语法在 JavaScript 中已有不同含义。
+readonly 属性在类型检查期间无法写入被标记为 readonly 的属性。
+并不意味着值完全不可变，仅表示属性本身不能被重写。
+在类型兼容性检查中，readonly 属性不会被特殊对待，仍可通过别名更改。
+有助于在开发中明确对象的使用意图。
+索引签名当事先不知道所有属性名，但知道值的形状时，可使用索引签名：
+interface StringArray { [index: number]: string; }当 StringArray 被 number 索引时，返回值为 string。
+允许的索引类型：string、number、symbol、模板字符串模式及其联合。
+当同时存在数字与字符串索引器时，数字索引器返回类型必须是字符串索引器类型的子类型。
+字符串索引签名会使所有属性类型与返回类型匹配。
+可以将索引签名设为 readonly 以防止写入。
+额外的属性检查对象在被创建并分配类型时，会触发更严格的验证，即额外的属性检查。
+对象字面量在赋值或作为参数传递时，会进行额外检查。
+若存在“目标类型”中未定义的属性，会报错。
+绕过方式：
+使用类型断言。 添加一个字符串索引签名。 赋值给变量后再使用（变量赋值不会触发额外检查）。 若两个对象至少有一个共同属性（如 width），上述方式有效，否则无效。
+扩展类型extends 关键字允许接口从其他类型复制成员并新增属性。 …  </content></entry><entry><title>4. 更多关于函数</title><url>/post/ts/04-%E6%9B%B4%E5%A4%9A%E5%85%B3%E4%BA%8E%E5%87%BD%E6%95%B0/</url><categories><category>Typescript文档阅读</category></categories><tags><tag>TypeScript</tag><tag>前端开发</tag></tags><content type="html"><![CDATA[  函数类型表达式描述函数最简单的方法是使用函数类型表达式。这些类型在语法上类似于箭头函数。
+type GreetFunction = (a: string) =&amp;gt; void; function greeter(fn: GreetFunction) { // ... }(a: string) =&amp;gt; void 表示一个带有一个参数 a 的函数，该参数的类型为 string，没有返回值。
+如果未指定参数类型，则隐式为 any。
+参数名称是必需的。(string) =&amp;gt; void 表示“具有 any 类型名为 string 的参数的函数”。
+调用签名函数类型表达式语法不允许声明属性。如果想描述可调用且带属性的函数，可以用对象类型编写调用签名。
+type DescribableFunction = { description: string; (someArg: number): boolean; }; function doSomething(fn: DescribableFunction) { console.log(fn.description + &amp;#34; returned &amp;#34; + fn(6)); } function myFunc(someArg: number) { return someArg &amp;gt; 3; } myFunc.description = &amp;#34;default description&amp;#34;; doSomething(myFunc);与函数类型表达式不同，在参数列表和返回类型之间使用 : 而不是 =&amp;gt;。
+构造函数签名JavaScript 函数可以通过 new 调用，TypeScript 称这些为构造函数。 通过在调用签名前添加 new 来编写构造函数签名。
+type SomeConstructor = { new (s: string): SomeObject; }; function fn(ctor: SomeConstructor) { return new ctor(&amp;#34;hello&amp;#34;); }可组合调用与构造签名：
+interface CallOrConstruct { (n?: number): string; new (s: string): Date; }泛型函数当输入 …  ]]></content></entry><entry><title>3. 缩小</title><url>/post/ts/03-%E7%BC%A9%E5%B0%8F/</url><categories><category>Typescript文档阅读</category></categories><tags><tag>TypeScript</tag><tag>前端开发</tag></tags><content type="html"><![CDATA[  TypeScript 会将类型分析覆盖在 JavaScript 的运行时控制流结构上，例如 if/else、条件表达式、循环、真值检查等，这些结构都会影响类型判断。
+当 TypeScript 看到如 typeof padding === &amp;quot;number&amp;quot; 的检查时，会将其识别为一种称为类型保护（Type Guard）的特殊代码形式。TypeScript 会跟踪程序可能的执行路径，分析各位置值的最具体类型，并通过这些检查和赋值将类型细化为更具体的类型，这一过程称为缩小（Narrowing）。
+typeof 类型保护JavaScript 的 typeof 操作符能在运行时提供值的类型信息。
+TypeScript 能理解 typeof 的结果，用以在不同分支中缩小类型范围。
+TypeScript 内置了对 typeof 的行为规则，因此能正确处理 JavaScript 的一些特例。
+真实性缩小在 JavaScript 中，if、&amp;amp;&amp;amp;、||、! 等条件语句可以接受任意类型的表达式。
+条件判断时会先将表达式强制为 boolean，再根据结果选择分支。
+可通过：Boolean(value)或 !!value将值强制为布尔类型。
+这种方式常用于防范 null 或 undefined。但对原始值的真值检查容易出错，TypeScript 仅能在有限范围内帮助发现问题。
+带有 ! 的布尔否定会从否定分支中过滤掉原值。
+相等缩小TypeScript 会利用 switch、===、!==、==、!= 来缩小类型。
+即使使用宽松等式（==、!=），TypeScript 也能正确缩小。
+x == null 同时检查 x 是否为 null 或 undefined。 x == undefined 亦同理。 in 操作符缩小JavaScript 的 in 操作符可判断某对象或其原型链中是否存在指定属性。TypeScript 利用此信息缩小可能的类型范围。
+可选属性在缩小时会同时存在于两侧分支。
+instanceof 缩小instanceof 用于检查某值是否是另一构造函数的实例。
+TypeScript 将其视为一种类型保护，可根据结果缩小分支类型。
+x instanceof Foo 会检查 x 的原型链中是否包含 Foo.prototype。
+赋值当变 …  ]]></content></entry><entry><title>2. 日常类型</title><url>/post/ts/02-%E6%97%A5%E5%B8%B8%E7%B1%BB%E5%9E%8B/</url><categories><category>Typescript文档阅读</category></categories><tags><tag>TypeScript</tag><tag>前端开发</tag></tags><content type="html"><![CDATA[  原始类型：字符串、数字和布尔值JavaScript 有三个常用的原始类型：string、number、boolean。
+TypeScript 中对应的类型名称与 JavaScript 中 typeof 运算符的结果一致。
+应始终使用 小写的 string、number、boolean 作为类型。
+以大写开头的 String、Number、Boolean 是特殊内置类型，几乎不使用。
+数组数组类型的写法：
+number[]：数字数组 string[]：字符串数组 Array&amp;lt;number&amp;gt;：与 number[] 含义相同 注意：[number] 是不同的东西。
+any特殊类型 any 用于在不希望引发类型检查错误时使用。
+当值为 any 类型时：
+可以访问任何属性； 可以像函数一样调用； 可以赋值给任意类型或从任意类型赋值； 可执行所有语法合法的操作。 当不想写出冗长类型以通过编译时，any 很有用。
+noImplicitAny当未指定类型且 TypeScript 无法推断类型时，编译器默认将其设为 any。应避免这种情况。
+使用编译器标志 noImplicitAny 可将隐式 any 标记为错误。
+变量的类型注解使用 const、var 或 let 声明变量时，可选择添加类型注解。
+let myName: string = &amp;#34;Alice&amp;#34;;TypeScript 不使用“左侧类型”声明（如 int x = 0;），类型注解总是写在变量之后。
+多数情况下无需显式类型注解，TypeScript 会自动 推断类型。
+函数参数类型注解在参数名后添加类型注释声明函数的参数类型。
+TypeScript 会检查：
+参数类型是否匹配； 参数数量是否正确。 function greet(name: string) { console.log(&amp;#34;Hello, &amp;#34; + name.toUpperCase() + &amp;#34;!!&amp;#34;); }返回类型注释返回类型注释位于参数列表之后。
+TypeScript 通常能自动推断返回类型，但可显式指定以增强可读性。
+function getFavoriteNumber(): number { return 26; }匿名函数当函数出现在 TypeScript 能确定其调用方式的位置 …  ]]></content></entry><entry><title>1. 基础知识</title><url>/post/ts/01-%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/</url><categories><category>Typescript文档阅读</category></categories><tags><tag>TypeScript</tag><tag>前端开发</tag></tags><content type="html">  JavaScript 与类型系统每个值都有一组行为，可以通过运行不同的操作观察这些行为。JavaScript 运行时根据值的 类型 来决定执行的操作。
+对于原始类型（如 string、number），可使用 typeof 运算符识别。对于函数等复杂类型，没有运行时机制可识别其类型。
+在纯 JavaScript 中，了解函数如何处理特定值的唯一方法是 调用它并观察结果。这种特性导致在代码运行前 难以预测行为。
+类型 是描述哪些值可以传递给函数、哪些值会导致崩溃的概念。
+JavaScript 提供的是 动态类型系统 —— 运行代码才能看到结果。静态类型系统 则能在代码运行 之前 预测执行行为。
+静态类型检查目的
+帮助在运行代码 之前 发现错误。 TypeScript 通过描述运行时值的形状与行为，提前检测潜在异常。 问题背景
+运行时错误被视为 bug。 测试不足或重构复杂时，错误难以发现或修复。 非异常失败JavaScript 遵循 ECMAScript 规范，在遇到意外情况时会定义特定行为。
+静态类型系统需自行决定哪些代码应被视为错误，即使这些代码在 JavaScript 中是“合法”的。
+TypeScript 的目标是捕获合法 bug，如：拼写错误，未调用的函数，基本逻辑错误
+工具类型TypeScript 不仅能捕获错误，还能 防止错误的发生。
+类型检查器可以：
+检查属性访问是否正确； 提供属性建议； 提供代码补全与错误提示。 支持 TypeScript 的编辑器还提供：
+快速修复 重构 跳转定义 查找引用 tsc，TypeScript 编译器安装
+npm install -g typescript编译
+tsc hello.ts若无类型错误，无输出（表示无问题）。 生成对应的 hello.js 文件，代码清晰且保留注释。 发出错误若存在类型检查错误，命令行会显示错误信息，但仍会生成 hello.js。
+TypeScript 假设 开发者比编译器更了解代码意图。
+可使用 noEmitOnError 参数让编译器在错误时不生成输出文件。
+显式类型function greet(person: string, date: Date) { console.log(`Hello ${person}, today is …  </content></entry><entry><title>2.4节 原型</title><url>/post/%E4%BD%A0%E4%B8%8D%E7%9F%A5%E9%81%93%E7%9A%84js-%E4%B8%8A%E5%8D%B7/0204--%E5%8E%9F%E5%9E%8B/</url><categories><category>你不知道的JS</category></categories><tags><tag>JavaScript</tag><tag>ECMAScript</tag><tag>前端开发</tag></tags><content type="html"><![CDATA[  [[Prototype]] 基础定义：对象的特殊内置属性，本质是对其他对象的引用 默认值：几乎所有对象创建时，[[Prototype]] 都会被赋予非空值 [[Get]] 操作逻辑（属性查找）： 优先检查对象本身是否有目标属性，有则使用； 若无，沿 [[Prototype]] 链向上查找； 直至找到属性或遍历完整条原型链，未找到则返回 undefined 原型链终点：Object.prototype地位：所有普通对象的 [[Prototype]] 链最终都会指向 Object.prototype 作用：包含 JS 通用功能（如 toString()、hasOwnProperty() 等），供所有普通对象继承 核心通用方法方法 作用 示例 toString() 返回对象的字符串表示（默认&amp;quot;[object Object]&amp;quot;） ({}).toString() → &amp;quot;[object Object]&amp;quot; hasOwnProperty(key) 检查属性是否为对象自身所有（不含原型链） cat.hasOwnProperty(&amp;quot;eat&amp;quot;) → false（eat 在原型上） isPrototypeOf(obj) 检查当前对象是否在obj的原型链上 animal.isPrototypeOf(cat) → true valueOf() 返回对象的原始值（默认返回对象本身） (new Number(123)).valueOf() → 123 属性设置与屏蔽（myObject.foo = &#39;bar&#39;）基础逻辑若 myObject 本身有 foo 普通数据属性：仅修改属性值； 若 foo 不在 myObject 中：沿 [[Prototype]] 链查找，未找到则直接在 myObject 上添加 foo； 若 foo 既在 myObject 中，也在原型链上层：myObject 的 foo 屏蔽原型链上层的 foo（优先取最底层属性）。 特殊场景（foo 在原型链上层）原型链上层 foo 特性 结果 普通数据属性（非只读） 在 myObject 上添加 foo 屏蔽属性 只读数据属性（writable: false） 非严格模式：忽略赋值；严格模式：报错（无法添加屏蔽属性或修改原属性） 访问描述符（含 setter） 调 …  ]]></content></entry><entry><title>2.5节 行为委托和class</title><url>/post/%E4%BD%A0%E4%B8%8D%E7%9F%A5%E9%81%93%E7%9A%84js-%E4%B8%8A%E5%8D%B7/0205--%E8%A1%8C%E4%B8%BA%E5%A7%94%E6%89%98%E5%92%8Cclass/</url><categories><category>你不知道的JS</category></categories><tags><tag>JavaScript</tag><tag>ECMAScript</tag><tag>前端开发</tag></tags><content type="html">  对象关联风格的核心特性与设计原则状态存储原则核心规则：状态（数据属性）应保存在委托者对象上，而非委托目标（原型链上层对象）。 避免委托目标状态被多个委托者共享，导致数据污染或不可预期的修改。 方法命名原则核心规则：尽量避免在 [[Prototype]] 链不同级别使用相同命名的方法（与类风格的“重写”逻辑相反）。 设计建议：使用描述性方法名（需体现对象行为类型），降低命名冲突风险，提升代码可理解性与可维护性。 委托本质委托行为的核心：当对象自身找不到属性/方法时，会将请求委托给 [[Prototype]] 关联的对象（沿原型链向上查找）。 委托限制禁止循环委托：无法在两个及以上对象间创建互相委托（如 A 关联 B、B 关联 A），会触发错误。 思维模型与灵活性维度 特点 思维模型 仅关注对象之间的关联关系，不强调实体及实体间的层级（如父类-子类） 创建与初始化分离 支持“创建对象”与“初始化状态”分步执行，更符合关注分离原则，灵活性更高 对比类风格 类风格通常强制“构造+初始化”合并为一步（如 new 调用构造函数时同步初始化） class 语法特点（ES6+）多态实现支持通过 super() 实现相对多态：子类方法可通过 super 引用原型链上层的同名方法（模拟类继承中的“调用父类方法”）。 声明限制仅能声明方法：class 字面量语法中，无法直接声明数据属性（需在构造函数 constructor 中通过 this.属性名 定义）。 示例：class A { foo() {}; // 允许；bar = 1; // 类字段语法（ESNext，非标准字面量声明） } 扩展能力支持通过 extends 关键字自然扩展对象类型，包括内置对象类型（如 class MyArray extends Array {}），模拟类继承的“子类扩展父类”逻辑。 本质与局限性维度 特点 本质 是 [[Prototype]] 机制的语法糖，并非真正实现面向类语言的“类”（无类实例化复制、无类级别的类型约束） super 绑定方式 静态绑定：super 指向的原型链上层对象在 class 定义时确定，无法动态修改（与类风格的动态关联不同） 动态修改难度 class 定义后，难以对其原型链、方法等进行动态调整（如修改 prototype 指向、新增/删除方法），灵活性低于原生对象关联   </content></entry><entry><title>2.3节 混合对象类</title><url>/post/%E4%BD%A0%E4%B8%8D%E7%9F%A5%E9%81%93%E7%9A%84js-%E4%B8%8A%E5%8D%B7/0203--%E6%B7%B7%E5%90%88%E5%AF%B9%E8%B1%A1%E7%B1%BB/</url><categories><category>你不知道的JS</category></categories><tags><tag>JavaScript</tag><tag>ECMAScript</tag><tag>前端开发</tag></tags><content type="html">  类理论核心概念本质：一种代码组织结构形式，用于对真实世界问题领域建模 核心思想：数据与操作数据的行为紧密关联（数据结构的封装） 分类：通过类对数据结构分类，将特定数据结构视为更广泛定义的特例 多态：父类通用行为可被子类重写，子类可通过相对引用访问父类基础行为 设计建议：父类与子类使用相同方法名表示特定行为，便于子类重写 类的机制类的本质：蓝图或模板，定义对象的结构和行为 实例：根据类创建的具体对象，包含类中描述的所有特性的副本 交互方式：可在实例上直接调用方法和访问共有属性 类与实例关系：可判断实例所属的类，但通常不通过实例直接操作类 实例化机制：通过复制类的定义创建实例对象 构造函数作用：初始化实例所需的所有信息 特性：属于类，通常与类同名 调用方式：大多需要用 new 关键字调用，指示引擎创建新的类实例 类的继承定义：子类继承父类的行为，是独立于父类的全新类 继承内容：包含父类行为的原始副本 扩展能力：可重写继承的行为或定义新行为 多态特性相对多态：
 方法可引用继承层次中高层的方法 通过 super 等相对引用访问父类（超类）方法 子类构造函数中可通过 super 调用父类构造函数 方法重写：
 同一方法名可在继承链不同层次多次定义 调用方法时自动选择对应实例所属类的定义 子类重写方法不影响父类中的原方法，两者相互独立 实现基础：类的继承本质是行为的复制
 JavaScript 中的特殊性无类机制：JS 中只有对象，没有可被实例化的类 无自动复制：对象不会被复制到其他对象 关联关系：对象之间通过原型链建立关联，而非类继承的复制关系 继承模拟：通过原型链实现类似类继承的功能，但本质不同   </content></entry><entry><title>2.2节 对象</title><url>/post/%E4%BD%A0%E4%B8%8D%E7%9F%A5%E9%81%93%E7%9A%84js-%E4%B8%8A%E5%8D%B7/0202--%E5%AF%B9%E8%B1%A1/</url><categories><category>你不知道的JS</category></categories><tags><tag>JavaScript</tag><tag>ECMAScript</tag><tag>前端开发</tag></tags><content type="html"><![CDATA[  对象定义形式声明文字形式：{ key1: value1, key2: value2 } 可一次性定义多个键值对，简洁高效 构造形式：new Object() 需逐个添加属性（obj.key = value） 与文字形式生成的对象功能一致 JS 主要类型与对象子类型六种主要类型基本类型：string、number、boolean、null、undefined 复杂类型：object（所有对象的基类） 特殊对象子类型函数：可调用的对象，一等公民（可像普通对象操作） 数组：有序数值下标存储的对象，含额外数组方法 内置对象（构造函数）：String、Number、Boolean、Object、Function、Array、Date、RegExp、Error 可构造对应子类型对象（如 new Array()） 语言会自动将字面量转换为内置对象（无需显式创建） 特殊说明null/undefined：无构造形式，仅字面量 Date：仅有构造形式（new Date()），无字面量 Object/Array/Function/RegExp：文字形式与构造形式均为对象，构造形式仅在需要额外选项时使用 Error：通常在抛出异常时自动创建，也可显式构造（new Error()） 对象内容与属性访问属性本质对象内容由属性（键值对）组成，存储的是属性名（指向值的指针） 属性名永远是字符串，非字符串类型会自动转换为字符串 属性访问方式. 语法（属性访问）：obj.key，要求属性名符合标识符规范 [&amp;quot;&amp;quot;] 语法（键访问）：obj[&amp;quot;key&amp;quot;]，支持任意 UTF-8/Unicode 字符串作为属性名，可动态构造键名 可计算属性名文字形式中用 [] 包裹表达式作为属性名：{ [expr]: value } 符号（Symbol）新基础类型，值不透明且唯一，通常作为属性名避免冲突 实际值在不同引擎中可能不同，一般使用其名称 属性与方法函数不属于对象，属性访问返回的函数与普通函数无区别（非“方法”） 本质是对函数对象的引用 数组特性支持 [] 访问，期望数值下标（非负整数） 是特殊对象，可添加命名属性（不影响 length） 建议：对象存键值对，数组存下标值对 若属性名类似数字，会自动转为数值下标 对象复制深拷贝（复制所有层级，嵌套对象独 …  ]]></content></entry><entry><title>2.1节 this</title><url>/post/%E4%BD%A0%E4%B8%8D%E7%9F%A5%E9%81%93%E7%9A%84js-%E4%B8%8A%E5%8D%B7/0201--this/</url><categories><category>你不知道的JS</category></categories><tags><tag>JavaScript</tag><tag>ECMAScript</tag><tag>前端开发</tag></tags><content type="html">  关于 thisthis 是在运行时进行绑定的，并不是在编写时绑定，它的上下文取决于函数调用时的各种条件
@@ -504,7 +749,7 @@ let/const并非 “不提升”，而是提升后进入 “暂时性死区”（
 常见用途：
 传递参数，隔离作用域（避免污染外部）； 确保undefined标识符的准确性（通过参数占位，如(function(undef) { ... })()）； 倒置代码执行顺序（将主逻辑作为参数传递给 IIFE）。 块作用域的特性与实现核心作用：将变量本地化，扩展最小授权原则，从函数级隐藏扩展到块级隐藏。 块作用域的优势：变量声明靠近使用位置，减少作用域污染，优化变量生命周期，避免提升带来的意外行为。 实现方式： with 语句：为对象创建临时块作用域（仅在with内部有效）； try/catch：catch分句创建块作用域，内部变量仅在catch中有效； let 关键字： 将变量绑定到所在块作用域（如if、for块）； 无提升特性（声明前访问会报错）； for循环中，let会将变量重新绑定到每个迭代（确保迭代值独立）。 const 关键字： 同let的块作用域特性，但值为常量（修改会报错），声明时必须赋值。 原书中 P34 最上方 “点击事件因闭包导致变量问题” 的描述有误：实际是var声明的变量属于函数 / 全局作用域，生命周期长，导致循环中共享同一变量；而let通过块作用域解决此问题。   </content></entry><entry><title>1.1节 作用域是什么</title><url>/post/%E4%BD%A0%E4%B8%8D%E7%9F%A5%E9%81%93%E7%9A%84js-%E4%B8%8A%E5%8D%B7/0101--%E4%BD%9C%E7%94%A8%E5%9F%9F%E6%98%AF%E4%BB%80%E4%B9%88/</url><categories><category>你不知道的JS</category></categories><tags><tag>JavaScript</tag><tag>ECMAScript</tag><tag>前端开发</tag></tags><content type="html">  程序状态与变量程序状态通过变量的存储与访问实现：变量是状态的载体，作用域则决定 “变量在何处可被访问”，两者共同支撑程序的动态执行。 作用域的本质作用域是一套管理变量的规则体系，核心解决两个问题： 变量声明的存储位置：编译器在编译阶段根据作用域规则，确定变量属于哪个作用域（全局 / 函数 / 块级）。 变量访问的查找逻辑：引擎在执行阶段根据作用域规则，从当前作用域向上逐级查找变量。 编译原理传统编译三阶段：分词 / 词法分析：将源代码字符串分解为有意义的词法单元（如关键字、变量名、运算符等）。 解析 / 语法分析：将词法单元流转换为抽象语法树（AST），AST 是体现程序语法结构的嵌套树状结构。 代码生成：将 AST 转换为可执行代码。 JavaScript 编译特点：JS 是 “即时编译（JIT）” 语言，编译不提前完成，而是在代码执行前的微秒级时间内完成，且编译与执行交替进行（如函数执行前先编译函数内部代码）。
 作用域的核心角色引擎：统筹全局，负责代码的编译触发和执行，主导变量的查找与赋值。 编译器：负责语法校验、AST 生成、代码生成，在编译阶段处理变量声明，并告知作用域 “需存储该变量”。 作用域：相当于 “变量仓库”，按规则存储变量，响应引擎的查找请求 变量声明与赋值过程（以var a = 2为例）var a = 2 并非 “一次性操作”，而是编译器声明变量与引擎执行赋值两个独立步骤的结合，中间通过作用域衔接：
-阶段 1：编译器处理变量声明（编译期）步骤 1：编译器在当前作用域中 “查询” 是否存在名为 a 的变量。 若存在：忽略当前声明（var 允许重复声明，后续声明会覆盖前序声明的变量，但不会重新初始化）； 若不存在：要求作用域在当前 “变量集合” 中新增一个名为 a 的变量（此时 a 仅声明，值为 undefined）。 阶段 2：引擎处理变量赋值（执行期）步骤 1：引擎向当前作用域发起LHS 查询（查找变量的 “容器本身”，用于赋值），询问 “是否存在名为 a 的变量”。 步骤 2：作用域查找结果： 找到 a：引擎将 2 赋值给 a； 未找到 a： 非严格模式：引擎自动在全局作用域创建名为 a 的变量，再赋值 2（变量泄露到全局）； 严格模式（&amp;amp;quot;use strict&amp;amp;quot;）：直接抛出 ReferenceError（ …  </content></entry><entry><title>8.4 渲染机制</title><url>/post/vue3/0804-%E6%B8%B2%E6%9F%93%E6%9C%BA%E5%88%B6/</url><categories><category>vue3文档阅读</category></categories><tags><tag>vue</tag><tag>vue3</tag><tag>前端框架</tag><tag>前端开发</tag></tags><content type="html">  虚拟 DOM虚拟 DOM (Virtual DOM, VDOM)：一种编程概念，将目标 UI 用数据结构“虚拟”表示，保存在内存中，并与真实 DOM 保持同步。
+阶段 1：编译器处理变量声明（编译期）步骤 1：编译器在当前作用域中 “查询” 是否存在名为 a 的变量。 若存在：忽略当前声明（var 允许重复声明，后续声明会覆盖前序声明的变量，但不会重新初始化）； 若不存在：要求作用域在当前 “变量集合” 中新增一个名为 a 的变量（此时 a 仅声明，值为 undefined）。 阶段 2：引擎处理变量赋值（执行期）步骤 1：引擎向当前作用域发起LHS 查询（查找变量的 “容器本身”，用于赋值），询问 “是否存在名为 a 的变量”。 步骤 2：作用域查找结果： 找到 a：引擎将 2 赋值给 a； 未找到 a： 非严格模式：引擎自动在全局作用域创建名为 a 的变量，再赋值 2（变量泄露到全局）； 严格模式（&amp;amp;quot;use strict&amp;amp;quot;）：直接抛出 ReferenceError（ …  </content></entry><entry><title>8.4 渲染机制</title><url>/post/vue3/0804-%E6%B8%B2%E6%9F%93%E6%9C%BA%E5%88%B6/</url><categories><category>Vue3文档阅读</category></categories><tags><tag>vue</tag><tag>vue3</tag><tag>前端框架</tag><tag>前端开发</tag></tags><content type="html">  虚拟 DOM虚拟 DOM (Virtual DOM, VDOM)：一种编程概念，将目标 UI 用数据结构“虚拟”表示，保存在内存中，并与真实 DOM 保持同步。
 虚拟 DOM 不是具体技术，而是一种模式，没有标准实现。
 挂载 (mount)：运行时渲染器遍历虚拟 DOM 树，构建真实 DOM 树。
 更新 (patch / diffing / reconciliation)：比较两份虚拟 DOM 树的差异，并将变化应用到真实 DOM。
@@ -521,16 +766,16 @@ let/const并非 “不提升”，而是提升后进入 “暂时性死区”（
 更新算法无法预知新树结构。 每次都需遍历整棵树并比较 props。 即使未变部分，每次也会创建新 vnode。 带来 性能开销 和 内存压力。 Vue 的优化
 框架同时控制 编译器 和 运行时。 编译器静态分析模板，在生成代码中添加标记。 运行时可基于标记走捷径。 保留使用渲染函数的能力。 称为 带编译时信息的虚拟 DOM。 缓存静态内容模板中无动态绑定的部分：
 首次渲染后缓存 vnode。 后续渲染直接使用缓存，跳过比对。 多个连续静态元素：
-压缩为 静态 vnode（纯 HTML 字符串）。 挂载时通过 innerHTML 渲染。 更新类型标记编译 …  </content></entry><entry><title>8.5 渲染函数和 JSX</title><url>/post/vue3/0805-%E6%B8%B2%E6%9F%93%E5%87%BD%E6%95%B0%E5%92%8Cjsx/</url><categories><category>vue3文档阅读</category></categories><tags><tag>vue</tag><tag>vue3</tag><tag>前端框架</tag><tag>前端开发</tag></tags><content type="html"><![CDATA[  在绝大多数情况下，Vue 推荐使用模板语法来创建应用。 然而在某些需要完整 JavaScript 编程能力的场景下，渲染函数就派上用场了。
+压缩为 静态 vnode（纯 HTML 字符串）。 挂载时通过 innerHTML 渲染。 更新类型标记编译 …  </content></entry><entry><title>8.5 渲染函数和 JSX</title><url>/post/vue3/0805-%E6%B8%B2%E6%9F%93%E5%87%BD%E6%95%B0%E5%92%8Cjsx/</url><categories><category>Vue3文档阅读</category></categories><tags><tag>vue</tag><tag>vue3</tag><tag>前端框架</tag><tag>前端开发</tag></tags><content type="html"><![CDATA[  在绝大多数情况下，Vue 推荐使用模板语法来创建应用。 然而在某些需要完整 JavaScript 编程能力的场景下，渲染函数就派上用场了。
 基本用法创建 VnodesVue 提供了 h() 函数用于创建 vnodes。
 h 是 hyperscript 的简称，意为“能生成 HTML 的 JavaScript”。更准确的名称是 createVNode()，但 h() 更简洁。
 h() 的使用方式：
-// 类型必填，其他参数可选 h(&amp;#39;div&amp;#39;) h(&amp;#39;div&amp;#39;, { id: &amp;#39;foo&amp;#39; }) // attribute 和 property 都能在 prop 中书写 // Vue 会自动将它们分配到正确的位置 h(&amp;#39;div&amp;#39;, { class: &amp;#39;bar&amp;#39;, innerHTML: &amp;#39;hello&amp;#39; }) // 像 `.prop` 和 `.attr` 这样的的属性修饰符 // 可以分别通过 `.` 和 `^` 前缀来添加 h(&amp;#39;div&amp;#39;, { &amp;#39;.name&amp;#39;: &amp;#39;some-name&amp;#39;, &amp;#39;^width&amp;#39;: &amp;#39;100&amp;#39; }) // 类与样式可以用数组或对象 h(&amp;#39;div&amp;#39;, { class: [foo, { bar }], style: { color: &amp;#39;red&amp;#39; } }) // 事件监听器应以 onXxx 的形式书写 h(&amp;#39;div&amp;#39;, { onClick: () =&amp;gt; {} }) // children 可以是字符串 h(&amp;#39;div&amp;#39;, { id: &amp;#39;foo&amp;#39; }, &amp;#39;hello&amp;#39;) // 没有 props 可省略 h(&amp;#39;div&amp;#39;, &amp;#39;hello&amp;#39;) h(&amp;#39;div&amp;#39;, [h(&amp;#39;span&amp;#39;, &amp;#39;hello&amp;#39;)]) // children 数组可包含 vnode 与字符串 h(&amp;#39;div&amp;#39;, [&amp;#39;hello&amp;#39;, h(&amp;#39;span&amp;#39;, &amp;#39;hello&amp;#39;)]) …  ]]></content></entry><entry><title>8.3 深入响应式系统</title><url>/post/vue3/0803-%E6%B7%B1%E5%85%A5%E5%93%8D%E5%BA%94%E5%BC%8F%E7%B3%BB%E7%BB%9F/</url><categories><category>vue3文档阅读</category></categories><tags><tag>vue</tag><tag>vue3</tag><tag>前端框架</tag><tag>前端开发</tag></tags><content type="html"><![CDATA[  什么是响应性响应性是一种可以使我们声明式地处理变化的编程范式。
+// 类型必填，其他参数可选 h(&amp;#39;div&amp;#39;) h(&amp;#39;div&amp;#39;, { id: &amp;#39;foo&amp;#39; }) // attribute 和 property 都能在 prop 中书写 // Vue 会自动将它们分配到正确的位置 h(&amp;#39;div&amp;#39;, { class: &amp;#39;bar&amp;#39;, innerHTML: &amp;#39;hello&amp;#39; }) // 像 `.prop` 和 `.attr` 这样的的属性修饰符 // 可以分别通过 `.` 和 `^` 前缀来添加 h(&amp;#39;div&amp;#39;, { &amp;#39;.name&amp;#39;: &amp;#39;some-name&amp;#39;, &amp;#39;^width&amp;#39;: &amp;#39;100&amp;#39; }) // 类与样式可以用数组或对象 h(&amp;#39;div&amp;#39;, { class: [foo, { bar }], style: { color: &amp;#39;red&amp;#39; } }) // 事件监听器应以 onXxx 的形式书写 h(&amp;#39;div&amp;#39;, { onClick: () =&amp;gt; {} }) // children 可以是字符串 h(&amp;#39;div&amp;#39;, { id: &amp;#39;foo&amp;#39; }, &amp;#39;hello&amp;#39;) // 没有 props 可省略 h(&amp;#39;div&amp;#39;, &amp;#39;hello&amp;#39;) h(&amp;#39;div&amp;#39;, [h(&amp;#39;span&amp;#39;, &amp;#39;hello&amp;#39;)]) // children 数组可包含 vnode 与字符串 h(&amp;#39;div&amp;#39;, [&amp;#39;hello&amp;#39;, h(&amp;#39;span&amp;#39;, &amp;#39;hello&amp;#39;)]) …  ]]></content></entry><entry><title>8.3 深入响应式系统</title><url>/post/vue3/0803-%E6%B7%B1%E5%85%A5%E5%93%8D%E5%BA%94%E5%BC%8F%E7%B3%BB%E7%BB%9F/</url><categories><category>Vue3文档阅读</category></categories><tags><tag>vue</tag><tag>vue3</tag><tag>前端框架</tag><tag>前端开发</tag></tags><content type="html"><![CDATA[  什么是响应性响应性是一种可以使我们声明式地处理变化的编程范式。
 let A2; function update() { A2 = A0 + A1; } whenDepsChange(update);核心术语作用 (effect)：update() 函数会更改程序状态，因此称为副作用或作用。 依赖 (dependency)：A0 和 A1 被用来执行作用，因此它们是依赖。 订阅者 (subscriber)：依赖的订阅者即作用。 我们需要一个魔法函数，能够在 A0 或 A1 (这两个依赖) 变化时调用 update() (产生作用)。
 魔法函数 whenDepsChange()任务如下：
 当变量被读取时进行追踪。 如果变量在当前副作用中被读取，则将副作用设为该变量的订阅者。 当变量变化时，通知所有订阅副作用重新执行。 Vue 中的响应性是如何工作的无法追踪局部变量的读写。可以追踪对象属性的读写。
 两种方式Vue 2：getter / setter（为支持旧浏览器）。 Vue 3：Proxy（主要），仅在 ref 中使用 getter / setter。 function reactive(obj) { return new Proxy(obj, { get(target, key) { track(target, key); return target[key]; }, set(target, key, value) { target[key] = value; trigger(target, key); }, }); } function ref(value) { const refObject = { get value() { track(refObject, &amp;#34;value&amp;#34;); return value; }, set value(newValue) { value = newValue; trigger(refObject, &amp;#34;value&amp;#34;); }, }; return refObject; }reactive() 的局限性属性赋值/解构到本地变量后，访问不再响应式。 从 reactive() 返回的代理与原对象不同，可通过 === 区分。 依赖追踪与触发track()：
-检查是否有活跃副作用。 若有，将副作用 …  ]]></content></entry><entry><title>8.1 使用 Vue 的多种方式</title><url>/post/vue3/0801-%E4%BD%BF%E7%94%A8vue%E7%9A%84%E5%A4%9A%E7%A7%8D%E6%96%B9%E5%BC%8F/</url><categories><category>vue3文档阅读</category></categories><tags><tag>vue</tag><tag>vue3</tag><tag>前端框架</tag><tag>前端开发</tag></tags><content type="html">  独立脚本Vue 可以以一个单独 JS 文件的形式使用，无需构建步骤。
+检查是否有活跃副作用。 若有，将副作用 …  ]]></content></entry><entry><title>8.1 使用 Vue 的多种方式</title><url>/post/vue3/0801-%E4%BD%BF%E7%94%A8vue%E7%9A%84%E5%A4%9A%E7%A7%8D%E6%96%B9%E5%BC%8F/</url><categories><category>Vue3文档阅读</category></categories><tags><tag>vue</tag><tag>vue3</tag><tag>前端框架</tag><tag>前端开发</tag></tags><content type="html">  独立脚本Vue 可以以一个单独 JS 文件的形式使用，无需构建步骤。
 适用场景：
 后端框架已渲染大部分 HTML 前端逻辑不复杂 在这些场景中，Vue 可以看作一个更声明式的 jQuery 替代品。
 另一个适用版本：petite-vue
@@ -552,7 +797,7 @@ JAMStack / SSG若数据是静态的，可提前完成服务端渲染。整个�
 SSG 有两种风格：
 单页 SSG 初始加载后激活为 SPA 成本：更多前期 JS 加载和激活 好处：后续导航更快（部分更新页面内容） 适用场景：重交互、深会话，或需要持久化状态/元素 多页 SSG 每次导航加载新页面 优点：JS 最少，甚至可不需要 JS 一些框架（如 Astro）支持“部分激活” → 静态 HTML 中通过 Vue 组件创建交互孤岛 相关工具：
 VitePress（Vue 官方维护的 SSG） NuxtJS → 同时支持 SSR 与 SSG Web 之外&amp;hellip;Vue 不局限于浏览器，还可用于：
-Electron / Wails → 桌面应用 Ionic Vue → 移动端应用 Quasar / Tauri → 同一代码同时开发桌面和移动应用 TresJS → 构建 3D WebGL 体验 Vue 的自定义渲染 API → 构建自定义渲染器（如 终端命令行）   </content></entry><entry><title>8.2 组合式 API 常见问答</title><url>/post/vue3/0802-%E7%BB%84%E5%90%88%E5%BC%8F-api-%E5%B8%B8%E8%A7%81%E9%97%AE%E7%AD%94/</url><categories><category>vue3文档阅读</category></categories><tags><tag>vue</tag><tag>vue3</tag><tag>前端框架</tag><tag>前端开发</tag></tags><content type="html"><![CDATA[  什么是组合式 API组合式 API (Composition API) 是一系列 API 的集合，使我们可以使用函数而不是声明选项的方式书写 Vue 组件。
+Electron / Wails → 桌面应用 Ionic Vue → 移动端应用 Quasar / Tauri → 同一代码同时开发桌面和移动应用 TresJS → 构建 3D WebGL 体验 Vue 的自定义渲染 API → 构建自定义渲染器（如 终端命令行）   </content></entry><entry><title>8.2 组合式 API 常见问答</title><url>/post/vue3/0802-%E7%BB%84%E5%90%88%E5%BC%8F-api-%E5%B8%B8%E8%A7%81%E9%97%AE%E7%AD%94/</url><categories><category>Vue3文档阅读</category></categories><tags><tag>vue</tag><tag>vue3</tag><tag>前端框架</tag><tag>前端开发</tag></tags><content type="html"><![CDATA[  什么是组合式 API组合式 API (Composition API) 是一系列 API 的集合，使我们可以使用函数而不是声明选项的方式书写 Vue 组件。
 它涵盖以下方面：
 响应式 API：如 ref()、reactive()，用于创建响应式状态、计算属性和侦听器。 生命周期钩子：如 onMounted()、onUnmounted()，用于在组件生命周期阶段添加逻辑。 依赖注入：如 provide()、inject()，结合响应式 API 使用 Vue 的依赖注入系统。 在 Vue 3 中，组合式 API 通常配合 &amp;lt;script setup&amp;gt; 语法使用。
 组合式 API 并不是函数式编程：
@@ -572,7 +817,7 @@ TypeScript 和 JavaScript 用户都能受益。
 允许“少思考”，但被锁定在固定模式中。 在大型项目中难以重构或提高质量。 组合式 API 是否覆盖了所有场景组合式 API 能覆盖所有状态逻辑需求。
 仅需保留少量选项：props、emits、name、inheritAttrs。
 可配置编译时标记移除选项式 API 代码，减小包体积。
-可以在同一个组件中使用两种 API 吗可以在 …  ]]></content></entry><entry><title>7.3 无障碍访问</title><url>/post/vue3/0703-%E6%97%A0%E9%9A%9C%E7%A2%8D%E8%AE%BF%E9%97%AE/</url><categories><category>vue3文档阅读</category></categories><tags><tag>vue</tag><tag>vue3</tag><tag>前端框架</tag><tag>前端开发</tag></tags><content type="html"><![CDATA[  Web 无障碍访问 (a11y) 指创建可供任何人使用的网站的做法——无论是：
+可以在同一个组件中使用两种 API 吗可以在 …  ]]></content></entry><entry><title>7.3 无障碍访问</title><url>/post/vue3/0703-%E6%97%A0%E9%9A%9C%E7%A2%8D%E8%AE%BF%E9%97%AE/</url><categories><category>Vue3文档阅读</category></categories><tags><tag>vue</tag><tag>vue3</tag><tag>前端框架</tag><tag>前端开发</tag></tags><content type="html"><![CDATA[  Web 无障碍访问 (a11y) 指创建可供任何人使用的网站的做法——无论是：
 身患某种障碍 通过慢速的网络连接访问 使用老旧或损坏的硬件 处于某种不方便的环境 示例：
 视频添加字幕 → 帮助失聪、有听力障碍或身处嘈杂环境的用户 确保文字对比度足够 → 帮助低视力用户或在强光下使用手机的用户 跳过链接在每个页面顶部添加一个直接指向主内容区域的链接，用户可跳过重复内容。
 通常放在 App.vue 顶部 → 成为所有页面的第一个可聚焦元素。
@@ -602,7 +847,7 @@ aria-hidden=&quot;true&quot;对无障碍访问隐藏，但对视觉用户可见
 仅用于装饰性、重复或屏幕外内容
 按钮在表单中使用按钮时，必须设置 type，防止误提交表单
 也可以使用 &lt;input&gt; 元素创建按钮
-  ]]></content></entry><entry><title>7.4 安全</title><url>/post/vue3/0704-%E5%AE%89%E5%85%A8/</url><categories><category>vue3文档阅读</category></categories><tags><tag>vue</tag><tag>vue3</tag><tag>前端框架</tag><tag>前端开发</tag></tags><content type="html"><![CDATA[  首要规则：不要使用无法信赖的模板使用 Vue 时最基本的安全规则就是：不要将无法信赖的内容作为组件模板。
+  ]]></content></entry><entry><title>7.4 安全</title><url>/post/vue3/0704-%E5%AE%89%E5%85%A8/</url><categories><category>Vue3文档阅读</category></categories><tags><tag>vue</tag><tag>vue3</tag><tag>前端框架</tag><tag>前端开发</tag></tags><content type="html"><![CDATA[  首要规则：不要使用无法信赖的模板使用 Vue 时最基本的安全规则就是：不要将无法信赖的内容作为组件模板。
 使用无法信赖的模板 = 允许任意 JavaScript 在应用中执行。
 在服务端渲染时执行这些代码 → 可能导致服务器被攻击。
 原因：
@@ -630,14 +875,14 @@ HTML 元素的事件属性（如 onclick、onfocus、onmouseenter）也可能接
 在 iframe 沙盒环境中，或 仅在该用户登录页面上执行。 常见问题场景开发者显式渲染了未经无害化处理的用户内容 → 本身不安全。 开发者将 Vue 挂载到包含服务端渲染或用户提供内容的 DOM 节点上 → 与 #1 类似的风险。 最佳实践：
 不要将 Vue 挂载到可能包含服务端渲染或用户提供内容的 DOM 节点上。 最佳实践核心规则：只要执行了未经无害化处理的用户内容（HTML、JavaScript、CSS），就可能遭受攻击。
 使用 Vue、其他框架，或不使用框架，结论都相同。
-  ]]></content></entry><entry><title>7.1 生产部署</title><url>/post/vue3/0701-%E7%94%9F%E4%BA%A7%E9%83%A8%E7%BD%B2/</url><categories><category>vue3文档阅读</category></categories><tags><tag>vue</tag><tag>vue3</tag><tag>前端框架</tag><tag>前端开发</tag></tags><content type="html"><![CDATA[  开发环境 vs. 生产环境在开发过程中，Vue 提供了许多功能来提升开发体验：
+  ]]></content></entry><entry><title>7.1 生产部署</title><url>/post/vue3/0701-%E7%94%9F%E4%BA%A7%E9%83%A8%E7%BD%B2/</url><categories><category>Vue3文档阅读</category></categories><tags><tag>vue</tag><tag>vue3</tag><tag>前端框架</tag><tag>前端开发</tag></tags><content type="html"><![CDATA[  开发环境 vs. 生产环境在开发过程中，Vue 提供了许多功能来提升开发体验：
 对常见错误和隐患的警告 对组件 props / 自定义事件 的校验 响应性调试钩子 开发工具集成 这些功能在生产环境中不会被使用。 一些警告检查会带来少量性能开销。
 在部署到生产环境时，应移除所有 仅用于开发环境 的代码分支，以获得 更小的包体积 和 更好的性能。
 不使用构建工具如果没有使用构建工具，而是通过 CDN 或其他源 加载 Vue：
 必须确保部署时使用 生产环境版本（文件名以 .prod.js 结尾）。 生产环境版本特点： 经过最小化处理 移除了所有仅用于开发环境的代码分支 选择版本全局变量版本（通过 Vue 全局变量访问）：使用 vue.global.prod.js ESM 版本（通过原生 ESM 导入访问）：使用 vue.esm-browser.prod.js 使用构建工具通过以下工具搭建的项目已经预先配置好生产环境：
 create-vue (基于 Vite) Vue CLI (基于 webpack) 自定义构建时的注意事项
 vue 被解析为 vue.runtime.esm-bundler.js。 编译时功能标记已正确配置。 process.env.NODE_ENV 在构建时被替换为 &quot;production&quot;。 追踪运行时错误可以使用 应用级错误处理来向追踪服务报告错误：
-import { createApp } from &#39;vue&#39; const app = createApp(...) app.config.errorHandler = (err, instance, info) =&gt; { // 向追踪服务报告错误 }  ]]></content></entry><entry><title>7.2 性能优化</title><url>/post/vue3/0702-%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96/</url><categories><category>vue3文档阅读</category></categories><tags><tag>vue</tag><tag>vue3</tag><tag>前端框架</tag><tag>前端开发</tag><tag>性能优化</tag></tags><content type="html">  概述Web 应用性能的两个主要方面：
+import { createApp } from &#39;vue&#39; const app = createApp(...) app.config.errorHandler = (err, instance, info) =&gt; { // 向追踪服务报告错误 }  ]]></content></entry><entry><title>7.2 性能优化</title><url>/post/vue3/0702-%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96/</url><categories><category>Vue3文档阅读</category></categories><tags><tag>vue</tag><tag>vue3</tag><tag>前端框架</tag><tag>前端开发</tag><tag>性能优化</tag></tags><content type="html">  概述Web 应用性能的两个主要方面：
 页面加载性能：首次访问时，应用展示出内容与达到可交互状态的速度。 更新性能：应用响应用户输入更新的速度。 结论：优化性能的第一步是为应用类型确定合适的架构。
 页面加载优化选用正确的架构如果应用对 页面加载性能 敏感：
 避免纯客户端的 SPA 使用 SSR 或 SSG 来缓解首屏加载缓慢的问题 如果应用对 交互性要求不高：
@@ -662,7 +907,7 @@ v-memo内置指令。有条件地跳过某些大型子树或 v-for 列表的更
 组件实例比 DOM 节点更昂贵
 过多抽象 → 性能损失
 注意：减少少量组件实例对性能改善不明显
-  </content></entry><entry><title>5.3 KeepAlive 组件</title><url>/post/vue3/0503-keepalive/</url><categories><category>vue3文档阅读</category></categories><tags><tag>vue</tag><tag>vue3</tag><tag>前端框架</tag><tag>前端开发</tag><tag>组件化开发</tag></tags><content type="html"><![CDATA[  &lt;KeepAlive&gt; 组件&lt;KeepAlive&gt; 是一个内置组件，用于在多个组件间动态切换时 缓存被移除的组件实例。
+  </content></entry><entry><title>5.3 KeepAlive 组件</title><url>/post/vue3/0503-keepalive/</url><categories><category>Vue3文档阅读</category></categories><tags><tag>vue</tag><tag>vue3</tag><tag>前端框架</tag><tag>前端开发</tag><tag>组件化开发</tag></tags><content type="html"><![CDATA[  &lt;KeepAlive&gt; 组件&lt;KeepAlive&gt; 是一个内置组件，用于在多个组件间动态切换时 缓存被移除的组件实例。
 动态组件的实现：通过 &lt;component&gt; 元素。
 默认行为：
 组件实例在被替换后会被销毁。 组件销毁后，其内部所有已变化的状态都会丢失。 当组件再次显示时，会创建一个带有 初始状态 的新实例。 解决方案：使用 &lt;KeepAlive&gt; 包装动态组件以缓存实例。
@@ -677,7 +922,7 @@ Vue 3.2.34+ 特性：
 在指定 max 时，&lt;KeepAlive&gt; 的行为类似 LRU 缓存。 当缓存数量即将超过最大值时，最久未被访问的实例将被销毁，以便为新的实例腾出空间。 缓存实例的生命周期状态变化：
 当组件实例从 DOM 移除但被 &lt;KeepAlive&gt; 缓存时 → 变为 不活跃，而不是被卸载。 当组件实例再次插入 DOM 时 → 被重新 激活。 生命周期钩子：
 onActivated() onDeactivated() 注意事项：
-onActivated 在组件挂载时也会调用。onDeactivated 在组件卸载时也会调用。 这两个钩子适用于 &lt;KeepAlive&gt; 缓存的 根组件和后代组件。   ]]></content></entry><entry><title>5.4 Teleport</title><url>/post/vue3/0504-teleport/</url><categories><category>vue3文档阅读</category></categories><tags><tag>vue</tag><tag>vue3</tag><tag>前端框架</tag><tag>前端开发</tag><tag>组件化开发</tag></tags><content type="html"><![CDATA[  &lt;Teleport&gt; 组件&lt;Teleport&gt; 是一个内置组件，它可以将组件内部的一部分模板 “传送”到该组件 DOM 结构外层的位置。
+onActivated 在组件挂载时也会调用。onDeactivated 在组件卸载时也会调用。 这两个钩子适用于 &lt;KeepAlive&gt; 缓存的 根组件和后代组件。   ]]></content></entry><entry><title>5.4 Teleport</title><url>/post/vue3/0504-teleport/</url><categories><category>Vue3文档阅读</category></categories><tags><tag>vue</tag><tag>vue3</tag><tag>前端框架</tag><tag>前端开发</tag><tag>组件化开发</tag></tags><content type="html"><![CDATA[  &lt;Teleport&gt; 组件&lt;Teleport&gt; 是一个内置组件，它可以将组件内部的一部分模板 “传送”到该组件 DOM 结构外层的位置。
 使用场景：模板的一部分逻辑上属于该组件，但在 DOM 中需要渲染到其他位置，甚至 Vue 应用外部。
 常见例子：全屏模态框。
 触发按钮和模态框属于同一个组件，逻辑紧密相关。 若不使用 &lt;Teleport&gt;，模态框会深嵌在 DOM 结构中，导致 CSS 布局困难。 解决方案：使用 &lt;Teleport&gt; 将模板片段传送到 DOM 中的其他位置，避免 DOM 结构的限制。
@@ -693,7 +938,7 @@ to prop：
 使用 defer prop 可以 推迟目标解析，直到应用的其他部分挂载完成。
 适用场景：目标容器由 Vue 渲染，且位于组件树之后部分。
 注意事项：
-目标元素必须与 &lt;Teleport&gt; 在 同一个挂载/更新周期 内渲染。 若目标元素延迟过久（如 1 秒后才挂载），Teleport 仍会报错。 延迟原理与 mounted 生命周期钩子类似。   ]]></content></entry><entry><title>6.1 单文件组件</title><url>/post/vue3/0601-%E5%8D%95%E6%96%87%E4%BB%B6%E7%BB%84%E4%BB%B6/</url><categories><category>vue3文档阅读</category></categories><tags><tag>vue</tag><tag>vue3</tag><tag>前端框架</tag><tag>前端开发</tag><tag>组件化开发</tag></tags><content type="html"><![CDATA[  介绍定义：Vue 的单文件组件（Single-File Component，简称 SFC，即 *.vue 文件）是一种特殊的文件格式。 它允许我们将一个 Vue 组件的 模板、逻辑与样式 封装在单个文件中。
+目标元素必须与 &lt;Teleport&gt; 在 同一个挂载/更新周期 内渲染。 若目标元素延迟过久（如 1 秒后才挂载），Teleport 仍会报错。 延迟原理与 mounted 生命周期钩子类似。   ]]></content></entry><entry><title>6.1 单文件组件</title><url>/post/vue3/0601-%E5%8D%95%E6%96%87%E4%BB%B6%E7%BB%84%E4%BB%B6/</url><categories><category>Vue3文档阅读</category></categories><tags><tag>vue</tag><tag>vue3</tag><tag>前端框架</tag><tag>前端开发</tag><tag>组件化开发</tag></tags><content type="html"><![CDATA[  介绍定义：Vue 的单文件组件（Single-File Component，简称 SFC，即 *.vue 文件）是一种特殊的文件格式。 它允许我们将一个 Vue 组件的 模板、逻辑与样式 封装在单个文件中。
 特点：
 是 HTML、CSS 和 JavaScript 经典组合的自然延伸。 使用 &lt;template&gt;、&lt;script&gt; 和 &lt;style&gt; 三个块在同一文件中封装和组合视图、逻辑、样式。 为什么要使用单文件组件前提：使用单文件组件必须依赖构建工具。
 优点：
@@ -703,7 +948,7 @@ to prop：
 SFC 是框架指定的文件格式。 必须由 @vue/compiler-sfc 编译为标准 JavaScript 和 CSS。 编译后的 SFC 是标准的 JavaScript (ES) 模块，可以像其他 ES 模块一样导入。 样式处理：
 开发环境：&lt;style&gt; 标签会注入为原生 &lt;style&gt;，支持热更新。 生产环境：样式会被抽取、合并为独立 CSS 文件。 如何看待关注点分离？关键观点：
 前端开发的关注点不是完全基于文件类型分离的。 关注点分离的目标是提高可维护性，而不仅仅是文件类型上的分离。 现代实践：
-与其将代码库拆为三个庞大的层（HTML、CSS、JavaScript 相互交织），不如划分为松散耦合的组件，再按需组合。 在一个组件中：模板、逻辑、样式本就是耦合的。将它们放在一起，使组件 更内聚、更可维护。   ]]></content></entry><entry><title>5.1 Transition</title><url>/post/vue3/0501-transition/</url><categories><category>vue3文档阅读</category></categories><tags><tag>vue</tag><tag>vue3</tag><tag>前端框架</tag><tag>前端开发</tag><tag>组件化开发</tag></tags><content type="html"><![CDATA[  Vue 内置过渡与动画Vue 提供了两个内置组件，用于基于状态变化的过渡和动画：
+与其将代码库拆为三个庞大的层（HTML、CSS、JavaScript 相互交织），不如划分为松散耦合的组件，再按需组合。 在一个组件中：模板、逻辑、样式本就是耦合的。将它们放在一起，使组件 更内聚、更可维护。   ]]></content></entry><entry><title>5.1 Transition</title><url>/post/vue3/0501-transition/</url><categories><category>Vue3文档阅读</category></categories><tags><tag>vue</tag><tag>vue3</tag><tag>前端框架</tag><tag>前端开发</tag><tag>组件化开发</tag></tags><content type="html"><![CDATA[  Vue 内置过渡与动画Vue 提供了两个内置组件，用于基于状态变化的过渡和动画：
 &amp;lt;Transition&amp;gt;：在一个元素或组件进入和离开 DOM 时应用动画。 &amp;lt;TransitionGroup&amp;gt;：在 v-for 列表中的元素或组件被插入、移动、或移除时应用动画。 其他动画方式：
 切换 CSS class 用状态绑定样式来驱动动画 &amp;lt;Transition&amp;gt; 组件内置组件：无需注册，任意组件中均可使用。
 作用：将进入和离开动画应用到通过默认插槽传递的元素或组件上。
@@ -714,13 +959,13 @@ Vue 自动检测目标元素是否应用了 CSS 过渡或动画，添加/移除�
 v-enter-from：进入起始状态。插入前添加，插入后下一帧移除。 v-enter-active：进入生效状态。插入前添加，过渡完成后移除。可定义进入动画的持续时间、延迟和速度曲线。 v-enter-to：进入结束状态。插入后下一帧添加，同时移除 v-enter-from，过渡完成后移除。 v-leave-from：离开起始状态。离开触发时立即添加，一帧后移除。 v-leave-active：离开生效状态。离开触发时立即添加，过渡完成后移除。可定义离开动画的持续时间、延迟和速度曲线。 v-leave-to：离开结束状态。离开触发后下一帧添加，同时移除 v-leave-from，过渡完成后移除。 v-enter-active 和 v-leave-active 可以为进入和离开动画指定不同速度曲线。
 为过渡效果命名使用 name prop 声明过渡效果名。
 命名过渡的 class 前缀使用该名字而不是 v。
-CSS 过渡与动画CSS transition： …  ]]></content></entry><entry><title>5.2 TransitionGroup</title><url>/post/vue3/0502-transitiongroup/</url><categories><category>vue3文档阅读</category></categories><tags><tag>vue</tag><tag>vue3</tag><tag>前端框架</tag><tag>前端开发</tag><tag>组件化开发</tag></tags><content type="html"><![CDATA[  &lt;TransitionGroup&gt; 组件&lt;TransitionGroup&gt; 是一个内置组件，用于对 v-for 列表中的元素或组件的 插入、移除和顺序改变 添加动画效果。
+CSS 过渡与动画CSS transition： …  ]]></content></entry><entry><title>5.2 TransitionGroup</title><url>/post/vue3/0502-transitiongroup/</url><categories><category>Vue3文档阅读</category></categories><tags><tag>vue</tag><tag>vue3</tag><tag>前端框架</tag><tag>前端开发</tag><tag>组件化开发</tag></tags><content type="html"><![CDATA[  &lt;TransitionGroup&gt; 组件&lt;TransitionGroup&gt; 是一个内置组件，用于对 v-for 列表中的元素或组件的 插入、移除和顺序改变 添加动画效果。
 和 &lt;Transition&gt; 的区别支持与 &lt;Transition&gt; 基本相同的 props、CSS 过渡 class 和 JavaScript 钩子监听器。
 区别：
 默认情况下不会渲染容器元素，可通过 tag prop 指定容器元素。 过渡模式不可用，因为不是在互斥元素之间切换。 列表中的每个元素都 必须 有独一无二的 key attribute。 CSS 过渡 class 作用在列表内元素上，而不是容器元素上。 当在 DOM 内模板中使用时，组件名需要写为 &lt;transition-group&gt;。
 自定义过渡组 class通过 moveClass prop 可以为 移动元素 指定自定义过渡 class。类似于 自定义过渡 class。
 渐进延迟列表动画实现方法：
-将每个元素的 索引 渲染为该元素的 data attribute。 在 JavaScript 钩子中，基于元素的 data attribute，给该元素的 进场动画添加延迟。   ]]></content></entry><entry><title>4.1 组合式函数</title><url>/post/vue3/0401-%E7%BB%84%E5%90%88%E5%BC%8F%E5%87%BD%E6%95%B0/</url><categories><category>vue3文档阅读</category></categories><tags><tag>vue</tag><tag>vue3</tag><tag>前端框架</tag><tag>前端开发</tag><tag>组件化开发</tag></tags><content type="html"><![CDATA[  组合式函数组合式函数 (Composables)：利用 Vue 的组合式 API 来封装和复用有状态逻辑的函数。
+将每个元素的 索引 渲染为该元素的 data attribute。 在 JavaScript 钩子中，基于元素的 data attribute，给该元素的 进场动画添加延迟。   ]]></content></entry><entry><title>4.1 组合式函数</title><url>/post/vue3/0401-%E7%BB%84%E5%90%88%E5%BC%8F%E5%87%BD%E6%95%B0/</url><categories><category>Vue3文档阅读</category></categories><tags><tag>vue</tag><tag>vue3</tag><tag>前端框架</tag><tag>前端开发</tag><tag>组件化开发</tag></tags><content type="html"><![CDATA[  组合式函数组合式函数 (Composables)：利用 Vue 的组合式 API 来封装和复用有状态逻辑的函数。
 无状态逻辑：接收输入并立即返回输出，例如格式化时间函数。
 有状态逻辑：负责管理随时间变化的状态。
 特点：
@@ -740,7 +985,7 @@ SSR 应用中，必须在组件挂载后生命周期钩子中执行 DOM 相关�
 抽取组合式函数改善代码结构目的：不仅是复用，还能改善代码组织。
 随着组件复杂度增加，组合式函数可以将逻辑拆分成更小的函数。
 可以视作组件范围内的服务，相互之间可通信。
-在选项式 API 中使用组合式函数组合式函数必须在 setup() 中调 …  ]]></content></entry><entry><title>4.2 自定义指令</title><url>/post/vue3/0402-%E8%87%AA%E5%AE%9A%E4%B9%89%E6%8C%87%E4%BB%A4/</url><categories><category>vue3文档阅读</category></categories><tags><tag>vue</tag><tag>vue3</tag><tag>前端框架</tag><tag>前端开发</tag><tag>组件化开发</tag></tags><content type="html"><![CDATA[  自定义指令Vue 内置指令：如 v-model、v-show。
+在选项式 API 中使用组合式函数组合式函数必须在 setup() 中调 …  ]]></content></entry><entry><title>4.2 自定义指令</title><url>/post/vue3/0402-%E8%87%AA%E5%AE%9A%E4%B9%89%E6%8C%87%E4%BB%A4/</url><categories><category>Vue3文档阅读</category></categories><tags><tag>vue</tag><tag>vue3</tag><tag>前端框架</tag><tag>前端开发</tag><tag>组件化开发</tag></tags><content type="html"><![CDATA[  自定义指令Vue 内置指令：如 v-model、v-show。
 自定义指令：用于复用涉及普通元素的底层 DOM 访问逻辑。
 与其他复用方式的比较：
 组件：主要构建模块。 组合式函数：侧重有状态逻辑。 自定义指令：专注底层 DOM 操作逻辑。 自定义指令由一个包含类似组件生命周期钩子的对象来定义。
@@ -764,7 +1009,7 @@ prevVnode：之前渲染中的 VNode，仅 beforeUpdate 和 updated 可用。
 在组件上使用不推荐：在组件上使用自定义指令。
 行为：
 当组件有单个根节点时，自定义指令会应用到根节点（类似透传 attributes）。 当组件有多个根节点时，指令会被忽略并抛出警告。 限制：指令不能像 attribute 一样通过 v-bind=&quot;$attrs&quot; 传递到其他元素。
-  ]]></content></entry><entry><title>4.3 插件</title><url>/post/vue3/0403-%E6%8F%92%E4%BB%B6/</url><categories><category>vue3文档阅读</category></categories><tags><tag>vue</tag><tag>vue3</tag><tag>前端框架</tag><tag>前端开发</tag><tag>组件化开发</tag></tags><content type="html">  插件插件 (Plugins)：一种能为 Vue 添加全局功能的工具代码。
+  ]]></content></entry><entry><title>4.3 插件</title><url>/post/vue3/0403-%E6%8F%92%E4%BB%B6/</url><categories><category>Vue3文档阅读</category></categories><tags><tag>vue</tag><tag>vue3</tag><tag>前端框架</tag><tag>前端开发</tag><tag>组件化开发</tag></tags><content type="html">  插件插件 (Plugins)：一种能为 Vue 添加全局功能的工具代码。
 插件形式：
 一个拥有 install() 方法的对象 直接是一个安装函数本身 安装函数参数：
 安装它的 应用实例 传递给 app.use() 的额外选项 插件的常见使用场景通过 app.component()和 app.directive() 注册一到多个全局组件或自定义指令。
@@ -773,7 +1018,7 @@ prevVnode：之前渲染中的 VNode，仅 beforeUpdate 和 updated 可用。
 功能库（可能包含上述三种）：例如 vue-router。
 注意事项：
 谨慎使用全局属性。 如果在整个应用中由不同插件注入过多全局属性，会让应用难以理解和维护。 插件中的 Provide / Inject在插件中，可以通过 provide 为插件用户提供访问某个函数或属性的能力。
-  </content></entry><entry><title>2.12 组件基础</title><url>/post/vue3/0212-%E7%BB%84%E4%BB%B6%E5%9F%BA%E7%A1%80/</url><categories><category>vue3文档阅读</category></categories><tags><tag>vue</tag><tag>vue3</tag><tag>前端框架</tag><tag>前端开发</tag><tag>组件化开发</tag></tags><content type="html"><![CDATA[  组件概念组件：允许将 UI 划分为独立、可重用的部分，每个部分可单独思考。
+  </content></entry><entry><title>2.12 组件基础</title><url>/post/vue3/0212-%E7%BB%84%E4%BB%B6%E5%9F%BA%E7%A1%80/</url><categories><category>Vue3文档阅读</category></categories><tags><tag>vue</tag><tag>vue3</tag><tag>前端框架</tag><tag>前端开发</tag><tag>组件化开发</tag></tags><content type="html"><![CDATA[  组件概念组件：允许将 UI 划分为独立、可重用的部分，每个部分可单独思考。
 结构：组件常常组织成层层嵌套的树状结构，类似于 HTML 元素的嵌套方式。
 封装：Vue 提供组件模型，可在每个组件内封装自定义内容与逻辑。
 兼容性：Vue 也能很好地配合原生 Web Component。
@@ -789,7 +1034,7 @@ prevVnode：之前渲染中的 VNode，仅 beforeUpdate 和 updated 可用。
 组件可拥有任意数量的 props。 默认所有 props 接受任意类型值。 注册后的 prop 可通过自定义 attribute 传递数据。 监听事件父组件监听：通过 v-on 或 @ 监听子组件抛出的事件。
 子组件抛出：
 使用内置 $emit 方法传入事件名称抛出事件。 使用 defineEmits宏声明可能抛出的事件，可对事件参数进行验证。 使用说明
-defineEmits： 仅 &amp;lt;script setup&amp;gt; 可用，无需导入。 返回等同于 $emit …  ]]></content></entry><entry><title>3.1 组件注册</title><url>/post/vue3/0301-%E7%BB%84%E4%BB%B6%E6%B3%A8%E5%86%8C/</url><categories><category>vue3文档阅读</category></categories><tags><tag>vue</tag><tag>vue3</tag><tag>前端框架</tag><tag>前端开发</tag><tag>组件化开发</tag></tags><content type="html"><![CDATA[  一个 Vue 组件 在使用前需要先被 注册，这样 Vue 才能在渲染模板时找到对应的实现。
+defineEmits： 仅 &amp;lt;script setup&amp;gt; 可用，无需导入。 返回等同于 $emit …  ]]></content></entry><entry><title>3.1 组件注册</title><url>/post/vue3/0301-%E7%BB%84%E4%BB%B6%E6%B3%A8%E5%86%8C/</url><categories><category>Vue3文档阅读</category></categories><tags><tag>vue</tag><tag>vue3</tag><tag>前端框架</tag><tag>前端开发</tag><tag>组件化开发</tag></tags><content type="html"><![CDATA[  一个 Vue 组件 在使用前需要先被 注册，这样 Vue 才能在渲染模板时找到对应的实现。
 注册方式：
 全局注册 局部注册 全局注册使用 Vue 应用实例的 .component() 方法，让组件在当前 Vue 应用中全局可用。
 特点：
@@ -802,7 +1047,7 @@ Tree-shaking 无效：全局注册但未使用的组件不会被自动移除，�
 PascalCase 是合法的 JavaScript 标识符，便于导入和注册，并且 IDE 能提供更好的自动补全。 &lt;PascalCase /&gt; 在模板中更明显地区分 Vue 组件与原生 HTML 元素或自定义元素 (Web Components)。 适用范围：
 单文件组件 内联字符串模板 限制：PascalCase 标签名在 DOM 内模板 中不可用。
 Vue 的支持：
-模板中使用 kebab-case 标签时，可以解析为 PascalCase 注册的组件。 例如：注册名为 MyComponent 的组件，可以通过 &lt;MyComponent&gt; 或 &lt;my-component&gt; 使用。   ]]></content></entry><entry><title>3.2 Props</title><url>/post/vue3/0302-props/</url><categories><category>vue3文档阅读</category></categories><tags><tag>vue</tag><tag>vue3</tag><tag>前端框架</tag><tag>前端开发</tag><tag>组件化开发</tag></tags><content type="html"><![CDATA[  Props 声明组件需要显式声明 props，Vue 才能区分外部传入的是 props 还是透传 attribute。
+模板中使用 kebab-case 标签时，可以解析为 PascalCase 注册的组件。 例如：注册名为 MyComponent 的组件，可以通过 &lt;MyComponent&gt; 或 &lt;my-component&gt; 使用。   ]]></content></entry><entry><title>3.2 Props</title><url>/post/vue3/0302-props/</url><categories><category>Vue3文档阅读</category></categories><tags><tag>vue</tag><tag>vue3</tag><tag>前端框架</tag><tag>前端开发</tag><tag>组件化开发</tag></tags><content type="html"><![CDATA[  Props 声明组件需要显式声明 props，Vue 才能区分外部传入的是 props 还是透传 attribute。
 声明方式：
 &amp;lt;script setup&amp;gt; 中使用 defineProps() 宏。 非 &amp;lt;script setup&amp;gt; 中使用 props 选项。 传递给 defineProps() 的参数与 props 选项的值相同，本质上使用的都是 props 选项。
 声明形式：
@@ -824,7 +1069,7 @@ Vue 会捕捉并警告此情况。
 作为初始值：子组件需定义新的本地数据属性，并以 prop 初始化。
 对传入值做转换：基于该 prop 定义计算属性。
 对象 / 数组类型的 props子组件可以修改对象或数组内部的值（按引用传递）。
-缺陷：可能导致 …  ]]></content></entry><entry><title>3.3 组件事件</title><url>/post/vue3/0303-%E7%BB%84%E4%BB%B6%E4%BA%8B%E4%BB%B6/</url><categories><category>vue3文档阅读</category></categories><tags><tag>vue</tag><tag>vue3</tag><tag>前端框架</tag><tag>前端开发</tag><tag>组件化开发</tag></tags><content type="html"><![CDATA[  触发与监听事件在组件模板表达式中，可以直接使用 $emit 方法触发自定义事件。
+缺陷：可能导致 …  ]]></content></entry><entry><title>3.3 组件事件</title><url>/post/vue3/0303-%E7%BB%84%E4%BB%B6%E4%BA%8B%E4%BB%B6/</url><categories><category>Vue3文档阅读</category></categories><tags><tag>vue</tag><tag>vue3</tag><tag>前端框架</tag><tag>前端开发</tag><tag>组件化开发</tag></tags><content type="html"><![CDATA[  触发与监听事件在组件模板表达式中，可以直接使用 $emit 方法触发自定义事件。
 父组件通过 v-on（缩写为 @）监听事件。
 事件监听器支持 .once 修饰符。
 事件名提供了 自动格式转换。
@@ -845,7 +1090,7 @@ defineEmits() 会返回一个同作用的函数供使用。
 作为组件文档记录。 帮助 Vue 区分事件和透传 attribute。 避免第三方代码触发的自定义 DOM 事件导致边界问题。 若原生事件名（如 click）被定义在 emits 选项中，监听器只会监听组件触发的事件，不会再响应原生事件。
 事件校验与 props 类型校验类似，事件也可使用对象语法进行描述。
 校验方式：
-将事件赋值为一个函数。 函数接收 emit 传入的参数。 返回布尔值：表示事件是否合法。 &lt;script setup&gt; const emit = defineEmits({ // 没有校验 click: null, // 校验 submit 事件 submit: ({ email, password }) =&gt; { if (email &amp;&amp; password) { return true; } else { console.warn(&#34;Invalid submit event payload!&#34;); return false; } }, }); function submitForm(email, password) { emit(&#34;submit&#34;, { email, password }); } &lt;/script&gt;  ]]></content></entry><entry><title>3.4 组件 v-model</title><url>/post/vue3/0304-%E7%BB%84%E4%BB%B6v-model/</url><categories><category>vue3文档阅读</category></categories><tags><tag>vue</tag><tag>vue3</tag><tag>前端框架</tag><tag>前端开发</tag><tag>组件化开发</tag></tags><content type="html"><![CDATA[  基本用法v-model 可以在组件上使用以实现双向绑定。
+将事件赋值为一个函数。 函数接收 emit 传入的参数。 返回布尔值：表示事件是否合法。 &lt;script setup&gt; const emit = defineEmits({ // 没有校验 click: null, // 校验 submit 事件 submit: ({ email, password }) =&gt; { if (email &amp;&amp; password) { return true; } else { console.warn(&#34;Invalid submit event payload!&#34;); return false; } }, }); function submitForm(email, password) { emit(&#34;submit&#34;, { email, password }); } &lt;/script&gt;  ]]></content></entry><entry><title>3.4 组件 v-model</title><url>/post/vue3/0304-%E7%BB%84%E4%BB%B6v-model/</url><categories><category>Vue3文档阅读</category></categories><tags><tag>vue</tag><tag>vue3</tag><tag>前端框架</tag><tag>前端开发</tag><tag>组件化开发</tag></tags><content type="html"><![CDATA[  基本用法v-model 可以在组件上使用以实现双向绑定。
 从 Vue 3.4 开始，推荐的实现方式是使用 defineModel() 宏。
 defineModel() 返回的值是一个 ref：
 .value 与父组件的 v-model 值同步； 子组件变更 .value 时，父组件绑定的值也会更新。 可以用 v-model 把这个 ref 绑定到原生 input 元素，实现包装。
@@ -857,7 +1102,7 @@ defineModel() 返回的值是一个 ref：
 如果需要额外的 prop 选项，应在 model 名称之后传递。
 多个 v-model 绑定利用参数和事件名，可以在单个组件实例上创建多个 v-model 双向绑定。
 每个 v-model 会同步不同的 prop，且无需额外选项。
-处理 v-model 修饰符获取修饰符通过解构 defineModel() 的返回值，可以在子组件中访问 v-model 的修饰符 &lt;script setup&gt; const [model, modifiers] = defineModel(); &lt;/script&gt; &lt;template&gt; &lt;input type=&#34;text&#34; v-model=&#34;model&#34; /&gt; &lt;/template&gt;基于修饰符调节可以给 defineModel() 传入 get 和 set 选项： get 在读取值时接收当前值，并返回处理后的新值。 set 在设置值时接收当前值，并返回处理后的新值。   ]]></content></entry><entry><title>3.5 透传 Attributes</title><url>/post/vue3/0305-%E9%80%8F%E4%BC%A0-attributes/</url><categories><category>vue3文档阅读</category></categories><tags><tag>vue</tag><tag>vue3</tag><tag>前端框架</tag><tag>前端开发</tag><tag>组件化开发</tag></tags><content type="html"><![CDATA[  Attributes 继承透传 attribute：传递给一个组件，却没有被该组件声明为 props 或 emits 的 attribute 或 v-on 事件监听器。
+处理 v-model 修饰符获取修饰符通过解构 defineModel() 的返回值，可以在子组件中访问 v-model 的修饰符 &lt;script setup&gt; const [model, modifiers] = defineModel(); &lt;/script&gt; &lt;template&gt; &lt;input type=&#34;text&#34; v-model=&#34;model&#34; /&gt; &lt;/template&gt;基于修饰符调节可以给 defineModel() 传入 get 和 set 选项： get 在读取值时接收当前值，并返回处理后的新值。 set 在设置值时接收当前值，并返回处理后的新值。   ]]></content></entry><entry><title>3.5 透传 Attributes</title><url>/post/vue3/0305-%E9%80%8F%E4%BC%A0-attributes/</url><categories><category>Vue3文档阅读</category></categories><tags><tag>vue</tag><tag>vue3</tag><tag>前端框架</tag><tag>前端开发</tag><tag>组件化开发</tag></tags><content type="html"><![CDATA[  Attributes 继承透传 attribute：传递给一个组件，却没有被该组件声明为 props 或 emits 的 attribute 或 v-on 事件监听器。
 常见例子：class、style、id。
 当一个组件以单个元素为根渲染时，透传的 attribute 会自动添加到根元素上。
 对 class 和 style 的合并如果子组件根元素已有 class 或 style，会与继承的值合并。
@@ -873,7 +1118,7 @@ $attrs 包含除已声明的 props 和 emits 外的所有 attribute：包括 cla
 显式绑定 $attrs 时，则不会有警告。
 在 JavaScript 中访问透传 Attributes在 &lt;script setup&gt; 中可用 useAttrs() API 访问透传 attribute。
 未使用 &lt;script setup&gt; 时，attrs 会作为 setup() 上下文对象的一个属性暴露。
-注意事项attrs 对象总是反映最新的透传 attribute，但它不是响应式。 不能通过侦听器监听 attrs 的变化。 如果需要响应性： 使用 prop； 或使用 onUpdated() 在每次更新时结合最新的 attrs 执行副作用。   ]]></content></entry><entry><title>3.6 插槽 Slots</title><url>/post/vue3/0306-%E6%8F%92%E6%A7%BD-slots/</url><categories><category>vue3文档阅读</category></categories><tags><tag>vue</tag><tag>vue3</tag><tag>前端框架</tag><tag>前端开发</tag><tag>组件化开发</tag></tags><content type="html"><![CDATA[  插槽内容与出口&lt;slot&gt; 元素是一个插槽出口 (slot outlet)，标示了父元素提供的插槽内容 (slot content) 将在哪里被渲染。
+注意事项attrs 对象总是反映最新的透传 attribute，但它不是响应式。 不能通过侦听器监听 attrs 的变化。 如果需要响应性： 使用 prop； 或使用 onUpdated() 在每次更新时结合最新的 attrs 执行副作用。   ]]></content></entry><entry><title>3.6 插槽 Slots</title><url>/post/vue3/0306-%E6%8F%92%E6%A7%BD-slots/</url><categories><category>Vue3文档阅读</category></categories><tags><tag>vue</tag><tag>vue3</tag><tag>前端框架</tag><tag>前端开发</tag><tag>组件化开发</tag></tags><content type="html"><![CDATA[  插槽内容与出口&lt;slot&gt; 元素是一个插槽出口 (slot outlet)，标示了父元素提供的插槽内容 (slot content) 将在哪里被渲染。
 插槽内容可以是任意合法的模板内容，不局限于文本。可以传入多个元素，甚至是组件。
 渲染作用域插槽内容可以访问到父组件的数据作用域，因为插槽内容本身是在父组件模板中定义的。
 插槽内容无法访问子组件的数据。
@@ -895,7 +1140,7 @@ Vue 模板中的表达式只能访问其定义时所处的作用域，这和 Jav
 如果同时使用具名插槽与默认插槽：
 需要为默认插槽使用显式的 &lt;template&gt; 标签。 直接为组件添加 v-slot 指令会导致编译错误。 这是为了避免默认插槽 props 的作用域混淆。 无渲染组件一些组件只包含逻辑，不需要渲染内容，视图输出完全通过作用域插槽交给消费者组件，这种组件称为 无渲染组件。
 注意：
-大部分无渲染组件的功能可以通过 组合式 API 实现。 使用组合式 API 更高效，并且避免额外的组件嵌套开销。   ]]></content></entry><entry><title>3.7 依赖注入</title><url>/post/vue3/0307-%E4%BE%9D%E8%B5%96%E6%B3%A8%E5%85%A5/</url><categories><category>vue3文档阅读</category></categories><tags><tag>vue</tag><tag>vue3</tag><tag>前端框架</tag><tag>前端开发</tag><tag>组件化开发</tag></tags><content type="html"><![CDATA[  Prop 逐级透传问题当需要从父组件向子组件传递数据时，会使用 props。
+大部分无渲染组件的功能可以通过 组合式 API 实现。 使用组合式 API 更高效，并且避免额外的组件嵌套开销。   ]]></content></entry><entry><title>3.7 依赖注入</title><url>/post/vue3/0307-%E4%BE%9D%E8%B5%96%E6%B3%A8%E5%85%A5/</url><categories><category>Vue3文档阅读</category></categories><tags><tag>vue</tag><tag>vue3</tag><tag>前端框架</tag><tag>前端开发</tag><tag>组件化开发</tag></tags><content type="html"><![CDATA[  Prop 逐级透传问题当需要从父组件向子组件传递数据时，会使用 props。
 如果组件层级很深，某个深层子组件需要祖先组件的数据，则必须逐级透传 props。这种情况被称为 “prop 逐级透传”，是我们希望避免的。
 **解决方式：**使用 provide / inject：
 父组件作为依赖提供者。 任意后代组件（无论层级多深）都可以注入该依赖。 Provide (提供)使用 provide()为组件后代提供数据。
@@ -920,7 +1165,7 @@ Inject (注入)使用 inject()注入上层组件提供的数据。
 如果需要确保数据不可更改：使用 readonly() 包装提供的值。
 使用 Symbol 作注入名在大型应用或组件库中，建议使用 Symbol 作为注入名，避免冲突。
 推荐在单独文件中导出这些注入名 Symbol。
-  ]]></content></entry><entry><title>3.8 异步组件</title><url>/post/vue3/0308-%E5%BC%82%E6%AD%A5%E7%BB%84%E4%BB%B6/</url><categories><category>vue3文档阅读</category></categories><tags><tag>vue</tag><tag>vue3</tag><tag>前端框架</tag><tag>前端开发</tag><tag>组件化开发</tag></tags><content type="html"><![CDATA[  基本用法在大型项目中，我们可能需要将应用拆分为更小的块，并仅在需要时再从服务器加载相关组件。Vue 提供了 defineAsyncComponent 方法来实现此功能。
+  ]]></content></entry><entry><title>3.8 异步组件</title><url>/post/vue3/0308-%E5%BC%82%E6%AD%A5%E7%BB%84%E4%BB%B6/</url><categories><category>Vue3文档阅读</category></categories><tags><tag>vue</tag><tag>vue3</tag><tag>前端框架</tag><tag>前端开发</tag><tag>组件化开发</tag></tags><content type="html"><![CDATA[  基本用法在大型项目中，我们可能需要将应用拆分为更小的块，并仅在需要时再从服务器加载相关组件。Vue 提供了 defineAsyncComponent 方法来实现此功能。
 defineAsyncComponent 接收一个返回 Promise 的加载函数：
 resolve：在从服务器获得组件定义时调用。 reject(reason)：加载失败时调用。 ES 模块动态导入会返回 Promise，通常与 defineAsyncComponent 搭配使用。
 构建工具（如 Vite、Webpack）支持动态导入，并会将其作为打包时的代码分割点，因此可用来导入 Vue 单文件组件。
@@ -939,7 +1184,7 @@ import { defineAsyncComponent, hydrateOnMediaQuery } from &#34;vue&#34;; const A
 import { defineAsyncComponent, hydrateOnInteraction } from &#34;vue&#34;; const AsyncComp = defineAsyncComponent({ loader: () =&gt; import(&#34;./Comp.vue&#34;), hydrate: hydrateOnInteraction(&#34;click&#34;), });可以是多个事件类型的列表。
 激活完成后，触发的事件会被重放。
 自定义策略通过自定义函数控制激活
-import { defineAsyncComponent, type HydrationStrategy } from &#34;vue&#34;; const myStrategy: HydrationStrategy = (hydrate, forEachElement) =&gt; { // forEachElement 是一个遍历组件未激活的 DOM 中所有根元素的辅助函数， // 因为根元素可能是一个片段而非单个元素 forEachElement((el) =&gt; { // ... }); // 准备好时调用 `hydrate` hydrate(); return () =&gt; { // 如必要，返回一个销毁函数 }; }; const AsyncComp = defineAsyncComponent({ loader: () =&gt; import(&#34;./Comp.vue&#34;), hydrate: myStrategy, });  ]]></content></entry><entry><title>2.10 侦听器</title><url>/post/vue3/0210-%E4%BE%A6%E5%90%AC%E5%99%A8/</url><categories><category>vue3文档阅读</category></categories><tags><tag>vue</tag><tag>vue3</tag><tag>前端框架</tag><tag>前端开发</tag></tags><content type="html">  计算属性与副作用计算属性用于声明性地计算衍生值。但在某些情况下，需要在状态变化时执行副作用，例如：
+import { defineAsyncComponent, type HydrationStrategy } from &#34;vue&#34;; const myStrategy: HydrationStrategy = (hydrate, forEachElement) =&gt; { // forEachElement 是一个遍历组件未激活的 DOM 中所有根元素的辅助函数， // 因为根元素可能是一个片段而非单个元素 forEachElement((el) =&gt; { // ... }); // 准备好时调用 `hydrate` hydrate(); return () =&gt; { // 如必要，返回一个销毁函数 }; }; const AsyncComp = defineAsyncComponent({ loader: () =&gt; import(&#34;./Comp.vue&#34;), hydrate: myStrategy, });  ]]></content></entry><entry><title>2.10 侦听器</title><url>/post/vue3/0210-%E4%BE%A6%E5%90%AC%E5%99%A8/</url><categories><category>Vue3文档阅读</category></categories><tags><tag>vue</tag><tag>vue3</tag><tag>前端框架</tag><tag>前端开发</tag></tags><content type="html">  计算属性与副作用计算属性用于声明性地计算衍生值。但在某些情况下，需要在状态变化时执行副作用，例如：
 更改 DOM 根据异步操作结果修改状态 在组合式 API 中，可以使用 watch 函数 在响应式状态发生变化时触发回调函数。
 侦听数据源类型watch 的第一个参数可以是：
 一个 ref（包括计算属性） 一个响应式对象 一个 getter 函数 多个数据源组成的数组 注意：不能直接侦听响应式对象的属性值，需要用返回该属性的 getter 函数。
@@ -959,7 +1204,7 @@ watchEffect()用于简化依赖于相同响应式状态的侦听器。
 watch vs. watchEffectwatch：
 只追踪明确指定的数据源。 不追踪回调中访问的其他内容。 仅在数据源确实改变时触发回调。 可精确控制回调触发时机。 watchEffect：
 在副作用执行期间追踪依赖。 自动追踪所有访问到的响应式属性。 更方便简洁，但依赖关系可能不够明确。 副作用清理使用 onWatcherCleanup()注册清理函数，在侦听器失效并重新运行前调用。
-调用限制： …  </content></entry><entry><title>2.11 模板引用</title><url>/post/vue3/0211-%E6%A8%A1%E6%9D%BF%E5%BC%95%E7%94%A8/</url><categories><category>vue3文档阅读</category></categories><tags><tag>vue</tag><tag>vue3</tag><tag>前端框架</tag><tag>前端开发</tag></tags><content type="html"><![CDATA[  模板引用 (ref)Vue 的声明性渲染模型抽象了大部分 DOM 操作，但有时仍需要直接访问底层 DOM 元素。 ref 是一个特殊的 attribute，允许在 DOM 元素或子组件实例被挂载后，获得对它的直接引用。 常见用途：
+调用限制： …  </content></entry><entry><title>2.11 模板引用</title><url>/post/vue3/0211-%E6%A8%A1%E6%9D%BF%E5%BC%95%E7%94%A8/</url><categories><category>Vue3文档阅读</category></categories><tags><tag>vue</tag><tag>vue3</tag><tag>前端框架</tag><tag>前端开发</tag></tags><content type="html"><![CDATA[  模板引用 (ref)Vue 的声明性渲染模型抽象了大部分 DOM 操作，但有时仍需要直接访问底层 DOM 元素。 ref 是一个特殊的 attribute，允许在 DOM 元素或子组件实例被挂载后，获得对它的直接引用。 常见用途：
 在组件挂载时将焦点设置到 input 元素 在元素上初始化第三方库 访问模板引用在组合式 API 中，可使用 useTemplateRef()获取引用。
 使用 TypeScript 时，Vue 会根据模板中 ref attribute 的元素或组件，自动推断 input.value 的类型。
 在 3.5 之前的版本，需要手动声明与模板中 ref 匹配的引用。
@@ -980,7 +1225,7 @@ watch vs. watchEffectwatch：
 需要使用 动态绑定 :ref 才能传入函数。
 当绑定的元素被卸载时，函数也会被调用一次，此时参数 el 为 null。
 可以绑定组件方法而不是内联函数。
-  ]]></content></entry><entry><title>2.6 条件渲染</title><url>/post/vue3/0206-%E6%9D%A1%E4%BB%B6%E6%B8%B2%E6%9F%93/</url><categories><category>vue3文档阅读</category></categories><tags><tag>vue</tag><tag>vue3</tag><tag>前端框架</tag><tag>前端开发</tag></tags><content type="html"><![CDATA[  v-if用于条件性地渲染一块内容。内容只会在指令的表达式返回真值时才被渲染。
+  ]]></content></entry><entry><title>2.6 条件渲染</title><url>/post/vue3/0206-%E6%9D%A1%E4%BB%B6%E6%B8%B2%E6%9F%93/</url><categories><category>Vue3文档阅读</category></categories><tags><tag>vue</tag><tag>vue3</tag><tag>前端框架</tag><tag>前端开发</tag></tags><content type="html"><![CDATA[  v-if用于条件性地渲染一块内容。内容只会在指令的表达式返回真值时才被渲染。
 v-else为 v-if 添加一个“else 区块”。
 必须紧跟在一个 v-if 或者 v-else-if 元素后面。否则不会被识别。
 v-else-if作用：提供 v-if 的“else if 区块”。
@@ -997,7 +1242,7 @@ v-show作用：按条件显示一个元素。
 元素无论初始条件如何，始终会被渲染。 仅切换 CSS display 属性。 结论：
 v-if 切换开销更高。 v-show 初始渲染开销更高。 频繁切换时使用 v-show 更好；条件很少改变时用 v-if 更合适。 v-if 和 v-for优先级：当同时存在于一个元素时，v-if 会先执行。
 结论：同时使用 不推荐，因为优先级不明显。
-  ]]></content></entry><entry><title>2.7 列表渲染</title><url>/post/vue3/0207-%E5%88%97%E8%A1%A8%E6%B8%B2%E6%9F%93/</url><categories><category>vue3文档阅读</category></categories><tags><tag>vue</tag><tag>vue3</tag><tag>前端框架</tag><tag>前端开发</tag></tags><content type="html"><![CDATA[  v-for基于数组渲染列表。
+  ]]></content></entry><entry><title>2.7 列表渲染</title><url>/post/vue3/0207-%E5%88%97%E8%A1%A8%E6%B8%B2%E6%9F%93/</url><categories><category>Vue3文档阅读</category></categories><tags><tag>vue</tag><tag>vue3</tag><tag>前端框架</tag><tag>前端开发</tag></tags><content type="html"><![CDATA[  v-for基于数组渲染列表。
 语法：item in items
 items：源数据数组 item：迭代项的别名 特点：
 可以访问父作用域内的属性和变量。 可选的第二个参数表示当前项的索引。 支持在定义别名时使用解构。 多层嵌套时，作用域类似函数作用域，每个作用域可访问父级作用域。 of 可以替代 in，更接近 JavaScript 迭代器语法。 v-for 与对象可遍历对象的所有属性。
@@ -1020,7 +1265,7 @@ push() pop() shift() unshift() splice() sort() reverse() 替换一个数组变�
 展示过滤或排序后的结果需求：显示经过过滤或排序的数组，但不修改原始数据。
 做法：使用计算属性返回过滤或排序后的数组。
 注意：
-reverse() 和 sort() 会修改原数组。 计算属性中不应直接修改原数组，应先创建副本再调用这些方法。   ]]></content></entry><entry><title>2.8 事件处理</title><url>/post/vue3/0208-%E4%BA%8B%E4%BB%B6%E5%A4%84%E7%90%86/</url><categories><category>vue3文档阅读</category></categories><tags><tag>vue</tag><tag>vue3</tag><tag>前端框架</tag><tag>前端开发</tag></tags><content type="html"><![CDATA[  监听事件可以使用 v-on 指令 (简写为 @) 监听 DOM 事件，并在事件触发时执行 JavaScript。
+reverse() 和 sort() 会修改原数组。 计算属性中不应直接修改原数组，应先创建副本再调用这些方法。   ]]></content></entry><entry><title>2.8 事件处理</title><url>/post/vue3/0208-%E4%BA%8B%E4%BB%B6%E5%A4%84%E7%90%86/</url><categories><category>Vue3文档阅读</category></categories><tags><tag>vue</tag><tag>vue3</tag><tag>前端框架</tag><tag>前端开发</tag></tags><content type="html"><![CDATA[  监听事件可以使用 v-on 指令 (简写为 @) 监听 DOM 事件，并在事件触发时执行 JavaScript。
 事件处理器的形式：
 内联事件处理器：执行内联 JavaScript 语句（类似 onclick）。 方法事件处理器：指向组件上定义的方法的属性名或路径。 内联事件处理器通常用于简单场景
 方法事件处理器适用场景：逻辑复杂时，使用方法代替内联代码。
@@ -1032,7 +1277,7 @@ reverse() 和 sort() 会修改原数组。 计算属性中不应直接修改原�
 事件修饰符目的：避免在方法中编写 event.preventDefault() 或 event.stopPropagation()，让方法更专注于数据逻辑。
 修饰符：
 .stop .prevent .self .capture .once .passive &amp;lt;!-- 单击事件将停止传递 --&amp;gt; &amp;lt;a @click.stop=&amp;#34;doThis&amp;#34;&amp;gt;&amp;lt;/a&amp;gt; &amp;lt;!-- 提交事件将不再重新加载页面 --&amp;gt; &amp;lt;form @submit.prevent=&amp;#34;onSubmit&amp;#34;&amp;gt;&amp;lt;/form&amp;gt; &amp;lt;!-- 修饰语可以使用链式书写 --&amp;gt; &amp;lt;a @click.stop.prevent=&amp;#34;doThat&amp;#34;&amp;gt;&amp;lt;/a&amp;gt; &amp;lt;!-- 也可以只有修饰符 --&amp;gt; &amp;lt;form @submit.prevent&amp;gt;&amp;lt;/form&amp;gt; &amp;lt;!-- 仅当 event.target 是元素本身时才会触发事件处理器 --&amp;gt; &amp;lt;!-- 例如：事件处理器不来自子元素 --&amp;gt; &amp;lt;div @click.self=&amp;#34;doThat&amp;#34;&amp;gt;...&amp;lt;/div&amp;gt;调用顺序：修饰符按声明顺序执行。
-@click.prevent.self：阻止元素及其子元素所有点击的默认行为。 …  ]]></content></entry><entry><title>2.9 表单输入绑定</title><url>/post/vue3/0209-%E8%A1%A8%E5%8D%95%E8%BE%93%E5%85%A5%E7%BB%91%E5%AE%9A/</url><categories><category>vue3文档阅读</category></categories><tags><tag>vue</tag><tag>vue3</tag><tag>前端框架</tag><tag>前端开发</tag></tags><content type="html"><![CDATA[  v-model定义：用于将表单输入框内容同步到 JavaScript 中的变量，避免手动绑定值和监听事件。
+@click.prevent.self：阻止元素及其子元素所有点击的默认行为。 …  ]]></content></entry><entry><title>2.9 表单输入绑定</title><url>/post/vue3/0209-%E8%A1%A8%E5%8D%95%E8%BE%93%E5%85%A5%E7%BB%91%E5%AE%9A/</url><categories><category>Vue3文档阅读</category></categories><tags><tag>vue</tag><tag>vue3</tag><tag>前端框架</tag><tag>前端开发</tag></tags><content type="html"><![CDATA[  v-model定义：用于将表单输入框内容同步到 JavaScript 中的变量，避免手动绑定值和监听事件。
 适用元素：可用于 &lt;input&gt;、&lt;textarea&gt;、&lt;select&gt;。
 绑定方式：
 文本 &lt;input&gt; 和 &lt;textarea&gt;：绑定 value，侦听 input。 &lt;input type=&quot;checkbox&quot;&gt; 和 &lt;input type=&quot;radio&quot;&gt;：绑定 checked，侦听 change。 &lt;select&gt;：绑定 value，侦听 change。 注意：
@@ -1050,7 +1295,7 @@ Vue 特有属性，仅能与 v-model 一起使用。 不影响 value 属性。 �
 转换逻辑：
 使用 parseFloat()，无法转换时返回原始值。 输入为空时，返回空字符串。 注意：当输入框 type=&quot;number&quot; 时，.number 修饰符会自动启用。
 .trim自动去除用户输入内容两端的空格。
-  ]]></content></entry><entry><title>1. 简介</title><url>/post/vue3/01-%E7%AE%80%E4%BB%8B/</url><categories><category>vue3文档阅读</category></categories><tags><tag>vue</tag><tag>vue3</tag><tag>前端框架</tag><tag>前端开发</tag></tags><content type="html"><![CDATA[  什么是 VueVue 是一个用于构建用户界面的 JavaScript 框架，基于标准的 HTML、CSS 和 JavaScript。它提供了一种声明式的、组件化的编程模型，旨在帮助开发高效的用户界面。
+  ]]></content></entry><entry><title>1. 简介</title><url>/post/vue3/01-%E7%AE%80%E4%BB%8B/</url><categories><category>Vue3文档阅读</category></categories><tags><tag>vue</tag><tag>vue3</tag><tag>前端框架</tag><tag>前端开发</tag></tags><content type="html"><![CDATA[  什么是 VueVue 是一个用于构建用户界面的 JavaScript 框架，基于标准的 HTML、CSS 和 JavaScript。它提供了一种声明式的、组件化的编程模型，旨在帮助开发高效的用户界面。
 核心功能声明式渲染：Vue 通过模板语法，允许你声明式地描述 HTML 与 JavaScript 状态之间的关系。 响应性：Vue 会自动追踪 JavaScript 状态的变化，并且在其发生变化时，自动更新 DOM。 渐进式框架Vue 的设计注重灵活性，可以根据不同需求逐步集成。以下是几种使用 Vue 的方式：
 增强静态 HTML，无需构建步骤。 作为 Web Components 嵌入任何页面。 构建单页应用（SPA）。 全栈开发/服务端渲染（SSR）。 Jamstack 和静态站点生成（SSG）。 开发桌面端、移动端、WebGL 或命令行终端界面。 单文件组件在大多数启用了构建工具的 Vue 项目中，我们可以使用一种类似 HTML 格式的文件来书写 Vue 组件，它被称为单文件组件 (也被称为 *.vue 文件，SFC)。顾名思义，Vue 的单文件组件会将一个组件的逻辑 (JavaScript)，模板 (HTML) 和样式 (CSS) 封装在同一个文件里。
 API 风格Vue 的组件有两种主要风格：选项式 API 和 组合式 API。
@@ -1059,7 +1304,7 @@ API 风格Vue 的组件有两种主要风格：选项式 API 和 组合式 API�
 选项式 API：以“组件实例”为中心，更适合有面向对象语言背景的开发者，且抽象了响应性相关的细节。对初学者更友好。
 组合式 API ：核心思想是直接在函数作用域内定义响应式状态变量，并将从多个函数中得到的状态组合起来处理复杂问题。这种形式灵活性更强，但需要对 Vue 的响应式系统有深入理解。适合处理复杂逻辑和组织/重用代码。
 在生产项目中：
-选项式 API：适用于不需要构建工具或在低复杂度场景下使用 Vue（如渐进增强的应用场景）。 组合式 API + 单文件组件：推荐用于构建完整的单页应用。   ]]></content></entry><entry><title>2.1 创建一个应用</title><url>/post/vue3/0201-%E5%88%9B%E5%BB%BA%E4%B8%80%E4%B8%AA%E5%BA%94%E7%94%A8/</url><categories><category>vue3文档阅读</category></categories><tags><tag>vue</tag><tag>vue3</tag><tag>前端框架</tag><tag>前端开发</tag></tags><content type="html">  应用实例每个 Vue 应用都是通过 createApp函数创建一个新的 应用实例。
+选项式 API：适用于不需要构建工具或在低复杂度场景下使用 Vue（如渐进增强的应用场景）。 组合式 API + 单文件组件：推荐用于构建完整的单页应用。   ]]></content></entry><entry><title>2.1 创建一个应用</title><url>/post/vue3/0201-%E5%88%9B%E5%BB%BA%E4%B8%80%E4%B8%AA%E5%BA%94%E7%94%A8/</url><categories><category>Vue3文档阅读</category></categories><tags><tag>vue</tag><tag>vue3</tag><tag>前端框架</tag><tag>前端开发</tag></tags><content type="html">  应用实例每个 Vue 应用都是通过 createApp函数创建一个新的 应用实例。
 传入 createApp 的对象实际上是一个 组件，每个应用都需要一个 根组件，其他组件将作为其子组件。
 如果使用单文件组件，可以直接从另一个文件中导入根组件。
 挂载应用应用实例必须调用 .mount() 方法后才会渲染。
@@ -1071,13 +1316,13 @@ API 风格Vue 的组件有两种主要风格：选项式 API 和 组合式 API�
 确保在挂载应用实例之前完成所有应用配置！
 多个应用实例Vue 允许创建多个应用实例，每个应用实例拥有自己的配置和全局资源作用域。
 如果使用 Vue 增强服务端渲染 HTML，避免将一个 Vue 应用实例挂载到整个页面上。推荐创建多个小的应用实例，将它们分别挂载到所需的元素上。
-  </content></entry><entry><title>2.2 模板语法</title><url>/post/vue3/0202-%E6%A8%A1%E6%9D%BF%E8%AF%AD%E6%B3%95/</url><categories><category>vue3文档阅读</category></categories><tags><tag>vue</tag><tag>vue3</tag><tag>前端框架</tag><tag>前端开发</tag></tags><content type="html"><![CDATA[  Vue 使用基于 HTML 的模板语法，使我们能够声明式地将组件实例的数据绑定到 DOM 上。所有 Vue 模板都是语法层面合法的 HTML，可以被标准浏览器和 HTML 解析器解析。
+  </content></entry><entry><title>2.2 模板语法</title><url>/post/vue3/0202-%E6%A8%A1%E6%9D%BF%E8%AF%AD%E6%B3%95/</url><categories><category>Vue3文档阅读</category></categories><tags><tag>vue</tag><tag>vue3</tag><tag>前端框架</tag><tag>前端开发</tag></tags><content type="html"><![CDATA[  Vue 使用基于 HTML 的模板语法，使我们能够声明式地将组件实例的数据绑定到 DOM 上。所有 Vue 模板都是语法层面合法的 HTML，可以被标准浏览器和 HTML 解析器解析。
 Vue 会将模板编译为高度优化的 JavaScript 代码，结合响应式系统，能够智能推导需要重新渲染的组件，并尽量减少 DOM 操作。
 如果你熟悉虚拟 DOM 并偏好使用 JavaScript，可以使用可选的 JSX 支持来手写渲染函数。但请注意，手写渲染函数将不会享受模板同等级别的编译时优化。
 文本插值最基本的数据绑定形式是 文本插值，使用双大括号（Mustache 语法）
 &amp;lt;span&amp;gt;Message: {{ msg }}&amp;lt;/span&amp;gt;双大括号会被替换为组件实例中 msg 属性的值。 每次 msg 改变时，会自动同步更新视图。 原始 HTML双大括号将数据作为纯文本处理，而不是 HTML。如果需要插入 HTML，请使用 v-html 指令：
 &amp;lt;p&amp;gt;Using v-html directive: &amp;lt;span v-html=&amp;#34;rawHtml&amp;#34;&amp;gt;&amp;lt;/span&amp;gt;&amp;lt;/p&amp;gt;v-html 指令会将元素的 innerHTML 与组件的 rawHtml 属性保持同步，插值为纯 HTML，数据绑定将会被忽略。 你不能使用 v-html 来拼接组合模板，因为 Vue 不是一个基于字符串的模板引擎。在使用 Vue 时，应当使用组件作为 UI 重用和组合的基本单元。 请谨慎使用 v-html，因为它容易导致 XSS 漏洞，仅在内容安全可信时使用，并且 永远不要使用用户提供的 HTML 内容。 Attribute 绑定双大括号不能在 HTML attributes 中使用。响应式绑定一个 attribute，应使用v-bind 指令。v-bind 也有简写语法：
-&amp;lt;div v-bind:id=&amp;#34;dynamicId&amp;#34;&amp;gt;&amp;lt;/div&amp;gt; &amp;lt;div :id=&amp;#34;dynamicId&amp;#34;&amp;gt;&amp;lt;/div&amp;gt; &amp;lt;div :id&amp;gt;&amp;lt;/div&amp;gt;如果绑定的值是 null 或 undefined，该 attribute 将被从渲染的元素中移 …  ]]></content></entry><entry><title>2.3 响应式基础</title><url>/post/vue3/0203-%E5%93%8D%E5%BA%94%E5%BC%8F%E5%9F%BA%E7%A1%80/</url><categories><category>vue3文档阅读</category></categories><tags><tag>vue</tag><tag>vue3</tag><tag>前端框架</tag><tag>前端开发</tag></tags><content type="html"><![CDATA[  声明响应式状态ref()在 Vue 的组合式 API 中，推荐使用 ref() 函数来声明响应式状态。
+&amp;lt;div v-bind:id=&amp;#34;dynamicId&amp;#34;&amp;gt;&amp;lt;/div&amp;gt; &amp;lt;div :id=&amp;#34;dynamicId&amp;#34;&amp;gt;&amp;lt;/div&amp;gt; &amp;lt;div :id&amp;gt;&amp;lt;/div&amp;gt;如果绑定的值是 null 或 undefined，该 attribute 将被从渲染的元素中移 …  ]]></content></entry><entry><title>2.3 响应式基础</title><url>/post/vue3/0203-%E5%93%8D%E5%BA%94%E5%BC%8F%E5%9F%BA%E7%A1%80/</url><categories><category>Vue3文档阅读</category></categories><tags><tag>vue</tag><tag>vue3</tag><tag>前端框架</tag><tag>前端开发</tag></tags><content type="html"><![CDATA[  声明响应式状态ref()在 Vue 的组合式 API 中，推荐使用 ref() 函数来声明响应式状态。
 ref() 接收一个初始值，并将其包裹在一个具有 .value 属性的 ref 对象中返回
 import { ref } from &amp;#34;vue&amp;#34;; const count = ref(0); console.log(count); // { value: 0 } console.log(count.value); // 0 要在组件模板中访问 ref，请从组件的 setup() 函数中声明并返回它们
 在组件模板中访问 ref 时，不需要附加 .value，Vue 会自动解包。 你可以在事件监听器中修改 ref 的值。 对于更复杂的逻辑，可以在同一作用域内声明修改 ref 的函数，并将它们作为方法公开给模板。这样可以在事件监听器中使用这些方法。
@@ -1091,7 +1336,7 @@ ref 作为一个对象，具有 .value 属性：
 ref 会使它的值具有深层响应性，即使对象内部发生变化也会被检测到。
 非原始值将通过 reactive() 转换为响应式代理。
 使用 shallowRef 可以避免深层响应性，适用于优化性能或外部库管理其内部状态的情况。
-DOM 更新时机 …  ]]></content></entry><entry><title>2.4 计算属性</title><url>/post/vue3/0204-%E8%AE%A1%E7%AE%97%E5%B1%9E%E6%80%A7/</url><categories><category>vue3文档阅读</category></categories><tags><tag>vue</tag><tag>vue3</tag><tag>前端框架</tag><tag>前端开发</tag></tags><content type="html">  计算属性在模板中直接使用表达式虽然方便，但处理复杂逻辑时会使模板臃肿，难以维护。为了避免重复计算和提高代码可维护性，推荐使用 计算属性 来描述依赖响应式状态的复杂逻辑。
+DOM 更新时机 …  ]]></content></entry><entry><title>2.4 计算属性</title><url>/post/vue3/0204-%E8%AE%A1%E7%AE%97%E5%B1%9E%E6%80%A7/</url><categories><category>Vue3文档阅读</category></categories><tags><tag>vue</tag><tag>vue3</tag><tag>前端框架</tag><tag>前端开发</tag></tags><content type="html">  计算属性在模板中直接使用表达式虽然方便，但处理复杂逻辑时会使模板臃肿，难以维护。为了避免重复计算和提高代码可维护性，推荐使用 计算属性 来描述依赖响应式状态的复杂逻辑。
 computed() 方法computed() 接受一个 getter 函数，该函数会根据响应式状态返回计算结果。 返回值为一个 计算属性 ref，你可以通过 .value 来访问其值。在模板中引用时，无需加 .value，它会自动解包。 计算属性会自动追踪响应式依赖，当依赖的响应式状态变化时，计算属性会自动重新计算。
 计算属性缓存 vs 方法计算属性值会缓存，仅在其响应式依赖更新时重新计算。
 如果你将相同的计算逻辑放入方法中，方法每次渲染时都会重新执行，即使计算逻辑没有变化。
@@ -1099,7 +1344,7 @@ computed() 方法computed() 接受一个 getter 函数，该函数会根据响�
 可写计算属性计算属性默认是只读的。当尝试修改一个计算属性时，会收到一个运行时警告。你可以通过提供 getter 和 setter 来创建一个 可写计算属性，允许计算属性具有读写能力。
 get 用于返回计算属性的值，set 用于修改源状态。
 获取上一个值如果需要获取计算属性返回的 上一个值，可以通过访问计算属性 getter 函数的第一个参数来实现。
-最佳实践Getter 不应有副作用计算属性的 getter 只应做计算，没有副作用。 不要在 getter 中改变其他状态、发起异步请求或更改 DOM。 计算属性的职责是根据其他状态计算出一个派生值，getter 应仅计算并返回该值。 避免直接修改计算属性值计算属性返回的值是派生状态，应该视为 只读。 更改计算属性的返回值没有意义，应该更新其依赖的源状态来触发新的计算。   </content></entry><entry><title>2.5 class与style绑定</title><url>/post/vue3/0205-class%E4%B8%8Estyle%E7%BB%91%E5%AE%9A/</url><categories><category>vue3文档阅读</category></categories><tags><tag>vue</tag><tag>vue3</tag><tag>前端框架</tag><tag>前端开发</tag></tags><content type="html"><![CDATA[  v-bind: 用于将 HTML 元素的属性（包括 class 和 style）与动态数据绑定。
+最佳实践Getter 不应有副作用计算属性的 getter 只应做计算，没有副作用。 不要在 getter 中改变其他状态、发起异步请求或更改 DOM。 计算属性的职责是根据其他状态计算出一个派生值，getter 应仅计算并返回该值。 避免直接修改计算属性值计算属性返回的值是派生状态，应该视为 只读。 更改计算属性的返回值没有意义，应该更新其依赖的源状态来触发新的计算。   </content></entry><entry><title>2.5 class与style绑定</title><url>/post/vue3/0205-class%E4%B8%8Estyle%E7%BB%91%E5%AE%9A/</url><categories><category>Vue3文档阅读</category></categories><tags><tag>vue</tag><tag>vue3</tag><tag>前端框架</tag><tag>前端开发</tag></tags><content type="html"><![CDATA[  v-bind: 用于将 HTML 元素的属性（包括 class 和 style）与动态数据绑定。
 特殊增强: Vue 为 class 和 style 的 v-bind 提供了特殊功能，除了字符串，表达式的值也可以是对象或数组。
 绑定 HTML class绑定对象使用 :class（v-bind:class 的缩写）可以绑定一个对象，根据对象的键值对动态地控制 class。
 &lt;div :class=&#34;{ active: isActive }&#34;&gt;&lt;/div&gt;上面的语法表示 isActive 为 true 时，active 类会被添加；如果为 false，则移除该类。

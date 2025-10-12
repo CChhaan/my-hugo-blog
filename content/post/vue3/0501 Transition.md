@@ -10,7 +10,7 @@ date: 2025-04-17
 summary: 本文主要介绍了 Vue 3 中内置的过渡与动画组件，包括 `<Transition>`以及基于 CSS 的过渡效果和 JavaScript 钩子。
 # 分类
 categories:
-  - vue3文档阅读
+  - Vue3文档阅读
 # 标签
 tags:
   - vue

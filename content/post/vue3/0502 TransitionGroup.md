@@ -10,7 +10,7 @@ date: 2025-04-17
 summary: 本文主要介绍了 Vue3 中 `<TransitionGroup>` 组件的使用，包括其和 `<Transition>` 的区别、自定义过渡组 class 以及渐进延迟列表动画的实现方法。
 # 分类
 categories:
-  - vue3文档阅读
+  - Vue3文档阅读
 # 标签
 tags:
   - vue

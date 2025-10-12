@@ -10,7 +10,7 @@ date: 2025-04-12
 summary: 本文主要介绍了 Vue 3 中透传 Attributes 的相关内容，包括 Attributes 继承、禁用 Attributes 继承、多根节点的 Attributes 继承以及在 JavaScript 中访问透传 Attributes 的方法。
 # 分类
 categories:
-  - vue3文档阅读
+  - Vue3文档阅读
 # 标签
 tags:
   - vue
