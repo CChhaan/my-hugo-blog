@@ -1,4 +1,329 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><search><entry><title>3.3 ping 的工作原理</title><url>/post/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/0303-ping-%E7%9A%84%E5%B7%A5%E4%BD%9C%E5%8E%9F%E7%90%86/</url><categories><category>计算机网络</category></categories><tags><tag>计算机基础</tag><tag>计算机网络</tag><tag>IP</tag></tags><content type="html">  ICMP（互联网控制报文协议）功能ping 是基于 ICMP 协议工作的，ICMP 的主要功能包括：确认 IP 包是否成功送达目标地址；报告 IP 包在传输中被废弃的原因；改善网络设置。
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><search><entry><title>3.1 适配器模式</title><url>/post/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/0301-%E9%80%82%E9%85%8D%E5%99%A8%E6%A8%A1%E5%BC%8F/</url><categories><category>设计模式</category></categories><tags><tag>设计模式</tag></tags><content type="html">  定义适配器模式是一种结构型设计模式， 它能使接口不兼容的对象能够相互合作。
+解决方案核心思路：通过创建一个“适配器”对象，将不兼容接口之间的交互转换为可兼容的形式。
+适配器的作用
+转换对象接口，使其能与其他对象交互。 封装复杂的转换过程，被封装的对象察觉不到适配器的存在。 运作方式：
+适配器实现与其中一个现有对象兼容的接口。 现有对象通过该接口安全地调用适配器方法。 适配器方法将请求转换为另一个对象兼容的格式和顺序并传递给该对象。 有时可以创建双向适配器来实现双向转换调用。
+模式结构对象适配器实现方式：使用组合原则，适配器实现其中一个对象的接口，并封装另一个对象。
+角色说明
+客户端：包含当前程序业务逻辑的类。 客户端接口：描述与客户端合作的协议。 服务：功能类（通常来自第三方或遗留系统），接口与客户端不兼容。 适配器：同时与客户端和服务交互，实现客户端接口并封装服务对象，接受客户端调用并转换为服务对象可理解的请求。 特性：
+客户端只通过接口与适配器交互，无需了解适配器实现。 可添加新的适配器类型而不修改已有代码。 当服务类接口被更改或替换时，可新建适配器而无需修改客户端代码。 类适配器实现方式：使用继承机制，适配器同时继承客户端和服务的接口。
+仅适用于支持多重继承的语言（如 C++）。
+特征：
+不需封装对象，因为继承了两者的行为。 适配功能通过重写方法实现。 生成的适配器可直接替代客户端类使用。 适合应用场景接口不兼容场景：当希望使用某个类，但其接口与现有代码不兼容时，可使用适配器。
+类复用与扩展场景：当需要复用同一继承体系中存在额外公共方法的类，但这些方法并非所有子类共有。
+直接扩展每个子类 → 代码重复，存在“坏味道”。
+使用适配器类 → 将缺失功能封装于适配器中，动态获得所需功能。
+目标类需有通用接口，适配器的成员变量应遵循该接口。这种方式与装饰模式相似。
+实现方式确保至少有两个类的接口不兼容： 一个无法修改 （通常是第三方、 遗留系统或者存在众多已有依赖的类） 的功能性服务类。 一个或多个将受益于使用服务类的客户端类。 声明客户端接口， 描述客户端如何与服务交互。 创建遵循客户端接口的适配器类。 所有方法暂时都为空。 在适配器类中添加一个成员变量用于保存对于服务对象的引用。 通常情况下会通过构造函数对该成员变量进行初始化， 但有时在调用其方法时 …  </content></entry><entry><title>2.3 生成器模式</title><url>/post/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/0203-%E7%94%9F%E6%88%90%E5%99%A8%E6%A8%A1%E5%BC%8F/</url><categories><category>设计模式</category></categories><tags><tag>设计模式</tag></tags><content type="html"><![CDATA[  定义生成器模式 是一种创建型设计模式，使你能够分步骤创建复杂对象。该模式允许你使用相同的创建代码生成不同类型和形式的对象。
+解决方案生成器模式的核心思想：
+将对象构造代码从产品类中抽取出来，放入独立的 生成器对象 中。 将对象构造过程划分为一组步骤，在创建对象时，仅需执行生成所需的步骤。 当需要创建不同形式的产品时：
+某些构造步骤可能需要不同实现； 可以创建多个不同的生成器，用不同方式实现相同步骤； 通过调用不同的生成器步骤生成不同类型的对象。 主管主管类定义产品的创建顺序，生成器提供创建步骤的实现； 客户端可将生成器传递给主管，由主管完成产品构造； 主管类并非必须，但能复用通用构造流程； 主管对客户端隐藏产品构造细节。 模式结构生成器：声明所有生成器通用的产品构造步骤。
+具体生成器：提供构造过程的不同实现。
+产品：最终生成的对象，不必遵循统一接口。
+主管：定义构造步骤的执行顺序。
+客户端：负责将生成器与主管关联，通过主管构造产品，从生成器获取最终结果。
+classDiagramclass Director {+construct()}class Builder {&amp;lt;&amp;lt;interface&amp;gt;&amp;gt;+buildPartA()+buildPartB()+getResult()}class ConcreteBuilder {+buildPartA()+buildPartB()+getResult()-product: Product}class Product {+addPart(part)}class Client {}Client --&amp;gt; Director : 使用Director --&amp;gt; Builder : 调用生成步骤Builder &amp;lt;|.. ConcreteBuilder : 实现ConcreteBuilder --&amp;gt; Product : 创建产品细节说明生成器模式仅在产品复杂且需详细配置时有意义。
+生成器接口声明产品的构造步骤，具体生成器实现这些步骤，并维护一个空产品实例。
+所有生成步骤操作同一个产品实例。
+具体生成器需自行提供获取结果的方法。
+生成器可在 getProduct() 方法末尾重置状态（可选）。
+生成器允许创建不同接口的产品。
+主管只负责执行顺 …  ]]></content></entry><entry><title>2.4 原型模式</title><url>/post/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/0204-%E5%8E%9F%E5%9E%8B%E6%A8%A1%E5%BC%8F/</url><categories><category>设计模式</category></categories><tags><tag>设计模式</tag></tags><content type="html">  定义原型模式 是一种创建型设计模式，使你能够复制已有对象，而又无需使代码依赖它们所属的类。
+解决方案原型模式将 克隆过程委派给被克隆的实际对象。
+模式为所有支持克隆的对象声明了一个通用接口，使得对象可以在不依赖具体类的情况下被克隆。通常情况下，该接口中仅包含一个 克隆方法。
+克隆方法的实现：每个类的克隆方法都会创建当前类的新对象，并将原始对象的所有成员变量值复制到新对象中。
+对象可以复制私有成员变量，因为大多数编程语言允许同类对象互访其私有成员。
+支持克隆的对象即为 原型。
+当对象具有大量成员变量和多种类型时，克隆可以替代复杂的构造。
+工作方式：
+创建一系列不同类型的对象，并以不同方式配置。 若所需对象与已配置对象相同，直接克隆原型即可，无需重新创建。 模式结构原型声明克隆方法（通常命名为 clone）。
+具体原型实现克隆方法。除了复制数据外，还可能处理关联对象或递归依赖等特殊情况。
+客户端可复制任何实现了原型接口的对象。
+原型注册表提供对常用原型的访问：
+存储预生成对象的映射（如 名称 → 原型）。 可扩展为根据多种条件搜索原型的注册表。 细节说明基础原型：
+包含常规构造函数与原型构造函数。 使用已有对象的数值初始化新对象。 clone 操作返回一个形状子类实例。 具体原型：
+克隆方法创建新对象并传递给构造函数。 构造函数运行期间持有克隆对象引用，防止外部访问未完成的对象。 通过调用父构造函数复制父类中的私有成员变量。 原型的关键特征：可以在不知晓对象类型的情况下，生成一个与其完全相同的复制品。
+适合应用场景当需要复制对象且希望代码独立于具体类时。
+适用于处理来自第三方接口传递的对象。原型模式提供通用接口，使客户端与具体类解耦。
+当子类的区别仅在初始化方式上时。
+可使用预生成的不同类型对象作为原型。客户端通过克隆现有原型代替子类实例化。
+实现方式创建原型接口，在其中声明克隆方法。
+若已有类层次结构，只需在各类中添加该方法。
+定义以本类对象为参数的构造函数，将参数对象的成员变量复制到新实例，子类修改时需调用父类构造函数复制父类的私有成员。
+若语言不支持重载，可通过特殊方法复制对象数据。
+实现克隆方法
+通常仅包含一行代码：使用 new 调用原型构造函数。
+每个类需显式重写克隆方法，避免生成父类对象。
+创建中心化原型注册表，可作为独立工厂类，或添加到原型基类 …  </content></entry><entry><title>2.5 单例模式</title><url>/post/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/0205-%E5%8D%95%E4%BE%8B%E6%A8%A1%E5%BC%8F/</url><categories><category>设计模式</category></categories><tags><tag>设计模式</tag></tags><content type="html">  定义单例模式（Singleton Pattern） 是一种创建型设计模式，它能够 保证一个类只有一个实例，并提供一个 访问该实例的全局节点。
+单例模式同时解决两件事（因此违反了单一职责原则）：
+保证一个类只有一个实例：再次创建时返回已存在的实例，而不是新对象。 提供一个全局访问节点：类似全局变量，但能保护该实例不被其他代码覆盖。 解决方案所有单例实现包含两步：
+将默认构造函数设为私有，防止外部使用 new 创建对象。
+提供一个静态构建方法（例如 getInstance）：
+该方法“偷偷”调用私有构造函数创建对象并将其保存在静态成员中，之后所有对该静态方法的调用都返回缓存的同一实例。
+只要代码能访问单例类，就能调用它的静态方法；该方法始终返回相同对象。
+模式结构单例类
+声明一个静态方法（例如 getInstance）来返回唯一实例。 构造函数对客户端隐藏（私有），获取实例的方法 是获取单例对象的唯一方式。 客户端（Client）
+通过单例类的静态方法访问该实例，而不能直接 new 构造对象。 适合应用场景当程序中某个类 全局只需一个可用实例 时，使用单例模式。
+单例禁止通过除特定构建方法外的任何方式创建该类对象，构建方法会创建新对象或在已创建时返回已有对象。
+当需要 更严格控制全局变量 时，可用单例模式。
+与普通全局变量不同，单例保证只有一个实例，并且无法被其他代码替换（除非单例自身代码修改）。
+可调整性：可以修改 getInstance 的实现以改变允许生成的实例数量
+实现方式在类中添加一个 私有静态成员变量 用于保存单例实例。 声明一个 公有静态构建方法（获取单例实例）。 在静态方法中实现 延迟初始化：首次调用时创建新对象并存储在静态成员中；随后返回该实例。 将类的构造函数设为 私有，使外部无法直接构造。 检查客户端代码，将对构造函数的直接调用替换为对静态构建方法的调用。 优缺点优点：
+保证一个类只有一个实例。 提供指向该实例的全局访问节点。 可以延迟初始化，仅在首次请求时创建实例。 缺点：
+违反单一职责原则（同时负责实例唯一性与全局访问）。 可能掩盖不良设计（程序组件耦合过高）。 多线程环境下需特殊处理，以避免多个线程同时创建多个实例。 单例的单元测试困难：许多测试框架通过继承或替换方法来创建 mock。单例的私有构造与静态方法限制了这种替换，需仔细设计或避免使用单例以便测试。   </content></entry><entry><title>1.1 概述</title><url>/post/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/0101-%E6%A6%82%E8%BF%B0/</url><categories><category>设计模式</category></categories><tags><tag>设计模式</tag></tags><content type="html">  设计模式是什么设计模式是软件设计中常见问题的典型解决方案。
+设计模式与方法或库的使用方式不同， 你很难直接在自己的程序中套用某个设计模式。 模式并不是一段特定的代码， 而是解决特定问题的一般性概念。 你可以根据模式来实现符合自己程序实际所需的解决方案。
+算法更像是菜谱： 提供达成目标的明确步骤。 而模式更像是蓝图： 你可以看到最终的结果和模式的功能， 但需要自己确定实现步骤。
+模式包含哪些内容大部分模式都有正规的描述方式， 以便在不同情况下使用。 模式的描述通常会包括以下部分：
+意图部分简单描述问题和解决方案。 动机部分将进一步解释问题并说明模式会如何提供解决方案。 结构部分展示模式的每个部分和它们之间的关系。 部分模式介绍中还列出其他的一些实用细节， 例如模式的适用性、 实现步骤以及与其他模式的关系。
+设计模式分类最基础的、 底层的模式通常被称为惯用技巧。 这类模式一般只能在一种编程语言中使用。
+最通用的、 高层的模式是构架模式。 开发者可以在任何编程语言中使用这类模式。 与其他模式不同， 它们可用于整个应用程序的架构设计。
+此外， 所有模式可以根据其意图或目的来分类：
+创建型模式提供创建对象的机制， 增加已有代码的灵活性和可复用性。 结构型模式介绍如何将对象和类组装成较大的结构， 并同时保持结构的灵活和高效。 行为模式负责对象间的高效沟通和职责委派。   </content></entry><entry><title>2.1 工厂方法模式</title><url>/post/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/0201-%E5%B7%A5%E5%8E%82%E6%96%B9%E6%B3%95%E6%A8%A1%E5%BC%8F/</url><categories><category>设计模式</category></categories><tags><tag>设计模式</tag></tags><content type="html"><![CDATA[  定义工厂方法模式是一种创建型设计模式，其在父类中提供一个创建对象的方法，允许子类决定实例化对象的类型。
+解决方案使用特殊的工厂方法代替直接调用构造函数（new 运算符）。
+工厂方法内部仍使用 new 运算符创建对象，返回的对象被称为 “产品”。
+可以在子类中重写工厂方法，以改变其创建产品的类型。
+所有产品必须具有共同的基类或接口。
+客户端代码只与抽象的产品接口交互，不关心具体实现。
+模式结构产品接口：定义所有产品的通用接口，所有由创建者及其子类构建的对象都遵循此接口。
+具体产品：是产品接口的不同实现。
+创建者：
+声明返回产品对象的工厂方法，工厂方法返回的对象类型必须与产品接口一致。 工厂方法可以是抽象方法或具有默认实现。 创建者包含与产品相关的核心业务逻辑，工厂方法将具体实例化和逻辑处理分离开来。 具体创建者：
+重写基础工厂方法，返回不同类型的产品。 工厂方法可返回缓存对象、对象池或已有对象，而不一定创建新实例。 classDiagramdirection LRclass Creator {&amp;lt;&amp;lt;abstract&amp;gt;&amp;gt;+factoryMethod() Product+someOperation()}class ConcreteCreator {+factoryMethod() Product}class Product {&amp;lt;&amp;lt;interface&amp;gt;&amp;gt;+operation()}class ConcreteProduct {+operation()}Creator &amp;lt;|-- ConcreteCreatorProduct &amp;lt;|.. ConcreteProductCreator --&amp;gt; Product : createsConcreteCreator --&amp;gt; ConcreteProduct : returns细节说明创建者类声明的工厂方法必须返回一个产品对象，创建者子类提供该方法的具体实现。
+创建者可以提供工厂方法的默认实现。
+创建者主要负责核心业务逻辑，产品由工厂方法生成，通过重写工厂方法可间接修改业务逻辑。
+程序根据配置或环境选择创建者类型。
+客户端只通过创建者的基本接口交互，不依赖具体实现。
+适合应用场景无法预知对象类型时 当无法预知需要创建的对象类别 …  ]]></content></entry><entry><title>2.2 抽象工厂模式</title><url>/post/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/0202-%E6%8A%BD%E8%B1%A1%E5%B7%A5%E5%8E%82%E6%A8%A1%E5%BC%8F/</url><categories><category>设计模式</category></categories><tags><tag>设计模式</tag></tags><content type="html"><![CDATA[  定义抽象工厂模式 是一种创建型设计模式，它能创建一系列相关的对象，而无需指定其具体类。
+解决方案为系列中的每件产品明确声明接口，并确保所有产品变体都继承这些接口。
+声明抽象工厂接口，其中包含系列中所有产品的构造方法，这些方法必须返回抽象产品类型。
+对于系列产品的每个变体，基于抽象工厂接口创建不同的工厂类，每个工厂类只能返回特定类别的产品。
+客户端代码通过抽象接口调用工厂和产品类。无需修改客户端代码，就能更改传递的工厂类或产品变体。
+一般情况下，应用程序会在初始化阶段创建具体工厂对象。程序需根据配置文件或环境设定选择工厂类别。
+模式结构抽象产品：为构成系列产品的一组不同但相关的产品声明接口。
+具体产品：是抽象产品的不同实现。所有变体都必须实现相应的抽象产品。
+抽象工厂：声明创建各种抽象产品的方法。
+具体工厂：实现抽象工厂的构建方法，每个具体工厂对应特定产品变体，且仅创建此种变体。
+关键特性：
+具体工厂构建方法的签名必须返回抽象产品类型。 客户端（Client）只通过抽象接口与工厂和产品交互。 客户端代码不与任何具体产品变体耦合。 classDiagram%% ===== 抽象工厂模式类图 =====class Client {+AbstractFactory factory+method()}class AbstractFactory {&amp;lt;&amp;lt;interface&amp;gt;&amp;gt;+createProductA(): AbstractProductA+createProductB(): AbstractProductB}class ConcreteFactory1 {+createProductA(): AbstractProductA+createProductB(): AbstractProductB}class ConcreteFactory2 {+createProductA(): AbstractProductA+createProductB(): AbstractProductB}class AbstractProductA {&amp;lt;&amp;lt;interface&amp;gt;&amp;gt;}class AbstractProductB {&amp;lt;&amp;lt;interface&amp;gt;&amp;gt;}class …  ]]></content></entry><entry><title>3.1 用 state 响应输入</title><url>/post/react/0301-%E7%94%A8state%E5%93%8D%E5%BA%94%E8%BE%93%E5%85%A5/</url><categories><category>React文档阅读</category></categories><tags><tag>react</tag><tag>前端框架</tag><tag>前端开发</tag><tag>组件化开发</tag></tags><content type="html">  声明式 UI 与命令式 UI 的比较命令式编程：通过明确的步骤告诉计算机“如何”更新 UI，需要直接操作 UI。
+声明式编程（React）：只需要声明你想要显示的内容，React 通过计算决定如何更新 UI。
+命令式编程的特点：适用于独立系统，在复杂系统中管理难度会指数级增长。
+声明式编程的特点：不直接操作 UI，聚焦于描述 UI 的最终状态。
+声明式地考虑 UI步骤 1：定位组件中的不同视图状态可视化用户可能看到的所有 UI 状态。
+模拟可帮助在实现逻辑前快速迭代 UI。
+可将多个视图状态展示在同一页面中，如 “living style guide” 或 “storybook”。
+步骤 2：确定触发状态改变的原因触发 state 更新的输入：
+人为输入：点击按钮、在表单中输入、导航到链接
+通常需要事件处理函数
+计算机输入：网络请求得到反馈、定时器触发、图片加载完成
+两种情况都必须通过设置 state 变量来更新 UI。
+步骤 3：通过 useState 表示内存中的 state视图状态需由内存中的 useState 表示。
+原则：让“变化的部分”尽可能少，减少潜在 bug。
+从“绝对必须”存在的状态开始设计。
+使用状态变量表示可视状态，可能存在多种实现方式，需要尝试。
+如果无法立即确定最佳结构，先加入足够多的 state，确保覆盖所有可能视图状态。
+步骤 4：删除任何不必要的 state 变量目标：避免 state 中出现重复或无效的内容，确保 state 始终能正确代表 UI。
+可自检的问题：
+这个 state 是否会导致矛盾？ 相同的信息是否已经存在于另一个 state 中？ 能否通过另一个 state 的相反值表达同一信息？ 原则：只有在无法删除而不破坏功能时，这些 state 才是必要的。
+补充机制：可将状态提取到 reducer 中，通过合并多个 state 变量并集中逻辑来实现更精确的模块化。
+步骤 5：连接事件处理函数以设置 state最后，为组件添加事件处理函数以更新 state。
+虽然代码可能比命令式方式更长，但更健壮，能避免引入新状态后破坏现有 state，允许修改 UI 而无需变更交互逻辑
+构建 state 的原则当编写存有 state 的组件时，需要决定 state 变量的数量及数据格式。以下原则可帮助做出更好的决策：
+合并 …  </content></entry><entry><title>2.4 更新 state 中的对象</title><url>/post/react/0204-%E6%9B%B4%E6%96%B0state%E4%B8%AD%E7%9A%84%E5%AF%B9%E8%B1%A1/</url><categories><category>React文档阅读</category></categories><tags><tag>react</tag><tag>前端框架</tag><tag>前端开发</tag><tag>组件化开发</tag></tags><content type="html">  什么是 mutation可以在 state 中存放任意类型的 JavaScript 值。
+数字、字符串、布尔值是 不可变（immutable） 的，只能通过替换值来触发重新渲染。
+对象的内容技术上可以改变，当你改变对象内容时就产生了 mutation。
+尽管对象是可变的，但在 React 中应将它们视为不可变，通过替换对象而不是修改对象来更新 state。
+将 state 视为只读的原则：把 state 中的所有 JavaScript 对象都视为只读的，需要创建一个新对象并传给 state 设置函数，才能触发重新渲染。
+修改已存在于 state 中的对象内容会产生 mutation → 问题来源。
+修改刚创建、未被引用的对象不会产生问题 → “局部 mutation”。
+“局部 mutation” 可以安全地发生在渲染过程中。
+使用展开语法复制对象... 实现对象的 浅拷贝。浅拷贝意味着只复制一层结构，更新嵌套属性时需多次使用展开语法。
+可以在对象定义中使用 [ 和 ] 来动态生成属性名。
+对象之间不是“真正嵌套”，只是通过属性相互引用。
+使用 Immer 编写简洁的更新逻辑使用场景：当 state 嵌套层级过多但不想更改数据结构时。
+Immer 的作用：允许使用类似“直接修改对象”的写法。实际不会产生 mutation，而是生成 新的对象副本。
+原理：Immer 提供的 draft 是 Proxy 对象，会记录对它的修改，Immer 根据这些修改生成新对象。
+updatePerson((draft) =&amp;gt; { draft.artwork.city = &amp;#34;Lagos&amp;#34;; });为什么在 React 中不推荐直接修改 state调试：不直接修改 state，可以保证日志中的旧值不会被新的变化污染。
+优化：React 的优化策略依赖于引用比较：如果 prevObj === obj，则对象内部没有改变。不直接修改 state 更易捕捉变化。
+新功能：新的 React 功能依赖于 state 像“快照”一样工作。直接修改历史 state 会破坏这些功能。
+需求变更：一些功能（撤销/恢复、历史记录、状态重置）依赖于保留旧 state。若直接修改 state，会使这类功能难以实现。
+更简单的实现：React 不依赖 mutation，也不需要对对象做特殊处理（如代理或劫持属性）。因此可以存放任意大小的对象而不引入性能问题。
+  </content></entry><entry><title>2.5 更新 state 中的数组</title><url>/post/react/0205-%E6%9B%B4%E6%96%B0-state-%E4%B8%AD%E7%9A%84%E6%95%B0%E7%BB%84/</url><categories><category>React文档阅读</category></categories><tags><tag>react</tag><tag>前端框架</tag><tag>前端开发</tag><tag>组件化开发</tag></tags><content type="html">  在没有 mutation 的前提下更新数组数组是对象，需要将 React state 中的数组视为只读的。
+每次更新数组时，都需要传入一个新数组。
+使用不会修改原数组的方法生成新数组，如 filter()、map()。
+slice 与 splice 的区别：
+slice：拷贝数组或数组的一部分。 splice：直接修改原始数组（插入或删除元素）。 向数组中添加元素创建一个新数组，包含原数组所有元素，以及新增元素。使用 ... 数组展开语法。
+展开语法也可将新元素放在 ...artists 前，实现类似 push() 或 unshift() 的效果。
+setArtists([{ id: nextId++, name: name }, ...artists]);从数组中删除元素通过 过滤出不需要删除的元素 来生成新数组。使用 filter()。
+setArtists(artists.filter((a) =&amp;gt; a.id !== artist.id));转换数组使用 map() 创建一个新数组。map 的回调根据元素值或索引返回新元素或原元素。
+替换数组中的元素不能使用 arr[0] = 'bird'，因为会直接修改数组。
+使用 map() 根据索引来决定替换或保留元素。
+向数组中插入元素使用展开运算符 ... + slice()。
+插入步骤：取出插入点前的部分（slice()）；加入新元素；展开剩余部分。
+其他改变数组的情况reverse() 和 sort() 会直接修改原数组。
+处理方式：先拷贝数组，再修改这个拷贝。
+注意：
+数组拷贝是浅拷贝，不能直接修改拷贝中包含的对象，否则仍会修改 state 中的对象。 解决方式：像更新嵌套对象一样，对需要修改的元素进行拷贝。 更新数组内部的对象数组中的对象是数组“指向”的其他位置的值。更新嵌套 state 时需要逐层创建拷贝，直到顶层。
+使用 map 替换旧对象为新对象。
+只应该直接修改“刚刚创建的对象”。
+使用 Immer 编写简洁的更新逻辑适用情况：当没有 mutation 的前提下更新嵌套数组变得重复时。
+通常不需要更新极深层级的 state，可考虑调整数据结构使其扁平化。不想调整结构时可使用 Immer。
+Immer 的特性能够使用会产生 mutation 的语法，如 artwork.seen = nextSeen。 修改的是 draft（Proxy）对象，而非真实 state。 push()、pop() 等修改数组的方法可以直接使用。 Immer 会根据对 draft 的修改 从头构建新的 state，而不会修改现有 state。   </content></entry><entry><title>2.2 State：组件的记忆</title><url>/post/react/0202-state%E7%BB%84%E4%BB%B6%E7%9A%84%E8%AE%B0%E5%BF%86/</url><categories><category>React文档阅读</category></categories><tags><tag>react</tag><tag>前端框架</tag><tag>前端开发</tag><tag>组件化开发</tag></tags><content type="html">  当普通的变量无法满足时**局部变量无法在多次渲染中持久保存。**React 会从头重新渲染组件，不会考虑之前对局部变量的更改。
+**更改局部变量不会触发渲染。**React 并不会意识到数据变化，因此不会重新渲染组件。
+解决需求，需要同时满足两点：
+保留 渲染之间的数据。 触发 React 使用新数据重新渲染组件。 useState 提供的功能
+State 变量：保存渲染间的数据。 State setter 函数：更新变量并触发组件重新渲染。 剖析 useStateHook 的定义useState（以及任何以 use 开头的函数）被称为 Hook。Hook 是特殊函数，只在 React 渲染时有效，它们允许你“hook”到 React 的特性中。
+**Hooks 只能在：**组件最顶层或 自定义 Hook 的最顶层调用。不能在条件语句、循环、嵌套函数中调用。将 Hook 视为组件顶层的“无条件声明”。
+useState 的行为唯一参数：state 变量的 初始值。
+每次渲染时，它返回一个数组：
+state 变量（如 index）保存上次渲染的值。 state setter 函数（如 setIndex）更新 state 并触发重新渲染。 渲染过程（顺序）：
+组件进行第一次渲染。 你更新了 state。 组件进行第二次渲染。 以此类推。 赋予一个组件多个 state 变量如果 state 不相关，可以使用多个 state 变量；如果两个 state 经常一起改变，应考虑将它们合并为一个。
+React 如何知道返回哪个 stateHooks 依赖于 稳定的调用顺序。
+React 为每个组件维护一个 state 对数组，并在每次渲染前将索引设为 0。
+每次调用 useState，React 返回一个 state 对并增加内部索引指针
+只要 Hooks 始终在顶层调用，调用顺序就不会变化。
+State 是隔离且私有的**每个组件实例都有自己的 state。**即使渲染两次同一个组件，它们的 state 也完全隔离。
+state 的作用域只影响组件在屏幕上的那一处实例。
+**state 完全私有于声明它的组件，父组件无法更改它。**可以安全地添加或删除组件的 state，而不影响其他组件。
+  </content></entry><entry><title>2.3 渲染和提交</title><url>/post/react/0203-%E6%B8%B2%E6%9F%93%E5%92%8C%E6%8F%90%E4%BA%A4/</url><categories><category>React文档阅读</category></categories><tags><tag>react</tag><tag>前端框架</tag><tag>前端开发</tag><tag>组件化开发</tag></tags><content type="html">  步骤 1: 触发一次渲染渲染的两种原因
+组件的 初次渲染：当应用启动时触发，通过调用 createRoot 并传入目标 DOM 节点，使用组件调用 render 函数完成渲染。 组件（或其祖先）状态发生改变：初次渲染后，可通过 set 函数 更新状态。更新状态会自动将一次渲染送入队列 步骤 2: React 渲染你的组件React 调用组件的时机
+初次渲染： 调用根组件。 后续渲染： 调用内部状态更新触发渲染的函数组件。 递归渲染过程：若组件返回另一个组件，React 会继续渲染该组件，过程持续到所有嵌套组件处理完毕，React 确定最终需要显示的内容。
+渲染必须保持纯计算
+输入相同 → 输出相同：相同输入应返回相同 JSX。 只做自己的事情：不能修改渲染前存在的对象或变量。 严格模式行为：React 会在开发时调用组件两次，用于发现不纯导致的问题。
+步骤 3: React 把更改提交到 DOM 上DOM 更新方式
+初次渲染： 通过 appendChild()将新建 DOM 节点插入屏幕。 重渲染： 应用最少的必要操作使 DOM 与最新渲染输出匹配。 DOM 更新原则：React 仅在渲染之间存在差异时才会更改 DOM 节点。
+渲染完成后 React 更新 DOM，浏览器重新绘制屏幕。
+渲染会及时生成一张快照正在渲染：React 正在调用组件函数，你返回的 JSX 是 UI 在某一时刻的快照，JSX 中的 props、事件处理函数和内部变量都是 根据当前渲染时的 state 计算出来的。
+重新渲染的过程：
+React 再次调用你的组件函数。 组件函数返回新的 JSX 快照。 React 更新界面以匹配此次快照。 state 存储在 React 内部，而非组件函数内部。React 在每次渲染时提供一张 当次渲染对应的 state 快照。返回的 JSX 会使用这些 state 值计算出一整套新的 props 与事件处理函数。
+设置 state 只会为下一次渲染变更 state 的值。
+一次渲染内部，state 的值永远不会变化，即使事件处理是异步执行的。
+React 会让 state 的值在一次渲染的所有事件处理函数中保持一致（固定）。
+React 会对 state 更新进行批处理React 会等事件处理函数中的所有代码执行完毕后再处理所有 state 更 …  </content></entry><entry><title>2.1 响应事件</title><url>/post/react/0201-%E5%93%8D%E5%BA%94%E4%BA%8B%E4%BB%B6/</url><categories><category>React文档阅读</category></categories><tags><tag>react</tag><tag>前端框架</tag><tag>前端开发</tag><tag>组件化开发</tag></tags><content type="html"><![CDATA[  添加事件处理函数如需添加一个事件处理函数：
+定义一个函数。 将其作为 prop 传入 合适的 JSX 标签。 事件处理函数的特点：
+通常在组件 内部 定义。 名称以 handle 开头，后跟事件名称。 可以在 JSX 中定义一个 内联的事件处理函数，也可以直接使用 更为简洁的箭头函数。
+当函数体较短时，内联事件处理函数会很方便。
+传递给事件处理函数的函数应 直接传递，而非调用。如果想定义内联事件处理函数，请将其包装在匿名函数中。
+在事件处理函数中读取 props事件处理函数声明于组件内部。因此，它们可以 直接访问组件的 props。
+将事件处理函数作为 props 传递通常在 父组件中定义 子组件的事件处理函数。通过将组件从父组件接收的 prop 作为事件处理函数传递。
+命名事件处理函数 prop内置组件（如 &lt;button&gt;、&lt;div&gt;）仅支持 浏览器事件名称。自定义组件的事件处理函数 prop 可以 自由命名。
+命名惯例：
+事件处理函数 prop 应以 on 开头，后跟一个大写字母。 当组件支持多种交互时，可以根据不同的应用程序命名事件处理函数 prop。 确保为事件处理程序使用适当的 HTML 标签。使用浏览器原生的 &lt;button&gt; 可启用内置行为（如键盘导航）。如需更改外观，可使用 CSS 实现，而非替换为其他标签。
+事件传播事件处理函数会捕获来自 子组件 的事件。事件沿着树向上“冒泡”或“传播”。
+在 React 中，所有事件都会传播，除了 onScroll（仅适用于绑定的 JSX 标签）。
+阻止传播事件处理函数接收一个 事件对象 e 作为唯一参数，该对象可用于读取事件信息。
+调用 e.stopPropagation() 阻止事件传播。
+传播阶段：
+向下传播。 执行被点击元素的处理函数。 向上传播。 在极少数情况下，可以捕获子元素上的所有事件，即便它们阻止了传播。捕获事件在 路由或数据分析 中有用，但通常不用于应用程序代码。
+传递处理函数作为事件传播的替代方案可在调用父元素的 onClick 前，先执行额外逻辑，这种模式是事件传播的 替代方案。
+优点：可以清晰追踪某个事件触发后执行的代码链。
+当事件传播逻辑难以追踪时，建议使用这种方式。
+阻止默认行为某些浏览器事件具有默认行为。可使用事件对象的 e.preventDefault() 阻止默认行为。
+常用方法：
+e.stopPropagation()：阻止触发外层事件处理函数。 e.preventDefault()：阻止默认浏览器行为。 事件处理函数可以包含副作用吗？**可以。**事件处理函数是执行 副作用 的最佳位置。
+与渲染函数不同，事件处理函数 不必是纯函数。它适用于更改某些值，例如：
+改变输入框的值以响应输入。 更改列表以响应按钮触发。 要更改信息，需要一种方式来存储它。在 React 中，这通过 state（组件的记忆） 实现。
+  ]]></content></entry><entry><title>1.4 条件渲染和列表渲染</title><url>/post/react/0104-%E6%9D%A1%E4%BB%B6%E5%92%8C%E5%88%97%E8%A1%A8%E6%B8%B2%E6%9F%93/</url><categories><category>React文档阅读</category></categories><tags><tag>react</tag><tag>前端框架</tag><tag>前端开发</tag><tag>组件化开发</tag></tags><content type="html"><![CDATA[  条件返回 JSX使用 JavaScript 的 if 和 return 语句来编写分支逻辑
+在 React 中，控制流（如条件）由 JavaScript 处理。
+当组件不需要渲染任何内容时，可以 直接返回 null，组件必须返回一个值，即使该值为 null。
+选择性地包含 JSX三目运算符（? :） JavaScript 提供了 条件运算符，又称“三目运算符”，可用于紧凑的条件判断，适用于简单条件的渲染逻辑。
+当嵌套层级过多时，应考虑将条件提取为子组件，以避免复杂的嵌套结构。
+在 React 中，标签是代码的一部分，可以使用 变量或函数 来整理复杂的表达式。
+与运算符（&amp;amp;&amp;amp;） 当 JavaScript &amp;amp;&amp;amp; 表达式左侧（条件）为 true 时，返回右侧的值。
+当条件为 false 时，整个表达式的值为 false，React 会将 false 视为“空值”，不会渲染任何内容。
+注意：切勿将数字放在 &amp;amp;&amp;amp; 左侧。：JavaScript 会自动将左值转换为布尔类型，如果左侧是 0，表达式结果为 0，React 将渲染 0，而不是跳过渲染。
+选择性地将 JSX 赋值给变量 当快捷语法（如三目或 &amp;amp;&amp;amp;）使代码难以阅读时，可使用 if 语句与变量结合。
+可使用 let定义变量，并多次赋值：先设置一个默认渲染内容，通过条件逻辑更新变量的值。
+可通过 在 JSX 中使用大括号嵌入 JavaScript的方式，将变量或计算结果插入返回的 JSX 中。
+这种方式虽然更冗长，但也最灵活。
+从数组中渲染数据可以将数据存入 JavaScript 对象或数组，然后使用 map() 或 filter() 等方法来渲染出一个组件列表。
+由数组生成一系列列表项：
+存储数据 到数组中。 遍历数组 中的每一项，生成新的 JSX 节点数组。 使用 &amp;lt;ul&amp;gt; 包裹节点数组，并 返回 结果。 对数组项进行过滤使用 JavaScript 的 filter() 方法可以返回满足条件的数组项。filter() 会让数组子项通过一个返回值为 true 或 false 的函数筛选，生成一个新数组。
+箭头函数的返回规则：
+箭头函数会 隐式返回 位于 =&amp;gt; 之后的表达式，可省略 return。
+如果 =&amp;gt; …  ]]></content></entry><entry><title>1.5 保持组件纯粹</title><url>/post/react/0105-%E4%BF%9D%E6%8C%81%E7%BB%84%E4%BB%B6%E7%BA%AF%E7%B2%B9/</url><categories><category>React文档阅读</category></categories><tags><tag>react</tag><tag>前端框架</tag><tag>前端开发</tag><tag>组件化开发</tag></tags><content type="html">  纯函数：组件作为公式在计算机科学中（尤其是函数式编程中），纯函数 具有以下特征：
+只负责自己的任务：不会更改在函数调用前已存在的对象或变量。 输入相同，则输出相同：给定相同的输入，纯函数总是返回相同的结果。 **React 围绕纯函数的概念进行设计。**React 假设所有组件都是纯函数，即对于相同的输入，组件必须总是返回相同的 JSX。
+副作用：（不符合）预期的后果React 的渲染过程必须是纯粹的：
+组件应 只返回 JSX，而不修改渲染前的对象或变量，否则会变得不纯粹。 不应假设组件的渲染顺序。 每个组件应当“独立思考”，不依赖或协调其他组件。 在 React 中，渲染时可以读取三种输入：props、state、context，这些输入应始终被视为只读。
+当需要根据用户输入更改内容时，应使用 状态设置，而不是直接修改变量。渲染过程中，禁止修改预先存在的变量或对象。
+React 提供 严格模式 来检测不纯组件，在严格模式下，React 会 调用每个组件函数两次，纯函数仅执行计算，因此调用两次不会改变任何东西。
+严格模式仅在开发环境中生效，不会影响生产性能。
+局部 mutation：组件的小秘密在渲染过程中更改 预先存在变量的值，称为 突变（mutation）。纯函数不会改变函数作用域外的变量或已有对象。
+你可以在渲染时更改 刚刚创建的变量或对象，这称为 局部 Mutation。
+可能引发副作用的地方副作用（side effects） 指那些在渲染之外发生的变化，例如：更新屏幕、启动动画、更改数据，这些行为是“额外的”，与渲染过程无关。
+在 React 中，副作用通常属于 事件处理程序，事件处理程序在用户操作（如点击）时执行，即使定义在组件内部，也不会在渲染期间运行，因此事件处理程序不需要是纯函数。
+如果无法在事件处理程序中处理副作用，可使用：useEffect在组件渲染完成后执行副作用。
+注意： useEffect 应作为最后手段。尽量仅通过渲染表达逻辑。
+编写纯函数虽然需要遵循一定的规程，但它带来了诸多好处：
+跨环境运行： 组件可在服务器上执行，为多个用户请求复用相同逻辑。 性能优化： 对输入未变的组件可安全地跳过渲染或缓存结果。 高可中断性： React 可在数据变化时中断并重新开始渲染，不浪费计算。 保持组件的纯粹性是 React 范式的核心。从数据获取到动画再到性能优化，纯函数 是构建可靠、高效 React 应用的基础。
+  </content></entry><entry><title>1.6 将 UI 视为树</title><url>/post/react/0106-%E5%B0%86-ui-%E8%A7%86%E4%B8%BA%E6%A0%91/</url><categories><category>React文档阅读</category></categories><tags><tag>react</tag><tag>前端框架</tag><tag>前端开发</tag><tag>组件化开发</tag></tags><content type="html">  将 UI 视为树树 是项目与 UI 之间的关系模型，通常使用树结构来表示 UI。
+React 与浏览器和移动平台一样，使用 树结构 来管理和建模应用程序中组件之间的关系。这些树有助于理解数据在 React 应用中的流动方式，以及如何优化 渲染 和 应用程序大小。
+渲染树组件可以由其他组件组合而成。在 嵌套组件中存在 父组件 与 子组件 的概念，每个父组件本身也可能是另一个组件的子组件。
+当渲染 React 应用程序时，这种组件间的关系可以建模为 渲染树：
+根节点 是应用程序的 根组件，通常是 App。 箭头方向：从父组件指向子组件。 渲染树代表 React 应用程序的 单个渲染过程。
+在 条件渲染中，父组件可以根据数据渲染不同的子组件，渲染树可能在不同的渲染过程中有所不同。
+渲染树有助于识别 React 应用程序中的：
+顶级组件：离根组件最近，影响下层组件渲染性能，通常最复杂。 叶子组件：位于树底部，无子组件，通常会频繁重新渲染。 识别这些组件类别有助于理解应用程序的数据流与性能。
+模块依赖树在 React 应用中，另一种可以使用树来建模的关系是 模块依赖关系。
+当将组件与逻辑 拆分为不同文件时，就创建了 JavaScript 模块。这些模块可以导出组件、函数或常量。
+模块依赖树中：
+每个节点表示一个 模块 每个分支代表该模块中的 import 语句 树的根节点是 根模块（入口文件），通常包含根组件模块。 模块依赖树与渲染树存在相似结构，但有显著差异：
+节点代表的是 模块，而非组件。 非组件模块 也包含在依赖树中，而渲染树仅封装组件。 依赖树用于确定运行 React 应用程序所需的模块，在构建生产环境时，构建工具（bundler，捆绑器）会使用依赖树来确定应包含的模块，依赖树可用于调试与 包体积 相关的问题。
+随着应用增长，捆绑包大小 通常增加，大型捆绑包 下载和运行成本高，延迟 UI 绘制，了解依赖树 有助于排查性能与加载延迟问题。
+  </content></entry><entry><title>1.1 组件</title><url>/post/react/0101-%E7%BB%84%E4%BB%B6/</url><categories><category>React文档阅读</category></categories><tags><tag>react</tag><tag>前端框架</tag><tag>前端开发</tag><tag>组件化开发</tag></tags><content type="html">  组件：UI 构成要素React 允许你将 标签、CSS 和 JavaScript 组合成自定义“组件”，即应用程序中可复用的 UI 元素。
+组件可以像 HTML 标签一样被组合、排序和嵌套，用于绘制整个页面。
+很多布局可以通过复用已经完成的组件来实现，从而加快开发进程。
+定义组件React 组件是一段可以使用标签进行扩展的 JavaScript 函数。
+构建组件的方法：
+导出组件 ：使用 export default 前缀（这是 JavaScript 标准语法，非 React 特性），允许导出文件中的主要函数，以便从其他文件引入使用。 定义函数：React 组件是普通的 JavaScript 函数。组件名称必须以大写字母开头，否则将无法运行。 添加标签 ：组件返回一个标签，形式类似 HTML，但实际上是 JavaScript。这种语法被称为 JSX 返回语句可以写在一行。如果标签与 return 不在同一行，必须用括号包裹。否则，return 下一行的代码将被 自动忽略
+嵌套和组织组件组件是普通的 JavaScript 函数，可以在同一文件中定义多个组件，当组件较小或关系紧密时，这是方便的做法。如果文件变得臃肿，可以将组件移动到单独文件中。
+组件可被定义一次，多处多次使用。
+组件可以渲染其他组件，但 不要嵌套定义组件，若子组件需要使用父组件的数据，应通过 props 传递
+React 应用程序从根组件开始，通常在创建新项目时自动生成。
+大多数 React 应用程序仅由组件构成，组件既可用于可复用的部分，也可用于较大模块或整个页面，即使组件只使用一次，也能帮助组织 UI 代码与标签。
+像 Next.js 这样的框架在 React 基础上做了更多：不再只是让 React 从一个空白 HTML 页面“接手”，框架会根据 React 组件自动生成 HTML，这样应用在加载 JavaScript 代码前即可展示部分内容。
+根组件文件所有组件目前都定义在 根组件 App.js 文件中。 具体位置取决于项目配置，有些项目的根组件可能定义在其他文件中。
+如果使用基于文件路由的框架（如 Next.js），则每个页面的根组件都会不同。
+导出和导入一个组件可以根据以下三个步骤对组件进行拆分：
+创建：创建一个新的 JS 文件来存放该组件。 导出：导出该文件中的函数组件，可使用默认 …  </content></entry><entry><title>1.2 使用 JSX 书写标签语言</title><url>/post/react/0102-%E4%BD%BF%E7%94%A8-jsx-%E4%B9%A6%E5%86%99%E6%A0%87%E7%AD%BE%E8%AF%AD%E8%A8%80/</url><categories><category>React文档阅读</category></categories><tags><tag>react</tag><tag>前端框架</tag><tag>前端开发</tag><tag>组件化开发</tag></tags><content type="html"><![CDATA[  JSX: 将标签引入 JavaScript在 React 中，渲染逻辑和标签共同存在于同一个地方——组件。
+将一个按钮的渲染逻辑和标签放在一起，可以确保它们在每次编辑时都能保持同步。无关的细节是彼此隔离的，例如按钮的标签与侧边栏的标签。这种结构使得在修改其中任意一个组件时更安全。
+每个 React 组件都是一个 JavaScript 函数。组件返回一些 标签，React 会将这些标签渲染到浏览器上。React 组件使用 JSX 语法扩展 来描述这些标签。JSX 看起来与 HTML 相似，但语法更严格，并且可以动态展示信息。
+JSX 规则只能返回一个根元素： 在一个组件中包含多个元素时，必须用一个父标签将它们包裹起来。
+如果不想在标签中增加额外的 &lt;div&gt;，可以使用 &lt;&gt; 和 &lt;/&gt; 来代替。空标签 &lt;&gt;...&lt;/&gt; 被称为 Fragment。React Fragment 允许将子元素分组，而不会在 HTML 结构中添加额外节点。
+JSX 虽然看起来像 HTML，但在底层被转化为 JavaScript 对象。由于 JavaScript 函数不能返回多个对象，多个 JSX 标签必须用一个父元素或 Fragment 包裹。
+标签必须闭合：JSX 要求所有标签都必须正确闭合。
+使用驼峰式命名法给大部分属性命名：
+JSX 会被转化为 JavaScript，而其中的属性会成为 JavaScript 对象的键值对。JavaScript 变量命名有限制，不能包含 - 符号，也不能使用保留字（如 class）。
+HTML 与 SVG 属性需使用驼峰式命名法：stroke-width → strokeWidth
+因为 class 是保留字，在 React 中需要使用class → className
+由于历史原因，以下属性保留原有格式：aria-*和 data-*
+使用引号传递字符串当要将字符串属性传递给 JSX 时，使用单引号或双引号 包裹字符串。
+如果需要动态指定属性值，可以使用 {} 替代引号，以便引用 JavaScript 变量。
+大括号可以让你直接在标签中使用 JavaScript。
+使用大括号：进入 JavaScript 世界的窗户JSX 是一种编写 JavaScript 的特殊方式。大括号 {} 内可以编写并运行任何 JavaScript 表达式。
+在 JSX 中，大括号只能出现在以下两种情况：
+用作 JSX 标签内的 文本 用作紧跟在 = 符号后的 属性 使用 “双大括号”：JSX 中的 CSS 和 对象除了字符串、数字等，JSX 还可以传递 对象。对象也使用大括号，因此需要 再加一层大括号 才能在 JSX 中传递。
+React 不强制使用内联样式（CSS 类即可满足大部分需求）。当需要内联样式时可将 对象 传递给 style 属性，
+内联样式的属性名需使用驼峰命名法。
+JavaScript 对象和大括号的更多可能可以将多个表达式合并到一个对象中，在 JSX 的大括号中，可以分别使用这些对象的属性。
+JSX 是一种模板语言的最小实现，因为它允许通过 JavaScript 来组织数据和逻辑。
+  ]]></content></entry><entry><title>1.3 将 Props 传递给组件</title><url>/post/react/0103-%E5%B0%86-props-%E4%BC%A0%E9%80%92%E7%BB%99%E7%BB%84%E4%BB%B6/</url><categories><category>React文档阅读</category></categories><tags><tag>react</tag><tag>前端框架</tag><tag>前端开发</tag><tag>组件化开发</tag></tags><content type="html">  **React 组件使用 props 来互相通信。**每个父组件都可以提供 props 给子组件，从而将信息传递给它。你可以通过 props 传递任何 JavaScript 值，包括 对象、数组和函数。
+熟悉的 propsProps 是你传递给 JSX 标签的信息。
+对于内置标签，ReactDOM 所接受的 props 是 预定义的，并符合 HTML 标准
+对于 自定义组件，你可以传递任意 props 以实现自定义。
+向组件传递 props步骤
+将 props 传递给子组件 在子组件中读取 props Props 使你可以独立思考父组件和子组件。
+**Props 是组件的唯一参数。**React 组件函数接收一个 props 对象作为参数。
+通常无需使用整个 props 对象，可通过 解构 获取单个 prop。
+给 prop 指定一个默认值如果未指定某个 prop，可以在参数解构时通过 = 为其赋予 默认值。
+使用 JSX 展开语法传递 props可以使用 展开语法（{...props}）来传递多个属性。
+**请克制地使用展开语法。**如果在所有组件中都使用它，通常意味着组件设计需要重新拆分，将子组件作为 JSX 传递。
+将 JSX 作为子组件传递当你在 JSX 标签中嵌套内容时，父组件会在名为 children 的 prop 中接收到这些内容。
+Props 如何随时间变化组件可能会在不同时间收到不同的 props。
+Props 并不总是静态的，而是可以根据父组件的变化而更新。
+**Props 是不可变的。**当组件需要改变 props 时，必须由父组件传入 新的 props 对象。
+旧的 props 会被丢弃，最终由 JavaScript 引擎回收。
+**不要尝试更改 props。**当需要响应用户输入时，应当使用 state（状态） 来实现。
+  </content></entry><entry><title>3.3 ping 的工作原理</title><url>/post/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/0303-ping-%E7%9A%84%E5%B7%A5%E4%BD%9C%E5%8E%9F%E7%90%86/</url><categories><category>计算机网络</category></categories><tags><tag>计算机基础</tag><tag>计算机网络</tag><tag>IP</tag></tags><content type="html">  ICMP（互联网控制报文协议）功能ping 是基于 ICMP 协议工作的，ICMP 的主要功能包括：确认 IP 包是否成功送达目标地址；报告 IP 包在传输中被废弃的原因；改善网络设置。
 当 IP 包未能到达目标地址时，ICMP 负责通知具体原因。
 类型ICMP 报文分为两类：
 查询报文类型：用于诊断（查询消息） 差错报文类型：用于通知出错原因（错误消息） 查询报文类型回送消息用于主机或路由器之间判断数据包是否成功到达对端。 ping 命令 即利用该消息实现。
@@ -826,25 +1151,26 @@ git commit 只会处理暂存区的内容。尚未 git add 到暂存区的文件
 使用 --allow-empty 参数可以创建 没有内容变更 的提交：
 git commit --allow-empty -m &amp;#34;&amp;#34;工作区、暂存区与存储库三个主要区域工作目录 → 暂存区：git add 暂存区 → 存储库：git commit 注意：执行 commit 才算完成整个流程。
 是否一定要二段式使用 -a 参数可省略 git add
-git commit -a -m &amp;#34;xxx&amp;#34;-a 参数只对 已存在于存储库的文件 有效， …  ]]></content></entry><entry><title>1. git概述</title><url>/post/git/01-git%E6%A6%82%E8%BF%B0/</url><categories><category>Git从入门到精通</category></categories><tags><tag>Git</tag><tag>版本控制系统</tag></tags><content type="html"><![CDATA[  git 概述Git：一种 分布式版本控制系统。
-git 的优点免费开源
+git commit -a -m &amp;#34;xxx&amp;#34;-a 参数只对 已存在于存储库的文件 有效， …  ]]></content></entry><entry><title>1. git概述</title><url>/post/git/01-git%E6%A6%82%E8%BF%B0/</url><categories><category>Git从入门到精通</category></categories><tags><tag>Git</tag><tag>版本控制系统</tag></tags><content type="html"><![CDATA[  git 概述Git：一种 分布式版本控制系统，用于记录文件变化、追踪项目历史。
+版本控制的意义能查看任意时间点的文件内容。 能比较不同版本间的差异。 能在误操作后恢复旧版本。 方便多人协作，避免文件混乱。 Git 的优势免费开源
 速度快、文件体积小
-其他版本控制系统：记录的是各版本之间的差异。 Git：记录的是 文本内容的快照，可快速切换版本。 分布式系统
-即使没有服务器或网络，也可以使用 Git 进行版本控制。 待服务器恢复或网络可用时再进行同步，不受影响。 终端机/命令提示符常用命令Windows macOS/Linux 说明 cd cd 切换目录 cd pwd 获取当前位置 dir ls 列出文件列表 mkdir mkdir 创建目录 无 touch 创建文件 copy cp 复制文件 move mv 移动文件 del rm 删除文件 cls clear 清屏 目录切换及显示# 切换到 /tmp 目录（绝对路径） cd /tmp # 切换到 my_project 目录（相对路径） cd my_project # 切换到上一层目录 cd .. # 切换到 home/project/namecards 目录 cd ~/project/namecards/ # 显示当前所在目录 pwd文件列表ls：列出当前目录下文件及目录。
+传统版本控制系统：记录各版本间的差异。 Git：记录的是 文件内容的快照，因此切换版本极快。 分布式系统
+每个人的本地仓库都包含完整历史记录。 即使没有服务器或网络，也能正常进行版本控制。 网络恢复后可再同步，不受外部影响。 与集中式系统的对比（如 SVN）
+对比点 Git（分布式） SVN（集中式） 工作方式 每人拥有完整仓库 所有操作依赖中央服务器 离线操作 ✅ 可离线提交 ❌ 必须联网 速度 快，读取本地数据 慢，需网络交互 结构 多中心 单一中心 命令行（终端 / 命令提示符）常用命令对照表Windows macOS/Linux 说明 cd cd 切换目录 cd pwd 显示当前位置 dir ls 列出文件列表 mkdir mkdir 创建目录 无 touch 创建文件 copy cp 复制文件 move mv 移动文件 del rm 删除文件 cls clear 清屏 目录切换及显示# 切换到 /tmp 目录（绝对路径） cd /tmp # 切换到 my_project 目录（相对路径） cd my_project # 切换到上一层目录 cd .. # 切换到 home/project/namecards 目录 cd ~/project/namecards/ # 显示当前所在目录 pwd命令行常用符号符号 含义 ~ 当前用户的 home 目录 .. 上一级目录 * 通配符，匹配任意字符 &gt; 将输出写入文件（重定向） / 目录分隔符（Windows 可用 \） 文件列表ls：列出当前目录下文件及目录。
 ls -al：显示包含以.开头的文件，及完整权限、所有者、时间信息。
 ls -al创建文件、目录# 创建文件 touch index.html # 创建目录 mkdir demotouch：
 不存在 → 创建空白文件。 已存在 → 修改最后修改时间，不改动内容。 mkdir：创建目录。
-文件操作# 复制 cp index.html about.html # 重命名 / 移动 mv index.html info.html # 删除文件 rm index.html # 删除目录下所有 .html 文件 rm *.htmlvim 操作介绍模式切换：
-Normal 模式：命令模式，无法输入文本。 Insert 模式：文本输入模式。 进入 Insert 模式：
-i → insert a → append o → 新建一行并输入 切换模式：
+文件操作# 复制 cp index.html about.html # 重命名 / 移动 mv index.html info.html # 删除文件 rm index.html # 删除目录下所有 .html 文件 rm *.htmlvim 编辑器基础模式切换：
+Normal 模式：命令模式，无法直接输入文本。 Insert 模式：文本输入模式。 进入 Insert 模式：
+i → 插入 a → 追加 o → 新建一行并输入 切换模式：
 Insert → Normal：Esc 或 Ctrl + [ 常用命令：
-:w → 存储文件 :q → 关闭文件（未存储会提示先保存） :wq → 存储并关闭文件 设置 Git用户设置git config --global user.name &#34;Allay&#34; git config --global user.email &#34;allay@qq.com&#34;检查配置：
-git config --list配置保存在 ~/.gitconfig 文件中，可手动修改。
-每个项目设置不同的作者针对特定的项目设置不同的作者，可以用&ndash;local 参数
-git config --local user.name &#34;Andy&#34; git config --local user.email &#34;andy@qq.com&#34;local 设置：仅对该项目生效。
-其他项目仍使用 global 设置。
+命令 作用 :w 保存文件 :q 退出文件（未保存会提示） :wq 保存并退出 Git 基本设置设置用户名与邮箱git config --global user.name &#34;Allay&#34; git config --global user.email &#34;allay@qq.com&#34;检查配置：
+git config --list这些配置保存在 ~/.gitconfig 文件中，也可手动修改。
+针对单个项目设置不同作者针对特定的项目设置不同的作者，可以用&ndash;local 参数
+git config --local user.name &#34;Andy&#34; git config --local user.email &#34;andy@qq.com&#34;global 设置：全局生效。
+local 设置：仅当前项目生效。
 设置缩写git config --global alias.co checkout git config --global alias.l &#34;log --oneline --graph&#34;示例：
-git co = git checkout git l = git log --oneline --graph 这些 alias 配置可在 ~/.gitconfig 中修改。
+git co = git checkout git l = git log --oneline --graph 别名配置同样保存在 ~/.gitconfig 文件中。
   ]]></content></entry><entry><title>10. 模块</title><url>/post/ts/10-%E6%A8%A1%E5%9D%97/</url><categories><category>Typescript文档阅读</category></categories><tags><tag>TypeScript</tag><tag>前端开发</tag></tags><content type="html"><![CDATA[  JavaScript 模块是如何定义的在 TypeScript 中，任何包含顶级 import 或 export 的文件都被视为模块。
 没有顶级导入或导出声明的文件将被视为脚本，其内容在全局范围内可用。
 模块在其自身作用域内执行，不在全局作用域执行。
@@ -991,7 +1317,29 @@ npm install -g typescript编译
 tsc hello.ts若无类型错误，无输出（表示无问题）。 生成对应的 hello.js 文件，代码清晰且保留注释。 发出错误若存在类型检查错误，命令行会显示错误信息，但仍会生成 hello.js。
 TypeScript 假设 开发者比编译器更了解代码意图。
 可使用 noEmitOnError 参数让编译器在错误时不生成输出文件。
-显式类型function greet(person: string, date: Date) { console.log(`Hello ${person}, today is …  </content></entry><entry><title>2.4节 原型</title><url>/post/%E4%BD%A0%E4%B8%8D%E7%9F%A5%E9%81%93%E7%9A%84js-%E4%B8%8A%E5%8D%B7/0204--%E5%8E%9F%E5%9E%8B/</url><categories><category>你不知道的JS</category></categories><tags><tag>JavaScript</tag><tag>ECMAScript</tag><tag>前端开发</tag></tags><content type="html"><![CDATA[  [[Prototype]] 基础定义：对象的特殊内置属性，本质是对其他对象的引用 默认值：几乎所有对象创建时，[[Prototype]] 都会被赋予非空值 [[Get]] 操作逻辑（属性查找）： 优先检查对象本身是否有目标属性，有则使用； 若无，沿 [[Prototype]] 链向上查找； 直至找到属性或遍历完整条原型链，未找到则返回 undefined 原型链终点：Object.prototype地位：所有普通对象的 [[Prototype]] 链最终都会指向 Object.prototype 作用：包含 JS 通用功能（如 toString()、hasOwnProperty() 等），供所有普通对象继承 核心通用方法方法 作用 示例 toString() 返回对象的字符串表示（默认&amp;quot;[object Object]&amp;quot;） ({}).toString() → &amp;quot;[object Object]&amp;quot; hasOwnProperty(key) 检查属性是否为对象自身所有（不含原型链） cat.hasOwnProperty(&amp;quot;eat&amp;quot;) → false（eat 在原型上） isPrototypeOf(obj) 检查当前对象是否在obj的原型链上 animal.isPrototypeOf(cat) → true valueOf() 返回对象的原始值（默认返回对象本身） (new Number(123)).valueOf() → 123 属性设置与屏蔽（myObject.foo = &#39;bar&#39;）基础逻辑若 myObject 本身有 foo 普通数据属性：仅修改属性值； 若 foo 不在 myObject 中：沿 [[Prototype]] 链查找，未找到则直接在 myObject 上添加 foo； 若 foo 既在 myObject 中，也在原型链上层：myObject 的 foo 屏蔽原型链上层的 foo（优先取最底层属性）。 特殊场景（foo 在原型链上层）原型链上层 foo 特性 结果 普通数据属性（非只读） 在 myObject 上添加 foo 屏蔽属性 只读数据属性（writable: false） 非严格模式：忽略赋值；严格模式：报错（无法添加屏蔽属性或修改原属性） 访问描述符（含 setter） 调 …  ]]></content></entry><entry><title>2.5节 行为委托和class</title><url>/post/%E4%BD%A0%E4%B8%8D%E7%9F%A5%E9%81%93%E7%9A%84js-%E4%B8%8A%E5%8D%B7/0205--%E8%A1%8C%E4%B8%BA%E5%A7%94%E6%89%98%E5%92%8Cclass/</url><categories><category>你不知道的JS</category></categories><tags><tag>JavaScript</tag><tag>ECMAScript</tag><tag>前端开发</tag></tags><content type="html">  对象关联风格的核心特性与设计原则状态存储原则核心规则：状态（数据属性）应保存在委托者对象上，而非委托目标（原型链上层对象）。 避免委托目标状态被多个委托者共享，导致数据污染或不可预期的修改。 方法命名原则核心规则：尽量避免在 [[Prototype]] 链不同级别使用相同命名的方法（与类风格的“重写”逻辑相反）。 设计建议：使用描述性方法名（需体现对象行为类型），降低命名冲突风险，提升代码可理解性与可维护性。 委托本质委托行为的核心：当对象自身找不到属性/方法时，会将请求委托给 [[Prototype]] 关联的对象（沿原型链向上查找）。 委托限制禁止循环委托：无法在两个及以上对象间创建互相委托（如 A 关联 B、B 关联 A），会触发错误。 思维模型与灵活性维度 特点 思维模型 仅关注对象之间的关联关系，不强调实体及实体间的层级（如父类-子类） 创建与初始化分离 支持“创建对象”与“初始化状态”分步执行，更符合关注分离原则，灵活性更高 对比类风格 类风格通常强制“构造+初始化”合并为一步（如 new 调用构造函数时同步初始化） class 语法特点（ES6+）多态实现支持通过 super() 实现相对多态：子类方法可通过 super 引用原型链上层的同名方法（模拟类继承中的“调用父类方法”）。 声明限制仅能声明方法：class 字面量语法中，无法直接声明数据属性（需在构造函数 constructor 中通过 this.属性名 定义）。 示例：class A { foo() {}; // 允许；bar = 1; // 类字段语法（ESNext，非标准字面量声明） } 扩展能力支持通过 extends 关键字自然扩展对象类型，包括内置对象类型（如 class MyArray extends Array {}），模拟类继承的“子类扩展父类”逻辑。 本质与局限性维度 特点 本质 是 [[Prototype]] 机制的语法糖，并非真正实现面向类语言的“类”（无类实例化复制、无类级别的类型约束） super 绑定方式 静态绑定：super 指向的原型链上层对象在 class 定义时确定，无法动态修改（与类风格的动态关联不同） 动态修改难度 class 定义后，难以对其原型链、方法等进行动态调整（如修改 prototype 指向、新增/删除方法），灵活性低于原生对象关联   </content></entry><entry><title>2.3节 混合对象类</title><url>/post/%E4%BD%A0%E4%B8%8D%E7%9F%A5%E9%81%93%E7%9A%84js-%E4%B8%8A%E5%8D%B7/0203--%E6%B7%B7%E5%90%88%E5%AF%B9%E8%B1%A1%E7%B1%BB/</url><categories><category>你不知道的JS</category></categories><tags><tag>JavaScript</tag><tag>ECMAScript</tag><tag>前端开发</tag></tags><content type="html">  类理论类/继承 描述了一种代码的组织结构形式，是一种在软件中对真实世界中问题领域的建模方法。
+显式类型function greet(person: string, date: Date) { console.log(`Hello ${person}, today is …  </content></entry><entry><title>2.4节 原型</title><url>/post/%E4%BD%A0%E4%B8%8D%E7%9F%A5%E9%81%93%E7%9A%84js-%E4%B8%8A%E5%8D%B7/0204--%E5%8E%9F%E5%9E%8B/</url><categories><category>你不知道的JS</category></categories><tags><tag>JavaScript</tag><tag>ECMAScript</tag><tag>前端开发</tag></tags><content type="html">  [[Prototype]]对象具有特殊的 [[Prototype]] 内置属性，用于引用其他对象。
+大多数对象在创建时，[[Prototype]] 会被赋值为非空对象。
+对象的 [[Prototype]] 可以为空，但较少见。
+当访问对象属性时，会触发 [[Get]] 操作。
+首先检查对象本身是否存在该属性。
+若不存在，则继续查找对象的 [[Prototype]] 链。
+查找会持续到：找到匹配属性名，或遍历完整条原型链仍未找到，此时返回 undefined。
+for...in：遍历可枚举属性，包括来自原型链的属性。
+in 操作符：检查对象及其原型链上是否存在某属性（无论是否可枚举）。
+Object.prototype所有普通的 prototype 链最终指向 Object.prototype。
+Object.prototype 包含 JavaScript 中许多通用功能。
+属性设置和屏蔽myObject.foo = &amp;#39;bar&amp;#39;
+**若 foo 在当前对象中：**直接修改已有属性值。
+**若 foo 不在当前对象中：**查找原型链：
+若找不到 foo：在当前对象上创建新属性。 若在原型链找到 foo：可能发生“屏蔽”。当对象自身具有某属性时，它会 屏蔽原型链中的同名属性。 三种赋值行为的结果：
+**原型链上 foo 是可写的数据属性：**在当前对象上创建同名新属性，实现屏蔽。 **原型链上 foo 是只读属性：**无法修改原型链中属性，无法在当前对象创建屏蔽属性，严格模式下抛错，非严格模式下忽略。 **原型链上 foo 是 setter：**调用 setter，不创建屏蔽属性。 若想在情况 2 和 3 中也进行屏蔽，需使用 Object.defineProperty 创建属性。
+类在 JS 中，类无法描述对象行为，因为 根本不存在类。
+对象直接定义自己的行为，JS 中只有对象。
+类函数所有函数默认拥有一个 prototype 属性，指向一个对象（函数原型）。
+使用 new 调用函数创建对象时，这些对象会将其 [[Prototype]] 关联到该函数的 prototype。
+传统面向类语言：类 → 实例 复制行为。
+JavaScript：对象关联，不产生复制，多对象共享同一原型对象。
+new 调用函数会：生成新对象，将新对象的 [[Prototype]] 关联 …  </content></entry><entry><title>2.3节 混合对象类</title><url>/post/%E4%BD%A0%E4%B8%8D%E7%9F%A5%E9%81%93%E7%9A%84js-%E4%B8%8A%E5%8D%B7/0203--%E6%B7%B7%E5%90%88%E5%AF%B9%E8%B1%A1%E7%B1%BB/</url><categories><category>你不知道的JS</category></categories><tags><tag>JavaScript</tag><tag>ECMAScript</tag><tag>前端开发</tag></tags><content type="html">  类理论类/继承 描述了一种代码的组织结构形式，是一种在软件中对真实世界中问题领域的建模方法。
 面向对象编程（OOP） 强调数据与操作数据的行为是互相关联的。
 好的设计：将数据及与其相关的行为封装在一起。在计算机科学中，这种封装有时被称为 数据结构。
 类可以用于对数据结构进行分类。任意数据结构 都可以看作是某个范围更广定义的特例。
